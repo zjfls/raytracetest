@@ -2,3 +2,11 @@
 *.o
 *.a
 *.sdf
+*.tlog
+*.obj
+*.pch
+*.ilk
+*.pdb
+*.ipch
+*.idb
+*.lastbuildstate
