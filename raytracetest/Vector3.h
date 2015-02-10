@@ -14,11 +14,18 @@ public:
 	Vector3	operator+(const Vector3& vecIn) const;
 	Vector3 operator-(const Vector3& vecIn) const;
 	Vector3 operator*(float f) const;
+
+
+	//------------------------------------------------------------------
+	float length();
+	float distance();
 	void normalize();
 	bool isNormalized();
 	float dot(const Vector3& vecIn) const;
 	Vector3 cross(const Vector3& vecIn) const;
+	float angle(const Vector3& vecIn) const;
 	virtual ~Vector3();
+	//------------------------------------------------------------------
 
 
 	///////////////////////////
@@ -29,3 +36,6 @@ public:
 	///////////////////////////
 };
 
+typedef Vector3 Point3D;
+typedef Vector3 Direction3D;
+typedef Vector3 Point3D;

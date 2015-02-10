@@ -27,6 +27,24 @@
     <ClInclude Include="Vector3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="IntersectTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageFileHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +54,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageFileHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
