@@ -9,6 +9,12 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include "Vector3.h"
+
+
+/////////////////////////////////
+#include "Transform.h"
+#include "IWorldObj.h"
 
 
 
