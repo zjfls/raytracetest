@@ -1,8 +1,8 @@
 #pragma once
-class Cube3D
+class Cube3D:public IRenderable
 {
 public:
 	Cube3D();
-	~Cube3D();
+	virtual ~Cube3D();
 };
 

@@ -1,5 +1,5 @@
 #pragma once
-class Camera;
+class CameraBase;
 class IWorld;
 class IRender
 {
@@ -8,6 +8,6 @@ public:
 	virtual ~IRender();
 
 
-	virtual int Render(Camera* pCammera, IWorld* pWorld) = 0;
+	virtual int Render(CameraBase* pCammera, IWorld* pWorld) = 0;
 };
 

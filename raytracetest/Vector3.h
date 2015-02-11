@@ -30,9 +30,9 @@ public:
 
 	///////////////////////////
 	//
-	float x;
-	float y;
-	float z;
+	float m_fx;
+	float m_fy;
+	float m_fz;
 	///////////////////////////
 };
 

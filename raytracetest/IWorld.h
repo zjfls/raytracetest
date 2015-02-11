@@ -6,6 +6,8 @@ public:
 	virtual ~IWorld();
 
 
-	IWorld* m_pRoot;
+	IWorldObj* m_pRoot;
+	static IWorld* pSingleWorld;
+	static void Update();
 };
 

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\math">
+      <UniqueIdentifier>{969ecfff-bc55-4e69-a106-451f1b0706bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\math">
+      <UniqueIdentifier>{e33f396f-c7ac-4fe6-acda-9799a1c52558}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -22,15 +28,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IntersectTest.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Ray3D.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Sphere3D.h">
@@ -45,22 +42,7 @@
     <ClInclude Include="ImageFileHelper.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Orientation.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Quaternions.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix33.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix44.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IWorldObj.h">
@@ -78,18 +60,63 @@
     <ClInclude Include="RayTraceRender.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterRender.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceViewPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracePerpViewPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix33.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix44.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectTest.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternions.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Orientation.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray3D.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleWorldObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceCamera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="raytracetest.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IntersectTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Ray3D.cpp">
@@ -107,22 +134,7 @@
     <ClCompile Include="ImageFileHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Orientation.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Quaternions.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix33.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix44.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="IWorldObj.cpp">
@@ -138,6 +150,54 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RayTraceRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceViewPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTracePerpViewPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix33.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix44.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectTest.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Orientation.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternions.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleWorldObj.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceCamera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

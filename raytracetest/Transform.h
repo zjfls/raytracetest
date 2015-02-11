@@ -1,8 +1,9 @@
 #pragma once
 #include "Orientation.h"
+#include "ModuleBase.h"
 
 /////////////////////////////////////////////////
-class Transform
+class Transform:public ModuleBase
 {
 public:
 	Transform();

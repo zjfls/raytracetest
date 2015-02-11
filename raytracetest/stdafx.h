@@ -9,12 +9,18 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <vector>
+using namespace std;
 #include "Vector3.h"
 
 
 /////////////////////////////////
 #include "Transform.h"
 #include "IWorldObj.h"
+/////////////////////////////////
+#include "IRenderable.h"
+/////////////////////////////////
+#include "ModuleBase.h"
 
 
 

@@ -79,21 +79,30 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="RayTraceCamera.h" />
+    <ClInclude Include="CameraBase.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Cube3D.h" />
     <ClInclude Include="ImageFileHelper.h" />
     <ClInclude Include="IntersectTest.h" />
     <ClInclude Include="IRender.h" />
+    <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IWorld.h" />
     <ClInclude Include="IWorldObj.h" />
     <ClInclude Include="Matrix33.h" />
     <ClInclude Include="Matrix44.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ModuleBase.h" />
     <ClInclude Include="Orientation.h" />
+    <ClInclude Include="Plane3D.h" />
     <ClInclude Include="Quaternions.h" />
+    <ClInclude Include="RasterRender.h" />
     <ClInclude Include="Ray3D.h" />
+    <ClInclude Include="RayTracePerpViewPort.h" />
     <ClInclude Include="RayTraceRender.h" />
+    <ClInclude Include="RayTraceViewPort.h" />
     <ClInclude Include="SimpleWorld.h" />
+    <ClInclude Include="SimpleWorldObj.h" />
     <ClInclude Include="Sphere3D.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -101,22 +110,31 @@
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="RayTraceCamera.cpp" />
+    <ClCompile Include="CameraBase.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cube3D.cpp" />
     <ClCompile Include="ImageFileHelper.cpp" />
     <ClCompile Include="IntersectTest.cpp" />
     <ClCompile Include="IRender.cpp" />
+    <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IWorld.cpp" />
     <ClCompile Include="IWorldObj.cpp" />
     <ClCompile Include="Matrix33.cpp" />
     <ClCompile Include="Matrix44.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ModuleBase.cpp" />
     <ClCompile Include="Orientation.cpp" />
+    <ClCompile Include="Plane3D.cpp" />
     <ClCompile Include="Quaternions.cpp" />
+    <ClCompile Include="RasterRender.cpp" />
     <ClCompile Include="Ray3D.cpp" />
+    <ClCompile Include="RayTracePerpViewPort.cpp" />
     <ClCompile Include="RayTraceRender.cpp" />
     <ClCompile Include="raytracetest.cpp" />
+    <ClCompile Include="RayTraceViewPort.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
+    <ClCompile Include="SimpleWorldObj.cpp" />
     <ClCompile Include="Sphere3D.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
