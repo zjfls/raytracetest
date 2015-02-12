@@ -41,6 +41,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	pWorld->Update();
 	pCamera->Render();
 	delete pWorld;
+
 	return 0;
 }
 
