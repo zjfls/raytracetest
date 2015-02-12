@@ -79,6 +79,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MathDefine.h" />
     <ClInclude Include="RayTraceCamera.h" />
     <ClInclude Include="CameraBase.h" />
     <ClInclude Include="Color.h" />

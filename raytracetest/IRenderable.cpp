@@ -10,3 +10,8 @@ IRenderable::IRenderable()
 IRenderable::~IRenderable()
 {
 }
+
+void IRenderable::Update()
+{
+
+}

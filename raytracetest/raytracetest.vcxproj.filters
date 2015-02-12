@@ -84,9 +84,6 @@
     <ClInclude Include="Quaternions.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
-    <ClInclude Include="Orientation.h">
-      <Filter>头文件\math</Filter>
-    </ClInclude>
     <ClInclude Include="Ray3D.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
@@ -110,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="Vector3.h">
       <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="MathDefine.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Orientation.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

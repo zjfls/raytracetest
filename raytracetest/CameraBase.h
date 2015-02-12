@@ -2,6 +2,7 @@
 #include "ModuleBase.h"
 
 class IRender;
+class IWorldObj;
 class CameraBase :
 	public ModuleBase
 {
@@ -12,5 +13,9 @@ public:
 	virtual void OnLateUpdate();
 	virtual void Render();
 	IRender* m_pRender;
+
+
+	float m_fVertFov;
+	float m_fHorzFov;
 };
 

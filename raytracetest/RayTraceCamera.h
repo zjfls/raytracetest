@@ -1,5 +1,6 @@
 #pragma once
 #include "CameraBase.h"
+class RayTraceViewPort;
 class RayTraceCamera:public CameraBase
 {
 public:
@@ -10,6 +11,10 @@ public:
 	virtual void OnLateUpdate();
 	virtual void Render();
 ////////////////////////////////////////////////////////////
+	void SetPerpViewPort(float fNear, float fFar, float fVertFov, float fHorzFov);
+
+
+	RayTraceViewPort* m_pViewPort;
 
 };
 

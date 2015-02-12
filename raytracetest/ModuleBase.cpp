@@ -10,3 +10,13 @@ ModuleBase::ModuleBase()
 ModuleBase::~ModuleBase()
 {
 }
+
+void ModuleBase::OnLateUpdate()
+{
+
+}
+
+void ModuleBase::Update()
+{
+
+}

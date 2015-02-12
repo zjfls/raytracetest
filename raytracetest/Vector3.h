@@ -34,6 +34,11 @@ public:
 	float m_fy;
 	float m_fz;
 	///////////////////////////
+	static const Vector3	ZERO;
+	static const Vector3	ONE;
+	static const Vector3	XAxis;
+	static const Vector3	YAxis;
+	static const Vector3	ZAxis;
 };
 
 typedef Vector3 Point3D;

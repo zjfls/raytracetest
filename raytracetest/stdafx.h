@@ -9,12 +9,15 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <assert.h>
 #include <vector>
+#include <math.h>
 using namespace std;
 #include "Vector3.h"
 
 
 /////////////////////////////////
+#include "MathDefine.h"
 #include "Transform.h"
 #include "IWorldObj.h"
 /////////////////////////////////

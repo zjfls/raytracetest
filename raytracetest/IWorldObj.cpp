@@ -15,6 +15,7 @@ IWorldObj::~IWorldObj()
 
 bool IWorldObj::addChild(IWorldObj* pObj)
 {
+	assert(pObj->m_pParent == nullptr);
 	for each (IWorldObj* var in m_vecChildren)
 	{
 		if (var == pObj)
@@ -22,6 +23,7 @@ bool IWorldObj::addChild(IWorldObj* pObj)
 			return false;
 		}
 	}
+	pObj->m_pParent = this;
 	m_vecChildren.push_back(pObj);
 	return true;
 }
@@ -33,6 +35,7 @@ bool IWorldObj::removeChild(IWorldObj* pObj)
 	{
 		if (*iter == pObj)
 		{
+			pObj->m_pParent = nullptr;
 			m_vecChildren.erase(iter);
 			return true;
 		}
@@ -49,6 +52,7 @@ bool IWorldObj::addModule(ModuleBase* pModule)
 			return false;
 		}
 	}
+	pModule->m_pOwnerObj = this;
 	m_vecModules.push_back(pModule);
 	return true;
 }
@@ -60,9 +64,22 @@ bool IWorldObj::removeModule(ModuleBase* pModule)
 	{
 		if (*iter == pModule)
 		{
+			pModule->m_pOwnerObj = nullptr;
 			m_vecModules.erase(iter);
 			return true;
 		}
 	}
 	return false;
+}
+
+void IWorldObj::Update()
+{
+	for each (ModuleBase* var in m_vecModules)
+	{
+		var->Update();
+	}
+	for each (IWorldObj* varChild in m_vecChildren)
+	{
+		varChild->Update();
+	}
 }

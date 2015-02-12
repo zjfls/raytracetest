@@ -13,5 +13,8 @@ public:
 private:
 	float m_fVertFov;
 	float m_fHorzFov;
+
+
+
 };
 

@@ -5,5 +5,8 @@ class IRenderable:public ModuleBase
 public:
 	IRenderable();
 	virtual ~IRenderable();
+
+
+	virtual void Update();
 };
 
