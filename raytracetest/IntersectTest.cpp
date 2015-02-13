@@ -17,7 +17,7 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 {
 	//r.m_vecDirection.normalize();
 	IntersetResults results;
-	Vector3 vecDir = trans.m_vecTranslate - r.m_vecPos;
+	Vector3 vecDir = trans.GetTranslate() - r.m_vecPos;
 	//vecDir.normalize();
 	float fLengthToSphere = vecDir.length();
 	float fDot = vecDir.dot(r.GetDir());
@@ -35,14 +35,22 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 	float fHalfTransLength = s.m_fRadius * s.m_fRadius - fPerpLength * fPerpLength;
 	fHalfTransLength = sqrt(fHalfTransLength);
 
+
+
+	
 	IntersetData interData;
 	interData.fDist = fDot - fHalfTransLength;
 	interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
+	Vector3 vecNormal = interData.vecPos - trans.GetTranslate();
+	vecNormal.normalize();
+	interData.vecNormal = vecNormal;
 	results.m_vecIntersetDatas.push_back(interData);
 	if (fHalfTransLength > 0.0001)
 	{
 		interData.fDist = fDot + fHalfTransLength;
 		interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
+		interData.vecNormal = interData.vecPos - trans.GetTranslate();
+		interData.vecNormal.normalize();
 		results.m_vecIntersetDatas.push_back(interData);
 	}
 

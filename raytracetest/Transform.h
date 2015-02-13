@@ -8,27 +8,56 @@
 class Transform:public ModuleBase
 {
 public:
-	Transform();
+	
 	~Transform();
 
 	virtual void Update();
 	Vector3	GetRight();
 	Vector3 GetForward();
 	Vector3	GetUp();
+	void NotifyNeedTransform();
+	bool m_bThisFrameUpdated;
+
+
+	void SetTranslate(float fX, float fY, float fZ);
+	void SetTranslate(const Vector3& vecIn){ m_vecTranslate = vecIn; };
+	void SetOrientation(float fX, float fY, float fZ);
+	void SetScale(float fx, float fY, float fZ);
+
+	Vector3 GetTranslate()const{ return m_vecTranslate; };
+	Vector3 GetScale()const{ return m_vecScale; };
+	Orientation GetOrientation()const{ return m_Orientation; };
 ////////////////////////////////////////////////
+
+	
+private:
+	Matrix44	m_TransformMatrixLocal;
+	Matrix44	m_TransformMatrixWorld;
+	bool m_bDirt;
+
 	Point3D m_vecTranslate;
 	Orientation m_Orientation;
 	Vector3 m_vecScale;
 
-public:
-	//Matrix33	m_RotMatrixLocal;
-	//Matrix33	m_RotMatrixParent;
-	//Matrix33	m_RotMatrixWorld;
-	Matrix44	m_TransformMatrixLocal;
-	//Matrix44	m_TransformMatrixParent;
-	Matrix44	m_TransformMatrixWorld;
-	//is need to change
-	bool m_bDirt;
-	
+private:
+	Transform();
+	friend class IWorldObj;
 };
+
+
+
+
+
+//class TransformCreator :public IModuleCreator
+//{
+//public:
+//	TransformCreator();
+//	virtual ~TransformCreator();
+//
+//
+//	virtual ModuleBase* CreateModule();
+//};
+
+
+
 

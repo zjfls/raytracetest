@@ -79,12 +79,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationBase.h" />
+    <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="IMaterial.h" />
     <ClInclude Include="IntersetResults.h" />
+    <ClInclude Include="LightBase.h" />
     <ClInclude Include="MaterialManager.h" />
     <ClInclude Include="MathDefine.h" />
     <ClInclude Include="MathFunc.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="RasterMaterial.h" />
+    <ClInclude Include="RayTraceApplication.h" />
     <ClInclude Include="RayTraceCamera.h" />
     <ClInclude Include="CameraBase.h" />
     <ClInclude Include="Color.h" />
@@ -119,11 +124,16 @@
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationBase.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="IMaterial.cpp" />
     <ClCompile Include="IntersetResults.cpp" />
+    <ClCompile Include="LightBase.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
     <ClCompile Include="MathFunc.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RasterMaterial.cpp" />
+    <ClCompile Include="RayTraceApplication.cpp" />
     <ClCompile Include="RayTraceCamera.cpp" />
     <ClCompile Include="CameraBase.cpp" />
     <ClCompile Include="Color.cpp" />

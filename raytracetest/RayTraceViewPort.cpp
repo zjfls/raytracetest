@@ -10,3 +10,8 @@ RayTraceViewPort::RayTraceViewPort()
 RayTraceViewPort::~RayTraceViewPort()
 {
 }
+
+void RayTraceViewPort::OnTransformChanged(const RayTraceCamera* pCamera)
+{
+
+}

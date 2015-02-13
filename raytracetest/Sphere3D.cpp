@@ -10,3 +10,18 @@ Sphere3D::Sphere3D()
 Sphere3D::~Sphere3D()
 {
 }
+
+//Sphere3DCreator::Sphere3DCreator()
+//{
+//
+//}
+//
+//Sphere3DCreator::~Sphere3DCreator()
+//{
+//
+//}
+//
+//ModuleBase* Sphere3DCreator::CreateModule()
+//{
+//	return new Sphere3D;
+//}

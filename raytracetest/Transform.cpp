@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Transform.h"
-
+#include "Orientation.h"
 
 
 Transform::Transform()
+:m_bDirt(true)
+, m_bThisFrameUpdated(false)
 {
 	m_vecTranslate = Vector3::ZERO;
 	m_vecScale = Vector3::ONE;
@@ -35,6 +37,11 @@ Vector3 Transform::GetForward()
 
 void Transform::Update()
 {
+	m_bThisFrameUpdated = false;
+	if (m_bDirt == false)
+	{
+		return;
+	}
 	assert(m_pOwnerObj != nullptr);
 	Matrix33 matScale;
 	matScale.ScaleMatrix(m_vecScale.m_fx,m_vecScale.m_fy,m_vecScale.m_fz);
@@ -57,6 +64,49 @@ void Transform::Update()
 	{
 		m_TransformMatrixWorld = m_TransformMatrixLocal * m_pOwnerObj->m_pParent->m_pTransform->m_TransformMatrixWorld;
 	}
-	
+	m_bThisFrameUpdated = true;
+	m_bDirt = false;
+	NotifyNeedTransform();
 
 }
+
+void Transform::NotifyNeedTransform()
+{
+	for each (IWorldObj* var in m_pOwnerObj->m_vecChildren)
+	{
+		var->m_pTransform->m_bDirt = true;
+	}
+}
+
+void Transform::SetTranslate(float fX, float fY, float fZ)
+{
+	m_vecTranslate = Vector3(fX, fY, fZ);
+	m_bDirt = true;
+}
+
+void Transform::SetOrientation(float fX, float fY, float fZ)
+{
+	m_Orientation.m_vecEulerAngle = Vector3(fX, fY, fZ);
+	m_bDirt = true;
+}
+
+void Transform::SetScale(float fx, float fY, float fZ)
+{
+	m_vecScale = Vector3(fx, fY, fZ);
+	m_bDirt = true;
+}
+
+//ModuleBase* TransformCreator::CreateModule()
+//{
+//	return new Transform;
+//}
+//
+//TransformCreator::TransformCreator()
+//{
+//
+//}
+//
+//TransformCreator::~TransformCreator()
+//{
+//
+//}

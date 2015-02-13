@@ -6,6 +6,7 @@
 #include "IWorld.h"
 #include "IntersectTest.h"
 #include "ImageFileHelper.h"
+#include "SimpleRTMaterial.h"
 
 RayTraceRender::RayTraceRender()
 {
@@ -26,7 +27,8 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	assert(pRTCamera != nullptr && pRTCamera->m_pViewPort != nullptr);
 	m_pCachedCamera = pRTCamera;
 	m_pCachedWorld = pWorld;
-	m_vecRenderables = pWorld->GetAllRenderables();
+	m_vecRenderables = pWorld->GetAllComponent<IRenderable>();
+	m_vecLights = pWorld->GetAllComponent<LightBase>();
 	RayTraceViewPort* pViewPort = pRTCamera->m_pViewPort;
 
 
@@ -90,17 +92,18 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 
 Color RayTraceRender::RayTrace(const Vector3& vecTarget)
 {
-
+//primary ray
+	Color	pixColor;
 	Vector3 vecPri;
-	vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->m_vecTranslate;
+	vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetTranslate();
 	vecPri.normalize();
-	Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->m_vecTranslate,vecPri);
+	Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetTranslate(),vecPri);
 	//r.m_vecPos = m_pCachedCamera->m_pOwnerObj->m_pTransform->m_vecTranslate;
 	//r.m_vecDirection = vecPri;
-
 	IRenderable* pInterGeo = nullptr;
 	float fInterDist = 1000000000;
 	Vector3 vecInterPos = Vector3::ZERO;
+	Vector3 vecNormal = Vector3::ONE;
 	for each (IRenderable* var in m_vecRenderables)
 	{
 		IntersetResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
@@ -111,13 +114,63 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget)
 				pInterGeo = var;
 				fInterDist = result.m_vecIntersetDatas[0].fDist;
 				vecInterPos = result.m_vecIntersetDatas[0].vecPos;
+				vecNormal = result.m_vecIntersetDatas[0].vecNormal;
 			}
 		}
 	}
 	if (pInterGeo != nullptr)
 	{
-		return Color::white;
+
+		SimpleRTMaterial* pRTMat = dynamic_cast<SimpleRTMaterial*>(pInterGeo->m_pMaterial);
+		if (pRTMat == nullptr)
+		{
+			pixColor = Color::white;
+		}
+		else
+		{
+			Color cContribute = Color::black;
+			//shadow ray
+			for each (LightBase* var in m_vecLights)
+			{
+				vecNormal.normalize();
+				Vector3 vecShadowPos = vecInterPos + vecNormal * 0.01f;
+				Vector3 vecShadowDir = -var->m_pOwnerObj->m_pTransform->GetForward();// var->m_pOwnerObj->m_pTransform->GetTranslate() - vecShadowPos;
+				vecShadowDir.normalize();
+				Ray3D shadowRay(vecShadowPos, vecShadowDir);
+				if (ShadowRay(shadowRay, var) == false)
+				{
+					cContribute = cContribute + pRTMat->m_ColorDiffuse * var->m_Color * var->m_fIntensity * std::max(vecNormal.dot(-var->m_pOwnerObj->m_pTransform->GetForward()), 0.0f);
+				}
+				else
+				{
+
+				}
+			}
+			pixColor = cContribute + pRTMat->m_ColorEmi + Color(0.1f,0.1f,0.1f,0.0f);
+		}
+		//	
+	}
+	else
+	{
+		pixColor = Color::black;
 	}
 
-	return Color::black;
+
+	pixColor.m_fR = std::powf(pixColor.m_fR, 1.0f / 2.2f);
+	pixColor.m_fG = std::powf(pixColor.m_fG, 1.0f / 2.2f);
+	pixColor.m_fB = std::powf(pixColor.m_fB, 1.0f / 2.2f);
+	return pixColor;
+}
+
+bool RayTraceRender::ShadowRay(const Ray3D& r, LightBase* pLight)
+{
+	for each (IRenderable* var in m_vecRenderables)
+	{
+		IntersetResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
+		if (result.m_bInterset == true)
+		{
+			return true;
+		}
+	}
+	return false;
 }

@@ -18,6 +18,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <algorithm>
+#include <map>
 using namespace std;
 #include "Vector3.h"
 
@@ -27,6 +28,7 @@ using namespace std;
 #include "MathFunc.h"
 #include "Transform.h"
 #include "IWorldObj.h"
+#include "Color.h"
 /////////////////////////////////
 #include "IRenderable.h"
 /////////////////////////////////

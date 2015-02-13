@@ -22,6 +22,18 @@
     <Filter Include="头文件\foundation">
       <UniqueIdentifier>{6e8d05c1-0ca0-445b-97b8-82a1e0469798}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\module">
+      <UniqueIdentifier>{6fe65a4b-3462-4cf8-aece-09c1ad1517b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\module">
+      <UniqueIdentifier>{f6bdab80-474c-4a36-9ba0-cf39631f25b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render">
+      <UniqueIdentifier>{048567ae-d57c-4bae-bbb8-6e9614603756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render">
+      <UniqueIdentifier>{1eeb80e6-b48a-4aa7-9865-24446516bdd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -33,19 +45,7 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Sphere3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ImageFileHelper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IWorldObj.h">
@@ -55,24 +55,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="SimpleWorld.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IRender.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RayTraceRender.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderable.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RasterRender.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RayTraceViewPort.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RayTracePerpViewPort.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Matrix33.h">
@@ -93,19 +75,7 @@
     <ClInclude Include="SimpleWorldObj.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Plane3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RayTraceCamera.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Vector3.h">
@@ -120,26 +90,83 @@
     <ClInclude Include="IntersetResults.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
-    <ClInclude Include="IMaterial.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RayTraceMaterial.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RasterMaterial.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>头文件\foundation</Filter>
     </ClInclude>
-    <ClInclude Include="MaterialManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleRTMaterial.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="MathFunc.h">
       <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceApplication.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraBase.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="LightBase.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBase.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceCamera.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere3D.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane3D.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube3D.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="IMaterial.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IRender.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialManager.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterMaterial.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterRender.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceMaterial.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceRender.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleRTMaterial.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceViewPort.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracePerpViewPort.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>头文件\module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -152,19 +179,7 @@
     <ClCompile Include="Ray3D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="ImageFileHelper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="IWorldObj.cpp">
@@ -174,24 +189,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SimpleWorld.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IRender.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RayTraceRender.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IRenderable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RasterRender.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RayTraceViewPort.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RayTracePerpViewPort.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Matrix33.cpp">
@@ -215,41 +212,86 @@
     <ClCompile Include="SimpleWorldObj.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Plane3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RayTraceCamera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="IntersetResults.cpp">
       <Filter>源文件\math</Filter>
     </ClCompile>
-    <ClCompile Include="IMaterial.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RayTraceMaterial.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RasterMaterial.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MaterialManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleRTMaterial.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="MathFunc.cpp">
       <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceApplication.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraBase.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube3D.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBase.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="LightBase.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane3D.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceCamera.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere3D.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTracePerpViewPort.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceViewPort.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="IRender.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="IMaterial.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialManager.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterMaterial.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterRender.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceMaterial.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceRender.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleRTMaterial.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>源文件\module</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

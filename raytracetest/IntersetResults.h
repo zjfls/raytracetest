@@ -4,6 +4,7 @@ struct IntersetData
 {
 	float fDist;
 	Vector3 vecPos;
+	Vector3 vecNormal;
 };
 
 class IntersetResults

@@ -17,7 +17,10 @@ RayTraceCamera::~RayTraceCamera()
 
 void RayTraceCamera::Update()
 {
-
+	if (m_pOwnerObj->m_pTransform->m_bThisFrameUpdated)
+	{
+		m_pViewPort->OnTransformChanged(this);
+	}
 }
 
 void RayTraceCamera::OnLateUpdate()
@@ -45,34 +48,32 @@ void RayTraceCamera::SetPerpViewPort(float fNear, float fFar, float fVertFov, fl
 	}
 	RayTracePerpViewPort* pPerpVp = new RayTracePerpViewPort;
 	m_pViewPort = pPerpVp;
-	Transform* pTrans = m_pOwnerObj->m_pTransform;
-
-
-	Vector3 vecForward = pTrans->GetForward();
-	vecForward.normalize();
-	pPerpVp->m_vecPlanePos = pTrans->m_vecTranslate + vecForward * fNear;
-	pPerpVp->m_vecPlaneNormal = -vecForward;
+	pPerpVp->m_fHorzFov = fHorzFov;
+	pPerpVp->m_fVertFov = fVertFov;
+	pPerpVp->m_fNear = fNear;
 	pPerpVp->m_pixHeight = pixHeight;
 	pPerpVp->m_pixWidth = pixWidth;
 
 
-	Vector3 vecUp = pTrans->GetUp();
-	Vector3 vecRight = pTrans->GetRight();
-	vecUp.normalize();
-	vecRight.normalize();
 
-
-	float fHalfHeight = fNear * tan(fVertFov / 2.0f);
-	float fHalfWidth = fNear * tan(fHorzFov / 2);
-
-
-	pPerpVp->m_vecPt[0] = vecForward * fNear + vecUp * fHalfHeight - vecRight * fHalfWidth;//tl
-	pPerpVp->m_vecPt[1] = vecForward * fNear + vecUp * fHalfHeight + vecRight * fHalfWidth;//tr
-	pPerpVp->m_vecPt[2] = vecForward * fNear - vecUp * fHalfHeight - vecRight * fHalfWidth;//bl
-	pPerpVp->m_vecPt[3] = vecForward * fNear - vecUp * fHalfHeight + vecRight * fHalfWidth;//br
 	
 
 
 
 
 }
+
+//RayTraceCameraCreator::RayTraceCameraCreator()
+//{
+//
+//}
+//
+//RayTraceCameraCreator::~RayTraceCameraCreator()
+//{
+//
+//}
+//
+//ModuleBase* RayTraceCameraCreator::CreateModule()
+//{
+//	return new RayTraceCamera();
+//}

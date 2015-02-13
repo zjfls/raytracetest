@@ -6,6 +6,10 @@
 class RayTraceCamera;
 class IWorld;
 class IRenderable;
+
+
+class Ray3D;
+class LightBase;
 class RayTraceRender :
 	public IRender
 {
@@ -20,10 +24,13 @@ public:
 
 
 	Color RayTrace(const Vector3& vecTarget);
+protected:
+	bool ShadowRay(const Ray3D& r,LightBase* pLight);
 	//
 protected:
 	RayTraceCamera* m_pCachedCamera;
 	IWorld*			m_pCachedWorld;
 	std::vector<IRenderable*> m_vecRenderables;
+	std::vector<LightBase*> m_vecLights;
 };
 

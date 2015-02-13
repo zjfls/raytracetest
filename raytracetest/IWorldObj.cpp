@@ -4,13 +4,21 @@
 
 IWorldObj::IWorldObj()
 {
-	m_pTransform = new Transform;
-	addModule(m_pTransform);
+	//m_pTransform = new Transform;
+	m_pTransform = (Transform*)addModule<Transform>();
 }
 
 
 IWorldObj::~IWorldObj()
 {
+	for each (ModuleBase* var in m_vecModules)
+	{
+		delete var;
+	}
+	for each (IWorldObj* var in m_vecChildren)
+	{
+		delete var;
+	}
 }
 
 bool IWorldObj::addChild(IWorldObj* pObj)
@@ -41,20 +49,6 @@ bool IWorldObj::removeChild(IWorldObj* pObj)
 		}
 	}
 	return false;
-}
-
-bool IWorldObj::addModule(ModuleBase* pModule)
-{
-	for each (ModuleBase* var in m_vecModules)
-	{
-		if (var == pModule)
-		{
-			return false;
-		}
-	}
-	pModule->m_pOwnerObj = this;
-	m_vecModules.push_back(pModule);
-	return true;
 }
 
 bool IWorldObj::removeModule(ModuleBase* pModule)

@@ -4,7 +4,7 @@ class RayTraceViewPort;
 class RayTraceCamera:public CameraBase
 {
 public:
-	RayTraceCamera();
+	//RayTraceCamera();
 	virtual ~RayTraceCamera();
 
 	virtual void Update();
@@ -15,6 +15,19 @@ public:
 
 
 	RayTraceViewPort* m_pViewPort;
-
+private:
+	RayTraceCamera();
+	//friend class RayTraceCameraCreator;
+	friend class IWorldObj;
 };
 
+
+
+//class RayTraceCameraCreator :public IModuleCreator
+//{
+//public:
+//	RayTraceCameraCreator();
+//	virtual ~RayTraceCameraCreator();
+//
+//	virtual ModuleBase* CreateModule();
+//};

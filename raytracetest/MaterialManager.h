@@ -3,7 +3,11 @@
 class MaterialManager:public Singleton<MaterialManager>
 {
 public:
-	MaterialManager();
 	virtual ~MaterialManager();
+
+
+private:
+	MaterialManager();
+	friend class Singleton<MaterialManager>;
 };
 

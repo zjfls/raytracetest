@@ -1,10 +1,12 @@
 #pragma once
+
+class RayTraceCamera;
 class RayTraceViewPort
 {
 public:
 	RayTraceViewPort();
 	virtual ~RayTraceViewPort();
-
+	virtual void OnTransformChanged(const RayTraceCamera* pCamera);
 
 
 public:

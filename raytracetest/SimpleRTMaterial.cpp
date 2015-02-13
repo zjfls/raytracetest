@@ -10,3 +10,4 @@ SimpleRTMaterial::SimpleRTMaterial()
 SimpleRTMaterial::~SimpleRTMaterial()
 {
 }
+

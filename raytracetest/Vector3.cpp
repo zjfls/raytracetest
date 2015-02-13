@@ -91,5 +91,6 @@ float Vector3::distance(const Vector3& vecTarget) const
 
 float Vector3::dot(const Vector3& vecIn) const
 {
-	return m_fx * vecIn.m_fx + m_fy * vecIn.m_fy + m_fz * vecIn.m_fz;
+	float fDot = m_fx * vecIn.m_fx + m_fy * vecIn.m_fy + m_fz * vecIn.m_fz;
+	return fDot;
 }

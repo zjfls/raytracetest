@@ -5,7 +5,6 @@ template<class T>
 class Singleton
 {
 public:
-	Singleton(){};
 	virtual ~Singleton(){};
 
 	static T* GetInstance()
@@ -18,6 +17,10 @@ public:
 	}
 
 protected:
+	Singleton(){};
 	static T* _instance;
+
+
+
 
 };
