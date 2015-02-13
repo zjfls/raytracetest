@@ -1,6 +1,9 @@
 #pragma once
 #include "ObjComponent.h"
 #include "ModuleBase.h"
+
+
+class IRenderable;
 class IWorldObj
 {
 public:
@@ -12,6 +15,8 @@ public:
 	virtual bool removeModule(ModuleBase* pModule);
 	virtual void Update();
 
+
+	void GetRenderableRecursive(std::vector<IRenderable*>& vecRenderabls);
 	//bool addComponent(ObjComponent* pComponent);
 ///////////////////////////////////
 	Transform*					m_pTransform;

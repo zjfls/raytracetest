@@ -35,8 +35,28 @@ Vector3 Transform::GetForward()
 
 void Transform::Update()
 {
+	assert(m_pOwnerObj != nullptr);
 	Matrix33 matScale;
 	matScale.ScaleMatrix(m_vecScale.m_fx,m_vecScale.m_fy,m_vecScale.m_fz);
 	Matrix33 matRot = m_Orientation.ToMatrix33();
+	Matrix44 matTraslate;
+	matTraslate.TraslateMatrix(m_vecTranslate.m_fx, m_vecTranslate.m_fy, m_vecTranslate.m_fz);
+
+
+	m_TransformMatrixLocal = Matrix44::Identity;
+	Matrix44 mat44s, mat44r;
+	mat44s.FromMatrix33(&matScale);
+	mat44r.FromMatrix33(&matRot);
+	m_TransformMatrixLocal = matTraslate * mat44s * mat44r;
+
+	if (m_pOwnerObj->m_pParent == nullptr)
+	{
+		m_TransformMatrixWorld = m_TransformMatrixLocal;
+	}
+	else
+	{
+		m_TransformMatrixWorld = m_TransformMatrixLocal * m_pOwnerObj->m_pParent->m_pTransform->m_TransformMatrixWorld;
+	}
+	
 
 }

@@ -83,3 +83,19 @@ void IWorldObj::Update()
 		varChild->Update();
 	}
 }
+
+void IWorldObj::GetRenderableRecursive(std::vector<IRenderable*>& vecRenderabls)
+{
+	for each (ModuleBase*  var in m_vecModules)
+	{
+		IRenderable* pRenderable = dynamic_cast<IRenderable*>(var);
+		if (pRenderable != nullptr)
+		{
+			vecRenderabls.push_back(pRenderable);
+		}
+	}
+	for each (IWorldObj* var in m_vecChildren)
+	{
+		var->GetRenderableRecursive(vecRenderabls);
+	}
+}

@@ -5,14 +5,24 @@ const Matrix33 Matrix33::Identity = Matrix33(1,0,0,0,1,0,0,0,1);
 
 Matrix33::Matrix33()
 {
-	*this = Identity;
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 3; ++j)
+		{
+			m_Matrix[i][j] = 0.0f;
+		}
+	}
+	for (int i = 0; i < 3; ++i)
+	{
+		m_Matrix[i][i] = 1.0f;
+	}
 }
 
 Matrix33::Matrix33(const Matrix33& matIn)
 {
 	for (int i = 0; i < 3; ++i)
 	{
-		for (int j = 0; i < 3; ++j)
+		for (int j = 0; j < 3; ++j)
 		{
 			m_Matrix[i][j] = matIn.m_Matrix[i][j];
 		}
@@ -41,7 +51,7 @@ Matrix33 Matrix33::operator=(const Matrix33& matIn)
 {
 	for (int i = 0; i < 3; ++i)
 	{
-		for (int j = 0; i < 3; ++j)
+		for (int j = 0; j < 3; ++j)
 		{
 			m_Matrix[i][j] = matIn.m_Matrix[i][j];
 		}

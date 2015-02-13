@@ -11,6 +11,7 @@ public:
 	virtual ~Matrix44();
 
 
+	void TraslateMatrix(float fx,float fy,float fz);
 	void FromMatrix33(const Matrix33* mat33);
 
 

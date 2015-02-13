@@ -1,5 +1,6 @@
 #pragma once
 #include "ModuleBase.h"
+class IMaterial;
 class IRenderable:public ModuleBase
 {
 public:
@@ -8,5 +9,8 @@ public:
 
 
 	virtual void Update();
+
+
+	IMaterial* m_pMaterial;
 };
 

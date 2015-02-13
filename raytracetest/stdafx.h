@@ -12,18 +12,27 @@
 #include <assert.h>
 #include <vector>
 #include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <algorithm>
 using namespace std;
 #include "Vector3.h"
 
 
 /////////////////////////////////
 #include "MathDefine.h"
+#include "MathFunc.h"
 #include "Transform.h"
 #include "IWorldObj.h"
 /////////////////////////////////
 #include "IRenderable.h"
 /////////////////////////////////
 #include "ModuleBase.h"
+///////////////////////////////////
+#include "Singleton.h"
 
 
 

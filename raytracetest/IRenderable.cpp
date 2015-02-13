@@ -4,6 +4,7 @@
 
 IRenderable::IRenderable()
 {
+	m_pMaterial = nullptr;
 }
 
 

@@ -11,7 +11,7 @@ public:
 	virtual void OnLateUpdate();
 	virtual void Render();
 ////////////////////////////////////////////////////////////
-	void SetPerpViewPort(float fNear, float fFar, float fVertFov, float fHorzFov);
+	void SetPerpViewPort(float fNear, float fFar, float fVertFov, float fHorzFov,int pixWidth,int pixHeight);
 
 
 	RayTraceViewPort* m_pViewPort;

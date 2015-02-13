@@ -47,7 +47,7 @@ void Vector3::normalize()
 	*this = *this * (1.0f / fLength);
 }
 
-float Vector3::length()
+float Vector3::length() const
 {
 	return sqrt(m_fx * m_fx + m_fy * m_fy + m_fz * m_fz);
 }
@@ -61,4 +61,35 @@ Vector3 Vector3::operator*(float f) const
 
 
 	return vecRt;
+}
+
+Vector3 Vector3::operator-() const
+{
+	//Vector3 vecRt;
+	return *this * -1;
+}
+
+Vector3 Vector3::operator-(const Vector3& vecIn) const
+{
+	return *this + -1 * vecIn;
+}
+
+Vector3 Vector3::operator+(const Vector3& vecIn) const
+{
+	Vector3 vecRt;
+	vecRt.m_fx = m_fx + vecIn.m_fx;
+	vecRt.m_fy = m_fy + vecIn.m_fy;
+	vecRt.m_fz = m_fz + vecIn.m_fz;
+	return vecRt;
+}
+
+float Vector3::distance(const Vector3& vecTarget) const
+{
+	Vector3 vecDiff = vecTarget - *this;
+	return vecDiff.length();
+}
+
+float Vector3::dot(const Vector3& vecIn) const
+{
+	return m_fx * vecIn.m_fx + m_fy * vecIn.m_fy + m_fz * vecIn.m_fz;
 }

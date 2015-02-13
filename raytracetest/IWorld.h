@@ -1,4 +1,5 @@
 #pragma once
+class IRenderable;
 class IWorld
 {
 public:
@@ -8,6 +9,8 @@ public:
 
 	IWorldObj* m_pRoot;
 	static IWorld* pSingleWorld;
-	static void Update();
+	void Update();
+
+	std::vector<IRenderable*> GetAllRenderables();
 };
 

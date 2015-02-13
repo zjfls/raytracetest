@@ -19,6 +19,9 @@
     <Filter Include="源文件\math">
       <UniqueIdentifier>{e33f396f-c7ac-4fe6-acda-9799a1c52558}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\foundation">
+      <UniqueIdentifier>{6e8d05c1-0ca0-445b-97b8-82a1e0469798}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -114,6 +117,30 @@
     <ClInclude Include="Orientation.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="IntersetResults.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="IMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>头文件\foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleRTMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MathFunc.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -202,6 +229,27 @@
     </ClCompile>
     <ClCompile Include="RayTraceCamera.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersetResults.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="IMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleRTMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MathFunc.cpp">
+      <Filter>源文件\math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

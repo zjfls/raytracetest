@@ -7,7 +7,7 @@ public:
 
 
 
-protected:
+public:
 	Point3D		m_vecPlanePos;
 	Direction3D	m_vecPlaneNormal;
 
@@ -15,6 +15,6 @@ protected:
 	int			m_pixHeight;
 
 
-	Point3D		m_vecPt[4];
+	Point3D		m_vecPt[4]; //tl tr bl br
 };
 
