@@ -2,6 +2,7 @@
 #include "IntersectTest.h"
 #include "Ray3D.h"
 #include "Sphere3D.h"
+#include "Plane3D.h"
 
 
 IntersectTest::IntersectTest()
@@ -17,7 +18,7 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 {
 	//r.m_vecDirection.normalize();
 	IntersetResults results;
-	Vector3 vecDir = trans.GetTranslate() - r.m_vecPos;
+	Vector3 vecDir = trans.GetWorldTranslate() - r.m_vecPos;
 	//vecDir.normalize();
 	float fLengthToSphere = vecDir.length();
 	float fDot = vecDir.dot(r.GetDir());
@@ -41,7 +42,7 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 	IntersetData interData;
 	interData.fDist = fDot - fHalfTransLength;
 	interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
-	Vector3 vecNormal = interData.vecPos - trans.GetTranslate();
+	Vector3 vecNormal = interData.vecPos - trans.GetWorldTranslate();
 	vecNormal.normalize();
 	interData.vecNormal = vecNormal;
 	results.m_vecIntersetDatas.push_back(interData);
@@ -49,7 +50,7 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 	{
 		interData.fDist = fDot + fHalfTransLength;
 		interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
-		interData.vecNormal = interData.vecPos - trans.GetTranslate();
+		interData.vecNormal = interData.vecPos - trans.GetWorldTranslate();
 		interData.vecNormal.normalize();
 		results.m_vecIntersetDatas.push_back(interData);
 	}
@@ -66,5 +67,40 @@ IntersetResults IntersectTest::testRayRenderables(const Ray3D& r,IRenderable* pR
 	{
 		return testRaySphere(r, *pSphere, trans);
 	}
+	Plane3D* pPlane = dynamic_cast<Plane3D*>(pRend);
+	if (pPlane != nullptr)
+	{
+		return testRayPlane(r, *pPlane, trans);
+	}
+
 	return IntersetResults();
+}
+
+IntersetResults IntersectTest::testRayPlane(const Ray3D& r, const Plane3D& p, const Transform& trans)
+{
+	IntersetResults results;
+	Vector3 vecPlaneNormal = p.m_vecNormal;
+	//plane pos to ray pos
+	Vector3 vecTemp1 = r.m_vecPos - p.m_vecPt;
+	float fDistRayToNormal = vecTemp1.dot(vecPlaneNormal);
+
+	float fCosRayToNormal = -r.GetDir().dot(vecPlaneNormal);
+	if (fCosRayToNormal == 0.0f)
+	{
+		return results;
+	}
+	//Vector3 vecPosRayProjPlane = r.m_vecPos - fDistRayToNormal * vecPlaneNormal;
+	float fRayDist = fDistRayToNormal / fCosRayToNormal;
+	if (fRayDist <= 0)
+	{
+		return results;
+	}
+	Vector3 vecInter = r.m_vecPos + r.GetDir() * fRayDist;
+	IntersetData interData;
+	interData.vecPos = vecInter;
+	interData.fDist = fRayDist;
+	interData.vecNormal = p.m_vecNormal;
+	results.m_bInterset = true;
+	results.m_vecIntersetDatas.push_back(interData);
+	return results;
 }

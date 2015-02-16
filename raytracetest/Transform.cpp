@@ -96,6 +96,11 @@ void Transform::SetScale(float fx, float fY, float fZ)
 	m_bDirt = true;
 }
 
+Vector3 Transform::GetWorldTranslate() const
+{
+	return Vector3(m_TransformMatrixWorld.m_Matrix[3][0], m_TransformMatrixWorld.m_Matrix[3][1], m_TransformMatrixWorld.m_Matrix[3][2]);
+}
+
 //ModuleBase* TransformCreator::CreateModule()
 //{
 //	return new Transform;

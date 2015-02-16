@@ -9,6 +9,7 @@ const Color Color::blue = Color(0.0f, 0.0f, 1.0f, 1.0f);
 
 Color::Color()
 {
+	m_fA = m_fB = m_fG = m_fR = 0.0f;
 }
 
 Color::Color(float R, float G, float B, float A)

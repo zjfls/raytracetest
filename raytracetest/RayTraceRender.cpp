@@ -75,7 +75,10 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 			}
 			//
 			cBuffer[i * pViewPort->m_pixWidth + j] = RayTrace(vecTarget);
+			//std::cout << i << " " << j << " " << cBuffer[i * pViewPort->m_pixWidth + j].m_fR << ":" << cBuffer[i * pViewPort->m_pixWidth + j].m_fG << ":" << cBuffer[i * pViewPort->m_pixWidth + j].m_fB << std::endl;
+
 		}
+		//system("pause");
 	}
 	//
 	ppmImage* pImage = new ppmImage("./output.ppm", pViewPort->m_pixWidth, pViewPort->m_pixHeight);
@@ -95,9 +98,9 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget)
 //primary ray
 	Color	pixColor;
 	Vector3 vecPri;
-	vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetTranslate();
+	vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
 	vecPri.normalize();
-	Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetTranslate(),vecPri);
+	Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate(),vecPri);
 	//r.m_vecPos = m_pCachedCamera->m_pOwnerObj->m_pTransform->m_vecTranslate;
 	//r.m_vecDirection = vecPri;
 	IRenderable* pInterGeo = nullptr;
@@ -134,19 +137,19 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget)
 			{
 				vecNormal.normalize();
 				Vector3 vecShadowPos = vecInterPos + vecNormal * 0.01f;
-				Vector3 vecShadowDir = -var->m_pOwnerObj->m_pTransform->GetForward();// var->m_pOwnerObj->m_pTransform->GetTranslate() - vecShadowPos;
+				Vector3 vecShadowDir = -var->GetLightDirection(vecInterPos);// var->m_pOwnerObj->m_pTransform->GetTranslate() - vecShadowPos;
 				vecShadowDir.normalize();
 				Ray3D shadowRay(vecShadowPos, vecShadowDir);
 				if (ShadowRay(shadowRay, var) == false)
 				{
-					cContribute = cContribute + pRTMat->m_ColorDiffuse * var->m_Color * var->m_fIntensity * std::max(vecNormal.dot(-var->m_pOwnerObj->m_pTransform->GetForward()), 0.0f);
+					cContribute = cContribute + pRTMat->m_ColorDiffuse * var->m_Color * var->GetIrradiance(vecInterPos,vecNormal);
 				}
 				else
 				{
 
 				}
 			}
-			pixColor = cContribute + pRTMat->m_ColorEmi + Color(0.1f,0.1f,0.1f,0.0f);
+			pixColor = cContribute + pRTMat->m_ColorEmi + Color(0.00f,0.00f,0.00f,0.0f);
 		}
 		//	
 	}

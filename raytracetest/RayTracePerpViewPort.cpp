@@ -16,7 +16,7 @@ void RayTracePerpViewPort::OnTransformChanged(const RayTraceCamera* pCamera)
 	Transform* pTrans = pCamera->m_pOwnerObj->m_pTransform;
 	Vector3 vecForward = pTrans->GetForward();
 	vecForward.normalize();
-	m_vecPlanePos = pTrans->GetTranslate() + vecForward * m_fNear;
+	m_vecPlanePos = pTrans->GetWorldTranslate() + vecForward * m_fNear;
 	m_vecPlaneNormal = -vecForward;
 
 
@@ -31,9 +31,9 @@ void RayTracePerpViewPort::OnTransformChanged(const RayTraceCamera* pCamera)
 	float fHalfWidth = m_fNear * tan(m_fHorzFov / 2);
 
 
-	m_vecPt[0] = vecForward * m_fNear + vecUp * fHalfHeight - vecRight * fHalfWidth;//tl
-	m_vecPt[1] = vecForward * m_fNear + vecUp * fHalfHeight + vecRight * fHalfWidth;//tr
-	m_vecPt[2] = vecForward * m_fNear - vecUp * fHalfHeight - vecRight * fHalfWidth;//bl
-	m_vecPt[3] = vecForward * m_fNear - vecUp * fHalfHeight + vecRight * fHalfWidth;//br
+	m_vecPt[0] = pTrans->GetWorldTranslate() + vecForward * m_fNear + vecUp * fHalfHeight - vecRight * fHalfWidth;//tl
+	m_vecPt[1] = pTrans->GetWorldTranslate() + vecForward * m_fNear + vecUp * fHalfHeight + vecRight * fHalfWidth;//tr
+	m_vecPt[2] = pTrans->GetWorldTranslate() + vecForward * m_fNear - vecUp * fHalfHeight - vecRight * fHalfWidth;//bl
+	m_vecPt[3] = pTrans->GetWorldTranslate() + vecForward * m_fNear - vecUp * fHalfHeight + vecRight * fHalfWidth;//br
 }
 

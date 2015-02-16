@@ -24,7 +24,9 @@ public:
 	void SetOrientation(float fX, float fY, float fZ);
 	void SetScale(float fx, float fY, float fZ);
 
-	Vector3 GetTranslate()const{ return m_vecTranslate; };
+
+	Vector3 GetLocalTranslate() const { return m_vecTranslate; };
+	Vector3 GetWorldTranslate()const;// { return m_vecTranslate; };
 	Vector3 GetScale()const{ return m_vecScale; };
 	Orientation GetOrientation()const{ return m_Orientation; };
 ////////////////////////////////////////////////

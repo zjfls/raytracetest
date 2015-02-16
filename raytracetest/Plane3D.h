@@ -1,5 +1,6 @@
 #pragma once
-class Plane3D:public ModuleBase
+#include "IRenderable.h"
+class Plane3D:public IRenderable
 {
 public:
 	//Plane3D();
@@ -13,13 +14,4 @@ private:
 	friend class IWorldObj;
 };
 
-//class Plane3DCreator :public IModuleCreator
-//{
-//public:
-//	Plane3DCreator();
-//	virtual ~Plane3DCreator();
-//
-//	virtual ModuleBase* CreateModule();
-//
-//};
 
