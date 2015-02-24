@@ -24,7 +24,7 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	
 	
 	RayTraceCamera* pRTCamera = dynamic_cast<RayTraceCamera*>(pCamera);
-	assert(pRTCamera != nullptr && pRTCamera->m_pViewPort != nullptr);
+	assert(pRTCamera != nullptr && pRTCamera->GetPerpViewPort() != nullptr);
 	m_pCachedCamera = pRTCamera;
 	m_pCachedWorld = pWorld;
 	m_vecRenderables = pWorld->GetAllComponent<IRenderable>();
@@ -75,12 +75,17 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 				vecTarget = vecLeft + fHorzStepSize * (j + 0.5f) * vecHorzDir;
 			}
 			//
-			cBuffer[i * pViewPort->m_pixWidth + j] = RayTrace(vecTarget,1);
+			Vector3 vecPri;
+			vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
+			vecPri.normalize();
+			Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate(), vecPri);
+			cBuffer[i * pViewPort->m_pixWidth + j] = RayTrace(r,1);
 			//std::cout << i << " " << j << " " << cBuffer[i * pViewPort->m_pixWidth + j].m_fR << ":" << cBuffer[i * pViewPort->m_pixWidth + j].m_fG << ":" << cBuffer[i * pViewPort->m_pixWidth + j].m_fB << std::endl;
 
 		}
-		//system("pause");
+		
 	}
+	system("pause");
 	//
 	ppmImage* pImage = new ppmImage("./output.ppm", pViewPort->m_pixWidth, pViewPort->m_pixHeight);
 	for (int i = 0; i < pViewPort->m_pixWidth * pViewPort->m_pixHeight; ++i)
@@ -94,14 +99,14 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	return 0;
 }
 
-Color RayTraceRender::RayTrace(const Vector3& vecTarget,int nDepth)
+Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 {
 //primary ray
 	Color	pixColor;
-	Vector3 vecPri;
-	vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
-	vecPri.normalize();
-	Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate(),vecPri);
+	//Vector3 vecPri;
+	//vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
+	//vecPri.normalize();
+	//Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate(),vecPri);
 	//r.m_vecPos = m_pCachedCamera->m_pOwnerObj->m_pTransform->m_vecTranslate;
 	//r.m_vecDirection = vecPri;
 	IRenderable* pInterGeo = nullptr;
@@ -141,10 +146,6 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget,int nDepth)
 				Vector3 vecShadowDir = -var->GetLightDirection(vecInterPos);// var->m_pOwnerObj->m_pTransform->GetTranslate() - vecShadowPos;
 				vecShadowDir.normalize();
 				Ray3D shadowRay(vecShadowPos, vecShadowDir);
-				if (pRTMat->m_bReflection == true)
-				{
-					Vector3 vecReflectDir = GetReflectionDir(vecNormal, r.GetDir());
-				}
 				if (ShadowRay(shadowRay, var) == false)
 				{
 					cContribute = cContribute + pRTMat->m_ColorDiffuse * var->m_Color * var->GetIrradiance(vecInterPos,vecNormal);
@@ -154,6 +155,27 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget,int nDepth)
 
 				}
 			}
+			if (pRTMat->m_bReflection == true && nDepth <= MAXDEPTH)
+			{
+				Vector3 vecReflectDir = GetReflectionDir(vecNormal, r.GetDir());
+				Vector3 vecRayPos = vecInterPos + vecNormal * 0.01f;
+				Ray3D rayRef(vecRayPos,vecReflectDir);
+				Color refColor = RayTrace(rayRef, nDepth + 1);
+				cContribute = cContribute + refColor * pRTMat->m_ColorDiffuse * GetFresnelReflectance(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal);
+			}
+			if (pRTMat->m_bRefraction == true && nDepth <= MAXDEPTH)
+			{
+				Vector3 vecRefractDir = GetRefracionDir(1.0f,pRTMat->m_fRefractiveIndex,vecNormal, r.GetDir());
+				Vector3 vecRefractPos = vecInterPos - vecNormal * 0.01f;
+				Ray3D rayRefra(vecRefractPos, vecRefractDir);
+				Color refractColor = RayTrace(rayRefra, nDepth + 1);
+				if (refractColor.m_fR > 0.0f || refractColor.m_fR > 0.0f || refractColor.m_fG > 0.0f || refractColor.m_fB > 0.0f)
+				{
+					std::cout << refractColor.m_fR << " " << refractColor.m_fG << " " << refractColor.m_fB << std::endl;
+				}
+				cContribute = refractColor;// *GetTransmitRadianceCoef(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal) * pRTMat->m_fTransparecy;
+			}
+
 			pixColor = cContribute + pRTMat->m_ColorEmi + Color(0.00f,0.00f,0.00f,0.0f);
 		}
 		//	

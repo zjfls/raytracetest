@@ -23,7 +23,7 @@ public:
 	//void setViewPlane();
 
 
-	Color RayTrace(const Vector3& vecTarget,int nDepth);
+	Color RayTrace(const Ray3D& ray,int nDepth);
 	static int MAXDEPTH;
 protected:
 	bool ShadowRay(const Ray3D& r,LightBase* pLight);

@@ -46,14 +46,16 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 	vecNormal.normalize();
 	interData.vecNormal = vecNormal;
 	results.m_vecIntersetDatas.push_back(interData);
-	if (fHalfTransLength > 0.0001)
-	{
-		interData.fDist = fDot + fHalfTransLength;
-		interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
-		interData.vecNormal = interData.vecPos - trans.GetWorldTranslate();
-		interData.vecNormal.normalize();
-		results.m_vecIntersetDatas.push_back(interData);
-	}
+
+	//double face
+	//if (fHalfTransLength > 0.0001)
+	//{
+	//	interData.fDist = fDot + fHalfTransLength;
+	//	interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
+	//	interData.vecNormal = interData.vecPos - trans.GetWorldTranslate();
+	//	interData.vecNormal.normalize();
+	//	results.m_vecIntersetDatas.push_back(interData);
+	//}
 
 
 
@@ -85,7 +87,7 @@ IntersetResults IntersectTest::testRayPlane(const Ray3D& r, const Plane3D& p, co
 	float fDistRayToNormal = vecTemp1.dot(vecPlaneNormal);
 
 	float fCosRayToNormal = -r.GetDir().dot(vecPlaneNormal);
-	if (fCosRayToNormal == 0.0f)
+	if (fCosRayToNormal <= 0.0f)
 	{
 		return results;
 	}

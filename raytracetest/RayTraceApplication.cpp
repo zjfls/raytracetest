@@ -60,6 +60,10 @@ IWorldObj* AddPlane3D(IWorldObj* pParent)
 	pPlane->m_vecNormal = Vector3(0.0f, 1.0f, 0.0f);
 	SimpleRTMaterial* pMat = CreateMaterial(Color(0.1f,0.1f,0.1f,1.0f), Color(0.4f,0.4f,0.1f,1.0f));
 	pPlane->m_pMaterial = pMat;
+	//pMat->m_bReflection = true;
+	pMat->m_fRefractiveIndex = 1.01f;
+	pMat->m_bRefraction = true;
+	pMat->m_fTransparecy = 0.9f;
 	pParent->addChild(pObj);
 	return pObj;
 
@@ -105,7 +109,7 @@ void RayTraceApplication::OnSetupScene()
 	pWorld->m_pRoot->addChild(pSphere2);
 	pWorld->m_pRoot->addChild(pSphere3);
 	//
-	m_pCamera->SetPerpViewPort(10, 10000, AngleToRad(atan(1 * 1080.0f / 1920.0f) * 2 * 180 / PI), AngleToRad(90), 1920, 1080);
+	m_pCamera->SetPerpViewPort(10, 10000, AngleToRad(atan(1 * 1080.0f / 1920.0f) * 2 * 180 / PI), AngleToRad(90), 200, 200);
 
 }
 

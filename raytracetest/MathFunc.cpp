@@ -40,7 +40,7 @@ float GetFresnelReflectance(float fInRefraIndex, float fTransRefraIndex, const V
 	float fIndexRatio = fTransRefraIndex / fInRefraIndex;
 	float fR0 = pow((1- fIndexRatio)/(1 + fIndexRatio),2);
 	float fCosi = Saturate(vecNormal.dot(-vecInDir));
-	return fR0 + (1 - fR0) * pow(1-fCosi,5);
+	return fR0 + (1 - fR0) * pow(1-fCosi,3);
 
 }
 
@@ -61,6 +61,12 @@ float GetTransmitRadianceCoef(float fR, float fInRefraIndex, float fTransRefraIn
 {
 	float fIndexRatio = fTransRefraIndex / fInRefraIndex;
 	return (1 - fR) * fIndexRatio * fIndexRatio;
+}
+
+float GetTransmitRadianceCoef(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
+{
+	float fR = GetFresnelReflectance(fInRefraIndex,fTransRefraIndex,vecInDir,vecNormal);
+	return GetTransmitRadianceCoef(fR, fInRefraIndex, fTransRefraIndex);
 }
 
 float Interpolate(float f1, float f2, float fInterp)

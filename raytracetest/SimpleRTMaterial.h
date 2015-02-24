@@ -19,6 +19,7 @@ public:
 	bool	m_bReflection;
 	bool	m_bRefraction;
 	float	m_fRefractiveIndex;
+	float	m_fTransparecy;
 	//
 };
 
