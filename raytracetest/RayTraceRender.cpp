@@ -7,7 +7,7 @@
 #include "IntersectTest.h"
 #include "ImageFileHelper.h"
 #include "SimpleRTMaterial.h"
-
+int RayTraceRender::MAXDEPTH = 3;
 RayTraceRender::RayTraceRender()
 {
 	
@@ -29,7 +29,8 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	m_pCachedWorld = pWorld;
 	m_vecRenderables = pWorld->GetAllComponent<IRenderable>();
 	m_vecLights = pWorld->GetAllComponent<LightBase>();
-	RayTraceViewPort* pViewPort = pRTCamera->m_pViewPort;
+	const RayTraceViewPort* pViewPort = pRTCamera->GetPerpViewPort();
+	assert(pViewPort != nullptr);
 
 
 
@@ -74,7 +75,7 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 				vecTarget = vecLeft + fHorzStepSize * (j + 0.5f) * vecHorzDir;
 			}
 			//
-			cBuffer[i * pViewPort->m_pixWidth + j] = RayTrace(vecTarget);
+			cBuffer[i * pViewPort->m_pixWidth + j] = RayTrace(vecTarget,1);
 			//std::cout << i << " " << j << " " << cBuffer[i * pViewPort->m_pixWidth + j].m_fR << ":" << cBuffer[i * pViewPort->m_pixWidth + j].m_fG << ":" << cBuffer[i * pViewPort->m_pixWidth + j].m_fB << std::endl;
 
 		}
@@ -93,7 +94,7 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	return 0;
 }
 
-Color RayTraceRender::RayTrace(const Vector3& vecTarget)
+Color RayTraceRender::RayTrace(const Vector3& vecTarget,int nDepth)
 {
 //primary ray
 	Color	pixColor;
@@ -140,6 +141,10 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget)
 				Vector3 vecShadowDir = -var->GetLightDirection(vecInterPos);// var->m_pOwnerObj->m_pTransform->GetTranslate() - vecShadowPos;
 				vecShadowDir.normalize();
 				Ray3D shadowRay(vecShadowPos, vecShadowDir);
+				if (pRTMat->m_bReflection == true)
+				{
+					Vector3 vecReflectDir = GetReflectionDir(vecNormal, r.GetDir());
+				}
 				if (ShadowRay(shadowRay, var) == false)
 				{
 					cContribute = cContribute + pRTMat->m_ColorDiffuse * var->m_Color * var->GetIrradiance(vecInterPos,vecNormal);
@@ -165,6 +170,7 @@ Color RayTraceRender::RayTrace(const Vector3& vecTarget)
 	return pixColor;
 }
 
+//to do check tranparent
 bool RayTraceRender::ShadowRay(const Ray3D& r, LightBase* pLight)
 {
 	for each (IRenderable* var in m_vecRenderables)

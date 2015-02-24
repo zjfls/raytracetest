@@ -15,7 +15,10 @@ public:
 	//Color	GetLightContribute(LightBase* pLight);
 	Color	m_ColorEmi;
 	Color	m_ColorDiffuse;
+	//
 	bool	m_bReflection;
 	bool	m_bRefraction;
+	float	m_fRefractiveIndex;
+	//
 };
 

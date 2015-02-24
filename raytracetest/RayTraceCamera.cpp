@@ -13,6 +13,18 @@ RayTraceCamera::RayTraceCamera()
 
 RayTraceCamera::~RayTraceCamera()
 {
+	if (m_pRender != nullptr)
+	{
+		delete m_pRender;
+		m_pRender = nullptr;
+	}
+	if (m_pViewPort != nullptr)
+	{
+		delete m_pViewPort;
+		m_pViewPort = nullptr;
+	}
+
+	
 }
 
 void RayTraceCamera::Update()

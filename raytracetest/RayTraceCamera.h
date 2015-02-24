@@ -12,10 +12,11 @@ public:
 	virtual void Render();
 ////////////////////////////////////////////////////////////
 	void SetPerpViewPort(float fNear, float fFar, float fVertFov, float fHorzFov,int pixWidth,int pixHeight);
+	const RayTraceViewPort*	GetPerpViewPort(){ return m_pViewPort; };
 
-
-	RayTraceViewPort* m_pViewPort;
+	
 private:
+	RayTraceViewPort* m_pViewPort;
 	RayTraceCamera();
 	//friend class RayTraceCameraCreator;
 	friend class IWorldObj;
