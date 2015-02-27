@@ -17,10 +17,16 @@ IntersectTest::~IntersectTest()
 IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,const Transform& trans)
 {
 	//r.m_vecDirection.normalize();
+	bool bInside = false;
 	IntersetResults results;
 	Vector3 vecDir = trans.GetWorldTranslate() - r.m_vecPos;
 	//vecDir.normalize();
 	float fLengthToSphere = vecDir.length();
+	if (fLengthToSphere < s.m_fRadius)
+	{
+		bInside = true;
+		return results;
+	}
 	float fDot = vecDir.dot(r.GetDir());
 	if (fDot < 0.0f)
 	{

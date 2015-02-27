@@ -195,12 +195,20 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 //to do check tranparent
 bool RayTraceRender::ShadowRay(const Ray3D& r, LightBase* pLight)
 {
+	float fDist = pLight->m_pOwnerObj->m_pTransform->GetWorldTranslate().distance(r.m_vecPos);
 	for each (IRenderable* var in m_vecRenderables)
 	{
 		IntersetResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
 		if (result.m_bInterset == true)
 		{
-			return true;
+			for (int i = 0; i < result.m_vecIntersetDatas.size(); ++i)
+			{
+				if (result.m_vecIntersetDatas[i].fDist < fDist)
+				{
+					return true;
+				}
+			}
+			//return true;
 		}
 	}
 	return false;
