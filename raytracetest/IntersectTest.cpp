@@ -87,7 +87,7 @@ IntersetResults IntersectTest::testRayPlane(const Ray3D& r, const Plane3D& p, co
 	float fDistRayToNormal = vecTemp1.dot(vecPlaneNormal);
 
 	float fCosRayToNormal = -r.GetDir().dot(vecPlaneNormal);
-	if (fCosRayToNormal <= 0.0f)
+	if (fCosRayToNormal == 0.0f)
 	{
 		return results;
 	}

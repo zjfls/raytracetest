@@ -157,7 +157,7 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 			}
 			if (pRTMat->m_bReflection == true && nDepth <= MAXDEPTH)
 			{
-				Vector3 vecReflectDir = GetReflectionDir(vecNormal, r.GetDir());
+				Vector3 vecReflectDir = GetReflectionDir(r.GetDir(),vecNormal);
 				Vector3 vecRayPos = vecInterPos + vecNormal * 0.01f;
 				Ray3D rayRef(vecRayPos,vecReflectDir);
 				Color refColor = RayTrace(rayRef, nDepth + 1);
@@ -165,15 +165,15 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 			}
 			if (pRTMat->m_bRefraction == true && nDepth <= MAXDEPTH)
 			{
-				Vector3 vecRefractDir = GetRefracionDir(1.0f,pRTMat->m_fRefractiveIndex,vecNormal, r.GetDir());
+				Vector3 vecRefractDir = GetRefracionDir(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal);
 				Vector3 vecRefractPos = vecInterPos - vecNormal * 0.01f;
 				Ray3D rayRefra(vecRefractPos, vecRefractDir);
 				Color refractColor = RayTrace(rayRefra, nDepth + 1);
 				if (refractColor.m_fR > 0.0f || refractColor.m_fR > 0.0f || refractColor.m_fG > 0.0f || refractColor.m_fB > 0.0f)
 				{
-					std::cout << refractColor.m_fR << " " << refractColor.m_fG << " " << refractColor.m_fB << std::endl;
+					//std::cout << refractColor.m_fR << " " << refractColor.m_fG << " " << refractColor.m_fB << std::endl;
 				}
-				cContribute = refractColor;// *GetTransmitRadianceCoef(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal) * pRTMat->m_fTransparecy;
+				cContribute = cContribute + refractColor * pRTMat->m_ColorDiffuse *GetTransmitRadianceCoef(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal) * pRTMat->m_fTransparecy;
 			}
 
 			pixColor = cContribute + pRTMat->m_ColorEmi + Color(0.00f,0.00f,0.00f,0.0f);

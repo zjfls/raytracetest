@@ -7,7 +7,7 @@ float AngleToRad(float angle)
 	return angle * PI / 180.0f;
 }
 
-Vector3 GetReflectionDir(const Vector3& vecNormal, const Vector3& vecInDir)
+Vector3 GetReflectionDir(const Vector3& vecInDir, const Vector3& vecNormal)
 {
 	Vector3 vecReflect;
 	vecReflect = vecNormal * (vecNormal.dot(-vecInDir)) * 2 - (-vecInDir);
@@ -16,7 +16,11 @@ Vector3 GetReflectionDir(const Vector3& vecNormal, const Vector3& vecInDir)
 
 Vector3 GetRefracionDir(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
 {
+	
 	Vector3 vecRefract;
+	assert(fInRefraIndex != 0.0f);
+	float eta = fInRefraIndex / fTransRefraIndex;
+	 //float cosi = vecNormal.dot(-vecInDir);
 	float cosi = vecNormal.dot(-vecInDir);
 	float cosi2 = cosi * cosi;
 	float sini2 = 1 - cosi2;
@@ -26,12 +30,26 @@ Vector3 GetRefracionDir(float fInRefraIndex, float fTransRefraIndex, const Vecto
 	float cost2 = 1 - sint2;
 	float cost = sqrt(cost2);
 
-
-	Vector3 vecVertDir = vecInDir - vecNormal*cosi;
-	vecVertDir.normalize();
-	vecRefract = -vecNormal * cost + vecVertDir * sint;
+	vecRefract = vecInDir * eta + vecNormal*(eta * cosi - cost);
 	vecRefract.normalize();
 	return vecRefract;
+	
+	//Vector3 vecRefract;
+	//float cosi = vecNormal.dot(-vecInDir);
+	//float cosi2 = cosi * cosi;
+	//float sini2 = 1 - cosi2;
+	//float sini = sqrt(sini2);
+	//float sint = sini * fInRefraIndex / fTransRefraIndex;
+	//float sint2 = sint * sint;
+	//float cost2 = 1 - sint2;
+	//float cost = sqrt(cost2);
+
+
+	//Vector3 vecVertDir = vecInDir - vecNormal*cosi;
+	//vecVertDir.normalize();
+	//vecRefract = -vecNormal * cost + vecVertDir * sint;
+	//vecRefract.normalize();
+	//return vecRefract;
 
 }
 

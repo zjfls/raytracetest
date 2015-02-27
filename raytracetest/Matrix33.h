@@ -9,6 +9,9 @@ public:
 	Matrix33(const Matrix33& matIn);
 	Matrix33 operator=(const Matrix33& matIn);
 	Matrix33 operator*(const Matrix33& matIn);
+	Matrix33 Transpose() const;
+	Matrix33 Inverse() const;
+	bool	IsOrthogonal() const;
 	void RotAboutX(float f);
 	void RotAboutY(float f);
 	void RotAboutZ(float f);
@@ -21,6 +24,6 @@ public:
 
 
 
-	float m_Matrix[3][3];
+	float M[3][3];
 };
 

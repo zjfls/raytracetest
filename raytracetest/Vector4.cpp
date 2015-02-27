@@ -46,9 +46,9 @@ void Vector4::ToVector3(Vector3& vecIn) const
 Vector4 Vector4::operator*(const Matrix44 mat44) const
 {
 	Vector4 vec4Ret;
-	vec4Ret.m_fx = m_fx * mat44.m_Matrix[0][0] + m_fx * mat44.m_Matrix[1][0] + m_fz * mat44.m_Matrix[2][0] + m_fw * mat44.m_Matrix[3][0];
-	vec4Ret.m_fy = m_fx * mat44.m_Matrix[0][1] + m_fx * mat44.m_Matrix[1][1] + m_fz * mat44.m_Matrix[2][1] + m_fw * mat44.m_Matrix[3][1];
-	vec4Ret.m_fz = m_fx * mat44.m_Matrix[0][2] + m_fx * mat44.m_Matrix[1][2] + m_fz * mat44.m_Matrix[2][2] + m_fw * mat44.m_Matrix[3][2];
-	vec4Ret.m_fw = m_fx * mat44.m_Matrix[0][3] + m_fx * mat44.m_Matrix[1][3] + m_fz * mat44.m_Matrix[2][3] + m_fw * mat44.m_Matrix[3][3];
+	vec4Ret.m_fx = m_fx * mat44.M[0][0] + m_fx * mat44.M[1][0] + m_fz * mat44.M[2][0] + m_fw * mat44.M[3][0];
+	vec4Ret.m_fy = m_fx * mat44.M[0][1] + m_fx * mat44.M[1][1] + m_fz * mat44.M[2][1] + m_fw * mat44.M[3][1];
+	vec4Ret.m_fz = m_fx * mat44.M[0][2] + m_fx * mat44.M[1][2] + m_fz * mat44.M[2][2] + m_fw * mat44.M[3][2];
+	vec4Ret.m_fw = m_fx * mat44.M[0][3] + m_fx * mat44.M[1][3] + m_fz * mat44.M[2][3] + m_fw * mat44.M[3][3];
 	return vec4Ret;
 }

@@ -19,19 +19,19 @@ Transform::~Transform()
 
 Vector3 Transform::GetRight()
 {
-	float (*m)[4] = &(*m_TransformMatrixWorld.m_Matrix);
+	float (*m)[4] = &(*m_TransformMatrixWorld.M);
 	return Vector3(m[0][0], m[0][1], m[0][2]);
 }
 
 Vector3 Transform::GetUp()
 {
-	float(*m)[4] = &(*m_TransformMatrixWorld.m_Matrix);
+	float(*m)[4] = &(*m_TransformMatrixWorld.M);
 	return Vector3(m[1][0], m[1][1], m[1][2]);
 }
 
 Vector3 Transform::GetForward()
 {
-	float(*m)[4] = &(*m_TransformMatrixWorld.m_Matrix);
+	float(*m)[4] = &(*m_TransformMatrixWorld.M);
 	return Vector3(m[2][0], m[2][1], m[2][2]);
 }
 
@@ -98,7 +98,7 @@ void Transform::SetScale(float fx, float fY, float fZ)
 
 Vector3 Transform::GetWorldTranslate() const
 {
-	return Vector3(m_TransformMatrixWorld.m_Matrix[3][0], m_TransformMatrixWorld.m_Matrix[3][1], m_TransformMatrixWorld.m_Matrix[3][2]);
+	return Vector3(m_TransformMatrixWorld.M[3][0], m_TransformMatrixWorld.M[3][1], m_TransformMatrixWorld.M[3][2]);
 }
 
 //ModuleBase* TransformCreator::CreateModule()
