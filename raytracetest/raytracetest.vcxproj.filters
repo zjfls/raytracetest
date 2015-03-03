@@ -34,6 +34,12 @@
     <Filter Include="源文件\Render">
       <UniqueIdentifier>{1eeb80e6-b48a-4aa7-9865-24446516bdd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Resource">
+      <UniqueIdentifier>{804aa6dc-e426-4142-9da0-710f0ffb9376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Resource">
+      <UniqueIdentifier>{ae905b26-2cce-4d7d-9d40-4091d6fa4b0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -171,6 +177,15 @@
     <ClInclude Include="Vector4.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FbxAppManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -297,6 +312,15 @@
       <Filter>源文件\module</Filter>
     </ClCompile>
     <ClCompile Include="Vector4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

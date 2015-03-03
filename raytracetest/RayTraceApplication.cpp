@@ -14,6 +14,7 @@
 #include "DirectionalLight.h"
 #include "PointLight.h"
 #include "Plane3D.h"
+#include "FbxAppManager.h"
 
 RayTraceApplication* Singleton<RayTraceApplication>::_instance = nullptr;
 
@@ -29,6 +30,8 @@ RayTraceApplication::~RayTraceApplication()
 void RayTraceApplication::OnInit()
 {
 	m_pWorld = new SimpleWorld;
+	assert(FbxAppManager::GetInstance()->Init());
+
 }
 SimpleRTMaterial* CreateMaterial(Color colorEmission, Color colorDiffuse)
 {
@@ -123,9 +126,10 @@ void RayTraceApplication::OnSetupScene()
 	m_pCamera->SetPerpViewPort(10, 10000, AngleToRad(atan(1 * 1080.0f / 1920.0f) * 2 * 180 / PI), AngleToRad(90), 192 * 5, 108 * 5);
 
 }
-
+//#include <fbxsdk.h>
+//#include "../Common/Common.h"
+//#include "../Common/GeometryUtility.h"
 void RayTraceApplication::OnEndInit()
 {
-	
 	m_pCamera->Render();
 }

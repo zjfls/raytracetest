@@ -37,5 +37,8 @@ using namespace std;
 #include "Singleton.h"
 
 
+//fbxsdk
+#include "fbxsdk.h"
+
 
 // TODO:  在此处引用程序需要的其他头文件

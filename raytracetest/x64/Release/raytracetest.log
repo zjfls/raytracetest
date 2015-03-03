@@ -1,0 +1,57 @@
+﻿生成启动时间为 2015/3/1 19:30:19。
+     1>项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"H:\Program Files\Autodesk\FBX\FBX SDK\2015.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\raytracetest.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt FbxAppManager.cpp
+         FbxAppManager.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"H:\github\raytracetest\x64\Release\raytracetest.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"H:\Program Files\Autodesk\FBX\FBX SDK\2015.1\lib\vs2013\x64\release" "libfbxsdk-md.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\github\raytracetest\x64\Release\raytracetest.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\github\raytracetest\x64\Release\raytracetest.lib" /MACHINE:X64 x64\Release\ApplicationBase.obj
+         x64\Release\DirectionalLight.obj
+         x64\Release\FbxAppManager.obj
+         x64\Release\IMaterial.obj
+         x64\Release\IntersetResults.obj
+         x64\Release\LightBase.obj
+         x64\Release\MaterialManager.obj
+         x64\Release\MathFunc.obj
+         x64\Release\PointLight.obj
+         x64\Release\RasterMaterial.obj
+         x64\Release\RayTraceApplication.obj
+         x64\Release\RayTraceCamera.obj
+         x64\Release\CameraBase.obj
+         x64\Release\Color.obj
+         x64\Release\Cube3D.obj
+         x64\Release\ImageFileHelper.obj
+         x64\Release\IntersectTest.obj
+         x64\Release\IRender.obj
+         x64\Release\IRenderable.obj
+         x64\Release\IWorld.obj
+         x64\Release\IWorldObj.obj
+         x64\Release\Matrix33.obj
+         x64\Release\Matrix44.obj
+         x64\Release\Mesh.obj
+         x64\Release\ModuleBase.obj
+         x64\Release\Orientation.obj
+         x64\Release\Plane3D.obj
+         x64\Release\Quaternions.obj
+         x64\Release\RasterRender.obj
+         x64\Release\Ray3D.obj
+         x64\Release\RayTraceMaterial.obj
+         x64\Release\RayTracePerpViewPort.obj
+         x64\Release\RayTraceRender.obj
+         x64\Release\raytracetest.obj
+         x64\Release\RayTraceViewPort.obj
+         x64\Release\SimpleRTMaterial.obj
+         x64\Release\SimpleWorld.obj
+         x64\Release\SimpleWorldObj.obj
+         x64\Release\Sphere3D.obj
+         x64\Release\stdafx.obj
+         x64\Release\Transform.obj
+         x64\Release\Vector3.obj
+         x64\Release\Vector4.obj
+         正在生成代码
+         已完成代码的生成
+         raytracetest.vcxproj -> H:\github\raytracetest\x64\Release\raytracetest.exe
+     1>已完成生成项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:08.97
