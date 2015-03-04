@@ -56,10 +56,10 @@ void FbxAppManager::ProcessNode(FbxNode* pNode)
 	{
 		switch (pAttribute->GetAttributeType())
 		{
-		case FbxNodeAttribute::EType::eMesh:
-		{
-											   ProcessMesh(pNode);
-		}
+			case FbxNodeAttribute::EType::eMesh:
+			{
+				ProcessMesh(pNode);
+			}
 			break;
 		default:
 			break;
@@ -123,15 +123,6 @@ void FbxAppManager::ProcessMesh(FbxNode* pNode)
 		for (int j = 0; j < 3; ++j)
 		{
 			int ctrlPointIndex = pMesh->GetPolygonVertex(i, j);
-			//std::cout << i << "th triangle:" << j<<"th vertex:";
-			//int ctrlPointIndex = pMesh->GetPolygonVertex(i, j);
-			//std::cout << " index:" << ctrlPointIndex;
-			//FbxVector4* pCtrlPoint = pMesh->GetControlPoints();
-			//std::cout << "x=" << pCtrlPoint[ctrlPointIndex].mData[0] << "y=" << pCtrlPoint[ctrlPointIndex].mData[1] << "z=" << pCtrlPoint[ctrlPointIndex].mData[2];
-			//std::cout << endl;
-
-			//FbxGeometryElementNormal* pNormal = pMesh->GetPolygonVertexNormal(i, j);
-
 		}
 	}
 }

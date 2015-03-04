@@ -11,3 +11,5 @@
 *.idb
 *.lastbuildstate
 *.ppm
+*.dds
+thirdparty/
