@@ -223,21 +223,24 @@ void FbxAppManager::ProcessMesh(FbxNode* pNode)
 					}
 					for (int i = 0; i < cpCount; ++i)
 					{
-						float fAreaSum;
+						float fAreaSum = 0;
 						for_each(std::begin(cpNormalIndexMap[i]), std::end(cpNormalIndexMap[i]), [&](stNormalPolyIndex& npi)
 						{
 							fAreaSum += areaVec[npi.triIndex];
 						}
 						);
-						Vector3 vecNormal;
+						std::cout << "*********************************************** "<<std::endl;
+						Vector3 vecNormal = Vector3::ZERO;
 						for_each(std::begin(cpNormalIndexMap[i]), std::end(cpNormalIndexMap[i]), [&](stNormalPolyIndex& npi)
 						{
 							vecNormal = vecNormal + Vector3(npi.x, npi.y, npi.z) * (areaVec[npi.triIndex] / fAreaSum);
+							std::cout << npi.x << " " << npi.y << " " << npi.z << std::endl;
 						}
 						);
 						normalVec.push_back(vecNormal.m_fx);
 						normalVec.push_back(vecNormal.m_fy);
 						normalVec.push_back(vecNormal.m_fz);
+						std::cout << "normal:" << vecNormal.m_fx << " " << vecNormal.m_fy << " " << vecNormal.m_fz << std::endl;
 					}
 				}
 				break;
