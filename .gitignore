@@ -12,4 +12,6 @@
 *.lastbuildstate
 *.ppm
 *.dds
+*.exe
+*.log
 thirdparty/
