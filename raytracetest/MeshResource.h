@@ -1,5 +1,5 @@
 #pragma once
-
+#include "IResource.h"
 
 struct stVertexData
 {
@@ -32,7 +32,7 @@ struct stIndexData
 	EnumIndexDesc indexDesc;
 
 };
-class MeshResource
+class MeshResource:public IResource
 {
 public:
 	MeshResource();

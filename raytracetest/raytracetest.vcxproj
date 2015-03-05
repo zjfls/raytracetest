@@ -151,8 +151,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationBase.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="FbxAppManager.h" />
+    <ClInclude Include="FbxAsset.h" />
+    <ClInclude Include="FbxFileLoader.h" />
+    <ClInclude Include="IAsset.h" />
+    <ClInclude Include="IAssetLoader.h" />
     <ClInclude Include="IMaterial.h" />
     <ClInclude Include="IntersetResults.h" />
     <ClInclude Include="IResource.h" />
@@ -187,6 +192,7 @@
     <ClInclude Include="RayTracePerpViewPort.h" />
     <ClInclude Include="RayTraceRender.h" />
     <ClInclude Include="RayTraceViewPort.h" />
+    <ClInclude Include="ResourceMananger.h" />
     <ClInclude Include="SimpleRTMaterial.h" />
     <ClInclude Include="SimpleWorld.h" />
     <ClInclude Include="SimpleWorldObj.h" />
@@ -200,8 +206,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationBase.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="FbxAppManager.cpp" />
+    <ClCompile Include="FbxAsset.cpp" />
+    <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="IMaterial.cpp" />
     <ClCompile Include="IntersetResults.cpp" />
     <ClCompile Include="IResource.cpp" />
@@ -236,6 +245,7 @@
     <ClCompile Include="RayTraceRender.cpp" />
     <ClCompile Include="raytracetest.cpp" />
     <ClCompile Include="RayTraceViewPort.cpp" />
+    <ClCompile Include="ResourceMananger.cpp" />
     <ClCompile Include="SimpleRTMaterial.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
     <ClCompile Include="SimpleWorldObj.cpp" />

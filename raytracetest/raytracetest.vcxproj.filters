@@ -180,10 +180,28 @@
     <ClInclude Include="FbxAppManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="MeshResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceMananger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="IResource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MeshResource.h">
+    <ClInclude Include="IAssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxFileLoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -317,10 +335,22 @@
     <ClCompile Include="FbxAppManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="IResource.cpp">
+    <ClCompile Include="MeshResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MeshResource.cpp">
+    <ClCompile Include="ResourceMananger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
