@@ -7,7 +7,7 @@ public:
 	FbxAsset();
 	virtual ~FbxAsset();
 
-
+	
 	string m_strPath;
 };
 

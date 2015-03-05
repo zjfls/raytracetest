@@ -11,7 +11,7 @@ public:
 
 
 
-	void LoadAsset(string path);
+	//void LoadAsset(string path);
 	/*
 
 	*Summary: release asset and associate resource
@@ -49,12 +49,12 @@ public:
 
 	*	  pLoader:บ๓ืบ
 
-	*Return : if exist return false,else return true
+	*Return : if exist replace the loader
 
 	*/
-
-	bool AddLoader(string strSuff, IAssetLoader* pLoader);
-
+	void AddLoader(string strSuff, IAssetLoader* pLoader);
+	void Init();
+private:
 	std::map<string, IAssetLoader*> m_LoaderMap;
 };
 

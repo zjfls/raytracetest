@@ -12,5 +12,7 @@ public:
 	virtual ~FbxFileLoader()
 	{
 	}
+
+	virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
 };
 

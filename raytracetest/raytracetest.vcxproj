@@ -156,6 +156,7 @@
     <ClInclude Include="FbxAppManager.h" />
     <ClInclude Include="FbxAsset.h" />
     <ClInclude Include="FbxFileLoader.h" />
+    <ClInclude Include="FilePath.h" />
     <ClInclude Include="IAsset.h" />
     <ClInclude Include="IAssetLoader.h" />
     <ClInclude Include="IMaterial.h" />
@@ -210,6 +211,8 @@
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="FbxAppManager.cpp" />
     <ClCompile Include="FbxAsset.cpp" />
+    <ClCompile Include="FbxFileLoader.cpp" />
+    <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="IMaterial.cpp" />
     <ClCompile Include="IntersetResults.cpp" />

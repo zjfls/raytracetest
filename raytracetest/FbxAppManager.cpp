@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FbxAppManager.h"
+#include "AssetManager.h"
 FbxAppManager* Singleton<FbxAppManager>::_instance = nullptr;
 
 FbxAppManager::FbxAppManager()
@@ -25,6 +26,12 @@ FbxAppManager::~FbxAppManager()
 
 void FbxAppManager::testFbxLoad()
 {
+	//AssetManager::GetInstance()->LoadAsset("1.fbx");
+	//AssetManager::GetInstance()->LoadAsset("1");
+	//AssetManager::GetInstance()->LoadAsset("1.png");
+	//AssetManager::GetInstance()->LoadAsset("333.333.jpg");
+	//AssetManager::GetInstance()->LoadAsset("dsfds");
+
 	FbxImporter* pImporter = FbxImporter::Create(m_pFbxSdkManager, "");
 	const char* fileName = "file.fbx";
 
@@ -45,6 +52,27 @@ void FbxAppManager::testFbxLoad()
 		return;
 	}
 	ProcessNode(pRootNode);
+
+	//FbxScene* pScene2 = FbxScene::Create(m_pFbxSdkManager, "My Scene2");
+	//std::cout << "second scene" << std::endl;
+	//
+	//FbxImporter* pImporter2 = FbxImporter::Create(m_pFbxSdkManager, "");
+	//const char* filename2 = "file2.fbx";
+	//bImportStatus = pImporter2->Initialize(filename2, -1, m_pFbxSdkManager->GetIOSettings());
+	//pImporter2->GetFileVersion(nFileMajor, nFileMinor, nFileRevision);
+	//if (bImportStatus == false)
+	//{
+	//	return;
+	//}
+	//bImportStatus = pImporter2->Import(pScene2);
+	//pImporter2->Destroy();
+	//pRootNode = pScene2->GetRootNode();
+	//if (pRootNode == nullptr)
+	//{
+	//	return;
+	//}
+	//ProcessNode(pRootNode);
+	//
 	return;
 }
 
@@ -52,6 +80,7 @@ void FbxAppManager::testFbxLoad()
 void FbxAppManager::ProcessNode(FbxNode* pNode)
 {
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
+	std::cout << " " << pNode->GetName() << std::endl;
 	if (pAttribute != nullptr)
 	{
 		switch (pAttribute->GetAttributeType())
@@ -105,6 +134,7 @@ bool FbxAppManager::Init()
 		//exit(1);
 	}
 	testFbxLoad();
+	system("pause");
 	return true;
 
 }
@@ -229,18 +259,18 @@ void FbxAppManager::ProcessMesh(FbxNode* pNode)
 							fAreaSum += areaVec[npi.triIndex];
 						}
 						);
-						std::cout << "*********************************************** "<<std::endl;
+						//std::cout << "*********************************************** "<<std::endl;
 						Vector3 vecNormal = Vector3::ZERO;
 						for_each(std::begin(cpNormalIndexMap[i]), std::end(cpNormalIndexMap[i]), [&](stNormalPolyIndex& npi)
 						{
 							vecNormal = vecNormal + Vector3(npi.x, npi.y, npi.z) * (areaVec[npi.triIndex] / fAreaSum);
-							std::cout << npi.x << " " << npi.y << " " << npi.z << std::endl;
+							//std::cout << npi.x << " " << npi.y << " " << npi.z << std::endl;
 						}
 						);
 						normalVec.push_back(vecNormal.m_fx);
 						normalVec.push_back(vecNormal.m_fy);
 						normalVec.push_back(vecNormal.m_fz);
-						std::cout << "normal:" << vecNormal.m_fx << " " << vecNormal.m_fy << " " << vecNormal.m_fz << std::endl;
+						//std::cout << "normal:" << vecNormal.m_fx << " " << vecNormal.m_fy << " " << vecNormal.m_fz << std::endl;
 					}
 				}
 				break;
@@ -254,6 +284,6 @@ void FbxAppManager::ProcessMesh(FbxNode* pNode)
 		break;
 	}
 
-	system("pause");
+	//system("pause");
 }
 

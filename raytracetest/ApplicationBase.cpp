@@ -4,6 +4,8 @@
 #include "Sphere3D.h"
 #include "RayTraceCamera.h"
 #include "IWorld.h"
+#include "AssetManager.h"
+#include "FbxFileLoader.h"
 
 ApplicationBase::ApplicationBase()
 {
@@ -16,13 +18,13 @@ ApplicationBase::~ApplicationBase()
 
 bool ApplicationBase::Init()
 {
+	AssetManager::GetInstance()->Init();
 	OnInit();
 	OnSetupScene();
 	if (m_pWorld != nullptr)
 	{
 		m_pWorld->Update();
 	}
-	OnEndInit();
 	return true;
 }
 

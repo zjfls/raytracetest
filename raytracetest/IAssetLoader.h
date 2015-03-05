@@ -1,4 +1,5 @@
 #pragma once
+class IAsset;
 class IAssetLoader
 {
 public:
@@ -10,5 +11,8 @@ public:
 	virtual ~IAssetLoader()
 	{
 	}
+
+
+	virtual IAsset* Load(string path, void* pArg /*= nullptr*/) = 0;
 };
 
