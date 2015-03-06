@@ -180,9 +180,6 @@
     <ClInclude Include="PointLight.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="FilePath.h">
       <Filter>头文件\util</Filter>
     </ClInclude>
@@ -212,6 +209,12 @@
     </ClInclude>
     <ClInclude Include="ResourceMananger.h">
       <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>头文件\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -338,9 +341,6 @@
     <ClCompile Include="PointLight.cpp">
       <Filter>源文件\module</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="FilePath.cpp">
       <Filter>源文件\util</Filter>
     </ClCompile>
@@ -367,6 +367,12 @@
     </ClCompile>
     <ClCompile Include="FbxAppManager.cpp">
       <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>源文件\math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

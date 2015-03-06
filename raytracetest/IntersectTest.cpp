@@ -3,6 +3,9 @@
 #include "Ray3D.h"
 #include "Sphere3D.h"
 #include "Plane3D.h"
+#include "Mesh.h"
+#include "MeshResource.h"
+#include "Triangle.h"
 
 
 IntersectTest::IntersectTest()
@@ -14,11 +17,11 @@ IntersectTest::~IntersectTest()
 {
 }
 
-IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,const Transform& trans)
+IntersectResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,const Transform& trans)
 {
 	//r.m_vecDirection.normalize();
 	bool bInside = false;
-	IntersetResults results;
+	IntersectResults results;
 	Vector3 vecDir = trans.GetWorldTranslate() - r.m_vecPos;
 	//vecDir.normalize();
 	float fLengthToSphere = vecDir.length();
@@ -45,7 +48,7 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 
 
 	
-	IntersetData interData;
+	IntersectData interData;
 	interData.fDist = fDot - fHalfTransLength;
 	interData.vecPos = r.m_vecPos + interData.fDist * r.GetDir();
 	Vector3 vecNormal = interData.vecPos - trans.GetWorldTranslate();
@@ -68,25 +71,31 @@ IntersetResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,c
 	return results;
 }
 
-IntersetResults IntersectTest::testRayRenderables(const Ray3D& r,IRenderable* pRend, Transform& trans)
+IntersectResults IntersectTest::testRayRenderables(const Ray3D& r,IRenderable* pRend, Transform& trans)
 {
+	IntersectResults results;
 	Sphere3D* pSphere = dynamic_cast<Sphere3D*>(pRend);
 	if (pSphere != nullptr)
 	{
-		return testRaySphere(r, *pSphere, trans);
+		results = testRaySphere(r, *pSphere, trans);
 	}
 	Plane3D* pPlane = dynamic_cast<Plane3D*>(pRend);
 	if (pPlane != nullptr)
 	{
-		return testRayPlane(r, *pPlane, trans);
+		results = testRayPlane(r, *pPlane, trans);
 	}
-
-	return IntersetResults();
+	Mesh* pMesh = dynamic_cast<Mesh*>(pRend);
+	if (pMesh != nullptr)
+	{
+		results = testRayMesh(r, *pMesh, trans);
+	}
+	std::sort(std::begin(results.m_vecIntersetDatas), std::end(results.m_vecIntersetDatas), SortByDistance);
+	return IntersectResults();
 }
 
-IntersetResults IntersectTest::testRayPlane(const Ray3D& r, const Plane3D& p, const Transform& trans)
+IntersectResults IntersectTest::testRayPlane(const Ray3D& r, const Plane3D& p, const Transform& trans)
 {
-	IntersetResults results;
+	IntersectResults results;
 	Vector3 vecPlaneNormal = p.m_vecNormal;
 	//plane pos to ray pos
 	Vector3 vecTemp1 = r.m_vecPos - p.m_vecPt;
@@ -104,11 +113,28 @@ IntersetResults IntersectTest::testRayPlane(const Ray3D& r, const Plane3D& p, co
 		return results;
 	}
 	Vector3 vecInter = r.m_vecPos + r.GetDir() * fRayDist;
-	IntersetData interData;
+	IntersectData interData;
 	interData.vecPos = vecInter;
 	interData.fDist = fRayDist;
 	interData.vecNormal = p.m_vecNormal;
 	results.m_bInterset = true;
 	results.m_vecIntersetDatas.push_back(interData);
+	return results;
+}
+
+bool IntersectTest::SortByDistance(const IntersectData& d1, const IntersectData& d2)
+{
+	return d1.fDist < d2.fDist;
+}
+
+IntersectResults IntersectTest::testRayMesh(const Ray3D& r, const Mesh& mesh, const Transform& trans)
+{
+	IntersectResults results;
+	return results;
+}
+
+IntersectResults IntersectTest::testRayTriangle(const Ray3D& r, const Triangle)
+{
+	IntersectResults results;
 	return results;
 }
