@@ -133,8 +133,68 @@ IntersectResults IntersectTest::testRayMesh(const Ray3D& r, const Mesh& mesh, co
 	return results;
 }
 
-IntersectResults IntersectTest::testRayTriangle(const Ray3D& r, const Triangle)
+
+//根据克莱姆公式求解，三角形的三个点表示平面的点
+IntersectResults IntersectTest::testRayTriangle(const Ray3D& r, const Triangle& tri)
 {
 	IntersectResults results;
+	//E1
+	Vector3 E1 = tri.v1 - tri.v0;
+	//E2
+	Vector3 E2 = tri.v2 - tri.v0;
+	//P
+	Vector3 P = r.GetDir().cross(E2);
+	//determinant
+	float det = E1.dot(P);
+	//
+	Vector3 T;
+	if (det > 0)
+	{
+		T = r.m_vecPos - tri.v0;
+	}
+	else
+	{
+		T = tri.v0 - r.m_vecPos;
+	}
+	//
+	Vector3 Q = T.cross(E1);
+	//
+	if (det < 0.0001f)
+	{
+		return results;
+	}
+
+
+	float u = T.dot(P);
+	if (u < 0.0f || u > det)
+	{
+		return results;
+	}
+	float v = r.GetDir().dot(Q);
+	if (v < 0.0f || u + v > det)
+	{
+		return results;
+	}
+
+
+	float t = E2.dot(Q);
+	if (t < 0.0f)
+	{
+		return results;
+	}
+	t = t / det;
+	IntersectData data;
+	data.fDist = t;
+	data.vecNormal = E1.cross(E2);
+	data.vecPos = r.m_vecPos + r.GetDir() * t;
+	if (data.vecNormal.dot(r.GetDir()) < 0)
+	{
+		data.bBackface = true;
+	}
+	else
+	{
+		data.bBackface = false;
+	}
+	results.m_vecIntersetDatas.push_back(data);
 	return results;
 }

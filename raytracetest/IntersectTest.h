@@ -25,7 +25,7 @@ public:
 
 	static IntersectResults testRayMesh(const Ray3D& r, const Mesh& mesh, const Transform& trans);
 private:
-	static IntersectResults testRayTriangle(const Ray3D& r,const Triangle);
+	static IntersectResults testRayTriangle(const Ray3D& r,const Triangle& tri);
 	static bool SortByDistance(const IntersectData& d1, const IntersectData& d2);
 };
 

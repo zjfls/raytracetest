@@ -94,3 +94,12 @@ float Vector3::dot(const Vector3& vecIn) const
 	float fDot = m_fx * vecIn.m_fx + m_fy * vecIn.m_fy + m_fz * vecIn.m_fz;
 	return fDot;
 }
+
+Vector3 Vector3::cross(const Vector3& vecIn) const
+{
+	Vector3 vecOut;
+	vecOut.m_fx = m_fy * vecIn.m_fz - m_fz * vecIn.m_fy;
+	vecOut.m_fy = m_fz * vecIn.m_fx - m_fx * vecIn.m_fz;
+	vecOut.m_fz = m_fx * vecIn.m_fy - m_fy * vecIn.m_fx;
+	return vecOut;
+}
