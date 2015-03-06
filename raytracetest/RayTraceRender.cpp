@@ -115,7 +115,7 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 	Vector3 vecNormal = Vector3::ONE;
 	for each (IRenderable* var in m_vecRenderables)
 	{
-		IntersetResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
+		IntersectResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
 		if (result.m_bInterset == true)
 		{
 			if (fInterDist > result.m_vecIntersetDatas[0].fDist)
@@ -198,7 +198,7 @@ bool RayTraceRender::ShadowRay(const Ray3D& r, LightBase* pLight)
 	float fDist = pLight->m_pOwnerObj->m_pTransform->GetWorldTranslate().distance(r.m_vecPos);
 	for each (IRenderable* var in m_vecRenderables)
 	{
-		IntersetResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
+		IntersectResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
 		if (result.m_bInterset == true)
 		{
 			for (int i = 0; i < result.m_vecIntersetDatas.size(); ++i)

@@ -7,10 +7,11 @@ public:
 	virtual ~Matrix33();
 	Matrix33(float f1, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9);
 	Matrix33(const Matrix33& matIn);
-	Matrix33 operator=(const Matrix33& matIn);
-	Matrix33 operator*(const Matrix33& matIn);
-	Matrix33 Transpose() const;
-	Matrix33 Inverse() const;
+	Matrix33	operator=(const Matrix33& matIn);
+	Matrix33	operator*(const Matrix33& matIn);
+	Matrix33	Transpose() const;
+	Matrix33	Inverse() const;
+	float		Determinate() const;
 	bool	IsOrthogonal() const;
 	void RotAboutX(float f);
 	void RotAboutY(float f);

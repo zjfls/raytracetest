@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <algorithm>
 #include <map>
+#include <unordered_map>
+#include <memory>
 using namespace std;
 #include "Vector3.h"
 

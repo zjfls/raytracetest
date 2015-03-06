@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FbxAppManager.h"
+#include "AssetManager.h"
 FbxAppManager* Singleton<FbxAppManager>::_instance = nullptr;
 
 FbxAppManager::FbxAppManager()
@@ -25,6 +26,12 @@ FbxAppManager::~FbxAppManager()
 
 void FbxAppManager::testFbxLoad()
 {
+	//AssetManager::GetInstance()->LoadAsset("1.fbx");
+	//AssetManager::GetInstance()->LoadAsset("1");
+	//AssetManager::GetInstance()->LoadAsset("1.png");
+	//AssetManager::GetInstance()->LoadAsset("333.333.jpg");
+	//AssetManager::GetInstance()->LoadAsset("dsfds");
+
 	FbxImporter* pImporter = FbxImporter::Create(m_pFbxSdkManager, "");
 	const char* fileName = "file.fbx";
 
@@ -45,6 +52,27 @@ void FbxAppManager::testFbxLoad()
 		return;
 	}
 	ProcessNode(pRootNode);
+
+	//FbxScene* pScene2 = FbxScene::Create(m_pFbxSdkManager, "My Scene2");
+	//std::cout << "second scene" << std::endl;
+	//
+	//FbxImporter* pImporter2 = FbxImporter::Create(m_pFbxSdkManager, "");
+	//const char* filename2 = "file2.fbx";
+	//bImportStatus = pImporter2->Initialize(filename2, -1, m_pFbxSdkManager->GetIOSettings());
+	//pImporter2->GetFileVersion(nFileMajor, nFileMinor, nFileRevision);
+	//if (bImportStatus == false)
+	//{
+	//	return;
+	//}
+	//bImportStatus = pImporter2->Import(pScene2);
+	//pImporter2->Destroy();
+	//pRootNode = pScene2->GetRootNode();
+	//if (pRootNode == nullptr)
+	//{
+	//	return;
+	//}
+	//ProcessNode(pRootNode);
+	//
 	return;
 }
 
@@ -52,6 +80,7 @@ void FbxAppManager::testFbxLoad()
 void FbxAppManager::ProcessNode(FbxNode* pNode)
 {
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
+	std::cout << " " << pNode->GetName() << std::endl;
 	if (pAttribute != nullptr)
 	{
 		switch (pAttribute->GetAttributeType())
@@ -105,15 +134,14 @@ bool FbxAppManager::Init()
 		//exit(1);
 	}
 	testFbxLoad();
+	system("pause");
 	return true;
 
 }
-
-//for blend normal
-struct stPolyAndNormal
+struct stNormalPolyIndex
 {
-	int polyindex;
-	float x, y, z;
+	float x, y, z;//normal;
+	int triIndex;
 };
 void FbxAppManager::ProcessMesh(FbxNode* pNode)
 {
@@ -124,144 +152,138 @@ void FbxAppManager::ProcessMesh(FbxNode* pNode)
 	}
 	int triangleCount = pMesh->GetPolygonCount();
 	int vertexCounter = 0;
-	std::cout << "control point count" << pMesh->GetControlPointsCount() << std::endl;
-	int nCPCount = pMesh->GetControlPointsCount();
-	std::vector<float> vertexBuff;
-	std::vector<float> normalBuff;
-	std::vector<float> vertexS;
-	std::vector<int> indexBuff;
-	for (int i = 0; i < nCPCount; ++i)
+	int cpCount = pMesh->GetControlPointsCount();
+	std::vector<int> indexVec;
+	std::vector<float> vertexVec;
+	std::vector<float> areaVec;//Ãæ»ý
+	std::vector<float> normalVec;
+	//get vertex pos
+	for (int i = 0; i < cpCount; ++i)
 	{
 		float x, y, z;
 		x = pMesh->GetControlPointAt(i).mData[0];
 		y = pMesh->GetControlPointAt(i).mData[1];
 		z = pMesh->GetControlPointAt(i).mData[2];
-		vertexBuff.push_back(x);
-		vertexBuff.push_back(y);
-		vertexBuff.push_back(z);
-		//float fp = (x + y + z) * 0.5f;
-		//float fs = sqrt(fp*(fp - x)*(fp - y)*(fp - z));
-		//vertexS.push_back(fs);
+		vertexVec.push_back(x);
+		vertexVec.push_back(y);
+		vertexVec.push_back(z);
 	}
-	for (int i = 0; i < pMesh->GetPolygonCount(); ++i)
+	//get index Buff
+	for (int i = 0; i < triangleCount; ++i)
 	{
-		int x, y, z;
-		x = pMesh->GetPolygonVertex(i, 0);
-		y = pMesh->GetPolygonVertex(i, 1);
-		z = pMesh->GetPolygonVertex(i, 2);
-		indexBuff.push_back(x);
-		indexBuff.push_back(y);
-		indexBuff.push_back(z);
-
-
-		Vector3 vx, vy, vz;
-		vx.m_fx = pMesh->GetControlPointAt(x).mData[0];
-		vx.m_fy = pMesh->GetControlPointAt(x).mData[1];
-		vx.m_fz = pMesh->GetControlPointAt(x).mData[2];
-
-		vy.m_fx = pMesh->GetControlPointAt(y).mData[0];
-		vy.m_fy = pMesh->GetControlPointAt(y).mData[1];
-		vy.m_fz = pMesh->GetControlPointAt(y).mData[2];
-
-
-		vz.m_fx = pMesh->GetControlPointAt(z).mData[0];
-		vz.m_fy = pMesh->GetControlPointAt(z).mData[1];
-		vz.m_fz = pMesh->GetControlPointAt(z).mData[2];
-
+		for (int j = 0; j < 3; ++j)
+		{
+			int ctrlPointIndex = pMesh->GetPolygonVertex(i, j);
+			indexVec.push_back(ctrlPointIndex);
+		}
 	}
-
+	//compute area
+	//if (pMesh->GetElementNormal(0)->RemapIndexTo(FbxLayerElement::EMappingMode::eByControlPoint) != 1)
+	//{
+	//	std::cout << "remap failed:" << std::endl;
+	//}
+	for (int i = 0; i < triangleCount; ++i)
+	{
+		Vector3 v0, v1, v2;
+		int index0, index1, index2;
+		index0 = indexVec[i * 3 + 0];
+		index1 = indexVec[i * 3 +1];
+		index2 = indexVec[i * 3 + 2];
+		v0.m_fx = vertexVec[index0 * 3 + 0];
+		v0.m_fy = vertexVec[index0 * 3 + 1];
+		v0.m_fz = vertexVec[index0 * 3 + 2];
+		//
+		v1.m_fx = vertexVec[index1 * 3 + 0];
+		v1.m_fy = vertexVec[index1 * 3 + 1];
+		v1.m_fz = vertexVec[index1 * 3 + 2];
+		//
+		v2.m_fx = vertexVec[index2 * 3 + 0];
+		v2.m_fy = vertexVec[index2 * 3 + 1];
+		v2.m_fz = vertexVec[index2 * 3 + 2];
+		//
+		float L1, L2, L0;
+		L1 = v0.distance(v1);
+		L2 = v0.distance(v2);
+		L0 = v1.distance(v2);
+		float P = (L1 + L2 + L0) * 0.5f;
+		float S = sqrt(P * (P - L2) * (P - L1) * (P - L0));
+		areaVec.push_back(S);
+	}
+	//get normal
 	FbxLayerElementNormal* pNormal = pMesh->GetElementNormal(0);
-	FbxLayerElement::EMappingMode mode = pNormal->GetMappingMode();
-
-
-	std::cout << "normal count:" << pNormal->GetDirectArray().GetCount() << std::endl;
 	switch (pNormal->GetMappingMode())
 	{
 		case FbxLayerElement::eByControlPoint:
 		{
-			std::cout<<"normal by control point"<<std::endl;
-			switch (pNormal->GetReferenceMode())
+			switch(pNormal->GetReferenceMode())
 			{
 				case FbxLayerElement::eDirect:
 				{
-					std::cout<<"eDirect"<<std::endl;
+
 				}
 				break;
 				case FbxLayerElement::eIndexToDirect:
 				{
-					std::cout<<"eIndexToDirect"<<std::endl;
+
 				}
-				break;
-			default:
 				break;
 			}
 		}
 		break;
 		case FbxLayerElement::eByPolygonVertex:
 		{
-			std::cout<<"normal by polygon vertex"<<std::endl;
-			switch (pNormal->GetReferenceMode())
+			switch(pNormal->GetReferenceMode())
 			{
 				case FbxLayerElement::eDirect:
 				{
-					std::cout<<"eDirect"<<std::endl;
-
-
-					std::map<int,std::vector<stPolyAndNormal>> polyAndNormalMap;
-					for (int i = 0; i < pMesh->GetPolygonCount(); ++i)
+					std::map<int, std::vector<stNormalPolyIndex>> cpNormalIndexMap;
+					std::cout<<"by Polygon ref direct!"<<std::endl;
+					for (int i = 0; i < triangleCount; ++i)
 					{
 						for (int j = 0; j < 3; ++j)
 						{
-							int nIndex = pMesh->GetPolygonVertex(i, j);
-							stPolyAndNormal polyNormal;
-							polyNormal.polyindex = i;
-							polyNormal.x = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[0];
-							polyNormal.y = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
-							polyNormal.z = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[2];
-							if (polyAndNormalMap.find(nIndex) != polyAndNormalMap.end())
-							{
-								polyAndNormalMap[nIndex].push_back(polyNormal);
-							}
-							else
-							{
-								std::vector<stPolyAndNormal> vecPolyNormal;
-								vecPolyNormal.push_back(polyNormal);
-								polyAndNormalMap[nIndex] = vecPolyNormal;
-							}
+							int cpIndex = indexVec[i * 3 + j];
+							stNormalPolyIndex np;
+							np.triIndex = i;
+							np.x = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[0];
+							np.y = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
+							np.z = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[2];
+							cpNormalIndexMap[cpIndex].push_back(np);
 						}
 					}
-					for (int i = 0; i < nCPCount; ++i)
+					for (int i = 0; i < cpCount; ++i)
 					{
-						float fSum = 0;
-						Vector3 v = Vector3::ZERO;
-						for_each(std::begin(polyAndNormalMap[i]), std::end(polyAndNormalMap[i]), [&](stPolyAndNormal& pn)
+						float fAreaSum = 0;
+						for_each(std::begin(cpNormalIndexMap[i]), std::end(cpNormalIndexMap[i]), [&](stNormalPolyIndex& npi)
 						{
-							fSum += vertexS[pn.polyindex]; 
+							fAreaSum += areaVec[npi.triIndex];
 						}
 						);
-						for_each(std::begin(polyAndNormalMap[i]), std::end(polyAndNormalMap[i]), [&](stPolyAndNormal& pn)
+						//std::cout << "*********************************************** "<<std::endl;
+						Vector3 vecNormal = Vector3::ZERO;
+						for_each(std::begin(cpNormalIndexMap[i]), std::end(cpNormalIndexMap[i]), [&](stNormalPolyIndex& npi)
 						{
-							v = v + Vector3(pn.x,pn.y,pn.z) * vertexS[pn.polyindex]  * (1 / fSum);
-							normalBuff.push_back(v.m_fx);
-							normalBuff.push_back(v.m_fy);
-							normalBuff.push_back(v.m_fz);
-							std::cout << "normal:" << v.m_fx << " " << v.m_fy << " " << v.m_fz << std::endl;
-						});
+							vecNormal = vecNormal + Vector3(npi.x, npi.y, npi.z) * (areaVec[npi.triIndex] / fAreaSum);
+							//std::cout << npi.x << " " << npi.y << " " << npi.z << std::endl;
+						}
+						);
+						normalVec.push_back(vecNormal.m_fx);
+						normalVec.push_back(vecNormal.m_fy);
+						normalVec.push_back(vecNormal.m_fz);
+						//std::cout << "normal:" << vecNormal.m_fx << " " << vecNormal.m_fy << " " << vecNormal.m_fz << std::endl;
 					}
 				}
 				break;
 				case FbxLayerElement::eIndexToDirect:
 				{
-					std::cout<<"eIndexToDirect"<<std::endl;
+
 				}
-				break;
-			default:
 				break;
 			}
 		}
 		break;
 	}
 
-	system("pause");
+	//system("pause");
 }
 

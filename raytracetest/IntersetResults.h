@@ -3,22 +3,23 @@
 
 
 class IRenderable;
-struct IntersetData
+struct IntersectData
 {
 	float fDist;
 	Vector3 vecPos;
 	Vector3 vecNormal;
 	bool bBackface;
 	IRenderable *pRender;
+	int polyIndex;
 };
 
-class IntersetResults
+class IntersectResults
 {
 public:
-	IntersetResults();
-	virtual ~IntersetResults();
+	IntersectResults();
+	virtual ~IntersectResults();
 
 	bool m_bInterset;
-	std::vector<IntersetData> m_vecIntersetDatas;
+	std::vector<IntersectData> m_vecIntersetDatas;
 };
 

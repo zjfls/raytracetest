@@ -2,13 +2,13 @@
 #include "IntersetResults.h"
 
 
-IntersetResults::IntersetResults()
+IntersectResults::IntersectResults()
 {
 	m_bInterset = false;
 }
 
 
-IntersetResults::~IntersetResults()
+IntersectResults::~IntersectResults()
 {
 
 }
