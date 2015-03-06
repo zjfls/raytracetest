@@ -347,9 +347,6 @@
     <ClCompile Include="AssetManager.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="FbxAppManager.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="FbxAsset.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
@@ -367,6 +364,9 @@
     </ClCompile>
     <ClCompile Include="FbxFileLoader.cpp">
       <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppManager.cpp">
+      <Filter>头文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

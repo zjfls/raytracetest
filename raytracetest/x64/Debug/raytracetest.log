@@ -1,7 +1,62 @@
-﻿生成启动时间为 2015/3/5 18:35:09。
+﻿生成启动时间为 2015/3/6 15:12:45。
      1>项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\thirdparty\fbx\include /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Debug\raytracetest.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt FbxAppManager.cpp RayTraceApplication.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\thirdparty\fbx\include /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Debug\raytracetest.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ApplicationBase.cpp AssetManager.cpp DirectionalLight.cpp FbxAppManager.cpp FbxAsset.cpp FbxFileLoader.cpp FilePath.cpp IAsset.cpp IMaterial.cpp IntersetResults.cpp IResource.cpp LightBase.cpp MaterialManager.cpp MathFunc.cpp PointLight.cpp RasterMaterial.cpp RayTraceApplication.cpp RayTraceCamera.cpp CameraBase.cpp Color.cpp Cube3D.cpp ImageFileHelper.cpp IntersectTest.cpp IRender.cpp IRenderable.cpp IWorld.cpp IWorldObj.cpp Matrix33.cpp Matrix44.cpp Mesh.cpp ModuleBase.cpp Orientation.cpp Plane3D.cpp Quaternions.cpp RasterRender.cpp Ray3D.cpp RayTraceMaterial.cpp RayTracePerpViewPort.cpp RayTraceRender.cpp raytracetest.cpp RayTraceViewPort.cpp ResourceMananger.cpp SimpleRTMaterial.cpp SimpleWorld.cpp SimpleWorldObj.cpp Sphere3D.cpp Transform.cpp Vector3.cpp Vector4.cpp
+         Vector4.cpp
+         Vector3.cpp
+         Transform.cpp
+         Sphere3D.cpp
+         SimpleWorldObj.cpp
+         SimpleWorld.cpp
+         SimpleRTMaterial.cpp
+         ResourceMananger.cpp
+         RayTraceViewPort.cpp
+         raytracetest.cpp
+         RayTraceRender.cpp
+         RayTracePerpViewPort.cpp
+         RayTraceMaterial.cpp
+         Ray3D.cpp
+         RasterRender.cpp
+         Quaternions.cpp
+         Plane3D.cpp
+         Orientation.cpp
+         ModuleBase.cpp
+         Mesh.cpp
+         Matrix44.cpp
+         Matrix33.cpp
+         IWorldObj.cpp
+         IWorld.cpp
+         IRenderable.cpp
+         IRender.cpp
+         IntersectTest.cpp
+         ImageFileHelper.cpp
+         Cube3D.cpp
+         Color.cpp
+         CameraBase.cpp
+         RayTraceCamera.cpp
+         RayTraceApplication.cpp
+     1>RayTraceApplication.cpp(113): warning C4305: “参数”: 从“double”到“float”截断
+     1>RayTraceApplication.cpp(117): warning C4305: “参数”: 从“double”到“float”截断
+         RasterMaterial.cpp
+         PointLight.cpp
+         MathFunc.cpp
+         MaterialManager.cpp
+         LightBase.cpp
+         IResource.cpp
+         IntersetResults.cpp
+         IMaterial.cpp
+         IAsset.cpp
+         FilePath.cpp
+     1>FilePath.cpp(10): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+         FbxFileLoader.cpp
+     1>FbxFileLoader.cpp(85): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(86): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(87): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(158): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(159): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(160): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(202): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+         FbxAsset.cpp
          FbxAppManager.cpp
      1>FbxAppManager.cpp(164): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
      1>FbxAppManager.cpp(165): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
@@ -9,9 +64,12 @@
      1>FbxAppManager.cpp(248): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
      1>FbxAppManager.cpp(249): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
      1>FbxAppManager.cpp(250): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
-         正在生成代码...
+         DirectionalLight.cpp
+         AssetManager.cpp
+         ApplicationBase.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\thirdparty\fbx\include /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt MeshResource.cpp
          正在跳过...(未检测到相关更改)
-         RayTraceApplication.cpp
+         MeshResource.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"J:\github\raytracetest2\raytracetest\x64\Debug\raytracetest.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x64\debug "libfbxsdk-md.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"J:\github\raytracetest2\raytracetest\x64\Debug\raytracetest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"J:\github\raytracetest2\raytracetest\x64\Debug\raytracetest.lib" /MACHINE:X64 x64\Debug\ApplicationBase.obj
          x64\Debug\AssetManager.obj
@@ -69,4 +127,4 @@
 
 生成成功。
 
-已用时间 00:00:00.64
+已用时间 00:00:07.90
