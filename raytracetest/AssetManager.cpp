@@ -15,10 +15,16 @@ AssetManager::~AssetManager()
 
 IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 {
+	if (m_AssetMap.find(path) != std::end(m_AssetMap))
+	{
+		return m_AssetMap[path];
+	}
 	string strSuff = getFileSuffix(path);
 	//std::cout << strSuff.c_str() << std::endl;
 	//system("pause");
-	return nullptr;
+	IAsset* pAsset = m_LoaderMap[strSuff]->Load(path, pArg);
+	m_AssetMap[path] = pAsset;
+	return pAsset;
 }
 
 void AssetManager::Init()

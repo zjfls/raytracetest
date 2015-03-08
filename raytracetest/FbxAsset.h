@@ -20,7 +20,6 @@ public:
 
 	*/
 	virtual void Release(bool bReleaseResource);
-	string m_strPath;
 private:
 	FbxScene*	m_pFbxScene;
 	friend class FbxFileLoader;

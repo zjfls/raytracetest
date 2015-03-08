@@ -8,10 +8,11 @@
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	FbxAsset* pAsset = new FbxAsset;
+	m_pAsset = pAsset;
 	pAsset->m_strPath = path;
 	pAsset->m_pFbxScene = FbxScene::Create(FbxAppManager::GetInstance()->m_pFbxSdkManager, path.c_str());
 	//
-	FbxImporter* pImporter = FbxImporter::Create(FbxAppManager::GetInstance()->m_pFbxSdkManager, "");
+	FbxImporter* pImporter = FbxImporter::Create(FbxAppManager::GetInstance()->m_pFbxSdkManager, "importer");
 	const char* fileName = path.c_str();
 
 	bool bImportStatus = pImporter->Initialize(fileName, -1, FbxAppManager::GetInstance()->m_pFbxSdkManager->GetIOSettings());
@@ -30,12 +31,14 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	{
 		return pAsset;
 	}
+	ProcessNode(pRootNode, path);
 	//
 	return pAsset;
 }
 
 void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
 {
+	refPath = refPath + "/" + pNode->GetName();
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
 	std::cout << " " << pNode->GetName() << std::endl;
 	if (pAttribute != nullptr)
@@ -66,6 +69,15 @@ struct stNormalPolyIndex
 };
 void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 {
+	if (ResourceMananger<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
+	{
+		return;
+	}
+	shared_ptr<MeshResource> pMeshResource(new MeshResource());
+	pMeshResource->m_refPath = refPath;
+	ResourceMananger<MeshResource>::GetInstance()->AddResource(refPath, pMeshResource);
+	m_pAsset->AddResource(refPath, pMeshResource);
+	//
 	FbxMesh* pMesh = pNode->GetMesh();
 	if (pMesh == nullptr)
 	{
@@ -83,8 +95,9 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	{
 		float x, y, z;
 		x = pMesh->GetControlPointAt(i).mData[0];
-		y = pMesh->GetControlPointAt(i).mData[1];
-		z = pMesh->GetControlPointAt(i).mData[2];
+		y = pMesh->GetControlPointAt(i).mData[2];
+		z = pMesh->GetControlPointAt(i).mData[1];
+		//std::cout << "vertexdata:" << x << " " << y << " " << z << std::endl;
 		vertexVec.push_back(x);
 		vertexVec.push_back(y);
 		vertexVec.push_back(z);
@@ -157,7 +170,8 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 					np.triIndex = i;
 					np.x = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[0];
 					np.y = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
-					np.z = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[2];
+					np.z = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
+					std::cout << "Vertex Normal:" << np.x << " " << np.y << " " << np.z << std::endl;
 					cpNormalIndexMap[cpIndex].push_back(np);
 				}
 			}
@@ -177,9 +191,10 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 					//std::cout << npi.x << " " << npi.y << " " << npi.z << std::endl;
 				}
 				);
+				vecNormal.normalize();
 				normalVec.push_back(vecNormal.m_fx);
 				normalVec.push_back(vecNormal.m_fy);
-				normalVec.push_back(vecNormal.m_fz);
+				normalVec.push_back(vecNormal.m_fz);			
 				//std::cout << "normal:" << vecNormal.m_fx << " " << vecNormal.m_fy << " " << vecNormal.m_fz << std::endl;
 			}
 		}
@@ -191,13 +206,6 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	}
 #pragma endregion
 #pragma region AddMeshResource
-	if (ResourceMananger<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
-	{
-		return;
-	}
-	MeshResource* pMeshResource = new MeshResource();
-	pMeshResource->m_refPath = refPath;
-	ResourceMananger<MeshResource>::GetInstance()->AddResource(refPath, pMeshResource);
 	stIndexData::EnumIndexDesc eIndexDesc = stIndexData::EIndexInt;
 	int nIndexLength = indexVec.size();
 	if (nIndexLength <= 65535)
@@ -227,6 +235,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 			pBuff++;
 		}
 	}
+	pMeshResource->m_IndexData.indexNum = indexVec.size();
 	pMeshResource->m_IndexData.indexDesc = eIndexDesc;
 	pMeshResource->m_IndexData.pData = pTemp;
 	//vertex data
@@ -242,6 +251,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
 	nVBOffset += cpCount * sizeof(float) * 3;
+	pMeshResource->m_VertexData.nNumVertex = cpCount;
 	pMeshResource->m_VertexData.pData = new unsigned char[nVBOffset];
 	for (int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
 	{
@@ -273,6 +283,6 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 		}
 
 	}
-	
+
 #pragma endregion
 }

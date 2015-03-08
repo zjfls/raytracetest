@@ -5,7 +5,7 @@
 #include "RayTraceCamera.h"
 #include "IWorld.h"
 #include "AssetManager.h"
-#include "FbxFileLoader.h"
+#include "FbxAppManager.h"
 
 ApplicationBase::ApplicationBase()
 {
@@ -16,15 +16,19 @@ ApplicationBase::~ApplicationBase()
 {
 }
 
-bool ApplicationBase::Init()
+bool ApplicationBase::Init(int argc, char** argv)
 {
+	m_argc = argc;
+	m_argv = argv;
+	FbxAppManager::GetInstance()->Init();
 	AssetManager::GetInstance()->Init();
 	OnInit();
-	OnSetupScene();
+	SetupScene();
 	if (m_pWorld != nullptr)
 	{
 		m_pWorld->Update();
 	}
+	OnEndInit();
 	return true;
 }
 
@@ -48,7 +52,12 @@ void ApplicationBase::OnInit()
 
 }
 
-void ApplicationBase::OnSetupScene()
+void ApplicationBase::SetupScene()
+{
+
+}
+
+void ApplicationBase::Run()
 {
 
 }

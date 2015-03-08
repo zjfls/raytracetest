@@ -18,7 +18,24 @@ public:
 
 	*/
 	virtual void Release(bool bReleaseResource) = 0;
-	std::vector<weak_ptr<IResource>> m_ResourceList;
+
+	shared_ptr<IResource>		GetResource(string refPath)
+	{
+		if (m_ResourceMap.find(refPath) != std::end(m_ResourceMap))
+		{
+			return m_ResourceMap[refPath].lock();
+		}
+		return nullptr;
+	}
+	void			AddResource(string refPath, shared_ptr<IResource> pRes)
+	{
+		m_ResourceMap[refPath] = pRes;
+	}
+
+
+public:
+	std::unordered_map<string,weak_ptr<IResource>> m_ResourceMap;
+	string	m_strPath;
 
 };
 

@@ -10,10 +10,11 @@
 #include "MaterialManager.h"
 #include "LightBase.h"
 #include "RayTraceApplication.h"
-
+#include "SimpleD3D9Application.h"
+#include "SimpleGLApplication.h"
 int _tmain(int argc, _TCHAR* argv[])
 {
-	RayTraceApplication::GetInstance()->Init();
+	SimpleD3D9Application::GetInstance()->Init(argc, argv);
+	SimpleD3D9Application::GetInstance()->Run();
 	return 0;
 }
-

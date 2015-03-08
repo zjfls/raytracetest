@@ -216,6 +216,12 @@
     <ClInclude Include="Triangle.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleGLApplication.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleD3D9Application.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -365,14 +371,20 @@
     <ClCompile Include="FbxFileLoader.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="FbxAppManager.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="Vector4.cpp">
       <Filter>源文件\math</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
       <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGLApplication.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleD3D9Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppManager.cpp">
+      <Filter>源文件\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

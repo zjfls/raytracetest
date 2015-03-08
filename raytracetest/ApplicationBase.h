@@ -8,15 +8,18 @@ public:
 	virtual ~ApplicationBase();
 
 
-	bool Init();
+	bool Init(int argc, char** argv);
 	virtual void OnInit();
-	virtual void OnSetupScene();
+	virtual void SetupScene();
 	virtual void OnEndInit();
 	virtual void PreUpdate();
 	virtual void OnUpdate();
+	virtual void Run();
 
 
-
+protected:
+	int m_argc;
+	char** m_argv;
 	IWorld* m_pWorld;
 };
 

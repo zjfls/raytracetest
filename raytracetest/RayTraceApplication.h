@@ -7,7 +7,7 @@ public:
 	~RayTraceApplication();
 
 	virtual void OnInit();
-	virtual void OnSetupScene();
+	virtual void SetupScene();
 	virtual void OnEndInit();
 	//virtual void PreUpdate();
 	//virtual void OnUpdate();

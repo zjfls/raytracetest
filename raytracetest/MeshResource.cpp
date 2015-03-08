@@ -12,3 +12,13 @@ MeshResource::MeshResource()
 MeshResource::~MeshResource()
 {
 }
+
+//Vector3 MeshResource::GetPositionDataAt(int nIndex)
+//{
+//	return m_VertexData.GetPositionDataAt(nIndex);
+//}
+//
+//Vector3 MeshResource::GetNormalDataAt(int nIndex)
+//{
+//	return m_VertexData.GetPositionDataAt(nIndex);
+//}

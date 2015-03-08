@@ -56,5 +56,6 @@ public:
 	void Init();
 private:
 	std::map<string, IAssetLoader*> m_LoaderMap;
+	std::map<string, IAsset*> m_AssetMap;
 };
 

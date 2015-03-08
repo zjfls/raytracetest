@@ -7,12 +7,9 @@ public:
 
 
 	bool Init();
-	void testFbxLoad();
 
 
-	//
-	void ProcessNode(FbxNode* pNode);
-	void ProcessMesh(FbxNode* pNode);
+
 	FbxManager* m_pFbxSdkManager;
 	FbxScene*	m_pFbxScene;
 

@@ -27,7 +27,35 @@ struct stVertexData
 		EnumVertexTypeDesc typedesc;
 		int nOffset;//in byte
 	};
+	Vector3 GetPositionDataAt(int nIndex)
+	{
+		Vector3 vecPos;
+		VertexDataDesc desc = vecDataDesc[0];
+		float* pfData = (float*)pData;
+		pfData = pfData + desc.nOffset + nIndex * 3;
+		vecPos.m_fx = *pfData;
+		pfData++;
+		vecPos.m_fy = *pfData;
+		pfData++;
+		vecPos.m_fz = *pfData;
+		return vecPos;
+	}
+	//默认normal描述是第2个
+	Vector3 GetNormalDataAt(int nIndex)
+	{
+		Vector3 vecNormal;
+		VertexDataDesc desc = vecDataDesc[1];
+		float* pfData = (float*)pData;
+		pfData = pfData + desc.nOffset + nIndex * 3;
+		vecNormal.m_fx = *pfData;
+		pfData++;
+		vecNormal.m_fy = *pfData;
+		pfData++;
+		vecNormal.m_fz = *pfData;
+		return vecNormal;
+	}
 	std::vector<VertexDataDesc> vecDataDesc;
+	int nNumVertex;
 };
 struct stIndexData
 {
@@ -39,6 +67,7 @@ struct stIndexData
 		EIndexShort
 	};
 	EnumIndexDesc indexDesc;
+	int indexNum;
 
 };
 class MeshResource:public IResource
@@ -46,7 +75,8 @@ class MeshResource:public IResource
 public:
 	MeshResource();
 	~MeshResource();
-
+	//Vector3 GetPositionDataAt(int nIndex);
+	//Vector3	GetNormalDataAt(int nIndex);
 
 	stVertexData m_VertexData;
 	stIndexData m_IndexData;

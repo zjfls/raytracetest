@@ -78,7 +78,7 @@ IWorldObj* AddPlane3D(IWorldObj* pParent)
 }
 
 
-void RayTraceApplication::OnSetupScene()
+void RayTraceApplication::SetupScene()
 {
 	IWorld* pWorld = m_pWorld;
 	IWorldObj* pObj = new SimpleWorldObj();
@@ -131,5 +131,5 @@ void RayTraceApplication::OnSetupScene()
 //#include "../Common/GeometryUtility.h"
 void RayTraceApplication::OnEndInit()
 {
-	m_pCamera->Render();
+//	m_pCamera->Render();
 }
