@@ -105,11 +105,15 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	//get index Buff
 	for (int i = 0; i < triangleCount; ++i)
 	{
-		for (int j = 0; j < 3; ++j)
-		{
-			int ctrlPointIndex = pMesh->GetPolygonVertex(i, j);
+		//for (int j = 0; j < 3; ++j)
+		//{
+			int ctrlPointIndex = pMesh->GetPolygonVertex(i, 0);
 			indexVec.push_back(ctrlPointIndex);
-		}
+			ctrlPointIndex = pMesh->GetPolygonVertex(i, 2);
+			indexVec.push_back(ctrlPointIndex);
+			ctrlPointIndex = pMesh->GetPolygonVertex(i, 1);
+			indexVec.push_back(ctrlPointIndex);
+		//}
 	}
 	//get triangle area
 	for (int i = 0; i < triangleCount; ++i)
@@ -141,7 +145,8 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	}
 #pragma region GetNormal
 	//get normal
-	FbxLayerElementNormal* pNormal = pMesh->GetElementNormal(0);
+	//FbxGeometryElementNormal
+	FbxGeometryElementNormal* pNormal = pMesh->GetElementNormal(0);
 	if (pNormal->GetMappingMode() == FbxLayerElement::eByControlPoint)
 	{
 		if (pNormal->GetReferenceMode() == FbxLayerElement::eDirect)
@@ -169,9 +174,9 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 					stNormalPolyIndex np;
 					np.triIndex = i;
 					np.x = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[0];
-					np.y = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
+					np.y = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[2];
 					np.z = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
-					std::cout << "Vertex Normal:" << np.x << " " << np.y << " " << np.z << std::endl;
+					//std::cout << "Vertex Normal:" << np.x << " " << np.y << " " << np.z << std::endl;
 					cpNormalIndexMap[cpIndex].push_back(np);
 				}
 			}
@@ -262,14 +267,32 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 			case stVertexData::EVertexTypeFloat3:
 			{
 				float* pFloat = (float*)pTempVoid;
-				for (int i = 0; i < cpCount; ++i)
+				for (int j = 0; j < cpCount; ++j)
 				{
-					*pFloat = vertexVec[i * 3 + 0];
-					pFloat++;
-					*pFloat = vertexVec[i * 3 + 1];
-					pFloat++;
-					*pFloat = vertexVec[i * 3 + 2];
-					pFloat++;
+					if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == stVertexData::EVertexPosition)
+					{
+						*pFloat = vertexVec[j * 3 + 0];
+						//std::cout <<"VertexBin:"<< *pFloat<<" ";
+						pFloat++;
+						*pFloat = vertexVec[j * 3 + 1];
+						//std::cout << *pFloat<<" ";
+						pFloat++;
+						*pFloat = vertexVec[j * 3 + 2];
+						//std::cout << *pFloat << std::endl;
+						pFloat++;
+					}
+					else if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == stVertexData::EVertexNormal)
+					{
+						*pFloat = normalVec[j * 3 + 0];
+						//std::cout << "NormalBin:" << *pFloat << " ";
+						pFloat++;
+						*pFloat = normalVec[j * 3 + 1];
+						//std::cout << *pFloat << " ";
+						pFloat++;
+						*pFloat = normalVec[j * 3 + 2];
+						//std::cout << *pFloat << std::endl;
+						pFloat++;
+					}
 				}
 			}
 			break;

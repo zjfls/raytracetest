@@ -32,5 +32,6 @@ private:
 	IDirect3DVertexDeclaration9*	m_pVertexDecl;
 	HWND					m_hwnd;
 	MeshResource* pMeshRes;
+	bool bUseNormal;
 };
 

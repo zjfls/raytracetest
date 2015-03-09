@@ -21,6 +21,7 @@ struct CUSTOMVERTEX
 SimpleD3D9Application::SimpleD3D9Application()
 {
 	m_pIB = nullptr;
+	bUseNormal = true;
 }
 
 
@@ -78,7 +79,7 @@ void SimpleD3D9Application::SetupScene()
 
 	InitVB();
 	SetupCamera();
-	SetupLight();
+	//SetupLight();
 }
 
 void SimpleD3D9Application::OnEndInit()
@@ -127,41 +128,27 @@ long SimpleD3D9Application::WindowProcedure(HWND window, unsigned int msg, WPARA
 void SimpleD3D9Application::Render()
 {
 
-
 	//
 	if (m_pd3dDevice == nullptr)
 	{
 		return;
 	}
-	D3DXVECTOR3 vecDir;
-	D3DLIGHT9 light;
-	ZeroMemory(&light, sizeof(D3DLIGHT9));
-	light.Type = D3DLIGHT_DIRECTIONAL;
-	light.Diffuse.r = 1.0f;
-	light.Diffuse.g = 1.0f;
-	light.Diffuse.b = 1.0f;
-	vecDir = D3DXVECTOR3(cosf(timeGetTime() / 350.0f),
-		1.0f,
-		sinf(timeGetTime() / 350.0f));
-	D3DXVec3Normalize((D3DXVECTOR3*)&light.Direction, &vecDir);
-	light.Range = 1000.0f;
-	m_pd3dDevice->SetLight(0, &light);
-	m_pd3dDevice->LightEnable(0, TRUE);
-	m_pd3dDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
 	//
 	// Set up world matrix
 	D3DXMATRIXA16 matWorld;
 	D3DXMatrixIdentity(&matWorld);
-	D3DXMatrixRotationX(&matWorld, timeGetTime() / 500.0f);
+	D3DXMatrixRotationY(&matWorld, timeGetTime() / 500.0f);
 	m_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld);
 	//
 	
 	// Clear the backbuffer to a blue color
-	m_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
+	m_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
 	// Begin the scene
 	if (SUCCEEDED(m_pd3dDevice->BeginScene()))
 	{
+		m_pd3dDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_PHONG);
+		SetupLight();
 		//m_pd3dDevice->SetStreamSource(0, m_pVB, 0, sizeof(CUSTOMVERTEX));
 		//m_pd3dDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 		m_pd3dDevice->SetVertexDeclaration(m_pVertexDecl);
@@ -180,8 +167,8 @@ void SimpleD3D9Application::Render()
 
 HRESULT SimpleD3D9Application::InitVB()
 {
-	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../meshes/plane.fbx");//Env_MuSinportal
-	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/Plane001").get();
+	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../meshes/file.fbx");//Env_MuSinportal
+	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/Env_MuSinportal").get();
 	pMeshRes = pMesh;
 	if (FAILED(m_pd3dDevice->CreateVertexBuffer(pMesh->m_VertexData.nNumVertex * sizeof(float) * 6,
 		0, 0,
@@ -194,20 +181,33 @@ HRESULT SimpleD3D9Application::InitVB()
 	{
 		return E_FAIL;
 	}
+
+	float* pf = (float*)pMesh->m_VertexData.pData;
+	//for (int i = 0; i < 18; ++i)
+	//{
+	//	std::cout << *pf << std::endl;
+	//	pf++;
+	//}
+
 	//memcpy(pVertexData, pMesh->m_VertexData.pData, sizeof(float) * 6 * pMesh->m_VertexData.nNumVertex);
 	for (int i = 0; i < pMesh->m_VertexData.nNumVertex; ++i)
 	{
 		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 0);
+		//std::cout << "pos:" << *(float*)pVertexData << " ";
 		pVertexData = (float*)pVertexData + 1;
 		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 1);
+		//std::cout << *(float*)pVertexData << " ";
 		pVertexData = (float*)pVertexData + 1;
 		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 2);
+		//std::cout << *(float*)pVertexData << std::endl;
+
 		pVertexData = (float*)pVertexData + 1;
-		*((float*)pMesh->m_VertexData.pData + i * 3 + 0 + pMesh->m_VertexData.nNumVertex * sizeof(float) * 3);
+		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 0 + pMesh->m_VertexData.nNumVertex * 3);
 		pVertexData = (float*)pVertexData + 1;
-		*((float*)pMesh->m_VertexData.pData + i * 3 + 1 + pMesh->m_VertexData.nNumVertex * sizeof(float) * 3);
+		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 1 + pMesh->m_VertexData.nNumVertex * 3);
 		pVertexData = (float*)pVertexData + 1;
-		*((float*)pMesh->m_VertexData.pData + i * 3 + 2 + pMesh->m_VertexData.nNumVertex * sizeof(float) * 3);
+		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 2 + pMesh->m_VertexData.nNumVertex * 3);
+		pVertexData = (float*)pVertexData + 1;
 
 	}
 	m_pVB->Unlock();
@@ -281,7 +281,7 @@ void SimpleD3D9Application::SetupCamera()
 	//m_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld);
 
 
-	D3DXVECTOR3 vEyePt(0.0f, 430.0f, -750.0f);
+	D3DXVECTOR3 vEyePt(0.0f, 630.0f, -750.0f);
 	D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);
 	D3DXMATRIXA16 matView;
@@ -289,23 +289,26 @@ void SimpleD3D9Application::SetupCamera()
 	m_pd3dDevice->SetTransform(D3DTS_VIEW, &matView);
 
 	D3DXMATRIXA16 matProj;
-	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1.0f, 1.0f, 1000.0f);
+	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1.0f, 1.0f, 2000.0f);
 	m_pd3dDevice->SetTransform(D3DTS_PROJECTION, &matProj);
 }
 
 void SimpleD3D9Application::SetupLight()
 {
+	// Set up a material. The material here just has the diffuse and ambient
+	// colors set to yellow. Note that only one material can be used at a time.
 	D3DMATERIAL9 mtrl;
 	ZeroMemory(&mtrl, sizeof(D3DMATERIAL9));
 	mtrl.Diffuse.r = mtrl.Ambient.r = 1.0f;
 	mtrl.Diffuse.g = mtrl.Ambient.g = 1.0f;
-	mtrl.Diffuse.b = mtrl.Ambient.b = 0.0f;
+	mtrl.Diffuse.b = mtrl.Ambient.b = 1.0f;
 	mtrl.Diffuse.a = mtrl.Ambient.a = 1.0f;
 	m_pd3dDevice->SetMaterial(&mtrl);
-	// Finally, turn on some ambient light.
-	m_pd3dDevice->SetRenderState(D3DRS_AMBIENT, 0x00202020);
 
-
+	// Set up a white, directional light, with an oscillating direction.
+	// Note that many lights may be active at a time (but each one slows down
+	// the rendering of our scene). However, here we are just using one. Also,
+	// we need to set the D3DRS_LIGHTING renderstate to enable lighting
 	D3DXVECTOR3 vecDir;
 	D3DLIGHT9 light;
 	ZeroMemory(&light, sizeof(D3DLIGHT9));
@@ -313,14 +316,21 @@ void SimpleD3D9Application::SetupLight()
 	light.Diffuse.r = 1.0f;
 	light.Diffuse.g = 1.0f;
 	light.Diffuse.b = 1.0f;
+	light.Diffuse.a = 1.0f;
+	light.Position.x = 0.0f;
+	light.Position.y = 1000.0f;
+	light.Position.z = 0.0f;
 	vecDir = D3DXVECTOR3(0,
-		-0.5,
+		-1.0f,
 		1);
 	D3DXVec3Normalize((D3DXVECTOR3*)&light.Direction, &vecDir);
 	light.Range = 10000.0f;
 	m_pd3dDevice->SetLight(0, &light);
 	m_pd3dDevice->LightEnable(0, TRUE);
 	m_pd3dDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
+
+	// Finally, turn on some ambient light.
+	m_pd3dDevice->SetRenderState(D3DRS_AMBIENT, 0x00202020);
 }
 
 IDirect3DVertexDeclaration9* SimpleD3D9Application::GetDeclarationFromMesh(MeshResource* pMesh)
@@ -328,7 +338,7 @@ IDirect3DVertexDeclaration9* SimpleD3D9Application::GetDeclarationFromMesh(MeshR
 	std::vector<D3DVERTEXELEMENT9> vecVertElem;
 	D3DVERTEXELEMENT9 elem = { 0, 0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 };
 	vecVertElem.push_back(elem);
-	elem = { 12, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL, 0, 0 };
+	elem = { 0, 12, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL, 0 };
 	vecVertElem.push_back(elem);
 	elem = D3DDECL_END();
 	vecVertElem.push_back(elem);
