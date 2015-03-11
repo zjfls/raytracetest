@@ -170,6 +170,9 @@ HRESULT SimpleD3D9Application::InitVB()
 	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../meshes/file.fbx");//Env_MuSinportal
 	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/Env_MuSinportal").get();
 	pMeshRes = pMesh;
+	//read material
+
+	//
 	if (FAILED(m_pd3dDevice->CreateVertexBuffer(pMesh->m_VertexData.nNumVertex * sizeof(float) * 6,
 		0, 0,
 		D3DPOOL_MANAGED, &m_pVB, NULL)))

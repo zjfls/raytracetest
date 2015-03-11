@@ -41,6 +41,25 @@ void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
 	refPath = refPath + "/" + pNode->GetName();
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
 	std::cout << " " << pNode->GetName() << std::endl;
+	//
+	int nMaterialCount = pNode->GetMaterialCount();
+	for (int i = 0; i < nMaterialCount; ++i)
+	{
+		FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
+		int nPropertyCount = pMat->GetSrcPropertyCount();
+		FbxProperty kProp = pMat->GetFirstProperty();
+		while (kProp.IsValid() == true)
+		{
+			int nSrcObjCount = kProp.GetSrcObjectCount();
+			for (int j = 0; j < nSrcObjCount; ++j)
+			{
+				FbxObject* pObj = kProp.GetSrcObject(j);
+				pObj->GetUserDataPtr();
+			}
+		}
+	}
+	//
+	
 	if (pAttribute != nullptr)
 	{
 		switch (pAttribute->GetAttributeType())

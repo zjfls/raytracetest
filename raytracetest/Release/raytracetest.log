@@ -1,9 +1,75 @@
-﻿生成启动时间为 2015/3/9 22:59:38。
-     1>项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
-     1>Link:
-         raytracetest.vcxproj -> H:\github\raytracetest\Release\raytracetest.exe
-     1>已完成生成项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
+﻿生成启动时间为 2015/3/11 17:48:17。
+     1>项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\raytracetest.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FbxFileLoader.cpp
+         FbxFileLoader.cpp
+     1>FbxFileLoader.cpp(116): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(117): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(118): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(195): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(196): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(197): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(280): warning C4018: “<”: 有符号/无符号不匹配
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"J:\github\raytracetest2\raytracetest\Release\raytracetest.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\release /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 glu32.lib opengl32.lib glut32.lib "libfbxsdk-md.lib" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"J:\github\raytracetest2\raytracetest\Release\raytracetest.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"J:\github\raytracetest2\raytracetest\Release\raytracetest.lib" /MACHINE:X86 /SAFESEH Release\ApplicationBase.obj
+         Release\AssetManager.obj
+         Release\DirectionalLight.obj
+         Release\FbxAppManager.obj
+         Release\FbxAsset.obj
+         Release\FbxFileLoader.obj
+         Release\FilePath.obj
+         Release\IAsset.obj
+         Release\IMaterial.obj
+         Release\IntersetResults.obj
+         Release\IResource.obj
+         Release\LightBase.obj
+         Release\MaterialManager.obj
+         Release\MathFunc.obj
+         Release\MeshResource.obj
+         Release\PointLight.obj
+         Release\RasterMaterial.obj
+         Release\RayTraceApplication.obj
+         Release\RayTraceCamera.obj
+         Release\CameraBase.obj
+         Release\Color.obj
+         Release\Cube3D.obj
+         Release\ImageFileHelper.obj
+         Release\IntersectTest.obj
+         Release\IRender.obj
+         Release\IRenderable.obj
+         Release\IWorld.obj
+         Release\IWorldObj.obj
+         Release\Matrix33.obj
+         Release\Matrix44.obj
+         Release\Mesh.obj
+         Release\ModuleBase.obj
+         Release\Orientation.obj
+         Release\Plane3D.obj
+         Release\Quaternions.obj
+         Release\RasterRender.obj
+         Release\Ray3D.obj
+         Release\RayTraceMaterial.obj
+         Release\RayTracePerpViewPort.obj
+         Release\RayTraceRender.obj
+         Release\raytracetest.obj
+         Release\RayTraceViewPort.obj
+         Release\ResourceMananger.obj
+         Release\SimpleD3D9Application.obj
+         Release\SimpleGLApplication.obj
+         Release\SimpleRTMaterial.obj
+         Release\SimpleWorld.obj
+         Release\SimpleWorldObj.obj
+         Release\Sphere3D.obj
+         Release\stdafx.obj
+         Release\Transform.obj
+         Release\Triangle.obj
+         Release\Vector3.obj
+         Release\Vector4.obj
+         正在生成代码
+         已完成代码的生成
+         raytracetest.vcxproj -> J:\github\raytracetest2\raytracetest\Release\raytracetest.exe
+     1>已完成生成项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.20
+已用时间 00:00:03.59
