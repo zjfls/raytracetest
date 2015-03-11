@@ -26,6 +26,39 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	pAsset->m_pFbxScene->Clear();
 	bImportStatus = pImporter->Import(pAsset->m_pFbxScene);
 	pImporter->Destroy();
+
+
+
+	FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
+	if (kConverter.SplitMeshesPerMaterial(pAsset->m_pFbxScene,false))
+	{
+		std::cout << "Error:can not split per material!" << std::endl;
+	}
+	////FbxCriteria kfbxCriteria;
+	////kfbxCriteria.ObjectType()
+	//std::vector<FbxMesh*> meshVec;
+	//for (int i = 0; i < pAsset->m_pFbxScene->GetSrcObjectCount(FbxCriteria::ObjectType(FbxMesh::ClassId)); ++i)
+	//{
+	//	FbxMesh* pMesh = (FbxMesh*)pAsset->m_pFbxScene->GetSrcObject(FbxCriteria::ObjectType(FbxMesh::ClassId), i);
+	//	meshVec.push_back(pMesh);
+	//	//FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
+	//	//if (kConverter.SplitMeshPerMaterial(pMesh, true))
+	//	//{
+	//	//	std::cout << "Error:can not split per material!" << std::endl;
+	//	//}
+	//	//if (!pMesh->GetDeformerCount())
+	//	//	std::cout << "Error: mesh " << i << " with no deformers." << std::endl;
+	//	//else
+	//	//	std::cout << "Mesh " << i << " with " << pMesh->GetDeformerCount() << " deformers." << std::endl;
+	//}
+	//for each (FbxMesh* pMesh in meshVec)
+	//{
+	//	FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
+	//	if (kConverter.SplitMeshPerMaterial(pMesh, false))
+	//	{
+	//		std::cout << pMesh->GetName()<< "Error:can not split per material!" << std::endl;
+	//	}
+	//}
 	FbxNode* pRootNode = pAsset->m_pFbxScene->GetRootNode();
 	if (pRootNode == nullptr)
 	{
@@ -53,9 +86,16 @@ void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
 			int nSrcObjCount = kProp.GetSrcObjectCount();
 			for (int j = 0; j < nSrcObjCount; ++j)
 			{
-				FbxObject* pObj = kProp.GetSrcObject(j);
-				pObj->GetUserDataPtr();
+				
+				FbxFileTexture* pObj = kProp.GetSrcObject<FbxFileTexture>(j);
+				if (pObj != nullptr)
+				{
+					std::cout << kProp.GetName() << std::endl;
+					std::cout << pObj->GetName() << std::endl;
+					std::cout << pObj->GetRelativeFileName() << std::endl;
+				}
 			}
+			kProp = pMat->GetNextProperty(kProp);
 		}
 	}
 	//
@@ -98,6 +138,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	m_pAsset->AddResource(refPath, pMeshResource);
 	//
 	FbxMesh* pMesh = pNode->GetMesh();
+
 	if (pMesh == nullptr)
 	{
 		return;
