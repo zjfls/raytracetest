@@ -39,7 +39,7 @@ void SimpleD3D9Application::OnInit()
 	RegisterClassEx(&wndclass);
 	HWND window = CreateWindowEx(0, myclass, "d3dwindow",
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
-		CW_USEDEFAULT, CW_USEDEFAULT, 0, 0, GetModuleHandle(0), 0);
+		1024, 768, 0, 0, GetModuleHandle(0), 0);
 	m_hwnd = window;
 	ShowWindow(window, SW_SHOWDEFAULT);
 	//MSG msg;
@@ -50,6 +50,8 @@ void SimpleD3D9Application::OnInit()
 	d3dpp.Windowed = TRUE;
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
+	d3dpp.EnableAutoDepthStencil = TRUE;
+	d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
 
 	if (NULL == (m_pD3D = Direct3DCreate9(D3D_SDK_VERSION)))
 	{
@@ -142,17 +144,21 @@ void SimpleD3D9Application::Render()
 	//
 	
 	// Clear the backbuffer to a blue color
-	m_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
+	m_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
 	// Begin the scene
 	if (SUCCEEDED(m_pd3dDevice->BeginScene()))
 	{
+		m_pd3dDevice->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
+		m_pd3dDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);	
+		m_pd3dDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
 		m_pd3dDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_PHONG);
+		m_pd3dDevice->SetTexture(0, m_pDiffuseTexture);
 		SetupLight();
 		//m_pd3dDevice->SetStreamSource(0, m_pVB, 0, sizeof(CUSTOMVERTEX));
 		//m_pd3dDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 		m_pd3dDevice->SetVertexDeclaration(m_pVertexDecl);
-		m_pd3dDevice->SetStreamSource(0, m_pVB, 0, sizeof(float) * 6);
+		m_pd3dDevice->SetStreamSource(0, m_pVB, 0, sizeof(float) * 8);
 		m_pd3dDevice->SetIndices(m_pIB);
 		//m_pd3dDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
 		m_pd3dDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, pMeshRes->m_VertexData.nNumVertex, 0, pMeshRes->m_IndexData.indexNum / 3);
@@ -167,20 +173,30 @@ void SimpleD3D9Application::Render()
 
 HRESULT SimpleD3D9Application::InitVB()
 {
-	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../meshes/file.fbx");//Env_MuSinportal
-	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/Env_MuSinportal").get();
+	if (FAILED(D3DXCreateTextureFromFile(m_pd3dDevice, "return_portal_01.tga", &m_pDiffuseTexture)))
+	{
+		// If texture is not in current folder, try parent folder
+		if (FAILED(D3DXCreateTextureFromFile(m_pd3dDevice, "..\\meshes\\return_portal_01.tga", &m_pDiffuseTexture)))
+		{
+			MessageBox(NULL, "Could not find banana.bmp", "Textures.exe", MB_OK);
+			return E_FAIL;
+		}
+	}
+	
+	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../meshes/file.fbx");//Env_MuSinportal,Env_MuSinportalreturn_portal_01_INST
+	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/Env_MuSinportalreturn_portal_01_INST").get();
 	pMeshRes = pMesh;
 	//read material
 
 	//
-	if (FAILED(m_pd3dDevice->CreateVertexBuffer(pMesh->m_VertexData.nNumVertex * sizeof(float) * 6,
+	if (FAILED(m_pd3dDevice->CreateVertexBuffer(pMesh->m_VertexData.nNumVertex * pMesh->m_VertexData.GetVertexDataLength(),
 		0, 0,
 		D3DPOOL_MANAGED, &m_pVB, NULL)))
 	{
 		return E_FAIL;
 	}
 	void* pVertexData;
-	if (FAILED(m_pVB->Lock(0,sizeof(float) * 6 * pMesh->m_VertexData.nNumVertex,&pVertexData,0)))
+	if (FAILED(m_pVB->Lock(0, pMesh->m_VertexData.GetVertexDataLength() * pMesh->m_VertexData.nNumVertex, &pVertexData, 0)))
 	{
 		return E_FAIL;
 	}
@@ -210,6 +226,11 @@ HRESULT SimpleD3D9Application::InitVB()
 		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 1 + pMesh->m_VertexData.nNumVertex * 3);
 		pVertexData = (float*)pVertexData + 1;
 		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 3 + 2 + pMesh->m_VertexData.nNumVertex * 3);
+		pVertexData = (float*)pVertexData + 1;
+
+		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 2 + 0 + pMesh->m_VertexData.nNumVertex * 6);
+		pVertexData = (float*)pVertexData + 1;
+		*(float*)pVertexData = *((float*)pMesh->m_VertexData.pData + i * 2 + 1 + pMesh->m_VertexData.nNumVertex * 6);
 		pVertexData = (float*)pVertexData + 1;
 
 	}
@@ -284,15 +305,15 @@ void SimpleD3D9Application::SetupCamera()
 	//m_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld);
 
 
-	D3DXVECTOR3 vEyePt(0.0f, 630.0f, -750.0f);
-	D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);
+	D3DXVECTOR3 vEyePt(0.0f, 230.0f, -200.0f);
+	D3DXVECTOR3 vLookatPt(0.0f, 100.0f, 0.0f);
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);
 	D3DXMATRIXA16 matView;
 	D3DXMatrixLookAtLH(&matView, &vEyePt, &vLookatPt, &vUpVec);
 	m_pd3dDevice->SetTransform(D3DTS_VIEW, &matView);
 
 	D3DXMATRIXA16 matProj;
-	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1.0f, 1.0f, 2000.0f);
+	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1024.0f/768.0f, 1.0f, 2000.0f);
 	m_pd3dDevice->SetTransform(D3DTS_PROJECTION, &matProj);
 }
 
@@ -342,6 +363,8 @@ IDirect3DVertexDeclaration9* SimpleD3D9Application::GetDeclarationFromMesh(MeshR
 	D3DVERTEXELEMENT9 elem = { 0, 0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 };
 	vecVertElem.push_back(elem);
 	elem = { 0, 12, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL, 0 };
+	vecVertElem.push_back(elem);
+	elem = { 0, 24, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 0 };
 	vecVertElem.push_back(elem);
 	elem = D3DDECL_END();
 	vecVertElem.push_back(elem);
