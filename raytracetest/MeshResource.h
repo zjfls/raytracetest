@@ -54,8 +54,13 @@ struct stVertexData
 		vecNormal.m_fz = *pfData;
 		return vecNormal;
 	}
+
+	void*	GetElementData(int descIndex, int posIndex) const;
+	int		GetVertexDataLength()const;
+	int		GetTypeLength(const VertexDataDesc& desc) const;
 	std::vector<VertexDataDesc> vecDataDesc;
 	int nNumVertex;
+	
 };
 struct stIndexData
 {

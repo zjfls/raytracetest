@@ -29,11 +29,11 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 
 
 
-	FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
-	if (kConverter.SplitMeshesPerMaterial(pAsset->m_pFbxScene,false))
-	{
-		std::cout << "Error:can not split per material!" << std::endl;
-	}
+	//FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
+	//if (kConverter.SplitMeshesPerMaterial(pAsset->m_pFbxScene, false))
+	//{
+	//	std::cout << "Error:can not split per material!" << std::endl;
+	//}
 	////FbxCriteria kfbxCriteria;
 	////kfbxCriteria.ObjectType()
 	//std::vector<FbxMesh*> meshVec;
@@ -75,31 +75,31 @@ void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
 	std::cout << " " << pNode->GetName() << std::endl;
 	//
-	int nMaterialCount = pNode->GetMaterialCount();
-	for (int i = 0; i < nMaterialCount; ++i)
-	{
-		FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
-		int nPropertyCount = pMat->GetSrcPropertyCount();
-		FbxProperty kProp = pMat->GetFirstProperty();
-		while (kProp.IsValid() == true)
-		{
-			int nSrcObjCount = kProp.GetSrcObjectCount();
-			for (int j = 0; j < nSrcObjCount; ++j)
-			{
-				
-				FbxFileTexture* pObj = kProp.GetSrcObject<FbxFileTexture>(j);
-				if (pObj != nullptr)
-				{
-					std::cout << kProp.GetName() << std::endl;
-					std::cout << pObj->GetName() << std::endl;
-					std::cout << pObj->GetRelativeFileName() << std::endl;
-				}
-			}
-			kProp = pMat->GetNextProperty(kProp);
-		}
-	}
+	//int nMaterialCount = pNode->GetMaterialCount();
+	//for (int i = 0; i < nMaterialCount; ++i)
+	//{
+	//	FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
+	//	int nPropertyCount = pMat->GetSrcPropertyCount();
+	//	FbxProperty kProp = pMat->GetFirstProperty();
+	//	while (kProp.IsValid() == true)
+	//	{
+	//		int nSrcObjCount = kProp.GetSrcObjectCount();
+	//		for (int j = 0; j < nSrcObjCount; ++j)
+	//		{
+
+	//			FbxFileTexture* pObj = kProp.GetSrcObject<FbxFileTexture>(j);
+	//			if (pObj != nullptr)
+	//			{
+	//				std::cout << kProp.GetName() << std::endl;
+	//				std::cout << pObj->GetName() << std::endl;
+	//				std::cout << pObj->GetRelativeFileName() << std::endl;
+	//			}
+	//		}
+	//		kProp = pMat->GetNextProperty(kProp);
+	//	}
+	//}
 	//
-	
+
 	if (pAttribute != nullptr)
 	{
 		switch (pAttribute->GetAttributeType())
@@ -150,13 +150,14 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	std::vector<float> vertexVec;
 	std::vector<float> areaVec;//Ãæ»ý
 	std::vector<float> normalVec;
+	std::vector<float> uvVec;
 	//get vertex pos
 	for (int i = 0; i < cpCount; ++i)
 	{
 		float x, y, z;
-		x = pMesh->GetControlPointAt(i).mData[0];
-		y = pMesh->GetControlPointAt(i).mData[2];
-		z = pMesh->GetControlPointAt(i).mData[1];
+		x = (float)pMesh->GetControlPointAt(i).mData[0];
+		y = (float)pMesh->GetControlPointAt(i).mData[2];
+		z = (float)pMesh->GetControlPointAt(i).mData[1];
 		//std::cout << "vertexdata:" << x << " " << y << " " << z << std::endl;
 		vertexVec.push_back(x);
 		vertexVec.push_back(y);
@@ -167,12 +168,12 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	{
 		//for (int j = 0; j < 3; ++j)
 		//{
-			int ctrlPointIndex = pMesh->GetPolygonVertex(i, 0);
-			indexVec.push_back(ctrlPointIndex);
-			ctrlPointIndex = pMesh->GetPolygonVertex(i, 2);
-			indexVec.push_back(ctrlPointIndex);
-			ctrlPointIndex = pMesh->GetPolygonVertex(i, 1);
-			indexVec.push_back(ctrlPointIndex);
+		int ctrlPointIndex = pMesh->GetPolygonVertex(i, 0);
+		indexVec.push_back(ctrlPointIndex);
+		ctrlPointIndex = pMesh->GetPolygonVertex(i, 2);
+		indexVec.push_back(ctrlPointIndex);
+		ctrlPointIndex = pMesh->GetPolygonVertex(i, 1);
+		indexVec.push_back(ctrlPointIndex);
 		//}
 	}
 	//get triangle area
@@ -233,9 +234,9 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 					int cpIndex = indexVec[i * 3 + j];
 					stNormalPolyIndex np;
 					np.triIndex = i;
-					np.x = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[0];
-					np.y = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[2];
-					np.z = pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
+					np.x = (float)pNormal->GetDirectArray().GetAt(i * 3 + j).mData[0];
+					np.y = (float)pNormal->GetDirectArray().GetAt(i * 3 + j).mData[2];
+					np.z = (float)pNormal->GetDirectArray().GetAt(i * 3 + j).mData[1];
 					//std::cout << "Vertex Normal:" << np.x << " " << np.y << " " << np.z << std::endl;
 					cpNormalIndexMap[cpIndex].push_back(np);
 				}
@@ -259,7 +260,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 				vecNormal.normalize();
 				normalVec.push_back(vecNormal.m_fx);
 				normalVec.push_back(vecNormal.m_fy);
-				normalVec.push_back(vecNormal.m_fz);			
+				normalVec.push_back(vecNormal.m_fz);
 				//std::cout << "normal:" << vecNormal.m_fx << " " << vecNormal.m_fy << " " << vecNormal.m_fz << std::endl;
 			}
 		}
@@ -269,6 +270,48 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 
 		}
 	}
+#pragma endregion
+#pragma region GetUV
+	int nLayerUV = pMesh->GetElementUVCount();
+	std::cout << "Texutre UV count:" << nLayerUV << std::endl;
+	FbxGeometryElementUV* pLayerUV = pMesh->GetElementUV(0);
+	if (pLayerUV == nullptr)
+	{
+		std::cout << "texture uv0 cannot find" << std::endl;
+	}
+	if (pLayerUV->GetMappingMode() == FbxLayerElement::eByControlPoint)
+	{
+		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
+		{
+
+		}
+		else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
+		{
+
+		}
+	}
+	else if (pLayerUV->GetMappingMode() == FbxLayerElement::eByPolygonVertex)
+	{
+		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
+		{
+			std::cout << "texture uv by polygon direct" << std::endl;
+		}
+		else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
+		{
+			std::cout << "texture uv by polygon indirect" << std::endl;
+			uvVec.resize(cpCount * 2);
+			for (int i = 0; i < indexVec.size(); ++i)
+			{
+				int index = pLayerUV->GetIndexArray().GetAt(i);
+				float u, v;
+				u = pLayerUV->GetDirectArray().GetAt(index).mData[0];
+				v = pLayerUV->GetDirectArray().GetAt(index).mData[1];
+				uvVec[indexVec[i] * 2 + 0] = u;
+				uvVec[indexVec[i] * 2 + 1] = 1-v;
+			}
+		}
+	}
+
 #pragma endregion
 #pragma region AddMeshResource
 	stIndexData::EnumIndexDesc eIndexDesc = stIndexData::EIndexInt;
@@ -306,19 +349,28 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	//vertex data
 	int nVBOffset = 0;
 	stVertexData::VertexDataDesc desc;
+	//
 	desc.usedesc = stVertexData::EVertexPosition;
 	desc.typedesc = stVertexData::EVertexTypeFloat3;
 	desc.nOffset = 0;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
 	nVBOffset = cpCount * sizeof(float) * 3;
+	//
 	desc.usedesc = stVertexData::EVertexNormal;
 	desc.typedesc = stVertexData::EVertexTypeFloat3;
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
 	nVBOffset += cpCount * sizeof(float) * 3;
+	//
+	desc.usedesc = stVertexData::EVertexUV;
+	desc.typedesc = stVertexData::EVertexTypeFloat2;
+	desc.nOffset = nVBOffset;
+	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+	nVBOffset += cpCount * sizeof(float) * 2;
+	//
 	pMeshResource->m_VertexData.nNumVertex = cpCount;
 	pMeshResource->m_VertexData.pData = new unsigned char[nVBOffset];
-	for (int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
+	for (unsigned int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
 	{
 		stVertexData::VertexDataDesc desc = pMeshResource->m_VertexData.vecDataDesc[i];
 		void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData.pData + desc.nOffset;
@@ -356,6 +408,29 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 				}
 			}
 			break;
+			case stVertexData::EVertexTypeFloat2:
+			{
+				float* pFloat = (float*)pTempVoid;
+				for (int j = 0; j < cpCount; ++j)
+				{
+					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+					{
+						case stVertexData::EVertexUV:
+						{
+							*pFloat = uvVec[j * 2 + 0];
+							//std::cout << "NormalBin:" << *pFloat << " ";
+							pFloat++;
+							*pFloat = uvVec[j * 2 + 1];
+							//std::cout << *pFloat << " ";
+							pFloat++;
+						}
+						break;
+						default:
+						break;
+					}
+				}
+			}
+			break;
 			case stVertexData::EVertexTypeFloat1:
 			{
 
@@ -366,6 +441,139 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 		}
 
 	}
+#pragma endregion
+#pragma region split mesh
+	int nMaterialCount = pNode->GetMaterialCount();
+	FbxLayerElementArrayTemplate<int> *tmpArray = new FbxLayerElementArrayTemplate<int>(EFbxType::eFbxInt);
+	pMesh->GetMaterialIndices(&tmpArray);
+	std::cout << "triangle count:" << pMesh->GetPolygonCount() << std::endl;
+	std::cout << "vertex count:" << pMesh->GetControlPointsCount() << std::endl;
+	std::cout << "array count:" << tmpArray->GetCount() << std::endl;
+	//for (int i = 0; i < tmpArray->GetCount(); ++i)
+	//{
+	//	std::cout << tmpArray->GetAt(i) << " ";
+	//}
+	//std::cout << std::endl;
+	for (int i = 0; i < pNode->GetMaterialCount(); ++i)
+	{
+		FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
+		std::vector<int> subIndexVec;
+		std::vector<int> subPolyVec;
+		std::vector<int> subVertVec;
+		//std::vector<int> subIndexVertVec;
+		std::map<int, int> m_mapIndex;//<pMeshResrouce,pSubMesh>
+		std::unordered_map<int, int> m_remapIndex;//<pSubMesh,pMeshResource>
+		for (int j = 0; j < tmpArray->GetCount(); ++j)
+		{
+			if (tmpArray->GetAt(j) == i)
+			{
+				subPolyVec.push_back(j);
+			}
+		}
+		for each (int polyIndex in subPolyVec)
+		{
+			subIndexVec.push_back(indexVec[polyIndex * 3 + 0]);
+			subIndexVec.push_back(indexVec[polyIndex * 3 + 1]);
+			subIndexVec.push_back(indexVec[polyIndex * 3 + 2]);
+		}
+		int nIndexCount = 0;
+		for each (int index in subIndexVec)
+		{
+			if (m_mapIndex.find(index) == std::end(m_mapIndex))
+			{
+				m_mapIndex[index] = nIndexCount;
+				m_remapIndex[nIndexCount] = index;
+				nIndexCount++;
+			}
+		}
+		for_each(std::begin(subIndexVec), std::end(subIndexVec), [&](int& i)
+		{
+			i = m_mapIndex[i];
+		});
+		if (subIndexVec.size() == 0)
+		{
+			break;
+		}
+		string subRefPath = refPath + pMat->GetName();
+		shared_ptr<MeshResource> pSubMesh(new MeshResource);
+		pSubMesh->m_refPath = refPath;
+		pSubMesh->m_VertexData.vecDataDesc = pMeshResource->m_VertexData.vecDataDesc;
+		pSubMesh->m_VertexData.nNumVertex = m_mapIndex.size();
+		int nVertexDataLength = pSubMesh->m_VertexData.GetVertexDataLength();
+		int nBuffLength = nVertexDataLength * m_mapIndex.size();
+		if (nBuffLength <= 0)
+		{
+			break;
+		}
+		void* pVertexBuff = new unsigned char[nBuffLength];
+		pSubMesh->m_VertexData.pData = pVertexBuff;
+		//vertex data
+		for (unsigned int i = 0; i < pSubMesh->m_VertexData.vecDataDesc.size(); ++i)
+		{
+			pSubMesh->m_VertexData.vecDataDesc[i].nOffset = pMeshResource->m_VertexData.vecDataDesc[i].nOffset * pSubMesh->m_VertexData.nNumVertex / pMeshResource->m_VertexData.nNumVertex;
+		}
+		int descIndex = 0;
+		for each (stVertexData::VertexDataDesc desc in pSubMesh->m_VertexData.vecDataDesc)
+		{
+			int nElementLength = pSubMesh->m_VertexData.GetTypeLength(desc);
 
+			for (int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
+			{
+				void* pDst;
+				void* pSrc;
+				pDst = pSubMesh->m_VertexData.GetElementData(descIndex, i);
+				pSrc = pMeshResource->m_VertexData.GetElementData(descIndex, m_remapIndex[i]);
+				memcpy(pDst, pSrc, nElementLength);
+			}
+			descIndex++;
+		}
+		//index data
+		pSubMesh->m_IndexData.indexNum = subIndexVec.size();
+		pSubMesh->m_IndexData.indexDesc = pMeshResource->m_IndexData.indexDesc;
+		if (pSubMesh->m_IndexData.indexDesc == stIndexData::EIndexShort)
+		{
+			pSubMesh->m_IndexData.pData = (void*)new unsigned char[subIndexVec.size() * sizeof(short)];
+			short* pShortData = (short*)pSubMesh->m_IndexData.pData;
+			for each (int index in subIndexVec)
+			{
+				*pShortData = index;
+				pShortData++;
+			}
+		}
+		else if (pSubMesh->m_IndexData.indexDesc == stIndexData::EIndexInt)
+		{
+			pSubMesh->m_IndexData.pData = (void*)new unsigned char[subIndexVec.size() * sizeof(int)];
+			short* pIntData = (short*)pSubMesh->m_IndexData.pData;
+			for each (int index in subIndexVec)
+			{
+				*pIntData = index;
+				pIntData++;
+			}
+		}
+		ResourceMananger<MeshResource>::GetInstance()->AddResource(subRefPath, pSubMesh);
+		m_pAsset->AddResource(subRefPath, pSubMesh);
+
+		//	FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
+		int nPropertyCount = pMat->GetSrcPropertyCount();
+		FbxProperty kProp = pMat->GetFirstProperty();
+		while (kProp.IsValid() == true)
+		{
+			int nSrcObjCount = kProp.GetSrcObjectCount();
+			for (int j = 0; j < nSrcObjCount; ++j)
+			{
+
+				FbxFileTexture* pObj = kProp.GetSrcObject<FbxFileTexture>(j);
+				if (pObj != nullptr)
+				{
+					std::cout << "Material:" << kProp.GetName() << std::endl;
+					std::cout << "Material:" << pObj->GetName() << std::endl;
+					std::cout << "Material:" << pObj->GetMediaName() << std::endl;
+					//std::cout << "Material:" << pObj->GetRelativeFileName() << std::endl;
+				}
+			}
+			kProp = pMat->GetNextProperty(kProp);
+		}
+		//std::cout << "add mesh:" << subRefPath.c_str() << std::endl;
+	}
 #pragma endregion
 }

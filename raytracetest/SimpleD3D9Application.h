@@ -28,7 +28,8 @@ private:
 	LPDIRECT3D9             m_pD3D; // Used to create the D3DDevice
 	LPDIRECT3DDEVICE9       m_pd3dDevice; // Our rendering device
 	LPDIRECT3DVERTEXBUFFER9 m_pVB; // Buffer to hold vertices
-	LPDIRECT3DINDEXBUFFER9 m_pIB;
+	LPDIRECT3DINDEXBUFFER9	m_pIB;
+	LPDIRECT3DTEXTURE9		m_pDiffuseTexture;
 	IDirect3DVertexDeclaration9*	m_pVertexDecl;
 	HWND					m_hwnd;
 	MeshResource* pMeshRes;
