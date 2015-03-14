@@ -54,6 +54,12 @@ struct stVertexData
 		vecNormal.m_fz = *pfData;
 		return vecNormal;
 	}
+	~stVertexData()
+	{
+		delete[] pData;
+		pData = nullptr;
+	}
+
 
 	void*	GetElementData(int descIndex, int posIndex) const;
 	int		GetVertexDataLength()const;
@@ -65,6 +71,11 @@ struct stVertexData
 struct stIndexData
 {
 	void* pData;
+	~stIndexData()
+	{
+		delete[] pData;
+		pData = nullptr;
+	}
 	enum EnumIndexDesc
 	{
 		EIndexInvalid = 0,

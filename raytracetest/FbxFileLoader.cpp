@@ -272,6 +272,18 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	}
 #pragma endregion
 #pragma region GetUV
+	FbxStringList lUVSetNameList;
+	pMesh->GetUVSetNames(lUVSetNameList);
+
+	//iterating over all uv sets
+	for (int lUVSetIndex = 0; lUVSetIndex < lUVSetNameList.GetCount(); lUVSetIndex++)
+	{
+		const char* lUVSetName = lUVSetNameList.GetStringAt(lUVSetIndex);
+		const FbxGeometryElementUV* lUVElement = pMesh->GetElementUV(lUVSetName);
+
+		if (!lUVElement)
+			continue;
+	}
 	int nLayerUV = pMesh->GetElementUVCount();
 	std::cout << "Texutre UV count:" << nLayerUV << std::endl;
 	FbxGeometryElementUV* pLayerUV = pMesh->GetElementUV(0);
@@ -302,13 +314,27 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 			uvVec.resize(cpCount * 2);
 			for (int i = 0; i < indexVec.size(); ++i)
 			{
-				int index = pLayerUV->GetIndexArray().GetAt(i);
+				//int index = pLayerUV->GetIndexArray().GetAt(i);
+				int vIndex = i % 3;
+				if (vIndex == 2)
+				{
+					vIndex = 1;
+				}
+				else if (vIndex == 1)
+				{
+					vIndex = 2;
+				}
+				int index = pMesh->GetTextureUVIndex(i / 3, vIndex);
 				float u, v;
 				u = pLayerUV->GetDirectArray().GetAt(index).mData[0];
 				v = pLayerUV->GetDirectArray().GetAt(index).mData[1];
 				uvVec[indexVec[i] * 2 + 0] = u;
 				uvVec[indexVec[i] * 2 + 1] = 1-v;
 			}
+			//for each (float c in uvVec)
+			//{
+			//	std::cout << "uv:" << c << std::endl;
+			//}
 		}
 	}
 
@@ -418,10 +444,10 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 						case stVertexData::EVertexUV:
 						{
 							*pFloat = uvVec[j * 2 + 0];
-							//std::cout << "NormalBin:" << *pFloat << " ";
+							//std::cout << "UV:" << *pFloat << " ";
 							pFloat++;
 							*pFloat = uvVec[j * 2 + 1];
-							//std::cout << *pFloat << " ";
+							//std::cout << *pFloat << " "<<std::endl;
 							pFloat++;
 						}
 						break;
@@ -444,6 +470,10 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 #pragma endregion
 #pragma region split mesh
 	int nMaterialCount = pNode->GetMaterialCount();
+	if (nMaterialCount <= 1)
+	{
+		return;
+	}
 	FbxLayerElementArrayTemplate<int> *tmpArray = new FbxLayerElementArrayTemplate<int>(EFbxType::eFbxInt);
 	pMesh->GetMaterialIndices(&tmpArray);
 	std::cout << "triangle count:" << pMesh->GetPolygonCount() << std::endl;

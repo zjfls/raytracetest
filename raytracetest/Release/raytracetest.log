@@ -1,10 +1,18 @@
-﻿生成启动时间为 2015/3/12 17:13:37。
-     1>项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2015/3/13 21:25:14。
+     1>项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\raytracetest.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleD3D9Application.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\raytracetest.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FbxFileLoader.cpp IntersectTest.cpp MeshResource.cpp SimpleD3D9Application.cpp raytracetest.cpp
+         FbxFileLoader.cpp
+     1>FbxFileLoader.cpp(303): warning C4018: “<”: 有符号/无符号不匹配
+     1>FbxFileLoader.cpp(307): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>FbxFileLoader.cpp(308): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+         IntersectTest.cpp
+         MeshResource.cpp
+     1>MeshResource.cpp(28): warning C4018: “>=”: 有符号/无符号不匹配
          SimpleD3D9Application.cpp
+         raytracetest.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"J:\github\raytracetest2\raytracetest\Release\raytracetest.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\release /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 glu32.lib opengl32.lib glut32.lib "libfbxsdk-md.lib" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"J:\github\raytracetest2\raytracetest\Release\raytracetest.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"J:\github\raytracetest2\raytracetest\Release\raytracetest.lib" /MACHINE:X86 /SAFESEH Release\ApplicationBase.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\github\raytracetest\Release\raytracetest.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\release /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 glu32.lib opengl32.lib glut32.lib "libfbxsdk-md.lib" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\github\raytracetest\Release\raytracetest.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\github\raytracetest\Release\raytracetest.lib" /MACHINE:X86 /SAFESEH Release\ApplicationBase.obj
          Release\AssetManager.obj
          Release\DirectionalLight.obj
          Release\FbxAppManager.obj
@@ -60,9 +68,9 @@
          Release\Vector4.obj
          正在生成代码
          已完成代码的生成
-         raytracetest.vcxproj -> J:\github\raytracetest2\raytracetest\Release\raytracetest.exe
-     1>已完成生成项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
+         raytracetest.vcxproj -> H:\github\raytracetest\Release\raytracetest.exe
+     1>已完成生成项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:04.10
+已用时间 00:00:53.14

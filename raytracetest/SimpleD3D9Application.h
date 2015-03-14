@@ -1,6 +1,7 @@
 #pragma once
 #include "ApplicationBase.h"
 #include "d3d9.h"
+#include "d3dx9shader.h"
 
 class MeshResource;
 class SimpleD3D9Application :
@@ -16,6 +17,7 @@ public:
 	virtual void OnEndInit();
 	virtual void Run();
 	IDirect3DVertexDeclaration9* GetDeclarationFromMesh(MeshResource* pMesh);
+	
 
 	void		CleanUp();
 private:
@@ -23,6 +25,8 @@ private:
 	HRESULT InitVB();
 	void SetupCamera();
 	void SetupLight();
+	void OnResetDevice();
+	void OnLostDevice();
 	static long __stdcall WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp);
 private:
 	LPDIRECT3D9             m_pD3D; // Used to create the D3DDevice
@@ -32,7 +36,15 @@ private:
 	LPDIRECT3DTEXTURE9		m_pDiffuseTexture;
 	IDirect3DVertexDeclaration9*	m_pVertexDecl;
 	HWND					m_hwnd;
-	MeshResource* pMeshRes;
+	MeshResource*			pMeshRes;
+	D3DPRESENT_PARAMETERS	d3dpp;
+	LPDIRECT3DVERTEXSHADER9 m_pVertexShader;
+	LPD3DXCONSTANTTABLE		m_pVCT;
+	LPDIRECT3DPIXELSHADER9	m_pFragShader;
+	LPD3DXCONSTANTTABLE		m_pFCT;
 	bool bUseNormal;
 };
 
+#ifndef SAFE_RELEASE
+#define SAFE_RELEASE(p)      { if (p != nullptr) { (p)->Release(); (p)=nullptr; } }
+#endif

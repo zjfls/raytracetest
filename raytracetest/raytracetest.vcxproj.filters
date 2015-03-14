@@ -46,6 +46,12 @@
     <Filter Include="源文件\util">
       <UniqueIdentifier>{cdd493d0-01a2-4717-b578-1aa6d8f3fb6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\tinyxml">
+      <UniqueIdentifier>{b5e8965b-a872-4425-a829-7b525b7a14dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\tinyxml">
+      <UniqueIdentifier>{7c85093b-a5a3-422e-8a92-05694e03ab43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -222,6 +228,9 @@
     <ClInclude Include="SimpleD3D9Application.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>头文件\tinyxml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -385,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="FbxAppManager.cpp">
       <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>源文件\tinyxml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
