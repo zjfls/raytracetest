@@ -8,9 +8,7 @@ class FbxFileLoader :
 {
 public:
 
-	FbxFileLoader()
-	{
-	}
+
 
 	virtual ~FbxFileLoader()
 	{
@@ -21,5 +19,9 @@ private:
 	IWorldObj* ProcessNode(FbxNode* pNode,string refPath,IWorldObj* pParent = nullptr);
 	shared_ptr<MeshResource> ProcessMesh(FbxNode* pMesh, string refPath, IWorldObj* obj = nullptr);
 	//void LoadPrefab(FbxNode* pNode,IWorld* pWorld);
+	FbxFileLoader()
+	{
+	}
+	friend class AssetManager;
 };
 

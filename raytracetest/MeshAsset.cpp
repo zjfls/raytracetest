@@ -10,3 +10,8 @@ MeshAsset::MeshAsset()
 MeshAsset::~MeshAsset()
 {
 }
+
+void MeshAsset::Release(bool bReleaseResource)
+{
+
+}

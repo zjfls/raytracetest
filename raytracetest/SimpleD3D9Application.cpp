@@ -135,7 +135,7 @@ HRESULT SimpleD3D9Application::InitVB()
 {
 	LPD3DXBUFFER pCode;
 	LPD3DXBUFFER pError;
-	if (D3DXCompileShaderFromFile("..\\data\\shader\\vertex.hlsl", NULL, NULL, "vMain", "vs_3_0", D3DXSHADER_DEBUG, &pCode, &pError, &m_pVCT) != D3D_OK)
+	if (D3DXCompileShaderFromFile(".\\data\\shader\\vertex.hlsl", NULL, NULL, "vMain", "vs_3_0", D3DXSHADER_DEBUG, &pCode, &pError, &m_pVCT) != D3D_OK)
 	{
 		std::cout << "compile vertex shader failed" << std::endl;
 		std::cout << (char*)pError->GetBufferPointer() << std::endl;

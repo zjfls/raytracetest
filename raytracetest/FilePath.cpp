@@ -3,26 +3,38 @@
 #include "StrUtil.h"
 std::string getFileSuffix(string fullFilePath)
 {
-	string suffix = "";
-	if (fullFilePath.length() <= 2)
+	if (fullFilePath[fullFilePath.length() - 1] == '.')
 	{
-		return suffix;
+		return "";
 	}
-	int length = fullFilePath.length();
-	int nLoc = -1;
-	for (int i = length - 2; i >= 0; --i)
+	string suffix;
+	string name = getFileName(fullFilePath);
+	//string suffix = "";
+	//if (fullFilePath.length() <= 2)
+	//{
+	//	return suffix;
+	//}
+	//int length = fullFilePath.length();
+	//int nLoc = -1;
+	//for (int i = length - 2; i >= 0; --i)
+	//{
+	//	char c = fullFilePath.at(i);
+	//	if (c == '.')
+	//	{
+	//		nLoc = i;
+	//		break;
+	//	}
+	//}
+	//if (nLoc != -1)
+	//{
+	//	suffix = fullFilePath.c_str() + nLoc + 1;
+	//}
+	const char* pPos = strrchr(name.c_str(), '.');
+	if (pPos == nullptr)
 	{
-		char c = fullFilePath.at(i);
-		if (c == '.')
-		{
-			nLoc = i;
-			break;
-		}
+		return "";
 	}
-	if (nLoc != -1)
-	{
-		suffix = fullFilePath.c_str() + nLoc + 1;
-	}
+	suffix = pPos + 1;
 	return suffix;
 }
 

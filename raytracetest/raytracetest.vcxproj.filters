@@ -258,9 +258,6 @@
     <ClInclude Include="MeshAsset.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Prefab.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="PrefabAsset.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
@@ -269,6 +266,15 @@
     </ClInclude>
     <ClInclude Include="CommonDef.h">
       <Filter>头文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlPrefabLoader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshFileLoader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabResource.h">
+      <Filter>头文件\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +461,6 @@
     <ClCompile Include="MeshAsset.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Prefab.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="PrefabAsset.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
@@ -466,6 +469,15 @@
     </ClCompile>
     <ClCompile Include="StrUtil.cpp">
       <Filter>源文件\util</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlPrefabLoader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshFileLoader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabResource.cpp">
+      <Filter>源文件\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

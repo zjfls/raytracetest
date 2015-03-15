@@ -1,6 +1,6 @@
 #pragma once
 //#include "tinyxml2.h"
-class Prefab;
+class PrefabResource;
 class Mesh;
 class Transform;
 class IMaterial;
@@ -23,7 +23,7 @@ public:
 
 	void ImportFbxFile(string path);
 private:
-	void ImportPrefab(shared_ptr<Prefab> pPrefab,string path);
+	void ImportPrefab(shared_ptr<PrefabResource> pPrefab,string path);
 	void ImportMesh(shared_ptr<MeshResource> pMesh, string path);
 	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,IWorldObj* pObj, tinyxml2::XMLElement* elem);
 	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,Mesh* pMesh,tinyxml2::XMLElement* pElem);

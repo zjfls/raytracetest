@@ -10,3 +10,8 @@ PrefabAsset::PrefabAsset()
 PrefabAsset::~PrefabAsset()
 {
 }
+
+void PrefabAsset::Release(bool bReleaseResource)
+{
+
+}

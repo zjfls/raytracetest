@@ -6,5 +6,8 @@ class MeshAsset :
 public:
 	MeshAsset();
 	virtual ~MeshAsset();
+
+
+	virtual void Release(bool bReleaseResource);
 };
 

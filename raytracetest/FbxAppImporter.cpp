@@ -5,7 +5,7 @@
 #include "FbxAsset.h"
 #include "SimpleRasterMaterial.h"
 #include "MeshResource.h"
-#include "Prefab.h"
+#include "PrefabResource.h"
 #include "FilePath.h"
 #include "Mesh.h"
 #include "tinyxml2.h"
@@ -42,12 +42,14 @@ void FbxAppImporter::ImportFbxFile(string path)
 			std::cout << "import material:" << pMat->GetRefPath().c_str() << std::endl;
 			continue;
 		}
-		shared_ptr<Prefab>	pPrefab = dynamic_pointer_cast<Prefab>(pRes);
+		shared_ptr<PrefabResource>	pPrefab = dynamic_pointer_cast<PrefabResource>(pRes);
 		if (pPrefab != nullptr)
 		{
+			
 			std::cout << "import prefab:" << pPrefab->GetRefPath().c_str() << std::endl;
 			string prefabPath = assetDirectory + assetName + ".prefab.xml";
 			//ImportPrefab(pPrefab, prefabPath);
+			m_refNameMap[pPrefab->GetRefPath()] = prefabPath;
 			continue;
 		}
 
@@ -79,7 +81,7 @@ void FbxAppImporter::ImportFbxFile(string path)
 		{
 			continue;
 		}
-		shared_ptr<Prefab>	pPrefab = dynamic_pointer_cast<Prefab>(pRes);
+		shared_ptr<PrefabResource>	pPrefab = dynamic_pointer_cast<PrefabResource>(pRes);
 		if (pPrefab != nullptr)
 		{
 			ImportPrefab(pPrefab, m_refNameMap[pPrefab->GetRefPath()]);
@@ -96,7 +98,7 @@ void FbxAppImporter::ImportFbxFile(string path)
 	system("pause");
 }
 
-void FbxAppImporter::ImportPrefab(shared_ptr<Prefab> pPrefab, string path)
+void FbxAppImporter::ImportPrefab(shared_ptr<PrefabResource> pPrefab, string path)
 {
 	XMLDocument doc;
 	//XMLDeclaration *declare = new XMLDeclaration("1.0");
@@ -152,7 +154,7 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 
 void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* pMesh, tinyxml2::XMLElement* pElem)
 {
-	pElem->SetAttribute("Name", m_refNameMap[pMesh->m_pResource->GetRefPath()].c_str());
+	pElem->SetAttribute("refPath", m_refNameMap[pMesh->m_pResource->GetRefPath()].c_str());
 }
 
 void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)
@@ -198,12 +200,12 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	}
 	FILE* fp;
 	errno_t eOpen = fopen_s(&fp, path.c_str(), "wb");
-	//fclose(fp);
-	//return;
 	if (0 != eOpen)
 	{
 		return;
 	}
+
+	//
 	int version = 100;
 	fwrite((void*)&version, sizeof(int), 1, fp);
 	//write index data
@@ -216,8 +218,9 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	int indexType = (int)pMesh->m_IndexData.indexDesc;
 	fwrite((void*)&indexType, sizeof(indexType), 1, fp);
 
-	//
+	//index number
 	fwrite((void*)&pMesh->m_IndexData.indexNum, sizeof(int), 1, fp);
+	//index value
 	fwrite((void*)pMesh->m_IndexData.pData, nIndexStrip * pMesh->m_IndexData.indexNum, 1, fp);
 	//write vertex data
 	//write desc data

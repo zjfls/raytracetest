@@ -5,7 +5,7 @@
 #include "ResourceMananger.h"
 #include "MeshResource.h"
 #include "Mesh.h"
-#include "Prefab.h"
+#include "PrefabResource.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	FbxAsset* pAsset = new FbxAsset;
@@ -68,7 +68,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	IWorldObj* pRoot = ProcessNode(pRootNode, path);
 
 
-	shared_ptr<Prefab> pPrefab = ResourceManager<Prefab>::GetInstance()->CreateResource();
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource();
 	pPrefab->m_pRoot = pRoot;
 	pAsset->AddResource(pPrefab->GetRefPath(), pPrefab);
 	//

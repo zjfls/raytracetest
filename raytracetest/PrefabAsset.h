@@ -6,5 +6,8 @@ class PrefabAsset :
 public:
 	PrefabAsset();
 	virtual ~PrefabAsset();
+
+	virtual void Release(bool bReleaseResource);
+
 };
 

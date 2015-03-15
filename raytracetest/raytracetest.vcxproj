@@ -177,9 +177,10 @@
     <ClInclude Include="MathDefine.h" />
     <ClInclude Include="MathFunc.h" />
     <ClInclude Include="MeshAsset.h" />
+    <ClInclude Include="MeshFileLoader.h" />
     <ClInclude Include="MeshResource.h" />
     <ClInclude Include="PointLight.h" />
-    <ClInclude Include="Prefab.h" />
+    <ClInclude Include="PrefabResource.h" />
     <ClInclude Include="PrefabAsset.h" />
     <ClInclude Include="RasterMaterial.h" />
     <ClInclude Include="RayTraceApplication.h" />
@@ -227,6 +228,7 @@
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
+    <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationBase.cpp" />
@@ -245,11 +247,12 @@
     <ClCompile Include="MaterialManager.cpp" />
     <ClCompile Include="MathFunc.cpp" />
     <ClCompile Include="MeshAsset.cpp" />
+    <ClCompile Include="MeshFileLoader.cpp" />
     <ClCompile Include="MeshResource.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="Prefab.cpp" />
+    <ClCompile Include="PrefabResource.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
     <ClCompile Include="RasterMaterial.cpp" />
     <ClCompile Include="RayTraceApplication.cpp" />
@@ -301,6 +304,7 @@
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vector4.cpp" />
+    <ClCompile Include="XmlPrefabLoader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

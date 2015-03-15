@@ -2,6 +2,8 @@
 #include "AssetManager.h"
 #include "FilePath.h"
 #include "FbxFileLoader.h"
+#include "XmlPrefabLoader.h"
+#include "MeshFileLoader.h"
 AssetManager* Singleton<AssetManager>::_instance = nullptr;
 
 AssetManager::AssetManager()
@@ -20,9 +22,11 @@ IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 		return m_AssetMap[path];
 	}
 	string strSuff = getFileSuffix(path);
-	//std::cout << strSuff.c_str() << std::endl;
-	//system("pause");
 	IAsset* pAsset = m_LoaderMap[strSuff]->Load(path, pArg);
+	if (pAsset == nullptr)
+	{
+		return nullptr;
+	}
 	m_AssetMap[path] = pAsset;
 	return pAsset;
 }
@@ -30,6 +34,8 @@ IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 void AssetManager::Init()
 {
 	AddLoader("fbx", new FbxFileLoader);
+	AddLoader("prefab.xml", new XmlPrefabLoader);
+	AddLoader("mesh", new MeshFileLoader);
 }
 
 //
