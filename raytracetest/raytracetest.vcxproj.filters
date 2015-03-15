@@ -52,6 +52,12 @@
     <Filter Include="源文件\tinyxml">
       <UniqueIdentifier>{7c85093b-a5a3-422e-8a92-05694e03ab43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\world">
+      <UniqueIdentifier>{b50ff7f8-03a4-4d82-9973-1658884b3863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\world">
+      <UniqueIdentifier>{b0902781-73e5-4775-845f-ed23335ac3a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -64,15 +70,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ImageFileHelper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IWorldObj.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IWorld.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleWorld.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Matrix33.h">
@@ -90,9 +87,6 @@
     <ClInclude Include="Ray3D.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleWorldObj.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -101,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="MathDefine.h">
       <Filter>头文件\math</Filter>
-    </ClInclude>
-    <ClInclude Include="Orientation.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IntersetResults.h">
       <Filter>头文件\math</Filter>
@@ -231,6 +222,54 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>头文件\tinyxml</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleRasterMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureSampler.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IWorld.h">
+      <Filter>头文件\world</Filter>
+    </ClInclude>
+    <ClInclude Include="IWorldObj.h">
+      <Filter>头文件\world</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleWorld.h">
+      <Filter>头文件\world</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleWorldObj.h">
+      <Filter>头文件\world</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Orientation.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAppImporter.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshAsset.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabAsset.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="StrUtil.h">
+      <Filter>头文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef.h">
+      <Filter>头文件\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -243,15 +282,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ImageFileHelper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IWorldObj.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IWorld.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleWorld.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Matrix33.cpp">
@@ -271,9 +301,6 @@
     </ClCompile>
     <ClCompile Include="Quaternions.cpp">
       <Filter>源文件\math</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleWorldObj.cpp">
-      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>源文件</Filter>
@@ -362,9 +389,6 @@
     <ClCompile Include="AssetManager.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="FbxAsset.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="IAsset.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
@@ -397,6 +421,51 @@
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>源文件\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleRasterMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureSampler.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleWorld.cpp">
+      <Filter>源文件\world</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleWorldObj.cpp">
+      <Filter>源文件\world</Filter>
+    </ClCompile>
+    <ClCompile Include="IWorldObj.cpp">
+      <Filter>源文件\world</Filter>
+    </ClCompile>
+    <ClCompile Include="IWorld.cpp">
+      <Filter>源文件\world</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAsset.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAsset.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshAsset.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefab.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabAsset.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppImporter.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="StrUtil.cpp">
+      <Filter>源文件\util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,8 @@
 #pragma once
 #include "IAssetLoader.h"
+#include "MeshResource.h"
+class IWorld;
+
 class FbxFileLoader :
 	public IAssetLoader
 {
@@ -15,7 +18,8 @@ public:
 
 	virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
 private:
-	void ProcessNode(FbxNode* pNode,string refPath);
-	void ProcessMesh(FbxNode* pMesh,string refPath);
+	IWorldObj* ProcessNode(FbxNode* pNode,string refPath,IWorldObj* pParent = nullptr);
+	shared_ptr<MeshResource> ProcessMesh(FbxNode* pMesh, string refPath, IWorldObj* obj = nullptr);
+	//void LoadPrefab(FbxNode* pNode,IWorld* pWorld);
 };
 

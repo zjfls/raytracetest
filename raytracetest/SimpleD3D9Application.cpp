@@ -71,7 +71,9 @@ void SimpleD3D9Application::OnInit()
 	}
 
 	
-	
+	D3DCAPS9 caps;// = nullptr;
+	m_pd3dDevice->GetDeviceCaps(&caps);
+	std::cout <<"maxVertexConst:"<< caps.MaxVertexShaderConst << std::endl;
 
 	
 }
@@ -147,7 +149,7 @@ HRESULT SimpleD3D9Application::InitVB()
 	pCode->Release();
 	pCode = 0;
 	SAFE_RELEASE(pError);
-	if (D3DXCompileShaderFromFile("..\\data\\shader\\frag.hlsl", NULL, NULL, "pMain", "ps_3_0", D3DXSHADER_DEBUG, &pCode, &pError, &m_pFCT) != D3D_OK)
+	if (D3DXCompileShaderFromFile(".\\data\\shader\\frag.hlsl", NULL, NULL, "pMain", "ps_3_0", D3DXSHADER_DEBUG, &pCode, &pError, &m_pFCT) != D3D_OK)
 	{
 		std::cout << "compile pixel shader failed" << std::endl;
 		std::cout << (char*)pError->GetBufferPointer() << std::endl;
@@ -165,14 +167,14 @@ HRESULT SimpleD3D9Application::InitVB()
 	if (FAILED(D3DXCreateTextureFromFile(m_pd3dDevice, "return_portal_01.tga", &m_pDiffuseTexture)))
 	{
 		// If texture is not in current folder, try parent folder
-		if (FAILED(D3DXCreateTextureFromFile(m_pd3dDevice, "..\\data\\meshes\\return_portal_01.tga", &m_pDiffuseTexture)))
+		if (FAILED(D3DXCreateTextureFromFile(m_pd3dDevice, ".\\data\\meshes\\return_portal_01.tga", &m_pDiffuseTexture)))
 		{
 			MessageBox(NULL, "Could not find banana.bmp", "Textures.exe", MB_OK);
 			return E_FAIL;
 		}
 	}
 	
-	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../data/meshes/file_split.fbx");//Env_MuSinportal,Env_MuSinportalreturn_portal_01_INST
+	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("./data/meshes/file_split.fbx");//Env_MuSinportal,Env_MuSinportalreturn_portal_01_INST
 	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/target001").get();
 	pMeshRes = pMesh;
 	//read material
@@ -367,6 +369,14 @@ void SimpleD3D9Application::Render()
 	{
 		return;
 	}
+	if (m_pVertexShader == nullptr)
+	{
+		return;
+	}
+	if (m_pFragShader == nullptr)
+	{
+		return;
+	}
 	//
 	HRESULT hr = m_pd3dDevice->TestCooperativeLevel();
 	switch (hr)
@@ -392,7 +402,8 @@ void SimpleD3D9Application::Render()
 	// Set up world matrix
 	D3DXMATRIXA16 matWorld;
 	D3DXMatrixIdentity(&matWorld);
-	D3DXMatrixRotationY(&matWorld, timeGetTime() / 500.0f);
+	DWORD fTime = timeGetTime();
+	D3DXMatrixRotationY(&matWorld, fTime / 500.0f);
 	m_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld);
 
 
@@ -407,8 +418,22 @@ void SimpleD3D9Application::Render()
 	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1024.0f / 768.0f, 1.0f, 2000.0f);
 	m_pd3dDevice->SetTransform(D3DTS_PROJECTION, &matProj);
 
-	D3DXMATRIXA16 matWorldViewProj = matWorld * matView * matProj;
-	m_pVCT->SetMatrix(m_pd3dDevice, "mWorldViewProj", &matWorldViewProj);
+	//D3DXMATRIXA16 matWorld = matWorld;
+	D3DXMATRIXA16 matViewProj = matView * matProj;
+	m_pVCT->SetMatrix(m_pd3dDevice, "mWorld", &matWorld);
+	m_pVCT->SetMatrix(m_pd3dDevice, "mViewProj", &matViewProj);
+
+
+
+	D3DXMATRIXA16 m_WorldInverse ;
+	D3DXMatrixRotationY(&m_WorldInverse, fTime / -500.0f);
+	D3DXVECTOR3 lightDir = { 0.0f, -1.0f, 1.0f};
+	D3DXVec3Normalize(&lightDir, &lightDir);
+	lightDir = -lightDir;
+	D3DXVECTOR4 lightDir4;
+	D3DXVec3Transform(&lightDir4, &lightDir, &m_WorldInverse);
+
+	m_pFCT->SetVector(m_pd3dDevice, "lightDir", (D3DXVECTOR4*)&lightDir4);
 	//m_pFCT->settex
 	//
 
@@ -423,7 +448,7 @@ void SimpleD3D9Application::Render()
 		m_pd3dDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
 		m_pd3dDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_PHONG);
 		m_pd3dDevice->SetTexture(0, m_pDiffuseTexture);
-		SetupLight();
+		//SetupLight();
 		m_pd3dDevice->SetVertexShader(m_pVertexShader);
 		m_pd3dDevice->SetPixelShader(m_pFragShader);
 		//m_pVCT->SetMatrix();

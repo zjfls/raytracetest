@@ -21,3 +21,13 @@ void FbxAsset::Release(bool bReleaseResource)
 {
 
 }
+
+std::vector<shared_ptr<IResource>> FbxAsset::GetAllResource() const
+{
+	std::vector<shared_ptr<IResource>> resVec;
+	for each (std::pair<string, weak_ptr<IResource>> keyValue in m_ResourceMap)
+	{
+		resVec.push_back(keyValue.second.lock());
+	}
+	return resVec;
+}

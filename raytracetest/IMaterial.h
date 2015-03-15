@@ -1,5 +1,6 @@
 #pragma once
-class IMaterial
+#include "IResource.h"
+class IMaterial:public IResource
 {
 public:
 	IMaterial();

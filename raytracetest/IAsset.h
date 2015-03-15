@@ -33,8 +33,9 @@ public:
 	}
 
 
+protected:
+	std::unordered_map<string, weak_ptr<IResource>> m_ResourceMap;
 public:
-	std::unordered_map<string,weak_ptr<IResource>> m_ResourceMap;
 	string	m_strPath;
 
 };

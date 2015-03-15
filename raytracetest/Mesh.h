@@ -9,11 +9,11 @@ class Mesh:public IRenderable
 public:
 	Mesh();
 	virtual ~Mesh();
-	std::vector<int> m_IndexBuffer;
+	//std::vector<int> m_IndexBuffer;
 
 
 
 	
-	MeshResource* m_pResource;
+	shared_ptr<MeshResource> m_pResource;
 };
 

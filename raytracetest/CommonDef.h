@@ -1,0 +1,3 @@
+#pragma once
+#define MAX_FILENAME_LENGTH 128
+#define MAX_FILEPATH_LENGTH 256

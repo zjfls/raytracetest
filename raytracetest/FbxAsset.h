@@ -20,8 +20,12 @@ public:
 
 	*/
 	virtual void Release(bool bReleaseResource);
+
+
+	std::vector<shared_ptr<IResource>> GetAllResource() const;
 private:
 	FbxScene*	m_pFbxScene;
 	friend class FbxFileLoader;
+	friend class FbxAppImporter;
 };
 

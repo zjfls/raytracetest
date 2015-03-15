@@ -9,10 +9,11 @@ class IWorldObj
 public:
 	IWorldObj();
 	virtual ~IWorldObj();
-	virtual bool addChild(IWorldObj* pObj);
-	virtual bool removeChild(IWorldObj* pObj);
-	//virtual bool addModule(ModuleBase* pModule);
-	virtual bool removeModule(ModuleBase* pModule);
+	virtual bool	addChild(IWorldObj* pObj);
+	virtual bool	removeChild(IWorldObj* pObj);
+	virtual bool	removeModule(ModuleBase* pModule);
+	unsigned int	GetChildCount() const;
+	IWorldObj*		GetChild(int i) const;
 
 
 	template<class T>
@@ -28,6 +29,9 @@ public:
 	template<class T>
 	void GetAllModuleRecursive(std::vector<T*>& vecResults);
 	void GetRenderableRecursive(std::vector<IRenderable*>& vecRenderabls);
+	/////////////////////////////////////////////////////
+	unsigned int	 GetModuleCount()	const;
+	ModuleBase*	GetModule(int i) const;
 	//bool addComponent(ObjComponent* pComponent);
 ///////////////////////////////////
 	Transform*					m_pTransform;
@@ -35,7 +39,8 @@ private:
 	IWorldObj*					m_pParent;
 	std::vector<IWorldObj*>		m_vecChildren;
 	std::vector<ModuleBase*>	m_vecModules;
-
+public:
+	string						m_strName;
 
 	friend class Transform;
 };

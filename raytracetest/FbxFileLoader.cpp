@@ -4,7 +4,8 @@
 #include "FbxAppManager.h"
 #include "ResourceMananger.h"
 #include "MeshResource.h"
-
+#include "Mesh.h"
+#include "Prefab.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	FbxAsset* pAsset = new FbxAsset;
@@ -64,41 +65,31 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	{
 		return pAsset;
 	}
-	ProcessNode(pRootNode, path);
+	IWorldObj* pRoot = ProcessNode(pRootNode, path);
+
+
+	shared_ptr<Prefab> pPrefab = ResourceManager<Prefab>::GetInstance()->CreateResource();
+	pPrefab->m_pRoot = pRoot;
+	pAsset->AddResource(pPrefab->GetRefPath(), pPrefab);
 	//
 	return pAsset;
 }
 
-void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
+IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj* pParent)
 {
 	refPath = refPath + "/" + pNode->GetName();
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
-	std::cout << " " << pNode->GetName() << std::endl;
-	//
-	//int nMaterialCount = pNode->GetMaterialCount();
-	//for (int i = 0; i < nMaterialCount; ++i)
-	//{
-	//	FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
-	//	int nPropertyCount = pMat->GetSrcPropertyCount();
-	//	FbxProperty kProp = pMat->GetFirstProperty();
-	//	while (kProp.IsValid() == true)
-	//	{
-	//		int nSrcObjCount = kProp.GetSrcObjectCount();
-	//		for (int j = 0; j < nSrcObjCount; ++j)
-	//		{
+	IWorldObj* pObj = new IWorldObj;
+	pObj->m_strName = pNode->GetName();
+	FbxTransform nodeTrans = pNode->GetTransform();
+	FbxDouble3 trans = pNode->LclTranslation.Get();
+	FbxDouble3 rot = pNode->LclRotation.Get();
+	FbxDouble3 scal = pNode->LclScaling.Get();
+	Transform* pTransform = (Transform*)pObj->GetModule(0);
+	pTransform->SetTranslate(trans.mData[0], trans.mData[2], trans.mData[1]);
+	pTransform->SetScale(scal.mData[0], scal.mData[2], scal.mData[1]);
+	pTransform->SetOrientation(rot.mData[0], rot.mData[2], rot.mData[1]);
 
-	//			FbxFileTexture* pObj = kProp.GetSrcObject<FbxFileTexture>(j);
-	//			if (pObj != nullptr)
-	//			{
-	//				std::cout << kProp.GetName() << std::endl;
-	//				std::cout << pObj->GetName() << std::endl;
-	//				std::cout << pObj->GetRelativeFileName() << std::endl;
-	//			}
-	//		}
-	//		kProp = pMat->GetNextProperty(kProp);
-	//	}
-	//}
-	//
 
 	if (pAttribute != nullptr)
 	{
@@ -107,7 +98,9 @@ void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
 			case FbxNodeAttribute::EType::eMesh:
 			{
 
-				ProcessMesh(pNode, refPath);
+				shared_ptr<MeshResource> pRes = ProcessMesh(pNode, refPath,pObj);
+				Mesh* pMesh = pObj->addModule<Mesh>();
+				pMesh->m_pResource = pRes;
 			}
 			break;
 			default:
@@ -118,30 +111,30 @@ void FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath)
 	for (int i = 0; i < nChild; ++i)
 	{
 		FbxNode* pChildNode = pNode->GetChild(i);
-		ProcessNode(pChildNode, refPath);
+		IWorldObj* pChild = ProcessNode(pChildNode, refPath);
+		pObj->addChild(pChild);
 	}
+	return pObj;
 }
 struct stNormalPolyIndex
 {
 	float x, y, z;//normal;
 	int triIndex;
 };
-void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
+shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, IWorldObj* obj)
 {
-	if (ResourceMananger<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
+	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
 	{
-		return;
+		return nullptr;
 	}
-	shared_ptr<MeshResource> pMeshResource(new MeshResource());
-	pMeshResource->m_refPath = refPath;
-	ResourceMananger<MeshResource>::GetInstance()->AddResource(refPath, pMeshResource);
+	shared_ptr<MeshResource> pMeshResource = ResourceManager<MeshResource>::GetInstance()->CreateResource(refPath);
 	m_pAsset->AddResource(refPath, pMeshResource);
 	//
-	FbxMesh* pMesh = pNode->GetMesh();
+ 	FbxMesh* pMesh = pNode->GetMesh();
 
 	if (pMesh == nullptr)
 	{
-		return;
+		return nullptr;
 	}
 	int triangleCount = pMesh->GetPolygonCount();
 	int vertexCounter = 0;
@@ -226,7 +219,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 		if (pNormal->GetReferenceMode() == FbxLayerElement::eDirect)
 		{
 			std::map<int, std::vector<stNormalPolyIndex>> cpNormalIndexMap;
-			std::cout << "by Polygon ref direct!" << std::endl;
+			//std::cout << "by Polygon ref direct!" << std::endl;
 			for (int i = 0; i < triangleCount; ++i)
 			{
 				for (int j = 0; j < 3; ++j)
@@ -285,7 +278,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 			continue;
 	}
 	int nLayerUV = pMesh->GetElementUVCount();
-	std::cout << "Texutre UV count:" << nLayerUV << std::endl;
+	//std::cout << "Texutre UV count:" << nLayerUV << std::endl;
 	FbxGeometryElementUV* pLayerUV = pMesh->GetElementUV(0);
 	if (pLayerUV == nullptr)
 	{
@@ -306,11 +299,11 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 	{
 		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
 		{
-			std::cout << "texture uv by polygon direct" << std::endl;
+			//std::cout << "texture uv by polygon direct" << std::endl;
 		}
 		else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
 		{
-			std::cout << "texture uv by polygon indirect" << std::endl;
+			//std::cout << "texture uv by polygon indirect" << std::endl;
 			uvVec.resize(cpCount * 2);
 			for (int i = 0; i < indexVec.size(); ++i)
 			{
@@ -468,11 +461,13 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 
 	}
 #pragma endregion
+	return pMeshResource;
 #pragma region split mesh
+	return nullptr;
 	int nMaterialCount = pNode->GetMaterialCount();
 	if (nMaterialCount <= 1)
 	{
-		return;
+		return nullptr;
 	}
 	FbxLayerElementArrayTemplate<int> *tmpArray = new FbxLayerElementArrayTemplate<int>(EFbxType::eFbxInt);
 	pMesh->GetMaterialIndices(&tmpArray);
@@ -525,8 +520,10 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 			break;
 		}
 		string subRefPath = refPath + pMat->GetName();
-		shared_ptr<MeshResource> pSubMesh(new MeshResource);
-		pSubMesh->m_refPath = refPath;
+		shared_ptr<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource(refPath);// (new MeshResource);
+		//ResourceMananger<MeshResource>::GetInstance()->AddResource(subRefPath, pSubMesh);
+		m_pAsset->AddResource(subRefPath, pSubMesh);
+		//pSubMesh->m_refPath = refPath;
 		pSubMesh->m_VertexData.vecDataDesc = pMeshResource->m_VertexData.vecDataDesc;
 		pSubMesh->m_VertexData.nNumVertex = m_mapIndex.size();
 		int nVertexDataLength = pSubMesh->m_VertexData.GetVertexDataLength();
@@ -580,8 +577,7 @@ void FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath)
 				pIntData++;
 			}
 		}
-		ResourceMananger<MeshResource>::GetInstance()->AddResource(subRefPath, pSubMesh);
-		m_pAsset->AddResource(subRefPath, pSubMesh);
+
 
 		//	FbxSurfaceMaterial* pMat = pNode->GetMaterial(i);
 		int nPropertyCount = pMat->GetSrcPropertyCount();

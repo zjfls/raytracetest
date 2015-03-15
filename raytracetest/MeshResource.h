@@ -1,5 +1,6 @@
 #pragma once
 #include "IResource.h"
+#include "ResourceMananger.h"
 
 struct stVertexData
 {
@@ -25,7 +26,7 @@ struct stVertexData
 	{
 		EnumVertexUseDesc usedesc;
 		EnumVertexTypeDesc typedesc;
-		int nOffset;//in byte
+		unsigned int nOffset;//in byte
 	};
 	Vector3 GetPositionDataAt(int nIndex)
 	{
@@ -65,7 +66,7 @@ struct stVertexData
 	int		GetVertexDataLength()const;
 	int		GetTypeLength(const VertexDataDesc& desc) const;
 	std::vector<VertexDataDesc> vecDataDesc;
-	int nNumVertex;
+	unsigned int nNumVertex;
 	
 };
 struct stIndexData
@@ -96,5 +97,6 @@ public:
 
 	stVertexData m_VertexData;
 	stIndexData m_IndexData;
+	friend class ResourceManager<MeshResource>;
 };
 

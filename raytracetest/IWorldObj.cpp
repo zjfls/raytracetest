@@ -93,3 +93,31 @@ void IWorldObj::GetRenderableRecursive(std::vector<IRenderable*>& vecRenderabls)
 		var->GetRenderableRecursive(vecRenderabls);
 	}
 }
+
+unsigned int IWorldObj::GetModuleCount() const
+{
+	return m_vecModules.size();
+}
+
+ModuleBase* IWorldObj::GetModule(int i) const
+{
+	if (i >= m_vecModules.size() || i < 0)
+	{
+		return nullptr;
+	}
+	return m_vecModules[i];
+}
+
+unsigned int IWorldObj::GetChildCount() const
+{
+	return m_vecChildren.size();
+}
+
+IWorldObj* IWorldObj::GetChild(int i) const
+{
+	if (i > m_vecChildren.size() || i < 0)
+	{
+		return nullptr;
+	}
+	return m_vecChildren[i];
+}

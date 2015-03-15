@@ -7,6 +7,7 @@
 
 #include "targetver.h"
 
+#include "io.h"
 #include <stdio.h>
 #include <tchar.h>
 #include <assert.h>
@@ -26,11 +27,13 @@ using namespace std;
 
 
 /////////////////////////////////
+#include "CommonDef.h"
 #include "MathDefine.h"
 #include "MathFunc.h"
 #include "Transform.h"
 #include "IWorldObj.h"
 #include "Color.h"
+//#include "tinyxml2.h"
 /////////////////////////////////
 #include "IRenderable.h"
 /////////////////////////////////
