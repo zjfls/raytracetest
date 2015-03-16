@@ -175,7 +175,7 @@ HRESULT SimpleD3D9Application::InitVB()
 	}
 	
 	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("./data/meshes/file_split.fbx");//Env_MuSinportal,Env_MuSinportalreturn_portal_01_INST
-	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/target001").get();
+	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/115104720.mesh").get();
 	pMeshRes = pMesh;
 	//read material
 

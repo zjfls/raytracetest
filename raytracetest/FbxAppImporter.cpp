@@ -33,65 +33,65 @@ void FbxAppImporter::ImportFbxFile(string path)
 	std::vector<shared_ptr<IResource>> vecRes = pAsset->GetAllResource();
 	int nMatIndex = 0;
 	int nMeshIndex = 0;
-	//build refnamemap
+	////build refnamemap
+	//for each (shared_ptr<IResource> pRes in vecRes)
+	//{
+	//	shared_ptr<SimpleRasterMaterial> pMat = dynamic_pointer_cast<SimpleRasterMaterial>(pRes);
+	//	if (pMat != nullptr)
+	//	{
+	//		std::cout << "import material:" << pMat->GetRefPath().c_str() << std::endl;
+	//		continue;
+	//	}
+	//	shared_ptr<PrefabResource>	pPrefab = dynamic_pointer_cast<PrefabResource>(pRes);
+	//	if (pPrefab != nullptr)
+	//	{
+	//		
+	//		std::cout << "import prefab:" << pPrefab->GetRefPath().c_str() << std::endl;
+	//		string prefabPath = assetDirectory + assetName + ".prefab.xml";
+	//		//ImportPrefab(pPrefab, prefabPath);
+	//		m_refNameMap[pPrefab->GetRefPath()] = prefabPath;
+	//		continue;
+	//	}
+
+	//	shared_ptr<MeshResource> pMesh = dynamic_pointer_cast<MeshResource>(pRes);
+	//	if (pMesh != nullptr)
+	//	{
+	//		string meshName = getFileName(pMesh->GetRefPath());
+	//		string meshPath = assetDirectory + meshName + ".mesh";
+	//		if (m_refNameMap.find(pMesh->GetRefPath()) == std::end(m_refNameMap))
+	//		{
+	//			m_refNameMap[pMesh->GetRefPath()] = meshPath;
+	//		}
+	//		else
+	//		{
+	//			nMeshIndex++;
+	//			char temp[25];
+	//			_itoa_s(nMeshIndex, temp, 10);
+	//			m_refNameMap[pMesh->GetRefPath()] = assetDirectory + meshName + temp + ".mesh";
+
+	//		}
+	//		//ImportMesh(pMesh, m_refNameMap[pMesh->GetRefPath()]);
+	//		continue;
+	//	}
+	//}
 	for each (shared_ptr<IResource> pRes in vecRes)
 	{
 		shared_ptr<SimpleRasterMaterial> pMat = dynamic_pointer_cast<SimpleRasterMaterial>(pRes);
 		if (pMat != nullptr)
 		{
-			std::cout << "import material:" << pMat->GetRefPath().c_str() << std::endl;
 			continue;
 		}
 		shared_ptr<PrefabResource>	pPrefab = dynamic_pointer_cast<PrefabResource>(pRes);
 		if (pPrefab != nullptr)
 		{
-			
-			std::cout << "import prefab:" << pPrefab->GetRefPath().c_str() << std::endl;
-			string prefabPath = assetDirectory + assetName + ".prefab.xml";
-			//ImportPrefab(pPrefab, prefabPath);
-			m_refNameMap[pPrefab->GetRefPath()] = prefabPath;
+			ImportPrefab(pPrefab, pPrefab->GetRefPath());
 			continue;
 		}
 
 		shared_ptr<MeshResource> pMesh = dynamic_pointer_cast<MeshResource>(pRes);
 		if (pMesh != nullptr)
 		{
-			string meshName = getFileName(pMesh->GetRefPath());
-			string meshPath = assetDirectory + meshName + ".mesh";
-			if (m_refNameMap.find(pMesh->GetRefPath()) == std::end(m_refNameMap))
-			{
-				m_refNameMap[pMesh->GetRefPath()] = meshPath;
-			}
-			else
-			{
-				nMeshIndex++;
-				char temp[25];
-				_itoa_s(nMeshIndex, temp, 10);
-				m_refNameMap[pMesh->GetRefPath()] = assetDirectory + meshName + temp + ".mesh";
-
-			}
-			//ImportMesh(pMesh, m_refNameMap[pMesh->GetRefPath()]);
-			continue;
-		}
-	}
-	for each (shared_ptr<IResource> pRes in vecRes)
-	{
-		shared_ptr<SimpleRasterMaterial> pMat = dynamic_pointer_cast<SimpleRasterMaterial>(pRes);
-		if (pMat != nullptr)
-		{
-			continue;
-		}
-		shared_ptr<PrefabResource>	pPrefab = dynamic_pointer_cast<PrefabResource>(pRes);
-		if (pPrefab != nullptr)
-		{
-			ImportPrefab(pPrefab, m_refNameMap[pPrefab->GetRefPath()]);
-			continue;
-		}
-
-		shared_ptr<MeshResource> pMesh = dynamic_pointer_cast<MeshResource>(pRes);
-		if (pMesh != nullptr)
-		{
-			ImportMesh(pMesh, m_refNameMap[pMesh->GetRefPath()]);
+			ImportMesh(pMesh, pMesh->GetRefPath());
 			continue;
 		}
 	}

@@ -6,8 +6,12 @@
 #include "MeshResource.h"
 #include "Mesh.h"
 #include "PrefabResource.h"
+#include "FilePath.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
+	m_fileDir = getFileDirectory(path);
+	string name = getFileName(path);
+	name = removeSuffix(name);
 	FbxAsset* pAsset = new FbxAsset;
 	m_pAsset = pAsset;
 	pAsset->m_strPath = path;
@@ -70,14 +74,14 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 
 	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource();
 	pPrefab->m_pRoot = pRoot;
-	pAsset->AddResource(pPrefab->GetRefPath(), pPrefab);
+	pAsset->AddResource(m_fileDir + name + ".prefab.xml", pPrefab);
 	//
 	return pAsset;
 }
 
 IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj* pParent)
 {
-	refPath = refPath + "/" + pNode->GetName();
+	refPath = refPath + "/" + pNode->GetName() + ".mesh";
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
 	IWorldObj* pObj = new IWorldObj;
 	pObj->m_strName = pNode->GetName();
@@ -123,14 +127,29 @@ struct stNormalPolyIndex
 };
 shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, IWorldObj* obj)
 {
+	FbxMesh* pMesh = pNode->GetMesh();
+	for each (FbxMesh* pM in vecMeshList)
+	{
+		if (pM == pMesh)
+		{
+			return nullptr;
+		}
+	}
+	//
+	char temp[25];
+	_itoa_s((int)pMesh, temp, 10);
+	refPath = m_fileDir + pNode->GetName() + ".mesh";
+	//
 	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
 	{
-		return nullptr;
+		refPath = refPath + "a";
 	}
+
+	vecMeshList.push_back(pMesh);
 	shared_ptr<MeshResource> pMeshResource = ResourceManager<MeshResource>::GetInstance()->CreateResource(refPath);
 	m_pAsset->AddResource(refPath, pMeshResource);
 	//
- 	FbxMesh* pMesh = pNode->GetMesh();
+ 	
 
 	if (pMesh == nullptr)
 	{
@@ -332,6 +351,23 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	}
 
 #pragma endregion
+#pragma region AddSkinInfo
+	int deformerCount = pMesh->GetDeformerCount();
+	if (deformerCount == 1)
+	{
+		FbxDeformer* pDeformer = pMesh->GetDeformer(0);
+		if (pDeformer != nullptr && pDeformer->GetDeformerType() == FbxDeformer::eSkin)
+		{
+			FbxSkin* pSkin = (FbxSkin*)(pDeformer);
+			FbxCluster::ELinkMode linkMode = FbxCluster::eNormalize;
+			FbxCluster* pCluster;
+			FbxNode*	pLinkNode;
+			FbxMatrix	transformMatrix, transformLinkMatrix;
+			int			clusterCount = pSkin->GetClusterCount();
+		}
+
+	}
+#pragma  endregion
 #pragma region AddMeshResource
 	stIndexData::EnumIndexDesc eIndexDesc = stIndexData::EIndexInt;
 	int nIndexLength = indexVec.size();

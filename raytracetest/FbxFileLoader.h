@@ -23,5 +23,7 @@ private:
 	{
 	}
 	friend class AssetManager;
+	string m_fileDir;
+	std::vector<FbxMesh*> vecMeshList;
 };
 
