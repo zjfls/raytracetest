@@ -1,19 +1,16 @@
-﻿生成启动时间为 2015/3/16 23:37:35。
-     1>项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2015/3/17 15:08:31。
+     1>项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\raytracetest.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FbxFileLoader.cpp
          FbxFileLoader.cpp
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(93): warning C4244: “参数”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(94): warning C4244: “参数”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(95): warning C4244: “参数”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(327): warning C4018: “<”: 有符号/无符号不匹配
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(341): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(342): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(583): warning C4018: “<”: 有符号/无符号不匹配
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(364): warning C4101: “pLinkNode”: 未引用的局部变量
-     1>h:\github\raytracetest\raytracetest\fbxfileloader.cpp(363): warning C4101: “pCluster”: 未引用的局部变量
+     1>j:\github\raytracetest2\raytracetest\raytracetest\fbxfileloader.cpp(94): warning C4244: “参数”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>j:\github\raytracetest2\raytracetest\raytracetest\fbxfileloader.cpp(95): warning C4244: “参数”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>j:\github\raytracetest2\raytracetest\raytracetest\fbxfileloader.cpp(96): warning C4244: “参数”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>j:\github\raytracetest2\raytracetest\raytracetest\fbxfileloader.cpp(336): warning C4018: “<”: 有符号/无符号不匹配
+     1>j:\github\raytracetest2\raytracetest\raytracetest\fbxfileloader.cpp(350): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
+     1>j:\github\raytracetest2\raytracetest\raytracetest\fbxfileloader.cpp(351): warning C4244: “=”: 从“fbxsdk_2015_1::FbxDouble”转换到“float”，可能丢失数据
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\github\raytracetest\Debug\raytracetest.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\debug /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 opengl32.lib glu32.lib glut32.lib "libfbxsdk-md.lib" d3dx9d.lib d3d9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\github\raytracetest\Debug\raytracetest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\github\raytracetest\Debug\raytracetest.lib" /MACHINE:X86 Debug\ApplicationBase.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"J:\github\raytracetest2\raytracetest\Debug\raytracetest.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\debug /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 opengl32.lib glu32.lib glut32.lib "libfbxsdk-md.lib" d3dx9d.lib d3d9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"J:\github\raytracetest2\raytracetest\Debug\raytracetest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"J:\github\raytracetest2\raytracetest\Debug\raytracetest.lib" /MACHINE:X86 Debug\ApplicationBase.obj
          Debug\AssetManager.obj
          Debug\DirectionalLight.obj
          Debug\FbxAppManager.obj
@@ -67,6 +64,10 @@
          Debug\SimpleRTMaterial.obj
          Debug\SimpleWorld.obj
          Debug\SimpleWorldObj.obj
+         Debug\skeleton.obj
+         Debug\SkeletonAsset.obj
+         Debug\SkeletonLoader.obj
+         Debug\SkeletonResource.obj
          Debug\Sphere3D.obj
          Debug\stdafx.obj
          Debug\StrUtil.obj
@@ -80,9 +81,9 @@
          Debug\Vector3.obj
          Debug\Vector4.obj
          Debug\XmlPrefabLoader.obj
-         raytracetest.vcxproj -> H:\github\raytracetest\Debug\raytracetest.exe
-     1>已完成生成项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
+         raytracetest.vcxproj -> J:\github\raytracetest2\raytracetest\Debug\raytracetest.exe
+     1>已完成生成项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.98
+已用时间 00:00:01.65

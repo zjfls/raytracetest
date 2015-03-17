@@ -7,6 +7,7 @@
 #include "Mesh.h"
 #include "PrefabResource.h"
 #include "FilePath.h"
+#include "SkeletonResource.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	m_fileDir = getFileDirectory(path);
@@ -107,6 +108,14 @@ IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj*
 				pMesh->m_pResource = pRes;
 			}
 			break;
+			case FbxNodeAttribute::EType::eSkeleton:
+			{
+				FbxSkeleton* pskl = pNode->GetSkeleton();
+				if (pskl->GetSkeletonType() == FbxSkeleton::eRoot)
+				{
+
+				}
+			}
 			default:
 			break;
 		}
@@ -142,7 +151,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	//
 	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
 	{
-		refPath = refPath + "a";
+		refPath = m_fileDir + pNode->GetName() + "a" + ".mesh";
 	}
 
 	vecMeshList.push_back(pMesh);
@@ -364,6 +373,25 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			FbxNode*	pLinkNode;
 			FbxMatrix	transformMatrix, transformLinkMatrix;
 			int			clusterCount = pSkin->GetClusterCount();
+
+			FbxNode* pSkeletonRoot = nullptr;
+			if (clusterCount >= 1)
+			{
+				pCluster = pSkin->GetCluster(0);
+				pLinkNode = pCluster->GetLink();
+				pSkeletonRoot = GetSkeletonRoot(pLinkNode);
+			}
+			for (int i = 0; i < clusterCount; ++i)
+			{
+				pCluster = pSkin->GetCluster(i);
+				pLinkNode = pCluster->GetLink();
+				if (nullptr == pLinkNode)
+				{
+					continue;
+				}
+				
+				
+			}
 		}
 
 	}
@@ -580,7 +608,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		{
 			int nElementLength = pSubMesh->m_VertexData.GetTypeLength(desc);
 
-			for (int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
+			for (unsigned int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
 			{
 				void* pDst;
 				void* pSrc;
@@ -638,4 +666,91 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		//std::cout << "add mesh:" << subRefPath.c_str() << std::endl;
 	}
 #pragma endregion
+}
+
+IWorldObj* FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, IWorldObj* pParent /*= nullptr*/)
+{
+	FbxSkeleton* pSke = pNode->GetSkeleton();
+	if (m_mapSkeleton.find(pSke) != std::end(m_mapSkeleton))
+	{
+		return nullptr;
+	}
+	refPath = m_fileDir + pNode->GetName() + ".skeleton.xml";
+	shared_ptr<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource(refPath);
+	Bone* pRoot = new Bone();
+	pSkeleton->m_pRoot = pRoot;
+	ProcessBone(pSkeleton, pRoot, pNode, 0);
+	m_pAsset->AddResource(refPath, pSkeleton);
+	m_mapSkeleton[pSke] = pSkeleton;
+
+	return nullptr;
+	
+}
+
+void FbxFileLoader::ProcessBone(shared_ptr<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int index)
+{
+	if (pBone == nullptr)
+	{
+		return;
+	}
+	FbxSkeleton* pSkeleton = pObj->GetSkeleton();
+	if (pSkeleton == nullptr)
+	{
+		return;
+	}
+	FbxPropertyT<FbxDouble3> t = pObj->LclTranslation;
+	FbxPropertyT<FbxDouble3> r = pObj->LclRotation;
+	FbxPropertyT<FbxDouble3> s = pObj->LclScaling;
+	pBone->t.m_fx = (float)t.Get().mData[0];
+	pBone->t.m_fy = (float)t.Get().mData[1];
+	pBone->t.m_fz = (float)t.Get().mData[2];
+
+	pBone->r.m_fx = (float)r.Get().mData[0];
+	pBone->r.m_fy = (float)r.Get().mData[1];
+	pBone->r.m_fz = (float)r.Get().mData[2];
+
+
+	pBone->s.m_fx = (float)s.Get().mData[0];
+	pBone->s.m_fy = (float)s.Get().mData[1];
+	pBone->s.m_fz = (float)s.Get().mData[2];
+
+	char temp[10];
+	_itoa_s(index, temp, 10);
+	pBone->m_strName = string("Bone") + temp;
+	pBone->nIndex = index;
+	pRes->m_mapBone[index] = pBone;
+	//index++;
+	int nChildCount = pObj->GetChildCount();
+	for (int i = 0; i < nChildCount; ++i)
+	{
+		FbxNode* pChild = pObj->GetChild(i);
+		FbxSkeleton* pChildSke = pChild->GetSkeleton();
+		if (nullptr == pChildSke)
+		{
+			continue;
+		}
+		index++;
+		ProcessBone(pRes,pBone, pChild, index);
+	}
+
+}
+
+FbxNode* FbxFileLoader::GetSkeletonRoot(FbxNode* pNode)
+{
+	FbxSkeleton* pSke = pNode->GetSkeleton();
+	if (pSke == nullptr)
+	{
+		return nullptr;
+	}
+	if (pSke->GetSkeletonType() == FbxSkeleton::eRoot)
+	{
+		return pNode;
+	}
+	FbxNode* pParent = pNode->GetParent();
+	FbxNode* pParentSke = GetSkeletonRoot(pParent);
+	if (pParent != nullptr)
+	{
+		return pParentSke;
+	}
+	return nullptr;
 }

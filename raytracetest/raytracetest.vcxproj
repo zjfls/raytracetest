@@ -215,6 +215,10 @@
     <ClInclude Include="SimpleWorld.h" />
     <ClInclude Include="SimpleWorldObj.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="skeleton.h" />
+    <ClInclude Include="SkeletonAsset.h" />
+    <ClInclude Include="SkeletonLoader.h" />
+    <ClInclude Include="SkeletonResource.h" />
     <ClInclude Include="Sphere3D.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StrUtil.h" />
@@ -287,6 +291,10 @@
     <ClCompile Include="SimpleRTMaterial.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
     <ClCompile Include="SimpleWorldObj.cpp" />
+    <ClCompile Include="skeleton.cpp" />
+    <ClCompile Include="SkeletonAsset.cpp" />
+    <ClCompile Include="SkeletonLoader.cpp" />
+    <ClCompile Include="SkeletonResource.cpp" />
     <ClCompile Include="Sphere3D.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
