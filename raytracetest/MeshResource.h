@@ -4,6 +4,22 @@
 
 struct stVertexData
 {
+	stVertexData()
+		:pData(nullptr)
+		, nBoneNum(0)
+		, nNumVertex(0)
+	{
+
+	}
+	~stVertexData()
+	{
+		if (pData != nullptr)
+		{
+			delete[] pData;
+			pData = nullptr;
+		}
+
+	}
 	void* pData;
 	enum EnumVertexTypeDesc
 	{
@@ -55,11 +71,7 @@ struct stVertexData
 		vecNormal.m_fz = *pfData;
 		return vecNormal;
 	}
-	~stVertexData()
-	{
-		delete[] pData;
-		pData = nullptr;
-	}
+
 
 
 	void*	GetElementData(int descIndex, int posIndex) const;
@@ -67,15 +79,26 @@ struct stVertexData
 	int		GetTypeLength(const VertexDataDesc& desc) const;
 	std::vector<VertexDataDesc> vecDataDesc;
 	unsigned int nNumVertex;
+	unsigned int nBoneNum;//每个顶点对应的骨头数量
 	
 };
 struct stIndexData
 {
+	stIndexData()
+		:pData(nullptr)
+		, indexNum(0)
+	{
+
+	}
 	void* pData;
 	~stIndexData()
 	{
-		delete[] pData;
-		pData = nullptr;
+		if (pData != nullptr)
+		{
+			delete[] pData;
+			pData = nullptr;
+		}
+
 	}
 	enum EnumIndexDesc
 	{

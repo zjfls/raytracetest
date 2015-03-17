@@ -53,13 +53,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\raytracetest\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\raytracetest\thirdparty\fbx\lib\vs2013\x86\debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x86\debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

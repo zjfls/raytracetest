@@ -152,7 +152,7 @@ const char * GetRootNodeName()
 }
 
 // to get a string from the node name and attribute type
-FbxString GetNodeNameAndAttributeTypeName(const FbxNode* pNode)
+FbxString GetNodeNameAndAttributeTypeName( FbxNode* pNode)
 {
     FbxString s = pNode->GetName();
 
@@ -169,7 +169,15 @@ FbxString GetNodeNameAndAttributeTypeName(const FbxNode* pNode)
         switch (lAttributeType)
         {
         case FbxNodeAttribute::eMarker:                s += " (Marker)";               break;
-        case FbxNodeAttribute::eSkeleton:              s += " (Skeleton)";             break;
+		case FbxNodeAttribute::eSkeleton:              s += " (Skeleton)";
+		{
+			FbxSkeleton* pSkeleton = pNode->GetSkeleton();
+			FbxSkeleton::EType et = pSkeleton->GetSkeletonType();
+
+
+			int i = 1;
+		}
+			break;
         case FbxNodeAttribute::eMesh:                  s += " (Mesh)";                 break;
         case FbxNodeAttribute::eCamera:                s += " (Camera)";               break;
         case FbxNodeAttribute::eLight:                 s += " (Light)";                break;

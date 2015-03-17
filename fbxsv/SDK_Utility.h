@@ -47,7 +47,7 @@ const char * GetRootNodeName();
 
 // to get a string from the node name and attribute type
 FbxString GetNodeNameAndAttributeTypeName(
-                                         const FbxNode* pNode
+                                          FbxNode* pNode
                                        );
 
 // to get a string from the node default translation values

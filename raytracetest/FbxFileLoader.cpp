@@ -113,7 +113,7 @@ IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj*
 				FbxSkeleton* pskl = pNode->GetSkeleton();
 				if (pskl->GetSkeletonType() == FbxSkeleton::eRoot)
 				{
-
+					ProcessSkeleton(pNode, m_fileDir + pNode->GetName() + ".skeleton.xml");
 				}
 			}
 			default:
@@ -133,6 +133,11 @@ struct stNormalPolyIndex
 {
 	float x, y, z;//normal;
 	int triIndex;
+};
+struct stSkinInfo
+{
+	int m_nIndex;
+	float m_fWeight;
 };
 shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, IWorldObj* obj)
 {
@@ -172,6 +177,9 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	std::vector<float> areaVec;//Ãæ»ý
 	std::vector<float> normalVec;
 	std::vector<float> uvVec;
+	std::vector<vector<stSkinInfo>> skinInfoVec;
+	int nMaxBonePerVertex = 0;
+	skinInfoVec.resize(cpCount);
 	//get vertex pos
 	for (int i = 0; i < cpCount; ++i)
 	{
@@ -375,25 +383,52 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			int			clusterCount = pSkin->GetClusterCount();
 
 			FbxNode* pSkeletonRoot = nullptr;
+			shared_ptr<SkeletonResource> pSkeRes = nullptr;
 			if (clusterCount >= 1)
 			{
 				pCluster = pSkin->GetCluster(0);
 				pLinkNode = pCluster->GetLink();
 				pSkeletonRoot = GetSkeletonRoot(pLinkNode);
+				FbxSkeleton* pSR = pSkeletonRoot->GetSkeleton();
+				ProcessSkeleton(pSkeletonRoot, m_fileDir + pSkeletonRoot->GetName() + ".skeleton.xml");
+				if (m_mapSkeleton.find(pSR) != std::end(m_mapSkeleton))
+				{
+					pSkeRes = m_mapSkeleton[pSR];
+				}
+					
+				
 			}
 			for (int i = 0; i < clusterCount; ++i)
 			{
 				pCluster = pSkin->GetCluster(i);
-				pLinkNode = pCluster->GetLink();
-				if (nullptr == pLinkNode)
+				int nCtrlPoint = pCluster->GetControlPointIndicesCount();
+				//if (nCtrlPoint > m_nMaxBonePerVertex)
+				//{
+				//	m_nMaxBonePerVertex = nCtrlPoint;
+				//}
+				int* pCtrlPointIndices = pCluster->GetControlPointIndices();
+				double* pCtrlPointWeights = pCluster->GetControlPointWeights();
+				int ctrlPointIndex;
+				int boneIndex;
+				boneIndex = pSkeRes->m_pRoot->GetBoneIndexByName(pLinkNode->GetName());
+				for (int j = 0; j < nCtrlPoint; ++j)
 				{
-					continue;
-				}
-				
+					ctrlPointIndex = pCtrlPointIndices[j];
+					stSkinInfo skinInfo;
+					skinInfo.m_nIndex = boneIndex;
+					skinInfo.m_fWeight = pCtrlPointWeights[j];
+					skinInfoVec[ctrlPointIndex].push_back(skinInfo);
+				}		
 				
 			}
 		}
-
+	}
+	for each (std::vector<stSkinInfo> vecSkin in skinInfoVec)
+	{
+		if (vecSkin.size() > nMaxBonePerVertex)
+		{
+			nMaxBonePerVertex = vecSkin.size();
+		}
 	}
 #pragma  endregion
 #pragma region AddMeshResource
@@ -450,7 +485,13 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
 	nVBOffset += cpCount * sizeof(float) * 2;
-	//
+	//blend index
+	for (int i = 0; i < nMaxBonePerVertex; ++i)
+	{
+
+	}
+	//blend weight
+
 	pMeshResource->m_VertexData.nNumVertex = cpCount;
 	pMeshResource->m_VertexData.pData = new unsigned char[nVBOffset];
 	for (unsigned int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
@@ -715,8 +756,9 @@ void FbxFileLoader::ProcessBone(shared_ptr<SkeletonResource> pRes, Bone* pBone, 
 	pBone->s.m_fz = (float)s.Get().mData[2];
 
 	char temp[10];
-	_itoa_s(index, temp, 10);
+	_itoa_s(index, temp, 10);	
 	pBone->m_strName = string("Bone") + temp;
+	pObj->SetName(pBone->m_strName.c_str());
 	pBone->nIndex = index;
 	pRes->m_mapBone[index] = pBone;
 	//index++;
@@ -747,6 +789,10 @@ FbxNode* FbxFileLoader::GetSkeletonRoot(FbxNode* pNode)
 		return pNode;
 	}
 	FbxNode* pParent = pNode->GetParent();
+	if (pParent->GetSkeleton() == nullptr)
+	{
+		return pNode;
+	}
 	FbxNode* pParentSke = GetSkeletonRoot(pParent);
 	if (pParent != nullptr)
 	{

@@ -4,7 +4,7 @@
 ResourceManager<MeshResource>* Singleton<ResourceManager<MeshResource>>::_instance = nullptr;
 
 
-MeshResource::MeshResource()
+MeshResource::MeshResource() 
 {
 }
 

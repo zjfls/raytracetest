@@ -56,7 +56,7 @@ void Expand_All_Recurse(HWND htv, HTREEITEM htvi);
 // scene nodes utility
 // used to display the nodes hierarchy
 void DisplayHierarchy(const HWND hTv);
-void DisplayHierarchy_Recurse(const FbxNode* pNode, HWND hTv, HTREEITEM htiParent);
+void DisplayHierarchy_Recurse( FbxNode* pNode, HWND hTv, HTREEITEM htiParent);
 
 // used to add FbxNode attributes parameters
 void Add_TreeViewItem_KFbxNode_Parameters(const FbxNode* pNode, HWND hTv, HTREEITEM htiParent);
@@ -467,13 +467,13 @@ void DisplayHierarchy(
 
     for(int i = 0; i < GetRootNode()->GetChildCount(); i++)
     {
-        DisplayHierarchy_Recurse(GetRootNode()->GetChild(i), hTv, htvi);
+        DisplayHierarchy_Recurse((FbxNode*)GetRootNode()->GetChild(i), hTv, htvi);
     }
 }
 
 // used to recursively add children nodes
 void DisplayHierarchy_Recurse(
-                              const FbxNode* pNode, 
+                               FbxNode* pNode, 
                               const HWND hTv, 
                               HTREEITEM htiParent
                               )
