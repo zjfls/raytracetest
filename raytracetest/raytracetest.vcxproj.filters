@@ -288,6 +288,15 @@
     <ClInclude Include="SkeletonLoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -501,6 +510,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SkeletonLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonObj.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObj.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

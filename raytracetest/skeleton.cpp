@@ -1,12 +1,45 @@
 #include "stdafx.h"
 #include "skeleton.h"
+#include "Mesh.h"
 
 
-skeleton::skeleton()
+SkeletonModule::SkeletonModule()
+	:m_pSkeRes(nullptr)
 {
 }
 
 
-skeleton::~skeleton()
+SkeletonModule::~SkeletonModule()
 {
+}
+
+void SkeletonModule::AddMesh(Mesh* pMesh)
+{
+	if (m_pOwnerObj->IsHaveModule<Mesh>(pMesh) == false)
+	{
+		return;
+	}
+	for each (Mesh* var in m_MeshVec)
+	{
+		if (var == pMesh)
+		{
+			return;
+		}
+	}
+	m_MeshVec.push_back(pMesh);
+}
+
+void SkeletonModule::SetSkeletonResource(shared_ptr<SkeletonResource> pRes,bool bGenerateObj)
+{
+	m_pSkeRes = pRes;
+	if (bGenerateObj == true)
+	{
+		GenerateSkeletonObj();
+	}
+	
+}
+
+void SkeletonModule::GenerateSkeletonObj()
+{
+
 }

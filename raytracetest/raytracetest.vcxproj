@@ -167,6 +167,8 @@
     <ClInclude Include="FbxFileLoader.h" />
     <ClInclude Include="FbxAppImporter.h" />
     <ClInclude Include="FilePath.h" />
+    <ClInclude Include="GameObj.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="IAsset.h" />
     <ClInclude Include="IAssetLoader.h" />
     <ClInclude Include="IMaterial.h" />
@@ -218,6 +220,7 @@
     <ClInclude Include="skeleton.h" />
     <ClInclude Include="SkeletonAsset.h" />
     <ClInclude Include="SkeletonLoader.h" />
+    <ClInclude Include="SkeletonObj.h" />
     <ClInclude Include="SkeletonResource.h" />
     <ClInclude Include="Sphere3D.h" />
     <ClInclude Include="stdafx.h" />
@@ -243,6 +246,8 @@
     <ClCompile Include="FbxFileLoader.cpp" />
     <ClCompile Include="FbxAppImporter.cpp" />
     <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="GameObj.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="IMaterial.cpp" />
     <ClCompile Include="IntersetResults.cpp" />
@@ -294,6 +299,7 @@
     <ClCompile Include="skeleton.cpp" />
     <ClCompile Include="SkeletonAsset.cpp" />
     <ClCompile Include="SkeletonLoader.cpp" />
+    <ClCompile Include="SkeletonObj.cpp" />
     <ClCompile Include="SkeletonResource.cpp" />
     <ClCompile Include="Sphere3D.cpp" />
     <ClCompile Include="stdafx.cpp">

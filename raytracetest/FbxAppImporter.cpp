@@ -10,6 +10,8 @@
 #include "Mesh.h"
 #include "tinyxml2.h"
 #include <fstream>
+#include "SkeletonResource.h"
+#include "skeleton.h"
 using namespace tinyxml2;
 FbxAppImporter* Singleton<FbxAppImporter>::_instance = nullptr;
 
@@ -94,6 +96,12 @@ void FbxAppImporter::ImportFbxFile(string path)
 			ImportMesh(pMesh, pMesh->GetRefPath());
 			continue;
 		}
+
+		shared_ptr<SkeletonResource> pSkeRes = dynamic_pointer_cast<SkeletonResource>(pRes);
+		if (pSkeRes != nullptr)
+		{
+			ImportMesh(pMesh, pSkeRes->GetRefPath());
+		}
 	}
 	system("pause");
 }
@@ -154,7 +162,7 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 
 void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* pMesh, tinyxml2::XMLElement* pElem)
 {
-	pElem->SetAttribute("refPath", m_refNameMap[pMesh->m_pResource->GetRefPath()].c_str());
+	pElem->SetAttribute("refPath", m_refNameMap[pMesh->GetMeshResource()->GetRefPath()].c_str());
 }
 
 void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)
@@ -242,4 +250,9 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	fwrite((void*)&nSizeofVB, sizeof(unsigned int), 1, fp);
 	fwrite(pMesh->m_VertexData.pData, nSizeofVB, 1, fp);
 	fclose(fp);
+}
+
+void FbxAppImporter::ImportSkeleton(shared_ptr<SkeletonResource> pMesh, string path)
+{
+
 }

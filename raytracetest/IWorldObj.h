@@ -22,6 +22,7 @@ public:
 		T* pModule = new T;
 		pModule->m_pOwnerObj = this;
 		m_vecModules.push_back(pModule);
+		pModule->OnAdded();
 		return pModule;
 	};
 	virtual void Update();
@@ -32,6 +33,11 @@ public:
 	/////////////////////////////////////////////////////
 	unsigned int	 GetModuleCount()	const;
 	ModuleBase*	GetModule(int i) const;
+
+	template<class T>
+	bool		IsHaveModule(T* module);
+	template<class T>
+	bool		IsHaveModule();
 	//bool addComponent(ObjComponent* pComponent);
 ///////////////////////////////////
 	Transform*					m_pTransform;
@@ -44,6 +50,34 @@ public:
 
 	friend class Transform;
 };
+
+template<class T>
+bool IWorldObj::IsHaveModule()
+{
+	for each (ModuleBase* var in m_vecModules)
+	{
+		T* pModule = dynamic_cast<T*>(var);
+		if (pModule != false)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+template<class T>
+bool IWorldObj::IsHaveModule(T* module)
+{
+	for each (ModuleBase* var in m_vecModules)
+	{
+		T* pModule = dynamic_cast<T*>(var);
+		if (pModule == module)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 template<class T>
 void IWorldObj::GetAllModuleRecursive(std::vector<T*>& vecResults)
