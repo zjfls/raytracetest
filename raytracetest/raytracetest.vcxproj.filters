@@ -58,6 +58,18 @@
     <Filter Include="源文件\world">
       <UniqueIdentifier>{b0902781-73e5-4775-845f-ed23335ac3a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Render\D3d9">
+      <UniqueIdentifier>{4810b685-dd40-458e-b212-e5a2ed0eca0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render\D3d9">
+      <UniqueIdentifier>{2a24214a-eb8a-4d04-be26-09f09dbac856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render\Opengl">
+      <UniqueIdentifier>{8b43eddc-bdfe-4ccc-ad17-aca4a0259566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render\Opengl">
+      <UniqueIdentifier>{bf26b52e-dedc-40f3-9e3b-438a33de00ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -276,26 +288,26 @@
     <ClInclude Include="PrefabResource.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="skeleton.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SkeletonResource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SkeletonAsset.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SkeletonLoader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Geometry.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
-    <ClInclude Include="SkeletonObj.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="GameObj.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonResource.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonLoader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonAsset.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="skeleton.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonObj.h">
+      <Filter>头文件\world</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -500,26 +512,26 @@
     <ClCompile Include="PrefabResource.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="skeleton.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletonResource.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletonAsset.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletonLoader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Geometry.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="SkeletonObj.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="GameObj.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonResource.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonLoader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonAsset.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="skeleton.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonObj.cpp">
+      <Filter>源文件\world</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

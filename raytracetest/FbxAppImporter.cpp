@@ -100,7 +100,7 @@ void FbxAppImporter::ImportFbxFile(string path)
 		shared_ptr<SkeletonResource> pSkeRes = dynamic_pointer_cast<SkeletonResource>(pRes);
 		if (pSkeRes != nullptr)
 		{
-			ImportMesh(pMesh, pSkeRes->GetRefPath());
+			ImportSkeleton(pSkeRes, pSkeRes->GetRefPath());
 		}
 	}
 	system("pause");
@@ -162,7 +162,7 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 
 void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* pMesh, tinyxml2::XMLElement* pElem)
 {
-	pElem->SetAttribute("refPath", m_refNameMap[pMesh->GetMeshResource()->GetRefPath()].c_str());
+	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
 }
 
 void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)
@@ -252,7 +252,57 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	fclose(fp);
 }
 
-void FbxAppImporter::ImportSkeleton(shared_ptr<SkeletonResource> pMesh, string path)
+void FbxAppImporter::ImportSkeleton(shared_ptr<SkeletonResource> pSkeRes, string path)
 {
+	XMLDocument doc;
+	//XMLDeclaration *declare = new XMLDeclaration("1.0");
+	doc.LinkEndChild(doc.NewDeclaration("xml version=\"1.0\" encoding=\"UTF-8\""));
+	doc.LinkEndChild(doc.NewComment("skeleton resource"));
+	tinyxml2::XMLElement* pSkeInfo = doc.NewElement("Info");
+	pSkeInfo->SetAttribute("BoneNum", pSkeRes->m_nBoneNum);
+	doc.LinkEndChild(pSkeInfo);
+	tinyxml2::XMLElement* pBoneRoot = doc.NewElement("Bone");
+	doc.LinkEndChild(pBoneRoot);
+	//PrefabProcessWorldObj(doc, pPrefab->m_pRoot, root);
+	SkeletonProcessBone(doc, pSkeRes->m_pRoot, pBoneRoot);
+	doc.SaveFile(path.c_str());
+}
+
+void FbxAppImporter::SkeletonProcessBone(tinyxml2::XMLDocument& doc, Bone* pBone, tinyxml2::XMLElement* pElem)
+{
+	if (pBone == nullptr && pElem == nullptr)
+	{
+		return;
+	}
+	pElem->SetAttribute("Name", pBone->m_strName.c_str());
+	Vector3 t, r, s;
+	t = pBone->t;
+	r = pBone->r;
+	s = pBone->s;
+	XMLElement* pElemT = doc.NewElement("Translation");
+	XMLElement* pElemS = doc.NewElement("Scale");
+	XMLElement* pElemR = doc.NewElement("Rotation");
+	pElem->LinkEndChild(pElemT);
+	pElem->LinkEndChild(pElemR);
+	pElem->LinkEndChild(pElemS);
+
+	pElemT->SetAttribute("x", t.m_fx);
+	pElemT->SetAttribute("y", t.m_fy);
+	pElemT->SetAttribute("z", t.m_fz);
+
+	pElemR->SetAttribute("x", r.m_fx);
+	pElemR->SetAttribute("y", r.m_fy);
+	pElemR->SetAttribute("z", r.m_fz);
+
+	pElemS->SetAttribute("x", s.m_fx);
+	pElemS->SetAttribute("y", s.m_fy);
+	pElemS->SetAttribute("z", s.m_fz);
+
+	for each (Bone* pChildBone in pBone->vecChild)
+	{
+		tinyxml2::XMLElement* pChild = doc.NewElement("Bone");
+		pElem->LinkEndChild(pChild);
+		SkeletonProcessBone(doc, pChildBone, pChild);
+	}
 
 }

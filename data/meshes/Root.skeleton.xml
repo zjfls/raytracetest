@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--skeleton resource-->
+<Info BoneNum="5"/>
+
+<Bone Name="Bone0">
+    <Translation x="0" y="0" z="0"/>
+    <Rotation x="0" y="0" z="0"/>
+    <Scale x="1" y="1" z="1"/>
+    <Bone Name="Bone1">
+        <Translation x="0" y="-8.5111658e-008" z="140.37831"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone2">
+        <Translation x="0" y="0" z="158.65762"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone3">
+        <Translation x="0" y="1.6644577e-008" z="169.72044"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone4">
+        <Translation x="0" y="-7.8972671e-006" z="180.66841"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+</Bone>

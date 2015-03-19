@@ -4,6 +4,7 @@
 #include "MeshResource.h"
 #include "IAsset.h"
 #include "d3dx9.h"
+#include "FilePath.h"
 SimpleD3D9Application* Singleton<SimpleD3D9Application>::_instance = nullptr;
 // A structure for our custom vertex type
 struct CUSTOMVERTEX
@@ -175,7 +176,7 @@ HRESULT SimpleD3D9Application::InitVB()
 	}
 	
 	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("./data/meshes/file_split.fbx");//Env_MuSinportal,Env_MuSinportalreturn_portal_01_INST
-	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(pAsset->m_strPath + "/RootNode/115104720.mesh").get();
+	MeshResource* pMesh = (MeshResource*)pAsset->GetResource(getFileDirectory(pAsset->m_strPath) + "target001.mesh").get();
 	pMeshRes = pMesh;
 	//read material
 

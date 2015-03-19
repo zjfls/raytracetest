@@ -6,6 +6,7 @@ class Transform;
 class IMaterial;
 class MeshResource;
 class SkeletonResource;
+class Bone;
 //class tinyxml2::XMLElement;
 //class tinyxml2::XMLDocument;
 
@@ -26,7 +27,8 @@ public:
 private:
 	void ImportPrefab(shared_ptr<PrefabResource> pPrefab,string path);
 	void ImportMesh(shared_ptr<MeshResource> pMesh, string path);
-	void ImportSkeleton(shared_ptr<SkeletonResource> pMesh,string path);
+	void ImportSkeleton(shared_ptr<SkeletonResource> pSkeRes,string path);
+	void SkeletonProcessBone(tinyxml2::XMLDocument& doc,Bone* pBone,tinyxml2::XMLElement* pElem);
 	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,IWorldObj* pObj, tinyxml2::XMLElement* elem);
 	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,Mesh* pMesh,tinyxml2::XMLElement* pElem);
 	void PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem);
