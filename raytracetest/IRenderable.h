@@ -1,6 +1,6 @@
 #pragma once
 #include "ModuleBase.h"
-class IMaterial;
+class MaterialResource;
 class IRenderable:public ModuleBase
 {
 public:
@@ -11,6 +11,6 @@ public:
 	virtual void Update();
 
 
-	IMaterial* m_pMaterial;
+	shared_ptr<MaterialResource> m_pMaterial;
 };
 

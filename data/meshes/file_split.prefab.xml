@@ -12,7 +12,9 @@
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
-        <Mesh refPath="./data/meshes/Env_MuSinportal.mesh"/>
+        <Mesh refPath="./data/meshes/Env_MuSinportal.mesh">
+            <Material Name="return_portal_03__ENV_INST.smat.xml"/>
+        </Mesh>
         <WorldObj name="A">
             <Transform>
                 <Translation x="0" y="140.37831" z="0"/>
@@ -55,7 +57,9 @@
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
-        <Mesh refPath="./data/meshes/target001.mesh"/>
+        <Mesh refPath="./data/meshes/target001.mesh">
+            <Material Name="return_portal_01_INST.smat.xml"/>
+        </Mesh>
     </WorldObj>
     <WorldObj name="target002">
         <Transform>
@@ -63,6 +67,8 @@
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
-        <Mesh refPath="./data/meshes/target002.mesh"/>
+        <Mesh refPath="./data/meshes/target002.mesh">
+            <Material Name="return_portal_02_fx_ENV.smat.xml"/>
+        </Mesh>
     </WorldObj>
 </WorldObj>

@@ -7,7 +7,7 @@
 #include "RayTraceCamera.h"
 #include "Vector3.h"
 #include "Sphere3D.h"
-#include "MaterialManager.h"
+//#include "MaterialManager.h"
 #include "LightBase.h"
 #include "RayTraceApplication.h"
 #include "SimpleD3D9Application.h"

@@ -11,3 +11,8 @@ MaterialResource::MaterialResource()
 MaterialResource::~MaterialResource()
 {
 }
+
+void MaterialResource::AddArg(string name, MaterialArg* pArg)
+{
+	m_matArgs[name] = pArg;
+}

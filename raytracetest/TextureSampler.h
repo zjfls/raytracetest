@@ -54,5 +54,6 @@ public:
 
 	Vector2		m_UVTiling;
 	Vector2		m_UVOffset;
+
 };
 

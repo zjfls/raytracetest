@@ -130,7 +130,7 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 	if (pInterGeo != nullptr)
 	{
 
-		SimpleRTMaterial* pRTMat = dynamic_cast<SimpleRTMaterial*>(pInterGeo->m_pMaterial);
+		shared_ptr<SimpleRTMaterial> pRTMat = dynamic_pointer_cast<SimpleRTMaterial>(pInterGeo->m_pMaterial);
 		if (pRTMat == nullptr)
 		{
 			pixColor = Color::white;
@@ -201,7 +201,7 @@ bool RayTraceRender::ShadowRay(const Ray3D& r, LightBase* pLight)
 		IntersectResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
 		if (result.m_bInterset == true)
 		{
-			for (int i = 0; i < result.m_vecIntersetDatas.size(); ++i)
+			for (unsigned int i = 0; i < result.m_vecIntersetDatas.size(); ++i)
 			{
 				if (result.m_vecIntersetDatas[i].fDist < fDist)
 				{

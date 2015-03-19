@@ -7,7 +7,7 @@
 #include "SimpleWorldObj.h"
 #include "RayTraceCamera.h"
 #include "Sphere3D.h"
-#include "MaterialManager.h"
+//#include "MaterialManager.h"
 #include "LightBase.h"
 #include "RayTraceApplication.h"
 #include "SimpleRTMaterial.h"
@@ -33,9 +33,9 @@ void RayTraceApplication::OnInit()
 	assert(FbxAppManager::GetInstance()->Init());
 
 }
-SimpleRTMaterial* CreateMaterial(Color colorEmission, Color colorDiffuse)
+shared_ptr<SimpleRTMaterial> CreateMaterial(Color colorEmission, Color colorDiffuse)
 {
-	SimpleRTMaterial* pMat = new SimpleRTMaterial();
+	shared_ptr<SimpleRTMaterial> pMat(new SimpleRTMaterial());
 	pMat->m_ColorEmi = colorEmission;
 	pMat->m_ColorDiffuse = colorDiffuse;
 	return pMat;
@@ -50,7 +50,7 @@ IWorldObj* CreateSphere3D(float fRadius, const Vector3& vecPos, Color colorEmiss
 	//pObj->addModule(pSphere);
 	pObj->m_pTransform->SetTranslate(vecPos.m_fx,vecPos.m_fy,vecPos.m_fz);
 
-	SimpleRTMaterial* pMat = CreateMaterial(colorEmission, colorDiffuse);
+	shared_ptr<SimpleRTMaterial> pMat = CreateMaterial(colorEmission, colorDiffuse);
 	pMat->m_bReflection = bReflect;
 	pMat->m_bRefraction = bRefract;
 	pMat->m_fTransparecy = t;
@@ -65,7 +65,7 @@ IWorldObj* AddPlane3D(IWorldObj* pParent)
 	Plane3D*	pPlane = pObj->addModule<Plane3D>();
 	pPlane->m_vecPt = Vector3(0.0f, -100.0f, 0.0f);
 	pPlane->m_vecNormal = Vector3(0.0f, 1.0f, 0.0f);
-	SimpleRTMaterial* pMat = CreateMaterial(Color(0.1f,0.1f,0.1f,1.0f), Color(0.4f,0.4f,0.1f,1.0f));
+	shared_ptr<SimpleRTMaterial> pMat = CreateMaterial(Color(0.1f,0.1f,0.1f,1.0f), Color(0.4f,0.4f,0.1f,1.0f));
 	pPlane->m_pMaterial = pMat;
 	pMat->m_bReflection = true;
 	pMat->m_fRefractiveIndex = 1.05f;

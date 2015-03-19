@@ -1,5 +1,6 @@
 #pragma once
 #include "IResource.h"
+#include "MaterialArg.h"
 template<class T>
 class ResourceManager;
 class MaterialResource :
@@ -8,7 +9,11 @@ class MaterialResource :
 public:
 
 	virtual ~MaterialResource();
-private:
+	void	AddArg(string name, MaterialArg* pArg);
+
+	std::unordered_map<string, MaterialArg*> m_matArgs;
+
+protected:
 	MaterialResource();
 	friend class ResourceManager < MaterialResource > ;
 };

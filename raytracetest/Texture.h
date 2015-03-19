@@ -5,7 +5,7 @@ class Texture :
 	public IResource
 {
 	protected:
-	Texture();
+		Texture();
 public:
 	virtual ~Texture();
 	friend class ResourceManager < Texture >;

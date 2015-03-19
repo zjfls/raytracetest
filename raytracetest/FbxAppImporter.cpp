@@ -12,6 +12,8 @@
 #include <fstream>
 #include "SkeletonResource.h"
 #include "skeleton.h"
+#include "TextureSampler.h"
+#include "Texture.h"
 using namespace tinyxml2;
 FbxAppImporter* Singleton<FbxAppImporter>::_instance = nullptr;
 
@@ -163,6 +165,13 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* pMesh, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
+	if (pMesh->m_pMaterial == nullptr)
+	{
+		return;
+	}
+	XMLElement* pMatElem = doc.NewElement("Material");
+	pElem->LinkEndChild(pMatElem);
+	PrefabProcessMaterial(doc, pMesh->m_pMaterial, pMatElem);
 }
 
 void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)
@@ -191,9 +200,25 @@ void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Tr
 	//
 }
 
-void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, IMaterial* pMaterial, tinyxml2::XMLElement* pElem)
+void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_ptr<MaterialResource> pMaterial, tinyxml2::XMLElement* pElem)
 {
-
+	pElem->SetAttribute("Name", getFileName(pMaterial->GetRefPath()).c_str());
+	for each (std::pair<string,MaterialArg*> pair in pMaterial->m_matArgs)
+	{
+		switch (pair.second->m_EType)
+		{
+			case EMATARGTYPESAMPLER:
+			{
+				//XMLElement* pElemSamp = doc.NewElement("Texture");
+				//pElemSamp->SetAttribute("Name", pair.first.c_str());
+				//pElemSamp->SetAttribute("Ref", pair.second->GetData<TextureSampler>()->m_pTexture->GetRefPath().c_str());
+				//pElemSamp->LinkEndChild(pElemSamp);
+			}
+			break;
+			default:
+			break;
+		}
+	}
 }
 
 void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)

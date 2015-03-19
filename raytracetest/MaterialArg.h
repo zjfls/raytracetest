@@ -14,7 +14,7 @@ enum EMATARGTYPE
 class MaterialArg
 {
 public:
-	MaterialArg();
+	
 	virtual ~MaterialArg();
 
 
@@ -26,13 +26,15 @@ public:
 	};
 	string m_strName;
 	EMATARGTYPE m_EType;
+protected:
+	MaterialArg();
 };
 template < class T >
 class TMatArg:public MaterialArg
 {
 public:
 	TMatArg(EMATARGTYPE eArgType){ m_EType = eArgType; };
-	virtual ~TMatArg();
+	virtual ~TMatArg(){};
 	//template<class T1>
 	//virtual T* GetValue() const{ return (T1*)&m_Data; };
 	T m_Data;

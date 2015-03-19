@@ -3,10 +3,11 @@
 class PrefabResource;
 class Mesh;
 class Transform;
-class IMaterial;
+class MaterialResource;
 class MeshResource;
 class SkeletonResource;
 class Bone;
+class MaterialResource;
 //class tinyxml2::XMLElement;
 //class tinyxml2::XMLDocument;
 
@@ -31,8 +32,9 @@ private:
 	void SkeletonProcessBone(tinyxml2::XMLDocument& doc,Bone* pBone,tinyxml2::XMLElement* pElem);
 	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,IWorldObj* pObj, tinyxml2::XMLElement* elem);
 	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,Mesh* pMesh,tinyxml2::XMLElement* pElem);
+	//void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, MaterialResource* pMat, tinyxml2::XMLElement* pElem);
 	void PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem);
-	void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, IMaterial* pMaterial, tinyxml2::XMLElement* pElem);
+	void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_ptr<MaterialResource> pMaterial, tinyxml2::XMLElement* pElem);
 
 
 	std::map<string, string> m_refNameMap;

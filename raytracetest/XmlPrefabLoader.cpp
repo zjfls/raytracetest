@@ -30,7 +30,7 @@ IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
 
 	//Prefab* pPrefab = new Prefab;
 	//pPrefab->m_pRoot = pRoot;
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource(path);
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(path);
 	pPrefab->m_pRoot = pRoot;
 	pPrefabAsset->AddResource(path, pPrefab);
 	return pPrefabAsset;
@@ -91,7 +91,7 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, IWorldObj* pO
 {
 	string path = pElem->Attribute("refPath");
 	Mesh* pMesh = pObj->addModule<Mesh>();
-	shared_ptr<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
+	shared_ptr<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource<MeshResource>(path);
 	if (pMeshRes == nullptr)
 	{
 		AssetManager::GetInstance()->LoadAsset(path);

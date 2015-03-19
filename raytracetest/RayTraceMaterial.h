@@ -1,7 +1,7 @@
 #pragma once
-#include "IMaterial.h"
+#include "MaterialResource.h"
 class RayTraceMaterial :
-	public IMaterial
+	public MaterialResource
 {
 public:
 	RayTraceMaterial();

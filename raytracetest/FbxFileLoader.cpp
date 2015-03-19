@@ -10,6 +10,9 @@
 #include "SkeletonResource.h"
 #include "MaterialResource.h"
 #include "skeleton.h"
+#include "MaterialArg.h"
+#include "TextureSampler.h"
+#include "Texture2D.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	m_fileDir = getFileDirectory(path);
@@ -75,7 +78,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	IWorldObj* pRoot = ProcessNode(pRootNode, path,nullptr,nullptr);
 
 
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource(m_fileDir + name + ".prefab.xml");
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(m_fileDir + name + ".prefab.xml");
 	pPrefab->m_pRoot = pRoot;
 	pAsset->AddResource(m_fileDir + name + ".prefab.xml", pPrefab);
 	//
@@ -161,13 +164,13 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	_itoa_s((int)pMesh, temp, 10);
 	refPath = m_fileDir + pNode->GetName() + ".mesh";
 	//
-	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
+	if (ResourceManager<MeshResource>::GetInstance()->GetResource<MeshResource>(refPath) != nullptr)
 	{
 		refPath = m_fileDir + pNode->GetName() + "a" + ".mesh";
 	}
 
 	vecMeshList.push_back(pMesh);
-	shared_ptr<MeshResource> pMeshResource = ResourceManager<MeshResource>::GetInstance()->CreateResource(refPath);
+	shared_ptr<MeshResource> pMeshResource = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(refPath);
 	m_pAsset->AddResource(refPath, pMeshResource);
 
 
@@ -656,7 +659,8 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		std::cout << "can not find material for " << pNode->GetName() << std::endl;
 	}
 	//
-	ProcessMaterial(pMat);
+	shared_ptr<MaterialResource> pMatRes = ProcessMaterial(pMat);
+	pMeshModule->m_pMaterial = pMatRes;
 	//
 #pragma endregion
 	return pMeshResource;
@@ -718,7 +722,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			break;
 		}
 		string subRefPath = refPath + pMat->GetName();
-		shared_ptr<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource(refPath);// (new MeshResource);
+		shared_ptr<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(refPath);// (new MeshResource);
 		//ResourceMananger<MeshResource>::GetInstance()->AddResource(subRefPath, pSubMesh);
 		m_pAsset->AddResource(subRefPath, pSubMesh);
 		//pSubMesh->m_refPath = refPath;
@@ -810,7 +814,7 @@ IWorldObj* FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, IWorld
 		return nullptr;
 	}
 	refPath = m_fileDir + pNode->GetName() + ".skeleton.xml";
-	shared_ptr<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource(refPath);
+	shared_ptr<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(refPath);
 	Bone* pRoot = new Bone();
 	pSkeleton->m_pRoot = pRoot;
 	ProcessBone(pSkeleton, pRoot, pNode, 0);
@@ -908,7 +912,7 @@ shared_ptr<MaterialResource> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 	FbxProperty pProp = pSrfPhong->GetFirstProperty();
 
 
-	shared_ptr<MaterialResource> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource(m_fileDir + pMat->GetName() + ".smat.xml");
+	shared_ptr<MaterialResource> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<MaterialResource>(m_fileDir + pMat->GetName() + ".smat.xml");
 	m_mapMaterial[pMat] = pMatRes;
 
 	while (pProp.IsValid())
@@ -926,19 +930,32 @@ shared_ptr<MaterialResource> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 
 			if (_tcsstr(strProperty.c_str(), "Diffuse") != nullptr)
 			{
+				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
+				matSampler->m_strName = strProperty;
+				pMatRes->AddArg(strProperty, matSampler);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
 
 			}
 			else if (_tcsstr(strProperty.c_str(), "Specular") != nullptr)
 			{
-
+				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
+				matSampler->m_strName = strProperty;
+				pMatRes->AddArg(strProperty, matSampler);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
 			}
 			else if (_tcsstr(strProperty.c_str(), "Normal") != nullptr)
 			{
-
+				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
+				matSampler->m_strName = strProperty;
+				pMatRes->AddArg(strProperty, matSampler);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
 			}
 			else if (_tcsstr(strProperty.c_str(), "Emissive") != nullptr)
 			{
-
+				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
+				matSampler->m_strName = strProperty;
+				pMatRes->AddArg(strProperty, matSampler);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
 			}
 		}
 	}

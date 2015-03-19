@@ -70,11 +70,14 @@
     <Filter Include="源文件\Render\Opengl">
       <UniqueIdentifier>{bf26b52e-dedc-40f3-9e3b-438a33de00ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\Render\material">
-      <UniqueIdentifier>{133a0116-e99d-452e-aa27-d84dc9cbe442}</UniqueIdentifier>
+    <Filter Include="源文件\foundation">
+      <UniqueIdentifier>{d3e51185-1b1c-4685-b2a2-4397af9499a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\Render\material">
-      <UniqueIdentifier>{2cbfdc36-716c-4590-a339-3612eae72f4a}</UniqueIdentifier>
+    <Filter Include="源文件\Asset">
+      <UniqueIdentifier>{148db2b1-6531-4817-8adb-f82466ae8206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Asset">
+      <UniqueIdentifier>{e0ef3f8d-0204-4dda-9408-4d6521847a29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,9 +88,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageFileHelper.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Matrix33.h">
@@ -105,9 +105,6 @@
     <ClInclude Include="Ray3D.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Vector3.h">
       <Filter>头文件\math</Filter>
     </ClInclude>
@@ -122,12 +119,6 @@
     </ClInclude>
     <ClInclude Include="MathFunc.h">
       <Filter>头文件\math</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RayTraceApplication.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CameraBase.h">
       <Filter>头文件\module</Filter>
@@ -162,9 +153,6 @@
     <ClInclude Include="IRenderable.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="MaterialManager.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
     <ClInclude Include="RasterMaterial.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
@@ -195,24 +183,6 @@
     <ClInclude Include="FilePath.h">
       <Filter>头文件\util</Filter>
     </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="FbxAppManager.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="FbxAsset.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="FbxFileLoader.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="IAsset.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="IAssetLoader.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="IResource.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
@@ -227,12 +197,6 @@
     </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>头文件\math</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleGLApplication.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleD3D9Application.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>头文件\tinyxml</Filter>
@@ -261,20 +225,8 @@
     <ClInclude Include="SimpleWorldObj.h">
       <Filter>头文件\world</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAsset.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Orientation.h">
       <Filter>头文件\math</Filter>
-    </ClInclude>
-    <ClInclude Include="FbxAppImporter.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshAsset.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="PrefabAsset.h">
-      <Filter>头文件\Resource</Filter>
     </ClInclude>
     <ClInclude Include="StrUtil.h">
       <Filter>头文件\util</Filter>
@@ -282,28 +234,16 @@
     <ClInclude Include="CommonDef.h">
       <Filter>头文件\util</Filter>
     </ClInclude>
-    <ClInclude Include="XmlPrefabLoader.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshFileLoader.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="PrefabResource.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Geometry.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
-    <ClInclude Include="GameObj.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SkeletonResource.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
     <ClInclude Include="SkeletonLoader.h">
-      <Filter>头文件\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="SkeletonAsset.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
     <ClInclude Include="skeleton.h">
@@ -313,31 +253,85 @@
       <Filter>头文件\world</Filter>
     </ClInclude>
     <ClInclude Include="MaterialResource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MaterialAsset.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MaterialAssetLoader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IMaterial.h">
-      <Filter>头文件\Render\material</Filter>
+      <Filter>头文件\Resource</Filter>
     </ClInclude>
     <ClInclude Include="MaterialArg.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>头文件\foundation</Filter>
     </ClInclude>
     <ClInclude Include="Vector2.h">
+      <Filter>头文件\math</Filter>
+    </ClInclude>
+    <ClInclude Include="FragShader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationBase.h">
+      <Filter>头文件\foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceApplication.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleD3D9Application.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGLApplication.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="RenderPass.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Render</Filter>
     </ClInclude>
     <ClInclude Include="VertexShader.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="FragShader.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="AssetManager.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAppImporter.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxFileLoader.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="IAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="IAssetLoader.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialAssetLoader.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshFileLoader.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAsset.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlPrefabLoader.h">
+      <Filter>头文件\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAppManager.h">
+      <Filter>头文件\foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageFileHelper.h">
+      <Filter>头文件\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -345,12 +339,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="raytracetest.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Ray3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageFileHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Matrix33.cpp">
@@ -371,17 +359,11 @@
     <ClCompile Include="Quaternions.cpp">
       <Filter>源文件\math</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="IntersetResults.cpp">
       <Filter>源文件\math</Filter>
     </ClCompile>
     <ClCompile Include="MathFunc.cpp">
       <Filter>源文件\math</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplicationBase.cpp">
-      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RayTraceApplication.cpp">
       <Filter>源文件</Filter>
@@ -425,9 +407,6 @@
     <ClCompile Include="IRenderable.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="MaterialManager.cpp">
-      <Filter>源文件\Render</Filter>
-    </ClCompile>
     <ClCompile Include="RasterMaterial.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
@@ -452,12 +431,6 @@
     <ClCompile Include="FilePath.cpp">
       <Filter>源文件\util</Filter>
     </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="IAsset.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="IResource.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
@@ -467,29 +440,14 @@
     <ClCompile Include="ResourceMananger.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="FbxFileLoader.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="Vector4.cpp">
       <Filter>源文件\math</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
       <Filter>源文件\math</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleGLApplication.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleD3D9Application.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="FbxAppManager.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>源文件\tinyxml</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleRasterMaterial.cpp">
-      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>源文件\Resource</Filter>
@@ -512,28 +470,10 @@
     <ClCompile Include="IWorld.cpp">
       <Filter>源文件\world</Filter>
     </ClCompile>
-    <ClCompile Include="FbxAsset.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureAsset.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshAsset.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="PrefabAsset.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="FbxAppImporter.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="StrUtil.cpp">
       <Filter>源文件\util</Filter>
     </ClCompile>
     <ClCompile Include="XmlPrefabLoader.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshFileLoader.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
     <ClCompile Include="PrefabResource.cpp">
@@ -542,16 +482,7 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="GameObj.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="SkeletonResource.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletonLoader.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletonAsset.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
     <ClCompile Include="skeleton.cpp">
@@ -560,35 +491,89 @@
     <ClCompile Include="SkeletonObj.cpp">
       <Filter>源文件\world</Filter>
     </ClCompile>
-    <ClCompile Include="MaterialResource.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MaterialAsset.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MaterialAssetLoader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IMaterial.cpp">
-      <Filter>源文件\Render\material</Filter>
-    </ClCompile>
-    <ClCompile Include="MaterialArg.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderPass.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="RenderState.h">
       <Filter>头文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="VertexShader.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="Color.cpp">
+      <Filter>源文件\foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPass.cpp">
+      <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="FragShader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialArg.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialResource.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationBase.cpp">
+      <Filter>源文件\foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleD3D9Application.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGLApplication.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleRasterMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray3D.cpp">
+      <Filter>源文件\math</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppManager.cpp">
+      <Filter>源文件\foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppImporter.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxFileLoader.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="IAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialAssetLoader.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshFileLoader.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonLoader.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAsset.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageFileHelper.cpp">
+      <Filter>源文件\util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

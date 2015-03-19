@@ -16,7 +16,7 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	MeshAsset* pMeshAsset = new MeshAsset;
 	pMeshAsset->m_strPath = path;
-	shared_ptr<MeshResource> res = ResourceManager<MeshResource>::GetInstance()->CreateResource(path);
+	shared_ptr<MeshResource> res = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(path);
 
 	//
 	FILE* fp;
