@@ -1,4 +1,4 @@
-﻿生成启动时间为 2015/3/19 12:31:54。
+﻿生成启动时间为 2015/3/19 17:57:29。
      1>项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\raytracetest.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FbxFileLoader.cpp
@@ -12,6 +12,7 @@
          Debug\FbxFileLoader.obj
          Debug\FbxAppImporter.obj
          Debug\FilePath.obj
+         Debug\FragShader.obj
          Debug\GameObj.obj
          Debug\Geometry.obj
          Debug\IAsset.obj
@@ -19,7 +20,11 @@
          Debug\IntersetResults.obj
          Debug\IResource.obj
          Debug\LightBase.obj
+         Debug\MaterialArg.obj
+         Debug\MaterialAsset.obj
+         Debug\MaterialAssetLoader.obj
          Debug\MaterialManager.obj
+         Debug\MaterialResource.obj
          Debug\MathFunc.obj
          Debug\MeshAsset.obj
          Debug\MeshFileLoader.obj
@@ -53,6 +58,8 @@
          Debug\RayTraceRender.obj
          Debug\raytracetest.obj
          Debug\RayTraceViewPort.obj
+         Debug\RenderPass.obj
+         Debug\RenderState.obj
          Debug\ResourceMananger.obj
          Debug\SimpleD3D9Application.obj
          Debug\SimpleGLApplication.obj
@@ -75,12 +82,14 @@
          Debug\tinyxml2.obj
          Debug\Transform.obj
          Debug\Triangle.obj
+         Debug\Vector2.obj
          Debug\Vector3.obj
          Debug\Vector4.obj
+         Debug\VertexShader.obj
          Debug\XmlPrefabLoader.obj
          raytracetest.vcxproj -> J:\github\raytracetest2\raytracetest\Debug\raytracetest.exe
      1>已完成生成项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:01.69
+已用时间 00:00:01.85

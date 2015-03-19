@@ -8,35 +8,35 @@
     </Transform>
     <WorldObj name="Root">
         <Transform>
-            <Translation x="0" y="0" z="0"/>
+            <Translation x="11.776886" y="0" z="7.9940186"/>
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
         <Mesh refPath="./data/meshes/Env_MuSinportal.mesh"/>
-        <WorldObj name="Bone1">
+        <WorldObj name="A">
             <Transform>
-                <Translation x="0" y="140.37831" z="-8.5111658e-008"/>
+                <Translation x="0" y="140.37831" z="0"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
         </WorldObj>
-        <WorldObj name="Bone2">
+        <WorldObj name="B">
             <Transform>
                 <Translation x="0" y="158.65762" z="0"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
         </WorldObj>
-        <WorldObj name="Bone3">
+        <WorldObj name="C">
             <Transform>
-                <Translation x="0" y="169.72044" z="1.6644577e-008"/>
+                <Translation x="0" y="169.72044" z="0"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
         </WorldObj>
-        <WorldObj name="Bone4">
+        <WorldObj name="D">
             <Transform>
-                <Translation x="0" y="180.66841" z="-7.8972671e-006"/>
+                <Translation x="0" y="180.66841" z="-8.1062317e-006"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
@@ -44,14 +44,14 @@
     </WorldObj>
     <WorldObj name="Env_MuSinportal">
         <Transform>
-            <Translation x="0" y="0" z="0"/>
+            <Translation x="11.776886" y="0" z="7.9940186"/>
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
     </WorldObj>
     <WorldObj name="target001">
         <Transform>
-            <Translation x="0" y="0" z="0"/>
+            <Translation x="11.776886" y="0" z="7.9940186"/>
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
@@ -59,7 +59,7 @@
     </WorldObj>
     <WorldObj name="target002">
         <Transform>
-            <Translation x="0" y="0" z="0"/>
+            <Translation x="11.776886" y="0" z="7.9940186"/>
             <Rotation x="0" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>

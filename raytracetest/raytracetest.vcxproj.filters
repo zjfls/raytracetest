@@ -70,6 +70,12 @@
     <Filter Include="源文件\Render\Opengl">
       <UniqueIdentifier>{bf26b52e-dedc-40f3-9e3b-438a33de00ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Render\material">
+      <UniqueIdentifier>{133a0116-e99d-452e-aa27-d84dc9cbe442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render\material">
+      <UniqueIdentifier>{2cbfdc36-716c-4590-a339-3612eae72f4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -149,9 +155,6 @@
     </ClInclude>
     <ClInclude Include="Cube3D.h">
       <Filter>头文件\module</Filter>
-    </ClInclude>
-    <ClInclude Include="IMaterial.h">
-      <Filter>头文件\Render</Filter>
     </ClInclude>
     <ClInclude Include="IRender.h">
       <Filter>头文件\Render</Filter>
@@ -309,6 +312,33 @@
     <ClInclude Include="SkeletonObj.h">
       <Filter>头文件\world</Filter>
     </ClInclude>
+    <ClInclude Include="MaterialResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialAssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IMaterial.h">
+      <Filter>头文件\Render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialArg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FragShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -390,9 +420,6 @@
       <Filter>源文件\module</Filter>
     </ClCompile>
     <ClCompile Include="IRender.cpp">
-      <Filter>源文件\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="IMaterial.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="IRenderable.cpp">
@@ -532,6 +559,36 @@
     </ClCompile>
     <ClCompile Include="SkeletonObj.cpp">
       <Filter>源文件\world</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialAssetLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IMaterial.cpp">
+      <Filter>源文件\Render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialArg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderState.h">
+      <Filter>头文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FragShader.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

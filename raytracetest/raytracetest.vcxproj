@@ -167,6 +167,7 @@
     <ClInclude Include="FbxFileLoader.h" />
     <ClInclude Include="FbxAppImporter.h" />
     <ClInclude Include="FilePath.h" />
+    <ClInclude Include="FragShader.h" />
     <ClInclude Include="GameObj.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="IAsset.h" />
@@ -175,7 +176,11 @@
     <ClInclude Include="IntersetResults.h" />
     <ClInclude Include="IResource.h" />
     <ClInclude Include="LightBase.h" />
+    <ClInclude Include="MaterialArg.h" />
+    <ClInclude Include="MaterialAsset.h" />
+    <ClInclude Include="MaterialAssetLoader.h" />
     <ClInclude Include="MaterialManager.h" />
+    <ClInclude Include="MaterialResource.h" />
     <ClInclude Include="MathDefine.h" />
     <ClInclude Include="MathFunc.h" />
     <ClInclude Include="MeshAsset.h" />
@@ -209,6 +214,7 @@
     <ClInclude Include="RayTracePerpViewPort.h" />
     <ClInclude Include="RayTraceRender.h" />
     <ClInclude Include="RayTraceViewPort.h" />
+    <ClInclude Include="RenderPass.h" />
     <ClInclude Include="ResourceMananger.h" />
     <ClInclude Include="SimpleD3D9Application.h" />
     <ClInclude Include="SimpleGLApplication.h" />
@@ -233,8 +239,10 @@
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
+    <ClInclude Include="VertexShader.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +254,7 @@
     <ClCompile Include="FbxFileLoader.cpp" />
     <ClCompile Include="FbxAppImporter.cpp" />
     <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="FragShader.cpp" />
     <ClCompile Include="GameObj.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="IAsset.cpp" />
@@ -253,7 +262,11 @@
     <ClCompile Include="IntersetResults.cpp" />
     <ClCompile Include="IResource.cpp" />
     <ClCompile Include="LightBase.cpp" />
+    <ClCompile Include="MaterialArg.cpp" />
+    <ClCompile Include="MaterialAsset.cpp" />
+    <ClCompile Include="MaterialAssetLoader.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
+    <ClCompile Include="MaterialResource.cpp" />
     <ClCompile Include="MathFunc.cpp" />
     <ClCompile Include="MeshAsset.cpp" />
     <ClCompile Include="MeshFileLoader.cpp" />
@@ -289,6 +302,8 @@
     <ClCompile Include="RayTraceRender.cpp" />
     <ClCompile Include="raytracetest.cpp" />
     <ClCompile Include="RayTraceViewPort.cpp" />
+    <ClCompile Include="RenderPass.cpp" />
+    <ClCompile Include="RenderState.h" />
     <ClCompile Include="ResourceMananger.cpp" />
     <ClCompile Include="SimpleD3D9Application.cpp" />
     <ClCompile Include="SimpleGLApplication.cpp" />
@@ -316,8 +331,10 @@
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vector4.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="XmlPrefabLoader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

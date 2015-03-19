@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "StrUtil.h"
-void replaceCharInString(string str, char cSrc, char cDst)
+void replaceCharInString(string& str, char cSrc, char cDst)
 {
 	int nLength = str.length();
 	for (int i = 0; i < nLength; ++i)

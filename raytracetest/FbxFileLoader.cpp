@@ -8,6 +8,7 @@
 #include "PrefabResource.h"
 #include "FilePath.h"
 #include "SkeletonResource.h"
+#include "MaterialResource.h"
 #include "skeleton.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
@@ -173,12 +174,13 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 
 	IWorldObj* pModuleOwener = obj;
 	//
- 	
+
 
 	if (pMesh == nullptr)
 	{
 		return nullptr;
 	}
+	//
 	int triangleCount = pMesh->GetPolygonCount();
 	int vertexCounter = 0;
 	int cpCount = pMesh->GetControlPointsCount();
@@ -641,6 +643,22 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 
 	}
 #pragma endregion
+#pragma region processmaterial
+	//material
+	int nMatCount = pNode->GetMaterialCount();
+	//std::cout << pNode->GetName() << " has material count:" << nMatCount << std::endl;
+	FbxLayerElementArrayTemplate<int> *tArray = new FbxLayerElementArrayTemplate<int>(EFbxType::eFbxInt);
+	pMesh->GetMaterialIndices(&tArray);
+	int nMatIndex = tArray->GetAt(0);
+	FbxSurfaceMaterial* pMat = pNode->GetMaterial(nMatIndex);
+	if (pMat == nullptr)
+	{
+		std::cout << "can not find material for " << pNode->GetName() << std::endl;
+	}
+	//
+	ProcessMaterial(pMat);
+	//
+#pragma endregion
 	return pMeshResource;
 #pragma region split mesh
 	return nullptr;
@@ -877,4 +895,53 @@ FbxNode* FbxFileLoader::GetSkeletonRoot(FbxNode* pNode)
 		return pParentSke;
 	}
 	return nullptr;
+}
+
+shared_ptr<MaterialResource> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pMat)
+{
+	if (m_mapMaterial.find(pMat) != std::end(m_mapMaterial))
+	{
+		return m_mapMaterial[pMat];
+	}
+	FbxSurfacePhong* pSrfPhong = (FbxSurfacePhong*)pMat;
+	int nProp = pMat->GetSrcPropertyCount();
+	FbxProperty pProp = pSrfPhong->GetFirstProperty();
+
+
+	shared_ptr<MaterialResource> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource(m_fileDir + pMat->GetName() + ".smat.xml");
+	m_mapMaterial[pMat] = pMatRes;
+
+	while (pProp.IsValid())
+	{
+		//std::cout << pProp.GetName() << std::endl;
+		pProp = pMat->GetNextProperty(pProp);
+		int nTextureCount = pProp.GetSrcObjectCount<FbxFileTexture>();
+		for (int i = 0; i < nTextureCount; ++i)
+		{
+			FbxFileTexture* pTex = pProp.GetSrcObject<FbxFileTexture>(i);
+			std::cout <<pProp.GetName()<<":"<< getFileName(pTex->GetName()).c_str() << std::endl;
+
+			string strProperty = pProp.GetName();
+			string fileName = getFileName(pTex->GetName());
+
+			if (_tcsstr(strProperty.c_str(), "Diffuse") != nullptr)
+			{
+
+			}
+			else if (_tcsstr(strProperty.c_str(), "Specular") != nullptr)
+			{
+
+			}
+			else if (_tcsstr(strProperty.c_str(), "Normal") != nullptr)
+			{
+
+			}
+			else if (_tcsstr(strProperty.c_str(), "Emissive") != nullptr)
+			{
+
+			}
+		}
+	}
+	return pMatRes;
+	
 }
