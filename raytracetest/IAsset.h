@@ -17,7 +17,7 @@ public:
 	*Return : void
 
 	*/
-	virtual void Release(bool bReleaseResource) = 0;
+	virtual void Release(bool bReleaseResource);
 
 	shared_ptr<IResource>		GetResource(string refPath)
 	{

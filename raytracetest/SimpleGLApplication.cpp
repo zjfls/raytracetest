@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "SimpleGLApplication.h"
+#include "gl/glew.h"
 #include <gl/glut.h>
+#include "gl/freeglut.h"
+
 SimpleGLApplication* Singleton<SimpleGLApplication>::_instance = nullptr;
 
 SimpleGLApplication::SimpleGLApplication()

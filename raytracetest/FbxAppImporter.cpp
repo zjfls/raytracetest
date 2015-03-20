@@ -3,7 +3,6 @@
 #include "FbxAppManager.h"
 #include "AssetManager.h"
 #include "FbxAsset.h"
-#include "SimpleRasterMaterial.h"
 #include "MeshResource.h"
 #include "PrefabResource.h"
 #include "FilePath.h"
@@ -14,6 +13,7 @@
 #include "skeleton.h"
 #include "TextureSampler.h"
 #include "Texture.h"
+#include "RasterMaterial.h"
 using namespace tinyxml2;
 FbxAppImporter* Singleton<FbxAppImporter>::_instance = nullptr;
 
@@ -28,6 +28,21 @@ FbxAppImporter::~FbxAppImporter()
 
 void FbxAppImporter::ImportFbxFile(string path)
 {
+	//shared_ptr<IWorldObj> pWorldObj;
+	//int refCount = pWorldObj.use_count();
+	//{
+	//	pWorldObj = shared_ptr<IWorldObj>(new IWorldObj);
+	//	refCount = pWorldObj.use_count();
+	//}
+	//{
+	//	shared_ptr<IWorldObj> pWorldObj2 = pWorldObj;
+	//	IWorldObj* pObj = pWorldObj.get();
+	//	refCount = pWorldObj.use_count();
+	//	shared_ptr<IWorldObj> pWorldObj3(pObj);
+	//	refCount = pWorldObj.use_count();
+	//	int i = 0;
+	//}
+	//refCount = pWorldObj.use_count();
 	FbxAsset* pAsset = (FbxAsset*)AssetManager::GetInstance()->LoadAsset("./data/meshes/file_split.fbx");
 	string assetDirectory = getFileDirectory(pAsset->m_strPath);
 	string assetName = getFileName(pAsset->m_strPath);
@@ -80,9 +95,10 @@ void FbxAppImporter::ImportFbxFile(string path)
 	//}
 	for each (shared_ptr<IResource> pRes in vecRes)
 	{
-		shared_ptr<SimpleRasterMaterial> pMat = dynamic_pointer_cast<SimpleRasterMaterial>(pRes);
+		shared_ptr<RasterMaterial> pMat = dynamic_pointer_cast<RasterMaterial>(pRes);
 		if (pMat != nullptr)
 		{
+			ImportMaterial(pMat, pMat->GetRefPath());
 			continue;
 		}
 		shared_ptr<PrefabResource>	pPrefab = dynamic_pointer_cast<PrefabResource>(pRes);
@@ -113,7 +129,7 @@ void FbxAppImporter::ImportPrefab(shared_ptr<PrefabResource> pPrefab, string pat
 	XMLDocument doc;
 	//XMLDeclaration *declare = new XMLDeclaration("1.0");
 	doc.LinkEndChild(doc.NewDeclaration("xml version=\"1.0\" encoding=\"UTF-8\""));
-	doc.LinkEndChild(doc.NewComment("prefab×ÊÔ´"));
+	doc.LinkEndChild(doc.NewComment("prefab resource"));
 	tinyxml2::XMLElement* root = doc.NewElement("WorldObj");
 	doc.LinkEndChild(root);
 	PrefabProcessWorldObj(doc,pPrefab->m_pRoot, root);
@@ -171,7 +187,8 @@ void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* p
 	}
 	XMLElement* pMatElem = doc.NewElement("Material");
 	pElem->LinkEndChild(pMatElem);
-	PrefabProcessMaterial(doc, pMesh->m_pMaterial, pMatElem);
+	//pMatElem->SetAttribute("Name", "testmat");
+	PrefabProcessMaterial(doc, dynamic_pointer_cast<RasterMaterial>(pMesh->m_pMaterial), pMatElem);
 }
 
 void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)
@@ -200,19 +217,21 @@ void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Tr
 	//
 }
 
-void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_ptr<MaterialResource> pMaterial, tinyxml2::XMLElement* pElem)
+void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_ptr<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
 {
-	pElem->SetAttribute("Name", getFileName(pMaterial->GetRefPath()).c_str());
+	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
 	for each (std::pair<string,MaterialArg*> pair in pMaterial->m_matArgs)
 	{
 		switch (pair.second->m_EType)
 		{
 			case EMATARGTYPESAMPLER:
 			{
-				//XMLElement* pElemSamp = doc.NewElement("Texture");
+				//XMLElement* pElemSamp = doc.NewElement("Sampler");
 				//pElemSamp->SetAttribute("Name", pair.first.c_str());
-				//pElemSamp->SetAttribute("Ref", pair.second->GetData<TextureSampler>()->m_pTexture->GetRefPath().c_str());
-				//pElemSamp->LinkEndChild(pElemSamp);
+
+				//TextureSampler* pTexSampler = pair.second->GetData<TextureSampler>();
+				//pElemSamp->SetAttribute("Ref", pTexSampler->m_pTexture->GetRefPath().c_str());
+				//pElem->LinkEndChild(pElemSamp);
 			}
 			break;
 			default:
@@ -243,7 +262,7 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	fwrite((void*)&version, sizeof(int), 1, fp);
 	//write index data
 	unsigned int nIndexStrip = 2;
-	if (pMesh->m_IndexData.indexDesc == stIndexData::EIndexInt)
+	if (pMesh->m_IndexData.indexDesc == IndexData::EIndexInt)
 	{
 		nIndexStrip = 1;
 	}
@@ -261,7 +280,7 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	fwrite((void*)&nVDescNum, sizeof(unsigned int), 1, fp);
 	for (unsigned int i = 0; i < nVDescNum; ++i)
 	{
-		stVertexData::VertexDataDesc desc = pMesh->m_VertexData.vecDataDesc[i];
+		VertexData::VertexDataDesc desc = pMesh->m_VertexData.vecDataDesc[i];
 		int useDesc, typeDesc;
 		useDesc = (int)desc.usedesc;
 		typeDesc = (int)desc.typedesc;
@@ -330,4 +349,52 @@ void FbxAppImporter::SkeletonProcessBone(tinyxml2::XMLDocument& doc, Bone* pBone
 		SkeletonProcessBone(doc, pChildBone, pChild);
 	}
 
+}
+
+void FbxAppImporter::ImportMaterial(shared_ptr<RasterMaterial> pMatRes, string path)
+{
+	XMLDocument doc;
+	//XMLDeclaration *declare = new XMLDeclaration("1.0");
+	doc.LinkEndChild(doc.NewDeclaration("xml version=\"1.0\" encoding=\"UTF-8\""));
+	doc.LinkEndChild(doc.NewComment("material resource"));
+	tinyxml2::XMLElement* root = doc.NewElement("Material");
+	doc.LinkEndChild(root);
+	//PrefabProcessWorldObj(doc, pPrefab->m_pRoot, root);
+	root->SetAttribute("Name", removeSuffix(getFileName(pMatRes->GetRefPath())).c_str());
+	for each (std::pair<string,MaterialArg*> p in pMatRes->m_matArgs)
+	{
+		XMLElement* pArgElem = doc.NewElement("MaterialArg");
+		pArgElem->SetAttribute("Name", p.first.c_str());
+		root->LinkEndChild(pArgElem);
+		switch (p.second->m_EType)
+		{
+			case EMATARGTYPESAMPLER:
+			{
+				pArgElem->SetAttribute("Type", "TextureSampler");
+				XMLElement* pTextureElem = doc.NewElement("Texture");
+				pArgElem->LinkEndChild(pTextureElem);
+				TextureSampler* pSampler = p.second->GetData<TextureSampler>();
+				pTextureElem->SetAttribute("RefPath",pSampler->m_pTexture->GetRefPath().c_str() );
+				switch (pSampler->m_pTexture->GetTexType())
+				{
+					case ETEXTYPE2D:
+					{
+						pTextureElem->SetAttribute("Type", "Texture2D");
+					}
+					break;
+					default:
+					{
+						pTextureElem->SetAttribute("Type", "Invalid");
+					}
+					break;
+				}
+			}
+			break;
+			default:
+			break;
+		}
+
+		
+	}
+	doc.SaveFile(path.c_str());
 }

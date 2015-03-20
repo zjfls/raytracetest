@@ -5,6 +5,7 @@ ResourceManager<Texture>* Singleton<ResourceManager<Texture>>::_instance = nullp
 
 Texture::Texture()
 {
+	eTexType = ETEXTYPEINVALID;
 }
 
 

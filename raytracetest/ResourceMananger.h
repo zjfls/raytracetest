@@ -23,23 +23,18 @@ public:
 	ResourceManager(){};
 	virtual ~ResourceManager(){};
 
-	template<class U>
+	//template<class U>
 	shared_ptr<T>	GetResource(string path);
 	template<class U>
-	shared_ptr<T>	CreateResource(string refPath);
+	shared_ptr<U>	CreateResource(string refPath);
 	template<class U>
-	shared_ptr<T>	CreateResource();
-
-
-	template<class U>
-	shared_ptr<T> CreateResource2(){ shared_ptr<U> u(new U); return u; }
-	//void	AddResource(string refPath, shared_ptr<T> pRes);
+	shared_ptr<U>	CreateResource();
 private:
 	std::unordered_map<string, std::shared_ptr<T>> m_ResMap;
 };
 
 template<class T> template<class U>
-shared_ptr<T> ResourceManager<T>::CreateResource()
+shared_ptr<U> ResourceManager<T>::CreateResource()
 {
 	shared_ptr<U> pRes(new U);
 	char temp[128];
@@ -51,24 +46,22 @@ shared_ptr<T> ResourceManager<T>::CreateResource()
 }
 
 template<class T> template<class U>
-shared_ptr<T> ResourceManager<T>::CreateResource(string refPath)
+shared_ptr<U> ResourceManager<T>::CreateResource(string refPath)
 {
-	shared_ptr<T> pRes(new T);
+	shared_ptr<U> pRes(new U);
 	pRes->m_refPath = refPath;
 	m_ResMap[refPath] = pRes;
 	std::cout << "create resource:" << refPath.c_str() << std::endl;
 	return pRes;
 }
 
-template<class T> template<class U>
+template<class T>
 shared_ptr<T> ResourceManager<T>::GetResource(string path)
 {
 	if (m_ResMap.find(path) == std::end(m_ResMap))
 	{
-		return nullptr;
+		return shared_ptr<T>(nullptr);
 	}
 	return m_ResMap[path];
-	//shared_ptr<int> p;
-	//p.get();
 }
 

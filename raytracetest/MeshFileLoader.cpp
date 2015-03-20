@@ -37,9 +37,9 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	fread((void*)&nIndexNum, sizeof(unsigned int), 1, fp);
 	res->m_IndexData.indexNum = nIndexNum;
 	
-	res->m_IndexData.indexDesc = (stIndexData::EnumIndexDesc)indexDesc;
+	res->m_IndexData.indexDesc = (IndexData::EnumIndexDesc)indexDesc;
 	unsigned int nIndexStrip = 2;
-	if (res->m_IndexData.indexDesc == stIndexData::EIndexInt)
+	if (res->m_IndexData.indexDesc == IndexData::EIndexInt)
 	{
 		nIndexStrip = 4;
 	}
@@ -55,13 +55,13 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	fread((void*)&nVDescNum, sizeof(unsigned int), 1, fp);
 	for (int i = 0; i < nVDescNum; ++i)
 	{
-		stVertexData::VertexDataDesc desc;
+		VertexData::VertexDataDesc desc;
 		int usedesc, typedesc, nOffset;
 		fread((void*)&usedesc,sizeof(int),1,fp);
 		fread((void*)&typedesc, sizeof(int), 1, fp);
 		fread((void*)&nOffset, sizeof(int), 1, fp);
-		desc.usedesc = (stVertexData::EnumVertexUseDesc)usedesc;
-		desc.typedesc = (stVertexData::EnumVertexTypeDesc)typedesc;
+		desc.usedesc = (VertexData::EnumVertexUseDesc)usedesc;
+		desc.typedesc = (VertexData::EnumVertexTypeDesc)typedesc;
 		desc.nOffset = nOffset;
 		res->m_VertexData.vecDataDesc.push_back(desc);
 	}

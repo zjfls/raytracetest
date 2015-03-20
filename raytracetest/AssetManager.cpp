@@ -4,6 +4,7 @@
 #include "FbxFileLoader.h"
 #include "XmlPrefabLoader.h"
 #include "MeshFileLoader.h"
+#include "MaterialAssetLoader.h"
 AssetManager* Singleton<AssetManager>::_instance = nullptr;
 
 AssetManager::AssetManager()
@@ -36,6 +37,7 @@ void AssetManager::Init()
 	AddLoader("fbx", new FbxFileLoader);
 	AddLoader("prefab.xml", new XmlPrefabLoader);
 	AddLoader("mesh", new MeshFileLoader);
+	AddLoader("smat.xml", new MaterialAssetLoader);
 }
 
 //

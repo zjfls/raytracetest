@@ -7,6 +7,7 @@
 #include "ResourceMananger.h"
 #include "AssetManager.h"
 #include "PrefabResource.h"
+#include "RasterMaterial.h"
 using namespace tinyxml2;
 XmlPrefabLoader::XmlPrefabLoader()
 {
@@ -91,9 +92,19 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, IWorldObj* pO
 {
 	string path = pElem->Attribute("refPath");
 	Mesh* pMesh = pObj->addModule<Mesh>();
-	shared_ptr<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource<MeshResource>(path);
+	shared_ptr<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	if (pMeshRes == nullptr)
 	{
 		AssetManager::GetInstance()->LoadAsset(path);
 	}
+	XMLElement* pMatElem = pElem->FirstChildElement("Material");
+	string matpath = pMatElem->Attribute("refPath");
+	shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(path));
+	if (pMatRes == nullptr)
+	{
+		AssetManager::GetInstance()->LoadAsset(matpath);
+	}
+	pMesh->m_pMaterial = pMatRes;
+
+
 }

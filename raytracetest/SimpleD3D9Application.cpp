@@ -239,7 +239,7 @@ HRESULT SimpleD3D9Application::InitVB()
 	//copy index data
 	int sizeIndex = 2;
 	D3DFORMAT indexFormat = D3DFMT_INDEX16;
-	if (pMesh->m_IndexData.indexDesc == stIndexData::EIndexInt)
+	if (pMesh->m_IndexData.indexDesc == IndexData::EIndexInt)
 	{
 		sizeIndex = 4;
 		indexFormat = D3DFMT_INDEX32;

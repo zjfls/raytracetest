@@ -1,7 +1,9 @@
 #pragma once
 #include "ModuleBase.h"
+#include "VertexData.h"
+#include "IndexData.h"
 class MaterialResource;
-class IRenderable:public ModuleBase
+class IRenderable :public ModuleBase
 {
 public:
 	IRenderable();
@@ -12,5 +14,8 @@ public:
 
 
 	shared_ptr<MaterialResource> m_pMaterial;
+protected:
+	VertexData* m_pVertexData;
+	IndexData* m_pIndexData;
 };
 

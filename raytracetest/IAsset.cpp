@@ -10,3 +10,8 @@ IAsset::IAsset()
 IAsset::~IAsset()
 {
 }
+
+void IAsset::Release(bool bReleaseResource)
+{
+
+}

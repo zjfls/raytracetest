@@ -1,11 +1,12 @@
-﻿生成启动时间为 2015/3/19 23:34:17。
-     1>项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2015/3/20 17:49:50。
+     1>项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\raytracetest.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FbxAppImporter.cpp
-         FbxAppImporter.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IJ:\github\raytracetest2\raytracetest\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/ /I..\thirdparty\fbx\include /I..\thirdparty\cg\include /I..\thirdparty\directx\include /I..\thirdparty\gl\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\raytracetest.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleGLApplication.cpp
+         SimpleGLApplication.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\github\raytracetest\Debug\raytracetest.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\debug /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 opengl32.lib glu32.lib glut32.lib "libfbxsdk-md.lib" d3dx9d.lib d3d9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\github\raytracetest\Debug\raytracetest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\github\raytracetest\Debug\raytracetest.lib" /MACHINE:X86 Debug\ApplicationBase.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"J:\github\raytracetest2\raytracetest\Debug\raytracetest.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\thirdparty\fbx\lib\vs2013\x86\debug /LIBPATH:..\thirdparty\cg\lib /LIBPATH:..\thirdparty\directx\lib\x86 J:\github\raytracetest2\raytracetest\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib J:\github\raytracetest2\raytracetest\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib J:\github\raytracetest2\raytracetest\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib opengl32.lib glu32.lib glut32.lib "libfbxsdk-md.lib" d3dx9d.lib d3d9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"J:\github\raytracetest2\raytracetest\Debug\raytracetest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"J:\github\raytracetest2\raytracetest\Debug\raytracetest.lib" /MACHINE:X86 Debug\ApplicationBase.obj
          Debug\AssetManager.obj
+         Debug\Camera.obj
          Debug\DirectionalLight.obj
          Debug\FbxAppManager.obj
          Debug\FbxAsset.obj
@@ -16,6 +17,7 @@
          Debug\Geometry.obj
          Debug\IAsset.obj
          Debug\ImageFileHelper.obj
+         Debug\IndexData.obj
          Debug\IntersetResults.obj
          Debug\IResource.obj
          Debug\LightBase.obj
@@ -60,7 +62,6 @@
          Debug\ResourceMananger.obj
          Debug\SimpleD3D9Application.obj
          Debug\SimpleGLApplication.obj
-         Debug\SimpleRasterMaterial.obj
          Debug\SimpleRTMaterial.obj
          Debug\SimpleWorld.obj
          Debug\SimpleWorldObj.obj
@@ -82,11 +83,12 @@
          Debug\Vector2.obj
          Debug\Vector3.obj
          Debug\Vector4.obj
+         Debug\VertexData.obj
          Debug\VertexShader.obj
          Debug\XmlPrefabLoader.obj
-         raytracetest.vcxproj -> H:\github\raytracetest\Debug\raytracetest.exe
-     1>已完成生成项目“H:\github\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
+         raytracetest.vcxproj -> J:\github\raytracetest2\raytracetest\Debug\raytracetest.exe
+     1>已完成生成项目“J:\github\raytracetest2\raytracetest\raytracetest\raytracetest.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.65
+已用时间 00:00:00.88

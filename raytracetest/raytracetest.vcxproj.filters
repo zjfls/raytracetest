@@ -150,12 +150,6 @@
     <ClInclude Include="IRender.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderable.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="RasterMaterial.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
     <ClInclude Include="RasterRender.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
@@ -200,9 +194,6 @@
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>头文件\tinyxml</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleRasterMaterial.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>头文件\Resource</Filter>
@@ -333,6 +324,21 @@
     <ClInclude Include="ImageFileHelper.h">
       <Filter>头文件\util</Filter>
     </ClInclude>
+    <ClInclude Include="RasterMaterial.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -404,12 +410,6 @@
     <ClCompile Include="IRender.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderable.cpp">
-      <Filter>源文件\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="RasterMaterial.cpp">
-      <Filter>源文件\Render</Filter>
-    </ClCompile>
     <ClCompile Include="RasterRender.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
@@ -473,9 +473,6 @@
     <ClCompile Include="StrUtil.cpp">
       <Filter>源文件\util</Filter>
     </ClCompile>
-    <ClCompile Include="XmlPrefabLoader.cpp">
-      <Filter>源文件\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="PrefabResource.cpp">
       <Filter>源文件\Resource</Filter>
     </ClCompile>
@@ -516,9 +513,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGLApplication.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleRasterMaterial.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="VertexShader.cpp">
@@ -575,5 +569,26 @@
     <ClCompile Include="ImageFileHelper.cpp">
       <Filter>源文件\util</Filter>
     </ClCompile>
+    <ClCompile Include="RasterMaterial.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlPrefabLoader.cpp">
+      <Filter>源文件\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

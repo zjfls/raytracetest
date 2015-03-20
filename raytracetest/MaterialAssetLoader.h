@@ -6,5 +6,8 @@ class MaterialAssetLoader :
 public:
 	MaterialAssetLoader();
 	~MaterialAssetLoader();
+
+
+	virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
 };
 

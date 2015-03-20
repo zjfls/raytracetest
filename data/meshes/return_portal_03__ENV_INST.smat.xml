@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<Material Name="return_portal_03__ENV_INST.smat">
+    <MaterialArg Name="EmissiveColor" Type="TextureSampler">
+        <Texture RefPath="./data/meshes/Parent_emissive.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="DiffuseColor" Type="TextureSampler">
+        <Texture RefPath="./data/meshes/hero_portal_D3.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="NormalMap" Type="TextureSampler">
+        <Texture RefPath="./data/meshes/parent_normal.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="SpecularColor" Type="TextureSampler">
+        <Texture RefPath="./data/meshes/hero_portal_D3.tga" Type="Texture2D"/>
+    </MaterialArg>
+</Material>

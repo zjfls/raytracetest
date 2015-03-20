@@ -4,6 +4,7 @@
 
 Texture2D::Texture2D()
 {
+	eTexType = ETEXTYPE2D;
 }
 
 

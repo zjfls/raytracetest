@@ -65,7 +65,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <NuGetPackageImportStamp>253f3581</NuGetPackageImportStamp>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;$(IncludePath)</IncludePath>
@@ -86,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\gl\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +124,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\gl\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="ApplicationBase.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CommonDef.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="FbxAppManager.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="IAsset.h" />
     <ClInclude Include="IAssetLoader.h" />
     <ClInclude Include="ImageFileHelper.h" />
+    <ClInclude Include="IndexData.h" />
     <ClInclude Include="IntersetResults.h" />
     <ClInclude Include="IResource.h" />
     <ClInclude Include="LightBase.h" />
@@ -215,7 +219,6 @@
     <ClInclude Include="ResourceMananger.h" />
     <ClInclude Include="SimpleD3D9Application.h" />
     <ClInclude Include="SimpleGLApplication.h" />
-    <ClInclude Include="SimpleRasterMaterial.h" />
     <ClInclude Include="SimpleRTMaterial.h" />
     <ClInclude Include="SimpleWorld.h" />
     <ClInclude Include="SimpleWorldObj.h" />
@@ -239,12 +242,14 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
+    <ClInclude Include="VertexData.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationBase.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="FbxAppManager.cpp" />
     <ClCompile Include="FbxAsset.cpp" />
@@ -255,6 +260,7 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="ImageFileHelper.cpp" />
+    <ClCompile Include="IndexData.cpp" />
     <ClCompile Include="IntersetResults.cpp" />
     <ClCompile Include="IResource.cpp" />
     <ClCompile Include="LightBase.cpp" />
@@ -301,7 +307,6 @@
     <ClCompile Include="ResourceMananger.cpp" />
     <ClCompile Include="SimpleD3D9Application.cpp" />
     <ClCompile Include="SimpleGLApplication.cpp" />
-    <ClCompile Include="SimpleRasterMaterial.cpp" />
     <ClCompile Include="SimpleRTMaterial.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
     <ClCompile Include="SimpleWorldObj.cpp" />
@@ -328,10 +333,23 @@
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vector4.cpp" />
+    <ClCompile Include="VertexData.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="XmlPrefabLoader.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets')" />
+    <Import Project="..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets" Condition="Exists('..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets'))" />
+  </Target>
 </Project>
