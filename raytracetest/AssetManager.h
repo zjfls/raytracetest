@@ -53,7 +53,7 @@ public:
 
 	*/
 	void AddLoader(string strSuff, IAssetLoader* pLoader);
-	void Init();
+	bool Init();
 private:
 	std::map<string, IAssetLoader*> m_LoaderMap;
 	std::map<string, IAsset*> m_AssetMap;

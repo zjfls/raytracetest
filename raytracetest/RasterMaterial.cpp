@@ -3,6 +3,7 @@
 
 
 RasterMaterial::RasterMaterial()
+
 {
 }
 

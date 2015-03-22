@@ -9,10 +9,9 @@ public:
 	IRenderable();
 	virtual ~IRenderable();
 
+	virtual shared_ptr<MaterialResource> GetDefaultMaterial();
 
 	virtual void Update();
-
-
 	shared_ptr<MaterialResource> m_pMaterial;
 protected:
 	VertexData* m_pVertexData;

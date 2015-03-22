@@ -16,13 +16,16 @@
 #include "FbxAppManager.h"
 #include "AssetManager.h"
 #include "FbxAppImporter.h"
+#include "D3D9Application.h"
 int _tmain(int argc, _TCHAR* argv[])
 {
-	FbxAppManager::GetInstance()->Init();
-	AssetManager::GetInstance()->Init();
-	FbxAppImporter::GetInstance()->ImportFbxFile("../data/meshes/file_split.fbx");
+	D3D9Application::GetInstance()->Init(argc, argv);
+	D3D9Application::GetInstance()->Run();
+	//FbxAppManager::GetInstance()->Init();
+	//AssetManager::GetInstance()->Init();
+	//FbxAppImporter::GetInstance()->ImportFbxFile("../data/meshes/file_split.fbx");
 	//IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("../data/meshes/file_split.fbx");
-	return 0;
+	//return 0;
 	//SimpleD3D9Application::GetInstance()->Init(argc, argv);
 	//SimpleD3D9Application::GetInstance()->Run();
 

@@ -3,6 +3,7 @@
 
 class IRender;
 class IWorldObj;
+class IRenderTarget;
 class CameraBase :
 	public ModuleBase
 {
@@ -13,7 +14,7 @@ public:
 	virtual void OnLateUpdate();
 	virtual void Render();
 	IRender* m_pRender;
-
+	IRenderTarget* m_pRenderTarget;
 
 	float m_fVertFov;
 	float m_fHorzFov;

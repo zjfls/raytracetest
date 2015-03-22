@@ -4,6 +4,7 @@ _instance
 ResourceManager<MaterialResource>* Singleton<ResourceManager<MaterialResource>>::_instance = nullptr;
 
 MaterialResource::MaterialResource()
+	:m_eFillter(EFILLTEROPAUE)
 {
 }
 
