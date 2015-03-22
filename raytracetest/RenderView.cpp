@@ -16,7 +16,7 @@ stRenderViewInfo::stRenderViewInfo()
 {
 	m_nWidth = 1024;
 	m_nHeight = 768;
-	m_eTargetFormt = TFNONE;
+	m_eTargetFormt = TFA8R8G8B8;
 	m_bDepth = true;
 	m_eDepthFormt = TFD24X8;
 	m_eMultiSampleType = MSNONE;

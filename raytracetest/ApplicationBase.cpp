@@ -28,7 +28,7 @@ bool ApplicationBase::Init(int argc, char** argv)
 	{
 		return false;
 	}
-
+	ReadSettings();
 	CreateAppWindow();
 	if (false == RenderPathManager::GetInstance()->Init())
 	{
@@ -91,6 +91,16 @@ void ApplicationBase::Run()
 bool ApplicationBase::CreateAppWindow()
 {
 	return true;
+}
+
+void ApplicationBase::ReadSettings()
+{
+	int width = EnviromentSetting::GetInstance()->GetIntSetting("Width");
+	int height = EnviromentSetting::GetInstance()->GetIntSetting("Height");
+	//m_RenderViewInfo.m_windowID = (unsigned int)window;
+	m_RenderViewInfo.m_nHeight = width;
+	m_RenderViewInfo.m_nWidth = height;
+	m_RenderViewInfo.m_bWindowed = (bool)EnviromentSetting::GetInstance()->GetIntSetting("Windowed");
 }
 
 

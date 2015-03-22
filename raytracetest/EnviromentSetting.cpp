@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "EnviromentSetting.h"
+#include "tinyxml2.h"
+using namespace tinyxml2;
 EnviromentSetting* Singleton<EnviromentSetting>::_instance = nullptr;
 
 EnviromentSetting::EnviromentSetting()
 {
+
 }
 
 
@@ -34,6 +37,22 @@ float EnviromentSetting::GetFloatSetting(string name)
 
 bool EnviromentSetting::Init()
 {
-	m_EnviromentSetting["RenderType"] = "D3D9";
+	//m_EnviromentSetting["RenderType"] = "D3D9";
+	XMLDocument doc;
+	doc.LoadFile("./data/config/EnvSettings.xml");
+	XMLElement* pConfig = doc.FirstChildElement("CONFIG");
+	if (pConfig == nullptr)
+	{
+		return false;
+	}
+	XMLElement* pSetting = pConfig->FirstChildElement("Setting");
+	while (pSetting != nullptr)
+	{
+		string name = pSetting->Attribute("Name");
+		string value = pSetting->Attribute("Value");
+		m_EnviromentSetting[name] = value; 
+		std::cout << name.c_str() << ":" << value.c_str() << std::endl;
+		pSetting = pSetting->NextSiblingElement("Setting");
+	}
 	return true;
 }

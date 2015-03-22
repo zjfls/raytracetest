@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "D3D9Application.h"
 #include "IWorld.h"
+#include "EnviromentSetting.h"
 D3D9Application* Singleton<D3D9Application>::_instance = nullptr;
 
 D3D9Application::D3D9Application()
@@ -29,6 +30,7 @@ void D3D9Application::OnEndInit()
 
 void D3D9Application::Run()
 {
+	ShowWindow((HWND)m_RenderViewInfo.m_windowID, SW_SHOWDEFAULT);
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
 
@@ -56,6 +58,7 @@ void D3D9Application::CleanUp()
 
 bool D3D9Application::CreateAppWindow()
 {
+
 	const char* const myclass = "myclass";
 	WNDCLASSEX wndclass = { sizeof(WNDCLASSEX), CS_DBLCLKS, WindowProcedure,
 		0, 0, GetModuleHandle(0), LoadIcon(0, IDI_APPLICATION),
@@ -64,16 +67,15 @@ bool D3D9Application::CreateAppWindow()
 	RegisterClassEx(&wndclass);
 	HWND window = CreateWindowEx(0, myclass, "d3dwindow",
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
-		1024, 768, 0, 0, GetModuleHandle(0), 0);
-	m_RenderViewInfo.m_windowID = (unsigned int)window;
-	m_RenderViewInfo.m_nHeight = 768;
-	m_RenderViewInfo.m_nWidth = 1024;
-	ShowWindow(window, SW_SHOWDEFAULT);
+		m_RenderViewInfo.m_nWidth, m_RenderViewInfo.m_nHeight, 0, 0, GetModuleHandle(0), 0);
+	m_RenderViewInfo.m_windowID = (int)window;
+	//ShowWindow(window, SW_SHOWDEFAULT);
 	return true;
 }
 
 long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp)
 {
+
 	switch (msg)
 	{
 		case WM_DESTROY:

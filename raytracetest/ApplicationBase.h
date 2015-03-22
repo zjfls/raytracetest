@@ -10,14 +10,15 @@ public:
 
 	bool Init(int argc, char** argv);
 	
-	virtual void SetupScene();
-	virtual void OnEndInit();
-	virtual void PreUpdate();
-	virtual void OnUpdate();
+	void	ReadSettings();
 	virtual void Run();
 protected:
 	virtual bool CreateAppWindow();
 	virtual void OnInit();
+	virtual void SetupScene();
+	virtual void OnEndInit();
+	virtual void PreUpdate();
+	virtual void OnUpdate();
 
 
 protected:

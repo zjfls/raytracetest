@@ -9,12 +9,13 @@ public:
 	virtual ~D3D9Application();
 
 	
-	virtual void SetupScene();
-	virtual void OnEndInit();
+
 	virtual void Run();
 	void		CleanUp();
 protected:
 	virtual void OnInit();
+	virtual void SetupScene();
+	virtual void OnEndInit();
 	virtual bool CreateAppWindow();
 private:
 	static long __stdcall WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp);
