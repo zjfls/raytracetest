@@ -6,6 +6,10 @@
 #include "IWorld.h"
 #include "AssetManager.h"
 #include "FbxAppManager.h"
+#include "RenderManager.h"
+#include "EnviromentSetting.h"
+#include "RenderPathManager.h"
+#include "RenderView.h"
 
 ApplicationBase::ApplicationBase()
 {
@@ -20,8 +24,30 @@ bool ApplicationBase::Init(int argc, char** argv)
 {
 	m_argc = argc;
 	m_argv = argv;
-	FbxAppManager::GetInstance()->Init();
-	AssetManager::GetInstance()->Init();
+	if (false == EnviromentSetting::GetInstance()->Init())
+	{
+		return false;
+	}
+	ReadSettings();
+	CreateAppWindow();
+	if (false == RenderPathManager::GetInstance()->Init())
+	{
+		return false;
+	}
+
+	if (false == RenderManager::GetInstance()->Init(m_RenderViewInfo))
+	{
+		return false;
+	}
+	if (false == FbxAppManager::GetInstance()->Init())
+	{
+		return false;
+	}
+	if (false == AssetManager::GetInstance()->Init())
+	{
+		return false;
+	}
+	m_pWorld = new IWorld;
 	OnInit();
 	SetupScene();
 	if (m_pWorld != nullptr)
@@ -60,6 +86,21 @@ void ApplicationBase::SetupScene()
 void ApplicationBase::Run()
 {
 
+}
+
+bool ApplicationBase::CreateAppWindow()
+{
+	return true;
+}
+
+void ApplicationBase::ReadSettings()
+{
+	int width = EnviromentSetting::GetInstance()->GetIntSetting("Width");
+	int height = EnviromentSetting::GetInstance()->GetIntSetting("Height");
+	//m_RenderViewInfo.m_windowID = (unsigned int)window;
+	m_RenderViewInfo.m_nHeight = width;
+	m_RenderViewInfo.m_nWidth = height;
+	m_RenderViewInfo.m_bWindowed = (bool)EnviromentSetting::GetInstance()->GetIntSetting("Windowed");
 }
 
 

@@ -15,7 +15,10 @@ IWorld::~IWorld()
 
 void IWorld::Update()
 {
-	m_pRoot->Update();
+	if (m_pRoot != nullptr)
+	{
+		m_pRoot->Update();
+	}
 }
 
 std::vector<IRenderable*> IWorld::GetAllRenderables()

@@ -32,12 +32,15 @@ IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 	return pAsset;
 }
 
-void AssetManager::Init()
+bool AssetManager::Init()
 {
 	AddLoader("fbx", new FbxFileLoader);
 	AddLoader("prefab.xml", new XmlPrefabLoader);
 	AddLoader("mesh", new MeshFileLoader);
 	AddLoader("smat.xml", new MaterialAssetLoader);
+
+
+	return true;
 }
 
 //

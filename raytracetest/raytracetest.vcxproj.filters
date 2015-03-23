@@ -327,17 +327,65 @@
     <ClInclude Include="RasterMaterial.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="IRenderable.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
-    <ClInclude Include="IndexData.h">
+    <ClInclude Include="RenderPathManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="VertexData.h">
+    <ClInclude Include="D3D9Application.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EnviromentSetting.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9Render.h">
+      <Filter>头文件\Render\D3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9RenderSystem.h">
+      <Filter>头文件\Render\D3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9Manager.h">
+      <Filter>头文件\Render\D3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9RenderTarget.h">
+      <Filter>头文件\Render\D3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9RenderView.h">
+      <Filter>头文件\Render\D3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStage.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderView.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderWindow.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPath.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderEnum.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderTarget.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexData.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexData.h">
+      <Filter>头文件\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -575,17 +623,59 @@
     <ClCompile Include="XmlPrefabLoader.cpp">
       <Filter>源文件\Asset</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="IRenderable.cpp">
       <Filter>源文件\module</Filter>
     </ClCompile>
-    <ClCompile Include="IndexData.cpp">
+    <ClCompile Include="D3D9Application.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="VertexData.cpp">
+    <ClCompile Include="EnviromentSetting.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9Render.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9RenderSystem.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9Manager.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9RenderTarget.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9RenderView.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexData.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexData.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPath.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPathManager.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStage.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderView.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderTarget.cpp">
+      <Filter>源文件\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,11 +16,9 @@ public:
 	virtual void SetupScene();
 	virtual void OnEndInit();
 	virtual void Run();
-	IDirect3DVertexDeclaration9* GetDeclarationFromMesh(MeshResource* pMesh);
-	
-
 	void		CleanUp();
 private:
+	IDirect3DVertexDeclaration9* GetDeclarationFromMesh(MeshResource* pMesh);
 	void Render();
 	HRESULT InitVB();
 	void SetupCamera();

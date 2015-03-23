@@ -1,6 +1,7 @@
 #pragma once
 #include "IResource.h"
 #include "MaterialArg.h"
+#include "RenderEnum.h"
 template<class T>
 class ResourceManager;
 class MaterialResource :
@@ -16,5 +17,7 @@ public:
 protected:
 	MaterialResource();
 	friend class ResourceManager < MaterialResource > ;
+public:
+	ERENDERTYPEFILTER m_eFillter;
 };
 

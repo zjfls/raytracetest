@@ -19,3 +19,8 @@ void IRenderable::Update()
 {
 
 }
+
+shared_ptr<MaterialResource> IRenderable::GetDefaultMaterial()
+{
+	return m_pMaterial;
+}

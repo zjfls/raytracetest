@@ -10,3 +10,8 @@ IRender::IRender()
 IRender::~IRender()
 {
 }
+
+void IRender::SetRenderTarget(IRenderTarget* pTarget)
+{
+
+}
