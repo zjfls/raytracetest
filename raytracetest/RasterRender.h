@@ -14,10 +14,13 @@ public:
 	virtual void Render(IRenderable* pRender);
 	virtual int Render(std::vector<IRenderable*>& pRenderableList);
 	virtual int Render(CameraBase* pCammera, IWorld* pWorld);
+
+
+	
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);
-	virtual	void	SetRenderStageState(ERENDERTYPEFILTER eFillter);
+	//virtual	void	SetRenderStageState(ERENDERTYPEFILTER eFillter);
 private:
 	const RenderPath* m_pRenderPath;
 };

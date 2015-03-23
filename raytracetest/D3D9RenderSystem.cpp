@@ -26,32 +26,32 @@ bool test(const stRenderViewInfo& viewInfo)
 		return false;
 	}
 
-	D3DDISPLAYMODE displaymode;
-	ZeroMemory(&displaymode, sizeof(displaymode));
+	//D3DDISPLAYMODE displaymode;
+	//ZeroMemory(&displaymode, sizeof(displaymode));
 	//LPDIRECT3D9EX pd3d = D3D9Manager::GetInstance()->m_pD3D;
-	int nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8);
-	//pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT,)
-	for (int i = 0; i < nModeCount; ++i)
-	{
-		D3DDISPLAYMODE mode;
-		pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8, i, &mode);
+	//int nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8);
+	////pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT,)
+	//for (int i = 0; i < nModeCount; ++i)
+	//{
+	//	D3DDISPLAYMODE mode;
+	//	pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8, i, &mode);
 
-		std::cout << "displaymode D3DFMT_X8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
-	}
-	nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_A8R8G8B8);
-	for (int i = 0; i < nModeCount; ++i)
-	{
-		D3DDISPLAYMODE mode;
-		pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8, i, &mode);
+	//	std::cout << "displaymode D3DFMT_X8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
+	//}
+	//nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_A8R8G8B8);
+	//for (int i = 0; i < nModeCount; ++i)
+	//{
+	//	D3DDISPLAYMODE mode;
+	//	pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8, i, &mode);
 
-		std::cout << "displaymode D3DFMT_A8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
-	}
-	HRESULT hr1 = pd3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displaymode);
-	if (FAILED(pd3d->CheckDeviceFormat(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, displaymode.Format, D3DUSAGE_RENDERTARGET, D3DRTYPE_SURFACE, D3DFMT_A8R8G8B8)))
-	{
-		MessageBox(NULL, "Device format is unaccepatble for full screen mode", "Sorry", MB_OK);
-		return false;
-	}
+	//	std::cout << "displaymode D3DFMT_A8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
+	//}
+	//HRESULT hr1 = pd3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displaymode);
+	//if (FAILED(pd3d->CheckDeviceFormat(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, displaymode.Format, D3DUSAGE_RENDERTARGET, D3DRTYPE_SURFACE, D3DFMT_A8R8G8B8)))
+	//{
+	//	MessageBox(NULL, "Device format is unaccepatble for full screen mode", "Sorry", MB_OK);
+	//	return false;
+	//}
 
 	D3DPRESENT_PARAMETERS d3dpp;
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
@@ -79,6 +79,7 @@ bool test(const stRenderViewInfo& viewInfo)
 		//system("pause");
 		return false;
 	}
+	return true;
 	//
 }
 bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo) const
@@ -287,4 +288,14 @@ RenderView* D3D9RenderSystem::GetDefaultRenderView() const
 void D3D9RenderSystem::CreateDefaultRender(const RenderPath* pPath) const
 {
 	D3D9Manager::GetInstance()->m_pDefaultRender = new D3D9Render(pPath);
+}
+
+HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc) const
+{
+	return nullptr;
+}
+
+HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc& fragShaderDesc) const
+{
+	return nullptr;
 }

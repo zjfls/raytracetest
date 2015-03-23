@@ -4,6 +4,7 @@ class CameraBase;
 class IWorld;
 class IRenderTarget;
 class RenderView;
+class CameraBase;
 struct stRenderViewInfo;
 class IRender
 {
@@ -19,7 +20,7 @@ public:
 	*Parameters:
 
 	*   pCammera:the camera render to use
-	*	pWorld:the world to be render	
+	*	pWorld:the world to be render
 
 	*Return : int if success return 0
 
@@ -40,8 +41,19 @@ public:
 	//
 	void	SetRenderTarget(IRenderTarget* pTarget);
 	//
-	IRenderTarget*	CreateRenderTarget(unsigned int width, unsigned int height, TARGETFORMAT eTargetFormat, bool bDepth = false, TARGETFORMAT eDepthFormat = TFNONE, EMULTISAMPLETYPE = MSNONE,unsigned int nMultiSampleQuality = 0);
+	IRenderTarget*	CreateRenderTarget(unsigned int width, unsigned int height, TARGETFORMAT eTargetFormat, bool bDepth = false, TARGETFORMAT eDepthFormat = TFNONE, EMULTISAMPLETYPE = MSNONE, unsigned int nMultiSampleQuality = 0);
 	//
 	RenderView*	CreateRenderView(const stRenderViewInfo& renderView);
+
+
+
+private:
+	void SetCurrentRenderCamera(CameraBase* pCamera);
+
+protected:
+	CameraBase* m_pCurrentRenderCamera;
+	friend class CameraBase;
+	friend class RenderState;
+	friend class RenderPass;
 };
 

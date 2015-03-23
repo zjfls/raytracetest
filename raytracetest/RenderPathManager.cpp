@@ -24,11 +24,11 @@ bool RenderPathManager::Init()
 {
 	//forward path
 	RenderPath* pForwardPath = new RenderPath("Foward");
-	RenderStage* pOpaqueStage = new RenderStage("Opaque", EFILLTEROPAUE);
+	RenderStage* pOpaqueStage = new RenderStage("Opaque", EFILLTEROPAUE, ERSM_RADIANCEDEPTHOPAQUE);
 	//pOpaqueStage->m_eFillter = EFILLTEROPAUE;
 	pForwardPath->AddStage(pOpaqueStage);
 	
-	RenderStage* pTransStage = new RenderStage("Transparency", EFILLTERTRANSPARENCY);
+	RenderStage* pTransStage = new RenderStage("Transparency", EFILLTERTRANSPARENCY, ERSM_RADIANCEDEPTHTRANSPACENCY);
 	//pTransStage->m_eFillter = EFILLTERTRANSPARENCY;
 	//pTransStage->m_eFillter = EFILLTERTRANSPARENCY;
 	pForwardPath->AddStage(pTransStage);

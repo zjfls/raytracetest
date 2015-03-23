@@ -43,6 +43,3 @@ private:
 	bool bUseNormal;
 };
 
-#ifndef SAFE_RELEASE
-#define SAFE_RELEASE(p)      { if (p != nullptr) { (p)->Release(); (p)=nullptr; } }
-#endif

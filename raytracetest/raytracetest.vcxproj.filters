@@ -387,6 +387,39 @@
     <ClInclude Include="VertexData.h">
       <Filter>头文件\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="HardwareBuffer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareBufferManager.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareIndexBuffer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareVertexBuffer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStateCollection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareVertexShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareFragShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareShaderManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9VertexShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9FragShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -676,6 +709,39 @@
     </ClCompile>
     <ClCompile Include="IRenderTarget.cpp">
       <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareBufferManager.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareIndexBuffer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareBuffer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareVertexBuffer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStateCollection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareVertexShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareFragShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareShaderManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9VertexShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9FragShader.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

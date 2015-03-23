@@ -47,6 +47,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 		if (strArgType == "TextureSampler")
 		{
 			TMatArg<TextureSampler>* pSampArg = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
+			pSampArg->SetShaderType(EMATSHADERFRAG);
 
 			XMLElement* pTextureElem = pArgElem->FirstChildElement("Texture");
 			string texPath = pTextureElem->Attribute("RefPath");

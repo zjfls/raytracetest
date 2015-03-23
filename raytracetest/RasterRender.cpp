@@ -43,11 +43,10 @@ int RasterRender::Render(std::vector<IRenderable*>& pRenderableList)
 		RenderStage* pStage = m_pRenderPath->GetStage(i);
 		std::vector<IRenderable*> vec;
 		GetRenderables(pRenderableList,vec, pStage->m_eFillter);
-		SetRenderStageState(pStage->m_eFillter);
-		for each (IRenderable* pRenderable in vec)
-		{
-			Render(pRenderable);
-		}
+		//SetRenderStageState(pStage->m_eFillter);
+
+		//pStage->SetStageRenderState(this);
+		pStage->Render(this,vec);
 
 	}
 	return 0;
@@ -62,14 +61,14 @@ void RasterRender::GetRenderables(std::vector<IRenderable*>& vecRenderableIn,std
 		{
 			pMatRes = pRenderable->GetDefaultMaterial();
 		}
-		if (pMatRes->m_eFillter == eFillter)
+		if (pMatRes->m_eFillter & eFillter != 0)
 		{
 			vecRenderable.push_back(pRenderable);
 		}
 	}
 }
 
-void RasterRender::SetRenderStageState(ERENDERTYPEFILTER eFillter)
-{
-	//
-}
+//void RasterRender::SetRenderStageState(ERENDERTYPEFILTER eFillter)
+//{
+//	//
+//}

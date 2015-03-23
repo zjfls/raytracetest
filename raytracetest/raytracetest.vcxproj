@@ -66,7 +66,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <NuGetPackageImportStamp>43a4aed5</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>a9a79921</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -165,11 +165,13 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommonDef.h" />
     <ClInclude Include="D3D9Application.h" />
+    <ClInclude Include="D3D9FragShader.h" />
     <ClInclude Include="D3D9Render.h" />
     <ClInclude Include="D3D9RenderSystem.h" />
     <ClInclude Include="D3D9Manager.h" />
     <ClInclude Include="D3D9RenderTarget.h" />
     <ClInclude Include="D3D9RenderView.h" />
+    <ClInclude Include="D3D9VertexShader.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="EnviromentSetting.h" />
     <ClInclude Include="FbxAppManager.h" />
@@ -179,6 +181,14 @@
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="FragShader.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="HardwareBuffer.h" />
+    <ClInclude Include="HardwareBufferManager.h" />
+    <ClInclude Include="HardwareFragShader.h" />
+    <ClInclude Include="HardwareIndexBuffer.h" />
+    <ClInclude Include="HardwareShader.h" />
+    <ClInclude Include="HardwareShaderManager.h" />
+    <ClInclude Include="HardwareVertexBuffer.h" />
+    <ClInclude Include="HardwareVertexShader.h" />
     <ClInclude Include="IAsset.h" />
     <ClInclude Include="IAssetLoader.h" />
     <ClInclude Include="ImageFileHelper.h" />
@@ -229,6 +239,7 @@
     <ClInclude Include="RenderPass.h" />
     <ClInclude Include="RenderPathManager.h" />
     <ClInclude Include="RenderStage.h" />
+    <ClInclude Include="RenderStateCollection.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="RenderView.h" />
     <ClInclude Include="RenderWindow.h" />
@@ -267,11 +278,13 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D9Application.cpp" />
+    <ClCompile Include="D3D9FragShader.cpp" />
     <ClCompile Include="D3D9Render.cpp" />
     <ClCompile Include="D3D9RenderSystem.cpp" />
     <ClCompile Include="D3D9Manager.cpp" />
     <ClCompile Include="D3D9RenderTarget.cpp" />
     <ClCompile Include="D3D9RenderView.cpp" />
+    <ClCompile Include="D3D9VertexShader.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="EnviromentSetting.cpp" />
     <ClCompile Include="FbxAppManager.cpp" />
@@ -281,6 +294,14 @@
     <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="FragShader.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="HardwareBuffer.cpp" />
+    <ClCompile Include="HardwareBufferManager.cpp" />
+    <ClCompile Include="HardwareFragShader.cpp" />
+    <ClCompile Include="HardwareIndexBuffer.cpp" />
+    <ClCompile Include="HardwareShader.cpp" />
+    <ClCompile Include="HardwareShaderManager.cpp" />
+    <ClCompile Include="HardwareVertexBuffer.cpp" />
+    <ClCompile Include="HardwareVertexShader.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="ImageFileHelper.cpp" />
     <ClCompile Include="IndexData.cpp" />
@@ -332,6 +353,7 @@
     <ClCompile Include="RenderPathManager.cpp" />
     <ClCompile Include="RenderStage.cpp" />
     <ClCompile Include="RenderState.h" />
+    <ClCompile Include="RenderStateCollection.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="RenderView.cpp" />
     <ClCompile Include="ResourceMananger.cpp" />

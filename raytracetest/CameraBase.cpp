@@ -20,6 +20,7 @@ CameraBase::~CameraBase()
 void CameraBase::Render()
 {
 	m_pRender->SetRenderTarget(m_pRenderTarget);
+	m_pRender->m_pCurrentRenderCamera = this;
 }
 
 void CameraBase::Update()
