@@ -9,7 +9,7 @@ public:
 	RasterMaterial();
 	virtual ~RasterMaterial();
 
-	void BuildPassParameter(RenderPass* pPass);
+	//void BuildPassParameter(RenderPass* pPass);
 	std::map<string, RenderPass*> m_RenderPassMap;
 };
 

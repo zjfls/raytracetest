@@ -11,6 +11,7 @@
 
 RasterRender::RasterRender(const RenderPath* pPath)
 	: m_pRenderPath(pPath)
+	, m_pRenderSystem(nullptr)
 {
 
 }

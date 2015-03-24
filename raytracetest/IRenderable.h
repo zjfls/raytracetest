@@ -16,5 +16,7 @@ public:
 protected:
 	VertexData* m_pVertexData;
 	IndexData* m_pIndexData;
+
+	friend class RenderPass;
 };
 

@@ -49,7 +49,7 @@ void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<IRend
 		for each (std::pair<string,RenderPass*> p in pMaterial->m_RenderPassMap)
 		{	
 			SetRenderStateCollection(pRender, p.second->m_RenderState);
-			p.second->Render(pRender, pRenderable,ESTAGESHADERRADIANCE);
+			p.second->Render(pRender, pRenderable,ESTAGESHADERRADIANCE,p.second->m_RenderState);
 		}
 	}
 }

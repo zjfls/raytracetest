@@ -28,21 +28,22 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 #ifdef WIN32
 	if (renderType == "D3D9")
 	{
-		m_pRenderSystem = new D3D9RenderSystem();
-		bool b = m_pRenderSystem->InitRenderSystem(renderViewInfo);
-		m_pRenderSystem->CreateDefaultRender(pRenderPath);
+		m_mapRenderSystem["D3D9"] = new D3D9RenderSystem();
+		bool b = m_mapRenderSystem["D3D9"]->InitRenderSystem(renderViewInfo);
+		m_mapRenderSystem["D3D9"]->CreateDefaultRender(pRenderPath);
+		m_pDefualtRenderSystem = m_mapRenderSystem["D3D9"];
 		return b;
 	}
 #endif
 	return true;
 }
 
-IRender* RenderManager::GetDefaultRender()
-{
-	return m_pDefaultRender;
-}
-
-RenderView* RenderManager::GetDefaultRenderView()
-{
-	return m_pDefaultRenderView;
-}
+//IRender* RenderManager::GetDefaultRender()
+//{
+//	return m_pDefaultRender;
+//}
+//
+//RenderView* RenderManager::GetDefaultRenderView()
+//{
+//	return m_pDefaultRenderView;
+//}

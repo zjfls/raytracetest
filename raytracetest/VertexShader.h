@@ -9,6 +9,8 @@ public:
 	bool			m_bSkinInfo;
 	int				m_bSkinNum;
 };
+
+
 class HardwareVertexShader;
 class VertexShader:public IResource
 {
@@ -19,5 +21,8 @@ public:
 
 	HardwareVertexShader* GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc) const;
 	static HardwareVertexShader* GetHardwareVertexShaderByDesc(const VertexShaderDesc& vertexShaderDesc);
+
+
+	//std::vector<
 };
 

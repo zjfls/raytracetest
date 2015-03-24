@@ -4,12 +4,13 @@
 #include "IWorld.h"
 #include "RenderManager.h"
 #include "RenderView.h"
+#include "RenderSystem.h"
 
 
 CameraBase::CameraBase()
 {
-	m_pRender = RenderManager::GetInstance()->GetDefaultRender();
-	m_pRenderTarget = RenderManager::GetInstance()->GetDefaultRenderView();
+	m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
+	m_pRenderTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 }
 
 
@@ -25,10 +26,14 @@ void CameraBase::Render()
 
 void CameraBase::Update()
 {
-	
+	UpdateMatrix();
 }
 
 void CameraBase::OnLateUpdate()
 {
 	m_pRender->Render(this,IWorld::pSingleWorld);
+}
+void CameraBase::UpdateMatrix()
+{
+
 }

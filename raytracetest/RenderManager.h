@@ -15,14 +15,17 @@ public:
 	//IRender* CreateRender(string strType,void* pArg);
 
 
-	IRender* GetDefaultRender();
-	RenderView* GetDefaultRenderView();
+	//IRender* GetDefaultRender();
+	//RenderView* GetDefaultRenderView();
+	RenderSystem*	GetDefaultRenderSystem() const{ return m_pDefualtRenderSystem; };
 private:
 
 
 private:
-	IRender*	m_pDefaultRender;
+	//IRender*	m_pDefaultRender;
 	RenderView*	m_pDefaultRenderView;
-	RenderSystem* m_pRenderSystem;
+	RenderSystem* m_pDefualtRenderSystem;
+
+	std::unordered_map<string, RenderSystem*> m_mapRenderSystem;
 };
 

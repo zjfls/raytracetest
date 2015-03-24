@@ -2,13 +2,14 @@
 #include "D3D9RenderSystem.h"
 #include "D3D9Render.h"
 #include "d3d9.h"
-#include "D3D9Manager.h"
+
 //#include "RenderView.h"
 #include "D3D9RenderView.h"
 #include "EnviromentSetting.h"
 #include "RenderPathManager.h"
 
 D3D9RenderSystem::D3D9RenderSystem()
+	:m_pDefaultRender(nullptr)
 {
 }
 
@@ -82,11 +83,11 @@ bool test(const stRenderViewInfo& viewInfo)
 	return true;
 	//
 }
-bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo) const
+bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 {
 	//return test(viewInfo);
 	//return;
-	if (FAILED(Direct3DCreate9Ex(D3D_SDK_VERSION, &D3D9Manager::GetInstance()->m_pD3D)))
+	if (FAILED(Direct3DCreate9Ex(D3D_SDK_VERSION, &m_pD3D)))
 	{
 		std::cout << "get d3d9 object failed!" << std::endl;
 		return false;
@@ -94,7 +95,7 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo) const
 	//
 	D3DDISPLAYMODE displaymode;
 	ZeroMemory(&displaymode,sizeof(displaymode));
-	LPDIRECT3D9EX pd3d = D3D9Manager::GetInstance()->m_pD3D;
+	LPDIRECT3D9EX pd3d = m_pD3D;
 	int nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8);
 	//pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT,)
 	for (int i = 0; i < nModeCount; ++i)
@@ -112,8 +113,8 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo) const
 
 		std::cout << "displaymode D3DFMT_A8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
 	}
-	HRESULT hr1 = D3D9Manager::GetInstance()->m_pD3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displaymode);
-	if (FAILED(D3D9Manager::GetInstance()->m_pD3D->CheckDeviceFormat(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, displaymode.Format, D3DUSAGE_RENDERTARGET, D3DRTYPE_SURFACE, D3DFMT_A8R8G8B8)))
+	HRESULT hr1 = m_pD3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displaymode);
+	if (FAILED(m_pD3D->CheckDeviceFormat(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, displaymode.Format, D3DUSAGE_RENDERTARGET, D3DRTYPE_SURFACE, D3DFMT_A8R8G8B8)))
 	{
 		MessageBox(NULL, "Device format is unaccepatble for full screen mode", "Sorry", MB_OK);
 		return false;
@@ -165,10 +166,10 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo) const
 	}
 
 
-	HRESULT hr;
-	if (FAILED(hr = D3D9Manager::GetInstance()->m_pD3D->CreateDeviceEx(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, HWND(viewInfo.m_windowID),
+	HRESULT hr = 0;
+	if (FAILED(hr = m_pD3D->CreateDeviceEx(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, HWND(viewInfo.m_windowID),
 		D3DCREATE_HARDWARE_VERTEXPROCESSING,
-		&d3dpp, pd3dsm, &D3D9Manager::GetInstance()->m_pD3DDevice)))
+		&d3dpp, pd3dsm, &m_pD3DDevice)))
 	{
 		std::cout << "create device failed" << std::endl;
 		std::cout << hr << std::endl;
@@ -176,10 +177,14 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo) const
 		return false;
 	}
 
+
+
+	D3D9RenderView* pRenderView;
 	IDirect3DSwapChain9* pSwapChain;
-	D3D9Manager::GetInstance()->m_pD3DDevice->GetSwapChain(0, &pSwapChain);
-	D3D9Manager::GetInstance()->m_pDefaultRenderView = new D3D9RenderView;
-	D3D9Manager::GetInstance()->m_pDefaultRenderView->m_pSwapChain = (IDirect3DSwapChain9Ex*)pSwapChain;
+	m_pD3DDevice->GetSwapChain(0, &pSwapChain);
+	pRenderView = new D3D9RenderView;
+	pRenderView->m_pSwapChain = (IDirect3DSwapChain9Ex*)pSwapChain;
+	m_pDefaultRenderView = pRenderView;
 
 
 
@@ -275,27 +280,52 @@ D3DFORMAT D3D9RenderSystem::getBufferFormat(const TARGETFORMAT eFormat) const
 	}
 }
 
-IRender* D3D9RenderSystem::GetDefaultRender() const
+void D3D9RenderSystem::CreateDefaultRender(const RenderPath* pPath)
 {
-	return D3D9Manager::GetInstance()->m_pDefaultRender;
+	m_pDefaultRender = new D3D9Render(pPath);
+	InitRender(m_pDefaultRender);
 }
 
-RenderView* D3D9RenderSystem::GetDefaultRenderView() const
+HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc)
 {
-	return D3D9Manager::GetInstance()->m_pDefaultRenderView;
+
+	return nullptr;
 }
 
-void D3D9RenderSystem::CreateDefaultRender(const RenderPath* pPath) const
-{
-	D3D9Manager::GetInstance()->m_pDefaultRender = new D3D9Render(pPath);
-}
-
-HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc) const
+HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc& fragShaderDesc)
 {
 	return nullptr;
 }
 
-HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc& fragShaderDesc) const
+HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pData)
 {
+	return nullptr;
+}
+HardwareIndexBuffer* D3D9RenderSystem::GetHardwareIndexBuffer(IndexData* pData)
+{
+	if (pData == nullptr)
+	{
+		return nullptr;
+	}
+	if (m_IndexDataMap.find(pData) != std::end(m_IndexDataMap))
+	{
+		return m_IndexDataMap[pData];
+	}
+	//
+	//
+	unsigned int sizeIndex = 2;
+	D3DFORMAT indexFormat = D3DFMT_INDEX16;
+	if (pData->indexDesc == IndexData::EIndexInt)
+	{
+		sizeIndex = 4;
+		indexFormat = D3DFMT_INDEX32;
+	}
+	if (FAILED(m_pD3DDevice->CreateIndexBuffer(pData->indexNum * sizeIndex, 0, indexFormat, D3DPOOL_MANAGED, nullptr, 0)))
+	{
+		return nullptr;
+	}
+
+
+
 	return nullptr;
 }
