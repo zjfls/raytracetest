@@ -5,6 +5,7 @@
 #include "IAsset.h"
 #include "d3dx9.h"
 #include "FilePath.h"
+#include "RenderEnum.h"
 SimpleD3D9Application* Singleton<SimpleD3D9Application>::_instance = nullptr;
 // A structure for our custom vertex type
 struct CUSTOMVERTEX
@@ -239,7 +240,7 @@ HRESULT SimpleD3D9Application::InitVB()
 	//copy index data
 	int sizeIndex = 2;
 	D3DFORMAT indexFormat = D3DFMT_INDEX16;
-	if (pMesh->m_IndexData.indexDesc == IndexData::EIndexInt)
+	if (pMesh->m_IndexData.indexDesc == EIndexInt)
 	{
 		sizeIndex = 4;
 		indexFormat = D3DFMT_INDEX32;

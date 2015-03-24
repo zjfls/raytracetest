@@ -262,7 +262,7 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	fwrite((void*)&version, sizeof(int), 1, fp);
 	//write index data
 	unsigned int nIndexStrip = 2;
-	if (pMesh->m_IndexData.indexDesc == IndexData::EIndexInt)
+	if (pMesh->m_IndexData.indexDesc == EIndexInt)
 	{
 		nIndexStrip = 1;
 	}

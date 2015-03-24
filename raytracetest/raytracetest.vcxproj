@@ -171,8 +171,8 @@
     <ClInclude Include="D3D9RenderTarget.h" />
     <ClInclude Include="D3D9RenderView.h" />
     <ClInclude Include="D3D9VertexShader.h" />
-    <ClInclude Include="D3DIndexBuffer.h" />
-    <ClInclude Include="D3DVertexBuffer.h" />
+    <ClInclude Include="D3D9IndexBuffer.h" />
+    <ClInclude Include="D3D9VertexBuffer.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="EnviromentSetting.h" />
     <ClInclude Include="FbxAppManager.h" />
@@ -283,8 +283,8 @@
     <ClCompile Include="D3D9RenderTarget.cpp" />
     <ClCompile Include="D3D9RenderView.cpp" />
     <ClCompile Include="D3D9VertexShader.cpp" />
-    <ClCompile Include="D3DIndexBuffer.cpp" />
-    <ClCompile Include="D3DVertexBuffer.cpp" />
+    <ClCompile Include="D3D9IndexBuffer.cpp" />
+    <ClCompile Include="D3D9VertexBuffer.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="EnviromentSetting.cpp" />
     <ClCompile Include="FbxAppManager.cpp" />

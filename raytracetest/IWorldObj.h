@@ -1,5 +1,4 @@
 #pragma once
-#include "ObjComponent.h"
 #include "ModuleBase.h"
 #include "LightBase.h"
 #include "Transform.h"

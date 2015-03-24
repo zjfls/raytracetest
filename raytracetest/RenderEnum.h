@@ -59,3 +59,31 @@ enum EMAMANGETYPE
 	MTDEFAULT,
 	MTMANAGED
 };
+
+enum EnumIndexDesc
+{
+	EIndexInvalid = 0,
+	EIndexInt,
+	EIndexShort
+};
+
+enum EnumVertexTypeDesc
+{
+	EVertexTypeInvalid = 0,
+	EVertexTypeFloat1,
+	EVertexTypeFloat2,
+	EVertexTypeFloat3,
+	EVertexTypeFloat4,
+	EVertexTypeByte4
+};
+enum EnumVertexUseDesc
+{
+	EVertexInvalid = 0,
+	EVertexPosition = 1 << 1,
+	EVertexNormal = 1 << 2,
+	EVertexTangent = 1 << 3,
+	EVertexColor = 1 << 4,
+	EVertexUV = 1 << 5,
+	EVertexBlendIndex = 1 << 6,
+	EVertexBlendWeight = 1 << 7
+};

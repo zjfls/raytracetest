@@ -1,7 +1,11 @@
 #include "stdafx.h"
+#include "d3d9.h"
 #include "D3D9RenderSystem.h"
 #include "D3D9Render.h"
-#include "d3d9.h"
+#include "D3D9IndexBuffer.h"
+#include "D3D9VertexBuffer.h"
+#include "D3D9VertexShader.h"
+#include "D3D9FragShader.h"
 
 //#include "RenderView.h"
 #include "D3D9RenderView.h"
@@ -9,7 +13,8 @@
 #include "RenderPathManager.h"
 
 D3D9RenderSystem::D3D9RenderSystem()
-	:m_pDefaultRender(nullptr)
+	:m_pD3D(nullptr)
+	, m_pD3DDevice(nullptr)
 {
 }
 
@@ -264,7 +269,7 @@ D3DFORMAT D3D9RenderSystem::getBufferFormat(const TARGETFORMAT eFormat) const
 		break;
 		case TFD32:
 		{
-			return D3DFMT_D32;
+			return D3DFMT_D32;//most card not support
 		}
 		break;
 		case TFD24X8:
@@ -282,8 +287,10 @@ D3DFORMAT D3D9RenderSystem::getBufferFormat(const TARGETFORMAT eFormat) const
 
 void D3D9RenderSystem::CreateDefaultRender(const RenderPath* pPath)
 {
-	m_pDefaultRender = new D3D9Render(pPath);
-	InitRender(m_pDefaultRender);
+	D3D9Render* pRender = new D3D9Render(pPath);
+	pRender->m_pDevice = m_pD3DDevice;
+	m_pDefaultRender = pRender;
+	InitRender(pRender);
 }
 
 HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc)
@@ -299,7 +306,40 @@ HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc
 
 HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pData)
 {
-	return nullptr;
+	if (pData == nullptr)
+	{
+		return nullptr;
+	}
+	if (m_VertexDataMap.find(pData) != std::end(m_VertexDataMap))
+	{
+		return m_VertexDataMap[pData];
+	}
+	D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
+	pBuff->m_pVertexDecal = CreateVertexDeclarationFromDesc(pData->vecDataDesc);
+	pBuff->m_nNumVertex = pData->nNumVertex;
+	pBuff->m_nStrip = pData->GetVertexDataLength();
+	//
+	if (FAILED(m_pD3DDevice->CreateVertexBuffer(pData->nNumVertex * pData->GetVertexDataLength(),
+		0, 0,
+		D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+	{
+		delete pBuff;
+		return nullptr;
+	}
+
+	///
+	void* pVertexData;
+	if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pData->GetVertexDataLength() * pData->nNumVertex, &pVertexData, 0)))
+	{
+		delete pBuff;
+		return nullptr;
+	}
+
+	float* pf = (float*)pData->pData;
+	memcpy(pVertexData,pf,pData->GetVertexDataLength() * pData->nNumVertex);
+	pBuff->m_pVertexBuffer->Unlock();
+
+	return pBuff;
 }
 HardwareIndexBuffer* D3D9RenderSystem::GetHardwareIndexBuffer(IndexData* pData)
 {
@@ -315,17 +355,144 @@ HardwareIndexBuffer* D3D9RenderSystem::GetHardwareIndexBuffer(IndexData* pData)
 	//
 	unsigned int sizeIndex = 2;
 	D3DFORMAT indexFormat = D3DFMT_INDEX16;
-	if (pData->indexDesc == IndexData::EIndexInt)
+	if (pData->indexDesc == EIndexInt)
 	{
 		sizeIndex = 4;
 		indexFormat = D3DFMT_INDEX32;
 	}
-	if (FAILED(m_pD3DDevice->CreateIndexBuffer(pData->indexNum * sizeIndex, 0, indexFormat, D3DPOOL_MANAGED, nullptr, 0)))
+	D3D9IndexBuffer* pBuff = new D3D9IndexBuffer();
+	if (FAILED(m_pD3DDevice->CreateIndexBuffer(pData->indexNum * sizeIndex, 0, indexFormat, D3DPOOL_MANAGED, &pBuff->m_pIndexBuffer, 0)))
 	{
+		delete pBuff;
 		return nullptr;
 	}
+	
+	pBuff->m_IndexDesc = pData->indexDesc;
+	pBuff->m_nIndexNum = pData->indexNum;
+	void* pIndexData;
+	///
+	HRESULT hr = pBuff->m_pIndexBuffer->Lock(0, 0, &pIndexData, 0);
+	if (SUCCEEDED(hr))
+	{
+		memcpy(pIndexData, pData->pData, pBuff->m_nIndexNum * sizeIndex);
+	}
+	pBuff->m_pIndexBuffer->Unlock();
+	//
+	m_IndexDataMap[pData] = pBuff;
+	//
+	return pBuff;
+}
 
+IDirect3DVertexDeclaration9* D3D9RenderSystem::CreateVertexDeclarationFromDesc(std::vector<VertexData::VertexDataDesc>& vecDataDesc)
+{
+	std::vector<D3DVERTEXELEMENT9> vecVertElem;
+	int nOffset = 0;
+	D3DVERTEXELEMENT9 elem;
+	std::unordered_map<BYTE, unsigned char> useIndexMap;
+	for each (VertexData::VertexDataDesc desc in vecDataDesc)
+	{
+		D3DDECLTYPE type = GetD3DDeclType(desc.typedesc);
+		BYTE		usage = GetD3DDeclUsage(desc.usedesc);
+		elem = { 0, nOffset, type, D3DDECLMETHOD_DEFAULT, usage, useIndexMap[usage] };
+		useIndexMap[usage] = useIndexMap[usage] + 1;
+		vecVertElem.push_back(elem);
+		nOffset += VertexData::GetTypeLength(desc);
+	}
+	IDirect3DVertexDeclaration9*	pVertexDecl = nullptr;
+	m_pD3DDevice->CreateVertexDeclaration((D3DVERTEXELEMENT9*)(&vecVertElem[0]), &pVertexDecl);
+	return pVertexDecl;
+}
 
+D3DDECLTYPE D3D9RenderSystem::GetD3DDeclType(EnumVertexTypeDesc desc) const
+{
+	switch (desc)
+	{
+		case EVertexTypeInvalid:
+		{
+			return D3DDECLTYPE_UNUSED;
+		}
+		break;
+		case EVertexTypeFloat1:
+		{
+			return D3DDECLTYPE_FLOAT1;
+		}
+		break;
+		case EVertexTypeFloat2:
+		{
+			return D3DDECLTYPE_FLOAT2;
+		}
+		break;
+		case EVertexTypeFloat3:
+		{
+			return D3DDECLTYPE_FLOAT3;
+		}
+		break;
+		case EVertexTypeFloat4:
+		{
+			return D3DDECLTYPE_FLOAT4;
+		}
+		break;
+		case EVertexTypeByte4:
+		{
+			return D3DDECLTYPE_UBYTE4;
+		}
+		break;
+		default:
+		{
+			return D3DDECLTYPE_UNUSED; 
+		}		
+		break;
+	}
+}
 
-	return nullptr;
+BYTE D3D9RenderSystem::GetD3DDeclUsage(EnumVertexUseDesc desc) const
+{
+	switch (desc)
+	{
+		case EVertexInvalid:
+		{
+			return -1;
+		}
+		break;
+		case EVertexPosition:
+		{
+			return D3DDECLUSAGE_POSITION;
+		}
+		break;
+		case EVertexNormal:
+		{
+			return D3DDECLUSAGE_NORMAL;
+		}
+		break;
+		case EVertexTangent:
+		{
+			return D3DDECLUSAGE_TANGENT;
+		}
+		break;
+		case EVertexColor:
+		{
+			return D3DDECLUSAGE_COLOR;
+		}
+		break;
+		case EVertexUV:
+		{
+			return D3DDECLUSAGE_TEXCOORD;
+		}
+		break;
+		case EVertexBlendIndex:
+		{
+			return D3DDECLUSAGE_BLENDINDICES;
+		}
+		break;
+		case EVertexBlendWeight:
+		{
+			return D3DDECLUSAGE_BLENDWEIGHT;
+		}
+		break;
+		default:
+		{
+			return -1;
+		}
+		break;
+	}
 }

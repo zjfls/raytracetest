@@ -13,6 +13,7 @@
 #include "MaterialArg.h"
 #include "TextureSampler.h"
 #include "Texture2D.h"
+#include "RenderEnum.h"
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	m_fileDir = getFileDirectory(path);
@@ -75,7 +76,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	{
 		return pAsset;
 	}
-	IWorldObj* pRoot = ProcessNode(pRootNode, path,nullptr,nullptr);
+	IWorldObj* pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
 
 
 	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(m_fileDir + name + ".prefab.xml");
@@ -108,7 +109,7 @@ IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj*
 			case FbxNodeAttribute::EType::eMesh:
 			{
 
-				shared_ptr<MeshResource> pRes = ProcessMesh(pNode, refPath,pObj,pSkeletonObj);
+				shared_ptr<MeshResource> pRes = ProcessMesh(pNode, refPath, pObj, pSkeletonObj);
 
 			}
 			break;
@@ -149,7 +150,7 @@ struct stSkinInfo
 	int m_nIndex;
 	float m_fWeight;
 };
-shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, IWorldObj* obj,IWorldObj* pSkeletonObj)
+shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, IWorldObj* obj, IWorldObj* pSkeletonObj)
 {
 	FbxMesh* pMesh = pNode->GetMesh();
 	for each (FbxMesh* pM in vecMeshList)
@@ -373,7 +374,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 				u = (float)pLayerUV->GetDirectArray().GetAt(index).mData[0];
 				v = (float)pLayerUV->GetDirectArray().GetAt(index).mData[1];
 				uvVec[indexVec[i] * 2 + 0] = u;
-				uvVec[indexVec[i] * 2 + 1] = 1-v;
+				uvVec[indexVec[i] * 2 + 1] = 1 - v;
 			}
 			//for each (float c in uvVec)
 			//{
@@ -410,14 +411,14 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 				if (m_mapSkeleton.find(pSR) == std::end(m_mapSkeleton))
 				{
 					ProcessSkeleton(pSkeletonRoot, m_fileDir + pSkeletonRoot->GetName() + ".skeleton.xml");
-					
+
 				}
 
 				pModuleOwener = m_mapSkeObj[pSR];
 				pSkeRes = m_mapSkeleton[pSR];
 
-					
-				
+
+
 			}
 			for (int i = 0; i < clusterCount; ++i)
 			{
@@ -435,8 +436,8 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 					skinInfo.m_nIndex = boneIndex;
 					skinInfo.m_fWeight = (float)pCtrlPointWeights[j];
 					skinInfoVec[ctrlPointIndex].push_back(skinInfo);
-				}		
-				
+				}
+
 			}
 		}
 	}
@@ -448,18 +449,20 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		}
 	}
 #pragma  endregion
+#pragma region CalTangent
+#pragma endregion
 #pragma region AddMeshResource
 	Mesh* pMeshModule;
 	pMeshModule = pModuleOwener->addModule<Mesh>();
 	pMeshModule->SetMeshResource(pMeshResource);
-	IndexData::EnumIndexDesc eIndexDesc = IndexData::EIndexInt;
+	EnumIndexDesc eIndexDesc = EIndexInt;
 	int nIndexLength = indexVec.size();
 	if (nIndexLength <= 65535)
 	{
-		eIndexDesc = IndexData::EIndexShort;
+		eIndexDesc = EIndexShort;
 	}
 	void* pTemp = nullptr;
-	if (eIndexDesc == IndexData::EIndexInt)
+	if (eIndexDesc == EIndexInt)
 	{
 		pTemp = new unsigned short[nIndexLength * 2];
 		//int nOffset = 0;
@@ -470,7 +473,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			pBuff++;
 		}
 	}
-	else if (eIndexDesc == IndexData::EIndexShort)
+	else if (eIndexDesc == EIndexShort)
 	{
 		pTemp = new unsigned short[nIndexLength];
 		//int nOffset = 0;
@@ -488,143 +491,147 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	int nVBOffset = 0;
 	VertexData::VertexDataDesc desc;
 	//
-	desc.usedesc = VertexData::EVertexPosition;
-	desc.typedesc = VertexData::EVertexTypeFloat3;
+	desc.usedesc = EVertexPosition;
+	desc.typedesc = EVertexTypeFloat3;
 	desc.nOffset = 0;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset = cpCount * sizeof(float) * 3;
+	nVBOffset = sizeof(float) * 3;
 	//
-	desc.usedesc = VertexData::EVertexNormal;
-	desc.typedesc = VertexData::EVertexTypeFloat3;
+	desc.usedesc = EVertexNormal;
+	desc.typedesc = EVertexTypeFloat3;
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset += cpCount * sizeof(float) * 3;
+	nVBOffset += sizeof(float) * 3;
 	//
-	desc.usedesc = VertexData::EVertexUV;
-	desc.typedesc = VertexData::EVertexTypeFloat2;
+	desc.usedesc = EVertexUV;
+	desc.typedesc = EVertexTypeFloat2;
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset += cpCount * sizeof(float) * 2;
+	nVBOffset += sizeof(float) * 2;
 	//blend index
-	desc.usedesc = VertexData::EVertexBlendIndex;
-	desc.typedesc = VertexData::EVertexTypeByte4;
+	desc.usedesc = EVertexBlendIndex;
+	desc.typedesc = EVertexTypeByte4;
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset += cpCount * sizeof(unsigned char) * 4;
+	nVBOffset += sizeof(unsigned char) * 4;
 	//blend weight
-	desc.usedesc = VertexData::EVertexBlendWeight;
-	desc.typedesc = VertexData::EVertexTypeFloat4;
+	desc.usedesc = EVertexBlendWeight;
+	desc.typedesc = EVertexTypeFloat4;
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset += cpCount * sizeof(float) * 4;
+	nVBOffset += sizeof(float) * 4;
 
 	pMeshResource->m_VertexData.nBoneNum = nMaxBonePerVertex;
 	pMeshResource->m_VertexData.nNumVertex = cpCount;
 	pMeshResource->m_VertexData.pData = new unsigned char[nVBOffset];
-	for (unsigned int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
+	for (unsigned int cpIndex = 0; cpIndex < cpCount; ++cpIndex)
 	{
-		VertexData::VertexDataDesc desc = pMeshResource->m_VertexData.vecDataDesc[i];
-		void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData.pData + desc.nOffset;
-		switch (desc.typedesc)
+		for (unsigned int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
 		{
-			
-			case VertexData::EVertexTypeFloat4:
+			VertexData::VertexDataDesc desc = pMeshResource->m_VertexData.vecDataDesc[i];
+			void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData.pData + desc.nOffset + i * pMeshResource->m_VertexData.GetVertexDataLength();
+			switch (desc.typedesc)
 			{
-				float* pFloat = (float*)pTempVoid;
-				switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
-				{
-					case VertexData::EVertexBlendWeight:
-					{
-						std::vector<float> vecBlendWeight;
-						for (unsigned int ii = 0; ii < 4; ++ii)
-						{
-							vecBlendWeight.push_back(0.0f);
-						}
-						for (unsigned int j = 0; j < skinInfoVec[i].size(); ++j)
-						{
-							vecBlendWeight[j] = skinInfoVec[i][j].m_fWeight;
-						}
-						for (unsigned int ii = 0; ii < 4; ++ii)
-						{
-							*pFloat = vecBlendWeight[ii];
-						}
-					}
-					default:
-					break;
-				}
 
-			}
-			break;
-			case VertexData::EVertexTypeByte4:
-			{
-				unsigned char* pChar = (unsigned char*)pTempVoid;
-				switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+				case EVertexTypeFloat4:
 				{
-					case VertexData::EVertexBlendIndex:
-					{
-						std::vector<unsigned char> vecBlendIndex;
-						for (int ii = 0; ii < 4; ++ii)
-						{
-							vecBlendIndex.push_back(0);
-						}
-						for (unsigned int j = 0; j < skinInfoVec[i].size(); ++j)
-						{
-							vecBlendIndex[j] = skinInfoVec[i][j].m_nIndex;
-						}
-						for (int ii = 0; ii < 4; ++ii)
-						{
-							*pChar = vecBlendIndex[i];
-						}
-					}
-					default:
-					break;
-				}
-			}
-			case VertexData::EVertexTypeFloat3:
-			{
-				float* pFloat = (float*)pTempVoid;
-				for (int j = 0; j < cpCount; ++j)
-				{
-					if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == VertexData::EVertexPosition)
-					{
-						*pFloat = vertexVec[j * 3 + 0];
-						//std::cout <<"VertexBin:"<< *pFloat<<" ";
-						pFloat++;
-						*pFloat = vertexVec[j * 3 + 1];
-						//std::cout << *pFloat<<" ";
-						pFloat++;
-						*pFloat = vertexVec[j * 3 + 2];
-						//std::cout << *pFloat << std::endl;
-						pFloat++;
-					}
-					else if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == VertexData::EVertexNormal)
-					{
-						*pFloat = normalVec[j * 3 + 0];
-						//std::cout << "NormalBin:" << *pFloat << " ";
-						pFloat++;
-						*pFloat = normalVec[j * 3 + 1];
-						//std::cout << *pFloat << " ";
-						pFloat++;
-						*pFloat = normalVec[j * 3 + 2];
-						//std::cout << *pFloat << std::endl;
-						pFloat++;
-					}
-				}
-			}
-			break;
-			case VertexData::EVertexTypeFloat2:
-			{
-				float* pFloat = (float*)pTempVoid;
-				for (int j = 0; j < cpCount; ++j)
-				{
+					float* pFloat = (float*)pTempVoid;
 					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
 					{
-						case VertexData::EVertexUV:
+						case EVertexBlendWeight:
 						{
-							*pFloat = uvVec[j * 2 + 0];
+							std::vector<float> vecBlendWeight;
+							for (unsigned int ii = 0; ii < 4; ++ii)
+							{
+								vecBlendWeight.push_back(0.0f);
+							}
+							for (unsigned int j = 0; j < skinInfoVec[cpIndex].size(); ++j)
+							{
+								vecBlendWeight[j] = skinInfoVec[cpIndex][j].m_fWeight;
+							}
+							for (unsigned int ii = 0; ii < 4; ++ii)
+							{
+								*pFloat = vecBlendWeight[ii];
+								pFloat++;
+							}
+						}
+						default:
+						break;
+					}
+
+				}
+				break;
+				case EVertexTypeByte4:
+				{
+					unsigned char* pChar = (unsigned char*)pTempVoid;
+					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+					{
+						case EVertexBlendIndex:
+						{
+							std::vector<unsigned char> vecBlendIndex;
+							for (int ii = 0; ii < 4; ++ii)
+							{
+								vecBlendIndex.push_back(0);
+							}
+							for (unsigned int j = 0; j < skinInfoVec[cpIndex].size(); ++j)
+							{
+								vecBlendIndex[j] = skinInfoVec[cpIndex][j].m_nIndex;
+							}
+							for (int ii = 0; ii < 4; ++ii)
+							{
+								*pChar = vecBlendIndex[i];
+								pChar++;
+							}
+						}
+						default:
+						break;
+					}
+				}
+				case EVertexTypeFloat3:
+				{
+					float* pFloat = (float*)pTempVoid;
+					//for (int j = 0; j < cpCount; ++j)
+					//{
+					if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == EVertexPosition)
+					{
+						*pFloat = vertexVec[cpIndex * 3 + 0];
+						//std::cout <<"VertexBin:"<< *pFloat<<" ";
+						pFloat++;
+						*pFloat = vertexVec[cpIndex * 3 + 1];
+						//std::cout << *pFloat<<" ";
+						pFloat++;
+						*pFloat = vertexVec[cpIndex * 3 + 2];
+						//std::cout << *pFloat << std::endl;
+						pFloat++;
+					}
+					else if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == EVertexNormal)
+					{
+						*pFloat = normalVec[cpIndex * 3 + 0];
+						//std::cout << "NormalBin:" << *pFloat << " ";
+						pFloat++;
+						*pFloat = normalVec[cpIndex * 3 + 1];
+						//std::cout << *pFloat << " ";
+						pFloat++;
+						*pFloat = normalVec[cpIndex * 3 + 2];
+						//std::cout << *pFloat << std::endl;
+						pFloat++;
+					}
+					//}
+				}
+				break;
+				case EVertexTypeFloat2:
+				{
+					float* pFloat = (float*)pTempVoid;
+					//for (int j = 0; j < cpCount; ++j)
+					//{
+					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+					{
+						case EVertexUV:
+						{
+							*pFloat = uvVec[cpIndex * 2 + 0];
 							//std::cout << "UV:" << *pFloat << " ";
 							pFloat++;
-							*pFloat = uvVec[j * 2 + 1];
+							*pFloat = uvVec[cpIndex * 2 + 1];
 							//std::cout << *pFloat << " "<<std::endl;
 							pFloat++;
 						}
@@ -632,19 +639,20 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 						default:
 						break;
 					}
+					//}
 				}
-			}
-			break;
-			case VertexData::EVertexTypeFloat1:
-			{
+				break;
+				case EVertexTypeFloat1:
+				{
 
+				}
+				break;
+				default:
+				break;
 			}
-			break;
-			default:
-			break;
 		}
-
 	}
+
 #pragma endregion
 #pragma region processmaterial
 	//material
@@ -760,7 +768,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		//index data
 		pSubMesh->m_IndexData.indexNum = subIndexVec.size();
 		pSubMesh->m_IndexData.indexDesc = pMeshResource->m_IndexData.indexDesc;
-		if (pSubMesh->m_IndexData.indexDesc == IndexData::EIndexShort)
+		if (pSubMesh->m_IndexData.indexDesc == EIndexShort)
 		{
 			pSubMesh->m_IndexData.pData = (void*)new unsigned char[subIndexVec.size() * sizeof(short)];
 			short* pShortData = (short*)pSubMesh->m_IndexData.pData;
@@ -770,7 +778,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 				pShortData++;
 			}
 		}
-		else if (pSubMesh->m_IndexData.indexDesc == IndexData::EIndexInt)
+		else if (pSubMesh->m_IndexData.indexDesc == EIndexInt)
 		{
 			pSubMesh->m_IndexData.pData = (void*)new unsigned char[subIndexVec.size() * sizeof(int)];
 			short* pIntData = (short*)pSubMesh->m_IndexData.pData;
@@ -824,7 +832,7 @@ IWorldObj* FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, IWorld
 	m_mapSkeObj[pSke] = pObj;
 	pSkeleton->m_nBoneNum = pSkeleton->m_mapBone.size();
 	return nullptr;
-	
+
 }
 
 void FbxFileLoader::ProcessBone(shared_ptr<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int index)
@@ -855,7 +863,7 @@ void FbxFileLoader::ProcessBone(shared_ptr<SkeletonResource> pRes, Bone* pBone, 
 	pBone->s.m_fz = (float)s.Get().mData[2];
 
 	char temp[10];
-	_itoa_s(index, temp, 10);	
+	_itoa_s(index, temp, 10);
 	pBone->m_strName = string("Bone") + temp;
 	pObj->SetName(pBone->m_strName.c_str());
 	pBone->nIndex = index;
@@ -924,7 +932,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 		for (int i = 0; i < nTextureCount; ++i)
 		{
 			FbxFileTexture* pTex = pProp.GetSrcObject<FbxFileTexture>(i);
-			std::cout <<pProp.GetName()<<":"<< getFileName(pTex->GetName()).c_str() << std::endl;
+			std::cout << pProp.GetName() << ":" << getFileName(pTex->GetName()).c_str() << std::endl;
 
 			string strProperty = pProp.GetName();
 			string fileName = getFileName(pTex->GetName());
@@ -961,5 +969,5 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 		}
 	}
 	return pMatRes;
-	
+
 }

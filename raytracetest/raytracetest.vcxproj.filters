@@ -411,11 +411,11 @@
     <ClInclude Include="HardwareVertexShader.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="D3DIndexBuffer.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="D3D9IndexBuffer.h">
+      <Filter>头文件\Render\D3d9</Filter>
     </ClInclude>
-    <ClInclude Include="D3DVertexBuffer.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="D3D9VertexBuffer.h">
+      <Filter>头文件\Render\D3d9</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -716,12 +716,6 @@
     <ClCompile Include="RenderStateCollection.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="D3D9VertexShader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="D3D9FragShader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="HardwareShader.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
@@ -731,11 +725,17 @@
     <ClCompile Include="HardwareVertexShader.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="D3DIndexBuffer.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="D3D9FragShader.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
     </ClCompile>
-    <ClCompile Include="D3DVertexBuffer.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="D3D9VertexShader.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9IndexBuffer.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9VertexBuffer.cpp">
+      <Filter>源文件\Render\D3d9</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

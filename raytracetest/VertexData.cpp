@@ -19,7 +19,7 @@ void* VertexData::GetElementData(int descIndex, int posIndex) const
 	return (char*)pData + nOffset + posIndex * nUnitLength;
 }
 
-int VertexData::GetTypeLength(const VertexDataDesc& desc) const
+int VertexData::GetTypeLength(const VertexDataDesc& desc)
 {
 	switch (desc.typedesc)
 	{

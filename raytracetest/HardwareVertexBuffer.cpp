@@ -3,6 +3,7 @@
 
 
 HardwareVertexBuffer::HardwareVertexBuffer()
+	:m_nNumVertex(0)
 {
 }
 

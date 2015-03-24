@@ -1,4 +1,5 @@
 #pragma once
+#include "RenderEnum.h"
 class IndexData
 {
 public:
@@ -18,12 +19,7 @@ public:
 		}
 
 	}
-	enum EnumIndexDesc
-	{
-		EIndexInvalid = 0,
-		EIndexInt,
-		EIndexShort
-	};
+
 	EnumIndexDesc indexDesc;
 	int indexNum;
 

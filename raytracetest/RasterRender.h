@@ -6,6 +6,8 @@ class IRenderable;
 class RenderSystem;
 class HardwareVertexShader;
 class HardwareFragShader;
+class HardwareIndexBuffer;
+class HardwareVertexBuffer;
 class RasterRender :
 	public IRender
 {
@@ -15,7 +17,13 @@ public:
 	virtual ~RasterRender();
 	//render a obj
 	virtual void Render(IRenderable* pRender);
+
+
+	//
+	virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff) = 0;
+	//
 	virtual int Render(std::vector<IRenderable*>& pRenderableList);
+	//
 	virtual int Render(CameraBase* pCammera, IWorld* pWorld);
 
 
@@ -26,7 +34,7 @@ public:
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);
 	//virtual	void	SetRenderStageState(ERENDERTYPEFILTER eFillter);
-private:
+protected:
 	const RenderPath* m_pRenderPath;
 	RenderSystem* m_pRenderSystem;
 
