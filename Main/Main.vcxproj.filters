@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{32b1571f-b79a-4772-ad71-eb58a3fe9f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{91fd148a-13fa-487a-9dcf-25df93df31c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Application">
+      <UniqueIdentifier>{509a0469-6872-40f6-a2be-880492046932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Application">
+      <UniqueIdentifier>{7aeadf45-ef93-4b42-b865-4cb22905aa2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render">
+      <UniqueIdentifier>{27a12ff1-e2f6-4ada-9aa9-d19bfbf2bba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render">
+      <UniqueIdentifier>{64d2a882-0fcc-459d-a8f6-43a760e76391}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssetManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EnviromentSetting.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAppImporter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAppManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FbxFileLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IAssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageFileHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersetResults.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Main_Dll_Def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialArg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialAssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshFileLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceCamera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracePerpViewPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceRender.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceViewPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderEnum.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource_Dll_Def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderAssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleRTMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleWorld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleWorldObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StrUtil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAsset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlPrefabLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationBase.h">
+      <Filter>头文件\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGLApplication.h">
+      <Filter>头文件\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleD3D9Application.h">
+      <Filter>头文件\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9Application.h">
+      <Filter>头文件\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTraceApplication.h">
+      <Filter>头文件\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareTexture.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderView.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStateCollection.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderState.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStage.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPathManager.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPath.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPass.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterRender.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareBuffer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="FragShader.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareFragShader.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareIndexBuffer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareShader.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareVertexBuffer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareVertexShader.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IRender.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderTarget.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraRenderer.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureSampler.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAssetLoader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EnviromentSetting.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppImporter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAppManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FbxFileLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FilePath.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageFileHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersetResults.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderTarget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialAssetLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshFileLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTracePerpViewPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="raytracetest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceViewPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderAssetLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleRTMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleWorld.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleWorldObj.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StrUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAsset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlPrefabLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationBase.cpp">
+      <Filter>源文件\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D9Application.cpp">
+      <Filter>源文件\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGLApplication.cpp">
+      <Filter>源文件\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleD3D9Application.cpp">
+      <Filter>源文件\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="RayTraceApplication.cpp">
+      <Filter>源文件\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareTexture.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPass.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPath.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPathManager.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStage.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStateCollection.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderView.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareBuffer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareFragShader.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareIndexBuffer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareShader.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareVertexBuffer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareVertexShader.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterRender.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureSampler.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraRenderer.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAssetLoader.cpp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ApplicationBase.h" />
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="CameraRenderer.h" />
+    <ClInclude Include="CommonDef.h" />
+    <ClInclude Include="D3D9Application.h" />
+    <ClInclude Include="EnviromentSetting.h" />
+    <ClInclude Include="FbxAppImporter.h" />
+    <ClInclude Include="FbxAppManager.h" />
+    <ClInclude Include="FbxAsset.h" />
+    <ClInclude Include="FbxFileLoader.h" />
+    <ClInclude Include="FilePath.h" />
+    <ClInclude Include="FragShader.h" />
+    <ClInclude Include="HardwareBuffer.h" />
+    <ClInclude Include="HardwareFragShader.h" />
+    <ClInclude Include="HardwareIndexBuffer.h" />
+    <ClInclude Include="HardwareShader.h" />
+    <ClInclude Include="HardwareTexture.h" />
+    <ClInclude Include="HardwareVertexBuffer.h" />
+    <ClInclude Include="HardwareVertexShader.h" />
+    <ClInclude Include="IAsset.h" />
+    <ClInclude Include="IAssetLoader.h" />
+    <ClInclude Include="ImageFileHelper.h" />
+    <ClInclude Include="IntersectTest.h" />
+    <ClInclude Include="IntersetResults.h" />
+    <ClInclude Include="IRender.h" />
+    <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="IRenderTarget.h" />
+    <ClInclude Include="Main_Dll_Def.h" />
+    <ClInclude Include="MaterialArg.h" />
+    <ClInclude Include="MaterialAsset.h" />
+    <ClInclude Include="MaterialAssetLoader.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshAsset.h" />
+    <ClInclude Include="MeshFileLoader.h" />
+    <ClInclude Include="ModuleBase.h" />
+    <ClInclude Include="PrefabAsset.h" />
+    <ClInclude Include="RasterRender.h" />
+    <ClInclude Include="RayTraceApplication.h" />
+    <ClInclude Include="RayTraceCamera.h" />
+    <ClInclude Include="RayTraceMaterial.h" />
+    <ClInclude Include="RayTracePerpViewPort.h" />
+    <ClInclude Include="RayTraceRender.h" />
+    <ClInclude Include="RayTraceViewPort.h" />
+    <ClInclude Include="RenderEnum.h" />
+    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="RenderPass.h" />
+    <ClInclude Include="RenderPath.h" />
+    <ClInclude Include="RenderPathManager.h" />
+    <ClInclude Include="RenderStage.h" />
+    <ClInclude Include="RenderState.h" />
+    <ClInclude Include="RenderStateCollection.h" />
+    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="RenderView.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Resource_Dll_Def.h" />
+    <ClInclude Include="ShaderAsset.h" />
+    <ClInclude Include="ShaderAssetLoader.h" />
+    <ClInclude Include="SimpleD3D9Application.h" />
+    <ClInclude Include="SimpleGLApplication.h" />
+    <ClInclude Include="SimpleRTMaterial.h" />
+    <ClInclude Include="SimpleWorld.h" />
+    <ClInclude Include="SimpleWorldObj.h" />
+    <ClInclude Include="SkeletonAsset.h" />
+    <ClInclude Include="SkeletonLoader.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StrUtil.h" />
+    <ClInclude Include="TextureAsset.h" />
+    <ClInclude Include="TextureAssetLoader.h" />
+    <ClInclude Include="TextureSampler.h" />
+    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="XmlPrefabLoader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ApplicationBase.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="CameraRenderer.cpp" />
+    <ClCompile Include="D3D9Application.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="EnviromentSetting.cpp" />
+    <ClCompile Include="FbxAppImporter.cpp" />
+    <ClCompile Include="FbxAppManager.cpp" />
+    <ClCompile Include="FbxAsset.cpp" />
+    <ClCompile Include="FbxFileLoader.cpp" />
+    <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="HardwareBuffer.cpp" />
+    <ClCompile Include="HardwareFragShader.cpp" />
+    <ClCompile Include="HardwareIndexBuffer.cpp" />
+    <ClCompile Include="HardwareShader.cpp" />
+    <ClCompile Include="HardwareTexture.cpp" />
+    <ClCompile Include="HardwareVertexBuffer.cpp" />
+    <ClCompile Include="HardwareVertexShader.cpp" />
+    <ClCompile Include="IAsset.cpp" />
+    <ClCompile Include="ImageFileHelper.cpp" />
+    <ClCompile Include="IntersectTest.cpp" />
+    <ClCompile Include="IntersetResults.cpp" />
+    <ClCompile Include="IRender.cpp" />
+    <ClCompile Include="IRenderTarget.cpp" />
+    <ClCompile Include="MaterialAsset.cpp" />
+    <ClCompile Include="MaterialAssetLoader.cpp" />
+    <ClCompile Include="MeshAsset.cpp" />
+    <ClCompile Include="MeshFileLoader.cpp" />
+    <ClCompile Include="PrefabAsset.cpp" />
+    <ClCompile Include="RasterRender.cpp" />
+    <ClCompile Include="RayTraceApplication.cpp" />
+    <ClCompile Include="RayTraceCamera.cpp" />
+    <ClCompile Include="RayTraceMaterial.cpp" />
+    <ClCompile Include="RayTracePerpViewPort.cpp" />
+    <ClCompile Include="RayTraceRender.cpp" />
+    <ClCompile Include="raytracetest.cpp" />
+    <ClCompile Include="RayTraceViewPort.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="RenderPass.cpp" />
+    <ClCompile Include="RenderPath.cpp" />
+    <ClCompile Include="RenderPathManager.cpp" />
+    <ClCompile Include="RenderStage.cpp" />
+    <ClCompile Include="RenderStateCollection.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="RenderView.cpp" />
+    <ClCompile Include="ShaderAsset.cpp" />
+    <ClCompile Include="ShaderAssetLoader.cpp" />
+    <ClCompile Include="SimpleD3D9Application.cpp" />
+    <ClCompile Include="SimpleGLApplication.cpp" />
+    <ClCompile Include="SimpleRTMaterial.cpp" />
+    <ClCompile Include="SimpleWorld.cpp" />
+    <ClCompile Include="SimpleWorldObj.cpp" />
+    <ClCompile Include="SkeletonAsset.cpp" />
+    <ClCompile Include="SkeletonLoader.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StrUtil.cpp" />
+    <ClCompile Include="TextureAsset.cpp" />
+    <ClCompile Include="TextureAssetLoader.cpp" />
+    <ClCompile Include="TextureSampler.cpp" />
+    <ClCompile Include="XmlPrefabLoader.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AF6CE8CE-B4BB-4D19-931A-B6EFFAC0EBAF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>raytracetest</RootNamespace>
+    <ProjectName>Main</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <NuGetPackageImportStamp>9a9bf085</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\math;..\World;..\Foundation;..\resource;$(IncludePath)</IncludePath>
+    <LibraryPath>../lib/debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\opengl\include;..\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;libfbxsdk-md.lib;d3dx9d.lib;d3d9.lib;math.lib;resource.lib;world.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x86\debug;..\thirdparty\cg\lib;..\thirdparty\directx\lib\x86;..\thirdparty\opengl\lib\release</AdditionalLibraryDirectories>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <ImportLibrary>..\lib\debug\Main.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x64\debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-md.lib;opengl32.lib;glu32.lib;glut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\opengl\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glu32.lib;opengl32.lib;glut32.lib;libfbxsdk-md.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x86\release;..\thirdparty\cg\lib;..\thirdparty\directx\lib\x86;..\thirdparty\opengl\lib\release</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;GLUT_BUILDING_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x64\debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-md.lib;Opengl32.lib;Glu32.lib;glut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

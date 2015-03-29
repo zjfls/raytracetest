@@ -1,0 +1,104 @@
+#pragma once
+enum EVERTEXSHADERTPYE
+{
+	EVERTEXSHADERORIGIN,
+	EVERTEXSHADERAUTO
+};
+enum EFRAGSHADERTYPE
+{
+	EFRAGSHADERORIGIN,
+	EFRAGSHADERSURFACE
+};
+enum ESTAGESHADERTYPE
+{
+	ESTAGESHADERONLYDEPTH,
+	ESTAGESHADERRADIANCE
+};
+
+enum RENDERSTATEMASK
+{
+	ZTEST,
+	ZFUNC,
+	ZWRITE,
+	ALPHABLEND,
+	BLENDSRC,
+	BLENDDST,
+	ALPHATEST,
+	CULLMODE
+
+};
+enum ERENDERTYPEFILTER
+{
+	EFILLTERNONE,
+	EFILLTERALL,
+	EFILLTEROPAUE,
+	EFILLTERALPHATEST,
+	EFILLTERTRANSPARENCY
+};
+enum ERENDERSTAGEMETHOD
+{
+	ERSM_DEPTHANDAMBIENT,
+	ERSM_RADIANCEDEPTHOPAQUE,
+	ERSM_RADIANCEDEPTHTRANSPACENCY
+};
+
+enum TARGETFORMAT
+{
+	TFNONE,
+	TFA2R10G10B10,
+	TFA8R8G8B8,
+	TFX8R8G8B8,
+	TFA1R5G5B5,
+	TFX1R5B5G5,
+	TFR5G6B5,
+	TFD16,
+	TFD24X8,
+	TFD32
+};
+enum EMULTISAMPLETYPE
+{
+	MSNONE
+};
+enum EBUFFSWARP
+{
+	BSNONE,
+	BSDISCARD,
+	BSFLIP,
+	BSCOPY,
+	BSOVERLAY
+};
+
+enum EMAMANGETYPE
+{
+	MTNONE,
+	MTDEFAULT,
+	MTMANAGED
+};
+
+enum EnumIndexDesc
+{
+	EIndexInvalid = 0,
+	EIndexInt,
+	EIndexShort
+};
+
+enum EnumVertexTypeDesc
+{
+	EVertexTypeInvalid = 0,
+	EVertexTypeFloat1,
+	EVertexTypeFloat2,
+	EVertexTypeFloat3,
+	EVertexTypeFloat4,
+	EVertexTypeUByte4
+};
+enum EnumVertexUseDesc
+{
+	EVertexInvalid = 0,
+	EVertexPosition = 1 << 1,
+	EVertexNormal = 1 << 2,
+	EVertexTangent = 1 << 3,
+	EVertexColor = 1 << 4,
+	EVertexUV = 1 << 5,
+	EVertexBlendIndex = 1 << 6,
+	EVertexBlendWeight = 1 << 7
+};

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="140.37831" z="-8.5111658e-008"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="0" y="158.65762" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone3">
+            <Transform>
+                <Translation x="0" y="169.72044" z="1.6644577e-008"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone4">
+            <Transform>
+                <Translation x="0" y="180.66841" z="-7.8972671e-006"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_MuSinportal">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/meshes/Env_MuSinportal_return_portal_01_INST.mesh">
+            <Material refPath="./data/meshes/return_portal_01_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/meshes/Env_MuSinportal_return_portal_03__ENV_INST.mesh">
+            <Material refPath="./data/meshes/return_portal_03__ENV_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/meshes/Env_MuSinportal_return_portal_02_fx_ENV.mesh">
+            <Material refPath="./data/meshes/return_portal_02_fx_ENV.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>
