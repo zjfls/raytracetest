@@ -12,7 +12,8 @@ public:
 	virtual shared_ptr<MaterialResource> GetDefaultMaterial();
 
 	virtual void Update();
-	shared_ptr<MaterialResource> m_pMaterial;
+	shared_ptr<MaterialResource> m_pMaterialInstance;
+	shared_ptr<MaterialResource> m_pSharedMaterial;
 	virtual ModuleBase* Clone(){ return nullptr; };
 protected:
 	VertexData* m_pVertexData;

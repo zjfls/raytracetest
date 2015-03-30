@@ -11,6 +11,7 @@ public:
 	RasterMaterial();
 	virtual ~RasterMaterial();
 	void	AddPass(string strName, RenderPass* pPass);
+	virtual shared_ptr<MaterialResource> clone();
 	//void BuildPassParameter(RenderPass* pPass);
 protected:
 	std::map<string, RenderPass*> m_RenderPassMap;

@@ -15,7 +15,7 @@ public:
 	void	AddArg(string name, MaterialArg* pArg);
 
 	std::unordered_map<string, MaterialArg*> m_matArgs;
-
+	virtual shared_ptr<MaterialResource> clone(){ return nullptr; };
 protected:
 	MaterialResource();
 	friend class ResourceManager < MaterialResource > ;

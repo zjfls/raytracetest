@@ -5,7 +5,7 @@
 IRenderable::IRenderable()
 	:m_pVertexData(nullptr)
 	, m_pIndexData(nullptr)
-	, m_pMaterial(nullptr)
+	, m_pSharedMaterial(nullptr)
 {
 	
 }
@@ -22,5 +22,5 @@ void IRenderable::Update()
 
 shared_ptr<MaterialResource> IRenderable::GetDefaultMaterial()
 {
-	return m_pMaterial;
+	return m_pSharedMaterial;
 }

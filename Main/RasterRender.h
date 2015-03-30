@@ -10,6 +10,7 @@ class HardwareIndexBuffer;
 class HardwareVertexBuffer;
 class HardwareTexture;
 class RasterCamera;
+class RenderStateCollection;
 class MAIN_API RasterRender :
 	public IRender
 {
@@ -36,6 +37,17 @@ public:
 	virtual bool SetVertexShader(HardwareVertexShader* pVertexShader) = 0;
 	virtual bool SetFragShader(HardwareFragShader* pFragShader) = 0;
 	virtual bool SetTexture(int nSamplerID, HardwareTexture* pTexture) = 0;
+	virtual bool SetRenderStateCollection(const RenderStateCollection& stateCollection) = 0;
+	virtual bool SetBlendEnable(bool b) = 0;
+	virtual bool SetBlendSrc(EALPHABLEND eBlend) = 0;
+	virtual bool SetBlendDst(EALPHABLEND eBlend) = 0;
+	virtual bool SetZTestEnable(bool b) = 0;
+	virtual bool SetZWriteEnable(bool b) = 0;
+	virtual bool SetZFunc(ERENDERCMPFUNC eCmp) = 0;
+	virtual bool SetAlphaTest(bool b) = 0;
+	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp) = 0;
+	virtual bool SetAlphaTestFactor(float f) = 0;
+	virtual bool SetCullMode(ERENDERCULL eCull) = 0;
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);

@@ -58,7 +58,7 @@ void RasterRender::GetRenderables(std::vector<IRenderable*>& vecRenderableIn,std
 {
 	for each (IRenderable* pRenderable in vecRenderableIn)
 	{
-		shared_ptr<MaterialResource> pMatRes = pRenderable->m_pMaterial;
+		shared_ptr<MaterialResource> pMatRes = pRenderable->m_pSharedMaterial;
 		if (pMatRes == nullptr)
 		{
 			pMatRes = pRenderable->GetDefaultMaterial();

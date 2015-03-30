@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Mesh.h"
 #include "MeshResource.h"
-
+#include "MaterialResource.h"
 Mesh::Mesh()
 	:m_bCpuSkin(false)
 {
@@ -14,14 +14,14 @@ Mesh::~Mesh()
 
 void Mesh::SetMeshResource(shared_ptr<MeshResource> pRes)
 {
-		m_pResource = pRes;
+		m_pSharedMesh = pRes;
 		m_pVertexData = &pRes->m_VertexData;
 		m_pIndexData = &pRes->m_IndexData;
 }
 
 shared_ptr<MeshResource> Mesh::GetMeshResource()
 {
-	return m_pResource;
+	return m_pSharedMesh;
 }
 
 bool Mesh::HasSkinInfo() const
@@ -32,18 +32,20 @@ bool Mesh::HasSkinInfo() const
 ModuleBase* Mesh::Clone()
 {
 	Mesh* pCloneMesh = new Mesh;
-	pCloneMesh->m_pMaterial = m_pMaterial;
+	pCloneMesh->m_pSharedMaterial = m_pSharedMaterial;
+	pCloneMesh->m_pMaterialInstance = m_pSharedMaterial->clone();
 	pCloneMesh->m_bCpuSkin = m_bCpuSkin;
 	//
-	if (m_pResource->m_VertexData.nBoneNum > 0 && m_bCpuSkin == true)
+	if (m_pSharedMesh->m_VertexData.nBoneNum > 0 && m_bCpuSkin == true)
 	{
-
+		pCloneMesh->m_pMeshInstance = m_pSharedMesh->clone();
 	}
 	else
 	{
 		pCloneMesh->m_pIndexData = m_pIndexData;
 		pCloneMesh->m_pVertexData = m_pVertexData;
-		pCloneMesh->m_pResource = m_pResource;
+		pCloneMesh->m_pSharedMesh = m_pSharedMesh;
+		pCloneMesh->m_pMeshInstance = m_pSharedMesh;
 	}
 	
 

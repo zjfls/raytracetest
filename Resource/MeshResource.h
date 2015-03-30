@@ -12,7 +12,7 @@ public:
 	~MeshResource();
 	//Vector3 GetPositionDataAt(int nIndex);
 	//Vector3	GetNormalDataAt(int nIndex);
-
+	shared_ptr<MeshResource> clone();
 	VertexData m_VertexData;
 	IndexData m_IndexData;
 	friend class ResourceManager<MeshResource>;

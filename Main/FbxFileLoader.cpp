@@ -672,7 +672,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	//
 	shared_ptr<RasterMaterial> pMatRes = ProcessMaterial(pMat);
 	m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes);
-	pMeshModule->m_pMaterial = pMatRes;
+	pMeshModule->m_pSharedMaterial = pMatRes;
 	//
 #pragma endregion
 	//return pMeshResource;
@@ -738,7 +738,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		//
 		shared_ptr<RasterMaterial> pMatRes = ProcessMaterial(pMat);
 		m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes);
-		pSubMeshModule->m_pMaterial = pMatRes;
+		pSubMeshModule->m_pSharedMaterial = pMatRes;
 		//
 
 

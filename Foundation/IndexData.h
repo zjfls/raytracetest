@@ -19,6 +19,7 @@ public:
 		}
 
 	}
+	unsigned int GetBuffLength() const;
 
 	EnumIndexDesc indexDesc;
 	int indexNum;

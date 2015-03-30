@@ -219,9 +219,6 @@
     <ClInclude Include="IRender.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderable.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
     <ClInclude Include="IRenderTarget.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
@@ -268,9 +265,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="IntersetResults.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IRender.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="IRenderTarget.cpp">
@@ -412,5 +406,8 @@
       <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="TextureAssetLoader.cpp" />
+    <ClCompile Include="IRender.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

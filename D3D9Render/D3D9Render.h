@@ -14,8 +14,17 @@ public:
 	virtual bool SetFragShader(HardwareFragShader* pFragShader);
 	virtual bool SetTexture(int nSamplerID, HardwareTexture* pTexture);
 	virtual void UpdateProjCamera(CameraBase* pCamera);
-	//static D3D9Render* create(void* pArg);
-
+	virtual bool SetRenderStateCollection(const RenderStateCollection& stateCollection);
+	virtual bool SetBlendEnable(bool b);
+	virtual bool SetBlendSrc(EALPHABLEND eBlend);
+	virtual bool SetBlendDst(EALPHABLEND eBlend);
+	virtual bool SetZTestEnable(bool b);
+	virtual bool SetZWriteEnable(bool b);
+	virtual bool SetZFunc(ERENDERCMPFUNC eCmp);
+	virtual bool SetAlphaTest(bool b);
+	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp);
+	virtual bool SetAlphaTestFactor(float f);
+	virtual bool SetCullMode(ERENDERCULL eCull);
 
 	IDirect3DDevice9Ex*	m_pDevice;
 };

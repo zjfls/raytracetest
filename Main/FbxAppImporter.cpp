@@ -185,14 +185,14 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* pMesh, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
-	if (pMesh->m_pMaterial == nullptr)
+	if (pMesh->m_pSharedMaterial == nullptr)
 	{
 		return;
 	}
 	XMLElement* pMatElem = doc.NewElement("Material");
 	pElem->LinkEndChild(pMatElem);
 	//pMatElem->SetAttribute("Name", "testmat");
-	PrefabProcessMaterial(doc, dynamic_pointer_cast<RasterMaterial>(pMesh->m_pMaterial), pMatElem);
+	PrefabProcessMaterial(doc, dynamic_pointer_cast<RasterMaterial>(pMesh->m_pSharedMaterial), pMatElem);
 }
 
 void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)

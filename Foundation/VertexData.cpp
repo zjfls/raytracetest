@@ -61,3 +61,8 @@ int VertexData::GetVertexDataLength() const
 	}
 	return nLength;
 }
+
+unsigned int VertexData::GetBuffLength() const
+{
+	return GetVertexDataLength() * nNumVertex;
+}

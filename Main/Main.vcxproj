@@ -44,7 +44,6 @@
     <ClInclude Include="IntersectTest.h" />
     <ClInclude Include="IntersetResults.h" />
     <ClInclude Include="IRender.h" />
-    <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderTarget.h" />
     <ClInclude Include="Main_Dll_Def.h" />
     <ClInclude Include="MaterialArg.h" />

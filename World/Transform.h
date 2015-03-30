@@ -31,6 +31,9 @@ public:
 	Orientation GetOrientation()const{ return m_Orientation; };
 
 
+
+	Matrix44 GetWorldMatrix() const { return m_TransformMatrixWorld; };
+
 	virtual ModuleBase* Clone();
 
 ////////////////////////////////////////////////

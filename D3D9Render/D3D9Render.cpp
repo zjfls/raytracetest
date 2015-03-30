@@ -100,3 +100,59 @@ void D3D9Render::UpdateProjCamera(CameraBase* pCamera)
 		0, 0, zf / (zf - zn), 1,
 		0, 0, -zn*zf / (zf - zn), 0);
 }
+
+//
+bool D3D9Render::SetRenderStateCollection(const RenderStateCollection& stateCollection)
+{
+	return true;
+}
+
+bool D3D9Render::SetBlendEnable(bool b)
+{
+	return true;
+}
+
+bool D3D9Render::SetBlendSrc(EALPHABLEND eBlend)
+{
+	return true;
+}
+
+bool D3D9Render::SetBlendDst(EALPHABLEND eBlend)
+{
+	return true;
+}
+
+bool D3D9Render::SetZTestEnable(bool b)
+{
+	return true;
+}
+
+bool D3D9Render::SetZWriteEnable(bool b)
+{
+	return true;
+}
+
+bool D3D9Render::SetZFunc(ERENDERCMPFUNC eCmp)
+{
+	return true;
+}
+
+bool D3D9Render::SetAlphaTest(bool b)
+{
+	return true;
+}
+
+bool D3D9Render::SetAlphaFunc(ERENDERCMPFUNC eCmp)
+{
+	return true;
+}
+
+bool D3D9Render::SetAlphaTestFactor(float f)
+{
+	return true;
+}
+
+bool D3D9Render::SetCullMode(ERENDERCULL eCull)
+{
+	return true;
+}

@@ -57,7 +57,7 @@ public:
 		return vecNormal;
 	}
 
-
+	unsigned int GetBuffLength() const;
 
 	void*	GetElementData(int descIndex, int posIndex) const;
 	int		GetVertexDataLength()const;

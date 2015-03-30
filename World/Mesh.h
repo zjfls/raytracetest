@@ -18,7 +18,8 @@ public:
 	virtual ModuleBase* Clone();
 private:
 	//
-	shared_ptr<MeshResource> m_pResource;
+	shared_ptr<MeshResource> m_pMeshInstance;
+	shared_ptr<MeshResource> m_pSharedMesh;
 public:
 	bool m_bCpuSkin;
 };

@@ -14,5 +14,6 @@
 *.dds
 *.exe
 *.log
+*.exp
 thirdparty/
 ipch/

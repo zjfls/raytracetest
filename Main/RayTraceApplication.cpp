@@ -58,7 +58,7 @@ IWorldObj* CreateSphere3D(float fRadius, const Vector3& vecPos, Color colorEmiss
 	pMat->m_bRefraction = bRefract;
 	pMat->m_fTransparecy = t;
 	pMat->m_fRefractiveIndex = ri;
-	pSphere->m_pMaterial = pMat;
+	pSphere->m_pSharedMaterial = pMat;
 	return pObj;
 }
 
@@ -69,7 +69,7 @@ IWorldObj* AddPlane3D(IWorldObj* pParent)
 	pPlane->m_vecPt = Vector3(0.0f, -100.0f, 0.0f);
 	pPlane->m_vecNormal = Vector3(0.0f, 1.0f, 0.0f);
 	shared_ptr<SimpleRTMaterial> pMat = CreateMaterial(Color(0.1f,0.1f,0.1f,1.0f), Color(0.4f,0.4f,0.1f,1.0f));
-	pPlane->m_pMaterial = pMat;
+	pPlane->m_pSharedMaterial = pMat;
 	pMat->m_bReflection = true;
 	pMat->m_fRefractiveIndex = 1.05f;
 	pMat->m_bRefraction = true;

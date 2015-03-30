@@ -107,7 +107,7 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, IWorldObj* pO
 	{
 		AssetManager::GetInstance()->LoadAsset(matpath);
 	}
-	pMesh->m_pMaterial = pMatRes;
+	pMesh->m_pSharedMaterial = pMatRes;
 
 
 }
