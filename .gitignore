@@ -17,3 +17,5 @@
 *.exp
 thirdparty/
 ipch/
+Debug/
+Release/
