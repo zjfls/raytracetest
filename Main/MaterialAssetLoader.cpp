@@ -110,7 +110,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 		{
 			pPass->m_eFragShaderType = EFRAGSHADERORIGIN;
 		}
-		pPassElem->NextSiblingElement("RenderPass");
+		pPassElem = pPassElem->NextSiblingElement("RenderPass");
 
 	};
 	return pAsset;

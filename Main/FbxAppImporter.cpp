@@ -261,7 +261,7 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 		return;
 	}
 
-	//
+	//write version
 	int version = 100;
 	fwrite((void*)&version, sizeof(int), 1, fp);
 	//write index data
@@ -270,7 +270,7 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	{
 		nIndexStrip = 1;
 	}
-	//4×Ö½Ú
+	//4×Ö½Ú write indexdesc
 	int indexType = (int)pMesh->m_IndexData.indexDesc;
 	fwrite((void*)&indexType, sizeof(indexType), 1, fp);
 

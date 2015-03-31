@@ -48,6 +48,8 @@ public:
 	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp) = 0;
 	virtual bool SetAlphaTestFactor(float f) = 0;
 	virtual bool SetCullMode(ERENDERCULL eCull) = 0;
+	virtual bool RenderBegin() = 0;
+	virtual bool RenderEnd() = 0;
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);

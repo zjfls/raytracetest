@@ -8,7 +8,8 @@
 #include "ShaderAssetLoader.h"
 #include "TextureAssetLoader.h"
 #include <assert.h>
-shared_ptr<AssetManager> Singleton<AssetManager>::_instance = nullptr;
+template class MAIN_API  Singleton < AssetManager >;
+template<> shared_ptr<AssetManager> Singleton<AssetManager>::_instance = nullptr;
 
 AssetManager::AssetManager()
 {
@@ -21,6 +22,7 @@ AssetManager::~AssetManager()
 
 IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 {
+	std::cout << "load:" << path.c_str() << std::endl;
 	if (m_AssetMap.find(path) != std::end(m_AssetMap))
 	{
 		return m_AssetMap[path];

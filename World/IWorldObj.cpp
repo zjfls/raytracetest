@@ -132,7 +132,7 @@ IWorldObj* IWorldObj::Clone(bool bRecursive)
 	for each (ModuleBase* pModule in m_vecModules)
 	{
 		ModuleBase* pCloneModule = pModule->Clone();
-		pModule->m_pOwnerObj = this;
+		pCloneModule->m_pOwnerObj = pCloneObj;
 		pCloneObj->m_vecModules.push_back(pCloneModule);
 	}
 
@@ -141,7 +141,7 @@ IWorldObj* IWorldObj::Clone(bool bRecursive)
 		for each (IWorldObj* pChild in m_vecChildren)
 		{
 			IWorldObj* pCloneChild = pChild->Clone(bRecursive);
-			pCloneObj->addChild(pCloneObj);
+			pCloneObj->addChild(pCloneChild);
 		}
 	}
 

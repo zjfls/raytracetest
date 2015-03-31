@@ -20,7 +20,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -83,6 +83,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
+    <ClInclude Include="CommonDef.h" />
+    <ClInclude Include="FilePath.h" />
     <ClInclude Include="Foundation_Dll_Def.h" />
     <ClInclude Include="IListener.h" />
     <ClInclude Include="IListenerSubject.h" />
@@ -90,14 +92,17 @@
     <ClInclude Include="RenderEnum.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StrUtil.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="VertexData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="IListener.cpp" />
     <ClCompile Include="IListenerSubject.cpp" />
     <ClCompile Include="IndexData.cpp" />
+    <ClCompile Include="StrUtil.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="VertexData.cpp" />
   </ItemGroup>

@@ -14,7 +14,7 @@
 //	return 42;
 //}
 class RenderSystem;
-D3D9RENDER_API RenderSystem* CreateRenderSystem()
+extern "C" D3D9RENDER_API RenderSystem* CreateRenderSystem()
 {
 	return new D3D9RenderSystem();
 }

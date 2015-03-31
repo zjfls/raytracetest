@@ -45,11 +45,12 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, IWorldObj* pObj) co
 	//char temp[128];
 	pObj->m_strName = pElem->Attribute("name");
 	XMLElement* pChildElem = pElem->FirstChildElement();
-	string name = pChildElem->Name();
 	do
 	{
+		string name = pChildElem->Name();
 		if (name == "Transform")
 		{
+			//std::cout << pElem->Name() << ":" << pElem->Attribute("name") << std::endl;
 			ProcessTransformElem(pChildElem, pObj);
 		}
 		else if (name == "Mesh")
@@ -69,6 +70,7 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, IWorldObj* pObj) co
 
 void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, IWorldObj* pObj) const
 {
+	//XMLElement* pTransform = pElem->FirstChildElement("Transform");
 	XMLElement* pTrans = pElem->FirstChildElement("Translation");
 	XMLElement* pRot = pElem->FirstChildElement("Rotation");
 	XMLElement* pScale = pElem->FirstChildElement("Scale");
@@ -100,14 +102,17 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, IWorldObj* pO
 	{
 		AssetManager::GetInstance()->LoadAsset(path);
 	}
+	pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	XMLElement* pMatElem = pElem->FirstChildElement("Material");
 	string matpath = pMatElem->Attribute("refPath");
-	shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(path));
+	shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
 	if (pMatRes == nullptr)
 	{
 		AssetManager::GetInstance()->LoadAsset(matpath);
 	}
+	pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
 	pMesh->m_pSharedMaterial = pMatRes;
+	pMesh->SetMeshResource(pMeshRes);
 
 
 }

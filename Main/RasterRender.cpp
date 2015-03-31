@@ -24,8 +24,17 @@ RasterRender::~RasterRender()
 
 int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld)
 {
+	if (RenderBegin() == false)
+	{
+		return -1;
+	}
 	std::vector<IRenderable*> vecRenderables = pWorld->GetAllRenderables();
-	return Render(vecRenderables);
+	int nRet = Render(vecRenderables);
+	if (RenderEnd() == false)
+	{
+		return -1;
+	}
+	return nRet;
 }
 
 void RasterRender::Render(IRenderable* pRender)

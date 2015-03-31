@@ -60,3 +60,4 @@ private:
 	std::map<string, IAsset*> m_AssetMap;
 };
 
+extern template class MAIN_API  Singleton < AssetManager >;

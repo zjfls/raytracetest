@@ -156,3 +156,21 @@ bool D3D9Render::SetCullMode(ERENDERCULL eCull)
 {
 	return true;
 }
+
+bool D3D9Render::RenderBegin()
+{
+	if (FAILED(m_pDevice->BeginScene()))
+	{
+		return false;
+	}
+	return true;
+}
+
+bool D3D9Render::RenderEnd()
+{
+	if (FAILED(m_pDevice->EndScene()))
+	{
+		return false;
+	}
+	return true;
+}

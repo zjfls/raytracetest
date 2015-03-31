@@ -74,7 +74,7 @@ shared_ptr<U> ResourceManager<T>::CreateResource(string refPath)
 	shared_ptr<U> pRes(new U);
 	pRes->m_refPath = refPath;
 	m_ResMap[refPath] = pRes;
-	std::cout << "create resource:" << refPath.c_str() << std::endl;
+	//std::cout << "create resource:" << refPath.c_str() << std::endl;
 	return pRes;
 }
 

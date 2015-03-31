@@ -22,4 +22,4 @@
 //D3D9RENDER_API int fnD3D9Render(void);
 
 class RenderSystem;
-D3D9RENDER_API RenderSystem* CreateRenderSystem();
+extern "C" D3D9RENDER_API RenderSystem* CreateRenderSystem();

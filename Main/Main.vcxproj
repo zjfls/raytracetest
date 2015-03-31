@@ -101,7 +101,6 @@
     <ClCompile Include="FbxAppManager.cpp" />
     <ClCompile Include="FbxAsset.cpp" />
     <ClCompile Include="FbxFileLoader.cpp" />
-    <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="HardwareBuffer.cpp" />
     <ClCompile Include="HardwareFragShader.cpp" />
     <ClCompile Include="HardwareIndexBuffer.cpp" />
@@ -148,7 +147,6 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StrUtil.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="TextureAssetLoader.cpp" />
     <ClCompile Include="TextureSampler.cpp" />

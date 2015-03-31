@@ -25,6 +25,8 @@ public:
 	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp);
 	virtual bool SetAlphaTestFactor(float f);
 	virtual bool SetCullMode(ERENDERCULL eCull);
+	virtual bool RenderBegin();
+	virtual bool RenderEnd();
 
 	IDirect3DDevice9Ex*	m_pDevice;
 };

@@ -26,13 +26,13 @@ D3D9Application::~D3D9Application()
 
 void D3D9Application::OnInit()
 {
-	AssetManager::GetInstance()->LoadAsset("./data/shader/vertex.vsm");
+	AssetManager::GetInstance()->LoadAsset("./data/shader/VertexStandard.vsm");
 }
 
 void D3D9Application::SetupScene()
 {
-	AssetManager::GetInstance()->LoadAsset("./data/mesh/porlfull.prefab.xml");
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/mesh/porlfull.prefab.xml");
+	AssetManager::GetInstance()->LoadAsset("./data/meshes/porlfull.prefab.xml");
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/meshes/porlfull.prefab.xml");
 	IWorldObj* pObj = pPrefab->m_pRoot->Clone(true);
 	m_pWorld->m_pRoot->addChild(pObj);
 
@@ -47,7 +47,7 @@ void D3D9Application::SetupScene()
 	pCameraRenderer->m_pWorld = m_pWorld;
 	pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
-
+	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,100.0f,-650.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(-80.0f), 0, 0);
