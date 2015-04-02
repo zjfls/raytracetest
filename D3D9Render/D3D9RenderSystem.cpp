@@ -469,6 +469,7 @@ IDirect3DVertexDeclaration9* D3D9RenderSystem::CreateVertexDeclarationFromDesc(s
 		vecVertElem.push_back(elem);
 		nOffset += VertexData::GetTypeLength(desc);
 	}
+	vecVertElem.push_back(D3DDECL_END());
 	IDirect3DVertexDeclaration9*	pVertexDecl = nullptr;
 	m_pD3DDevice->CreateVertexDeclaration((D3DVERTEXELEMENT9*)(&vecVertElem[0]), &pVertexDecl);
 	return pVertexDecl;
