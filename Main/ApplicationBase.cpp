@@ -11,8 +11,10 @@
 #include "RenderPathManager.h"
 #include "RenderView.h"
 #include <direct.h>
+#include "RenderSystem.h"
 
 ApplicationBase::ApplicationBase()
+	:m_pRenderView(nullptr)
 {
 }
 
@@ -42,6 +44,7 @@ bool ApplicationBase::Init(int argc, char** argv)
 	{
 		return false;
 	}
+	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	if (false == FbxAppManager::GetInstance()->Init())
 	{
 		return false;

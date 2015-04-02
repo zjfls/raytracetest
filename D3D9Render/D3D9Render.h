@@ -1,8 +1,8 @@
 #pragma once
 #include "RasterRender.h"
+#include "Color.h"
 
-
-struct IDirect3DDevice9Ex;
+struct IDirect3DDevice9;
 class D3D9Render :
 	public RasterRender
 {
@@ -27,7 +27,8 @@ public:
 	virtual bool SetCullMode(ERENDERCULL eCull);
 	virtual bool RenderBegin();
 	virtual bool RenderEnd();
+	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f);
 
-	IDirect3DDevice9Ex*	m_pDevice;
+	IDirect3DDevice9*	m_pDevice;
 };
 

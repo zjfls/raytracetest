@@ -25,6 +25,7 @@ public:
 		return pModule;
 	};
 	virtual void Update();
+	virtual void AfterUpdate();
 
 	template<class T>
 	void GetAllModuleRecursive(std::vector<T*>& vecResults);

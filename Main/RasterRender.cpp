@@ -72,7 +72,7 @@ void RasterRender::GetRenderables(std::vector<IRenderable*>& vecRenderableIn,std
 		{
 			pMatRes = pRenderable->GetDefaultMaterial();
 		}
-		if (pMatRes->m_eFillter & eFillter != 0)
+		if (pMatRes->m_eFillter == eFillter)
 		{
 			vecRenderable.push_back(pRenderable);
 		}

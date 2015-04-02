@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderView.h"
 class IWorld;
+class RenderView;
 class MAIN_API ApplicationBase
 {
 public:
@@ -26,5 +27,6 @@ protected:
 	char** m_argv;
 	IWorld* m_pWorld;
 	stRenderViewInfo m_RenderViewInfo;
+	RenderView* m_pRenderView;
 };
 

@@ -20,6 +20,6 @@ public:
 
 
 
-	IDirect3DDevice9Ex* m_pDevice;
+	IDirect3DDevice9* m_pDevice;
 };
 

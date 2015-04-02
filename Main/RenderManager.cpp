@@ -28,7 +28,8 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 {
 	//stRenderViewInfo renderViewInfo;
 	string renderType = EnviromentSetting::GetInstance()->GetSetting("RenderType");
-	RenderPath* pRenderPath = RenderPathManager::GetInstance()->GetRenderPath(EnviromentSetting::GetInstance()->GetSetting("RenderPath"));
+	string renderPath = EnviromentSetting::GetInstance()->GetSetting("RenderPath");
+	RenderPath* pRenderPath = RenderPathManager::GetInstance()->GetRenderPath(renderPath);
 #ifdef WIN32
 	if (renderType == "D3D9")
 	{

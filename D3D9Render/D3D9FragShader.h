@@ -18,6 +18,6 @@ public:
 	//
 	IDirect3DPixelShader9* m_pFragShader;
 	ID3DXConstantTable*	m_pConstantTable;
-	IDirect3DDevice9Ex* m_pDevice;
+	IDirect3DDevice9* m_pDevice;
 };
 

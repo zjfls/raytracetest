@@ -148,3 +148,15 @@ IWorldObj* IWorldObj::Clone(bool bRecursive)
 
 	return pCloneObj;
 }
+
+void IWorldObj::AfterUpdate()
+{
+	for each (ModuleBase* pModule in m_vecModules)
+	{
+		pModule->OnLateUpdate();
+	}
+	for each (IWorldObj* pObj in m_vecChildren)
+	{
+		pObj->AfterUpdate();
+	}
+}

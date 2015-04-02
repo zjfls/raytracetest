@@ -3,6 +3,7 @@
 #include "RasterRender.h"
 #include "IRenderTarget.h"
 #include "IWorld.h"
+#include "Color.h"
 class CameraRenderer :
 	public IListener
 {
@@ -19,5 +20,9 @@ public:
 	RasterRender*	m_pRender;
 	IRenderTarget*	m_pTarget;
 	IWorld*			m_pWorld;
+	bool			m_bClearColor;
+	bool			m_bClearDepth;
+	Color			m_clrColr;
+	float			m_fDepth;
 };
 

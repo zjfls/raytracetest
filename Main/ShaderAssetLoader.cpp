@@ -41,8 +41,9 @@ IAsset* VertexShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	fseek(fp, 0, SEEK_END); //定位到文件末 
 	unsigned int nLength = ftell(fp); //文件长度
 	fseek(fp, 0, startPos);
-	char* pCode = new char[nLength];
+	char* pCode = new char[nLength + 1];
 	fread(pCode, nLength,1, fp);
+	pCode[nLength] = 0;
 	//std::cout << pCode << std::endl;
 
 
@@ -97,8 +98,9 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	fseek(fp, 0, SEEK_END); //定位到文件末 
 	unsigned int nLength = ftell(fp); //文件长度
 	fseek(fp, 0, startPos);
-	char* pCode = new char[nLength];
+	char* pCode = new char[nLength + 1];
 	fread(pCode, nLength, 1, fp);
+	pCode[nLength] = 0;
 	//std::cout << pCode << std::endl;
 
 

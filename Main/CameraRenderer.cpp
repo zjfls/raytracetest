@@ -7,7 +7,12 @@ CameraRenderer::CameraRenderer()
 	: m_pWorld(nullptr)
 	, m_pRender(nullptr)
 	, m_pTarget(nullptr)
+	, m_bClearColor(true)
+	, m_bClearDepth(true)
+	, m_fDepth(1.0f)
+	, m_clrColr(Color::blue)
 {
+
 }
 
 
@@ -25,6 +30,7 @@ void CameraRenderer::OnNotify(string msg, IListenerSubject* pSubject)
 	}
 	if (msg == "UpdateMatrix")
 	{
+		return;
 		UpdateMatrix(pCamera);
 	}
 }
@@ -37,6 +43,7 @@ void CameraRenderer::Render(CameraBase* pCamera)
 	}
 	m_pRender->m_pCurrentRenderCamera = pCamera;
 	m_pRender->SetRenderTarget(m_pTarget);
+	m_pRender->ClearTarget(m_bClearColor, m_clrColr, m_bClearDepth, m_fDepth);
 	m_pRender->Render(pCamera, m_pWorld);
 }
 

@@ -18,6 +18,7 @@ void IWorld::Update()
 	if (m_pRoot != nullptr)
 	{
 		m_pRoot->Update();
+		m_pRoot->AfterUpdate();
 	}
 }
 

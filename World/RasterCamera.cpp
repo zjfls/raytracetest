@@ -13,7 +13,7 @@ RasterCamera::~RasterCamera()
 
 void RasterCamera::Update()
 {
-	
+	CameraBase::Update();
 }
 
 ModuleBase* RasterCamera::Clone()

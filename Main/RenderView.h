@@ -30,6 +30,9 @@ public:
 	RenderView();
 	~RenderView();
 
+
+
+	virtual bool Present() = 0;
 	//
 	unsigned int m_nBackBufferCount;
 	int m_windowID;

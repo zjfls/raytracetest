@@ -12,6 +12,7 @@
 #include "RenderManager.h"
 #include "RenderSystem.h"
 #include "MathFunc.h"
+#include "RenderView.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> shared_ptr<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
@@ -78,6 +79,7 @@ void D3D9Application::Run()
 			if (m_pWorld != nullptr)
 			{
 				m_pWorld->Update();
+				m_pRenderView->Present();
 			}
 		}
 	}

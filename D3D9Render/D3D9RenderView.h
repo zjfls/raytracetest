@@ -8,7 +8,7 @@ class D3D9RenderView :
 public:
 	D3D9RenderView();
 	virtual ~D3D9RenderView();
-
+	virtual bool Present();
 
 
 	IDirect3DSwapChain9Ex* m_pSwapChain;

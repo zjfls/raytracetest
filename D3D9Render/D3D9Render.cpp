@@ -174,3 +174,22 @@ bool D3D9Render::RenderEnd()
 	}
 	return true;
 }
+
+bool D3D9Render::ClearTarget(bool bClearColor, Color clr, bool bClearDepth /*= true*/, float fDepth /*= 1.0f*/)
+{
+	DWORD CLSFLG = 0;
+	if (bClearColor)
+	{
+		CLSFLG |= D3DCLEAR_TARGET;
+	}
+	if (bClearDepth)
+	{
+		CLSFLG |= D3DCLEAR_ZBUFFER;
+	}
+	D3DXCOLOR clrColor = D3DCOLOR_ARGB(int(clr.m_fA * 255), int(clr.m_fR * 255), int(clr.m_fG * 255), int(clr.m_fB * 255));
+	if (FAILED(m_pDevice->Clear(0, nullptr, CLSFLG, clrColor, fDepth, 0)))
+	{
+		return false;
+	}
+	return true;
+}

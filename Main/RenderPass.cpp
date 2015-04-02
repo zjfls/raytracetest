@@ -48,15 +48,15 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	//
 	pRender->SetVertexShader(pVertexShader);
 	pRender->SetFragShader(pFragShader);
-	//
+	
 	//
 	BuildShaderArgs(pRender, pRenderable, eStageShaderType);
 	//
 	SetPassStates(pRender, mapStates);
 	//
 	SetShaderArgs(pRender, pMat, pVertexShader, pFragShader);
-	//
-	pRender->Render(pRenderable);
+	
+
 }
 
 void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, ESTAGESHADERTYPE eShaderType)
@@ -70,7 +70,6 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 }
 void RenderPass::SetShaderArgs(RasterRender* pRender, shared_ptr<RasterMaterial> pMaterial, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
 {
-	//combine pass arg and materal arg
 	std::map<string,MaterialArg*> mapTotalArg;
 	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
 	{
@@ -82,7 +81,7 @@ void RenderPass::SetShaderArgs(RasterRender* pRender, shared_ptr<RasterMaterial>
 	}
 	int nSamplerIndex = 0;
 	//int nFragSamplerIndex = 0;
-	//
+	
 	for each (std::pair<string, MaterialArg*> p in mapTotalArg)
 	{
 		switch (p.second->m_EType)
@@ -100,32 +99,6 @@ void RenderPass::SetShaderArgs(RasterRender* pRender, shared_ptr<RasterMaterial>
 				}
 			}
 			break;
-			//case	EMATARGTYPEFLOAT2:
-			//{
-			//	Vector2* vecValue = p.second->GetData<Vector2>();
-			//	if (EMATSHADERVERTE & p.second->m_EShaderType)
-			//	{
-			//		//pVertexShader->SetFloat(p.first, *fValue);
-			//	}
-			//	if (EMATSHADERFRAG & p.second->m_EShaderType)
-			//	{
-
-			//	}
-			//}
-			//break;
-			//case	EMATARGTYPEFLOAT3:
-			//{
-			//	Vector3* vecValue = p.second->GetData<Vector3>();
-			//	if (EMATSHADERVERTE & p.second->m_EShaderType)
-			//	{
-
-			//	}
-			//	if (EMATSHADERFRAG & p.second->m_EShaderType)
-			//	{
-
-			//	}
-			//}
-			//break;
 			case	EMATARGTYPEFLOAT4:
 			{
 				Vector4* vecValue = p.second->GetData<Vector4>();

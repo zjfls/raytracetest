@@ -1,6 +1,7 @@
 #pragma once
 #include "IRender.h"
 #include "RenderStage.h"
+#include "Color.h"
 class RenderPath;
 class IRenderable;
 class RenderSystem;
@@ -50,6 +51,7 @@ public:
 	virtual bool SetCullMode(ERENDERCULL eCull) = 0;
 	virtual bool RenderBegin() = 0;
 	virtual bool RenderEnd() = 0;
+	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);
