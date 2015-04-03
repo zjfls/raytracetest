@@ -32,7 +32,7 @@ public:
 
 private:
 	//build args like matrix bone
-	void BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, ESTAGESHADERTYPE eShaderType);
+	void BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader,HardwareFragShader* pFragShader);
 	void SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates);
 	void SetShaderArgs(RasterRender* pRender, shared_ptr<RasterMaterial> pMaterial,HardwareVertexShader* pVertexShader,HardwareFragShader* pFragShader);
 protected:
@@ -40,6 +40,11 @@ protected:
 	//another args map in material
 	std::unordered_map<string, MaterialArg*> m_ShaderArgs;
 	std::vector<stRenderState> vecRenderState;
+
+	//
+	std::unordered_map<string, MaterialArg> m_VertexShaderArgs;
+	std::unordered_map<string, MaterialArg> m_FragShaderArgs;
+	//
 public:
 	EVERTEXSHADERTPYE	m_eVertexShaderType;
 	EFRAGSHADERTYPE		m_eFragShaderType;

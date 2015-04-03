@@ -277,6 +277,21 @@ HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShad
 		return nullptr;
 	}
 	pdxCode->Release();
+	//build arg
+	D3DXCONSTANTTABLE_DESC tableDesc;
+	pShader->m_pConstantTable->GetDesc(&tableDesc);
+	for (int i = 0; i < tableDesc.Constants; ++i)
+	{
+		D3DXHANDLE handle = pShader->m_pConstantTable->GetConstant(nullptr, i);
+		D3DXCONSTANT_DESC const_desc[256];
+		UINT nCount;
+		pShader->m_pConstantTable->GetConstantDesc(handle, const_desc, &nCount);
+		for (int j = 0; j < nCount; ++j)
+		{
+			pShader->m_mapConstants[const_desc[j].Name] = EMATARGTYPEFLOAT1;
+		}
+
+	}
 
 	//
 	m_mapHardwareVertexShader[strDesc] = pShader;
@@ -317,6 +332,21 @@ HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc
 		return nullptr;
 	}
 	pdxCode->Release();
+	//build arg
+	D3DXCONSTANTTABLE_DESC tableDesc;
+	pShader->m_pConstantTable->GetDesc(&tableDesc);
+	for (int i = 0; i < tableDesc.Constants; ++i)
+	{
+		D3DXHANDLE handle = pShader->m_pConstantTable->GetConstant(nullptr, i);
+		D3DXCONSTANT_DESC const_desc[256];
+		UINT nCount;
+		pShader->m_pConstantTable->GetConstantDesc(handle, const_desc, &nCount);
+		for (int j = 0; j < nCount; ++j)
+		{
+			pShader->m_mapConstants[const_desc[j].Name] = EMATARGTYPEFLOAT1;
+		}
+
+	}
 	m_mapHardwareFragShader[strDesc] = pShader;
 
 	return pShader;

@@ -52,7 +52,7 @@ public:
 	int			m_nAnistropy;
 	bool		m_bUseMipmap;
 
-
+	unsigned char m_byRegisterIndex;	//¼Ä´æÆ÷±àºÅ
 	Vector2		m_UVTiling;
 	Vector2		m_UVOffset;
 

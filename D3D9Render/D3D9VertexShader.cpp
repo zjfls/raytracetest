@@ -65,3 +65,4 @@ bool D3D9VertexShader::SetMatrix(string strName, const Matrix44& matValue)
 	}
 	return true;
 }
+

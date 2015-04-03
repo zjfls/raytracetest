@@ -14,6 +14,8 @@ public:
 	virtual bool SetInt(string strName, const float nValue);
 	virtual bool SetVector(string strName, const Vector4& nValue);
 	virtual bool SetMatrix(string strName, const Matrix44& nValue);
+	
+
 
 	IDirect3DVertexShader9* m_pVertexShader;
 	ID3DXConstantTable*	m_pConstantTable;

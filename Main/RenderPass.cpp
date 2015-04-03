@@ -50,7 +50,7 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	pRender->SetFragShader(pFragShader);
 	
 	//
-	BuildShaderArgs(pRender, pRenderable, eStageShaderType);
+	BuildShaderArgs(pRender, pRenderable, eStageShaderType,pVertexShader,pFragShader);
 	//
 	SetPassStates(pRender, mapStates);
 	//
@@ -59,9 +59,14 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 
 }
 
-void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, ESTAGESHADERTYPE eShaderType)
+void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
 {
-
+	std::map<string, EMATARGTYPE> vertexShaderParam = pVertexShader->GetContants();
+	std::map<string, EMATARGTYPE> fragShaderParam = pFragShader->GetContants();
+	for each (std::pair<string,EMATARGTYPE> p in vertexShaderParam)
+	{
+		//if (m_)
+	}
 }
 
 void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates)
