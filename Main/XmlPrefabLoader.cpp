@@ -83,9 +83,9 @@ void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, IWorldOb
 	pRot->QueryFloatAttribute("y", &r.m_fy);
 	pRot->QueryFloatAttribute("z", &r.m_fz);
 
-	pTrans->QueryFloatAttribute("x", &t.m_fx);
-	pTrans->QueryFloatAttribute("y", &t.m_fy);
-	pTrans->QueryFloatAttribute("z", &t.m_fz);
+	pScale->QueryFloatAttribute("x", &s.m_fx);
+	pScale->QueryFloatAttribute("y", &s.m_fy);
+	pScale->QueryFloatAttribute("z", &s.m_fz);
 
 	Transform* trans = pObj->m_pTransform;
 	trans->SetTranslate(t);
@@ -104,14 +104,17 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, IWorldObj* pO
 	}
 	pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	XMLElement* pMatElem = pElem->FirstChildElement("Material");
-	string matpath = pMatElem->Attribute("refPath");
-	shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
-	if (pMatRes == nullptr)
+	if (pMatElem != nullptr)
 	{
-		AssetManager::GetInstance()->LoadAsset(matpath);
+		string matpath = pMatElem->Attribute("refPath");
+		shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
+		if (pMatRes == nullptr)
+		{
+			AssetManager::GetInstance()->LoadAsset(matpath);
+		}
+		pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
+		pMesh->m_pSharedMaterial = pMatRes;
 	}
-	pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
-	pMesh->m_pSharedMaterial = pMatRes;
 	pMesh->SetMeshResource(pMeshRes);
 
 

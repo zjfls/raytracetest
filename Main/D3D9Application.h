@@ -2,6 +2,7 @@
 #include "ApplicationBase.h"
 #include "windows.h"
 #include "Singleton.h"
+class IWorldObj;
 class MAIN_API D3D9Application :
 	public ApplicationBase, public Singleton < D3D9Application >
 {
@@ -20,6 +21,7 @@ protected:
 	virtual bool CreateAppWindow();
 private:
 	static long __stdcall WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp);
+	IWorldObj*				m_pTargetObj;
 };
 
 extern template class MAIN_API  Singleton < D3D9Application >;

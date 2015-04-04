@@ -125,7 +125,7 @@ void FbxAppImporter::ImportFbxFile(string path)
 			ImportSkeleton(pSkeRes, pSkeRes->GetRefPath());
 		}
 	}
-	system("pause");
+	//system("pause");
 }
 
 void FbxAppImporter::ImportPrefab(shared_ptr<PrefabResource> pPrefab, string path)
@@ -246,6 +246,9 @@ void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_pt
 
 void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 {
+	//
+	pMesh->m_VertexData.ComputeTangent(pMesh->m_IndexData);
+	//
 	std::cout << "save mesh:" << path.c_str() << std::endl;
 	if (_access(path.c_str(), 0) != -1)
 	{

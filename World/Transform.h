@@ -32,8 +32,7 @@ public:
 
 
 
-	Matrix44 GetWorldMatrix() const { return m_TransformMatrixWorld; };
-
+	Matrix44 GetWorldMatrix() const;
 	virtual ModuleBase* Clone();
 
 ////////////////////////////////////////////////

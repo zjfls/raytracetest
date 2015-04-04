@@ -108,7 +108,7 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
 	d3dpp.BackBufferHeight = viewInfo.m_nHeight;
 	d3dpp.BackBufferWidth = viewInfo.m_nWidth;
-	d3dpp.BackBufferCount = 2;
+	d3dpp.BackBufferCount = 1;
 	d3dpp.Windowed = viewInfo.m_bWindowed;
 	d3dpp.SwapEffect = getSwapEffect(viewInfo.m_eSwapEffect);
 	d3dpp.BackBufferFormat = getBufferFormat(viewInfo.m_eTargetFormt);
@@ -139,7 +139,7 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 	IDirect3DSwapChain9* pSwapChain;
 	m_pD3DDevice->GetSwapChain(0, &pSwapChain);
 	pRenderView = new D3D9RenderView;
-	pRenderView->m_pSwapChain = (IDirect3DSwapChain9Ex*)pSwapChain;
+	pRenderView->m_pSwapChain = pSwapChain;
 	m_pDefaultRenderView = pRenderView;
 
 
@@ -288,13 +288,30 @@ HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShad
 		pShader->m_pConstantTable->GetConstantDesc(handle, const_desc, &nCount);
 		for (int j = 0; j < nCount; ++j)
 		{
-			pShader->m_mapConstants[const_desc[j].Name] = EMATARGTYPEFLOAT1;
+			ShaderConstantInfo info;
+			info.m_strName = const_desc[j].Name;
+			switch (const_desc[j].RegisterSet)
+			{
+				case D3DXRS_SAMPLER:
+				{
+					info.m_eRegType = REGSAMPLE;
+				}
+				break;
+				default:
+				{
+					info.m_eRegType = REGINVALID;
+				}
+				break;
+			}
+			info.m_nRegIndex = const_desc[j].RegisterIndex;
+			pShader->m_mapConstants[const_desc[j].Name] = info;
 		}
 
 	}
 
 	//
 	m_mapHardwareVertexShader[strDesc] = pShader;
+	pShader->m_pDevice = m_pD3DDevice;
 
 	return pShader;
 }
@@ -343,12 +360,28 @@ HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc
 		pShader->m_pConstantTable->GetConstantDesc(handle, const_desc, &nCount);
 		for (int j = 0; j < nCount; ++j)
 		{
-			pShader->m_mapConstants[const_desc[j].Name] = EMATARGTYPEFLOAT1;
+			ShaderConstantInfo info;
+			info.m_strName = const_desc[j].Name;
+			switch (const_desc[j].RegisterSet)
+			{
+				case D3DXRS_SAMPLER:
+				{
+					info.m_eRegType = REGSAMPLE;
+				}
+				break;
+				default:
+				{
+					info.m_eRegType = REGINVALID;
+				}
+				break;
+			}
+			info.m_nRegIndex = const_desc[j].RegisterIndex;
+			pShader->m_mapConstants[const_desc[j].Name] = info;
 		}
 
 	}
 	m_mapHardwareFragShader[strDesc] = pShader;
-
+	pShader->m_pDevice = m_pD3DDevice;
 	return pShader;
 }
 
@@ -564,7 +597,8 @@ HardwareTexture* D3D9RenderSystem::GetHardwareTexture(shared_ptr<Texture> pTextu
 			D3D9Texture2D* pHardwareTex = new D3D9Texture2D;
 			if (FAILED(D3DXCreateTextureFromFile(m_pD3DDevice, pTexture->GetRefPath().c_str(), &pHardwareTex->m_pTexture)))
 			{
-				delete pHardwareTex;
+				std::cout << "can not find texture:" << pTexture->GetRefPath().c_str() << std::endl;
+				delete pHardwareTex;	
 				//MessageBox(NULL, "Could not find banana.bmp", "Textures.exe", MB_OK);
 				return nullptr;
 			}

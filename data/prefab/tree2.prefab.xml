@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="-0.24239193" y="-0.24174501" z="2.9442887"/>
+                <Rotation x="89.999748" y="0.00049692136" z="-89.40934"/>
+                <Scale x="1" y="1.0000001" z="0.99999994"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="10.553322" y="7.1525574e-007" z="8.7916851e-007"/>
+                    <Rotation x="-1.0245815e-005" y="0.0060373005" z="-1.1933939e-005"/>
+                    <Scale x="0.99999994" y="1.0000001" z="0.99999976"/>
+                </Transform>
+                <WorldObj name="Bone3">
+                    <Transform>
+                        <Translation x="10.662097" y="-9.5367432e-007" z="-7.301569e-007"/>
+                        <Rotation x="-0.0001427039" y="-3.0565681" z="1.1466936e-005"/>
+                        <Scale x="1" y="1.0000002" z="1"/>
+                    </Transform>
+                    <WorldObj name="Bone4">
+                        <Transform>
+                            <Translation x="11.991259" y="2.8610229e-006" z="1.8596649e-005"/>
+                            <Rotation x="3.404876e-005" y="0.43164119" z="-1.1753054e-005"/>
+                            <Scale x="1.0000002" y="0.99999988" z="1.0000004"/>
+                        </Transform>
+                        <WorldObj name="Bone5">
+                            <Transform>
+                                <Translation x="11.658318" y="9.5367432e-007" z="9.5367432e-007"/>
+                                <Rotation x="1.3321635" y="3.2094405" z="0.00010926439"/>
+                                <Scale x="0.99999958" y="0.99999976" z="0.99999988"/>
+                            </Transform>
+                            <WorldObj name="Bone6">
+                                <Transform>
+                                    <Translation x="14.034721" y="2.6941299e-005" z="-1.0251999e-005"/>
+                                    <Rotation x="-1.331726" y="-0.90184063" z="-0.021071285"/>
+                                    <Scale x="1.0000001" y="1.0000004" z="1.0000006"/>
+                                </Transform>
+                                <WorldObj name="Bone7">
+                                    <Transform>
+                                        <Translation x="13.818237" y="2.3841858e-006" z="-5.0067902e-006"/>
+                                        <Rotation x="-0.00033126411" y="-2.1344342e-006" z="-3.4151069e-006"/>
+                                        <Scale x="1" y="0.99999988" z="0.99999976"/>
+                                    </Transform>
+                                </WorldObj>
+                            </WorldObj>
+                        </WorldObj>
+                    </WorldObj>
+                </WorldObj>
+            </WorldObj>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="0" y="59.121914" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_hidetree">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_hidetree_Env_Tree_Body_01.mesh">
+            <Material refPath="./data/material/Env_Tree_Body_01.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_hidetree_Tree_004_03_Mat3.mesh">
+            <Material refPath="./data/material/Tree_004_03_Mat3.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_hidetree_Env_bokbong_01_MAT_INST.mesh">
+            <Material refPath="./data/material/Env_bokbong_01_MAT_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_hidetree_Tree_004_03_Mat2.mesh">
+            <Material refPath="./data/material/Tree_004_03_Mat2.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

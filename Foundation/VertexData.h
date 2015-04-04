@@ -2,6 +2,7 @@
 #include "RenderEnum.h"
 #include "VertexData.h"
 #include "Vector3.h"
+class IndexData;
 class FOUNDATION_API VertexData
 {
 public:
@@ -34,7 +35,7 @@ public:
 		Vector3 vecPos;
 		VertexDataDesc desc = vecDataDesc[0];
 		float* pfData = (float*)pData;
-		pfData = pfData + desc.nOffset + nIndex * 3;
+		pfData = (float*)((char*)pfData + desc.nOffset + nIndex * GetVertexDataLength());
 		vecPos.m_fx = *pfData;
 		pfData++;
 		vecPos.m_fy = *pfData;
@@ -48,7 +49,7 @@ public:
 		Vector3 vecNormal;
 		VertexDataDesc desc = vecDataDesc[1];
 		float* pfData = (float*)pData;
-		pfData = pfData + desc.nOffset + nIndex * 3;
+		pfData = (float*)((char*)pfData + desc.nOffset + nIndex * GetVertexDataLength());
 		vecNormal.m_fx = *pfData;
 		pfData++;
 		vecNormal.m_fy = *pfData;
@@ -56,7 +57,7 @@ public:
 		vecNormal.m_fz = *pfData;
 		return vecNormal;
 	}
-
+	void ComputeTangent(const IndexData& indexData);
 	unsigned int GetBuffLength() const;
 
 	void*	GetElementData(int descIndex, int posIndex) const;

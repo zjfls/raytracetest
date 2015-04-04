@@ -22,14 +22,12 @@
     <ClInclude Include="ApplicationBase.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="CameraRenderer.h" />
-    <ClInclude Include="CommonDef.h" />
     <ClInclude Include="D3D9Application.h" />
     <ClInclude Include="EnviromentSetting.h" />
     <ClInclude Include="FbxAppImporter.h" />
     <ClInclude Include="FbxAppManager.h" />
     <ClInclude Include="FbxAsset.h" />
     <ClInclude Include="FbxFileLoader.h" />
-    <ClInclude Include="FilePath.h" />
     <ClInclude Include="FragShader.h" />
     <ClInclude Include="HardwareBuffer.h" />
     <ClInclude Include="HardwareFragShader.h" />
@@ -71,6 +69,7 @@
     <ClInclude Include="RenderStateCollection.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="RenderView.h" />
+    <ClInclude Include="ResDef.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resource_Dll_Def.h" />
     <ClInclude Include="ShaderAsset.h" />
@@ -135,6 +134,7 @@
     <ClCompile Include="RenderStateCollection.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="RenderView.cpp" />
+    <ClCompile Include="ResDef.cpp" />
     <ClCompile Include="ShaderAsset.cpp" />
     <ClCompile Include="ShaderAssetLoader.cpp" />
     <ClCompile Include="SimpleD3D9Application.cpp" />

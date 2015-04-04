@@ -1,5 +1,7 @@
 #pragma once
+#include "Vector3.h"
 class Matrix33;
+//scale,rotation,translate
 class MATH_API Matrix44
 {
 public:
@@ -10,10 +12,22 @@ public:
 	Matrix44 operator*(const Matrix44& matIn) const;
 	Matrix44 Transpose() const;
 	Matrix44 Inverse() const;
+
+	static Matrix44 GetTranlateMatrix(const Vector3& translate);
+	static Matrix44 GetScaleMatrix(const Vector3& scale);
+	
+
+
+	Vector3	GetTranslate() const;
+	Vector3 GetScale() const;
+	Vector3 GetRotation() const;
+	//¼Ù¶¨3x3¾ØÕóÕý½»
+	static Matrix44 QuikInverse(const Matrix44& mat);
 	virtual ~Matrix44();
 
 
 	void TraslateMatrix(float fx,float fy,float fz);
+	void ScaleMatrix(float fx, float fy, float fz);
 	void FromMatrix33(const Matrix33* mat33);
 
 

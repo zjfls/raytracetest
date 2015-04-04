@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--skeleton resource-->
+<Info BoneNum="28"/>
+
+<Bone Name="Bone0">
+    <Translation x="0" y="0" z="0"/>
+    <Rotation x="0" y="0" z="0"/>
+    <Scale x="1" y="1" z="1"/>
+    <Bone Name="Bone1">
+        <Translation x="9.4694395" y="0.75036073" z="51.113632"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone2">
+        <Translation x="8.3015118" y="15.526492" z="41.459728"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone3">
+        <Translation x="14.269248" y="-1.0816686" z="44.769981"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone4">
+        <Translation x="6.8441982" y="0.74817872" z="23.656525"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone5">
+        <Translation x="14.646487" y="-4.6158848" z="31.284431"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone6">
+        <Translation x="-1.8700199" y="-13.352295" z="44.519562"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone7">
+        <Translation x="5.5228605" y="-18.523708" z="38.114426"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone8">
+        <Translation x="-9.6108122" y="-14.523633" z="42.113441"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone9">
+        <Translation x="-5.4810214" y="-18.081291" z="27.875149"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone10">
+        <Translation x="-7.8538747" y="-18.07003" z="20.083893"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone11">
+        <Translation x="-1.4377456" y="-19.836098" z="23.805454"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone12">
+        <Translation x="8.7092171" y="-11.089386" z="21.949387"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone13">
+        <Translation x="17.433914" y="9.0542068" z="32.359039"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone14">
+        <Translation x="-1.4247041" y="16.725372" z="50.335392"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone15">
+        <Translation x="-15.505849" y="-0.74121785" z="44.178673"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone16">
+        <Translation x="-13.364448" y="-10.97" z="22.844349"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone17">
+        <Translation x="-14.666202" y="-6.142642" z="30.134689"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone18">
+        <Translation x="-12.089552" y="4.6797962" z="23.859301"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone19">
+        <Translation x="-12.092403" y="13.257968" z="45.71701"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone20">
+        <Translation x="-4.1682901" y="10.252665" z="33.60014"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone21">
+        <Translation x="-0.27784348" y="0.45006776" z="10.809433"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone22">
+        <Translation x="9.7906027" y="-13.967875" z="12.426023"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone23">
+        <Translation x="-0.14426613" y="59.949604" z="0"/>
+        <Rotation x="0" y="0" z="-90.000008"/>
+        <Scale x="0.99999994" y="0.99999994" z="1"/>
+    </Bone>
+    <Bone Name="Bone24">
+        <Translation x="59.961143" y="-0.087551117" z="0"/>
+        <Rotation x="0" y="-0" z="-179.99998"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone25">
+        <Translation x="-60.190079" y="0.16590667" z="0"/>
+        <Rotation x="0" y="-0" z="1.003184e-005"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+    <Bone Name="Bone26">
+        <Translation x="0.24190521" y="-59.844322" z="0"/>
+        <Rotation x="0" y="-0" z="90.000008"/>
+        <Scale x="0.99999994" y="0.99999994" z="1"/>
+    </Bone>
+    <Bone Name="Bone27">
+        <Translation x="0" y="-0.45029578" z="29.417004"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Bone>
+</Bone>

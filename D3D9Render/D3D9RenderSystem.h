@@ -3,6 +3,7 @@
 #include "d3d9.h"
 #include "RenderEnum.h"
 #include "VertexData.h"
+
 class RasterRender;
 class D3D9RenderSystem :
 	public RenderSystem
@@ -33,5 +34,8 @@ protected:
 public:
 	LPDIRECT3D9             m_pD3D;
 	LPDIRECT3DDEVICE9		m_pD3DDevice;
+
+
+
 };
 

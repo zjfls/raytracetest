@@ -57,6 +57,7 @@ void CameraBase::UpdateMatrix()
 		zaxis.m_fx, zaxis.m_fy, zaxis.m_fz, 0,
 		eye.m_fx, eye.m_fy, eye.m_fz, 1
 	};
+	
 
 	m_MatViewProj = m_MatView * m_MatProj;
 }

@@ -40,7 +40,7 @@ bool IWorldObj::addChild(IWorldObj* pObj)
 bool IWorldObj::removeChild(IWorldObj* pObj)
 {
 	std::vector<IWorldObj*>::iterator iter;
-	for (iter == m_vecChildren.begin(); iter != m_vecChildren.end(); ++iter)
+	for (iter = m_vecChildren.begin(); iter != m_vecChildren.end(); ++iter)
 	{
 		if (*iter == pObj)
 		{
@@ -129,11 +129,18 @@ IWorldObj* IWorldObj::Clone(bool bRecursive)
 	pCloneObj->m_strName = m_strName;
 	//pCloneObj->m_pParent = m_pParent;
 	pCloneObj->removeModule(pCloneObj->m_pTransform);
+	pCloneObj->m_pTransform = nullptr;
 	for each (ModuleBase* pModule in m_vecModules)
 	{
 		ModuleBase* pCloneModule = pModule->Clone();
 		pCloneModule->m_pOwnerObj = pCloneObj;
 		pCloneObj->m_vecModules.push_back(pCloneModule);
+
+		Transform* pTrans = dynamic_cast<Transform*>(pCloneModule);
+		if (pTrans != nullptr)
+		{
+			pCloneObj->m_pTransform = pTrans;
+		}
 	}
 
 	if (bRecursive)

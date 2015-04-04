@@ -29,6 +29,11 @@ IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 	}
 	string strSuff = getFileSuffix(path);
 	std::transform(strSuff.begin(), strSuff.end(), strSuff.begin(), tolower);
+	if (m_LoaderMap.find(strSuff) == std::end(m_LoaderMap))
+	{
+		std::cout << "can not find loader for suffix:" << strSuff << std::endl;
+		return nullptr;
+	}
 	IAsset* pAsset = m_LoaderMap[strSuff]->Load(path, pArg);
 	if (pAsset == nullptr)
 	{

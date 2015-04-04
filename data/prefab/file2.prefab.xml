@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="1.0296593" y="30.170511" z="1.0991323"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="0.011591911" y="31.891018" z="18.883419"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="ENV_MiGungTbox">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/ENV_MiGungTbox_Prop_Box_001_Env_02_Mat.mesh">
+            <Material refPath="./data/material/Prop_Box_001_Env_02_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/ENV_MiGungTbox_Env_TreasureChestA03_MAT_INST.mesh">
+            <Material refPath="./data/material/Env_TreasureChestA03_MAT_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

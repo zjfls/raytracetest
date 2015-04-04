@@ -1,5 +1,5 @@
-float4x4 mWorld;	// World * View * Projection transformatio
-float4x4 mViewProj;			//Projection
+float4x4 MATRIX_WORLD;	// World * View * Projection transformatio
+float4x4 MATRIX_VP;			//Projection
 //-----------------------------------------------------------------------------
 // Vertex shader output structure
 //-----------------------------------------------------------------------------
@@ -21,9 +21,9 @@ struct VS_INPUT
 VS_OUTPUT vMain( VS_INPUT input )
 {
 	VS_OUTPUT Output;
-	Output.worldPosition	=	mul(float4(input.Position, 1.0f), mWorld);
-	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), mViewProj);
-    Output.Normal			=   float4(input.Normal,0.0f);
+	Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
+	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);
+    Output.Normal			=   mul(float4(input.Normal,0.0f),MATRIX_WORLD);
     Output.TC				=	input.TC;
     return Output;
 }

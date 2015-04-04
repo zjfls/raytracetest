@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "D3D9VertexShader.h"
 #include "d3d9.h"
+#include "Matrix44.h"
 
 
 D3D9VertexShader::D3D9VertexShader()
@@ -58,7 +59,15 @@ bool D3D9VertexShader::SetVector(string strName, const Vector4& vecValue)
 
 bool D3D9VertexShader::SetMatrix(string strName, const Matrix44& matValue)
 {
-	HRESULT hr = m_pConstantTable->SetMatrix(m_pDevice, strName.c_str(), (const D3DXMATRIX*)&matValue);
+	D3DXMATRIX mat;
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4;++j)
+		{
+			mat.m[i][j] = matValue.M[i][j];
+		}
+	}
+	HRESULT hr = m_pConstantTable->SetMatrix(m_pDevice, strName.c_str(), &mat);
 	if (hr != D3D_OK)
 	{
 		return false;

@@ -18,3 +18,19 @@ unsigned int IndexData::GetBuffLength() const
 	}
 	return 0;
 }
+
+unsigned int IndexData::GetIndexAt(int nTriangle, int nV) const
+{
+	if (nTriangle * 3 + nV > indexNum)
+	{
+		return -1;
+	}
+	if (indexDesc == EIndexInt)
+	{
+		return *((int*)pData + nTriangle * 3 + nV);
+	}
+	else
+	{
+		return *((short*)pData + nTriangle * 3 + nV);
+	}
+}

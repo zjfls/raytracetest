@@ -55,7 +55,8 @@ void Transform::Update()
 	Matrix44 mat44s, mat44r;
 	mat44s.FromMatrix33(&matScale);
 	mat44r.FromMatrix33(&matRot);
-	m_TransformMatrixLocal = matTraslate * mat44s * mat44r;
+	//first scale ,then rotation, last translate
+	m_TransformMatrixLocal = mat44s * mat44r * matTraslate;
 
 	if (m_pOwnerObj->m_pParent == nullptr)
 	{
@@ -113,6 +114,12 @@ ModuleBase* Transform::Clone()
 	pTransform->m_vecScale = m_vecScale;
 	return pTransform;
 }
+
+Matrix44 Transform::GetWorldMatrix() const
+{
+	return m_TransformMatrixWorld;
+}
+
 
 //ModuleBase* TransformCreator::CreateModule()
 //{

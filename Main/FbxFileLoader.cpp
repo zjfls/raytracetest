@@ -16,6 +16,7 @@
 #include "RenderEnum.h"
 #include "Transform.h"
 #include "IWorldObj.h"
+#include "ResDef.h"
 
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
@@ -82,7 +83,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	IWorldObj* pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
 
 
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(m_fileDir + name + ".prefab.xml");
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + name + ".prefab.xml");
 	pPrefab->m_pRoot = pRoot;
 	pAsset->AddResource(m_fileDir + name + ".prefab.xml", pPrefab);
 	//
@@ -166,11 +167,11 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	//
 	char temp[25];
 	_itoa_s((int)pMesh, temp, 10);
-	refPath = m_fileDir + pNode->GetName() + ".mesh";
+	refPath = strMeshPath + pNode->GetName() + ".mesh";
 	//
 	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
 	{
-		refPath = m_fileDir + pNode->GetName() + "a" + ".mesh";
+		refPath = strMeshPath + pNode->GetName() + "a" + ".mesh";
 	}
 
 	vecMeshList.push_back(pMesh);
@@ -388,9 +389,11 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 
 #pragma endregion
 #pragma region AddSkinInfo
+	bool bHasSkinInfo = false;
 	int deformerCount = pMesh->GetDeformerCount();
 	if (deformerCount == 1)
 	{
+		bHasSkinInfo = true;
 		FbxDeformer* pDeformer = pMesh->GetDeformer(0);
 		if (pDeformer != nullptr && pDeformer->GetDeformerType() == FbxDeformer::eSkin)
 		{
@@ -511,20 +514,29 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	desc.nOffset = nVBOffset;
 	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
 	nVBOffset += sizeof(float) * 2;
-	//blend index
-	desc.usedesc = EVertexBlendIndex;
-	desc.typedesc = EVertexTypeUByte4;
-	desc.nOffset = nVBOffset;
-	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset += sizeof(unsigned char) * 4;
-	//blend weight
-	desc.usedesc = EVertexBlendWeight;
-	desc.typedesc = EVertexTypeFloat4;
-	desc.nOffset = nVBOffset;
-	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
-	nVBOffset += sizeof(float) * 4;
+	if (bHasSkinInfo)
+	{
+		//blend index
+		desc.usedesc = EVertexBlendIndex;
+		desc.typedesc = EVertexTypeUByte4;
+		desc.nOffset = nVBOffset;
+		pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+		nVBOffset += sizeof(unsigned char) * 4;
+		//blend weight
+		desc.usedesc = EVertexBlendWeight;
+		desc.typedesc = EVertexTypeFloat4;
+		desc.nOffset = nVBOffset;
+		pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+		nVBOffset += sizeof(float) * 4;
+		pMeshResource->m_VertexData.nBoneNum = nMaxBonePerVertex;
+	}
+	else
+	{
+		pMeshResource->m_VertexData.nBoneNum = 0;
+	}
 
-	pMeshResource->m_VertexData.nBoneNum = nMaxBonePerVertex;
+
+
 	pMeshResource->m_VertexData.nNumVertex = cpCount;
 	pMeshResource->m_VertexData.pData = new unsigned char[nVBOffset * cpCount];
 	for (unsigned int cpIndex = 0; cpIndex < cpCount; ++cpIndex)
@@ -532,7 +544,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		for (unsigned int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
 		{
 			VertexData::VertexDataDesc desc = pMeshResource->m_VertexData.vecDataDesc[i];
-			void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData.pData + desc.nOffset + i * pMeshResource->m_VertexData.GetVertexDataLength();
+			void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData.pData + desc.nOffset + cpIndex * pMeshResource->m_VertexData.GetVertexDataLength();
 			switch (desc.typedesc)
 			{
 
@@ -663,6 +675,10 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	//std::cout << pNode->GetName() << " has material count:" << nMatCount << std::endl;
 	FbxLayerElementArrayTemplate<int> *tArray = new FbxLayerElementArrayTemplate<int>(EFbxType::eFbxInt);
 	pMesh->GetMaterialIndices(&tArray);
+	if (tArray == nullptr)
+	{
+		return pMeshResource;
+	}
 	int nMatIndex = tArray->GetAt(0);
 	FbxSurfaceMaterial* pMat = pNode->GetMaterial(nMatIndex);
 	if (pMat == nullptr)
@@ -729,7 +745,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			continue;;
 		}
 		string meshName = getFileNameWithoutSuffix(refPath);
-		string subRefPath = getFileDirectory(refPath) + meshName + "_" + pMat->GetName() + ".mesh";
+		string subRefPath = strMeshPath + meshName + "_" + pMat->GetName() + ".mesh";
 		shared_ptr<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
 		m_pAsset->AddResource(subRefPath, pSubMesh);
 		Mesh* pSubMeshModule = obj->addModule<Mesh>();
@@ -847,7 +863,7 @@ IWorldObj* FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, IWorld
 	{
 		return nullptr;
 	}
-	refPath = m_fileDir + pNode->GetName() + ".skeleton.xml";
+	refPath = strShaderPath + pNode->GetName() + ".skeleton.xml";
 	shared_ptr<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(refPath);
 	Bone* pRoot = new Bone();
 	pSkeleton->m_pRoot = pRoot;
@@ -946,7 +962,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 	FbxProperty pProp = pSrfPhong->GetFirstProperty();
 
 
-	shared_ptr<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(m_fileDir + pMat->GetName() + ".smat.xml");
+	shared_ptr<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(strMaterialPath + pMat->GetName() + ".smat.xml");
 	m_mapMaterial[pMat] = pMatRes;
 
 	while (pProp.IsValid())
@@ -968,7 +984,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
 
 			}
 			else if (_tcsstr(strProperty.c_str(), "Specular") != nullptr)
@@ -976,21 +992,21 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
 			}
 			else if (_tcsstr(strProperty.c_str(), "Normal") != nullptr)
 			{
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
 			}
 			else if (_tcsstr(strProperty.c_str(), "Emissive") != nullptr)
 			{
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(m_fileDir + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
 			}
 		}
 	}

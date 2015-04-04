@@ -50,6 +50,7 @@ IAsset* VertexShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	pVSResource = ResourceManager<VertexShader>::GetInstance()->CreateResource<VertexShader>(path);
 	pVSResource->m_pCodeBuffer = pCode;
 	m_pAsset->AddResource(path, pVSResource);
+	fclose(fp);
 	return m_pAsset;
 
 	//IDirect3DVertexShader9* pVertexShader;
@@ -107,6 +108,7 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	pFSResource = ResourceManager<FragShader>::GetInstance()->CreateResource<FragShader>(path);
 	pFSResource->m_pCodeBuffer = pCode;
 	m_pAsset->AddResource(path, pFSResource);
+	fclose(fp);
 	return m_pAsset;
 
 	//IDirect3DVertexShader9* pVertexShader;

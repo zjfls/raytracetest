@@ -33,7 +33,10 @@ ModuleBase* Mesh::Clone()
 {
 	Mesh* pCloneMesh = new Mesh;
 	pCloneMesh->m_pSharedMaterial = m_pSharedMaterial;
-	pCloneMesh->m_pMaterialInstance = m_pSharedMaterial->clone();
+	if (m_pSharedMaterial != nullptr)
+	{
+		pCloneMesh->m_pMaterialInstance = m_pSharedMaterial->clone();
+	}
 	pCloneMesh->m_bCpuSkin = m_bCpuSkin;
 	//
 	if (m_pSharedMesh->m_VertexData.nBoneNum > 0 && m_bCpuSkin == true)

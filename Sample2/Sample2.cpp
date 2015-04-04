@@ -9,10 +9,10 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//_chdir("../");
-	//ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>("fdsf");
+	////ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>("fdsf");
 	//FbxAppManager::GetInstance()->Init();
 	//AssetManager::GetInstance()->Init();
-	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/meshes/porlfull.fbx");
+	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/meshes/plane.fbx");
 	//return 0;
 	
 	//

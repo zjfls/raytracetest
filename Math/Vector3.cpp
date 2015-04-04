@@ -37,14 +37,15 @@ Vector3 Vector3::operator=(const Vector3& vecIn)
 	return *this;
 }
 
-void Vector3::normalize()
+Vector3 Vector3::normalize()
 {
 	float fLength = length();
 	if (fLength == 0.0f)
 	{
-		return;
+		return *this;
 	}
 	*this = *this * (1.0f / fLength);
+	return *this;
 }
 
 float Vector3::length() const
@@ -102,4 +103,13 @@ Vector3 Vector3::cross(const Vector3& vecIn) const
 	vecOut.m_fy = m_fz * vecIn.m_fx - m_fx * vecIn.m_fz;
 	vecOut.m_fz = m_fx * vecIn.m_fy - m_fy * vecIn.m_fx;
 	return vecOut;
+}
+
+Vector3 Vector3::operator+=(const Vector3& vecIn)
+{
+	m_fx = m_fx + vecIn.m_fx;
+	m_fy = m_fy + vecIn.m_fy;
+	m_fz = m_fz + vecIn.m_fz;
+
+	return *this;
 }

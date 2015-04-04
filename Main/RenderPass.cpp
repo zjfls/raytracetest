@@ -16,6 +16,11 @@
 #include "Matrix44.h"
 #include "Color.h"
 #include "TextureSampler.h"
+#include "IWorldObj.h"
+#include "Transform.h"
+#include "RasterRender.h"
+#include "CameraBase.h"
+#include "HardwareShader.h"
 RenderPass::RenderPass()
 {
 }
@@ -40,138 +45,147 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	vsdesc.m_eStageDesc = eStageShaderType;
 	vsdesc.m_eVShaderDesc = m_eVertexShaderType;
 	HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
+	if (nullptr == pVertexShader)
+	{
+		std::cout << "can not get hardware shader:" << vsdesc.m_pVertexShader->GetRefPath() << std::endl;
+		return;
+	}
 	FragShaderDesc fsDesc;
 	fsDesc.m_eStageDesc = eStageShaderType;
 	fsDesc.m_eFragShaderDesc = m_eFragShaderType;
 	fsDesc.m_pFragShader = m_pFragShader;
 	HardwareFragShader* pFragShader = pRender->m_pRenderSystem->GetHardwareFragShader(fsDesc);
+	if (nullptr == pFragShader)
+	{
+		std::cout << "can not get hardware shader:" << fsDesc.m_pFragShader->GetRefPath() << std::endl;
+		return;
+	}
 	//
 	pRender->SetVertexShader(pVertexShader);
 	pRender->SetFragShader(pFragShader);
 	
 	//
-	BuildShaderArgs(pRender, pRenderable, eStageShaderType,pVertexShader,pFragShader);
+	BuildShaderArgs(pRender, pRenderable,pMat, eStageShaderType,pVertexShader,pFragShader);
 	//
 	SetPassStates(pRender, mapStates);
 	//
-	SetShaderArgs(pRender, pMat, pVertexShader, pFragShader);
+	SetShaderArgs(pRender,pVertexShader, pFragShader);
+
+
+
+	pRender->Render(pIndexBuff, pVertexBuff);
 	
 
 }
 
-void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
+void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderable, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
 {
-	std::map<string, EMATARGTYPE> vertexShaderParam = pVertexShader->GetContants();
-	std::map<string, EMATARGTYPE> fragShaderParam = pFragShader->GetContants();
-	for each (std::pair<string,EMATARGTYPE> p in vertexShaderParam)
+	m_VertexShaderArgs.clear();
+	m_FragShaderArgs.clear();
+
+	//
+	std::unordered_map<string, ShaderConstantInfo>& vertexShaderParam = pVertexShader->GetContants();
+	std::unordered_map<string, ShaderConstantInfo>& fragShaderParam = pFragShader->GetContants();
+
+	SetBuiltInMatrixArg(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);
+	SetBuiltInMatrixArg(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);
+
+	//
+	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
 	{
-		//if (m_)
+		if (vertexShaderParam.find(p.first) != std::end(vertexShaderParam))
+		{
+			m_VertexShaderArgs[p.first] = p.second;
+		}
+		if (fragShaderParam.find(p.first) != std::end(fragShaderParam))
+		{
+			m_FragShaderArgs[p.first] = p.second;
+		}
 	}
+	//
+
 }
 
 void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates)
 {
 
 }
-void RenderPass::SetShaderArgs(RasterRender* pRender, shared_ptr<RasterMaterial> pMaterial, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
+void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
 {
-	std::map<string,MaterialArg*> mapTotalArg;
-	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
+	//TextureSampler* pSampler = p.second->GetData<TextureSampler>();
+	//HardwareTexture* pHardwareTex = pRender->m_pRenderSystem->GetHardwareTexture(pSampler->m_pTexture);
+	//SetTexture(pSampler->m_byRegisterIndex, pHardwareTex);
+	for each (std::pair<string, MaterialArg*> p in m_VertexShaderArgs)
 	{
-		mapTotalArg[p.first] = p.second;
+		pVertexShader->SetShaderArg(pRender,p.first, p.second);
 	}
-	for each (std::pair<string, MaterialArg*> p in m_ShaderArgs)
-	{
-		mapTotalArg[p.first] = p.second;
-	}
-	int nSamplerIndex = 0;
-	//int nFragSamplerIndex = 0;
-	
-	for each (std::pair<string, MaterialArg*> p in mapTotalArg)
-	{
-		switch (p.second->m_EType)
-		{
-			case	EMATARGTYPEFLOAT1:
-			{
-				float* fValue = p.second->GetData<float>();
-				if (EMATSHADERVERTE & p.second->m_EShaderType)
-				{
-					pVertexShader->SetFloat(p.first, *fValue);
-				}
-				if (EMATSHADERFRAG & p.second->m_EShaderType)
-				{
-					pFragShader->SetFloat(p.first, *fValue);
-				}
-			}
-			break;
-			case	EMATARGTYPEFLOAT4:
-			{
-				Vector4* vecValue = p.second->GetData<Vector4>();
-				if (EMATSHADERVERTE & p.second->m_EShaderType)
-				{
-					pVertexShader->SetVector(p.first, *vecValue);
-				}
-				if (EMATSHADERFRAG & p.second->m_EShaderType)
-				{
-					pFragShader->SetVector(p.first, *vecValue);
-				}
-			}
-			break;
-			case	EMATARGTYPECOLOR:
-			{
-				Color* colorValue = p.second->GetData<Color>();
-				Vector4 vecColor = Vector4(colorValue->m_fR,colorValue->m_fG,colorValue->m_fB,colorValue->m_fB);
-				if (EMATSHADERVERTE & p.second->m_EShaderType)
-				{
-					pVertexShader->SetVector(p.first,vecColor);
-				}
-				if (EMATSHADERFRAG & p.second->m_EShaderType)
-				{
-					pFragShader->SetVector(p.first, vecColor);
-				}
-			}
-			break;
-			case	EMATARGTYPEINT:
-			{
-				int* nValue = p.second->GetData<int>();
-				if (EMATSHADERVERTE & p.second->m_EShaderType)
-				{
-					pVertexShader->SetInt(p.first, *nValue);
-				}
-				if (EMATSHADERFRAG & p.second->m_EShaderType)
-				{
-					pFragShader->SetInt(p.first, *nValue);
-				}
-			}
-			break;
-			case EMATARGMATRIX:
-			{
-				Matrix44* pMat = p.second->GetData<Matrix44>();
-				if (EMATSHADERVERTE & p.second->m_EShaderType)
-				{
-					pVertexShader->SetMatrix(p.first, *pMat);
-				}
-				if (EMATSHADERFRAG & p.second->m_EShaderType)
-				{
-					pFragShader->SetMatrix(p.first, *pMat);
-				}
-			}
-			case	EMATARGTYPESAMPLER:
-			{
-				TextureSampler* pSampler = p.second->GetData<TextureSampler>();
-				HardwareTexture* pHardwareTex = pRender->m_pRenderSystem->GetHardwareTexture(pSampler->m_pTexture);
-				if (EMATSHADERVERTE & p.second->m_EShaderType || EMATSHADERFRAG & p.second->m_EShaderType)
-				{
-					pRender->SetTexture(nSamplerIndex, pHardwareTex);
-					nSamplerIndex++;
-				}
-			}
-			break;
-			default:
-			{
 
-			}
-			break;
+	
+	for each (std::pair<string, MaterialArg*> p in m_FragShaderArgs)
+	{
+		pFragShader->SetShaderArg(pRender, p.first, p.second);
+	}
+}
+
+void RenderPass::SetBuiltInMatrixArg(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
+{
+
+
+	Matrix44 matWorld = pRenderable->m_pOwnerObj->m_pTransform->GetWorldMatrix();
+	Matrix44 matView = pRender->m_pCurrentRenderCamera->GetViewMatrix();
+	Matrix44 matProj = pRender->m_pCurrentRenderCamera->GetProjMatrix();
+
+	for each (std::pair<string, ShaderConstantInfo> p in argIn)
+	{
+
+		//  MATRIX_WORLD
+		//	MATRIX_VIEW
+		//	MATRIX_PROJ
+		//	MATRIX_WV
+		//	MATRIX_WVP
+		//	MATRIX_INVERSEWV
+		TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
+		if (p.first == "MATRIX_WORLD")
+		{
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			arg.m_Data = matWorld;
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_VIEW")
+		{
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			arg.m_Data = matView;
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_PROJ")
+		{
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			arg.m_Data = matProj;
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_WV")
+		{
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			arg.m_Data = matWorld * matView;
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_VP")
+		{
+			arg.m_Data = matView * matProj;
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_WVP")
+		{
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			arg.m_Data = matWorld * matView * matProj;
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_INVERSEWV")
+		{
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			Matrix44 matWV = matWorld * matView;
+			arg.m_Data = Matrix44::QuikInverse(matWV);
+			argToBuild[p.first] = &arg;
 		}
 	}
 }

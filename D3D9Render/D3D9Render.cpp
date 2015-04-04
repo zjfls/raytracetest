@@ -66,6 +66,10 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 	}
 	else
 	{
+		//m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+		m_pDevice->SetRenderState(D3DRS_ZENABLE, true);
+		m_pDevice->SetRenderState(D3DRS_ZWRITEENABLE, true);
+		m_pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);
 		m_pDevice->SetIndices(pD3DIndexBuff->m_pIndexBuffer);
 		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
@@ -163,6 +167,18 @@ bool D3D9Render::RenderBegin()
 	{
 		return false;
 	}
+
+	////
+	//float vertices[] =
+	//{
+	//	-10.0f, 0.0f, 0.f, // x, y, z, rhw, color
+	//	0.0f, 0.0f, 115.0f,
+	//	10.0f, 0.0f, 0.0f
+	//};
+	//m_pDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, &vertices, 12);
+
+
+
 	return true;
 }
 

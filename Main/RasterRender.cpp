@@ -26,12 +26,14 @@ int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld)
 {
 	if (RenderBegin() == false)
 	{
+		std::cout << "Begin Scene Failed!" << std::endl;
 		return -1;
 	}
 	std::vector<IRenderable*> vecRenderables = pWorld->GetAllRenderables();
 	int nRet = Render(vecRenderables);
 	if (RenderEnd() == false)
 	{
+		std::cout << "End Scene Failed!" << std::endl;
 		return -1;
 	}
 	return nRet;
@@ -72,7 +74,7 @@ void RasterRender::GetRenderables(std::vector<IRenderable*>& vecRenderableIn,std
 		{
 			pMatRes = pRenderable->GetDefaultMaterial();
 		}
-		if (pMatRes->m_eFillter == eFillter)
+		if (pMatRes != nullptr && pMatRes->m_eFillter == eFillter)
 		{
 			vecRenderable.push_back(pRenderable);
 		}

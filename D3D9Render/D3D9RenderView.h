@@ -11,6 +11,6 @@ public:
 	virtual bool Present();
 
 
-	IDirect3DSwapChain9Ex* m_pSwapChain;
+	IDirect3DSwapChain9* m_pSwapChain;
 };
 

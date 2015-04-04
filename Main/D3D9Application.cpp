@@ -13,10 +13,12 @@
 #include "RenderSystem.h"
 #include "MathFunc.h"
 #include "RenderView.h"
+#include "MathDefine.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> shared_ptr<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
 D3D9Application::D3D9Application()
+	:m_pTargetObj(nullptr)
 {
 }
 
@@ -27,31 +29,39 @@ D3D9Application::~D3D9Application()
 
 void D3D9Application::OnInit()
 {
-	AssetManager::GetInstance()->LoadAsset("./data/shader/VertexStandard.vsm");
+	//AssetManager::GetInstance()->LoadAsset("./data/shader/VertexStandard.vsm");
 }
 
 void D3D9Application::SetupScene()
 {
-	AssetManager::GetInstance()->LoadAsset("./data/meshes/porlfull.prefab.xml");
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/meshes/porlfull.prefab.xml");
+	AssetManager::GetInstance()->LoadAsset("./data/prefab/tresure.prefab.xml");
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/tresure.prefab.xml");
 	IWorldObj* pObj = pPrefab->m_pRoot->Clone(true);
+
+	m_pTargetObj = pObj;
 	m_pWorld->m_pRoot->addChild(pObj);
+	
 
 
 
 	IWorldObj* pCamera = new IWorldObj;
 	m_pWorld->m_pRoot->addChild(pCamera);
 	RasterCamera* pCameraModule = pCamera->addModule<RasterCamera>();
+	pCameraModule->m_fFar = 2000.0f;
+	pCameraModule->m_fNear = 3.0f;
+	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
+	pCameraModule->m_fFovy = PI/4;
 
 
 	CameraRenderer* pCameraRenderer = new CameraRenderer;
 	pCameraRenderer->m_pWorld = m_pWorld;
 	pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
+	pCameraRenderer->m_clrColr = Color::black;
 	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
-	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,100.0f,-650.0f));
-	pCamera->m_pTransform->SetOrientation(AngleToRad(-80.0f), 0, 0);
+	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-300.0f));
+	pCamera->m_pTransform->SetOrientation(AngleToRad(45.0f), 0, 0);
 
 
 }
@@ -92,7 +102,7 @@ void D3D9Application::CleanUp()
 
 bool D3D9Application::CreateAppWindow()
 {
-
+	
 	const char* const myclass = "myclass";
 	WNDCLASSEX wndclass = { sizeof(WNDCLASSEX), CS_DBLCLKS, WindowProcedure,
 		0, 0, GetModuleHandle(0), LoadIcon(0, IDI_APPLICATION),
@@ -104,12 +114,13 @@ bool D3D9Application::CreateAppWindow()
 		m_RenderViewInfo.m_nWidth, m_RenderViewInfo.m_nHeight, 0, 0, GetModuleHandle(0), 0);
 	m_RenderViewInfo.m_windowID = (int)window;
 	//ShowWindow(window, SW_SHOWDEFAULT);
+	DragAcceptFiles(window, true);
 	return true;
 }
 
 long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp)
 {
-
+	std::string suffix = "";
 	switch (msg)
 	{
 		case WM_DESTROY:
@@ -121,6 +132,27 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 		//std::cout << "\nmouse left button down at (" << LOWORD(lp)
 		//	<< ',' << HIWORD(lp) << ")\n";
 		// fall thru
+		break;
+		case WM_DROPFILES:
+		HDROP hDropInfo;
+		hDropInfo = (HDROP)wp;
+		char lpszFile[256];
+		// hDropInfo = ( HANDLE )wParam;
+		DragQueryFile(hDropInfo, 0, lpszFile, sizeof(lpszFile));
+		//
+		suffix = getFileSuffix(lpszFile);
+		if (suffix == "prefab.xml")
+		{
+			AssetManager::GetInstance()->LoadAsset(lpszFile);
+			shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(lpszFile);
+			IWorldObj* pObj = pPrefab->m_pRoot->Clone(true);
+			D3D9Application::GetInstance()->m_pWorld->m_pRoot->removeChild(D3D9Application::GetInstance()->m_pTargetObj);
+			D3D9Application::GetInstance()->m_pTargetObj = pObj;
+			D3D9Application::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
+		}
+		//
+		DragFinish(hDropInfo);
+		break;
 		default:
 		//std::cout << '.';
 		return DefWindowProc(window, msg, wp, lp);

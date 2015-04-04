@@ -16,6 +16,9 @@ public:
 
 	template<class T>
 	std::vector<T*> GetAllComponent();
+
+
+	
 };
 
 template<class T>

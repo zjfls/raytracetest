@@ -64,6 +64,7 @@ protected:
 	//friend class RenderStage;
 	friend class RenderSystem;
 	friend class CameraRenderer;
+	friend class HardwareShader;
 	//RasterCamera* m_pRenderCamera;
 };
 

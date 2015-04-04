@@ -15,17 +15,18 @@ public:
 	Vector3 operator-(const Vector3& vecIn) const;
 	Vector3 operator*(float f) const;
 	Vector3 operator-() const;
+	Vector3 operator+=(const Vector3& vecIn);
 
 
 	//------------------------------------------------------------------
 	float length() const;
 	float distance(const Vector3& vecTarget) const;
-	void normalize();
+	Vector3 normalize();
 	bool isNormalized() const;
 	float dot(const Vector3& vecIn) const;
 	Vector3 cross(const Vector3& vecIn) const;
 	float angle(const Vector3& vecIn) const;
-	virtual ~Vector3();
+	~Vector3();
 	//------------------------------------------------------------------
 
 

@@ -30,7 +30,6 @@ void CameraRenderer::OnNotify(string msg, IListenerSubject* pSubject)
 	}
 	if (msg == "UpdateMatrix")
 	{
-		return;
 		UpdateMatrix(pCamera);
 	}
 }

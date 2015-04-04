@@ -8,25 +8,30 @@ struct PS_INPUT
     float2	TC		  		: TEXCOORD0;
 	float3	worldPosition	: TEXCOORD1;
 };
-static const float3 ambientColor = {0.3f,0.3f,0.3f};
-uniform float3 lightDir;
-static const float3	lightColor = {1.0f,1.0f,1.0f};
+static const float4 ambientColor = {0.0f,0.0f,0.0f,1.0f};
+static const float3 lightDir = {-1.0f,1.0f,-1.0f};
+static const float4	lightColor = {0.2f,0.3f,0.3f,1.0f};
 static const float	lightIntensity = 1.0f;
-sampler diffuseMap:register( s0 ) = sampler_state
+sampler DiffuseColor = sampler_state
 {
-    Texture   = NULL;
-    AddressU = Wrap;
-    AddressV = Wrap;
-    MipFilter = LINEAR;
-    MinFilter = LINEAR;
-    MagFilter = LINEAR;
+};
+sampler EmissiveColor = sampler_state
+{
+};
+sampler NormalMap = sampler_state
+{
+};
+sampler SpecularColor = sampler_state
+{
 };
 PS_OUTPUT pMain(PS_INPUT input)
 {
 	PS_OUTPUT output;
 	output.Color = 0.0f;
-	float3 radianceColor = ambientColor + dot(input.Normal,lightDir)* lightColor * lightIntensity;
-	//float3 lightDir = 
-	output.Color.rgb = tex2D(diffuseMap, input.TC).rgb * radianceColor;
+	float3 lightDirNomralize = normalize(lightDir);
+	input.Normal = normalize(input.Normal);
+	float4 radianceColor = ambientColor + dot(input.Normal,lightDirNomralize)* lightColor * lightIntensity;
+	output.Color.rgb = tex2D(DiffuseColor, input.TC).rgb * radianceColor;
+	//output.Color += float4(1.0f,1.0f,0.0f,1.0f);
 	return output;
 }

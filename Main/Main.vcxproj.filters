@@ -24,9 +24,6 @@
     <ClInclude Include="AssetManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CommonDef.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="EnviromentSetting.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -40,9 +37,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="FbxFileLoader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="FilePath.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IAsset.h">
@@ -229,6 +223,9 @@
       <Filter>头文件\Render</Filter>
     </ClInclude>
     <ClInclude Include="TextureAssetLoader.h" />
+    <ClInclude Include="ResDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -402,6 +399,9 @@
     <ClCompile Include="TextureAssetLoader.cpp" />
     <ClCompile Include="IRender.cpp">
       <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="ResDef.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
