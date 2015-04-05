@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="22.183809" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="8.4056244" y="-11.805856" z="-3.5972154"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="ENV_Honey">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/ENV_Honey.mesh">
+            <Material refPath="./data/material/ENV_Honey_01_Mat_inst.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

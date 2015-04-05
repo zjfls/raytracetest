@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--skeleton resource-->
-<Info BoneNum="3"/>
+<Info BoneNum="2"/>
 
 <Bone Name="Bone0">
     <Translation x="0" y="0" z="0"/>
     <Rotation x="0" y="0" z="0"/>
     <Scale x="1" y="1" z="1"/>
     <Bone Name="Bone1">
-        <Translation x="-4.8430966e-008" y="16.219795" z="19.648008"/>
-        <Rotation x="0" y="0" z="0"/>
-        <Scale x="1" y="1" z="1"/>
-        <Bone Name="Bone2">
-            <Translation x="-6.7327414e-007" y="-32.730484" z="1.516201"/>
-            <Rotation x="0" y="0" z="0"/>
-            <Scale x="1" y="1" z="1"/>
-        </Bone>
-    </Bone>
-    <Bone Name="Bone2">
         <Translation x="0" y="0" z="0"/>
         <Rotation x="0" y="0" z="0"/>
         <Scale x="1" y="1" z="1"/>

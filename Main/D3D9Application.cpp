@@ -60,7 +60,7 @@ void D3D9Application::SetupScene()
 	pCameraRenderer->m_clrColr = Color::black;
 	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
-	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,200.0f,-250.0f));
+	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(20.0f), 0, 0);
 
 

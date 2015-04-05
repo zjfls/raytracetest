@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="-6.7258072" y="-184.0058" z="3.3871307"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="-29.98584" y="-191.31332" z="2.1196938"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone3">
+            <Transform>
+                <Translation x="27.474026" y="-195.66492" z="1.1701241"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Cratch">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Cratch_Env_Cratch002_Mat.mesh">
+            <Material refPath="./data/material/Env_Cratch002_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_Cratch_Env_Cratch001_Mat.mesh">
+            <Material refPath="./data/material/Env_Cratch001_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

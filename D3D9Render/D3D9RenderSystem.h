@@ -3,6 +3,7 @@
 #include "d3d9.h"
 #include "RenderEnum.h"
 #include "VertexData.h"
+#include "D3D9RenderTarget.h"
 
 class RasterRender;
 class D3D9RenderSystem :
@@ -19,7 +20,9 @@ public:
 	virtual HardwareVertexBuffer*	GetHardwareVertexBuffer(VertexData* pData);
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData);
 	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture);
-	
+	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality);
+
+
 	D3DSWAPEFFECT getSwapEffect(const EBUFFSWARP eSwap) const;
 	D3DFORMAT		getBufferFormat(const TARGETFORMAT eFormat) const;
 private:
@@ -30,10 +33,13 @@ protected:
 	virtual void		CreateDefaultRender(const RenderPath* pPath);
 	friend class RenderManager;
 
-
+	std::vector<D3D9RenderTarget*> m_vecRenderTarget;
 public:
 	LPDIRECT3D9             m_pD3D;
 	LPDIRECT3DDEVICE9		m_pD3DDevice;
+
+
+
 
 
 

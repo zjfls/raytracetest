@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<Material Name="Plant_002_15_Mat.smat">
+    <MaterialArg Name="EmissiveColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Parent_emissive.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="DiffuseColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Plant_002_15_D.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="NormalMap" Type="TextureSampler">
+        <Texture RefPath="./data/texture/parent_normal.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <RenderPass Name="bladesouldefault" BRDF="BlinPhong">
+        <VertexShader refPath="./data/shader/VertexStandard.vsm" ShaderType="Origin"/>
+        <FragElem refPath="./data/shader/FragSpec.fsm" ShaderType="Origin"/>
+    </RenderPass>
+</Material>

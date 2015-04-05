@@ -6,5 +6,6 @@
     <Setting Name="Windowed" Value="1"/>
     <Setting Name="RenderType" Value="D3D9"/>
     <Setting Name="RenderPath" Value="Forward"/>
-    
+    <Setting Name="HDR" Value="0"/>
+    <Setting Name="Bloom" Value="0"/>
 </CONFIG>

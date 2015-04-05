@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="-14.999997"/>
+                    <Scale x="1" y="0.99999994" z="1"/>
+                </Transform>
+                <WorldObj name="Bone3">
+                    <Transform>
+                        <Translation x="102.52753" y="94.390839" z="6.7642752e-008"/>
+                        <Rotation x="0" y="0" z="14.999998"/>
+                        <Scale x="0.99999994" y="1" z="1"/>
+                    </Transform>
+                </WorldObj>
+            </WorldObj>
+            <WorldObj name="Bone3">
+                <Transform>
+                    <Translation x="-24.033478" y="12.590782" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone4">
+                <Transform>
+                    <Translation x="54.237488" y="12.330254" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_ChungcannonA">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_ChungcannonA.mesh">
+            <Material refPath="./data/material/ChungGak_cannon_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

@@ -1,4 +1,5 @@
 #pragma once
+#include "RenderEnum.h"
 struct stRenderViewInfo;
 class IRender;
 class RenderView;
@@ -15,12 +16,14 @@ class IndexData;
 class VertexData;
 class HardwareTexture;
 class Texture;
+class IRenderTarget;
 class MAIN_API RenderSystem
 {
 public:
 	virtual ~RenderSystem();
 	RasterRender* GetDefaultRender() const;
 	RenderView* GetDefaultRenderView() const;
+	IRenderTarget* GetDefaultRenderTarget() const;
 
 
 
@@ -31,6 +34,7 @@ public:
 	virtual HardwareVertexBuffer*	GetHardwareVertexBuffer(VertexData* pData) = 0;
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData) = 0;
 	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture) = 0;
+	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample,unsigned int nQuality) = 0;
 
 
 protected:
@@ -49,6 +53,7 @@ protected:
 	std::unordered_map<string, HardwareTexture*> m_mapTexture;
 	RasterRender* m_pDefaultRender;
 	RenderView* m_pDefaultRenderView;
+	IRenderTarget*	m_pDefaultRenderTarget;
 	RenderSystem();
 	friend class RenderManager;
 };

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="NokMyung_Building_06_01">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/NokMyung_Building_06_01_NokMyung_Building_06_D1_Mat.mesh">
+            <Material refPath="./data/material/NokMyung_Building_06_D1_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/NokMyung_Building_06_01_NokMyung_Building_06_D2_T_Mat.mesh">
+            <Material refPath="./data/material/NokMyung_Building_06_D2_T_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/NokMyung_Building_06_01_NokMyung_bar_Grass_Mat.mesh">
+            <Material refPath="./data/material/NokMyung_bar_Grass_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

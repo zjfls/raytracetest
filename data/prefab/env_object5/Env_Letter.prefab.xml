@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="-9.5367432e-007" y="2.2327576" z="-4.7683716e-007"/>
+                <Rotation x="-90.000008" y="0" z="-0"/>
+                <Scale x="1" y="0.99999994" z="0.99999994"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="1.1920929e-006" y="0" z="0"/>
+                    <Rotation x="-8.1422201e-013" y="0" z="-0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone3">
+                <Transform>
+                    <Translation x="18.253105" y="4.7683716e-007" z="0"/>
+                    <Rotation x="-8.1422201e-013" y="0" z="-0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone4">
+                <Transform>
+                    <Translation x="-18.206226" y="4.7683716e-007" z="0"/>
+                    <Rotation x="-8.1422201e-013" y="0" z="-0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Letter">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Letter.mesh">
+            <Material refPath="./data/material/CommonItem_Letter_MAT_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

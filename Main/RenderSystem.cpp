@@ -54,3 +54,8 @@ std::string RenderSystem::GenerateFragShaderDescString(const FragShaderDesc& fra
 {
 	return fragShaderDesc.m_pFragShader->GetRefPath();
 }
+
+IRenderTarget* RenderSystem::GetDefaultRenderTarget() const
+{
+	return m_pDefaultRenderTarget;
+}

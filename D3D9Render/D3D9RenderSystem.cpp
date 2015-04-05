@@ -15,7 +15,7 @@
 #include "IndexData.h"
 #include "VertexData.h"
 #include "Texture.h"
-
+#include "D3D9RenderTarget.h"
 D3D9RenderSystem::D3D9RenderSystem()
 	:m_pD3D(nullptr)
 	, m_pD3DDevice(nullptr)
@@ -228,6 +228,11 @@ D3DFORMAT D3D9RenderSystem::getBufferFormat(const TARGETFORMAT eFormat) const
 			return D3DFMT_D24X8;
 		}
 		break;
+		case TFA16B16G16R16F:
+		{
+			return D3DFMT_A16B16G16R16F;
+		}
+		break;;
 		default:
 		{
 			return D3DFMT_UNKNOWN;
@@ -624,5 +629,17 @@ HardwareTexture* D3D9RenderSystem::GetHardwareTexture(shared_ptr<Texture> pTextu
 		break;
 	}
 	
+	return nullptr;
+}
+
+IRenderTarget* D3D9RenderSystem::CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality)
+{
+	D3D9RenderTarget* pTarget = new D3D9RenderTarget;
+	D3DFORMAT d3dFormat = getBufferFormat(eTarget);
+	if (D3D_OK != m_pD3DDevice->CreateRenderTarget(nWidth, nHeight, d3dFormat, D3DMULTISAMPLE_NONE, 0, false, &pTarget->m_pSurface, nullptr))
+	{
+		std::cout << "create surface failed!" << std::endl;
+	}
+	m_vecRenderTarget.push_back(pTarget);
 	return nullptr;
 }

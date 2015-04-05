@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Hoimok01">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Hoimok01_Hoimok01_D_mat.mesh">
+            <Material refPath="./data/material/Hoimok01_D_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Hoimok01_Parent_simple_Light_INST.mesh">
+            <Material refPath="./data/material/Parent_simple_Light_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Hoimok01_11Risebigtree_002_Mat.mesh">
+            <Material refPath="./data/material/11Risebigtree_002_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

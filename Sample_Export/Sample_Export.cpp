@@ -59,7 +59,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	AssetManager::GetInstance()->Init();
 	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/fbx/plane.fbx");
 	//return 0;
-	DirectoryList("H:/game art resource/bs2/env_object_04/SkeletalMesh3/FBX/");
+	DirectoryList("H:\\game art resource\\bs2\\plant_004\\StaticMesh3\\FBX\\");
 	std::cout << std::endl;
 	system("pause");
 	
