@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="2.3711452" y="5.7064652" z="-2.4943751e-007"/>
+                <Rotation x="-89.99929" y="-179.99953" z="-89.58773"/>
+                <Scale x="1" y="0.99999994" z="1"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="11.235995" y="3.1548552e-007" z="-9.059906e-006"/>
+                    <Rotation x="-0.00059078843" y="-2.0726326" z="-3.4647237e-005"/>
+                    <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+                </Transform>
+                <WorldObj name="Bone3">
+                    <Transform>
+                        <Translation x="11.159079" y="-2.4623005e-006" z="1.7881393e-006"/>
+                        <Rotation x="0.00011830461" y="0.058115087" z="1.0937331e-005"/>
+                        <Scale x="1.0000001" y="1" z="1.0000001"/>
+                    </Transform>
+                    <WorldObj name="Bone4">
+                        <Transform>
+                            <Translation x="11.563288" y="3.8516009e-007" z="-1.9073486e-006"/>
+                            <Rotation x="-1.5445166e-005" y="0.7597369" z="6.2706654e-006"/>
+                            <Scale x="0.99999988" y="1" z="1"/>
+                        </Transform>
+                        <WorldObj name="Bone5">
+                            <Transform>
+                                <Translation x="10.99416" y="8.828556e-007" z="-1.1920929e-006"/>
+                                <Rotation x="-0.0001963081" y="1.9549298" z="-1.2135509e-006"/>
+                                <Scale x="1" y="0.99999994" z="1.0000001"/>
+                            </Transform>
+                            <WorldObj name="Bone6">
+                                <Transform>
+                                    <Translation x="8.3271332" y="-1.6120794e-007" z="-1.9073486e-006"/>
+                                    <Rotation x="-0.0001690472" y="2.3051889e-005" z="-2.5612123e-006"/>
+                                    <Scale x="1" y="1.0000002" z="0.99999994"/>
+                                </Transform>
+                            </WorldObj>
+                        </WorldObj>
+                    </WorldObj>
+                </WorldObj>
+            </WorldObj>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Powernean">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Powernean.mesh">
+            <Material refPath="./data/material/Env_Powernean_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

@@ -4,7 +4,7 @@
 #include "Vector3.h"
 #include "Vector2.h"
 #include "IndexData.h"
-
+#include <iostream>
 //
 void* VertexData::GetElementData(int descIndex, int posIndex) const
 {
@@ -118,6 +118,10 @@ void VertexData::ComputeTangent(const IndexData& iData)
 	Vector3* tan1 = new Vector3[nNumVertex];
 	Vector3* tan2 = new Vector3[nNumVertex];
 	Vector3* tangent = new Vector3[nNumVertex];
+	memset(tan1, 0, sizeof(Vector3) * nNumVertex);
+	memset(tan2, 0, sizeof(Vector3) * nNumVertex);
+	memset(tangent, 0, sizeof(Vector3) * nNumVertex);
+
 	for (int i = 0; i < nTriangleNum; ++i)
 	{
 		int i1 = iData.GetIndexAt(i, 0);
@@ -151,11 +155,17 @@ void VertexData::ComputeTangent(const IndexData& iData)
 		float t2 = vecUV3.m_fy - vecUV1.m_fy;
 
 
-		float r = 1.0f / (s1 * t2 - s2 * t1);
+		//float r = 1.0f / (s1 * t2 - s2 * t1);
+
+		float div = s1 * t2 - s2 * t1;
+		float r = div == 0.0f ? 0.0f : 1.0f / div;
+		//
 		Vector3 sdir((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
 			(t2 * z1 - t1 * z2) * r);
 		Vector3 tdir((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
 			(s1 * z2 - s2 * z1) * r);
+
+
 		tan1[i1] += sdir;
 		tan1[i2] += sdir;
 		tan1[i3] += sdir;
@@ -174,6 +184,7 @@ void VertexData::ComputeTangent(const IndexData& iData)
 
 		// Gram-Schmidt orthogonalize
 		//tangent[a] = (t - n * Dot(n, t)).Normalize();
+
 		tangent[a] = (t - n * n.dot(t)).normalize();
 
 		// Calculate handedness

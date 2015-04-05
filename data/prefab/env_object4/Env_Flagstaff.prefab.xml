@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+    </WorldObj>
+    <WorldObj name="Env_Flagstaff">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Flagstaff_akyeo_building01_Out_MAT.mesh">
+            <Material refPath="./data/material/akyeo_building01_Out_MAT.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_Flagstaff_Env_Flagstaff001_MAT.mesh">
+            <Material refPath="./data/material/Env_Flagstaff001_MAT.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

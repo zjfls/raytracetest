@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="125.43603" y="0" z="7.8793402"/>
+                <Rotation x="0" y="1.3660378e-005" z="-0"/>
+                <Scale x="1.0000001" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="-125.21659" y="0" z="7.8793402"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1.0000001" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_SteelDoor2">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_SteelDoor2.mesh">
+            <Material refPath="./data/material/CA_Jin_A_pr_032_01_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

@@ -19,11 +19,32 @@ RenderStage::~RenderStage()
 
 void RenderStage::SetStageRenderState(RasterRender* pRender)
 {
-
+	switch (m_eMethod)
+	{
+		case ERSM_DEPTHANDAMBIENT:
+		break;
+		case ERSM_RADIANCEDEPTHOPAQUE:
+		{
+			pRender->SetZTestEnable(true);
+			pRender->SetZFunc(RENDERCMP_LESS);
+			pRender->SetZWriteEnable(true);
+			pRender->SetBlendEnable(false);
+			pRender->SetAlphaFunc(RENDERCMP_GREATER);
+		}
+		break;
+		case ERSM_RADIANCEDEPTHTRANSPACENCY:
+		{
+			//RenderDepthAndRadiance(pRender, vecRenderabls);
+		}
+		break;
+		default:
+		break;
+	}
 }
 
 void RenderStage::Render(RasterRender* pRender,std::vector<IRenderable*>& vecRenderabls)
 {
+	SetStageRenderState(pRender);
 	switch (m_eMethod)
 	{
 		case ERSM_DEPTHANDAMBIENT:

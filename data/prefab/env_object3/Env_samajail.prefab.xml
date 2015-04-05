@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="-2.515152" y="113.56506" z="1.8116417"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_samajail">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_samajail_ChungGakJiBu_MainBuil_01_MAT.mesh">
+            <Material refPath="./data/material/ChungGakJiBu_MainBuil_01_MAT.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_samajail_ChungGakJiBu_MainBuil_01_001_MET.mesh">
+            <Material refPath="./data/material/ChungGakJiBu_MainBuil_01_001_MET.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_samajail_ChungkakDan_Boss_Bottom.mesh">
+            <Material refPath="./data/material/ChungkakDan_Boss_Bottom.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_samajail_ChungGakJiBu_DecoMask_MAT.mesh">
+            <Material refPath="./data/material/ChungGakJiBu_DecoMask_MAT.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_samajail_ChungkakDAn_Bridge_01_INST.mesh">
+            <Material refPath="./data/material/ChungkakDAn_Bridge_01_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

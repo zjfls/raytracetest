@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<Material Name="Chungyrong_store_04_02_mat.smat">
+    <MaterialArg Name="EmissiveColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Parent_emissive.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="DiffuseColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Chungryoung_store_01_D_02.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="NormalMap" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Chungryoung_store_01_N_02.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="SpecularColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Chungryoung_store_01_S_02.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <RenderPass Name="bladesouldefault" BRDF="BlinPhong">
+        <VertexShader refPath="./data/shader/VertexStandard.vsm" ShaderType="Origin"/>
+        <FragElem refPath="./data/shader/FragSpec.fsm" ShaderType="Origin"/>
+    </RenderPass>
+</Material>

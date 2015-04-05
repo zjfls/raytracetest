@@ -36,7 +36,7 @@ private:
 	void BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
 	void SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates);
 	void SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
-	void SetBuiltInMatrixArg(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn);
+	void SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn);
 
 
 
@@ -48,7 +48,7 @@ protected:
 	//for shader related arg only;
 	//another args map in material
 	std::unordered_map<string, MaterialArg*> m_ShaderArgs;
-	std::vector<stRenderState> vecRenderState;
+	std::vector<stRenderState> m_vecRenderState;
 
 	//
 	std::unordered_map<string, MaterialArg*> m_VertexShaderArgs;
@@ -60,6 +60,7 @@ protected:
 public:
 	EVERTEXSHADERTPYE	m_eVertexShaderType;
 	EFRAGSHADERTYPE		m_eFragShaderType;
+	friend class MaterialAssetLoader;
 
 };
 

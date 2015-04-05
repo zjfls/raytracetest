@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="18.800684" y="21.730013" z="-9.4984904e-007"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1.0000001" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Ubone">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Ubone_Env_Ubone.mesh">
+            <Material refPath="./data/material/Env_Ubone.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_Ubone_Gadget_poro_mat.mesh">
+            <Material refPath="./data/material/Gadget_poro_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_Ubone_col1.mesh">
+            <Material refPath="./data/material/col1.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

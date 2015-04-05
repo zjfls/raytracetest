@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="-3.8146973e-006" y="0" z="9.5367432e-007"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="3.8146973e-006" y="-22.993671" z="-9.5367432e-007"/>
+                <Rotation x="43.58308" y="0" z="-0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="3.8146973e-006" y="-22.993671" z="-9.5367432e-007"/>
+                <Rotation x="0" y="0" z="-37.457283"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone3">
+            <Transform>
+                <Translation x="3.8146973e-006" y="-22.993671" z="-9.5367432e-007"/>
+                <Rotation x="-34.654434" y="4.8405547" z="26.253517"/>
+                <Scale x="1.0000001" y="1" z="0.99999988"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_TroughP">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_TroughP.mesh">
+            <Material refPath="./data/material/NongJang_Farmfield_Newbie_MAT.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

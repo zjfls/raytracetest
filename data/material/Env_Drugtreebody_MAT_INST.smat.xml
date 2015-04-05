@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<Material Name="Env_Drugtreebody_MAT_INST.smat">
+    <MaterialArg Name="DiffuseColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Tree_004_01_D1_1.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="NormalMap" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Tree_004_02_N1.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="SpecularColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Parent_specular.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="SpecularFactor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Parent_specular.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <RenderPass Name="bladesouldefault" BRDF="BlinPhong">
+        <VertexShader refPath="./data/shader/VertexStandard.vsm" ShaderType="Origin"/>
+        <FragElem refPath="./data/shader/FragSpec.fsm" ShaderType="Origin"/>
+    </RenderPass>
+</Material>

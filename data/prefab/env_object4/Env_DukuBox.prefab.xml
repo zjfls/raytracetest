@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="1.3475194" y="19.557039" z="16.808716"/>
+                    <Rotation x="5.3360854e-008" y="0" z="-0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_DukuBox">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_DukuBox_Prop_Box_001_13_Mat.mesh">
+            <Material refPath="./data/material/Prop_Box_001_13_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_DukuBox_Prop_Stuff_005_38_1_Mat.mesh">
+            <Material refPath="./data/material/Prop_Stuff_005_38_1_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_DukuBox_Prop_Stuff_005_37_1_Mat.mesh">
+            <Material refPath="./data/material/Prop_Stuff_005_37_1_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

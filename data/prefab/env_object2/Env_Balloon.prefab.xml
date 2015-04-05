@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="-0.061721802" y="0" z="-50.183571"/>
+                <Rotation x="0" y="90.000008" z="-0"/>
+                <Scale x="0.99999994" y="1" z="0.99999994"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="49.764938" y="0" z="0.16242981"/>
+                <Rotation x="0" y="179.99998" z="-0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone3">
+            <Transform>
+                <Translation x="0.17617035" y="0" z="50.101311"/>
+                <Rotation x="0" y="-90.000008" z="0"/>
+                <Scale x="0.99999994" y="1" z="0.99999994"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone4">
+            <Transform>
+                <Translation x="-49.793217" y="0" z="0.046661377"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone5">
+            <Transform>
+                <Translation x="0.032129765" y="78.354904" z="-0.14292964"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone6">
+            <Transform>
+                <Translation x="-0.12914324" y="-2.0138333" z="8.8027448e-008"/>
+                <Rotation x="-90.000084" y="179.99995" z="-84.507568"/>
+                <Scale x="1.0000001" y="1" z="1.0000001"/>
+            </Transform>
+            <WorldObj name="Bone7">
+                <Transform>
+                    <Translation x="12.348696" y="3.3014959e-007" z="-1.8149614e-005"/>
+                    <Rotation x="6.8515285e-005" y="-5.4924407" z="1.1100067e-005"/>
+                    <Scale x="1.0000001" y="1" z="0.99999988"/>
+                </Transform>
+                <WorldObj name="Bone8">
+                    <Transform>
+                        <Translation x="12.173759" y="2.1363574e-006" z="5.1259995e-006"/>
+                        <Rotation x="2.7949694e-005" y="-6.3401437" z="-2.6579964e-006"/>
+                        <Scale x="0.99999982" y="1" z="0.99999994"/>
+                    </Transform>
+                    <WorldObj name="Bone9">
+                        <Transform>
+                            <Translation x="12.843334" y="1.7550672e-006" z="8.1062317e-006"/>
+                            <Rotation x="-1.7257611e-005" y="7.3111935" z="4.1393955e-006"/>
+                            <Scale x="1.0000001" y="0.99999994" z="0.99999982"/>
+                        </Transform>
+                        <WorldObj name="Bone10">
+                            <Transform>
+                                <Translation x="13.948627" y="1.4243815e-006" z="-6.9141388e-006"/>
+                                <Rotation x="2.5338065e-006" y="-3.7352593e-006" z="-3.4150937e-006"/>
+                                <Scale x="1.0000001" y="0.99999994" z="0.99999994"/>
+                            </Transform>
+                        </WorldObj>
+                    </WorldObj>
+                </WorldObj>
+            </WorldObj>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Balloon">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Balloon.mesh">
+            <Material refPath="./data/material/Env_BalloonLight_mat_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

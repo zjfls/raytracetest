@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_BigPotato">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_BigPotato_NongJang_Farmfield_Newbie_MAT.mesh">
+            <Material refPath="./data/material/NongJang_Farmfield_Newbie_MAT.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_BigPotato_Prop_Harvest_001_25_Mat.mesh">
+            <Material refPath="./data/material/Prop_Harvest_001_25_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

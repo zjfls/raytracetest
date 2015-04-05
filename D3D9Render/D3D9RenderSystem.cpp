@@ -417,6 +417,12 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	}
 
 	float* pf = (float*)pData->pData;
+	//for (int i = 0; i < 4; ++i)
+	//{
+	//	 pf[3 + i * 11] = fabs(pf[8 + i * 11]);
+	//	 pf[4 + i * 11] = fabs(pf[9 + i * 11]);
+	//	   pf[5 + i * 11] = fabs(pf[10 + i * 11]);
+	//}
 	memcpy(pVertexData,pf,pData->GetVertexDataLength() * pData->nNumVertex);
 	pBuff->m_pVertexBuffer->Unlock();
 	m_VertexDataMap[pData] = pBuff;

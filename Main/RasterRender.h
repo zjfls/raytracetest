@@ -47,7 +47,7 @@ public:
 	virtual bool SetZFunc(ERENDERCMPFUNC eCmp) = 0;
 	virtual bool SetAlphaTest(bool b) = 0;
 	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp) = 0;
-	virtual bool SetAlphaTestFactor(float f) = 0;
+	virtual bool SetAlphaTestFactor(int f) = 0;
 	virtual bool SetCullMode(ERENDERCULL eCull) = 0;
 	virtual bool RenderBegin() = 0;
 	virtual bool RenderEnd() = 0;

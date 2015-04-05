@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="42.727287" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="16.003305" y="56.340553" z="-2.4663268e-006"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="ENV_Musintreasure">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/ENV_Musintreasure_MushinAltar_M001.mesh">
+            <Material refPath="./data/material/MushinAltar_M001.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/ENV_Musintreasure_ENV_Musintreasure_MAT_INST.mesh">
+            <Material refPath="./data/material/ENV_Musintreasure_MAT_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/ENV_Musintreasure_Gadget_Musintreasure_MAT_INST.mesh">
+            <Material refPath="./data/material/Gadget_Musintreasure_MAT_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

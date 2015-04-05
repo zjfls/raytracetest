@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="1.995146" y="79.151543" z="24.290031"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="33.085579" y="104.5511" z="-4.570074e-006"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="ENV_SmallPot">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/ENV_SmallPot_sot_mat.mesh">
+            <Material refPath="./data/material/sot_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/ENV_SmallPot_ENV_SteelPot_02_IN_MAT_INST.mesh">
+            <Material refPath="./data/material/ENV_SteelPot_02_IN_MAT_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/ENV_SmallPot_ENV_SmallPot_Mat.mesh">
+            <Material refPath="./data/material/ENV_SmallPot_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

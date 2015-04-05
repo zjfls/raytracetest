@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="-29.891174" y="102.14488" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_WeaponHolder">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_WeaponHolder_Prop_Furniture_001_04_Mat.mesh">
+            <Material refPath="./data/material/Prop_Furniture_001_04_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_WeaponHolder_W_010034.mesh">
+            <Material refPath="./data/material/W_010034.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_WeaponHolder_W_990011.mesh">
+            <Material refPath="./data/material/W_990011.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_WeaponHolder_Prop_ItemShop_001_03_INST.mesh">
+            <Material refPath="./data/material/Prop_ItemShop_001_03_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_WeaponHolder_ENV_CapturerifleB_MAT.mesh">
+            <Material refPath="./data/material/ENV_CapturerifleB_MAT.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

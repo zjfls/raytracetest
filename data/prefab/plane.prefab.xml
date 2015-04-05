@@ -2,9 +2,9 @@
 <!--prefab resource-->
 <WorldObj name="RootNode">
     <Transform>
-        <Translation x="0" y="0" z="0"/>
+        <Translation x="0" y="50" z="0"/>
         <Rotation x="0" y="0" z="0"/>
-        <Scale x="1" y="1" z="1"/>
+        <Scale x="3" y="1" z="3"/>
     </Transform>
     <WorldObj name="Plane001">
         <Transform>
@@ -13,7 +13,7 @@
             <Scale x="1" y="1" z="1"/>
         </Transform>
         <Mesh refPath="./data/mesh/Plane001.mesh">
-		<Material refPath="./data/material/return_portal_03__ENV_INST.smat.xml"/>
-	</Mesh>
+            <Material refPath="./data/material/Env_rock_for_tower_MAT_INST.smat.xml"/>
+        </Mesh>
     </WorldObj>
 </WorldObj>

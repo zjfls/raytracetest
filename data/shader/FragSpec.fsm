@@ -4,14 +4,22 @@ struct PS_OUTPUT
 };
 struct PS_INPUT
 {
-    float4	Normal			: NORMAL; 
-    float2	TC		  		: TEXCOORD0;
-	float3	worldPosition	: TEXCOORD1;
+    float4	Normal			: TEXCOORD0; 
+    float2	TC		  		: TEXCOORD1;
+	float3	worldPosition	: TEXCOORD2;
+	float3	Tangent			: TEXCOORD3;
+	float3	Binormal		: TEXCOORD4;
+	float3	WorldEyeVec		: TEXCOORD5;
 };
+//float3 VIEW_POS;
 static const float4 ambientColor = {0.0f,0.0f,0.0f,1.0f};
-static const float3 lightDir = {-1.0f,1.0f,-1.0f};
-static const float4	lightColor = {0.2f,0.3f,0.3f,1.0f};
-static const float	lightIntensity = 1.0f;
+static const float3 lightDir = {0.0f,1.0f,-1.0f};
+static const float4	lightColor = {0.2f,0.2f,0.2f,1.0f};
+static const float	lightIntensity = 12.0f;
+static const float	Ks = 12.0f;
+static const float	Kd = 1.0f;
+static const float SpecExpon = 3.0f;
+//
 sampler DiffuseColor = sampler_state
 {
 };
@@ -26,12 +34,34 @@ sampler SpecularColor = sampler_state
 };
 PS_OUTPUT pMain(PS_INPUT input)
 {
-	PS_OUTPUT output;
-	output.Color = 0.0f;
+   	PS_OUTPUT output = (PS_OUTPUT)0;
+	
+	float3 Nt = tex2D(NormalMap,input.TC.xy).xyz * 2 - 1;
+    float3 Nn = normalize(input.Normal);
+    float3 Tn = normalize(input.Tangent);
+    float3 Bn = normalize(input.Binormal);
+	float3x3 tbn  = float3x3(Tn,Bn,Nn);
+	float3 Nb = mul(Nt,tbn);
+    Nb = normalize(Nb);
 	float3 lightDirNomralize = normalize(lightDir);
-	input.Normal = normalize(input.Normal);
-	float4 radianceColor = ambientColor + dot(input.Normal,lightDirNomralize)* lightColor * lightIntensity;
-	output.Color.rgb = tex2D(DiffuseColor, input.TC).rgb * radianceColor;
-	//output.Color += float4(1.0f,1.0f,0.0f,1.0f);
+	//视方向
+	float3	viewDir = normalize(input.WorldEyeVec);
+	float3	gloss = Ks * tex2D(SpecularColor,input.TC.xy).xyz;
+	//半角向量
+	float3	Hn = normalize(lightDirNomralize + viewDir);
+	float hdn = dot(Hn,Nb);
+    float ldn = dot(lightDir,Nb);
+	float4 litV = lit(ldn,hdn,SpecExpon);
+	float3 incident =    litV.y * lightColor.rgb;
+    float3 diffContrib = incident * Kd;
+    float3 specContrib = litV.z * gloss * lightColor.rgb;
+	//
+	//float4 radianceColor = ambientColor + dot(Nb,lightDirNomralize)* lightColor * lightIntensity;
+	//output.Color.rgb = tex2D(DiffuseColor, input.TC).rgb * radianceColor;
+	//output.Color.rgb = abs(Nn);
+	float4 texColor = tex2D(DiffuseColor,input.TC);
+	output.Color.rgb = (ambientColor + diffContrib + specContrib) * Kd * texColor.rgb;
+	//output.Color.rgb = diffContrib;
+	output.Color.a = texColor.a;
 	return output;
 }

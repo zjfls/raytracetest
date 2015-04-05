@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="60.223263" z="-4.6607666"/>
+                <Rotation x="0" y="90.000008" z="-0"/>
+                <Scale x="0.99999994" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="-56.626003" y="31.56151" z="0.91054726"/>
+                <Rotation x="0" y="90" z="-0"/>
+                <Scale x="1" y="1" z="1.0000001"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone3">
+            <Transform>
+                <Translation x="-34.023716" y="131.82109" z="1.8221283"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1.0000001" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone4">
+            <Transform>
+                <Translation x="-28.732573" y="24.2271" z="23.910809"/>
+                <Rotation x="0" y="90" z="-0"/>
+                <Scale x="1" y="1" z="1.0000001"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone5">
+            <Transform>
+                <Translation x="-1.320366" y="35.638344" z="-14.3042"/>
+                <Rotation x="0" y="90.000008" z="-0"/>
+                <Scale x="0.99999994" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone6">
+            <Transform>
+                <Translation x="8.7738044e-005" y="51.253456" z="-42.405392"/>
+                <Rotation x="5.3327113e-008" y="90.000023" z="3.1805549e-015"/>
+                <Scale x="0.99999994" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+        <WorldObj name="Bone7">
+            <Transform>
+                <Translation x="0" y="84.158424" z="-3.2549305"/>
+                <Rotation x="0" y="90.000008" z="-0"/>
+                <Scale x="0.99999994" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_ControlMachine">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_ControlMachine.mesh">
+            <Material refPath="./data/material/OseakAmDo_HRH_M002.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

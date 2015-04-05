@@ -17,6 +17,8 @@
 #include "Transform.h"
 #include "IWorldObj.h"
 #include "ResDef.h"
+#include "FileOperation.h"
+#include <io.h>
 
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
@@ -261,7 +263,17 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	{
 		if (pNormal->GetReferenceMode() == FbxLayerElement::eDirect)
 		{
+			for (int i = 0; i < cpCount; ++i)
+			{
+				Vector3 normal;
+				normal.m_fx = (float)pNormal->GetDirectArray().GetAt(i).mData[0];
+				normal.m_fy = (float)pNormal->GetDirectArray().GetAt(i).mData[1];
+				normal.m_fz = (float)pNormal->GetDirectArray().GetAt(i).mData[2];
+				normalVec.push_back(normal.m_fx);
+				normalVec.push_back(normal.m_fz);
+				normalVec.push_back(normal.m_fy);
 
+			}
 		}
 		else if (pNormal->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
 		{
@@ -344,7 +356,15 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	{
 		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
 		{
-
+			uvVec.resize(cpCount * 2);
+			for (int i = 0; i < cpCount; ++i)
+			{
+				float u, v;
+				u = (float)pLayerUV->GetDirectArray().GetAt(i).mData[0];
+				v = (float)pLayerUV->GetDirectArray().GetAt(i).mData[1];
+				uvVec[i * 2 + 0] = u;
+				uvVec[i * 2 + 1] = 1 - v;
+			}
 		}
 		else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
 		{
@@ -391,7 +411,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 #pragma region AddSkinInfo
 	bool bHasSkinInfo = false;
 	int deformerCount = pMesh->GetDeformerCount();
-	if (deformerCount == 1)
+	if (deformerCount == 1 && false)
 	{
 		bHasSkinInfo = true;
 		FbxDeformer* pDeformer = pMesh->GetDeformer(0);
@@ -985,6 +1005,10 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
 				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				{
+					CpyFile(pTex->GetName(), strTexturePath + fileName);
+				}
 
 			}
 			else if (_tcsstr(strProperty.c_str(), "Specular") != nullptr)
@@ -993,6 +1017,10 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
 				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				{
+					CpyFile(pTex->GetName(), strTexturePath + fileName);
+				}
 			}
 			else if (_tcsstr(strProperty.c_str(), "Normal") != nullptr)
 			{
@@ -1000,6 +1028,10 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
 				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				{
+					CpyFile(pTex->GetName(), strTexturePath + fileName);
+				}
 			}
 			else if (_tcsstr(strProperty.c_str(), "Emissive") != nullptr)
 			{
@@ -1007,6 +1039,10 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
 				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				{
+					CpyFile(pTex->GetName(), strTexturePath + fileName);
+				}
 			}
 		}
 	}

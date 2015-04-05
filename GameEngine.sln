@@ -46,6 +46,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample2", "Sample2\Sample2.
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample_Export", "Sample_Export\Sample_Export.vcxproj", "{3D1BB3AB-CC1B-446E-B444-7F009AFE1B38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{06041416-68BD-475C-94C7-DB38415D0D45} = {06041416-68BD-475C-94C7-DB38415D0D45}
+		{AF6CE8CE-B4BB-4D19-931A-B6EFFAC0EBAF} = {AF6CE8CE-B4BB-4D19-931A-B6EFFAC0EBAF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

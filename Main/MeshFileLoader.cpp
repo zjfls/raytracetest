@@ -79,8 +79,8 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	nLength += nSizeOfVB;
 	for (int i = 0; i < res->m_VertexData.nNumVertex; ++i)
 	{
-		Vector3 pos = res->m_VertexData.GetPositionDataAt(i);
-		//std::cout << "pos:" << pos.m_fx << " " << pos.m_fy << " "<<pos.m_fz << std::endl;
+		Vector3 pos = *((Vector3*)res->m_VertexData.GetElementData(3,i));
+		//std::cout << "tanget:" << pos.m_fx << " " << pos.m_fy << " "<<pos.m_fz << std::endl;
 	}
 	pMeshAsset->AddResource(path, res);
 	return pMeshAsset;

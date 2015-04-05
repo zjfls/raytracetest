@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+    </WorldObj>
+    <WorldObj name="Env_PigGrill">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_PigGrill_Building_001_04.mesh">
+            <Material refPath="./data/material/Building_001_04.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_PigGrill_Prop_Market_Stuff_001_35_M.mesh">
+            <Material refPath="./data/material/Prop_Market_Stuff_001_35_M.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_PigGrill_ENV_PigGrill_01_MAT_INST.mesh">
+            <Material refPath="./data/material/ENV_PigGrill_01_MAT_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

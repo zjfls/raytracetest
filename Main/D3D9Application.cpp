@@ -34,8 +34,8 @@ void D3D9Application::OnInit()
 
 void D3D9Application::SetupScene()
 {
-	AssetManager::GetInstance()->LoadAsset("./data/prefab/tresure.prefab.xml");
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/tresure.prefab.xml");
+	AssetManager::GetInstance()->LoadAsset("./data/prefab/plane.prefab.xml");
+	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
 	IWorldObj* pObj = pPrefab->m_pRoot->Clone(true);
 
 	m_pTargetObj = pObj;
@@ -60,8 +60,8 @@ void D3D9Application::SetupScene()
 	pCameraRenderer->m_clrColr = Color::black;
 	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
-	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-300.0f));
-	pCamera->m_pTransform->SetOrientation(AngleToRad(45.0f), 0, 0);
+	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,200.0f,-250.0f));
+	pCamera->m_pTransform->SetOrientation(AngleToRad(20.0f), 0, 0);
 
 
 }

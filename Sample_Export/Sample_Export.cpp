@@ -57,9 +57,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	//ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>("fdsf");
 	FbxAppManager::GetInstance()->Init();
 	AssetManager::GetInstance()->Init();
-	
+	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/fbx/plane.fbx");
 	//return 0;
-	DirectoryList(".\\data\\fbx");
+	DirectoryList("H:/game art resource/bs2/env_object_04/SkeletalMesh3/FBX/");
 	std::cout << std::endl;
 	system("pause");
 	

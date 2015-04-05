@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+    </WorldObj>
+    <WorldObj name="Env_SickTree">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_SickTree_Tree_004_07_Branch_Mat.mesh">
+            <Material refPath="./data/material/Tree_004_07_Branch_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_SickTree_Tree_004_03_Mat4.mesh">
+            <Material refPath="./data/material/Tree_004_03_Mat4.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_SickTree_Env_SickTreebody_MAT_INST.mesh">
+            <Material refPath="./data/material/Env_SickTreebody_MAT_INST.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

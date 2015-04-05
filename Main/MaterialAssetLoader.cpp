@@ -73,6 +73,44 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLElement* pPassElem = pElem->FirstChildElement("RenderPass");
 	while (pPassElem != nullptr)
 	{
+		RenderPass* pPass = new RenderPass;
+		//
+		XMLElement* pPassStateElem = pPassElem->FirstChildElement("PassState");
+		if (pPassStateElem != nullptr)
+		{
+			XMLElement* pStateElem = pPassStateElem->FirstChildElement("State");
+			while (pStateElem != nullptr)
+			{
+				std::string name = pStateElem->Attribute("Name");
+				if (name == "AlphaTest")
+				{
+					bool value = pStateElem->BoolAttribute("Value");
+					stRenderState state;
+					state.m_eRenderState = ALPHATEST;
+					state.m_nValue = value;
+					pPass->m_vecRenderState.push_back(state);
+
+				}
+				else if (name == "AlphaBlend")
+				{
+					bool value = pStateElem->BoolAttribute("Value");
+					stRenderState state;
+					state.m_eRenderState = ALPHABLEND;
+					state.m_nValue = value;
+					pPass->m_vecRenderState.push_back(state);
+				}
+				else if (name == "AlphaTestRef")
+				{
+					float value = pStateElem->FloatAttribute("Value");
+					stRenderState state;
+					state.m_eRenderState = ALPHATESTREF;
+					state.m_nValue = value;
+					pPass->m_vecRenderState.push_back(state);
+				}
+				pStateElem = pStateElem->NextSiblingElement("State");
+			}
+		}
+		//
 		string strName = pPassElem->Attribute("Name");
 		string strBrdf = pPassElem->Attribute("BRDF");
 
@@ -98,7 +136,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			pFSResource = ResourceManager<FragShader>::GetInstance()->GetResource(fragShaderPath);
 		}
 
-		RenderPass* pPass = new RenderPass;
+		
 		pMatRes->AddPass(strName,pPass);
 		pPass->m_pVertexShader = pVSResource;
 		pPass->m_pFragShader = pFSResource;

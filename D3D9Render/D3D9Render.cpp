@@ -67,9 +67,10 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 	else
 	{
 		//m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-		m_pDevice->SetRenderState(D3DRS_ZENABLE, true);
-		m_pDevice->SetRenderState(D3DRS_ZWRITEENABLE, true);
-		m_pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);
+		//m_pDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+		//m_pDevice->SetRenderState(D3DRS_ZENABLE, true);
+		//m_pDevice->SetRenderState(D3DRS_ZWRITEENABLE, true);
+		//m_pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);
 		m_pDevice->SetIndices(pD3DIndexBuff->m_pIndexBuffer);
 		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
@@ -83,7 +84,13 @@ bool D3D9Render::SetTexture(int nSamplerID, HardwareTexture* pTexture)
 	if (pTexture != nullptr)
 	{
 		m_pDevice->SetTexture(nSamplerID, p2DTex->m_pTexture);
+		m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+		m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
 		return true;
+	}
+	else
+	{
+		m_pDevice->SetTexture(nSamplerID, nullptr);
 	}
 	return false;
 }
@@ -113,11 +120,16 @@ bool D3D9Render::SetRenderStateCollection(const RenderStateCollection& stateColl
 
 bool D3D9Render::SetBlendEnable(bool b)
 {
+	if (D3D_OK != m_pDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, b))
+	{
+		return false;
+	}
 	return true;
 }
 
 bool D3D9Render::SetBlendSrc(EALPHABLEND eBlend)
 {
+	
 	return true;
 }
 
@@ -128,31 +140,83 @@ bool D3D9Render::SetBlendDst(EALPHABLEND eBlend)
 
 bool D3D9Render::SetZTestEnable(bool b)
 {
+	if (D3D_OK != m_pDevice->SetRenderState(D3DRS_ZENABLE, b))
+	{
+		return false;
+	}
 	return true;
 }
 
 bool D3D9Render::SetZWriteEnable(bool b)
 {
+	if (D3D_OK != m_pDevice->SetRenderState(D3DRS_ZWRITEENABLE, b))
+	{
+		return false;
+	}
 	return true;
 }
 
 bool D3D9Render::SetZFunc(ERENDERCMPFUNC eCmp)
 {
+	_D3DCMPFUNC eFunc = D3DCMP_ALWAYS;
+	switch (eCmp)
+	{
+		case RENDERCMP_NEVER:
+		break;
+		case RENDERCMP_LESS:
+		eFunc = D3DCMP_LESS;
+		break;
+		case RENDERCMP_EQUAL:
+		break;
+		case RENDERCMP_LESSEQUAL:
+		eFunc = D3DCMP_LESSEQUAL;
+		break;
+		case RENDERCMP_GREATER:
+		break;
+		case RENDERCMP_NOTEQUAL:
+		break;
+		case RENDERCMP_GREATEREQUAL:
+		break;
+		case RENDERCMP_ALWAYS:
+		break;
+		default:
+		return false;
+		break;
+	}
+	if (D3D_OK != m_pDevice->SetRenderState(D3DRS_ZFUNC, eFunc))
+	{
+		return false;
+	}
 	return true;
 }
 
 bool D3D9Render::SetAlphaTest(bool b)
 {
+	m_pDevice->SetRenderState(D3DRS_ALPHATESTENABLE, b);
 	return true;
 }
 
 bool D3D9Render::SetAlphaFunc(ERENDERCMPFUNC eCmp)
 {
+	switch (eCmp)
+	{
+		case RENDERCMP_GREATER:
+		{
+			m_pDevice->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER);
+		}
+		break;
+		case RENDERCMP_LESS:
+		{
+			m_pDevice->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_LESS);
+		}
+		break;
+	}
 	return true;
 }
 
-bool D3D9Render::SetAlphaTestFactor(float f)
+bool D3D9Render::SetAlphaTestFactor(int f)
 {
+	m_pDevice->SetRenderState(D3DRS_ALPHAREF, f);
 	return true;
 }
 

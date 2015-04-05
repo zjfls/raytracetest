@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="3.0096931" y="69.688843" z="-3.0461961e-006"/>
+                <Rotation x="90.000023" y="0" z="-90"/>
+                <Scale x="0.99999994" y="1" z="1"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="24.300423" y="6.8557056e-006" z="1.168251e-005"/>
+                    <Rotation x="-7.0436245e-006" y="-3.6819005e-005" z="3.4150926e-005"/>
+                    <Scale x="1" y="0.99999994" z="1"/>
+                </Transform>
+                <WorldObj name="Bone3">
+                    <Transform>
+                        <Translation x="27.071533" y="2.3773369e-005" z="-1.001358e-005"/>
+                        <Rotation x="-2.9131064e-005" y="1.2730736" z="-5.4936885e-005"/>
+                        <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+                    </Transform>
+                    <WorldObj name="Bone4">
+                        <Transform>
+                            <Translation x="28.783897" y="-1.9461613e-006" z="-1.1444092e-005"/>
+                            <Rotation x="2.7903316e-005" y="-1.2730528" z="3.4226199e-005"/>
+                            <Scale x="0.99999988" y="1" z="0.99999988"/>
+                        </Transform>
+                        <WorldObj name="Bone5">
+                            <Transform>
+                                <Translation x="29.629471" y="1.4981764e-005" z="-1.6689301e-006"/>
+                                <Rotation x="-2.1344641e-007" y="-8.0041282e-008" z="8.537753e-007"/>
+                                <Scale x="1" y="1.0000001" z="1"/>
+                            </Transform>
+                        </WorldObj>
+                    </WorldObj>
+                </WorldObj>
+            </WorldObj>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="51.440994" y="207.51624" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Odong_tree">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Odong_tree_Env_JuJube_MAT.mesh">
+            <Material refPath="./data/material/Env_JuJube_MAT.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_Odong_tree_Env_Jujube_Fruit_MAT.mesh">
+            <Material refPath="./data/material/Env_Jujube_Fruit_MAT.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="1.3475194" y="19.557037" z="16.808714"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="-9.5367432e-007" y="2.2327576" z="-4.7683716e-007"/>
+                <Rotation x="-90.000008" y="0" z="-0"/>
+                <Scale x="1" y="0.99999994" z="0.99999994"/>
+            </Transform>
+            <WorldObj name="Bone3">
+                <Transform>
+                    <Translation x="1.1920929e-006" y="0" z="0"/>
+                    <Rotation x="-8.1422201e-013" y="0" z="-0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone4">
+                <Transform>
+                    <Translation x="18.253105" y="4.7683716e-007" z="0"/>
+                    <Rotation x="-7.9166966e-006" y="15.000005" z="-1.4342784e-006"/>
+                    <Scale x="1.0000002" y="1.0000001" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone5">
+                <Transform>
+                    <Translation x="-18.206226" y="4.7683716e-007" z="0"/>
+                    <Rotation x="-8.1422201e-013" y="0" z="-0"/>
+                    <Scale x="1" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Stolen_box">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Stolen_box_Prop_Box_001_13_Mat.mesh">
+            <Material refPath="./data/material/Prop_Box_001_13_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_Stolen_box_Prop_Blacksmith_Drawing.mesh">
+            <Material refPath="./data/material/Prop_Blacksmith_Drawing.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

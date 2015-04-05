@@ -41,6 +41,7 @@ public:
 	}
 private:
 	std::unordered_map<RENDERSTATEMASK, stMaskData> m_mapMask;
+	friend class RenderStage;
 };
 class RasterRender;
 class RenderStage
@@ -59,7 +60,7 @@ public:
 	ERENDERSTAGEMETHOD m_eMethod;
 private:
 	void	RenderDepthAndRadiance(RasterRender* pRender,std::vector<IRenderable*>& vecRenderabls);
-	void	SetMaterialParam();
+	//void	SetMaterialParam();
 
 	/*
 

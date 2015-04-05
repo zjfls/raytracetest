@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="Color.h" />
     <ClInclude Include="CommonDef.h" />
+    <ClInclude Include="FileOperation.h" />
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="Foundation_Dll_Def.h" />
     <ClInclude Include="IListener.h" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="FileOperation.cpp" />
     <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="IListener.cpp" />
     <ClCompile Include="IListenerSubject.cpp" />

@@ -87,8 +87,8 @@ void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderable
 	std::unordered_map<string, ShaderConstantInfo>& vertexShaderParam = pVertexShader->GetContants();
 	std::unordered_map<string, ShaderConstantInfo>& fragShaderParam = pFragShader->GetContants();
 
-	SetBuiltInMatrixArg(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);
-	SetBuiltInMatrixArg(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);
+	SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);
+	SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);
 
 	//
 	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
@@ -108,10 +108,36 @@ void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderable
 
 void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates)
 {
-
+	for each (stRenderState rs in m_vecRenderState)
+	{
+		switch (rs.m_eRenderState)
+		{
+			case ALPHATEST:
+			{
+				pRender->SetAlphaTest((bool)rs.m_nValue);
+			}
+			break;
+			case ALPHATESTREF:
+			{
+				pRender->SetAlphaTestFactor((int)rs.m_nValue);
+			}
+			break;
+			case ALPHABLEND:
+			{
+				pRender->SetBlendEnable((bool)rs.m_nValue);
+			}
+			break;
+			default:
+			break;
+		}
+	}
 }
 void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
 {
+	pRender->SetTexture(0, nullptr);
+	pRender->SetTexture(1, nullptr);
+	pRender->SetTexture(2, nullptr);
+	pRender->SetTexture(3, nullptr);
 	//TextureSampler* pSampler = p.second->GetData<TextureSampler>();
 	//HardwareTexture* pHardwareTex = pRender->m_pRenderSystem->GetHardwareTexture(pSampler->m_pTexture);
 	//SetTexture(pSampler->m_byRegisterIndex, pHardwareTex);
@@ -127,13 +153,14 @@ void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVert
 	}
 }
 
-void RenderPass::SetBuiltInMatrixArg(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
+void RenderPass::SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
 {
 
 
 	Matrix44 matWorld = pRenderable->m_pOwnerObj->m_pTransform->GetWorldMatrix();
 	Matrix44 matView = pRender->m_pCurrentRenderCamera->GetViewMatrix();
 	Matrix44 matProj = pRender->m_pCurrentRenderCamera->GetProjMatrix();
+	Vector3	CameraView = pRender->m_pCurrentRenderCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
 
 	for each (std::pair<string, ShaderConstantInfo> p in argIn)
 	{
@@ -144,47 +171,62 @@ void RenderPass::SetBuiltInMatrixArg(RasterRender* pRender, IRenderable* pRender
 		//	MATRIX_WV
 		//	MATRIX_WVP
 		//	MATRIX_INVERSEWV
-		TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
+		//	VIEW_POS
+		
 		if (p.first == "MATRIX_WORLD")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			arg.m_Data = matWorld;
 			argToBuild[p.first] = &arg;
 		}
 		else if (p.first == "MATRIX_VIEW")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			arg.m_Data = matView;
 			argToBuild[p.first] = &arg;
 		}
 		else if (p.first == "MATRIX_PROJ")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			arg.m_Data = matProj;
 			argToBuild[p.first] = &arg;
 		}
 		else if (p.first == "MATRIX_WV")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			arg.m_Data = matWorld * matView;
 			argToBuild[p.first] = &arg;
 		}
 		else if (p.first == "MATRIX_VP")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			arg.m_Data = matView * matProj;
 			argToBuild[p.first] = &arg;
 		}
 		else if (p.first == "MATRIX_WVP")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			arg.m_Data = matWorld * matView * matProj;
 			argToBuild[p.first] = &arg;
 		}
 		else if (p.first == "MATRIX_INVERSEWV")
 		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			Matrix44 matWV = matWorld * matView;
 			arg.m_Data = Matrix44::QuikInverse(matWV);
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "VIEW_POS")
+		{
+			TMatArg<Vector3>& arg = *(GetArgFromLib<Vector3>(p.first, EMATARGTYPEFLOAT3));
+			Vector3 vecPos = CameraView;
+			arg.m_Data = vecPos;
 			argToBuild[p.first] = &arg;
 		}
 	}

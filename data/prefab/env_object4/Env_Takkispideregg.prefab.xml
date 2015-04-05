@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Root">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Bone1">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="0.99999994" y="1" z="1"/>
+            </Transform>
+            <WorldObj name="Bone2">
+                <Transform>
+                    <Translation x="1.3475858" y="7.512352" z="1.6680954"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone3">
+                <Transform>
+                    <Translation x="-18.49807" y="5.0620461" z="-9.7419271"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone4">
+                <Transform>
+                    <Translation x="-19.22719" y="4.0062528" z="8.5677586"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone5">
+                <Transform>
+                    <Translation x="-17.059454" y="13.381849" z="8.6545639"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone6">
+                <Transform>
+                    <Translation x="-25.182764" y="12.020605" z="8.6910572"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone7">
+                <Transform>
+                    <Translation x="-15.216517" y="14.115945" z="-9.8255539"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone8">
+                <Transform>
+                    <Translation x="-23.163628" y="14.030307" z="-9.781477"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone9">
+                <Transform>
+                    <Translation x="-6.171061" y="21.746109" z="1.6701812"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone10">
+                <Transform>
+                    <Translation x="4.6058679" y="19.807686" z="1.6382231"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone11">
+                <Transform>
+                    <Translation x="14.12942" y="13.729361" z="-15.118011"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone12">
+                <Transform>
+                    <Translation x="22.385298" y="11.421529" z="-16.687042"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone13">
+                <Transform>
+                    <Translation x="14.939993" y="4.120543" z="-18.386944"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone14">
+                <Transform>
+                    <Translation x="20.180874" y="15.772647" z="20.008173"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone15">
+                <Transform>
+                    <Translation x="11.541768" y="15.679552" z="20.056087"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+            <WorldObj name="Bone16">
+                <Transform>
+                    <Translation x="16.613581" y="5.9303794" z="20.099079"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="1.0000001" y="1" z="1"/>
+                </Transform>
+            </WorldObj>
+        </WorldObj>
+        <WorldObj name="Bone2">
+            <Transform>
+                <Translation x="0" y="44.411758" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Env_Takkispideregg">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_Takkispideregg.mesh">
+            <Material refPath="./data/material/Env_Takkispideregg_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>
