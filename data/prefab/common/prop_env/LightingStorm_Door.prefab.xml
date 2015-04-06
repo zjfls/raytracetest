@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="LightingStorm_Door">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/LightingStorm_Door_gate_03_INST.mesh">
+            <Material refPath="./data/material/gate_03_INST.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/LightingStorm_Door_ENV_Door_01_Mat.mesh">
+            <Material refPath="./data/material/ENV_Door_01_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

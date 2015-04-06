@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Plant_006_012">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Plant_006_012_Plant_006_002_Mat.mesh">
+            <Material refPath="./data/material/Plant_006_002_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Plant_006_012_Plant_006_008_Mat.mesh">
+            <Material refPath="./data/material/Plant_006_008_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Plant_006_012_Plant_006_009_Mat.mesh">
+            <Material refPath="./data/material/Plant_006_009_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

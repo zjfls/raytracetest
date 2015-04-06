@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="prop_sea_stuff_001_30">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/prop_sea_stuff_001_30_Prop_Sea_Stuff_001_30_a_Mat.mesh">
+            <Material refPath="./data/material/Prop_Sea_Stuff_001_30_a_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/prop_sea_stuff_001_30_Prop_Sea_Stuff_001_30_b_Mat.mesh">
+            <Material refPath="./data/material/Prop_Sea_Stuff_001_30_b_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

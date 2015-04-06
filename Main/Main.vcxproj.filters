@@ -226,6 +226,7 @@
     <ClInclude Include="ResDef.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -403,5 +404,6 @@
     <ClCompile Include="ResDef.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ShaderGenerator.cpp" />
   </ItemGroup>
 </Project>

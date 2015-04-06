@@ -2,6 +2,7 @@
 #include "ModuleBase.h"
 #include "Color.h"
 #include "Vector3.h"
+#include "RenderEnum.h"
 class WORLD_API LightBase :
 	public ModuleBase
 {
@@ -13,6 +14,8 @@ public:
 	Color	m_Color;
 	float	m_fIntensity;
 	float	m_bCastShadow;
+
+	ELIGHTTYPE m_eLightType;
 protected:
 	LightBase();
 	//friend class LightBaseCreator;

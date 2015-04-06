@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<Material Name="Prop_Blacksmith_Brazier02.smat">
+    <MaterialArg Name="EmissiveColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Parent_emissive.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="DiffuseColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Prop_Blacksmith_Brazier02.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="NormalMap" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Prop_Blacksmith_Brazier02_Normal.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <MaterialArg Name="SpecularColor" Type="TextureSampler">
+        <Texture RefPath="./data/texture/Prop_Blacksmith_Brazier02_Spec.tga" Type="Texture2D"/>
+    </MaterialArg>
+    <RenderPass Name="bladesouldefault" BRDF="BlinPhong">
+        <VertexShader refPath="./data/shader/VertexStandard.vsm" ShaderType="Origin"/>
+        <FragElem refPath="./data/shader/FragSpec.fsm" ShaderType="Origin"/>
+    </RenderPass>
+</Material>

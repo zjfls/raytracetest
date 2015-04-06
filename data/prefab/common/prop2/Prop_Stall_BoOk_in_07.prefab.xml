@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Prop_Stall_BoOk_in_07">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Prop_Stall_BoOk_in_07_Prop_Stall_BoOk_in_07-01_Mat.mesh">
+            <Material refPath="./data/material/Prop_Stall_BoOk_in_07-01_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Prop_Stall_BoOk_in_07_Prop_Stall_BoOk_in_07-02_Mat.mesh">
+            <Material refPath="./data/material/Prop_Stall_BoOk_in_07-02_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

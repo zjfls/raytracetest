@@ -9,6 +9,18 @@ public:
 	shared_ptr<FragShader> m_pFragShader;
 	ESTAGESHADERTYPE m_eStageDesc;
 	EFRAGSHADERTYPE	m_eFragShaderDesc;
+	ELIGHTTYPE		m_eLightType;
+	unsigned int m_nPointLightNum;
+	unsigned int m_nDirLightNum;
+	unsigned int m_nSpotLightNum;
+	FragShaderDesc()
+		:m_nPointLightNum(0)
+		, m_nDirLightNum(0)
+		, m_nSpotLightNum(0)
+		, m_eLightType(ELIGHTTYPEINVALIE)
+	{
+
+	}
 };
 class HardwareFragShader;
 

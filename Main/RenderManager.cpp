@@ -5,10 +5,14 @@
 #include "RenderView.h"
 #include "RenderPath.h"
 #include "RenderSystem.h"
+#include "AssetManager.h"
+#include "ResourceManager.h"
+#include "FragShader.h"
 #ifdef WIN32
 //#include "D3D9Render.h"
 //#include "D3D9RenderSystem.h"
 #include "windows.h"
+#include "ShaderGenerator.h"
 #endif
 typedef RenderSystem* (WINAPI *CreateRSMethod)();
 template class MAIN_API Singleton < RenderManager >;
@@ -40,7 +44,7 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 		bool b = m_mapRenderSystem["D3D9"]->InitRenderSystem(renderViewInfo);
 		m_mapRenderSystem["D3D9"]->CreateDefaultRender(pRenderPath);
 		m_pDefualtRenderSystem = m_mapRenderSystem["D3D9"];
-		return b;
+		//return b;
 	}
 #endif
 	bool bHdr = EnviromentSetting::GetInstance()->GetIntSetting("HDR");
@@ -56,6 +60,19 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 			m_pDefualtRenderSystem->m_pDefaultRenderTarget = pRenderTarget;
 		}
 	}
+
+
+	LoadShaderChunk();
+	return true;
+}
+
+bool RenderManager::LoadShaderChunk()
+{
+	AssetManager::GetInstance()->LoadAsset("./data/shader/common/lightatten.srf");
+	AssetManager::GetInstance()->LoadAsset("./data/shader/common/surfaceblinnphong.srf");
+	ShaderGenerator::m_mapCode["lightatten"] = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/common/lightatten.srf")->m_pCodeBuffer;
+	ShaderGenerator::m_mapCode["surfaceblinnphong"] = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/common/surfaceblinnphong.srf")->m_pCodeBuffer;
+
 	return true;
 }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Plant_Susal_001_003">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Plant_Susal_001_003_Plant_Susal_001_Body_Mat.mesh">
+            <Material refPath="./data/material/Plant_Susal_001_Body_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Plant_Susal_001_003_Plant_Susal_001_Branch_Mat.mesh">
+            <Material refPath="./data/material/Plant_Susal_001_Branch_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

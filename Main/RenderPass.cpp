@@ -21,6 +21,8 @@
 #include "RasterRender.h"
 #include "CameraBase.h"
 #include "HardwareShader.h"
+#include "DirectionalLight.h"
+#include "PointLight.h"
 RenderPass::RenderPass()
 {
 }
@@ -31,7 +33,8 @@ RenderPass::~RenderPass()
 }
 
 void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)
-{
+{	
+	//
 	shared_ptr<RasterMaterial> pMat = dynamic_pointer_cast<RasterMaterial>(pRenderable->m_pSharedMaterial);
 
 	HardwareIndexBuffer* pIndexBuff = pRender->m_pRenderSystem->GetHardwareIndexBuffer(pRenderable->m_pIndexData);
@@ -44,36 +47,80 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	vsdesc.m_pVertexShader = m_pVertexShader;
 	vsdesc.m_eStageDesc = eStageShaderType;
 	vsdesc.m_eVShaderDesc = m_eVertexShaderType;
-	HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
-	if (nullptr == pVertexShader)
-	{
-		std::cout << "can not get hardware shader:" << vsdesc.m_pVertexShader->GetRefPath() << std::endl;
-		return;
-	}
+
 	FragShaderDesc fsDesc;
 	fsDesc.m_eStageDesc = eStageShaderType;
 	fsDesc.m_eFragShaderDesc = m_eFragShaderType;
 	fsDesc.m_pFragShader = m_pFragShader;
-	HardwareFragShader* pFragShader = pRender->m_pRenderSystem->GetHardwareFragShader(fsDesc);
-	if (nullptr == pFragShader)
+
+	//
+
+	if (eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING)
 	{
-		std::cout << "can not get hardware shader:" << fsDesc.m_pFragShader->GetRefPath() << std::endl;
-		return;
+		HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
+		if (nullptr == pVertexShader)
+		{
+			std::cout << "can not get hardware shader:" << vsdesc.m_pVertexShader->GetRefPath() << std::endl;
+			return;
+		}
+		HardwareFragShader* pFragShader = pRender->m_pRenderSystem->GetHardwareFragShader(fsDesc);
+		if (nullptr == pFragShader)
+		{
+			std::cout << "can not get hardware shader:" << fsDesc.m_pFragShader->GetRefPath() << std::endl;
+			return;
+		}
+		//
+		pRender->SetVertexShader(pVertexShader);
+		pRender->SetFragShader(pFragShader);
+
+		//
+		BuildShaderArgs(pRender, pRenderable, pMat, eStageShaderType, pVertexShader, pFragShader);
+		//
+		SetPassStates(pRender, mapStates);
+		//
+		SetShaderArgs(pRender, pVertexShader, pFragShader);
+		//
+		pRender->Render(pIndexBuff, pVertexBuff);
 	}
-	//
-	pRender->SetVertexShader(pVertexShader);
-	pRender->SetFragShader(pFragShader);
+	else if (ESTAGESHADERRADIANCEONLIGHTING)
+	{
+		for each (LightBase* pLight in pRenderable->m_vecLight)
+		{
+			HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
+			if (nullptr == pVertexShader)
+			{
+				std::cout << "can not get hardware shader:" << vsdesc.m_pVertexShader->GetRefPath() << std::endl;
+				return;
+			}
+			fsDesc.m_eLightType = pLight->m_eLightType;
+			//fsDesc.m_eLightType = EDIRLIGHT;
+			HardwareFragShader* pFragShader = pRender->m_pRenderSystem->GetHardwareFragShader(fsDesc);
+			if (nullptr == pFragShader)
+			{
+				std::cout << "can not get hardware shader:" << fsDesc.m_pFragShader->GetRefPath() << std::endl;
+				return;
+			}
+			//
+			pRender->SetVertexShader(pVertexShader);
+			pRender->SetFragShader(pFragShader);
+
+			//
+			BuildShaderArgs(pRender, pRenderable, pMat, eStageShaderType, pVertexShader, pFragShader);
+			//
+			SetPassStates(pRender, mapStates);
+			//
+			SetShaderArgs(pRender, pVertexShader, pFragShader);
+			//
+			pRender->Render(pIndexBuff, pVertexBuff);
+		}
+	}
+
+
+
+
+
+
 	
-	//
-	BuildShaderArgs(pRender, pRenderable,pMat, eStageShaderType,pVertexShader,pFragShader);
-	//
-	SetPassStates(pRender, mapStates);
-	//
-	SetShaderArgs(pRender,pVertexShader, pFragShader);
-
-
-
-	pRender->Render(pIndexBuff, pVertexBuff);
 	
 
 }

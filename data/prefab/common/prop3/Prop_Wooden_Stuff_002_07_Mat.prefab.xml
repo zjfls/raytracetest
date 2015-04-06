@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Prop_Wooden_Stuff_002_07_Mat">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Prop_Wooden_Stuff_002_07_Mat.mesh">
+            <Material refPath="./data/material/Prop_Wooden_Stuff_002_07_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

@@ -4,6 +4,7 @@
 
 PointLight::PointLight()
 {
+	m_eLightType = EPOINTLIGHT;
 	m_fRange = 10.0f;
 }
 

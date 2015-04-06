@@ -21,6 +21,24 @@ MaterialAssetLoader::~MaterialAssetLoader()
 {
 }
 
+bool stringcompare(const char* a, const char* b)
+{
+	int na = strlen(a);
+	int nb = strlen(b);
+	if (na != nb)
+	{
+		return false;
+	}
+	for (int i = 0; i < na; ++i)
+	{
+		if (a[i] != b[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	MaterialAsset* pAsset = new MaterialAsset();
@@ -144,10 +162,23 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 		{
 			pPass->m_eVertexShaderType = EVERTEXSHADERORIGIN;
 		}
+		else if (vertShaderType == "Auto")
+		{
+			pPass->m_eVertexShaderType = EVERTEXSHADERAUTO;
+		}
+
+		string srf = "Surface";
 		if (fragShaderType == "Origin")
 		{
 			pPass->m_eFragShaderType = EFRAGSHADERORIGIN;
 		}
+		else if (fragShaderType == "Surface")
+		{
+			pPass->m_eFragShaderType = EFRAGSHADERSURFACE;
+		}
+
+
+	
 		pPassElem = pPassElem->NextSiblingElement("RenderPass");
 
 	};

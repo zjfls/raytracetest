@@ -2,6 +2,8 @@
 #include "ModuleBase.h"
 #include "VertexData.h"
 #include "IndexData.h"
+#include <vector>
+class LightBase;
 class MaterialResource;
 class WORLD_API IRenderable :public ModuleBase
 {
@@ -20,5 +22,7 @@ protected:
 	IndexData* m_pIndexData;
 
 	friend class RenderPass;
+public:
+	std::vector<LightBase*> m_vecLight;
 };
 

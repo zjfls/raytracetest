@@ -109,6 +109,30 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	pFSResource->m_pCodeBuffer = pCode;
 	m_pAsset->AddResource(path, pFSResource);
 	fclose(fp);
+
+	//
+	//char t[] = "a,b,c,de";
+	//const char *split = ",";
+	//char *p = NULL, *pNext = NULL;
+	//p = strtok_s(t, split, &pNext);
+	//CString R = L"";
+	//while (p != NULL){
+	//	R += char_to_cstring(p);
+	//	R += L"\r\n";
+	//	R += L"-----------------";
+	//	R += L"\r\n";
+	//	p = strtok_s(NULL, split, &pNext);
+	//}
+	//
+	//const char* d = "\n";
+	//char* pNext;
+	//const char* p = strtok_s(pCode, d, &pNext);
+	//while (p != nullptr)
+	//{
+	//	std::cout << p << std::endl;
+	//	p = strtok_s(nullptr, d, &pNext);
+	//}
+	//
 	return m_pAsset;
 
 	//IDirect3DVertexShader9* pVertexShader;

@@ -8,4 +8,5 @@
     <Setting Name="RenderPath" Value="Forward"/>
     <Setting Name="HDR" Value="0"/>
     <Setting Name="Bloom" Value="0"/>
+    <Setting Name="FOWARDLIGHTONEPASS" Value="0"/>
 </CONFIG>

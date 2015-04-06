@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="PehYeo_BloodStone_branch3">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/PehYeo_BloodStone_branch3_Pehyeo_BLstone_004_M.mesh">
+            <Material refPath="./data/material/Pehyeo_BLstone_004_M.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/PehYeo_BloodStone_branch3_Pehyeo_BL_branch_001_mat.mesh">
+            <Material refPath="./data/material/Pehyeo_BL_branch_001_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/PehYeo_BloodStone_branch3_Pehyeo_BL_branch_flower_Mat.mesh">
+            <Material refPath="./data/material/Pehyeo_BL_branch_flower_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/PehYeo_BloodStone_branch3_Pehyeo_BL_branch_flower2_Mat.mesh">
+            <Material refPath="./data/material/Pehyeo_BL_branch_flower2_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

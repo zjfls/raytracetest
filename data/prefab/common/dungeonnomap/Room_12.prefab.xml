@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Room_12">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Room_12_Gray_Room_12_Mat.mesh">
+            <Material refPath="./data/material/Gray_Room_12_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Room_12_Gray_Room_13_Mat.mesh">
+            <Material refPath="./data/material/Gray_Room_13_Mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

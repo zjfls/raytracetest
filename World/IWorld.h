@@ -13,9 +13,12 @@ public:
 	void Update();
 
 	std::vector<IRenderable*> GetAllRenderables();
+	virtual void GetRenderablesLightInfo(std::vector<IRenderable*>& vec);
+
+
 
 	template<class T>
-	std::vector<T*> GetAllComponent();
+	std::vector<T*> GetAllModules();
 
 
 	
@@ -23,7 +26,7 @@ public:
 
 template<class T>
 std::vector<T*>
-IWorld::GetAllComponent()
+IWorld::GetAllModules()
 {
 	std::vector<T*> vecModules;
 	m_pRoot->GetAllModuleRecursive<T>(vecModules);

@@ -1,7 +1,3 @@
-struct PS_OUTPUT
-{
-	float4 Color:Color0;
-};
 struct PS_INPUT
 {
     float4	Normal			: TEXCOORD0; 
@@ -32,9 +28,9 @@ sampler NormalMap = sampler_state
 sampler SpecularColor = sampler_state
 {
 };
-PS_OUTPUT pMain(PS_INPUT input)
+float4 pMain(PS_INPUT input):Color0
 {
-   	PS_OUTPUT output = (PS_OUTPUT)0;
+   	//PS_OUTPUT output = (PS_OUTPUT)0;
 	
 	float3 Nt = tex2D(NormalMap,input.TC.xy).xyz * 2 - 1;
     float3 Nn = normalize(input.Normal);
@@ -44,13 +40,13 @@ PS_OUTPUT pMain(PS_INPUT input)
 	float3 Nb = mul(Nt,tbn);
     Nb = normalize(Nb);
 	float3 lightDirNomralize = normalize(lightDir);
-	//视方向
+	//?????
 	float3	viewDir = normalize(input.WorldEyeVec);
 	float3	gloss = Ks * tex2D(SpecularColor,input.TC.xy).xyz;
-	//半角向量
+	//???????
 	float3	Hn = normalize(lightDirNomralize + viewDir);
-	float hdn = dot(Hn,Nb);
-    float ldn = dot(lightDir,Nb);
+	float hdn = saturate(dot(Hn,Nb));
+    float ldn = saturate(dot(lightDir,Nb));
 	float4 litV = lit(ldn,hdn,SpecExpon);
 	float3 incident =    litV.y * lightColor.rgb;
     float3 diffContrib = incident * Kd;
@@ -60,8 +56,12 @@ PS_OUTPUT pMain(PS_INPUT input)
 	//output.Color.rgb = tex2D(DiffuseColor, input.TC).rgb * radianceColor;
 	//output.Color.rgb = abs(Nn);
 	float4 texColor = tex2D(DiffuseColor,input.TC);
-	output.Color.rgb = (ambientColor + diffContrib + specContrib) * Kd * texColor.rgb;
+	
+	
+	
+	float4 outputColor;
+	outputColor.rgb = (ambientColor + diffContrib + specContrib) * Kd * texColor.rgb;
 	//output.Color.rgb = diffContrib;
-	output.Color.a = texColor.a;
-	return output;
+	outputColor.a = texColor.a;
+	return outputColor;
 }

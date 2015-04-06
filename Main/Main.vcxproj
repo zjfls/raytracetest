@@ -74,6 +74,7 @@
     <ClInclude Include="Resource_Dll_Def.h" />
     <ClInclude Include="ShaderAsset.h" />
     <ClInclude Include="ShaderAssetLoader.h" />
+    <ClInclude Include="ShaderGenerator.h" />
     <ClInclude Include="SimpleD3D9Application.h" />
     <ClInclude Include="SimpleGLApplication.h" />
     <ClInclude Include="SimpleRTMaterial.h" />
@@ -137,6 +138,7 @@
     <ClCompile Include="ResDef.cpp" />
     <ClCompile Include="ShaderAsset.cpp" />
     <ClCompile Include="ShaderAssetLoader.cpp" />
+    <ClCompile Include="ShaderGenerator.cpp" />
     <ClCompile Include="SimpleD3D9Application.cpp" />
     <ClCompile Include="SimpleGLApplication.cpp" />
     <ClCompile Include="SimpleRTMaterial.cpp" />

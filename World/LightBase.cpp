@@ -3,6 +3,7 @@
 
 
 LightBase::LightBase()
+	:m_eLightType(ELIGHTTYPEINVALIE)
 {
 }
 

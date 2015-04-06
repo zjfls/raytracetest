@@ -31,8 +31,8 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	assert(pRTCamera != nullptr && pRTCamera->GetPerpViewPort() != nullptr);
 	m_pCachedCamera = pRTCamera;
 	m_pCachedWorld = pWorld;
-	m_vecRenderables = pWorld->GetAllComponent<IRenderable>();
-	m_vecLights = pWorld->GetAllComponent<LightBase>();
+	m_vecRenderables = pWorld->GetAllModules<IRenderable>();
+	m_vecLights = pWorld->GetAllModules<LightBase>();
 	const RayTraceViewPort* pViewPort = pRTCamera->GetPerpViewPort();
 	assert(pViewPort != nullptr);
 

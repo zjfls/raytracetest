@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Env_PigRoulette_01">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Env_PigRoulette_01_Env_PigRoulette_01_1_mat.mesh">
+            <Material refPath="./data/material/Env_PigRoulette_01_1_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_PigRoulette_01_Env_PigRoulette_01_2_mat.mesh">
+            <Material refPath="./data/material/Env_PigRoulette_01_2_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_PigRoulette_01_Env_PigRoulette_01_3_mat.mesh">
+            <Material refPath="./data/material/Env_PigRoulette_01_3_mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Env_PigRoulette_01_Env_PigRoulette_01_4_mat.mesh">
+            <Material refPath="./data/material/Env_PigRoulette_01_4_mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

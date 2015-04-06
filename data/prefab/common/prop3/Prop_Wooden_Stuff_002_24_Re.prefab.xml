@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Prop_Wooden_Stuff_002_24_Re">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Prop_Wooden_Stuff_002_24_Re_Tongnamu_Mat2.mesh">
+            <Material refPath="./data/material/Tongnamu_Mat2.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Prop_Wooden_Stuff_002_24_Re_Tongnamu_Mat5.mesh">
+            <Material refPath="./data/material/Tongnamu_Mat5.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Prop_Wooden_Stuff_002_24_Re_Tongnamu_Mat3.mesh">
+            <Material refPath="./data/material/Tongnamu_Mat3.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Prop_Wooden_Stuff_002_24_Re_Tongnamu_Mat1.mesh">
+            <Material refPath="./data/material/Tongnamu_Mat1.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/Prop_Wooden_Stuff_002_24_Re_Tongnamu_Mat4.mesh">
+            <Material refPath="./data/material/Tongnamu_Mat4.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

@@ -5,6 +5,7 @@
 
 RenderPath::RenderPath(string strName)
 	:m_strName(strName)
+	, m_bGetPerObjLightInfo(true)
 {
 }
 

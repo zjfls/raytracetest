@@ -13,7 +13,7 @@
             <Scale x="1" y="1" z="1"/>
         </Transform>
         <Mesh refPath="./data/mesh/Plane001.mesh">
-            <Material refPath="./data/material/Env_rock_for_tower_MAT_INST.smat.xml"/>
+            <Material refPath="./data/prefab/Env_rock_for_tower_MAT_INST2.smat.xml"/>
         </Mesh>
     </WorldObj>
 </WorldObj>

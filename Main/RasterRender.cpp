@@ -29,7 +29,12 @@ int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld)
 		std::cout << "Begin Scene Failed!" << std::endl;
 		return -1;
 	}
+
 	std::vector<IRenderable*> vecRenderables = pWorld->GetAllRenderables();
+	if (m_pRenderPath->m_bGetPerObjLightInfo == true)
+	{
+		pWorld->GetRenderablesLightInfo(vecRenderables);
+	}
 	int nRet = Render(vecRenderables);
 	if (RenderEnd() == false)
 	{
@@ -50,6 +55,7 @@ int RasterRender::Render(std::vector<IRenderable*>& pRenderableList)
 	{
 		return -1;
 	}
+	
 	unsigned int nStageCount = m_pRenderPath->GetStageCount();
 	for (unsigned int i = 0; i < nStageCount; ++i)
 	{

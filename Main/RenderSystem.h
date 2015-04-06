@@ -37,6 +37,9 @@ public:
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample,unsigned int nQuality) = 0;
 
 
+	//shared_ptr<
+
+
 protected:
 	const char*			GetVertexShaderCode(const VertexShaderDesc& vertexShaderDesc);
 	const char*			GetFragShaderCode(const FragShaderDesc& fragShaderDesc);
@@ -51,6 +54,10 @@ protected:
 	std::unordered_map<IndexData*, HardwareIndexBuffer*> m_IndexDataMap;
 	std::unordered_map<VertexData*, HardwareVertexBuffer*> m_VertexDataMap;
 	std::unordered_map<string, HardwareTexture*> m_mapTexture;
+
+
+	//std::unordered_map<VertexShaderDesc, const char*> m_VertexShaderCode;
+
 	RasterRender* m_pDefaultRender;
 	RenderView* m_pDefaultRenderView;
 	IRenderTarget*	m_pDefaultRenderTarget;

@@ -14,6 +14,9 @@
 #include "MathFunc.h"
 #include "RenderView.h"
 #include "MathDefine.h"
+#include "DirectionalLight.h"
+#include "PointLight.h"
+#include "Transform.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> shared_ptr<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
@@ -42,6 +45,8 @@ void D3D9Application::SetupScene()
 	m_pWorld->m_pRoot->addChild(pObj);
 	
 
+	
+
 
 
 	IWorldObj* pCamera = new IWorldObj;
@@ -63,7 +68,18 @@ void D3D9Application::SetupScene()
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(20.0f), 0, 0);
 
+	IWorldObj* pLightObj = new IWorldObj;
+	pLightObj->m_pTransform->SetTranslate(0.0f, 100.0f, 0.0f);
+	pLightObj->m_pTransform->SetOrientation(AngleToRad(50.0f), 0.0f, 0.0f);
+	pLightObj->m_strName = "Lights";
+	DirectionalLight* pDirLight = pLightObj->addModule<DirectionalLight>();
+	pDirLight->m_fIntensity = 2.0f;
+	pDirLight->m_Color = Color::white;
 
+	PointLight* pLight = pLightObj->addModule<PointLight>();
+	pLight->m_fIntensity = 1.0f;
+	pLight->m_Color = Color::green;
+	m_pWorld->m_pRoot->addChild(pLightObj);
 }
 
 void D3D9Application::OnEndInit()

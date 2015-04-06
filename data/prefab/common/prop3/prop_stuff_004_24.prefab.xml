@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="prop_stuff_004_24">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/prop_stuff_004_24_Prop_Stuff_004_24_Mat.mesh">
+            <Material refPath="./data/material/Prop_Stuff_004_24_Mat.smat.xml"/>
+        </Mesh>
+        <Mesh refPath="./data/mesh/prop_stuff_004_24_fire_01_01mat.mesh">
+            <Material refPath="./data/material/fire_01_01mat.smat.xml"/>
+        </Mesh>
+    </WorldObj>
+</WorldObj>

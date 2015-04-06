@@ -4,6 +4,7 @@
 
 DirectionalLight::DirectionalLight()
 {
+	m_eLightType = EDIRLIGHT;
 }
 
 

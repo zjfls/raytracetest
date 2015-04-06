@@ -31,6 +31,6 @@ unsigned int IndexData::GetIndexAt(int nTriangle, int nV) const
 	}
 	else
 	{
-		return *((short*)pData + nTriangle * 3 + nV);
+		return *((unsigned short*)pData + nTriangle * 3 + nV);
 	}
 }

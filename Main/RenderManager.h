@@ -19,7 +19,7 @@ public:
 	//RenderView* GetDefaultRenderView();
 	RenderSystem*	GetDefaultRenderSystem() const{ return m_pDefualtRenderSystem; };
 private:
-
+	bool LoadShaderChunk();
 
 private:
 	//IRender*	m_pDefaultRender;

@@ -18,6 +18,7 @@ public:
 private:
 	std::vector<RenderStage*> m_vecStages;
 public:
-	string m_strName;
+	string	m_strName;
+	bool	m_bGetPerObjLightInfo;
 };
 

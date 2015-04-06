@@ -51,6 +51,7 @@ bool AssetManager::Init()
 	AddLoader("smat.xml", new MaterialAssetLoader);
 	AddLoader("vsm", new VertexShaderAssetLoader);
 	AddLoader("fsm", new FragShaderAssetLoader);
+	AddLoader("srf", new FragShaderAssetLoader);
 	AddLoader("tga", new TextureAssetLoader);
 	AddLoader("png", new TextureAssetLoader);
 

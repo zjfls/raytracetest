@@ -39,12 +39,6 @@ bool ApplicationBase::Init(int argc, char** argv)
 	{
 		return false;
 	}
-
-	if (false == RenderManager::GetInstance()->Init(m_RenderViewInfo))
-	{
-		return false;
-	}
-	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	if (false == FbxAppManager::GetInstance()->Init())
 	{
 		return false;
@@ -53,6 +47,14 @@ bool ApplicationBase::Init(int argc, char** argv)
 	{
 		return false;
 	}
+	if (false == RenderManager::GetInstance()->Init(m_RenderViewInfo))
+	{
+		return false;
+	}
+	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
+
+
+
 	m_pWorld = new IWorld;
 	OnInit();
 	SetupScene();
