@@ -8,9 +8,9 @@
     </Transform>
     <WorldObj name="plant_001_12">
         <Transform>
-            <Translation x="0" y="0" z="0"/>
+            <Translation x="0" y="44" z="0"/>
             <Rotation x="0" y="0" z="0"/>
-            <Scale x="1" y="1" z="1"/>
+            <Scale x="3" y="3" z="3"/>
         </Transform>
         <Mesh refPath="./data/mesh/plant_001_12.mesh">
             <Material refPath="./data/material/Plant_001_09_Mat.smat.xml"/>

@@ -10,5 +10,6 @@
     <RenderPass Name="bladesouldefault" BRDF="BlinPhong">
         <VertexShader refPath="./data/shader/VertexStandard.vsm" ShaderType="Origin"/>
         <FragElem refPath="./data/shader/SurfaceSpec.srf" ShaderType="Surface"/>
+	 <!--FragElem refPath="./data/shader/test.fsm" ShaderType="Origin"/-->
     </RenderPass>
 </Material>

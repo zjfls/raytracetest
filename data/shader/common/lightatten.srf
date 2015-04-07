@@ -1,5 +1,6 @@
-float lightPointAtten(float3 lightPos,float worldPos)
+float lightPointAtten(float3 lightPos,float3 worldPos)
 {
 	float r = distance(lightPos,worldPos);
-	float atten = 1 / (r * r);
+	float atten = 1 / ((r * r) * 0.001 + r * 0.02 + 0.5);
+	return atten;
 }

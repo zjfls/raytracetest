@@ -32,7 +32,7 @@ VS_OUTPUT vMain( VS_INPUT input )
     Output.Tangent			=	mul(float4(input.Tangent,0.0f),MATRIX_WORLD);
     Output.Binormal			=	cross(Output.Normal,Output.Tangent);
     Output.TC				=	input.TC;
-	Output.WorldEyeVec		=	VIEW_POS - Output.Position;
+	Output.WorldEyeVec		=	normalize(VIEW_POS - Output.Position);
     return Output;
 }
 

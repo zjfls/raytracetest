@@ -222,11 +222,16 @@
     <ClInclude Include="TextureSampler.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAssetLoader.h" />
     <ClInclude Include="ResDef.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderGenerator.h" />
+    <ClInclude Include="TextureAssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderGenerator.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalRenderConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -397,13 +402,18 @@
     <ClCompile Include="CameraRenderer.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="TextureAssetLoader.cpp" />
     <ClCompile Include="IRender.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="ResDef.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderGenerator.cpp" />
+    <ClCompile Include="TextureAssetLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderGenerator.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalRenderConfig.cpp" />
   </ItemGroup>
 </Project>

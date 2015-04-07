@@ -27,6 +27,11 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 			return SetFloat(strName, *fValue);
 		}
 		break;
+		case EMATARGTYPEFLOAT3:
+		{
+
+		}
+		break;
 		case	EMATARGTYPEFLOAT4:
 		{
 			Vector4* vecValue = pArg->GetData<Vector4>();

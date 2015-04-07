@@ -2,15 +2,15 @@
 <!--prefab resource-->
 <WorldObj name="RootNode">
     <Transform>
-        <Translation x="0" y="50" z="0"/>
+        <Translation x="0" y="0" z="0"/>
         <Rotation x="0" y="0" z="0"/>
         <Scale x="3" y="1" z="3"/>
     </Transform>
     <WorldObj name="Plane001">
         <Transform>
-            <Translation x="0.86225891" y="0" z="-4.1958847"/>
+            <Translation x="0.86225891" y="80" z="-4.1958847"/>
             <Rotation x="0" y="0" z="0"/>
-            <Scale x="1" y="1" z="1"/>
+            <Scale x="5" y="1" z="5"/>
         </Transform>
         <Mesh refPath="./data/mesh/Plane001.mesh">
             <Material refPath="./data/prefab/Env_rock_for_tower_MAT_INST2.smat.xml"/>

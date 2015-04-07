@@ -66,3 +66,13 @@ bool D3D9FragShader::SetMatrix(string strName, const Matrix44& matValue)
 	}
 	return true;
 }
+
+bool D3D9FragShader::SetFloatArray(string strName, const float* pData, unsigned int nLenght)
+{
+ 	HRESULT hr = m_pConstantTable->SetFloatArray(m_pDevice, strName.c_str(), (const float*)&pData, nLenght);
+	if (hr != D3D_OK)
+	{
+		return false;
+	}
+	return true;
+}

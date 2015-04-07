@@ -2,15 +2,16 @@
 #include "RenderEnum.h"
 #include "RenderStateCollection.h"
 #include "HardwareShader.h"
+#include "MaterialArg.h"
 class VertexShader;
 class FragShader;
 class RasterRender;
 class RasterMaterial;
-#include "MaterialArg.h"
 class IRenderable;
 class HardwareFragShader;
 class HardwareVertexShader;
-
+class LightBase;
+class FragShaderDesc;
 struct stRenderState
 {
 	RENDERSTATEMASK m_eRenderState;
@@ -38,7 +39,7 @@ private:
 	void SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
 	void SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn);
 
-
+	void SetPerLightArg(RasterRender* pRender, LightBase* pLight, HardwareFragShader* pFragShader,FragShaderDesc& desc);
 
 
 

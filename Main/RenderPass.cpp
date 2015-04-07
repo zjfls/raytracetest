@@ -23,6 +23,8 @@
 #include "HardwareShader.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
+#include "GlobalRenderConfig.h"
+
 RenderPass::RenderPass()
 {
 }
@@ -34,6 +36,11 @@ RenderPass::~RenderPass()
 
 void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)
 {	
+
+
+	pRender->SetAlphaTest(true);
+	pRender->SetAlphaTestFactor(128);
+	pRender->SetAlphaFunc(RENDERCMP_GREATER);
 	//
 	shared_ptr<RasterMaterial> pMat = dynamic_pointer_cast<RasterMaterial>(pRenderable->m_pSharedMaterial);
 
@@ -54,8 +61,9 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	fsDesc.m_pFragShader = m_pFragShader;
 
 	//
-
-	if (eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING)
+	//HardwareVertexShader* pVertexShader;
+	//HardwareFragShader* pFragShader;
+	if (eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING || fsDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN)
 	{
 		HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
 		if (nullptr == pVertexShader)
@@ -84,8 +92,20 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	}
 	else if (ESTAGESHADERRADIANCEONLIGHTING)
 	{
+		int index = 0;
 		for each (LightBase* pLight in pRenderable->m_vecLight)
 		{
+			if (index != 0)//index 0 render ambient
+			{
+				pRender->SetBlendEnable(true);
+				pRender->SetBlendSrc(BLEND_ONE);
+				pRender->SetBlendDst(BLEND_ZERO);
+			}
+			else
+			{
+				//pRender->SetZTestEnable(false);
+				fsDesc.m_bAmbient = true;
+			}
 			HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
 			if (nullptr == pVertexShader)
 			{
@@ -93,7 +113,6 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 				return;
 			}
 			fsDesc.m_eLightType = pLight->m_eLightType;
-			//fsDesc.m_eLightType = EDIRLIGHT;
 			HardwareFragShader* pFragShader = pRender->m_pRenderSystem->GetHardwareFragShader(fsDesc);
 			if (nullptr == pFragShader)
 			{
@@ -103,7 +122,7 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 			//
 			pRender->SetVertexShader(pVertexShader);
 			pRender->SetFragShader(pFragShader);
-
+			SetPerLightArg(pRender, pLight, pFragShader,fsDesc);
 			//
 			BuildShaderArgs(pRender, pRenderable, pMat, eStageShaderType, pVertexShader, pFragShader);
 			//
@@ -111,8 +130,11 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 			//
 			SetShaderArgs(pRender, pVertexShader, pFragShader);
 			//
+			
 			pRender->Render(pIndexBuff, pVertexBuff);
+			index++;
 		}
+		pRender->SetBlendEnable(false);
 	}
 
 
@@ -276,5 +298,45 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable,
 			arg.m_Data = vecPos;
 			argToBuild[p.first] = &arg;
 		}
+	}
+}
+
+void RenderPass::SetPerLightArg(RasterRender* pRender, LightBase* pLight, HardwareFragShader* pFragShader, FragShaderDesc& desc)
+{
+	Color c = pLight->m_Color;
+	Vector4 vec;
+	vec.m_fx = c.m_fR;
+	vec.m_fy = c.m_fG;
+	vec.m_fz = c.m_fB;
+	vec.m_fw = c.m_fA;
+	pFragShader->SetVector("GAMELIGHTCOLOR", vec);
+	if (desc.m_bAmbient == true)
+	{
+		Color c = GlobalRenderConfig::GetInstance()->m_AmbientColor;
+		Vector4 vec;
+		vec.m_fx = c.m_fR;
+		vec.m_fy = c.m_fG;
+		vec.m_fz = c.m_fB;
+		vec.m_fw = c.m_fA;
+		pFragShader->SetVector("GAMEAMBIENTCOLOR", vec);
+	}
+	//
+	//
+	pFragShader->SetFloat("GAMELIGHTINTENSITY", pLight->m_fIntensity);
+	//
+	if (pLight->m_eLightType == EDIRLIGHT)
+	{
+		DirectionalLight* pDirLight = (DirectionalLight*)pLight;
+		Vector3 dir = -pDirLight->m_pOwnerObj->m_pTransform->GetForward();
+		Vector4 v = Vector4( dir.m_fx, dir.m_fy, dir.m_fz ,0.0f);
+		pFragShader->SetVector("GAMELIGHTDIR", v);
+	}
+	else if (pLight->m_eLightType == EPOINTLIGHT)
+	{
+		PointLight* pPointLight = (PointLight*)pLight;
+		Vector3 position = pPointLight->m_pOwnerObj->m_pTransform->GetWorldTranslate();
+		Vector4 v = Vector4(position.m_fx, position.m_fy, position.m_fz, 1.0f);
+		pFragShader->SetVector("GAMELIGHTPOS", v);
+
 	}
 }

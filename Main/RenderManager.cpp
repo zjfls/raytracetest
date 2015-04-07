@@ -70,8 +70,12 @@ bool RenderManager::LoadShaderChunk()
 {
 	AssetManager::GetInstance()->LoadAsset("./data/shader/common/lightatten.srf");
 	AssetManager::GetInstance()->LoadAsset("./data/shader/common/surfaceblinnphong.srf");
+	AssetManager::GetInstance()->LoadAsset("./data/shader/common/debug.srf");
 	ShaderGenerator::m_mapCode["lightatten"] = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/common/lightatten.srf")->m_pCodeBuffer;
 	ShaderGenerator::m_mapCode["surfaceblinnphong"] = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/common/surfaceblinnphong.srf")->m_pCodeBuffer;
+	ShaderGenerator::m_mapCode["debug"] = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/common/debug.srf")->m_pCodeBuffer;
+	//
+	ShaderGenerator::m_vecPPParam.push_back("VIEW_POS");
 
 	return true;
 }

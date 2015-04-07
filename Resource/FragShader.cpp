@@ -7,6 +7,7 @@ template<> shared_ptr<ResourceManager<FragShader>> Singleton<ResourceManager<Fra
 FragShader::FragShader()
 	:m_pCodeBuffer(nullptr)
 {
+	
 }
 
 

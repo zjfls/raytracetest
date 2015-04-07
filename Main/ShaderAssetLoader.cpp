@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "VertexShader.h"
 #include "FragShader.h"
+#include "ShaderGenerator.h"
 //#include "d3d9.h"
 //#include "d3dx9.h"
 
@@ -109,7 +110,7 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	pFSResource->m_pCodeBuffer = pCode;
 	m_pAsset->AddResource(path, pFSResource);
 	fclose(fp);
-
+	ShaderGenerator::PreProcessShader(pCode, nLength + 1, pFSResource->m_mapEngineParam);
 	//
 	//char t[] = "a,b,c,de";
 	//const char *split = ",";
@@ -123,16 +124,36 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	//	R += L"\r\n";
 	//	p = strtok_s(NULL, split, &pNext);
 	//}
-	//
+	//自动生成代码的时候防止重复生成
+	//char* pTempCode = new char[nLength + 1];
+	//memcpy(pTempCode, pCode, nLength + 1);
 	//const char* d = "\n";
 	//char* pNext;
-	//const char* p = strtok_s(pCode, d, &pNext);
+	//char* p = strtok_s(pTempCode, d, &pNext);
+	//char* pComment;
 	//while (p != nullptr)
 	//{
 	//	std::cout << p << std::endl;
+	//	pComment = strstr(p, "//");
+
+	//	if (pComment != nullptr)
+	//	{
+	//		*pComment = 0;
+	//		pComment = nullptr;
+	//		//
+	//		const char* pKey = strstr(p, "VIEW_POS");
+	//		if (pKey != nullptr)
+	//		{
+	//			pFSResource->m_vecEngineParam.push_back("VIEW_POS");
+	//		}
+	//	}
+
+
+	//	//
+	//	//
 	//	p = strtok_s(nullptr, d, &pNext);
 	//}
-	//
+	
 	return m_pAsset;
 
 	//IDirect3DVertexShader9* pVertexShader;

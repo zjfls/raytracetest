@@ -69,7 +69,7 @@ std::string RenderSystem::GenerateFragShaderDescString(const FragShaderDesc& fra
 		return fragShaderDesc.m_pFragShader->GetRefPath();
 	}
 	char temp[128];
-	sprintf_s(temp, "%d%d%d%d%d%d", int(fragShaderDesc.m_pFragShader.get()), fragShaderDesc.m_eFragShaderDesc, fragShaderDesc.m_eStageDesc, fragShaderDesc.m_nDirLightNum, fragShaderDesc.m_nPointLightNum, fragShaderDesc.m_nSpotLightNum);
+	sprintf_s(temp, "%d%d%d%d%d%d%d%d", int(fragShaderDesc.m_pFragShader.get()), fragShaderDesc.m_eFragShaderDesc, fragShaderDesc.m_eStageDesc, fragShaderDesc.m_nDirLightNum, fragShaderDesc.m_nPointLightNum, fragShaderDesc.m_nSpotLightNum,fragShaderDesc.m_bAmbient,fragShaderDesc.m_eLightType);
 	return temp;
 }
 

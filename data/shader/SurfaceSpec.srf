@@ -20,15 +20,16 @@ struct PS_INPUT
 	float3	Binormal		: TEXCOORD4;
 	float3	WorldEyeVec		: TEXCOORD5;
 };
-
+// /*
+//test comment
 
 SurfaceOutput Surface(PS_INPUT input)
 {
 	SurfaceOutput o;
 	float4 diffTex = tex2D(DiffuseColor,input.TC.xy).rgba;
-	o.DiffuseColor = diffTex.rgb;
-	o.SpecularColor = tex2D(SpecularColor,input.TC.xy).rgb;
-	o.SpecularPower = specPower;
+	o.DiffuseColor = diffTex.rgb * 0.7;
+	o.SpecularColor = tex2D(SpecularColor,input.TC.xy).rgb * 1.5;
+	//o.SpecularPower = specPower;
 	o.Emission = tex2D(EmissiveColor,input.TC.xy).rgb;
 	float3 Nt = tex2D(NormalMap,input.TC.xy).xyz * 2 - 1;
     float3 Nn = normalize(input.Normal);
@@ -36,9 +37,10 @@ SurfaceOutput Surface(PS_INPUT input)
     float3 Bn = normalize(input.Binormal);
     float3x3 tbn  = float3x3(Tn,Bn,Nn);
 	float3 Nb = mul(Nt,tbn);
-	o.Normal = Nb;
+	o.Normal = normalize(Nb);
+	
 	o.Alpha = diffTex.a;
 	//
-	o.SpecularPower = 32;
+	o.SpecularPower = 16;
 	return o;
 }

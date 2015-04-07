@@ -1,6 +1,7 @@
 #pragma once
 #include "RasterRender.h"
 #include "Color.h"
+#include "d3d9.h"
 
 struct IDirect3DDevice9;
 class D3D9Render :
@@ -29,6 +30,10 @@ public:
 	virtual bool RenderEnd();
 	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f);
 
+
 	IDirect3DDevice9*	m_pDevice;
+private:
+	D3DBLEND GetD3DBlendType(EALPHABLEND eBlend);
+
 };
 

@@ -27,7 +27,7 @@ void RenderStage::SetStageRenderState(RasterRender* pRender)
 		case ERSM_RADIANCEDEPTHOPAQUE:
 		{
 			pRender->SetZTestEnable(true);
-			pRender->SetZFunc(RENDERCMP_LESS);
+			pRender->SetZFunc(RENDERCMP_LESSEQUAL);
 			pRender->SetZWriteEnable(true);
 			pRender->SetBlendEnable(false);
 			pRender->SetAlphaFunc(RENDERCMP_GREATER);

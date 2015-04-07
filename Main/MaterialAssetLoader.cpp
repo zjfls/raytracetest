@@ -148,6 +148,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			pVSResource = ResourceManager<VertexShader>::GetInstance()->GetResource(vertShaderPath);
 		}
 		shared_ptr<FragShader> pFSResource = ResourceManager<FragShader>::GetInstance()->GetResource(fragShaderPath);
+		//fragShaderPath = "./data/shader/SurfaceSpec.srf";
 		if (pFSResource == nullptr)
 		{
 			AssetManager::GetInstance()->LoadAsset(fragShaderPath);
@@ -171,6 +172,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 		if (fragShaderType == "Origin")
 		{
 			pPass->m_eFragShaderType = EFRAGSHADERORIGIN;
+			//pPass->m_eFragShaderType = EFRAGSHADERSURFACE;
 		}
 		else if (fragShaderType == "Surface")
 		{

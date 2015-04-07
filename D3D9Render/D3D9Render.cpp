@@ -129,12 +129,21 @@ bool D3D9Render::SetBlendEnable(bool b)
 
 bool D3D9Render::SetBlendSrc(EALPHABLEND eBlend)
 {
-	
+	D3DBLEND blend = GetD3DBlendType(eBlend);
+	if (D3D_OK != m_pDevice->SetRenderState(D3DRS_SRCBLEND, blend))
+	{
+		return false;
+	}
 	return true;
 }
 
 bool D3D9Render::SetBlendDst(EALPHABLEND eBlend)
 {
+	D3DBLEND blend = GetD3DBlendType(eBlend);
+	if (D3D_OK != m_pDevice->SetRenderState(D3DRS_DESTBLEND, blend))
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -272,4 +281,40 @@ bool D3D9Render::ClearTarget(bool bClearColor, Color clr, bool bClearDepth /*= t
 		return false;
 	}
 	return true;
+}
+
+D3DBLEND D3D9Render::GetD3DBlendType(EALPHABLEND eBlend)
+{
+	switch (eBlend)
+	{
+		case BLEND_ZERO:
+		return D3DBLEND_ZERO;
+		break;
+		case BLEND_ONE:
+		return D3DBLEND_ONE;
+		break;
+		case BLEND_SRCCOLOR:
+		return D3DBLEND_SRCCOLOR;
+		break;
+		case BLEND_INVSRCCOLOR:
+		return D3DBLEND_INVSRCCOLOR;
+		break;
+		case BLEND_SRCALPHA:
+		return D3DBLEND_SRCALPHA;
+		break;
+		case BLEND_INVSRCALPHA:
+		return D3DBLEND_INVSRCCOLOR;
+		break;
+		case BLEND_DESTALPHA:
+		return D3DBLEND_DESTALPHA;
+		break;
+		case BLEND_DESTCOLOR:
+		return D3DBLEND_DESTCOLOR;
+		break;
+		case BLEND_INVDESTCOLOR:
+		return D3DBLEND_INVDESTCOLOR;
+		break;
+		default:
+		break;
+	}
 }

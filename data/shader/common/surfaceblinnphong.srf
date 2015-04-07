@@ -5,17 +5,18 @@ struct SurfaceOutput
 	float3 Emission;
 	float3 SpecularColor;
 	float  SpecularPower;
-	//float  Gloss;
-	half   Alpha;
+	float   Alpha;
 };
 
 float3 CalLight(SurfaceOutput o,float atten,float3 viewDir,float3 lightDir,float lightIntensity,float3 lightColor)
 {
+	//o.Normal = normalize(o.Normal);
 	float3	Hn = normalize(lightDir + viewDir);
-	float 	hdn = dot(Hn,o.Normal);
-    float 	ldn = dot(lightDir,o.Normal);
-    float3 spec = pow (hdn, o.SpecularPower * 32) * o.SpecularColor;
+	float 	hdn = saturate(dot(Hn,o.Normal));
+    float 	ldn = saturate(dot(lightDir,o.Normal));
+    float3 spec = pow (hdn, o.SpecularPower) * o.SpecularColor;
+  	return (o.DiffuseColor * ldn + spec) * lightIntensity * lightColor;
+
     
     
-    return (o.DiffuseColor * ldn + spec) * lightIntensity * lightColor;
 }

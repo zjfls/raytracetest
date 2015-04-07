@@ -12,9 +12,9 @@ static const float4 ambientColor = {0.0f,0.0f,0.0f,1.0f};
 static const float3 lightDir = {0.0f,1.0f,-1.0f};
 static const float4	lightColor = {0.2f,0.2f,0.2f,1.0f};
 static const float	lightIntensity = 12.0f;
-static const float	Ks = 12.0f;
-static const float	Kd = 1.0f;
-static const float SpecExpon = 3.0f;
+static const float	Ks = 1.0f;
+static const float	Kd = 0.6f;
+static const float SpecExpon = 32.0f;
 //
 sampler DiffuseColor = sampler_state
 {
@@ -60,7 +60,7 @@ float4 pMain(PS_INPUT input):Color0
 	
 	
 	float4 outputColor;
-	outputColor.rgb = (ambientColor + diffContrib + specContrib) * Kd * texColor.rgb;
+	outputColor.rgb = (ambientColor + diffContrib) * Kd* texColor.rgb + specContrib;
 	//output.Color.rgb = diffContrib;
 	outputColor.a = texColor.a;
 	return outputColor;
