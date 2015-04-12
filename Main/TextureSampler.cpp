@@ -4,6 +4,7 @@
 
 TextureSampler::TextureSampler()
 {
+	m_eTextureUseType = ETU_DEFAULT;
 }
 
 

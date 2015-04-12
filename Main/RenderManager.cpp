@@ -47,6 +47,7 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 		//return b;
 	}
 #endif
+	//Create Default RenderTarget Group
 	bool bHdr = EnviromentSetting::GetInstance()->GetIntSetting("HDR");
 	if (bHdr == true)
 	{
@@ -60,7 +61,7 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 			m_pDefualtRenderSystem->m_pDefaultRenderTarget = pRenderTarget;
 		}
 	}
-
+	pRenderPath->InitTargetBuffer();
 
 	LoadShaderChunk();
 	return true;

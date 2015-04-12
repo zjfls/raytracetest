@@ -55,5 +55,10 @@ bool EnviromentSetting::Init()
 		std::cout << name.c_str() << ":" << value.c_str() << std::endl;
 		pSetting = pSetting->NextSiblingElement("Setting");
 	}
+	XMLElement* pAmbient = pConfig->FirstChildElement("AmbientColor");
+	m_AmbientColor.m_fA = pAmbient->FloatAttribute("a");
+	m_AmbientColor.m_fR = pAmbient->FloatAttribute("r");
+	m_AmbientColor.m_fG = pAmbient->FloatAttribute("g");
+	m_AmbientColor.m_fB = pAmbient->FloatAttribute("b");
 	return true;
 }

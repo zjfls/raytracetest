@@ -13,6 +13,8 @@ public:
 	RenderPath* GetRenderPath(string strName);
 	//
 	void		AddRenderPath(string strName,RenderPath* pPath);
+	//
+	//bool		InitPathBuffer();
 private:
 	std::map<string, RenderPath*> m_mapRenderPath;
 };

@@ -78,6 +78,7 @@ SurfaceOutput Surface(PS_INPUT input)
 }
 float4 pMain(PS_INPUT input):Color0
 {
+	return tex2D(DiffuseColor,input.TC.xy);
 	//input = (PS_INPUT)0;
 	SurfaceOutput o = Surface(input);
 float atten = lightPointAtten(GAMELIGHTPOS,input.worldPosition);

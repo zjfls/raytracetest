@@ -33,6 +33,11 @@ enum ETEXFILTERTYPE
 	ETF_GAUSSIANQUAD = 5,
 	ETF_CONVOLUTIONMONO = 6
 };
+enum ETEXUSETYPE
+{
+	ETU_DEFAULT = 0,
+	ETU_NORMAL = 1
+};
 class Texture;
 class MAIN_API TextureSampler
 {
@@ -55,6 +60,6 @@ public:
 	unsigned char m_byRegisterIndex;	//¼Ä´æÆ÷±àºÅ
 	Vector2		m_UVTiling;
 	Vector2		m_UVOffset;
-
+	ETEXUSETYPE m_eTextureUseType;
 };
 

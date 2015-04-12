@@ -9,4 +9,6 @@
     <Setting Name="HDR" Value="0"/>
     <Setting Name="Bloom" Value="0"/>
     <Setting Name="FOWARDLIGHTONEPASS" Value="0"/>
+    <Setting Name="LinearLighting" Value="1"/>
+    <AmbientColor a="0.0" r="0.0" g="0.0" b="0.0"/>
 </CONFIG>

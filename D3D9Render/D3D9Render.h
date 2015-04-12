@@ -26,10 +26,11 @@ public:
 	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp);
 	virtual bool SetAlphaTestFactor(int f);
 	virtual bool SetCullMode(ERENDERCULL eCull);
+	virtual bool SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB);
 	virtual bool RenderBegin();
 	virtual bool RenderEnd();
 	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f);
-
+	virtual void SetRenderTarget(int nIndex, IRenderTarget* pTarget);
 
 	IDirect3DDevice9*	m_pDevice;
 private:

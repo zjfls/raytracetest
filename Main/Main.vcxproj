@@ -29,7 +29,6 @@
     <ClInclude Include="FbxAsset.h" />
     <ClInclude Include="FbxFileLoader.h" />
     <ClInclude Include="FragShader.h" />
-    <ClInclude Include="GlobalRenderConfig.h" />
     <ClInclude Include="HardwareBuffer.h" />
     <ClInclude Include="HardwareFragShader.h" />
     <ClInclude Include="HardwareIndexBuffer.h" />
@@ -69,6 +68,7 @@
     <ClInclude Include="RenderState.h" />
     <ClInclude Include="RenderStateCollection.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="RenderTargetGroup.h" />
     <ClInclude Include="RenderView.h" />
     <ClInclude Include="ResDef.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -102,7 +102,6 @@
     <ClCompile Include="FbxAppManager.cpp" />
     <ClCompile Include="FbxAsset.cpp" />
     <ClCompile Include="FbxFileLoader.cpp" />
-    <ClCompile Include="GlobalRenderConfig.cpp" />
     <ClCompile Include="HardwareBuffer.cpp" />
     <ClCompile Include="HardwareFragShader.cpp" />
     <ClCompile Include="HardwareIndexBuffer.cpp" />
@@ -136,6 +135,7 @@
     <ClCompile Include="RenderStage.cpp" />
     <ClCompile Include="RenderStateCollection.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="RenderTargetGroup.cpp" />
     <ClCompile Include="RenderView.cpp" />
     <ClCompile Include="ResDef.cpp" />
     <ClCompile Include="ShaderAsset.cpp" />

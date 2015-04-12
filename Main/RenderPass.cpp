@@ -23,7 +23,8 @@
 #include "HardwareShader.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
-#include "GlobalRenderConfig.h"
+#include "EnviromentSetting.h"
+//#include "GlobalRenderConfig.h"
 
 RenderPass::RenderPass()
 {
@@ -97,9 +98,10 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 		{
 			if (index != 0)//index 0 render ambient
 			{
+				//pRender->SetZTestEnable(false);
 				pRender->SetBlendEnable(true);
 				pRender->SetBlendSrc(BLEND_ONE);
-				pRender->SetBlendDst(BLEND_ZERO);
+				pRender->SetBlendDst(BLEND_ONE);
 			}
 			else
 			{
@@ -283,6 +285,15 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable,
 			arg.m_Data = matWorld * matView * matProj;
 			argToBuild[p.first] = &arg;
 		}
+		else if (p.first == "MATRIX_INVERSETRANSPOSEWV")
+		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			Matrix44 matWV = matWorld * matView;
+			arg.m_Data = Matrix44::QuikInverse(matWV);
+			arg.m_Data = arg.m_Data.Transpose();
+			argToBuild[p.first] = &arg;
+		}
 		else if (p.first == "MATRIX_INVERSEWV")
 		{
 			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
@@ -312,7 +323,7 @@ void RenderPass::SetPerLightArg(RasterRender* pRender, LightBase* pLight, Hardwa
 	pFragShader->SetVector("GAMELIGHTCOLOR", vec);
 	if (desc.m_bAmbient == true)
 	{
-		Color c = GlobalRenderConfig::GetInstance()->m_AmbientColor;
+		Color c = EnviromentSetting::GetInstance()->GetAmbientColor();
 		Vector4 vec;
 		vec.m_fx = c.m_fR;
 		vec.m_fy = c.m_fG;

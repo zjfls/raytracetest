@@ -34,7 +34,7 @@ const char* ShaderGenerator::ForwardGenSingleLight(const FragShaderDesc& pShader
 
 
 	//
-	if (pShader.m_eLightType == EPOINTLIGHT && pShader.m_pFragShader->m_mapEngineParam["VIEW_POS"] != false)
+	//if (pShader.m_pFragShader->m_mapEngineParam["VIEW_POS"] != false)
 	{
 		rtCode += "float3 VIEW_POS;\n";
 	}
@@ -61,8 +61,8 @@ const char* ShaderGenerator::ForwardGenSingleLight(const FragShaderDesc& pShader
 		rtCode += "lightdir = normalize(lightdir);\n";
 	}
 	rtCode += "float4 Color;\n"\
-		"//float3 eyevec = normalize(input.WorldEyeVec);\n"\
-		"Color.rgb = CalLight(o,atten,input.WorldEyeVec,lightdir,GAMELIGHTINTENSITY,GAMELIGHTCOLOR.rgb).rgb;\n";
+		"float3 eyevec = normalize(VIEW_POS - input.worldPosition);\n"\
+		"Color.rgb = CalLight(o,atten,eyevec,lightdir,GAMELIGHTINTENSITY,GAMELIGHTCOLOR.rgb).rgb;\n";
 	if (pShader.m_bAmbient == true)
 	{
 		rtCode += "Color.rgb += o.DiffuseColor * GAMEAMBIENTCOLOR;\n";

@@ -4,6 +4,7 @@
 
 IRender::IRender()
 	:m_pCurrentRenderCamera(nullptr)
+	//, m_pTarget(nullptr)
 {
 }
 
@@ -12,9 +13,9 @@ IRender::~IRender()
 {
 }
 
-void IRender::SetRenderTarget(IRenderTarget* pTarget)
+void IRender::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 {
-
+	//m_TargetGroup.m_Map[nIndex] = pTarget;
 }
 
 

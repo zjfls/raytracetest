@@ -119,8 +119,7 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 	{
 		d3dpp.AutoDepthStencilFormat =  getBufferFormat(viewInfo.m_eDepthFormt);
 	}
-
-
+	m_D3DPresentParamenter = d3dpp;
 
 	HRESULT hr = 0;
 	if (FAILED(hr = m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, HWND(viewInfo.m_windowID),
@@ -132,7 +131,7 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 		//system("pause");
 		return false;
 	}
-
+	m_pD3DDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
 
 
 	D3D9RenderView* pRenderView;
@@ -606,7 +605,24 @@ HardwareTexture* D3D9RenderSystem::GetHardwareTexture(shared_ptr<Texture> pTextu
 		case ETEXTYPE2D:
 		{
 			D3D9Texture2D* pHardwareTex = new D3D9Texture2D;
-			if (FAILED(D3DXCreateTextureFromFile(m_pD3DDevice, pTexture->GetRefPath().c_str(), &pHardwareTex->m_pTexture)))
+			if (D3DXCreateTextureFromFile(m_pD3DDevice, pTexture->GetRefPath().c_str(), &pHardwareTex->m_pTexture))
+			//if (FAILED(D3DXCreateTextureFromFileEx
+			//	(
+			//	m_pD3DDevice,
+			//	pTexture->GetRefPath().c_str(), 
+			//	D3DX_DEFAULT,
+			//	D3DX_DEFAULT,
+			//	D3DX_DEFAULT,
+			//	0,
+			//	D3DFMT_FROM_FILE,
+			//	D3DPOOL_MANAGED,
+			//	D3DX_DEFAULT,
+			//	D3DX_DEFAULT,
+			//	0,
+			//	nullptr,
+			//	nullptr,
+			//	&pHardwareTex->m_pTexture
+			//	)))
 			{
 				std::cout << "can not find texture:" << pTexture->GetRefPath().c_str() << std::endl;
 				delete pHardwareTex;	
@@ -642,4 +658,31 @@ IRenderTarget* D3D9RenderSystem::CreateRenderTarget(unsigned int nWidth, unsigne
 	}
 	m_vecRenderTarget.push_back(pTarget);
 	return nullptr;
+}
+
+void D3D9RenderSystem::OnFrameBegin()
+{
+	if (m_pD3DDevice == nullptr)
+	{
+		return;
+	}
+	HRESULT hr = m_pD3DDevice->TestCooperativeLevel();
+	switch (hr)
+	{
+		case D3DERR_DEVICELOST:
+		{
+
+		}
+		break;
+		case D3DERR_DEVICENOTRESET:
+		{
+			m_pD3DDevice->Reset(&m_D3DPresentParamenter);
+		}
+		break;
+	}
+}
+
+void D3D9RenderSystem::OnFrameEnd()
+{
+
 }

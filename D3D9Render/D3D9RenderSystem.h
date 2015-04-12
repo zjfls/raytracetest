@@ -21,7 +21,8 @@ public:
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData);
 	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture);
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality);
-
+	virtual void					OnFrameBegin();
+	virtual void					OnFrameEnd();
 
 	D3DSWAPEFFECT getSwapEffect(const EBUFFSWARP eSwap) const;
 	D3DFORMAT		getBufferFormat(const TARGETFORMAT eFormat) const;
@@ -37,6 +38,7 @@ protected:
 public:
 	LPDIRECT3D9             m_pD3D;
 	LPDIRECT3DDEVICE9		m_pD3DDevice;
+	D3DPRESENT_PARAMETERS	m_D3DPresentParamenter;
 
 
 

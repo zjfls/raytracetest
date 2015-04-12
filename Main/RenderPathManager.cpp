@@ -40,6 +40,8 @@ bool RenderPathManager::Init()
 
 }
 
+
+
 RenderPath* RenderPathManager::GetRenderPath(string strName)
 {
 	if (m_mapRenderPath.find(strName) != std::end(m_mapRenderPath))
@@ -57,3 +59,5 @@ void RenderPathManager::AddRenderPath(string strName, RenderPath* pPath)
 	}
 	m_mapRenderPath[strName] = pPath;
 }
+
+

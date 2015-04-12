@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderEnum.h"
+//#include "RenderTargetGroup.h"
 class CameraBase;
 class IWorld;
 class IRenderTarget;
@@ -40,7 +41,7 @@ public:
 	*/
 	virtual void Render(IRenderable* pRenderable){};
 	//
-	void	SetRenderTarget(IRenderTarget* pTarget);
+	virtual void	SetRenderTarget(int nIndex,IRenderTarget* pTarget);
 	//
 	IRenderTarget*	CreateRenderTarget(unsigned int width, unsigned int height, TARGETFORMAT eTargetFormat, bool bDepth = false, TARGETFORMAT eDepthFormat = TFNONE, EMULTISAMPLETYPE = MSNONE, unsigned int nMultiSampleQuality = 0);
 	//
@@ -53,6 +54,7 @@ private:
 
 protected:
 	CameraBase* m_pCurrentRenderCamera;
+
 	friend class CameraBase;
 	friend class RenderState;
 	friend class RenderPass;

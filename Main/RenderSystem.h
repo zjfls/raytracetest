@@ -35,7 +35,8 @@ public:
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData) = 0;
 	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture) = 0;
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample,unsigned int nQuality) = 0;
-
+	virtual void					OnFrameBegin() = 0;
+	virtual void					OnFrameEnd() = 0;
 
 	//shared_ptr<
 

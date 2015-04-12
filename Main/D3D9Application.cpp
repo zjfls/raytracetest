@@ -17,6 +17,7 @@
 #include "DirectionalLight.h"
 #include "PointLight.h"
 #include "Transform.h"
+#include "RenderSystem.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> shared_ptr<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
@@ -66,18 +67,18 @@ void D3D9Application::SetupScene()
 	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-550.0f));
-	pCamera->m_pTransform->SetOrientation(AngleToRad(20.0f), 0, 0);
+	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
 
 	IWorldObj* pLightObj = new IWorldObj;
 	pLightObj->m_pTransform->SetTranslate(0.0f, 130.0f, 0.0f);
-	pLightObj->m_pTransform->SetOrientation(AngleToRad(50.0f), 0.0f, 0.0f);
+	pLightObj->m_pTransform->SetOrientation(AngleToRad(35.0f), 0.0f, 0.0f);
 	pLightObj->m_strName = "Lights";
 	DirectionalLight* pDirLight = pLightObj->addModule<DirectionalLight>();
-	pDirLight->m_fIntensity = 0.5f;
+	pDirLight->m_fIntensity = 1.5f;
 	pDirLight->m_Color = Color::white;
 
 	//PointLight* pLight = pLightObj->addModule<PointLight>();
-	//pLight->m_fIntensity =  1.0f;
+	//pLight->m_fIntensity =  0.6f;
 	//pLight->m_Color = Color::white;
 	m_pWorld->m_pRoot->addChild(pLightObj);
 }
@@ -104,8 +105,10 @@ void D3D9Application::Run()
 		{
 			if (m_pWorld != nullptr)
 			{
+				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin();
 				m_pWorld->Update();
 				m_pRenderView->Present();
+				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
 			}
 		}
 	}

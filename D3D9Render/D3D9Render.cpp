@@ -9,6 +9,8 @@
 #include "D3D9FragShader.h"
 #include "D3D9Texture2D.h"
 #include "CameraBase.h"
+#include "D3D9RenderTarget.h"
+#include "D3D9RenderView.h"
 
 D3D9Render::D3D9Render(const RenderPath* pPath)
 	:RasterRender(pPath)
@@ -84,8 +86,11 @@ bool D3D9Render::SetTexture(int nSamplerID, HardwareTexture* pTexture)
 	if (pTexture != nullptr)
 	{
 		m_pDevice->SetTexture(nSamplerID, p2DTex->m_pTexture);
+		m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
 		m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
-		m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+		m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+
+		//m_pDevice->SetSamplerState(nSamplerID, D3DSAMP_SRGBTEXTURE, 1.0);
 		return true;
 	}
 	else
@@ -317,4 +322,35 @@ D3DBLEND D3D9Render::GetD3DBlendType(EALPHABLEND eBlend)
 		default:
 		break;
 	}
+}
+
+bool D3D9Render::SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB)
+{
+	if (D3D_OK != m_pDevice->SetSamplerState(nIndex, D3DSAMP_SRGBTEXTURE, SRGB))
+	{
+		return false;
+	}
+	return true;
+}
+
+void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
+{
+	RasterRender::SetRenderTarget(nIndex,pTarget);
+	IDirect3DSurface9* pSurface = nullptr;
+	D3D9RenderView* pView = dynamic_cast<D3D9RenderView*>(pTarget);
+	if (pView != nullptr)
+	{
+		pView->m_pSwapChain->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pSurface);
+	}
+	D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(nIndex,pTarget);
+	//
+	if (pD3DTarget != nullptr)
+	{
+		pSurface = pD3DTarget->m_pSurface;
+	}
+
+	if (pSurface != nullptr)
+	{
+		m_pDevice->SetRenderTarget(nIndex, pSurface);
+	}	
 }

@@ -87,6 +87,19 @@ void RasterRender::GetRenderables(std::vector<IRenderable*>& vecRenderableIn,std
 	}
 }
 
+void RasterRender::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
+{
+	m_TargetGroup.m_Map[nIndex] = pTarget;
+}
+
+void RasterRender::SetRenderTargetGroup()
+{
+	for each (std::pair<int,IRenderTarget*> p in m_TargetGroup.m_Map)
+	{
+		SetRenderTarget(p.first, p.second);
+	}
+}
+
 //void RasterRender::SetRenderStageState(ERENDERTYPEFILTER eFillter)
 //{
 //	//

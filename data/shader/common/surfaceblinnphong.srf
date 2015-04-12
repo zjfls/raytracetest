@@ -1,3 +1,4 @@
+float4x4 MATRIX_INVERSETRANSPOSEWV;
 struct SurfaceOutput
 {
 	float3 DiffuseColor;
@@ -11,10 +12,12 @@ struct SurfaceOutput
 float3 CalLight(SurfaceOutput o,float atten,float3 viewDir,float3 lightDir,float lightIntensity,float3 lightColor)
 {
 	//o.Normal = normalize(o.Normal);
-	float3	Hn = normalize(lightDir + viewDir);
-	float 	hdn = saturate(dot(Hn,o.Normal));
+	float3	Hn = normalize(lightDir+viewDir);
+	float 	hdn = saturate(dot(Hn,o.Normal)) ;
     float 	ldn = saturate(dot(lightDir,o.Normal));
-    float3 spec = pow (hdn, o.SpecularPower) * o.SpecularColor;
+    float3 spec = pow (hdn, o.SpecularPower) * o.SpecularColor * ldn;
+    //return ldn;
+    //return o.DiffuseColor;
   	return (o.DiffuseColor * ldn + spec) * lightIntensity * lightColor;
 
     

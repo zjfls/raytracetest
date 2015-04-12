@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--prefab resource-->
+<WorldObj name="RootNode">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="Plane001">
+        <Transform>
+            <Translation x="-1.7728729" y="0" z="-101.91136"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+    </WorldObj>
+    <WorldObj name="Plane002">
+        <Transform>
+            <Translation x="-41.494049" y="0" z="-134.47693"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Mesh refPath="./data/mesh/Plane002.mesh"/>
+    </WorldObj>
+</WorldObj>

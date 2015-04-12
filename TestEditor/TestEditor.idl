@@ -1,0 +1,29 @@
+// TestEditor.idl : TestEditor.exe 的类型库源
+
+// 此文件将由 MIDL 编译器处理以产生
+// 类型库(TestEditor.tlb)。
+
+[ uuid(E0196F3A-A6E4-4FBD-A5BA-7CDED9DCDB6B), version(1.0) ]
+library TestEditor
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  CTestEditorDoc 的主调度接口
+	
+	[ uuid(0E93D44A-D529-4AE0-B753-E02B115EFB3E) ]
+	dispinterface ITestEditor
+	{
+		properties:
+			
+		methods:
+	};
+
+	//  CTestEditorDoc 的类信息
+	
+	[ uuid(576830FE-41A6-4C53-95CB-47BB70979BAD) ]
+	coclass CTestEditorDoc
+	{
+		[default] dispinterface ITestEditor;
+	};
+};

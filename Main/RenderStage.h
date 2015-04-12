@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderEnum.h"
+#include "RenderTargetGroup.h"
 class RenderStateCollection;
 class IRenderable;
 enum STAGEMASKTYPE
@@ -59,6 +60,7 @@ public:
 	ERENDERTYPEFILTER m_eFillter;
 	ERENDERSTAGEMETHOD m_eMethod;
 private:
+
 	void	RenderDepthAndRadiance(RasterRender* pRender,std::vector<IRenderable*>& vecRenderabls);
 	//void	SetMaterialParam();
 
@@ -76,5 +78,9 @@ private:
 	*/
 	int	SetRenderStateCollection(RasterRender* pRender, const RenderStateCollection& mapStates);
 	RenderStateMask m_RenderStateMask;
+
+
+	RenderTargetGroup m_RenderTargetGroup;
+	friend class RenderPath;
 };
 

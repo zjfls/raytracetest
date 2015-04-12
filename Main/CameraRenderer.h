@@ -4,6 +4,7 @@
 #include "IRenderTarget.h"
 #include "IWorld.h"
 #include "Color.h"
+#include "RenderTargetGroup.h"
 class CameraRenderer :
 	public IListener
 {
@@ -24,5 +25,7 @@ public:
 	bool			m_bClearDepth;
 	Color			m_clrColr;
 	float			m_fDepth;
+	//
+	RenderTargetGroup	m_pTargetGroup;
 };
 

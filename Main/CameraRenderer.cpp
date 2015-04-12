@@ -41,7 +41,7 @@ void CameraRenderer::Render(CameraBase* pCamera)
 		return;
 	}
 	m_pRender->m_pCurrentRenderCamera = pCamera;
-	m_pRender->SetRenderTarget(m_pTarget);
+	//m_pRender->SetRenderTarget(0,m_pTarget);
 	m_pRender->ClearTarget(m_bClearColor, m_clrColr, m_bClearDepth, m_fDepth);
 	m_pRender->Render(pCamera, m_pWorld);
 }

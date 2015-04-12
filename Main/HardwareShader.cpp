@@ -63,6 +63,14 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 
 			HardwareTexture* pTex = pRender->m_pRenderSystem->GetHardwareTexture(pSampler->m_pTexture);
 			pRender->SetTexture(info.m_nRegIndex, pTex);
+			if (pSampler->m_eTextureUseType == ETU_NORMAL)
+			{
+				pRender->SetSamplerSRGB(info.m_nRegIndex, 0);
+			}
+			else
+			{
+				pRender->SetSamplerSRGB(info.m_nRegIndex, 1);
+			}
 		}
 		break;
 		default:

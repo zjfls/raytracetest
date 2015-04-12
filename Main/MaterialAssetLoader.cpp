@@ -84,6 +84,10 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			}
 			pSampArg->m_Data.m_pTexture = pTexRes;
 			pArg = pSampArg;
+			if (Name == "NormalMap")
+			{
+				pSampArg->m_Data.m_eTextureUseType = ETU_NORMAL;
+			}
 		}
 		pMatRes->m_matArgs[Name] = pArg;
 		pArgElem = pArgElem->NextSiblingElement("MaterialArg");

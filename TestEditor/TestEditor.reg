@@ -1,0 +1,16 @@
+REGEDIT
+; 此 .REG 文件可能由 SETUP 程序使用。
+;   如果 SETUP 程序不可用，则调用
+;   CWinApp::RegisterShellFileTypes 和 COleObjectFactory::UpdateRegistryAll
+;   在 InitInstance 中对下列项自动进行注册。
+
+
+HKEY_CLASSES_ROOT\TestEditor.sce.xml = TestEditor.sce.xml
+
+
+HKEY_CLASSES_ROOT\TestEditor.sce.xml\CLSID = {576830FE-41A6-4C53-95CB-47BB70979BAD}
+
+HKEY_CLASSES_ROOT\CLSID\{576830FE-41A6-4C53-95CB-47BB70979BAD} = TestEditor.sce.xml
+HKEY_CLASSES_ROOT\CLSID\{576830FE-41A6-4C53-95CB-47BB70979BAD}\ProgId = TestEditor.sce.xml
+
+HKEY_CLASSES_ROOT\CLSID\{576830FE-41A6-4C53-95CB-47BB70979BAD}\LocalServer32 = TestEditor.EXE

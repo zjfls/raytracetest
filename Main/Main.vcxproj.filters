@@ -231,7 +231,7 @@
     <ClInclude Include="ShaderGenerator.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalRenderConfig.h" />
+    <ClInclude Include="RenderTargetGroup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -414,6 +414,6 @@
     <ClCompile Include="ShaderGenerator.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalRenderConfig.cpp" />
+    <ClCompile Include="RenderTargetGroup.cpp" />
   </ItemGroup>
 </Project>

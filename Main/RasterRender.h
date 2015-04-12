@@ -2,6 +2,7 @@
 #include "IRender.h"
 #include "RenderStage.h"
 #include "Color.h"
+#include "RenderTargetGroup.h"
 class RenderPath;
 class IRenderable;
 class RenderSystem;
@@ -12,6 +13,7 @@ class HardwareVertexBuffer;
 class HardwareTexture;
 class RasterCamera;
 class RenderStateCollection;
+class RenderTargetGroup;
 class MAIN_API RasterRender :
 	public IRender
 {
@@ -49,9 +51,14 @@ public:
 	virtual bool SetAlphaFunc(ERENDERCMPFUNC eCmp) = 0;
 	virtual bool SetAlphaTestFactor(int f) = 0;
 	virtual bool SetCullMode(ERENDERCULL eCull) = 0;
+	//0,no oper:1 2.2 gamma
+	virtual bool SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB) = 0;
 	virtual bool RenderBegin() = 0;
 	virtual bool RenderEnd() = 0;
 	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
+	//
+	virtual void SetRenderTargetGroup();
+	virtual void SetRenderTarget(int nIndex, IRenderTarget* m_pTarget);
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);
@@ -59,7 +66,7 @@ protected:
 protected:
 	const RenderPath* m_pRenderPath;
 	RenderSystem* m_pRenderSystem;
-
+	RenderTargetGroup m_TargetGroup;
 	friend class RenderPass;
 	//friend class RenderStage;
 	friend class RenderSystem;

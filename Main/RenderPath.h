@@ -1,4 +1,5 @@
 #pragma once
+#include "RenderTargetGroup.h"
 class RenderStage;
 class RenderPath
 {
@@ -14,11 +15,14 @@ public:
 	void			AddStage(RenderStage* stage);
 
 
-
+	virtual void	InitTargetBuffer();
 private:
 	std::vector<RenderStage*> m_vecStages;
 public:
 	string	m_strName;
 	bool	m_bGetPerObjLightInfo;
+
+
+	RenderTargetGroup m_RenderTargetGroup;
 };
 
