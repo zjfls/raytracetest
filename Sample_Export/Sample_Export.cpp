@@ -57,8 +57,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>("fdsf");
 	FbxAppManager::GetInstance()->Init();
 	AssetManager::GetInstance()->Init();
-	FbxAppImporter::GetInstance()->ImportFbxFile("./data/fbx/plane.fbx");
-	return 0;
+	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/fbx/plane.fbx");
+	//return 0;
 	DirectoryList(".\\data\\fbx\\");
 	std::cout << std::endl;
 	system("pause");

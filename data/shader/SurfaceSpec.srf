@@ -39,6 +39,8 @@ SurfaceOutput Surface(PS_INPUT input)
     float3 Bn = normalize(cross(Nn,Tn));
     float3x3 tbn  = float3x3(Tn,Bn,Nn);
 	float3 Nb = mul(Nt,tbn);
+
+    Nb = Tn * Nt.x  + Bn * Nt.y  + Nn * Nt.z;
     //o.Normal = normalize(input.Normal);
 
 	o.Normal = normalize(Nb);

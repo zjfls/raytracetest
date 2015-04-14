@@ -185,7 +185,7 @@ void VertexData::ComputeTangent(const IndexData& iData)
 		// Gram-Schmidt orthogonalize
 		//tangent[a] = (t - n * Dot(n, t)).Normalize();
 
-		tangent[a] = (t - n * n.dot(t)).normalize();
+		tangent[a] = (n * n.dot(t) - t).normalize();
 
 		// Calculate handedness
 		//tangent[a].w = (Dot(Cross(n, t), tan2[a]) < 0.0F) ? -1.0F : 1.0F;
