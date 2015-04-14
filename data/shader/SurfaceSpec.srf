@@ -13,7 +13,7 @@ sampler SpecularColor = sampler_state
 float specPower;
 struct PS_INPUT
 {
-    float4	Normal			: TEXCOORD0; 
+    float3	Normal			: TEXCOORD0; 
     float2	TC		  		: TEXCOORD1;
 	float3	worldPosition	: TEXCOORD2;
 	float3	Tangent			: TEXCOORD3;
@@ -25,6 +25,7 @@ struct PS_INPUT
 
 SurfaceOutput Surface(PS_INPUT input)
 {
+    //input.Normal = float3(0,1,0);
 	SurfaceOutput o;
 	float4 diffTex = tex2D(DiffuseColor,input.TC.xy).rgba;
 	o.DiffuseColor = diffTex.rgb;
@@ -38,6 +39,8 @@ SurfaceOutput Surface(PS_INPUT input)
     float3 Bn = normalize(cross(Nn,Tn));
     float3x3 tbn  = float3x3(Tn,Bn,Nn);
 	float3 Nb = mul(Nt,tbn);
+    //o.Normal = normalize(input.Normal);
+
 	o.Normal = normalize(Nb);
 	o.Alpha = diffTex.a;
 	o.SpecularPower = 16;
