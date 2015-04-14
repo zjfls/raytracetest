@@ -57,7 +57,7 @@ public:
 	virtual bool RenderEnd() = 0;
 	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
 	//
-	virtual void SetRenderTargetGroup();
+	virtual void SetRenderTargetGroup(RenderTargetGroup& group);
 	virtual void SetRenderTarget(int nIndex, IRenderTarget* m_pTarget);
 	//
 protected:
