@@ -27,7 +27,7 @@ public:
 	*Return : int if success return 0
 
 	*/
-	virtual int Render(CameraBase* pCammera, IWorld* pWorld) = 0;
+	virtual int Render(CameraBase* pCammera, IWorld* pWorld,IRenderTarget* pTarget) = 0;
 	/*
 
 	*Summary: render a renderable

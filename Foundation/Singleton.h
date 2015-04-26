@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
 #include <thread>
+#include <memory>
 #include "threadmutex.h"
+using std::shared_ptr;
 template<class T>
 class Singleton
 {

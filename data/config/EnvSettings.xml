@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--settings-->
 <CONFIG Name="settings">
-    <Setting Name="Height" Value="1024"/>
-    <Setting Name="Width" Value="768"/>
+    <Setting Name="Height" Value="1920"/>
+    <Setting Name="Width" Value="1080"/>
     <Setting Name="Windowed" Value="1"/>
     <Setting Name="RenderType" Value="D3D9"/>
     <Setting Name="RenderPath" Value="Forward"/>
@@ -10,5 +10,5 @@
     <Setting Name="Bloom" Value="0"/>
     <Setting Name="FOWARDLIGHTONEPASS" Value="0"/>
     <Setting Name="LinearLighting" Value="1"/>
-    <AmbientColor a="0.0" r="0.0" g="0.0" b="0.0"/>
+    <AmbientColor a="1.0" r="0.3" g="0.2" b="0.4"/>
 </CONFIG>

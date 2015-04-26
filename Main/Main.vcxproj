@@ -29,7 +29,6 @@
     <ClInclude Include="FbxAppManager.h" />
     <ClInclude Include="FbxAsset.h" />
     <ClInclude Include="FbxFileLoader.h" />
-    <ClInclude Include="FragShader.h" />
     <ClInclude Include="HardwareBuffer.h" />
     <ClInclude Include="HardwareFragShader.h" />
     <ClInclude Include="HardwareIndexBuffer.h" />
@@ -143,7 +142,6 @@
     <ClCompile Include="ShaderAsset.cpp" />
     <ClCompile Include="ShaderAssetLoader.cpp" />
     <ClCompile Include="ShaderGenerator.cpp" />
-    <ClCompile Include="SimpleD3D9Application.cpp" />
     <ClCompile Include="SimpleGLApplication.cpp" />
     <ClCompile Include="SimpleRTMaterial.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
@@ -152,6 +150,7 @@
     <ClCompile Include="SkeletonLoader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="TextureAssetLoader.cpp" />
@@ -178,7 +177,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -231,11 +230,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\opengl\include;..\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;4910;4661</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freeglut.lib;glew32.lib;libfbxsdk-md.lib;d3dx9d.lib;d3d9.lib;math.lib;resource.lib;world.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;libfbxsdk-md.lib;math.lib;resource.lib;world.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x86\debug;..\thirdparty\cg\lib;..\thirdparty\directx\lib\x86;..\thirdparty\opengl\lib\release</AdditionalLibraryDirectories>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -267,15 +267,17 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\opengl\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\thirdparty\fbx\include;..\thirdparty\cg\include;..\thirdparty\directx\include;..\thirdparty\opengl\include;..\math;..\world;..\foundation;..\resource</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;4910;4661</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glu32.lib;opengl32.lib;glut32.lib;libfbxsdk-md.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x86\release;..\thirdparty\cg\lib;..\thirdparty\directx\lib\x86;..\thirdparty\opengl\lib\release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;libfbxsdk-md.lib;world.lib;resource.lib;foundation.lib;math.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\thirdparty\fbx\lib\vs2013\x86\release;..\thirdparty\cg\lib;..\thirdparty\directx\lib\x86;..\thirdparty\opengl\lib\release;..\lib\release</AdditionalLibraryDirectories>
+      <ImportLibrary>../lib/release/main.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

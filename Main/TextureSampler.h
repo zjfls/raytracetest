@@ -50,7 +50,7 @@ public:
 	ETEXADDRESS m_EAddressU;
 	ETEXADDRESS m_EAddressV;
 	ETEXADDRESS m_EAddressW;
-	Color		m_BorderColor;
+	GameColor		m_BorderColor;
 	ETEXFILTERTYPE m_EMinFilter;
 	ETEXFILTERTYPE m_EMagFilter;
 	ETEXFILTERTYPE m_EMipFilter;

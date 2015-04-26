@@ -112,7 +112,7 @@ void ShaderGenerator::RemoveComment(char* pCode, unsigned int nLength)
 	bool bComment1 = false;
 	bool bComment2 = false;
 	char* pIdx = pCode;
-	for (int i = 0; i < nLength - 1; ++i)
+	for (unsigned int i = 0; i < nLength - 1; ++i)
 	{
 		if (bComment1 == true)
 		{

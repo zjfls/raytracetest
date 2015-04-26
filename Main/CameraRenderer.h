@@ -5,7 +5,7 @@
 #include "IWorld.h"
 #include "Color.h"
 #include "RenderTargetGroup.h"
-class CameraRenderer :
+class MAIN_API CameraRenderer :
 	public IListener
 {
 public:
@@ -23,7 +23,7 @@ public:
 	IWorld*			m_pWorld;
 	bool			m_bClearColor;
 	bool			m_bClearDepth;
-	Color			m_clrColr;
+	GameColor			m_clrColr;
 	float			m_fDepth;
 	//
 	RenderTargetGroup	m_pTargetGroup;

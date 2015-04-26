@@ -22,6 +22,7 @@ public:
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData);
 	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture);
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality);
+	virtual RenderView*				CreateRenderView(stRenderViewInfo& renderViewInfo);
 	virtual bool					OnFrameBegin();
 	virtual void					OnFrameEnd();
 

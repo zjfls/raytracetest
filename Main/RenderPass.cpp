@@ -314,7 +314,7 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable,
 
 void RenderPass::SetPerLightArg(RasterRender* pRender, LightBase* pLight, HardwareFragShader* pFragShader, FragShaderDesc& desc)
 {
-	Color c = pLight->m_Color;
+	GameColor c = pLight->m_Color;
 	Vector4 vec;
 	vec.m_fx = c.m_fR;
 	vec.m_fy = c.m_fG;
@@ -323,7 +323,7 @@ void RenderPass::SetPerLightArg(RasterRender* pRender, LightBase* pLight, Hardwa
 	pFragShader->SetVector("GAMELIGHTCOLOR", vec);
 	if (desc.m_bAmbient == true)
 	{
-		Color c = EnviromentSetting::GetInstance()->GetAmbientColor();
+		GameColor c = EnviromentSetting::GetInstance()->GetAmbientColor();
 		Vector4 vec;
 		vec.m_fx = c.m_fR;
 		vec.m_fy = c.m_fG;

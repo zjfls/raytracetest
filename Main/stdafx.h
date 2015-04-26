@@ -32,6 +32,7 @@ using namespace std;
 #include "FilePath.h"
 #include "Vector3.h"
 #include "CommonDef.h"
+#include "fbxsdk.h"
 
 
 // TODO:  在此处引用程序需要的其他头文件

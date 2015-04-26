@@ -27,72 +27,7 @@ D3D9RenderSystem::D3D9RenderSystem()
 D3D9RenderSystem::~D3D9RenderSystem()
 {
 }
-bool test(const stRenderViewInfo& viewInfo)
-{
-	LPDIRECT3D9 pd3d;
-	LPDIRECT3DDEVICE9 pd3ddevice9;
-	if (FAILED(pd3d = Direct3DCreate9(D3D_SDK_VERSION)))
-	{
-		std::cout << "get d3d9 object failed!" << std::endl;
-		return false;
-	}
 
-	//D3DDISPLAYMODE displaymode;
-	//ZeroMemory(&displaymode, sizeof(displaymode));
-	//LPDIRECT3D9EX pd3d = D3D9Manager::GetInstance()->m_pD3D;
-	//int nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8);
-	////pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT,)
-	//for (int i = 0; i < nModeCount; ++i)
-	//{
-	//	D3DDISPLAYMODE mode;
-	//	pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8, i, &mode);
-
-	//	std::cout << "displaymode D3DFMT_X8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
-	//}
-	//nModeCount = pd3d->GetAdapterModeCount(D3DADAPTER_DEFAULT, D3DFMT_A8R8G8B8);
-	//for (int i = 0; i < nModeCount; ++i)
-	//{
-	//	D3DDISPLAYMODE mode;
-	//	pd3d->EnumAdapterModes(D3DADAPTER_DEFAULT, D3DFMT_X8R8G8B8, i, &mode);
-
-	//	std::cout << "displaymode D3DFMT_A8R8G8B8:" << mode.Width << " " << mode.Height << " " << mode.RefreshRate << std::endl;
-	//}
-	//HRESULT hr1 = pd3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displaymode);
-	//if (FAILED(pd3d->CheckDeviceFormat(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, displaymode.Format, D3DUSAGE_RENDERTARGET, D3DRTYPE_SURFACE, D3DFMT_A8R8G8B8)))
-	//{
-	//	MessageBox(NULL, "Device format is unaccepatble for full screen mode", "Sorry", MB_OK);
-	//	return false;
-	//}
-
-	D3DPRESENT_PARAMETERS d3dpp;
-	ZeroMemory(&d3dpp, sizeof(d3dpp));
-
-	d3dpp.Windowed = false;    // program fullscreen, not windowed
-	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;    // discard old frames
-	d3dpp.hDeviceWindow = (HWND)viewInfo.m_windowID;    // set the window to be used by Direct3D
-	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;    // set the back buffer format to 32-bit
-	d3dpp.BackBufferWidth = 1024;    // set the width of the buffer
-	d3dpp.BackBufferHeight = 768;    // set the height of the buffer
-	d3dpp.EnableAutoDepthStencil = true;
-	d3dpp.AutoDepthStencilFormat = D3DFMT_D24X8;
-	//d3dpp.Flags = D3DPRESENTFLAG_UNPRUNEDMODE;
-	d3dpp.PresentationInterval = 0;
-	//d3dpp.FullScreen_RefreshRateInHz = 60;
-
-
-	HRESULT hr;
-	if (FAILED(hr = pd3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, HWND(viewInfo.m_windowID),
-		D3DCREATE_HARDWARE_VERTEXPROCESSING,
-		&d3dpp, &pd3ddevice9)))
-	{
-		std::cout << "create device failed" << std::endl;
-		std::cout << hr << std::endl;
-		//system("pause");
-		return false;
-	}
-	return true;
-	//
-}
 
 bool operator==(const std::vector<D3DVERTEXELEMENT9>& e1,const std::vector<D3DVERTEXELEMENT9>& e2)
 {
@@ -839,5 +774,61 @@ void D3D9RenderSystem::OnFrameEnd()
 
 stD3DVertexBuffDecal* D3D9RenderSystem::GetVertexDecal(std::vector<VertexData::VertexDataDesc>& decl)
 {
+	for each (stD3DVertexBuffDecal* pDecal in m_VertexDecals)
+	{
+		if (pDecal->m_vecDataDesc.size() != decl.size())
+		{
+			continue;
+		}
+		for (int i = 0; i < decl.size();++i)
+		{
+			if (pDecal->m_vecDataDesc[i].nOffset == decl[i].nOffset
+				&&pDecal->m_vecDataDesc[i].typedesc == decl[i].typedesc
+				&&pDecal->m_vecDataDesc[i].usedesc == decl[i].usedesc)
+			{
+				return pDecal;
+			}
+		}
+	}
 	return nullptr;
+}
+
+RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
+{
+	D3D9RenderView* pView = new D3D9RenderView;
+	//D3DPRESENT_PARAMETERS dpp;
+	//
+	D3DPRESENT_PARAMETERS d3dpp;
+	ZeroMemory(&d3dpp, sizeof(d3dpp));
+	d3dpp.BackBufferHeight = viewInfo.m_nHeight;
+	d3dpp.BackBufferWidth = viewInfo.m_nWidth;
+	d3dpp.BackBufferCount = 1;
+	d3dpp.Windowed = viewInfo.m_bWindowed;
+	d3dpp.SwapEffect = getSwapEffect(viewInfo.m_eSwapEffect);
+	d3dpp.BackBufferFormat = getBufferFormat(viewInfo.m_eTargetFormt);
+	d3dpp.EnableAutoDepthStencil =  viewInfo.m_bDepth;
+	//d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
+	d3dpp.hDeviceWindow = (HWND)viewInfo.m_windowID;
+	if (viewInfo.m_bDepth == true)
+	{
+		d3dpp.AutoDepthStencilFormat = getBufferFormat(viewInfo.m_eDepthFormt);
+	}
+	pView->m_dpp = d3dpp;
+	//m_D3DPresentParamenter = d3dpp;
+	//
+	HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&d3dpp, &pView->m_pSwapChain);
+	pView->m_pD3DDevice = m_pD3DDevice;
+	if (hr != D3D_OK)
+	{
+		std::cout << "create view failed!" << std::endl;
+		delete pView;
+		return nullptr;
+
+	}
+	else
+	{
+		std::cout << "create view success!" << std::endl;
+	}
+	m_vecRenderTarget.push_back(pView);
+	return pView;
 }

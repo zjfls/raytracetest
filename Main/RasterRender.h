@@ -24,18 +24,15 @@ public:
 	virtual ~RasterRender();
 	//render a obj
 	virtual void Render(IRenderable* pRender);
-
-
 	//
-	
 	//
-	virtual int Render(std::vector<IRenderable*>& pRenderableList);
+	virtual int Render(std::vector<IRenderable*>& pRenderableList, IRenderTarget* pTarget);
 	//
-	virtual int Render(CameraBase* pCammera, IWorld* pWorld);
+	virtual int Render(CameraBase* pCammera, IWorld* pWorld,IRenderTarget* pTarget);
 
 
 
-	//
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual void UpdateProjCamera(CameraBase* pCamera) = 0;
 	virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff) = 0;
 	virtual bool SetVertexShader(HardwareVertexShader* pVertexShader) = 0;
@@ -56,11 +53,13 @@ public:
 	virtual bool SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB) = 0;
 	virtual bool RenderBegin() = 0;
 	virtual bool RenderEnd() = 0;
-	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
+	virtual bool ClearTarget(bool bClearColor, GameColor clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	virtual void SetRenderTargetGroup(RenderTargetGroup* pTargetGroup);
 	virtual void SetRenderTarget(int nIndex, IRenderTarget* m_pTarget);
-	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget,shared_ptr<RasterMaterial> pMat = nullptr);
+	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat = nullptr);
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);

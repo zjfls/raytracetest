@@ -1,4 +1,7 @@
 #pragma once
+#include "Singleton.h"
+#include <unordered_map>
+#include <string>
 class IRender;
 class RenderView;
 class RenderSystem;
@@ -26,7 +29,7 @@ private:
 	//RenderView*	m_pDefaultRenderView;
 	RenderSystem* m_pDefualtRenderSystem;
 
-	std::unordered_map<string, RenderSystem*> m_mapRenderSystem;
+	std::unordered_map<std::string, RenderSystem*> m_mapRenderSystem;
 };
 
 extern template class MAIN_API Singleton < RenderManager > ;

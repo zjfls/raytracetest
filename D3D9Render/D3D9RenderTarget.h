@@ -1,8 +1,8 @@
 #pragma once
 #include "IRenderTarget.h"
-class IDirect3DSurface9;
-class IDirect3DTexture9;
-class IDirect3DDevice9;
+struct IDirect3DSurface9;
+struct IDirect3DTexture9;
+struct IDirect3DDevice9;
 class D3D9RenderTarget :
 	public IRenderTarget
 {

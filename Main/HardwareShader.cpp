@@ -41,7 +41,7 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 		break;
 		case	EMATARGTYPECOLOR:
 		{
-			Color* colorValue = pArg->GetData<Color>();
+			GameColor* colorValue = pArg->GetData<GameColor>();
 			Vector4 vecColor = Vector4(colorValue->m_fR, colorValue->m_fG, colorValue->m_fB, colorValue->m_fB);
 			return SetVector(strName, vecColor);
 		}
@@ -70,7 +70,7 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 			}
 			else
 			{
-				if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+				if ((bool)EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
 				{
 					pRender->SetSamplerSRGB(info.m_nRegIndex, 1);
 				}
@@ -96,7 +96,7 @@ bool HardwareShader::SetTextureArg(RasterRender* pRender, string strName, Hardwa
 	}
 	else
 	{
-		if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+		if ((bool)EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
 		{
 			pRender->SetSamplerSRGB(info.m_nRegIndex, 1);
 		}

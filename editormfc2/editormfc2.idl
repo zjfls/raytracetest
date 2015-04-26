@@ -1,0 +1,29 @@
+// editormfc2.idl : editormfc2.exe 的类型库源
+
+// 此文件将由 MIDL 编译器处理以产生
+// 类型库(editormfc2.tlb)。
+
+[ uuid(A70EC519-F0BF-4951-84BD-BDB66D6B7FE9), version(1.0) ]
+library editormfc2
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Ceditormfc2Doc 的主调度接口
+	
+	[ uuid(0DC66F25-F66E-4FDE-9688-FD10C3F81F99) ]
+	dispinterface Ieditormfc2
+	{
+		properties:
+			
+		methods:
+	};
+
+	//  Ceditormfc2Doc 的类信息
+	
+	[ uuid(6F8961FE-8107-49FB-A73A-03B6B5D7A95C) ]
+	coclass Ceditormfc2Doc
+	{
+		[default] dispinterface Ieditormfc2;
+	};
+};

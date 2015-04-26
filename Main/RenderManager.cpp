@@ -47,8 +47,9 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 		//return b;
 	}
 #endif
+	m_pDefualtRenderSystem->m_pActiveView = m_pDefualtRenderSystem->GetDefaultRenderView();
 	//Create Default RenderTarget Group
-	bool bHdr = EnviromentSetting::GetInstance()->GetIntSetting("HDR");
+	bool bHdr = (bool)EnviromentSetting::GetInstance()->GetIntSetting("HDR");
 	if (bHdr == true)
 	{
 		IRenderTarget* pRenderTarget = m_pDefualtRenderSystem->CreateRenderTarget(renderViewInfo.m_nWidth, renderViewInfo.m_nHeight, TFA16B16G16R16F, MSNONE, 0);

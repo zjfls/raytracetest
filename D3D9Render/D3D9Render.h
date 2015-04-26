@@ -10,6 +10,10 @@ class D3D9Render :
 public:
 	D3D9Render(const RenderPath* pPath);
 	virtual ~D3D9Render();
+
+
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff);
 	virtual bool SetVertexShader(HardwareVertexShader* pVertexShader);
 	virtual bool SetFragShader(HardwareFragShader* pFragShader);
@@ -29,7 +33,10 @@ public:
 	virtual bool SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB);
 	virtual bool RenderBegin();
 	virtual bool RenderEnd();
-	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f);
+	virtual bool ClearTarget(bool bClearColor, GameColor clr, bool bClearDepth = true, float fDepth = 1.0f);
+
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual void SetRenderTarget(int nIndex, IRenderTarget* pTarget);
 	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat = nullptr);
 	IDirect3DDevice9*	m_pDevice;

@@ -22,11 +22,12 @@ AssetManager::~AssetManager()
 
 IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 {
-	std::cout << "load:" << path.c_str() << std::endl;
+	
 	if (path == "")
 	{
 		return nullptr;
 	}
+	std::cout << "load:" << path.c_str() << std::endl;
 	if (m_AssetMap.find(path) != std::end(m_AssetMap))
 	{
 		return m_AssetMap[path];

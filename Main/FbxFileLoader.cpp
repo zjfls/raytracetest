@@ -193,7 +193,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	//
 	int triangleCount = pMesh->GetPolygonCount();
 	int vertexCounter = 0;
-	int cpCount = pMesh->GetControlPointsCount();
+	unsigned int cpCount = pMesh->GetControlPointsCount();
 	std::vector<int> indexVec;
 	std::vector<float> vertexVec;
 	std::vector<float> areaVec;//Ãæ»ý
@@ -203,7 +203,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	unsigned int nMaxBonePerVertex = 0;
 	skinInfoVec.resize(cpCount);
 	//get vertex pos
-	for (int i = 0; i < cpCount; ++i)
+	for (unsigned int i = 0; i < cpCount; ++i)
 	{
 		float x, y, z;
 		x = (float)pMesh->GetControlPointAt(i).mData[0];
@@ -263,7 +263,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	{
 		if (pNormal->GetReferenceMode() == FbxLayerElement::eDirect)
 		{
-			for (int i = 0; i < cpCount; ++i)
+			for (unsigned int i = 0; i < cpCount; ++i)
 			{
 				Vector3 normal;
 				normal.m_fx = (float)pNormal->GetDirectArray().GetAt(i).mData[0];
@@ -302,7 +302,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 					cpNormalIndexMap[cpIndex].push_back(np);
 				}
 			}
-			for (int i = 0; i < cpCount; ++i)
+			for (unsigned int i = 0; i < cpCount; ++i)
 			{
 				float fAreaSum = 0;
 				for_each(std::begin(cpNormalIndexMap[i]), std::end(cpNormalIndexMap[i]), [&](stNormalPolyIndex& npi)
@@ -357,7 +357,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
 		{
 			uvVec.resize(cpCount * 2);
-			for (int i = 0; i < cpCount; ++i)
+			for (unsigned int i = 0; i < cpCount; ++i)
 			{
 				float u, v;
 				u = (float)pLayerUV->GetDirectArray().GetAt(i).mData[0];
@@ -794,7 +794,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 				skindescindex++;
 			}
 			bool bRemoveSkin = false;
-			for (int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
+			for (unsigned int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
 			{
 				void* pSrc = pMeshResource->m_VertexData.GetElementData(skindescindex, remapIndex[i]);
 				unsigned char* pUByte = (unsigned char*)pSrc;

@@ -32,7 +32,7 @@ float EnviromentSetting::GetFloatSetting(string name)
 {
 	string strValue = m_EnviromentSetting[name];
 	//char temp[25];
-	float fValue = atof(strValue.c_str());
+	float fValue = (float)atof(strValue.c_str());
 	return fValue;
 }
 

@@ -1,0 +1,16 @@
+REGEDIT
+; 此 .REG 文件可能由 SETUP 程序使用。
+;   如果 SETUP 程序不可用，则调用
+;   CWinApp::RegisterShellFileTypes 和 COleObjectFactory::UpdateRegistryAll
+;   在 InitInstance 中对下列项自动进行注册。
+
+
+HKEY_CLASSES_ROOT\editormfc2.Document = editormfc2.Document
+
+
+HKEY_CLASSES_ROOT\editormfc2.Document\CLSID = {6F8961FE-8107-49FB-A73A-03B6B5D7A95C}
+
+HKEY_CLASSES_ROOT\CLSID\{6F8961FE-8107-49FB-A73A-03B6B5D7A95C} = editormfc2.Document
+HKEY_CLASSES_ROOT\CLSID\{6F8961FE-8107-49FB-A73A-03B6B5D7A95C}\ProgId = editormfc2.Document
+
+HKEY_CLASSES_ROOT\CLSID\{6F8961FE-8107-49FB-A73A-03B6B5D7A95C}\LocalServer32 = editormfc2.EXE

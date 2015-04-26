@@ -35,12 +35,14 @@ public:
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData) = 0;
 	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture) = 0;
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample,unsigned int nQuality) = 0;
+	virtual RenderView*				CreateRenderView(stRenderViewInfo& renderViewInfo) = 0;
 	virtual bool					OnFrameBegin() = 0;
 	virtual void					OnFrameEnd() = 0;
-
+	virtual void					ReleaseRenderTarget(IRenderTarget* pTarget);
 	//shared_ptr<
 
-
+	RenderView*						GetActiveRenderView(){ return m_pActiveView; };
+	void							SetActiveRenderView(RenderView* pView){ m_pActiveView = pView; };
 protected:
 	const char*			GetVertexShaderCode(const VertexShaderDesc& vertexShaderDesc);
 	const char*			GetFragShaderCode(const FragShaderDesc& fragShaderDesc);
@@ -62,6 +64,7 @@ protected:
 	RasterRender* m_pDefaultRender;
 	RenderView* m_pDefaultRenderView;
 	IRenderTarget*	m_pDefaultRenderTarget;
+	RenderView*	m_pActiveView;
 	RenderSystem();
 	friend class RenderManager;
 };

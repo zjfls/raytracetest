@@ -5,6 +5,7 @@
 #include "RenderStage.h"
 #include "MaterialResource.h"
 #include "IRenderable.h"
+#include "RenderTargetGroup.h"
 //RasterRender::RasterRender()
 //	:m_pRenderPath(nullptr)
 //{
@@ -22,7 +23,7 @@ RasterRender::~RasterRender()
 {
 }
 
-int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld)
+int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld, IRenderTarget* pTarget)
 {
 	if (RenderBegin() == false)
 	{
@@ -35,7 +36,7 @@ int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld)
 	{
 		pWorld->GetRenderablesLightInfo(vecRenderables);
 	}
-	int nRet = Render(vecRenderables);
+	int nRet = Render(vecRenderables,pTarget);
 	if (RenderEnd() == false)
 	{
 		std::cout << "End Scene Failed!" << std::endl;
@@ -49,7 +50,7 @@ void RasterRender::Render(IRenderable* pRender)
 	return;
 }
 
-int RasterRender::Render(std::vector<IRenderable*>& pRenderableList)
+int RasterRender::Render(std::vector<IRenderable*>& pRenderableList, IRenderTarget* pTarget)
 {
 	if (m_pRenderPath == nullptr)
 	{
@@ -60,6 +61,9 @@ int RasterRender::Render(std::vector<IRenderable*>& pRenderableList)
 	for (unsigned int i = 0; i < nStageCount; ++i)
 	{
 		RenderStage* pStage = m_pRenderPath->GetStage(i);
+		//
+		pStage->m_RenderTargetGroup.SetRenderTarget(0, pTarget);
+		//
 		std::vector<IRenderable*> vec;
 		GetRenderables(pRenderableList,vec, pStage->m_eFillter);
 		//SetRenderStageState(pStage->m_eFillter);

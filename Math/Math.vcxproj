@@ -74,6 +74,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>../lib/release/math.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

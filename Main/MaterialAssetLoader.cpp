@@ -123,7 +123,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 				}
 				else if (name == "AlphaTestRef")
 				{
-					float value = pStateElem->FloatAttribute("Value");
+					int value = pStateElem->IntAttribute("Value");
 					stRenderState state;
 					state.m_eRenderState = ALPHATESTREF;
 					state.m_nValue = value;

@@ -1,18 +1,18 @@
 #include "stdafx.h"
 #include "Color.h"
-const Color Color::black = Color(0.0f, 0.0f, 0.0f, 1.0f);
-const Color Color::white = Color(1.0f, 1.0f, 1.0f, 1.0f);
-const Color Color::red = Color(1.0f, 0.0f, 0.0f, 1.0f);
-const Color Color::green = Color(0.0f, 1.0f, 0.0f, 1.0f);
-const Color Color::blue = Color(0.0f, 0.0f, 1.0f, 1.0f);
+const GameColor GameColor::black = GameColor(0.0f, 0.0f, 0.0f, 1.0f);
+const GameColor GameColor::white = GameColor(1.0f, 1.0f, 1.0f, 1.0f);
+const GameColor GameColor::red = GameColor(1.0f, 0.0f, 0.0f, 1.0f);
+const GameColor GameColor::green = GameColor(0.0f, 1.0f, 0.0f, 1.0f);
+const GameColor GameColor::blue = GameColor(0.0f, 0.0f, 1.0f, 1.0f);
 
 
-Color::Color()
+GameColor::GameColor()
 {
 	m_fA = m_fB = m_fG = m_fR = 0.0f;
 }
 
-Color::Color(float R, float G, float B, float A)
+GameColor::GameColor(float R, float G, float B, float A)
 {
 	m_fR = R;
 	m_fG = G;
@@ -20,7 +20,7 @@ Color::Color(float R, float G, float B, float A)
 	m_fA = A;
 }
 
-Color::Color(const Color& inColor)
+GameColor::GameColor(const GameColor& inColor)
 {
 	m_fR = inColor.m_fR;
 	m_fG = inColor.m_fG;
@@ -29,11 +29,11 @@ Color::Color(const Color& inColor)
 }
 
 
-Color::~Color()
+GameColor::~GameColor()
 {
 }
 
-Color Color::operator=(const Color& inColor)
+GameColor GameColor::operator=(const GameColor& inColor)
 {
 	m_fR = inColor.m_fR;
 	m_fG = inColor.m_fG;
@@ -44,9 +44,9 @@ Color Color::operator=(const Color& inColor)
 	return *this;
 }
 
-Color Color::operator+(const Color& inColor) const
+GameColor GameColor::operator+(const GameColor& inColor) const
 {
-	Color cRt;
+	GameColor cRt;
 	cRt.m_fA = m_fA + inColor.m_fA;
 	cRt.m_fR = m_fR + inColor.m_fR;
 	cRt.m_fG = m_fG + inColor.m_fG;
@@ -54,9 +54,9 @@ Color Color::operator+(const Color& inColor) const
 	return cRt;
 }
 
-Color Color::operator*(float f) const
+GameColor GameColor::operator*(float f) const
 {
-	Color cRt;
+	GameColor cRt;
 	cRt.m_fA = m_fA * f;
 	cRt.m_fR = m_fR * f;
 	cRt.m_fG = m_fG * f;
@@ -64,9 +64,9 @@ Color Color::operator*(float f) const
 	return cRt;
 }
 
-Color Color::operator*(const Color& inColor) const
+GameColor GameColor::operator*(const GameColor& inColor) const
 {
-	Color cRt;
+	GameColor cRt;
 	cRt.m_fA = m_fA * inColor.m_fA;
 	cRt.m_fR = m_fR * inColor.m_fR;
 	cRt.m_fG = m_fG * inColor.m_fG;

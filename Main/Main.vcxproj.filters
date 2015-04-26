@@ -192,9 +192,6 @@
     <ClInclude Include="HardwareBuffer.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="FragShader.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
     <ClInclude Include="HardwareFragShader.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
@@ -231,8 +228,12 @@
     <ClInclude Include="ShaderGenerator.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="RenderTargetGroup.h" />
-    <ClInclude Include="BuiltInResource.h" />
+    <ClInclude Include="BuiltInResource.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTargetGroup.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -343,9 +344,6 @@
     <ClCompile Include="SimpleGLApplication.cpp">
       <Filter>源文件\Application</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleD3D9Application.cpp">
-      <Filter>源文件\Application</Filter>
-    </ClCompile>
     <ClCompile Include="RayTraceApplication.cpp">
       <Filter>源文件\Application</Filter>
     </ClCompile>
@@ -415,7 +413,11 @@
     <ClCompile Include="ShaderGenerator.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="RenderTargetGroup.cpp" />
-    <ClCompile Include="BuiltInResource.cpp" />
+    <ClCompile Include="BuiltInResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTargetGroup.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

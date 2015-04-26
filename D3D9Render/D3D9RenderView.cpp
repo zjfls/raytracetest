@@ -12,7 +12,7 @@ D3D9RenderView::D3D9RenderView()
 //
 D3D9RenderView::~D3D9RenderView()
 {
-
+	SAFE_RELEASE(m_pSwapChain);
 }
 
 //
@@ -48,3 +48,26 @@ void D3D9RenderView::OnDeviceReset()
 		m_pD3DDevice->GetSwapChain(0, &m_pSwapChain);
 	}
 }
+
+bool D3D9RenderView::Resize(int nX, int nY)
+{
+	m_dpp.BackBufferWidth = nX;
+	m_dpp.BackBufferHeight = nY;
+	SAFE_RELEASE(m_pSwapChain);
+	//m_pSwapChain->Release();
+	//m_pSwapChain = nullptr;
+	HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&m_dpp, &m_pSwapChain);
+
+	if (hr == D3D_OK)
+	{
+		std::cout << "resize view success!" << std::endl;
+	}
+	else
+	{
+		std::cout << "resize view failed!" << std::endl;
+	}
+	return true;
+}
+
+
+

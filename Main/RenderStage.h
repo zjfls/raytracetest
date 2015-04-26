@@ -82,5 +82,6 @@ private:
 
 	RenderTargetGroup m_RenderTargetGroup;
 	friend class RenderPath;
+	friend class RasterRender;
 };
 

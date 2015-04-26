@@ -63,7 +63,7 @@ void D3D9Application::SetupScene()
 	pCameraRenderer->m_pWorld = m_pWorld;
 	pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
-	pCameraRenderer->m_clrColr = Color::black;
+	pCameraRenderer->m_clrColr = GameColor::black;
 	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-550.0f));
@@ -75,7 +75,7 @@ void D3D9Application::SetupScene()
 	pLightObj->m_strName = "Lights";
 	DirectionalLight* pDirLight = pLightObj->addModule<DirectionalLight>();
 	pDirLight->m_fIntensity = 1.5f;
-	pDirLight->m_Color = Color::white;
+	pDirLight->m_Color = GameColor::white;
 
 	//PointLight* pLight = pLightObj->addModule<PointLight>();
 	//pLight->m_fIntensity =  0.6f;

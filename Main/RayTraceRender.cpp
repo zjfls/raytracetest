@@ -51,7 +51,7 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	fRightHeightStepSize = fRightHeight / pViewPort->m_pixHeight;
 
 
-	Color* cBuffer = new Color[pViewPort->m_pixWidth * pViewPort->m_pixHeight];
+	GameColor* cBuffer = new GameColor[pViewPort->m_pixWidth * pViewPort->m_pixHeight];
 
 	for (int i = 0; i < pViewPort->m_pixHeight; ++i)
 	{
@@ -103,10 +103,10 @@ int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
 	return 0;
 }
 
-Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
+GameColor RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 {
 //primary ray
-	Color	pixColor;
+	GameColor	pixColor;
 	//Vector3 vecPri;
 	//vecPri = vecTarget - m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
 	//vecPri.normalize();
@@ -137,11 +137,11 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 		shared_ptr<SimpleRTMaterial> pRTMat = dynamic_pointer_cast<SimpleRTMaterial>(pInterGeo->m_pSharedMaterial);
 		if (pRTMat == nullptr)
 		{
-			pixColor = Color::white;
+			pixColor = GameColor::white;
 		}
 		else
 		{
-			Color cContribute = Color::black;
+			GameColor cContribute = GameColor::black;
 			//shadow ray
 			for each (LightBase* var in m_vecLights)
 			{
@@ -164,7 +164,7 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 				Vector3 vecReflectDir = GetReflectionDir(r.GetDir(),vecNormal);
 				Vector3 vecRayPos = vecInterPos + vecNormal * 0.01f;
 				Ray3D rayRef(vecRayPos,vecReflectDir);
-				Color refColor = RayTrace(rayRef, nDepth + 1);
+				GameColor refColor = RayTrace(rayRef, nDepth + 1);
 				cContribute = cContribute + refColor * pRTMat->m_ColorDiffuse * GetFresnelReflectance(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal);
 			}
 			if (pRTMat->m_bRefraction == true && nDepth <= MAXDEPTH)
@@ -172,7 +172,7 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 				Vector3 vecRefractDir = GetRefracionDir(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal);
 				Vector3 vecRefractPos = vecInterPos - vecNormal * 0.01f;
 				Ray3D rayRefra(vecRefractPos, vecRefractDir);
-				Color refractColor = RayTrace(rayRefra, nDepth + 1);
+				GameColor refractColor = RayTrace(rayRefra, nDepth + 1);
 				if (refractColor.m_fR > 0.0f || refractColor.m_fR > 0.0f || refractColor.m_fG > 0.0f || refractColor.m_fB > 0.0f)
 				{
 					//std::cout << refractColor.m_fR << " " << refractColor.m_fG << " " << refractColor.m_fB << std::endl;
@@ -180,13 +180,13 @@ Color RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 				cContribute = cContribute + refractColor * pRTMat->m_ColorDiffuse *GetTransmitRadianceCoef(1.0f, pRTMat->m_fRefractiveIndex, r.GetDir(), vecNormal) * pRTMat->m_fTransparecy;
 			}
 
-			pixColor = cContribute + pRTMat->m_ColorEmi + Color(0.00f,0.00f,0.00f,0.0f);
+			pixColor = cContribute + pRTMat->m_ColorEmi + GameColor(0.00f,0.00f,0.00f,0.0f);
 		}
 		//	
 	}
 	else
 	{
-		pixColor = Color::black;
+		pixColor = GameColor::black;
 	}
 
 

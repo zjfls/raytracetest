@@ -1,6 +1,12 @@
 #pragma once
-#include "fbxsdk.h"
+
 #include "Singleton.h"
+namespace fbxsdk_2015_1
+{ 
+	class FbxManager;
+	class FbxScene;
+};
+
 class MAIN_API FbxAppManager :public Singleton<FbxAppManager>
 {
 public:
@@ -12,8 +18,8 @@ public:
 
 
 
-	FbxManager* m_pFbxSdkManager;
-	FbxScene*	m_pFbxScene;
+	fbxsdk_2015_1::FbxManager* m_pFbxSdkManager;
+	fbxsdk_2015_1::FbxScene*	m_pFbxScene;
 
 };
 

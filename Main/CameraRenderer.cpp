@@ -7,6 +7,7 @@
 #include "RasterMaterial.h"
 #include "RenderSystem.h"
 #include "RenderView.h"
+#include "EnviromentSetting.h"
 
 CameraRenderer::CameraRenderer()
 	: m_pWorld(nullptr)
@@ -15,7 +16,7 @@ CameraRenderer::CameraRenderer()
 	, m_bClearColor(true)
 	, m_bClearDepth(true)
 	, m_fDepth(1.0f)
-	, m_clrColr(Color::blue)
+	, m_clrColr(GameColor::blue)
 {
 
 }
@@ -48,11 +49,27 @@ void CameraRenderer::Render(CameraBase* pCamera)
 	m_pRender->m_pCurrentRenderCamera = pCamera;
 	//m_pRender->SetRenderTarget(0,m_pTarget);
 	m_pRender->ClearTarget(m_bClearColor, m_clrColr, m_bClearDepth, m_fDepth);
-	m_pRender->Render(pCamera, m_pWorld);
+
+
+	IRenderTarget* pTarget = nullptr;
+	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	{
+		pTarget = m_pRender->m_pRenderSystem->GetDefaultRenderTarget();
+	}
+	else
+	{
+		pTarget = m_pRender->m_pRenderSystem->GetActiveRenderView();
+	}
+	m_pRender->Render(pCamera, m_pWorld,pTarget);
 
 	shared_ptr<RasterMaterial> mat = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml"));
 
-	m_pRender->DrawScreen(m_pRender->m_pRenderSystem->GetDefaultRenderTarget(),m_pRender->m_pRenderSystem->GetDefaultRenderView(),mat);
+
+	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	{
+		m_pRender->DrawScreen(m_pRender->m_pRenderSystem->GetDefaultRenderTarget(), m_pRender->m_pRenderSystem->GetActiveRenderView(), mat);
+	}
+	
 }
 
 void CameraRenderer::UpdateMatrix(CameraBase* pCamera)

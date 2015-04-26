@@ -77,3 +77,16 @@ IRenderTarget* RenderSystem::GetDefaultRenderTarget() const
 {
 	return m_pDefaultRenderTarget;
 }
+
+void RenderSystem::ReleaseRenderTarget(IRenderTarget* pTarget)
+{
+	std::vector<IRenderTarget*>::iterator iter = m_vecRenderTarget.begin();
+	for (; iter != m_vecRenderTarget.end(); ++iter)
+	{
+		if (*iter == pTarget)
+		{
+			delete *iter;
+			m_vecRenderTarget.erase(iter);
+		}
+	}
+}

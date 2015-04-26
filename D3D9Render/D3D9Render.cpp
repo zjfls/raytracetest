@@ -273,7 +273,7 @@ bool D3D9Render::RenderEnd()
 	return true;
 }
 
-bool D3D9Render::ClearTarget(bool bClearColor, Color clr, bool bClearDepth /*= true*/, float fDepth /*= 1.0f*/)
+bool D3D9Render::ClearTarget(bool bClearColor, GameColor clr, bool bClearDepth /*= true*/, float fDepth /*= 1.0f*/)
 {
 	DWORD CLSFLG = 0;
 	if (bClearColor)
@@ -326,6 +326,7 @@ D3DBLEND D3D9Render::GetD3DBlendType(EALPHABLEND eBlend)
 		default:
 		break;
 	}
+	return D3DBLEND_FORCE_DWORD;
 }
 
 bool D3D9Render::SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB)

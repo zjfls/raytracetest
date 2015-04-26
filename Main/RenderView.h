@@ -2,7 +2,7 @@
 #include "IRenderTarget.h"
 
 
-struct stRenderViewInfo
+struct MAIN_API stRenderViewInfo
 {
 	stRenderViewInfo();
 
@@ -31,6 +31,7 @@ public:
 	~RenderView();
 
 
+	virtual bool Resize(int nX,int nY) = 0;
 
 	virtual bool Present() = 0;
 	//

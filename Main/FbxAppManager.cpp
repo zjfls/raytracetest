@@ -1,8 +1,10 @@
 #include "stdafx.h"
+#include "fbxsdk.h"
 #include "FbxAppManager.h"
 #include "AssetManager.h"
 #include "ResourceManager.h"
 #include "MeshResource.h"
+
 template class MAIN_API Singleton < FbxAppManager >;
 template<> shared_ptr<FbxAppManager> Singleton<FbxAppManager>::_instance = nullptr;
 

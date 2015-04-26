@@ -13,10 +13,10 @@ public:
 
 
 	bool	Init();
-	Color	GetAmbientColor() const { return m_AmbientColor; };
+	GameColor	GetAmbientColor() const { return m_AmbientColor; };
 private:
 	std::unordered_map<string, string> m_EnviromentSetting;
-	Color	m_AmbientColor;
+	GameColor	m_AmbientColor;
 };
 
 extern template class MAIN_API Singleton < EnviromentSetting > ;

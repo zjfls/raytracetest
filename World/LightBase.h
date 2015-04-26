@@ -11,7 +11,7 @@ public:
 
 	virtual float GetIrradiance(const Vector3& vecWorldPosition, const Vector3& vecNormal) = 0;
 	virtual Vector3  GetLightDirection(const Vector3& vecWorldPosition) = 0;
-	Color	m_Color;
+	GameColor	m_Color;
 	float	m_fIntensity;
 	float	m_bCastShadow;
 

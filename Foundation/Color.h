@@ -1,26 +1,26 @@
 #pragma once
 //
-class FOUNDATION_API Color
+class FOUNDATION_API GameColor
 {
 public:
-	Color();
-	Color(float R, float G, float B, float A);
-	Color(const Color& inColor);
-	Color operator=(const Color& inColor);
-	Color operator+(const Color& inColor) const;
-	Color operator*(float f) const;
-	Color operator*(const Color& inColor)const ;
-	virtual ~Color();
+	GameColor();
+	GameColor(float R, float G, float B, float A);
+	GameColor(const GameColor& inColor);
+	GameColor operator=(const GameColor& inColor);
+	GameColor operator+(const GameColor& inColor) const;
+	GameColor operator*(float f) const;
+	GameColor operator*(const GameColor& inColor)const ;
+	virtual ~GameColor();
 	float	m_fR;
 	float	m_fG;
 	float	m_fB;
 	float	m_fA;
 
 
-	const static Color white;
-	const static Color black;
-	const static Color red;
-	const static Color green;
-	const static Color blue;
+	const static GameColor white;
+	const static GameColor black;
+	const static GameColor red;
+	const static GameColor green;
+	const static GameColor blue;
 };
 

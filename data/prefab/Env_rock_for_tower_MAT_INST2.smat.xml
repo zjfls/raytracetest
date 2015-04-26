@@ -5,7 +5,7 @@
         <Texture RefPath="./data/prefab/Rock_008_001_D1.tga" Type="Texture2D"/>
     </MaterialArg>
     <MaterialArg Name="NormalMap" Type="TextureSampler">
-        <Texture RefPath="./data/prefab/normal_4.png" Type="Texture2D"/>
+        <Texture RefPath="./data/prefab/Rock_008_001_N1.tga" Type="Texture2D"/>
     </MaterialArg>
     <RenderPass Name="bladesouldefault" BRDF="BlinPhong">
         <VertexShader refPath="./data/shader/VertexStandard.vsm" ShaderType="Origin"/>
