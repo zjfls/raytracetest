@@ -31,7 +31,7 @@ public:
 	virtual bool RenderEnd();
 	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f);
 	virtual void SetRenderTarget(int nIndex, IRenderTarget* pTarget);
-
+	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat = nullptr);
 	IDirect3DDevice9*	m_pDevice;
 private:
 	D3DBLEND GetD3DBlendType(EALPHABLEND eBlend);

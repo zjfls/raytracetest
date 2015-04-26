@@ -37,7 +37,7 @@ bool D3D9FragShader::SetFloat(string strName, const float fValue)
 	return true;
 }
 
-bool D3D9FragShader::SetInt(string strName, const float nValue)
+bool D3D9FragShader::SetInt(string strName, const int nValue)
 {
 	HRESULT hr = m_pConstantTable->SetInt(m_pDevice, strName.c_str(), nValue);
 	if (hr != D3D_OK)

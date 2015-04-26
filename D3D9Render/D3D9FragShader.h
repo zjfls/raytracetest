@@ -11,7 +11,7 @@ public:
 	virtual ~D3D9FragShader();
 	virtual bool SetBool(string strName, const bool bValue);
 	virtual bool SetFloat(string strName, const float fValue);
-	virtual bool SetInt(string strName, const float nValue);
+	virtual bool SetInt(string strName, const int nValue);
 	virtual bool SetVector(string strName, const Vector4& nValue);
 	virtual bool SetMatrix(string strName, const Matrix44& nValue);
 	virtual bool SetFloatArray(string strName, const float* pData, unsigned int nLenght);

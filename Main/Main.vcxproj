@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="ApplicationBase.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="BuiltInResource.h" />
     <ClInclude Include="CameraRenderer.h" />
     <ClInclude Include="D3D9Application.h" />
     <ClInclude Include="EnviromentSetting.h" />
@@ -94,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="ApplicationBase.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="BuiltInResource.cpp" />
     <ClCompile Include="CameraRenderer.cpp" />
     <ClCompile Include="D3D9Application.cpp" />
     <ClCompile Include="dllmain.cpp" />

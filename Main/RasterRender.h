@@ -14,6 +14,7 @@ class HardwareTexture;
 class RasterCamera;
 class RenderStateCollection;
 class RenderTargetGroup;
+class RasterMaterial;
 class MAIN_API RasterRender :
 	public IRender
 {
@@ -57,8 +58,9 @@ public:
 	virtual bool RenderEnd() = 0;
 	virtual bool ClearTarget(bool bClearColor, Color clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
 	//
-	virtual void SetRenderTargetGroup();
+	virtual void SetRenderTargetGroup(RenderTargetGroup* pTargetGroup);
 	virtual void SetRenderTarget(int nIndex, IRenderTarget* m_pTarget);
+	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget,shared_ptr<RasterMaterial> pMat = nullptr);
 	//
 protected:
 	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);

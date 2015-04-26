@@ -105,7 +105,10 @@ void D3D9Application::Run()
 		{
 			if (m_pWorld != nullptr)
 			{
-				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin();
+				if (RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin() == false)
+				{
+					continue;
+				}
 				m_pWorld->Update();
 				m_pRenderView->Present();
 				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();

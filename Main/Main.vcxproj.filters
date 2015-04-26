@@ -232,6 +232,7 @@
       <Filter>头文件\Render</Filter>
     </ClInclude>
     <ClInclude Include="RenderTargetGroup.h" />
+    <ClInclude Include="BuiltInResource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -415,5 +416,6 @@
       <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="RenderTargetGroup.cpp" />
+    <ClCompile Include="BuiltInResource.cpp" />
   </ItemGroup>
 </Project>

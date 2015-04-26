@@ -8,6 +8,7 @@
 #include "Texture.h"
 #include "RasterRender.h"
 #include "RenderSystem.h"
+#include "EnviromentSetting.h"
 HardwareShader::HardwareShader()
 {
 }
@@ -69,7 +70,10 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 			}
 			else
 			{
-				pRender->SetSamplerSRGB(info.m_nRegIndex, 1);
+				if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+				{
+					pRender->SetSamplerSRGB(info.m_nRegIndex, 1);
+				}
 			}
 		}
 		break;
@@ -80,4 +84,22 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 		break;
 	}
 	return false;
+}
+
+bool HardwareShader::SetTextureArg(RasterRender* pRender, string strName, HardwareTexture* pTexture,ETEXUSETYPE eTexUseType)
+{
+	ShaderConstantInfo info = m_mapConstants[strName];
+	pRender->SetTexture(info.m_nRegIndex, pTexture);
+	if (eTexUseType == ETU_NORMAL)
+	{
+		pRender->SetSamplerSRGB(info.m_nRegIndex, 0);
+	}
+	else
+	{
+		if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+		{
+			pRender->SetSamplerSRGB(info.m_nRegIndex, 1);
+		}
+	}
+	return true;
 }

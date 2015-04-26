@@ -2,6 +2,11 @@
 #include "CameraRenderer.h"
 #include "RasterCamera.h"
 #include "World.h"
+#include "ResourceManager.h"
+#include "MaterialResource.h"
+#include "RasterMaterial.h"
+#include "RenderSystem.h"
+#include "RenderView.h"
 
 CameraRenderer::CameraRenderer()
 	: m_pWorld(nullptr)
@@ -44,6 +49,10 @@ void CameraRenderer::Render(CameraBase* pCamera)
 	//m_pRender->SetRenderTarget(0,m_pTarget);
 	m_pRender->ClearTarget(m_bClearColor, m_clrColr, m_bClearDepth, m_fDepth);
 	m_pRender->Render(pCamera, m_pWorld);
+
+	shared_ptr<RasterMaterial> mat = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml"));
+
+	m_pRender->DrawScreen(m_pRender->m_pRenderSystem->GetDefaultRenderTarget(),m_pRender->m_pRenderSystem->GetDefaultRenderView(),mat);
 }
 
 void CameraRenderer::UpdateMatrix(CameraBase* pCamera)

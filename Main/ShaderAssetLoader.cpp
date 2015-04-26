@@ -35,7 +35,7 @@ IAsset* VertexShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	errno_t eOpen = fopen_s(&fp, path.c_str(), "rb");
 	if (0 != eOpen)
 	{
-		std::cout << "open file:" << path.c_str() << std::endl;
+		std::cout << "open file:" << path.c_str()<<"failed!!!" << std::endl;
 		return nullptr;
 	}
 	int startPos = ftell(fp);
@@ -93,7 +93,7 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	errno_t eOpen = fopen_s(&fp, path.c_str(), "rb");
 	if (0 != eOpen)
 	{
-		std::cout << "open file:" << path.c_str() << std::endl;
+		std::cout << "open file:" << path.c_str()<<" failed!!!" << std::endl;
 		return nullptr;
 	}
 	int startPos = ftell(fp);

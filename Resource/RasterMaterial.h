@@ -13,7 +13,7 @@ public:
 	void	AddPass(string strName, RenderPass* pPass);
 	virtual shared_ptr<MaterialResource> clone();
 	//void BuildPassParameter(RenderPass* pPass);
-protected:
+public:
 	std::map<string, RenderPass*> m_RenderPassMap;
 	friend class RenderStage;
 };

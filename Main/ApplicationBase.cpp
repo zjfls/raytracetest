@@ -12,7 +12,7 @@
 #include "RenderView.h"
 #include <direct.h>
 #include "RenderSystem.h"
-
+#include "BuiltInResource.h"
 ApplicationBase::ApplicationBase()
 	:m_pRenderView(nullptr)
 {
@@ -48,6 +48,10 @@ bool ApplicationBase::Init(int argc, char** argv)
 		return false;
 	}
 	if (false == RenderManager::GetInstance()->Init(m_RenderViewInfo))
+	{
+		return false;
+	}
+	if (false == BuiltInResource::GetInstance()->InitBuiltInResource())
 	{
 		return false;
 	}

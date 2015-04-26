@@ -11,7 +11,11 @@
 #include "CameraBase.h"
 #include "D3D9RenderTarget.h"
 #include "D3D9RenderView.h"
-
+#include "FragShader.h"
+#include "RasterMaterial.h"
+#include "RenderPass.h"
+#include "VertexShader.h"
+#include "EnviromentSetting.h"
 D3D9Render::D3D9Render(const RenderPath* pPath)
 	:RasterRender(pPath)
 	, m_pDevice(nullptr)
@@ -62,7 +66,7 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 	}
 	if (pD3DIndexBuff == nullptr)
 	{
-		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexDecal);
+		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexBuffDecal->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
 		m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, pD3DVertexBuff->m_nNumVertex / 3);
 	}
@@ -74,7 +78,7 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 		//m_pDevice->SetRenderState(D3DRS_ZWRITEENABLE, true);
 		//m_pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);
 		m_pDevice->SetIndices(pD3DIndexBuff->m_pIndexBuffer);
-		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexDecal);
+		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexBuffDecal->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
 		m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, pD3DVertexBuff->m_nNumVertex, 0, pD3DIndexBuff->m_nIndexNum / 3);
 	}
@@ -338,7 +342,7 @@ void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 	RasterRender::SetRenderTarget(nIndex,pTarget);
 	IDirect3DSurface9* pSurface = nullptr;
 	D3D9RenderView* pView = dynamic_cast<D3D9RenderView*>(pTarget);
-	if (pView != nullptr)
+	if (pView != nullptr && pView->m_pSwapChain != nullptr)
 	{
 		pView->m_pSwapChain->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pSurface);
 	}
@@ -346,11 +350,62 @@ void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 	//
 	if (pD3DTarget != nullptr)
 	{
-		pSurface = pD3DTarget->m_pSurface;
+		pD3DTarget->m_pSurfTexture->GetSurfaceLevel(0, &pSurface);
 	}
 
 	if (pSurface != nullptr)
 	{
 		m_pDevice->SetRenderTarget(nIndex, pSurface);
+		pSurface->Release();
 	}	
+}
+
+void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat /*= nullptr*/)
+{
+	float arrayScreen[] = 
+	{
+		-1.0f, -1.0f, 0.0f,
+		-1.0f, 1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+
+		
+		1.0f, -1.0f, 0.0f,
+		-1.0f, 1.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,
+	};
+	m_pDevice->SetFVF(D3DFVF_XYZ);
+	FragShaderDesc fragDesc;
+	fragDesc.m_pFragShader = pMat->m_RenderPassMap.begin()->second->m_pFragShader;
+	fragDesc.m_eFragShaderDesc = EFRAGSHADERORIGIN;
+	HardwareFragShader* pfragshader = m_pRenderSystem->GetHardwareFragShader(fragDesc);
+	VertexShaderDesc vertDesc;
+	vertDesc.m_pVertexShader = pMat->m_RenderPassMap.begin()->second->m_pVertexShader;
+	vertDesc.m_eVShaderDesc = EVERTEXSHADERORIGIN;
+	HardwareVertexShader* pVertexShader = m_pRenderSystem->GetHardwareVertexShader(vertDesc);
+	SetVertexShader(pVertexShader);
+	SetFragShader(pfragshader);
+	SetZTestEnable(false);
+	SetAlphaTest(false);
+	SetRenderTarget(0,pTarget);
+	D3D9RenderTarget* pD3DRenderTarget = (D3D9RenderTarget*)pSource;
+	ShaderConstantInfo info = pfragshader->m_mapConstants["sourceTex"];
+	m_pDevice->SetTexture(0, pD3DRenderTarget->m_pSurfTexture);
+	if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+	{
+		SetSamplerSRGB(info.m_nRegIndex, 1);
+	}
+
+	
+	//
+	
+	//SetTexture(0, pD3DTex->m_pSurfTexture);
+
+	
+
+	m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	m_pDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, arrayScreen, 12);
+
+
+	//m_pDevice->StretchRect()
+
 }

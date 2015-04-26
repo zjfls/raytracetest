@@ -57,6 +57,9 @@
     <ClInclude Include="FileOperation.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="threadmutex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp">
@@ -84,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="FileOperation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="threadmutex.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

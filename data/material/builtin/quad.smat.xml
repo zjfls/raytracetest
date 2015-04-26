@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<Material Name="001_Mesh_Default_MatM.smat">
+    <MaterialArg Name="sourceTex" Type="TextureSampler">
+        <Texture RefPath="" Type="Texture2D"/>
+    </MaterialArg>
+    <RenderPass Name="quard" BRDF="BlinPhong">
+        <VertexShader refPath="./data/shader/builtin/quardv.vsm" ShaderType="Origin"/>
+        <FragElem refPath="./data/shader/builtin/quardf.fsm" ShaderType="Origin"/>
+    </RenderPass>
+</Material>

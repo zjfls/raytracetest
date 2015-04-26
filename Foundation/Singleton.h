@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <thread>
+#include "threadmutex.h"
 template<class T>
 class Singleton
 {
@@ -10,7 +12,11 @@ public:
 	{
 		if (_instance == nullptr)
 		{
-			_instance = shared_ptr<T>(new T);
+			//std::lock_guard<mutex> mtx(g_SingletonMutex);
+			if (_instance == nullptr)
+			{
+				_instance = shared_ptr<T>(new T);
+			}
 			//std::cout << "new singleton" << std::endl;
 		}
 		return _instance;
@@ -19,5 +25,4 @@ public:
 protected:
 	Singleton(){};
 	static shared_ptr<T> _instance;
-
 };

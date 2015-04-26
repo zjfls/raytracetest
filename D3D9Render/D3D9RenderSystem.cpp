@@ -16,6 +16,7 @@
 #include "VertexData.h"
 #include "Texture.h"
 #include "D3D9RenderTarget.h"
+#include "EnviromentSetting.h"
 D3D9RenderSystem::D3D9RenderSystem()
 	:m_pD3D(nullptr)
 	, m_pD3DDevice(nullptr)
@@ -92,6 +93,38 @@ bool test(const stRenderViewInfo& viewInfo)
 	return true;
 	//
 }
+
+bool operator==(const std::vector<D3DVERTEXELEMENT9>& e1,const std::vector<D3DVERTEXELEMENT9>& e2)
+{
+	if (e1.size() != e2.size())
+	{
+		return false;
+	}
+	for (int i = 0; i < e1.size(); ++i)
+	{
+		if (e1[i].Method == e2[i].Method 
+			&&e1[i].Offset == e2[i].Offset
+			&&e1[i].Stream == e2[i].Stream
+			&&e1[i].Type == e2[i].Type
+			&&e1[i].Usage == e2[i].Usage
+			&&e1[i].UsageIndex == e2[i].UsageIndex
+			)
+		{
+			continue;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool operator<(const std::vector<D3DVERTEXELEMENT9>& e1,const std::vector<D3DVERTEXELEMENT9>& e2)
+{
+	return true;
+}
+
 bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 {
 	//return test(viewInfo);
@@ -131,15 +164,27 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 		//system("pause");
 		return false;
 	}
-	m_pD3DDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
+	//
+	if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+	{
+		m_pD3DDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
+	}
+
 
 
 	D3D9RenderView* pRenderView;
-	IDirect3DSwapChain9* pSwapChain;
+	IDirect3DSwapChain9* pSwapChain = nullptr;
 	m_pD3DDevice->GetSwapChain(0, &pSwapChain);
+	
+	//m_SwapChains.push_back(pSwapChain);
 	pRenderView = new D3D9RenderView;
+	pRenderView->m_nIndex = 0;
 	pRenderView->m_pSwapChain = pSwapChain;
 	m_pDefaultRenderView = pRenderView;
+	pRenderView->m_pD3DDevice = m_pD3DDevice;
+
+
+	m_vecRenderTarget.push_back(pRenderView);
 
 
 
@@ -148,7 +193,7 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 	return true;
 }
 
-D3DSWAPEFFECT D3D9RenderSystem::getSwapEffect(const EBUFFSWARP eSwap) const
+D3DSWAPEFFECT D3D9RenderSystem::getSwapEffect(const EBUFFSWARP eSwap)
 {
 	switch (eSwap)
 	{
@@ -178,7 +223,7 @@ D3DSWAPEFFECT D3D9RenderSystem::getSwapEffect(const EBUFFSWARP eSwap) const
 	}
 }
 
-D3DFORMAT D3D9RenderSystem::getBufferFormat(const TARGETFORMAT eFormat) const
+D3DFORMAT D3D9RenderSystem::getBufferFormat(const TARGETFORMAT eFormat)
 {
 	switch (eFormat)
 	{
@@ -400,7 +445,7 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 		return m_VertexDataMap[pData];
 	}
 	D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
-	pBuff->m_pVertexDecal = CreateVertexDeclarationFromDesc(pData->vecDataDesc);
+	pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pData->vecDataDesc);
 	pBuff->m_nNumVertex = pData->nNumVertex;
 	pBuff->m_nStrip = pData->GetVertexDataLength();
 	//
@@ -475,7 +520,7 @@ HardwareIndexBuffer* D3D9RenderSystem::GetHardwareIndexBuffer(IndexData* pData)
 	return pBuff;
 }
 
-IDirect3DVertexDeclaration9* D3D9RenderSystem::CreateVertexDeclarationFromDesc(std::vector<VertexData::VertexDataDesc>& vecDataDesc)
+stD3DVertexBuffDecal* D3D9RenderSystem::CreateVertexDeclarationFromDesc(std::vector<VertexData::VertexDataDesc>& vecDataDesc)
 {
 	std::vector<D3DVERTEXELEMENT9> vecVertElem;
 	int nOffset = 0;
@@ -491,9 +536,18 @@ IDirect3DVertexDeclaration9* D3D9RenderSystem::CreateVertexDeclarationFromDesc(s
 		nOffset += VertexData::GetTypeLength(desc);
 	}
 	vecVertElem.push_back(D3DDECL_END());
+
+	stD3DVertexBuffDecal* pDecal = GetVertexDecal(vecDataDesc);
+	if (pDecal != nullptr)
+	{
+		return pDecal;
+	}
+	pDecal = new stD3DVertexBuffDecal;
 	IDirect3DVertexDeclaration9*	pVertexDecl = nullptr;
 	m_pD3DDevice->CreateVertexDeclaration((D3DVERTEXELEMENT9*)(&vecVertElem[0]), &pVertexDecl);
-	return pVertexDecl;
+	pDecal->m_pVertexDecal = pVertexDecl;
+	pDecal->m_vecDataDesc = vecDataDesc;
+	return pDecal;
 }
 
 D3DDECLTYPE D3D9RenderSystem::GetD3DDeclType(EnumVertexTypeDesc desc) const
@@ -652,37 +706,138 @@ IRenderTarget* D3D9RenderSystem::CreateRenderTarget(unsigned int nWidth, unsigne
 {
 	D3D9RenderTarget* pTarget = new D3D9RenderTarget;
 	D3DFORMAT d3dFormat = getBufferFormat(eTarget);
-	if (D3D_OK != m_pD3DDevice->CreateRenderTarget(nWidth, nHeight, d3dFormat, D3DMULTISAMPLE_NONE, 0, false, &pTarget->m_pSurface, nullptr))
+	IDirect3DTexture9* pTexture;
+	if (D3D_OK != m_pD3DDevice->CreateTexture(nWidth, nHeight, 1, D3DUSAGE_RENDERTARGET, d3dFormat, D3DPOOL_DEFAULT, &pTexture, nullptr))
 	{
-		std::cout << "create surface failed!" << std::endl;
+		std::cout << "create rendertarget texture failed!" << std::endl;
 	}
+	//
+	pTarget->m_nWidth = nWidth;
+	pTarget->m_nHeight = nHeight;
+	pTarget->m_eTargetFormt = eTarget;
+	//
+	//pTexture->GetSurfaceLevel(0, &pTarget->m_pSurface);
+	pTarget->m_pSurfTexture = pTexture;
+	pTarget->m_pD3DDevice = m_pD3DDevice;
 	m_vecRenderTarget.push_back(pTarget);
-	return nullptr;
+	return pTarget;
 }
 
-void D3D9RenderSystem::OnFrameBegin()
+bool D3D9RenderSystem::OnFrameBegin()
 {
 	if (m_pD3DDevice == nullptr)
 	{
-		return;
+		return false;
 	}
 	HRESULT hr = m_pD3DDevice->TestCooperativeLevel();
 	switch (hr)
 	{
 		case D3DERR_DEVICELOST:
 		{
+			//for each (std::pair< std::vector<D3DVERTEXELEMENT9>, IDirect3DVertexDeclaration9*>& p in m_DecalMap)
+			//{
+			//	if (p.second != nullptr)
+			//	{
+			//		p.second->Release();
+			//		p.second = nullptr;
+			//	}
+			//}
 
+			return false;
 		}
 		break;
 		case D3DERR_DEVICENOTRESET:
 		{
-			m_pD3DDevice->Reset(&m_D3DPresentParamenter);
+			{
+				std::vector<stD3DVertexBuffDecal*>::iterator iter = m_VertexDecals.begin();
+				for (; iter != m_VertexDecals.end(); ++iter)
+				{
+					SAFE_RELEASE((*iter)->m_pVertexDecal);
+				}
+
+				std::vector<IRenderTarget*>::iterator iterRT = m_vecRenderTarget.begin();
+				for (; iterRT != m_vecRenderTarget.end(); ++iterRT)
+				{
+					IRenderTarget* pTarget = *iterRT;
+					D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(pTarget);
+					D3D9RenderView* pD3DView = dynamic_cast<D3D9RenderView*>(pTarget);
+					if (pD3DTarget != nullptr)
+					{
+						pD3DTarget->OnDeviceLost();
+					}
+					if (pD3DView != nullptr)
+					{
+						pD3DView->OnDeviceLost();
+					}
+				}
+			}
+			//m_pD3DDevice->GetSwapChain(0, &((D3D9RenderView*)m_pDefaultRenderView)->m_pSwapChain);
+			HRESULT hr = m_pD3DDevice->Reset(&m_D3DPresentParamenter);
+			if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
+			{
+				m_pD3DDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
+			}
+
+			//if (hr == D3D_OK)
+			//{
+				
+			//}
+			if (hr != D3D_OK)
+			{
+				
+				std::cout << "reset device failed!" << std::endl;
+				return false;
+			}
+			std::vector<stD3DVertexBuffDecal*>::iterator iter = m_VertexDecals.begin();
+			for (; iter != m_VertexDecals.end(); ++iter)
+			{
+				std::vector<VertexData::VertexDataDesc> vecDataDesc = (*iter)->m_vecDataDesc;
+				std::vector<D3DVERTEXELEMENT9> vecVertElem;
+				int nOffset = 0;
+				D3DVERTEXELEMENT9 elem;
+				std::unordered_map<BYTE, unsigned char> useIndexMap;
+				for each (VertexData::VertexDataDesc desc in vecDataDesc)
+				{
+					D3DDECLTYPE type = GetD3DDeclType(desc.typedesc);
+					BYTE		usage = GetD3DDeclUsage(desc.usedesc);
+					elem = { 0, nOffset, type, D3DDECLMETHOD_DEFAULT, usage, useIndexMap[usage] };
+					useIndexMap[usage] = useIndexMap[usage] + 1;
+					vecVertElem.push_back(elem);
+					nOffset += VertexData::GetTypeLength(desc);
+				}
+				vecVertElem.push_back(D3DDECL_END());
+				m_pD3DDevice->CreateVertexDeclaration(&vecVertElem[0], &(*iter)->m_pVertexDecal);
+			}
+
+			std::vector<IRenderTarget*>::iterator iterRT = m_vecRenderTarget.begin();
+			for (; iterRT != m_vecRenderTarget.end(); ++iterRT)
+			{
+				IRenderTarget* pTarget = *iterRT;
+				D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(pTarget);
+				D3D9RenderView* pD3DView = dynamic_cast<D3D9RenderView*>(pTarget);
+				if (pD3DTarget != nullptr)
+				{
+					pD3DTarget->OnDeviceReset();
+				}
+				if (pD3DView != nullptr)
+				{
+					pD3DView->OnDeviceReset();
+				}
+			}
+
+			return false;
 		}
 		break;
 	}
+	return true;
 }
 
 void D3D9RenderSystem::OnFrameEnd()
 {
 
+}
+
+stD3DVertexBuffDecal* D3D9RenderSystem::GetVertexDecal(std::vector<VertexData::VertexDataDesc>& decl)
+{
+	return nullptr;
 }

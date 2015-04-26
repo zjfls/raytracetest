@@ -1,0 +1,27 @@
+
+struct PS_OUTPUT
+{
+	float4 Color:Color0;
+};
+struct PS_INPUT
+{
+    float2	TC		  		: TEXCOORD0;
+};
+
+sampler sourceTex:register( s0 ) = sampler_state
+{
+    Texture   = NULL;
+    AddressU = Wrap;
+    AddressV = Wrap;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+};
+PS_OUTPUT pMain(PS_INPUT input)
+{
+	PS_OUTPUT output;
+	output.Color = 0.0f;
+	output.Color.rgb = tex2D(sourceTex,input.TC);
+	//output.Color = pow(output.Color,1.0f/2.2f);
+	return output;
+}

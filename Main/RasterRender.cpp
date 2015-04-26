@@ -92,12 +92,17 @@ void RasterRender::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 	m_TargetGroup.m_Map[nIndex] = pTarget;
 }
 
-void RasterRender::SetRenderTargetGroup()
+void RasterRender::SetRenderTargetGroup(RenderTargetGroup* pTargetGroup)
 {
-	for each (std::pair<int,IRenderTarget*> p in m_TargetGroup.m_Map)
+	for each (std::pair<int, IRenderTarget*> p in pTargetGroup->m_Map)
 	{
 		SetRenderTarget(p.first, p.second);
 	}
+}
+
+void RasterRender::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat)
+{
+	
 }
 
 //void RasterRender::SetRenderStageState(ERENDERTYPEFILTER eFillter)

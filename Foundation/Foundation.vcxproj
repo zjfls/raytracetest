@@ -94,6 +94,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StrUtil.h" />
+    <ClInclude Include="threadmutex.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="VertexData.h" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClCompile Include="IListenerSubject.cpp" />
     <ClCompile Include="IndexData.cpp" />
     <ClCompile Include="StrUtil.cpp" />
+    <ClCompile Include="threadmutex.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="VertexData.cpp" />
   </ItemGroup>
