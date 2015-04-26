@@ -317,7 +317,7 @@
             <Transform>
                 <Translation x="0" y="35.756111" z="-1.5629493e-006"/>
                 <Rotation x="0" y="0" z="0"/>
-                <Scale x="5" y="5" z="5"/>
+                <Scale x="1" y="1" z="1"/>
             </Transform>
         </WorldObj>
     </WorldObj>
@@ -325,10 +325,10 @@
         <Transform>
             <Translation x="0" y="0" z="0"/>
             <Rotation x="0" y="0" z="0"/>
-            <Scale x="3" y="3" z="3"/>
+            <Scale x="1" y="1" z="1"/>
         </Transform>
         <Mesh refPath="./data/mesh/Env_rock_on_Dolchin_Env_rock_for_tower_MAT_INST.mesh">
-            <Material refPath="./data/prefab/Env_rock_for_tower_MAT_INST2.smat.xml"/>
+            <Material refPath="./data/material/Env_rock_for_tower_MAT_INST.smat.xml"/>
         </Mesh>
         <Mesh refPath="./data/mesh/Env_rock_on_Dolchin_material_1.mesh">
             <Material refPath="./data/material/material_1.smat.xml"/>

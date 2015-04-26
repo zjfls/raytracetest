@@ -23,7 +23,7 @@ private:
 
 private:
 	//IRender*	m_pDefaultRender;
-	RenderView*	m_pDefaultRenderView;
+	//RenderView*	m_pDefaultRenderView;
 	RenderSystem* m_pDefualtRenderSystem;
 
 	std::unordered_map<string, RenderSystem*> m_mapRenderSystem;

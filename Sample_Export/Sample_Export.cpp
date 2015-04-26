@@ -59,7 +59,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	AssetManager::GetInstance()->Init();
 	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/fbx/plane.fbx");
 	//return 0;
-	DirectoryList("H:\\github\\raytracetest\\data\\fbx\\");
+	DirectoryList(".\\data\\fbx\\");
 	std::cout << std::endl;
 	system("pause");
 	

@@ -16,8 +16,9 @@ float3 CalLight(SurfaceOutput o,float atten,float3 viewDir,float3 lightDir,float
 	float 	hdn = saturate(dot(Hn,o.Normal)) ;
     float 	ldn = saturate(dot(lightDir,o.Normal));
     float3 spec = pow (hdn, o.SpecularPower) * o.SpecularColor * ldn;
+//return float4(o.Normal,1.0f);
     //return ldn;
-    //return o.DiffuseColor;
+   // return o.DiffuseColor;
   	return (o.DiffuseColor * ldn + spec) * lightIntensity * lightColor;
 
     

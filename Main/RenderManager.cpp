@@ -61,6 +61,10 @@ bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
 			m_pDefualtRenderSystem->m_pDefaultRenderTarget = pRenderTarget;
 		}
 	}
+	else
+	{
+		m_pDefualtRenderSystem->m_pDefaultRenderTarget = m_pDefualtRenderSystem->m_pDefaultRenderView;
+	}
 	pRenderPath->InitTargetBuffer();
 
 	LoadShaderChunk();
