@@ -11,12 +11,12 @@ ModuleBase::~ModuleBase()
 {
 }
 
-void ModuleBase::OnLateUpdate()
+void ModuleBase::OnLateUpdate(std::shared_ptr<ModuleBase> pModule)
 {
 
 }
 
-void ModuleBase::Update()
+void ModuleBase::Update(std::shared_ptr<ModuleBase> pModule)
 {
 
 }

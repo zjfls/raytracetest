@@ -1,6 +1,7 @@
 
 #pragma once
-
+class IWorldObj;
+class ModuleBase;
 class CPropertiesToolBar : public CMFCToolBar
 {
 public:
@@ -19,7 +20,9 @@ public:
 	CPropertiesWnd();
 
 	void AdjustLayout();
-
+	void UpdateWorldObjProperty(shared_ptr<IWorldObj> pObj);
+private:
+	void AddModule(shared_ptr<ModuleBase> pModule);
 // Ьиад
 public:
 	void SetVSDotNetLook(BOOL bSet)
@@ -27,7 +30,7 @@ public:
 		m_wndPropList.SetVSDotNetLook(bSet);
 		m_wndPropList.SetGroupNameFullWidth(bSet);
 	}
-
+	
 protected:
 	CFont m_fntPropList;
 	CComboBox m_wndObjectCombo;

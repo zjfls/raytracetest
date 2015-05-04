@@ -8,12 +8,12 @@ struct PS_INPUT
 	float3	WorldEyeVec		: TEXCOORD5;
 };
 //float3 VIEW_POS;
-static const float4 ambientColor = {0.0f,0.0f,0.0f,1.0f};
+static const float4 ambientColor = {0.1f,0.1f,0.1f,1.0f};
 static const float3 lightDir = {0.0f,1.0f,-1.0f};
-static const float4	lightColor = {0.2f,0.2f,0.2f,1.0f};
-static const float	lightIntensity = 12.0f;
-static const float	Ks = 1.0f;
-static const float	Kd = 0.6f;
+static const float4	lightColor = {0.7f,0.7f,0.7f,1.0f};
+static const float	lightIntensity = 0.5f;
+static const float	Ks = 0.5f;
+static const float	Kd = 1.0f;
 static const float SpecExpon = 32.0f;
 //
 sampler DiffuseColor = sampler_state
@@ -46,22 +46,20 @@ float4 pMain(PS_INPUT input):Color0
 	//???????
 	float3	Hn = normalize(lightDirNomralize + viewDir);
 	float hdn = saturate(dot(Hn,Nb));
-    float ldn = saturate(dot(lightDir,Nb));
+    float ldn = saturate(dot(lightDirNomralize,Nb));
 	float4 litV = lit(ldn,hdn,SpecExpon);
 	float3 incident =    litV.y * lightColor.rgb;
-    float3 diffContrib = incident * Kd;
+    float3 diffContrib = incident;
     float3 specContrib = litV.z * gloss * lightColor.rgb;
 	//
-	//float4 radianceColor = ambientColor + dot(Nb,lightDirNomralize)* lightColor * lightIntensity;
-	//output.Color.rgb = tex2D(DiffuseColor, input.TC).rgb * radianceColor;
-	//output.Color.rgb = abs(Nn);
 	float4 texColor = tex2D(DiffuseColor,input.TC);
 	
 	
 	
 	float4 outputColor;
-	outputColor.rgb = (ambientColor + diffContrib) * Kd* texColor.rgb + specContrib;
+	outputColor.rgb = (ambientColor + diffContrib) * Kd * texColor.rgb + specContrib;
 	//output.Color.rgb = diffContrib;
 	outputColor.a = texColor.a;
+	//return float4(specContrib,1.0f);
 	return outputColor;
 }

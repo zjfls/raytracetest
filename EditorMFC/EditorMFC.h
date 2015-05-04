@@ -13,18 +13,21 @@
 // CEditorMFCApp:
 // 有关此类的实现，请参阅 EditorMFC.cpp
 //
-
-class CEditorMFCApp : public CWinAppEx
+#include "IListener.h"
+class CEditorMFCApp : public CWinAppEx,public IListener
 {
 public:
 	CEditorMFCApp();
+	virtual ~CEditorMFCApp();
+
+
 
 
 // 重写
 public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
-
+	virtual void OnNotify(string msg, std::shared_ptr<IListenerSubject> pSubject);
 // 实现
 	COleTemplateServer m_server;
 		// 用于文档创建的服务器对象
@@ -38,6 +41,8 @@ public:
 	virtual int		Run();
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+
+
 };
 
 extern CEditorMFCApp theApp;

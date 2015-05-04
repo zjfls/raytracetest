@@ -29,9 +29,9 @@ bool Mesh::HasSkinInfo() const
 	return m_pVertexData->nBoneNum > 0;
 }
 
-ModuleBase* Mesh::Clone()
+shared_ptr<ModuleBase> Mesh::Clone()
 {
-	Mesh* pCloneMesh = new Mesh;
+	shared_ptr<Mesh> pCloneMesh = shared_ptr<Mesh>(new Mesh);
 	pCloneMesh->m_pSharedMaterial = m_pSharedMaterial;
 	if (m_pSharedMaterial != nullptr)
 	{

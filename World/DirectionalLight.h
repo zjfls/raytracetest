@@ -7,9 +7,9 @@ public:
 	virtual ~DirectionalLight();
 	virtual float GetIrradiance(const Vector3& vecWorldPosition, const Vector3& vecNormal);
 	virtual Vector3  GetLightDirection(const Vector3& vecWorldPosition);
-	virtual ModuleBase* Clone()
+	virtual shared_ptr<ModuleBase> Clone()
 	{ 
-		DirectionalLight* pLight = new DirectionalLight;
+		shared_ptr<DirectionalLight> pLight = shared_ptr<DirectionalLight>(new DirectionalLight);
 		pLight->m_strName = m_strName;
 		pLight->m_bCastShadow = m_bCastShadow;
 		pLight->m_Color = m_Color;

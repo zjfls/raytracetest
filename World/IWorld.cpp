@@ -6,7 +6,7 @@
 
 IWorld::IWorld()
 {
-	m_pRoot = new IWorldObj();
+	m_pRoot = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
 }
 
 
@@ -23,20 +23,20 @@ void IWorld::Update()
 	}
 }
 
-std::vector<IRenderable*> IWorld::GetAllRenderables()
+std::vector<shared_ptr<IRenderable>> IWorld::GetAllRenderables()
 {
-	std::vector<IRenderable*> vecRenderables;
+	std::vector<shared_ptr<IRenderable>> vecRenderables;
 	m_pRoot->GetRenderableRecursive(vecRenderables);
 	return vecRenderables;
 }
 
-void IWorld::GetRenderablesLightInfo(std::vector<IRenderable*>& vec)
+void IWorld::GetRenderablesLightInfo(std::vector<shared_ptr<IRenderable>>& vec)
 {
-	std::vector<LightBase*> vecLight = GetAllModules<LightBase>();
-	for each (IRenderable* pRenderable in vec)
+	std::vector<shared_ptr<LightBase>> vecLight = GetAllModules<LightBase>();
+	for each (shared_ptr<IRenderable> pRenderable in vec)
 	{
 		pRenderable->m_vecLight.clear();
-		for each (LightBase* pLight in vecLight)
+		for each (shared_ptr<LightBase> pLight in vecLight)
 		{
 			pRenderable->m_vecLight.push_back(pLight);
 		}

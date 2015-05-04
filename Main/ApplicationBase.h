@@ -25,8 +25,9 @@ protected:
 protected:
 	int m_argc;
 	char** m_argv;
-	IWorld* m_pWorld;
 	stRenderViewInfo m_RenderViewInfo;
 	RenderView* m_pRenderView;
+public:
+	shared_ptr<IWorld> m_pWorld;
 };
 

@@ -26,14 +26,14 @@ public:
 	virtual void Render(IRenderable* pRender);
 	//
 	//
-	virtual int Render(std::vector<IRenderable*>& pRenderableList, IRenderTarget* pTarget);
+	virtual int Render(std::vector<shared_ptr<IRenderable>>& pRenderableList, IRenderTarget* pTarget);
 	//
-	virtual int Render(CameraBase* pCammera, IWorld* pWorld,IRenderTarget* pTarget);
+	virtual int Render(shared_ptr<CameraBase> pCammera, shared_ptr<IWorld> pWorld,IRenderTarget* pTarget);
 
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void UpdateProjCamera(CameraBase* pCamera) = 0;
+	virtual void UpdateProjCamera(shared_ptr<CameraBase> pCamera) = 0;
 	virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff) = 0;
 	virtual bool SetVertexShader(HardwareVertexShader* pVertexShader) = 0;
 	virtual bool SetFragShader(HardwareFragShader* pFragShader) = 0;
@@ -62,7 +62,7 @@ public:
 	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat = nullptr);
 	//
 protected:
-	void	GetRenderables(std::vector<IRenderable*>& vecRenderableIn, std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter);
+	void	GetRenderables(std::vector<std::shared_ptr<IRenderable>>& vecRenderableIn, std::vector<std::shared_ptr<IRenderable>>& vecRenderable, ERENDERTYPEFILTER eFillter);
 	//virtual	void	SetRenderStageState(ERENDERTYPEFILTER eFillter);
 protected:
 	const RenderPath* m_pRenderPath;

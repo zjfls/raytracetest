@@ -27,7 +27,7 @@ public:
 	*Return : int if success return 0
 
 	*/
-	virtual int Render(CameraBase* pCammera, IWorld* pWorld,IRenderTarget* pTarget) = 0;
+	virtual int Render(shared_ptr<CameraBase> pCammera, shared_ptr<IWorld> pWorld,IRenderTarget* pTarget) = 0;
 	/*
 
 	*Summary: render a renderable
@@ -39,7 +39,7 @@ public:
 	*Return : void
 
 	*/
-	virtual void Render(IRenderable* pRenderable){};
+	virtual void Render(shared_ptr<IRenderable> pRenderable){};
 	//
 	virtual void	SetRenderTarget(int nIndex,IRenderTarget* pTarget);
 	//
@@ -50,10 +50,10 @@ public:
 
 
 private:
-	void SetCurrentRenderCamera(CameraBase* pCamera);
+	void SetCurrentRenderCamera(shared_ptr<CameraBase> pCamera);
 
 protected:
-	CameraBase* m_pCurrentRenderCamera;
+	shared_ptr<CameraBase> m_pCurrentRenderCamera;
 
 	friend class CameraBase;
 	friend class RenderState;

@@ -21,7 +21,7 @@ protected:
 	virtual bool CreateAppWindow();
 private:
 	static long __stdcall WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp);
-	IWorldObj*				m_pTargetObj;
+	shared_ptr<IWorldObj>				m_pTargetObj;
 };
 
 extern template class MAIN_API  Singleton < D3D9Application >;

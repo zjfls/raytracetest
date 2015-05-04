@@ -82,7 +82,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	{
 		return pAsset;
 	}
-	IWorldObj* pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
+	shared_ptr<IWorldObj> pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
 
 
 	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + name + ".prefab.xml");
@@ -92,17 +92,18 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	return pAsset;
 }
 
-IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj* pParent, IWorldObj* pSkeletonObj)
+shared_ptr<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> pParent, shared_ptr<IWorldObj> pSkeletonObj)
 {
 	refPath = refPath + "/" + pNode->GetName() + ".mesh";
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
-	IWorldObj* pObj = new IWorldObj;
+	shared_ptr<IWorldObj> pObj = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
 	pObj->m_strName = pNode->GetName();
 	FbxTransform nodeTrans = pNode->GetTransform();
 	FbxDouble3 trans = pNode->LclTranslation.Get();
 	FbxDouble3 rot = pNode->LclRotation.Get();
 	FbxDouble3 scal = pNode->LclScaling.Get();
-	Transform* pTransform = (Transform*)pObj->GetModule(0);
+
+	shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(pObj->GetModule(0));
 	pTransform->SetTranslate((float)trans.mData[0], (float)trans.mData[2], (float)trans.mData[1]);
 	pTransform->SetScale((float)scal.mData[0], (float)scal.mData[2], (float)scal.mData[1]);
 	pTransform->SetOrientation((float)rot.mData[0], (float)rot.mData[2], (float)rot.mData[1]);
@@ -141,7 +142,7 @@ IWorldObj* FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, IWorldObj*
 	for (int i = 0; i < nChild; ++i)
 	{
 		FbxNode* pChildNode = pNode->GetChild(i);
-		IWorldObj* pChild = ProcessNode(pChildNode, refPath, nullptr, pSkeletonObj);
+		shared_ptr<IWorldObj> pChild = ProcessNode(pChildNode, refPath, nullptr, pSkeletonObj);
 		pObj->addChild(pChild);
 	}
 	return pObj;
@@ -156,7 +157,7 @@ struct stSkinInfo
 	int m_nIndex;
 	float m_fWeight;
 };
-shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, IWorldObj* obj, IWorldObj* pSkeletonObj)
+shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> obj, shared_ptr<IWorldObj> pSkeletonObj)
 {
 	FbxMesh* pMesh = pNode->GetMesh();
 	for each (FbxMesh* pM in vecMeshList)
@@ -182,7 +183,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 
 
 
-	IWorldObj* pModuleOwener = obj;
+	shared_ptr<IWorldObj> pModuleOwener = obj;
 	//
 
 
@@ -478,8 +479,8 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 #pragma region CalTangent
 #pragma endregion
 #pragma region AddMeshResource
-	Mesh* pMeshModule;
-	pMeshModule = pModuleOwener->addModule<Mesh>();
+	shared_ptr<Mesh> pMeshModule;
+	pMeshModule = pModuleOwener->addModule<Mesh>(pModuleOwener);
 	pMeshModule->SetMeshResource(pMeshResource);
 	EnumIndexDesc eIndexDesc = EIndexInt;
 	int nIndexLength = indexVec.size();
@@ -768,7 +769,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		string subRefPath = strMeshPath + meshName + "_" + pMat->GetName() + ".mesh";
 		shared_ptr<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
 		m_pAsset->AddResource(subRefPath, pSubMesh);
-		Mesh* pSubMeshModule = obj->addModule<Mesh>();
+		shared_ptr<Mesh> pSubMeshModule = obj->addModule<Mesh>(obj);
 		pSubMeshModule->SetMeshResource(pSubMesh);
 		bRemoveMainMesh = true;
 		//
@@ -876,7 +877,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	return pMeshResource;
 }
 
-IWorldObj* FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, IWorldObj* pObj /*= nullptr*/)
+shared_ptr<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> pObj /*= nullptr*/)
 {
 	FbxSkeleton* pSke = pNode->GetSkeleton();
 	if (m_mapSkeleton.find(pSke) != std::end(m_mapSkeleton))

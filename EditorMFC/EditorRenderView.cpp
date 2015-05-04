@@ -31,3 +31,18 @@ void EditorRenderView::Resize(unsigned int nWidth, unsigned int nHeight)
 {
 	m_pRenderView->Resize(nWidth, nHeight);
 }
+
+void EditorRenderView::OnMouseMove(Vector2& pt)
+{
+
+}
+
+void EditorRenderView::OnMouseWheel(short zDelta, Vector2& pt)
+{
+
+}
+
+void EditorRenderView::OnMouseLButtonDown(Vector2& pt)
+{
+
+}

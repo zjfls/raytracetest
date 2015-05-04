@@ -2,4 +2,4 @@
 #include <mutex>
 
 
-//extern FOUNDATION_API std::mutex g_SingletonMutex;
+extern FOUNDATION_API std::mutex g_SingletonMutex;

@@ -12,7 +12,11 @@
 #include "EditorMFCDoc.h"
 #include "EditorMFCView.h"
 #include "EditorApplication.h"
-
+#include "RenderManager.h"
+#include "RenderSystem.h"
+#include "MainFrm.h"
+#include "SceneTreeView.h"
+#include <memory>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -186,8 +190,9 @@ BOOL CEditorMFCApp::InitInstance()
 	}
 	//
 	EditorApplication::GetInstance()->SetWindowID((int)pMainFrame->m_hWnd);
+	EditorApplication::GetInstance()->m_pEditorApp = this;
 	EditorApplication::GetInstance()->Init(0, nullptr);
-
+	
 	// 调度在命令行中指定的命令。  如果
 	// 用 /RegServer、/Register、/Unregserver 或 /Unregister 启动应用程序，则返回 FALSE。
 	if (!ProcessShellCommand(cmdInfo))
@@ -302,13 +307,32 @@ int CEditorMFCApp::Run()
 		LONG lIdle = 0;
 		while (AfxGetApp()->OnIdle(lIdle++));
 
-
+		
 		EditorApplication::GetInstance()->Run();
+		
 		// Perform some background processing here  
 		// using another call to OnIdle
 	}
 
 	return 0;
+}
+
+void CEditorMFCApp::OnNotify(string msg, std::shared_ptr<IListenerSubject> pSubject)
+{
+	CMainFrame* pFrm = (CMainFrame*)m_pMainWnd;
+	if (msg == "InitScene")
+	{
+		pFrm->m_wndSceneTreeView.InitSceneTreeView();
+	}
+	if (msg == "SelectChange")
+	{
+		pFrm->m_wndProperties.UpdateWorldObjProperty(EditorApplication::GetInstance()->m_SelectObj);
+	}
+}
+
+CEditorMFCApp::~CEditorMFCApp()
+{
+
 }
 
 // CEditorMFCApp 消息处理程序

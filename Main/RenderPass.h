@@ -25,7 +25,7 @@ public:
 
 
 
-	void Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGESHADERTYPE eShaderType, const RenderStateCollection& mapStates);
+	void Render(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderable, ESTAGESHADERTYPE eShaderType, const RenderStateCollection& mapStates);
 	shared_ptr<VertexShader> m_pVertexShader;
 	shared_ptr<FragShader>	m_pFragShader;
 
@@ -34,12 +34,12 @@ public:
 
 private:
 	//build args like matrix bone
-	void BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderabl, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
+	void BuildShaderArgs(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderabl, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
 	void SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates);
 	void SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
-	void SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn);
+	void SetBuiltInArgs(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn);
 
-	void SetPerLightArg(RasterRender* pRender, LightBase* pLight, HardwareFragShader* pFragShader,FragShaderDesc& desc);
+	void SetPerLightArg(RasterRender* pRender, shared_ptr<LightBase> pLight, HardwareFragShader* pFragShader,FragShaderDesc& desc);
 
 
 

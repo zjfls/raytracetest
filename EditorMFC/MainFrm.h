@@ -90,6 +90,8 @@ protected:
 	CMFCOutlookBarTabCtrl* FindOutlookParent(CWnd* pWnd);
 	CMFCOutlookBarTabCtrl* m_pCurrOutlookWnd;
 	CMFCOutlookBarPane*    m_pCurrOutlookPage;
+	friend class CEditorMFCApp;
+	friend class CSceneTreeView;
 };
 
 

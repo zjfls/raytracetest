@@ -140,7 +140,7 @@ void FbxAppImporter::ImportPrefab(shared_ptr<PrefabResource> pPrefab, string pat
 	doc.SaveFile(path.c_str());
 }
 
-void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XMLElement* elem)
+void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,shared_ptr<IWorldObj> pObj, XMLElement* elem)
 {
 	if (pObj == nullptr || elem == nullptr)
 	{
@@ -150,8 +150,8 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 	unsigned int nModuleCount = pObj->GetModuleCount();
 	for (unsigned int i = 0; i < nModuleCount; ++i)
 	{
-		ModuleBase* pModule = pObj->GetModule(i);
-		Transform* pTrans = dynamic_cast<Transform*>(pModule);
+		shared_ptr<ModuleBase> pModule = pObj->GetModule(i);
+		shared_ptr<Transform> pTrans = dynamic_pointer_cast<Transform>(pModule);
 		if (pTrans != nullptr)
 		{
 			XMLElement* pElemTrans = doc.NewElement("Transform");
@@ -159,7 +159,7 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 			elem->LinkEndChild(pElemTrans);
 			continue;
 		}
-		Mesh* pMesh = dynamic_cast<Mesh*>(pModule);
+		shared_ptr<Mesh> pMesh = dynamic_pointer_cast<Mesh>(pModule);
 		if (pMesh != nullptr)
 		{
 			XMLElement* pElementMesh = doc.NewElement("Mesh");
@@ -174,7 +174,7 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 	unsigned int nChildCount = pObj->GetChildCount();
 	for (unsigned int i = 0; i < nChildCount; ++i)
 	{
-		IWorldObj* pChild = pObj->GetChild(i);
+		shared_ptr<IWorldObj> pChild = pObj->GetChild(i);
 		XMLElement* pChildElem = doc.NewElement("WorldObj");
 		elem->LinkEndChild(pChildElem);
 		PrefabProcessWorldObj(doc, pChild, pChildElem);
@@ -182,7 +182,7 @@ void FbxAppImporter::PrefabProcessWorldObj(XMLDocument& doc,IWorldObj* pObj, XML
 	//for (int i = 0;)
 }
 
-void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* pMesh, tinyxml2::XMLElement* pElem)
+void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, shared_ptr<Mesh> pMesh, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
 	if (pMesh->m_pSharedMaterial == nullptr)
@@ -195,7 +195,7 @@ void FbxAppImporter::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, Mesh* p
 	PrefabProcessMaterial(doc, dynamic_pointer_cast<RasterMaterial>(pMesh->m_pSharedMaterial), pMatElem);
 }
 
-void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem)
+void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, shared_ptr<Transform> pTrans, tinyxml2::XMLElement* pElem)
 {
 	Vector3 translate = pTrans->GetLocalTranslate();
 	Vector3 scale = pTrans->GetScale();

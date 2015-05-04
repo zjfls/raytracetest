@@ -8,7 +8,7 @@ class WORLD_API SkeletonModule :public ModuleBase
 public:
 	SkeletonModule();
 	virtual ~SkeletonModule();
-	void	AddMesh(Mesh* pMesh);
+	void	AddMesh(shared_ptr<Mesh> pMesh);
 
 
 	//void	SetSkeletonResource(shared_ptr<SkeletonResource> pRes,bool bGenerateObj = true);
@@ -16,7 +16,7 @@ private:
 	void	GenerateSkeletonObj();
 private:
 	SkeletonObj* m_pSkeletonRoot;
-	std::vector<Mesh*> m_MeshVec;
+	std::vector<shared_ptr<Mesh>> m_MeshVec;
 	shared_ptr<SkeletonResource> m_pSkeRes;
 	string m_strSkeleton;
 };

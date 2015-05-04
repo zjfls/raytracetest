@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 class IListenerSubject;
 class FOUNDATION_API IListener
 {
@@ -7,6 +8,6 @@ public:
 	virtual ~IListener();
 
 
-	virtual void OnNotify(string msg,IListenerSubject* pSubject) = 0;
+	virtual void OnNotify(string msg,std::shared_ptr<IListenerSubject> pSubject) = 0;
 };
 

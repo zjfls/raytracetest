@@ -59,7 +59,7 @@ bool ApplicationBase::Init(int argc, char** argv)
 
 
 
-	m_pWorld = new IWorld;
+	m_pWorld = shared_ptr<IWorld>(new IWorld);
 	OnInit();
 	SetupScene();
 	if (m_pWorld != nullptr)

@@ -6,7 +6,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sun Apr 26 14:53:35 2015
+/* at Fri May 01 23:45:00 2015
  */
 /* Compiler settings for EditorMFC.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 

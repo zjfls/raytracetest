@@ -13,7 +13,8 @@ public:
 // й╣ож
 public:
 	virtual ~COutputList();
-
+	//virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
+	
 protected:
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnEditCopy();

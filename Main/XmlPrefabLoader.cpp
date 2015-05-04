@@ -29,7 +29,7 @@ IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLDocument doc;
 	doc.LoadFile(path.c_str());
 	XMLElement* pElem = doc.FirstChildElement("WorldObj");
-	IWorldObj* pRoot = new IWorldObj;
+	shared_ptr<IWorldObj> pRoot = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
 	ProcessWorldObjElem(pElem, pRoot);
 
 	//Prefab* pPrefab = new Prefab;
@@ -40,7 +40,7 @@ IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
 	return pPrefabAsset;
 }
 
-void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, IWorldObj* pObj) const
+void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, shared_ptr<IWorldObj> pObj) const
 {
 	//char temp[128];
 	pObj->m_strName = pElem->Attribute("name");
@@ -59,7 +59,7 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, IWorldObj* pObj) co
 		}
 		else if (name == "WorldObj")
 		{
-			IWorldObj* pChild = new IWorldObj;
+			shared_ptr<IWorldObj> pChild = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
 			pObj->addChild(pChild);
 			ProcessWorldObjElem(pChildElem, pChild);
 		}
@@ -68,7 +68,7 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, IWorldObj* pObj) co
 
 }
 
-void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, IWorldObj* pObj) const
+void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, shared_ptr<IWorldObj> pObj) const
 {
 	//XMLElement* pTransform = pElem->FirstChildElement("Transform");
 	XMLElement* pTrans = pElem->FirstChildElement("Translation");
@@ -87,16 +87,16 @@ void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, IWorldOb
 	pScale->QueryFloatAttribute("y", &s.m_fy);
 	pScale->QueryFloatAttribute("z", &s.m_fz);
 
-	Transform* trans = pObj->m_pTransform;
+	shared_ptr<Transform> trans = pObj->m_pTransform;
 	trans->SetTranslate(t);
 	trans->SetScale(s.m_fx, s.m_fy, s.m_fz);
 	trans->SetOrientation(r.m_fx, r.m_fy, r.m_fz);
 }
 
-void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, IWorldObj* pObj) const
+void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, shared_ptr<IWorldObj> pObj) const
 {
 	string path = pElem->Attribute("refPath");
-	Mesh* pMesh = pObj->addModule<Mesh>();
+	shared_ptr<Mesh> pMesh = pObj->addModule<Mesh>(pObj);
 	shared_ptr<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	if (pMeshRes == nullptr)
 	{

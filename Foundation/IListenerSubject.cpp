@@ -12,7 +12,7 @@ IListenerSubject::~IListenerSubject()
 {
 }
 
-void IListenerSubject::AddListener(string strName, IListener* pListener)
+void IListenerSubject::AddListener(string strName, std::shared_ptr<IListener> pListener)
 {
 	if (m_mapListener.find(strName) != std::end(m_mapListener))
 	{
@@ -29,9 +29,9 @@ void IListenerSubject::RemoveListener(string strName)
 	//}
 }
 
-void IListenerSubject::NotifyListener(string msg, IListenerSubject* pSubject)
+void IListenerSubject::NotifyListener(string msg, shared_ptr<IListenerSubject> pSubject)
 {
-	for each (std::pair<string,IListener*> p in m_mapListener)
+	for each (std::pair<string,std::shared_ptr<IListener>> p in m_mapListener)
 	{
 		p.second->OnNotify(msg, pSubject);
 	}

@@ -15,6 +15,6 @@ protected:
 	RayTraceApplication();
 	friend class Singleton<RayTraceApplication>;
 private:
-	RayTraceCamera* m_pCamera;
+	shared_ptr<RayTraceCamera> m_pCamera;
 };
 

@@ -35,7 +35,7 @@ RenderPass::~RenderPass()
 {
 }
 
-void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)
+void RenderPass::Render(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)
 {	
 
 
@@ -94,7 +94,7 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 	else if (ESTAGESHADERRADIANCEONLIGHTING)
 	{
 		int index = 0;
-		for each (LightBase* pLight in pRenderable->m_vecLight)
+		for each (shared_ptr<LightBase> pLight in pRenderable->m_vecLight)
 		{
 			if (index != 0)//index 0 render ambient
 			{
@@ -149,7 +149,7 @@ void RenderPass::Render(RasterRender* pRender, IRenderable* pRenderable, ESTAGES
 
 }
 
-void RenderPass::BuildShaderArgs(RasterRender* pRender, IRenderable* pRenderable, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
+void RenderPass::BuildShaderArgs(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderable, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
 {
 	m_VertexShaderArgs.clear();
 	m_FragShaderArgs.clear();
@@ -224,7 +224,7 @@ void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVert
 	}
 }
 
-void RenderPass::SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
+void RenderPass::SetBuiltInArgs(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
 {
 
 
@@ -312,7 +312,7 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, IRenderable* pRenderable,
 	}
 }
 
-void RenderPass::SetPerLightArg(RasterRender* pRender, LightBase* pLight, HardwareFragShader* pFragShader, FragShaderDesc& desc)
+void RenderPass::SetPerLightArg(RasterRender* pRender, shared_ptr<LightBase> pLight, HardwareFragShader* pFragShader, FragShaderDesc& desc)
 {
 	GameColor c = pLight->m_Color;
 	Vector4 vec;
@@ -337,14 +337,14 @@ void RenderPass::SetPerLightArg(RasterRender* pRender, LightBase* pLight, Hardwa
 	//
 	if (pLight->m_eLightType == EDIRLIGHT)
 	{
-		DirectionalLight* pDirLight = (DirectionalLight*)pLight;
+		shared_ptr<DirectionalLight> pDirLight = dynamic_pointer_cast<DirectionalLight>(pLight);
 		Vector3 dir = -pDirLight->m_pOwnerObj->m_pTransform->GetForward();
 		Vector4 v = Vector4( dir.m_fx, dir.m_fy, dir.m_fz ,0.0f);
 		pFragShader->SetVector("GAMELIGHTDIR", v);
 	}
 	else if (pLight->m_eLightType == EPOINTLIGHT)
 	{
-		PointLight* pPointLight = (PointLight*)pLight;
+		shared_ptr<PointLight> pPointLight = dynamic_pointer_cast<PointLight>(pLight);
 		Vector3 position = pPointLight->m_pOwnerObj->m_pTransform->GetWorldTranslate();
 		Vector4 v = Vector4(position.m_fx, position.m_fy, position.m_fz, 1.0f);
 		pFragShader->SetVector("GAMELIGHTPOS", v);

@@ -16,13 +16,13 @@ public:
 	virtual void Update();
 	shared_ptr<MaterialResource> m_pMaterialInstance;
 	shared_ptr<MaterialResource> m_pSharedMaterial;
-	virtual ModuleBase* Clone(){ return nullptr; };
+	virtual shared_ptr<ModuleBase> Clone(){ return nullptr; };
 protected:
 	VertexData* m_pVertexData;
 	IndexData* m_pIndexData;
 
 	friend class RenderPass;
 public:
-	std::vector<LightBase*> m_vecLight;
+	std::vector<shared_ptr<LightBase>> m_vecLight;
 };
 

@@ -5,41 +5,34 @@
 IWorldObj::IWorldObj()
 	:m_pParent(nullptr)
 {
-	//m_pTransform = new Transform;
-	m_pTransform = (Transform*)addModule<Transform>();
+	
+	//m_pTransform = addModule<Transform>(nullptr);
 }
 
 
 IWorldObj::~IWorldObj()
 {
-	for each (ModuleBase* var in m_vecModules)
-	{
-		delete var;
-	}
-	for each (IWorldObj* var in m_vecChildren)
-	{
-		delete var;
-	}
+
 }
 
-bool IWorldObj::addChild(IWorldObj* pObj)
+bool IWorldObj::addChild(shared_ptr<IWorldObj> pObj)
 {
 	assert(pObj->m_pParent == nullptr);
-	for each (IWorldObj* var in m_vecChildren)
+	for each (shared_ptr<IWorldObj> var in m_vecChildren)
 	{
 		if (var == pObj)
 		{ 
 			return false;
 		}
 	}
-	pObj->m_pParent = this;
+	pObj->m_pParent = shared_ptr<IWorldObj>(this);
 	m_vecChildren.push_back(pObj);
 	return true;
 }
 
-bool IWorldObj::removeChild(IWorldObj* pObj)
+bool IWorldObj::removeChild(shared_ptr<IWorldObj> pObj)
 {
-	std::vector<IWorldObj*>::iterator iter;
+	std::vector<shared_ptr<IWorldObj>>::iterator iter;
 	for (iter = m_vecChildren.begin(); iter != m_vecChildren.end(); ++iter)
 	{
 		if (*iter == pObj)
@@ -52,14 +45,13 @@ bool IWorldObj::removeChild(IWorldObj* pObj)
 	return false;
 }
 
-bool IWorldObj::removeModule(ModuleBase* pModule)
+bool IWorldObj::removeModule(shared_ptr<ModuleBase> pModule)
 {
-	std::vector<ModuleBase*>::iterator iter = m_vecModules.begin();
+	std::vector<shared_ptr<ModuleBase>>::iterator iter = m_vecModules.begin();
 	for (; iter != m_vecModules.end(); ++iter)
 	{
 		if (*iter == pModule)
 		{
-			pModule->m_pOwnerObj = nullptr;
 			m_vecModules.erase(iter);
 			return true;
 		}
@@ -69,27 +61,27 @@ bool IWorldObj::removeModule(ModuleBase* pModule)
 
 void IWorldObj::Update()
 {
-	for each (ModuleBase* var in m_vecModules)
+	for each (shared_ptr<ModuleBase> var in m_vecModules)
 	{
-		var->Update();
+		var->Update(var);
 	}
-	for each (IWorldObj* varChild in m_vecChildren)
+	for each (shared_ptr<IWorldObj> varChild in m_vecChildren)
 	{
 		varChild->Update();
 	}
 }
 
-void IWorldObj::GetRenderableRecursive(std::vector<IRenderable*>& vecRenderabls)
+void IWorldObj::GetRenderableRecursive(std::vector<shared_ptr<IRenderable>>& vecRenderabls)
 {
-	for each (ModuleBase*  var in m_vecModules)
+	for each (shared_ptr<ModuleBase>  var in m_vecModules)
 	{
-		IRenderable* pRenderable = dynamic_cast<IRenderable*>(var);
+		shared_ptr<IRenderable> pRenderable = dynamic_pointer_cast<IRenderable>(var);
 		if (pRenderable != nullptr)
 		{
 			vecRenderabls.push_back(pRenderable);
 		}
 	}
-	for each (IWorldObj* var in m_vecChildren)
+	for each (shared_ptr<IWorldObj> var in m_vecChildren)
 	{
 		var->GetRenderableRecursive(vecRenderabls);
 	}
@@ -100,7 +92,7 @@ unsigned int IWorldObj::GetModuleCount() const
 	return m_vecModules.size();
 }
 
-ModuleBase* IWorldObj::GetModule(int i) const
+shared_ptr<ModuleBase> IWorldObj::GetModule(int i) const
 {
 	if (i >= m_vecModules.size() || i < 0)
 	{
@@ -114,7 +106,7 @@ unsigned int IWorldObj::GetChildCount() const
 	return m_vecChildren.size();
 }
 
-IWorldObj* IWorldObj::GetChild(int i) const
+shared_ptr<IWorldObj> IWorldObj::GetChild(unsigned int i) const
 {
 	if (i > m_vecChildren.size() || i < 0)
 	{
@@ -123,20 +115,18 @@ IWorldObj* IWorldObj::GetChild(int i) const
 	return m_vecChildren[i];
 }
 
-IWorldObj* IWorldObj::Clone(bool bRecursive)
+shared_ptr<IWorldObj> IWorldObj::Clone(bool bRecursive)
 {
-	IWorldObj* pCloneObj = new IWorldObj;
+	shared_ptr<IWorldObj> pCloneObj = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
 	pCloneObj->m_strName = m_strName;
-	//pCloneObj->m_pParent = m_pParent;
 	pCloneObj->removeModule(pCloneObj->m_pTransform);
-	pCloneObj->m_pTransform = nullptr;
-	for each (ModuleBase* pModule in m_vecModules)
+	for each (shared_ptr<ModuleBase> pModule in m_vecModules)
 	{
-		ModuleBase* pCloneModule = pModule->Clone();
+		shared_ptr<ModuleBase> pCloneModule = pModule->Clone();
 		pCloneModule->m_pOwnerObj = pCloneObj;
 		pCloneObj->m_vecModules.push_back(pCloneModule);
 
-		Transform* pTrans = dynamic_cast<Transform*>(pCloneModule);
+		shared_ptr<Transform> pTrans = dynamic_pointer_cast<Transform>(pCloneModule);
 		if (pTrans != nullptr)
 		{
 			pCloneObj->m_pTransform = pTrans;
@@ -145,9 +135,9 @@ IWorldObj* IWorldObj::Clone(bool bRecursive)
 
 	if (bRecursive)
 	{
-		for each (IWorldObj* pChild in m_vecChildren)
+		for each (shared_ptr<IWorldObj> pChild in m_vecChildren)
 		{
-			IWorldObj* pCloneChild = pChild->Clone(bRecursive);
+			shared_ptr<IWorldObj> pCloneChild = pChild->Clone(bRecursive);
 			pCloneObj->addChild(pCloneChild);
 		}
 	}
@@ -158,11 +148,11 @@ IWorldObj* IWorldObj::Clone(bool bRecursive)
 
 void IWorldObj::AfterUpdate()
 {
-	for each (ModuleBase* pModule in m_vecModules)
+	for each (shared_ptr<ModuleBase> pModule in m_vecModules)
 	{
-		pModule->OnLateUpdate();
+		pModule->OnLateUpdate(pModule);
 	}
-	for each (IWorldObj* pObj in m_vecChildren)
+	for each (shared_ptr<IWorldObj> pObj in m_vecChildren)
 	{
 		pObj->AfterUpdate();
 	}

@@ -23,7 +23,7 @@ RasterRender::~RasterRender()
 {
 }
 
-int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld, IRenderTarget* pTarget)
+int RasterRender::Render(shared_ptr<CameraBase> pCammera, shared_ptr<IWorld> pWorld, IRenderTarget* pTarget)
 {
 	if (RenderBegin() == false)
 	{
@@ -31,7 +31,7 @@ int RasterRender::Render(CameraBase* pCammera, IWorld* pWorld, IRenderTarget* pT
 		return -1;
 	}
 
-	std::vector<IRenderable*> vecRenderables = pWorld->GetAllRenderables();
+	std::vector<std::shared_ptr<IRenderable>> vecRenderables = pWorld->GetAllRenderables();
 	if (m_pRenderPath->m_bGetPerObjLightInfo == true)
 	{
 		pWorld->GetRenderablesLightInfo(vecRenderables);
@@ -50,21 +50,21 @@ void RasterRender::Render(IRenderable* pRender)
 	return;
 }
 
-int RasterRender::Render(std::vector<IRenderable*>& pRenderableList, IRenderTarget* pTarget)
+int RasterRender::Render(std::vector<shared_ptr<IRenderable>>& pRenderableList, IRenderTarget* pTarget)
 {
 	if (m_pRenderPath == nullptr)
 	{
 		return -1;
 	}
-	
 	unsigned int nStageCount = m_pRenderPath->GetStageCount();
 	for (unsigned int i = 0; i < nStageCount; ++i)
 	{
 		RenderStage* pStage = m_pRenderPath->GetStage(i);
 		//
 		pStage->m_RenderTargetGroup.SetRenderTarget(0, pTarget);
+		
 		//
-		std::vector<IRenderable*> vec;
+		std::vector<shared_ptr<IRenderable>> vec;
 		GetRenderables(pRenderableList,vec, pStage->m_eFillter);
 		//SetRenderStageState(pStage->m_eFillter);
 
@@ -75,9 +75,9 @@ int RasterRender::Render(std::vector<IRenderable*>& pRenderableList, IRenderTarg
 	return 0;
 }
 
-void RasterRender::GetRenderables(std::vector<IRenderable*>& vecRenderableIn,std::vector<IRenderable*>& vecRenderable, ERENDERTYPEFILTER eFillter)
+void RasterRender::GetRenderables(std::vector<std::shared_ptr<IRenderable>>& vecRenderableIn,std::vector<std::shared_ptr<IRenderable>>& vecRenderable, ERENDERTYPEFILTER eFillter)
 {
-	for each (IRenderable* pRenderable in vecRenderableIn)
+	for each (shared_ptr<IRenderable> pRenderable in vecRenderableIn)
 	{
 		shared_ptr<MaterialResource> pMatRes = pRenderable->m_pSharedMaterial;
 		if (pMatRes == nullptr)

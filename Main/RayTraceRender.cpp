@@ -23,11 +23,11 @@ RayTraceRender::~RayTraceRender()
 
 }
 
-int RayTraceRender::Render(CameraBase* pCamera, IWorld* pWorld)
+int RayTraceRender::Render(std::shared_ptr<CameraBase> pCamera, std::shared_ptr<IWorld> pWorld)
 {
 	
 	
-	RayTraceCamera* pRTCamera = dynamic_cast<RayTraceCamera*>(pCamera);
+	std::shared_ptr<RayTraceCamera> pRTCamera = dynamic_pointer_cast<RayTraceCamera>(pCamera);
 	assert(pRTCamera != nullptr && pRTCamera->GetPerpViewPort() != nullptr);
 	m_pCachedCamera = pRTCamera;
 	m_pCachedWorld = pWorld;
@@ -113,11 +113,11 @@ GameColor RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 	//Ray3D r(m_pCachedCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate(),vecPri);
 	//r.m_vecPos = m_pCachedCamera->m_pOwnerObj->m_pTransform->m_vecTranslate;
 	//r.m_vecDirection = vecPri;
-	IRenderable* pInterGeo = nullptr;
+	shared_ptr<IRenderable> pInterGeo = nullptr;
 	float fInterDist = 1000000000;
 	Vector3 vecInterPos = Vector3::ZERO;
 	Vector3 vecNormal = Vector3::ONE;
-	for each (IRenderable* var in m_vecRenderables)
+	for each (std::shared_ptr<IRenderable> var in m_vecRenderables)
 	{
 		IntersectResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
 		if (result.m_bInterset == true)
@@ -143,7 +143,7 @@ GameColor RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 		{
 			GameColor cContribute = GameColor::black;
 			//shadow ray
-			for each (LightBase* var in m_vecLights)
+			for each (std::shared_ptr<LightBase> var in m_vecLights)
 			{
 				vecNormal.normalize();
 				Vector3 vecShadowPos = vecInterPos + vecNormal * 0.01f;
@@ -197,10 +197,10 @@ GameColor RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 }
 
 //to do check tranparent
-bool RayTraceRender::ShadowRay(const Ray3D& r, LightBase* pLight)
+bool RayTraceRender::ShadowRay(const Ray3D& r, std::shared_ptr<LightBase> pLight)
 {
 	float fDist = pLight->m_pOwnerObj->m_pTransform->GetWorldTranslate().distance(r.m_vecPos);
-	for each (IRenderable* var in m_vecRenderables)
+	for each (shared_ptr<IRenderable> var in m_vecRenderables)
 	{
 		IntersectResults result = IntersectTest::testRayRenderables(r, var, *var->m_pOwnerObj->m_pTransform);
 		if (result.m_bInterset == true)

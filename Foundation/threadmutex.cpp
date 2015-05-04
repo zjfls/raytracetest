@@ -2,4 +2,4 @@
 #include "threadmutex.h"
 
 
-//FOUNDATION_API std::mutex g_SingletonMutex;
+FOUNDATION_API std::mutex g_SingletonMutex;

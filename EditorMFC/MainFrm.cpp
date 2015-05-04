@@ -81,6 +81,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建菜单栏\n");
 		return -1;      // 未能创建
 	}
+	
 
 	m_wndMenuBar.SetPaneStyle(m_wndMenuBar.GetPaneStyle() | CBRS_SIZE_DYNAMIC | CBRS_TOOLTIPS | CBRS_FLYBY);
 
@@ -160,13 +161,20 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndFileView.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndClassView.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndSceneTreeView.EnableDocking(CBRS_ALIGN_ANY);
+	//
 	DockPane(&m_wndFileView);
 	CDockablePane* pTabbedBar = NULL;
 	m_wndClassView.AttachToTabWnd(&m_wndFileView, DM_SHOW, TRUE, &pTabbedBar);
+	m_wndSceneTreeView.AttachToTabWnd(&m_wndFileView, DM_SHOW, TRUE, &pTabbedBar);
+	//
 	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndOutput);
 	m_wndProperties.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndProperties);
+	//
+	
+	
 
 	// 基于持久值设置视觉管理器和样式
 	OnApplicationLook(theApp.m_nAppLook);
@@ -221,7 +229,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// 将文档名和应用程序名称在窗口标题栏上的顺序进行交换。这
 	// 将改进任务栏的可用性，因为显示的文档名带有缩略图。
 	ModifyStyle(0, FWS_PREFIXTITLE);
-
+	
 	return 0;
 }
 
@@ -248,7 +256,7 @@ BOOL CMainFrame::CreateDockingWindows()
 		TRACE0("未能创建“类视图”窗口\n");
 		return FALSE; // 未能创建
 	}
-
+	
 	// 创建文件视图
 	CString strFileView;
 	bNameValid = strFileView.LoadString(IDS_FILE_VIEW);
@@ -256,6 +264,15 @@ BOOL CMainFrame::CreateDockingWindows()
 	if (!m_wndFileView.Create(strFileView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_FILEVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI))
 	{
 		TRACE0("未能创建“文件视图”窗口\n");
+		return FALSE; // 未能创建
+	}
+	//创建场景视图
+	CString strSceneTreeView;
+	bNameValid = strSceneTreeView.LoadString(IDS_SCENETREE_VIEW);
+	ASSERT(bNameValid);
+	if (!m_wndSceneTreeView.Create(strSceneTreeView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_SCENETREEVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("未能创建“场景视图”窗口\n");
 		return FALSE; // 未能创建
 	}
 
@@ -290,6 +307,11 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 
 	HICON hClassViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_CLASS_VIEW_HC : IDI_CLASS_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndClassView.SetIcon(hClassViewIcon, FALSE);
+
+
+	HICON hSceneTreeViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_CLASS_VIEW_HC : IDI_CLASS_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndSceneTreeView.SetIcon(hSceneTreeViewIcon, FALSE);
+
 
 	HICON hOutputBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_OUTPUT_WND_HC : IDI_OUTPUT_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndOutput.SetIcon(hOutputBarIcon, FALSE);
@@ -604,7 +626,7 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 			pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 		}
 	}
-
+	m_wndProperties.ShowPane(FALSE, FALSE, TRUE);
 	return TRUE;
 }
 
@@ -613,4 +635,10 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
 	CMDIFrameWndEx::OnSettingChange(uFlags, lpszSection);
 	m_wndOutput.UpdateFonts();
+}
+
+void CMainFrame::OnViewSceneTreeView()
+{
+	m_wndSceneTreeView.ShowPane(TRUE, FALSE, TRUE);
+	m_wndSceneTreeView.SetFocus();
 }

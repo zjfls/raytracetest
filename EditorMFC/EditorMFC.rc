@@ -562,6 +562,7 @@ BEGIN
     ID_WINDOW_MANAGER       "窗口(&W)..."
     IDS_FILE_VIEW           "文件视图"
     IDS_CLASS_VIEW          "类视图"
+	IDS_SCENETREE_VIEW		"场景视图"
     IDS_EXPLORER            "资源管理器"
     IDS_OUTPUT_WND          "输出"
     IDS_BUILD_TAB           "生成"

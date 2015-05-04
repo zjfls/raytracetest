@@ -43,7 +43,7 @@ void RenderStage::SetStageRenderState(RasterRender* pRender)
 	}
 }
 
-void RenderStage::Render(RasterRender* pRender,std::vector<IRenderable*>& vecRenderabls)
+void RenderStage::Render(RasterRender* pRender,std::vector<shared_ptr<IRenderable>>& vecRenderabls)
 {
 	pRender->SetRenderTargetGroup(&m_RenderTargetGroup);
 	SetStageRenderState(pRender);
@@ -66,11 +66,11 @@ void RenderStage::Render(RasterRender* pRender,std::vector<IRenderable*>& vecRen
 	}
 }
 
-void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<IRenderable*>& vecRenderabls)
+void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<std::shared_ptr<IRenderable>>& vecRenderabls)
 {
 
 	bool bAllLight = EnviromentSetting::GetInstance()->GetIntSetting("FOWARDLIGHTONEPASS");
-	for each (IRenderable*	pRenderable in vecRenderabls)
+	for each (shared_ptr<IRenderable>	pRenderable in vecRenderabls)
 	{
 		shared_ptr<RasterMaterial> pMaterial = dynamic_pointer_cast<RasterMaterial>(pRenderable->m_pSharedMaterial);
 		for each (std::pair<string,RenderPass*> p in pMaterial->m_RenderPassMap)

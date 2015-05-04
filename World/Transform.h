@@ -11,7 +11,7 @@ public:
 	
 	~Transform();
 
-	virtual void Update();
+	virtual void Update(std::shared_ptr<ModuleBase> pModule);
 	Vector3	GetRight();
 	Vector3 GetForward();
 	Vector3	GetUp();
@@ -20,7 +20,7 @@ public:
 
 
 	void SetTranslate(float fX, float fY, float fZ);
-	void SetTranslate(const Vector3& vecIn){ m_vecTranslate = vecIn; };
+	void SetTranslate(const Vector3& vecIn);
 	void SetOrientation(float fX, float fY, float fZ);
 	void SetScale(float fx, float fY, float fZ);
 
@@ -33,7 +33,7 @@ public:
 
 
 	Matrix44 GetWorldMatrix() const;
-	virtual ModuleBase* Clone();
+	virtual shared_ptr<ModuleBase> Clone();
 
 ////////////////////////////////////////////////
 

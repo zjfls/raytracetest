@@ -88,6 +88,7 @@
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetLoader.h" />
     <ClInclude Include="TextureSampler.h" />
+    <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
@@ -155,6 +156,7 @@
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="TextureAssetLoader.cpp" />
     <ClCompile Include="TextureSampler.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="XmlPrefabLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

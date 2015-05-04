@@ -15,7 +15,7 @@ public:
 
 	void SetMeshResource(shared_ptr<MeshResource> pRes);
 	bool	HasSkinInfo() const;
-	virtual ModuleBase* Clone();
+	virtual shared_ptr<ModuleBase> Clone();
 private:
 	//
 	shared_ptr<MeshResource> m_pMeshInstance;

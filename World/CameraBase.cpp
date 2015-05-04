@@ -19,23 +19,25 @@ CameraBase::~CameraBase()
 {
 }
 
-void CameraBase::Render()
+void CameraBase::Render(std::shared_ptr<CameraBase> pCamera)
 {
 	//m_pRender->SetRenderTarget(m_pRenderTarget);
 	//m_pRender->m_pCurrentRenderCamera = this;
 	//m_pRender->Render(this, IWorld::pSingleWorld);
-	NotifyListener("Render", this);
+	NotifyListener("Render", pCamera);
 }
 
-void CameraBase::Update()
+void CameraBase::Update(std::shared_ptr<ModuleBase> pModule)
 {
-	NotifyListener("UpdateMatrix", this);
+	std::shared_ptr<CameraBase> pCamera = dynamic_pointer_cast<CameraBase>(pModule);
+	NotifyListener("UpdateMatrix", pCamera);
 	UpdateMatrix();
 }
 
-void CameraBase::OnLateUpdate()
+void CameraBase::OnLateUpdate(std::shared_ptr<ModuleBase> pModule)
 {
-	Render();
+	std::shared_ptr<CameraBase> pCamera = dynamic_pointer_cast<CameraBase>(pModule);
+	Render(pCamera);
 }
 void CameraBase::UpdateMatrix()
 {
@@ -62,9 +64,9 @@ void CameraBase::UpdateMatrix()
 	m_MatViewProj = m_MatView * m_MatProj;
 }
 
-ModuleBase* CameraBase::Clone()
+shared_ptr<ModuleBase> CameraBase::Clone()
 {
-	CameraBase* pCamera = new CameraBase;
+	shared_ptr<CameraBase> pCamera = shared_ptr<CameraBase>(new CameraBase);
 	pCamera->m_fAspect = m_fFovy;
 	pCamera->m_fFovy = m_fAspect;
 	return pCamera;

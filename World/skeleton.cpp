@@ -13,13 +13,13 @@ SkeletonModule::~SkeletonModule()
 {
 }
 
-void SkeletonModule::AddMesh(Mesh* pMesh)
+void SkeletonModule::AddMesh(shared_ptr<Mesh> pMesh)
 {
 	if (m_pOwnerObj->IsHaveModule<Mesh>(pMesh) == false)
 	{
 		return;
 	}
-	for each (Mesh* var in m_MeshVec)
+	for each (shared_ptr<Mesh> var in m_MeshVec)
 	{
 		if (var == pMesh)
 		{

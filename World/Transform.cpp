@@ -36,7 +36,7 @@ Vector3 Transform::GetForward()
 	return Vector3(m[2][0], m[2][1], m[2][2]);
 }
 
-void Transform::Update()
+void Transform::Update(std::shared_ptr<ModuleBase> pModule)
 {
 	m_bThisFrameUpdated = false;
 	if (m_bDirt == false)
@@ -74,7 +74,7 @@ void Transform::Update()
 
 void Transform::NotifyNeedTransform()
 {
-	for each (IWorldObj* var in m_pOwnerObj->m_vecChildren)
+	for each (shared_ptr<IWorldObj> var in m_pOwnerObj->m_vecChildren)
 	{
 		var->m_pTransform->m_bDirt = true;
 	}
@@ -84,6 +84,12 @@ void Transform::SetTranslate(float fX, float fY, float fZ)
 {
 	m_vecTranslate = Vector3(fX, fY, fZ);
 	m_bDirt = true;
+}
+
+void Transform::SetTranslate(const Vector3& vecIn)
+{
+	m_vecTranslate = vecIn; 
+	m_bDirt = true; 
 }
 
 void Transform::SetOrientation(float fX, float fY, float fZ)
@@ -103,9 +109,9 @@ Vector3 Transform::GetWorldTranslate() const
 	return Vector3(m_TransformMatrixWorld.M[3][0], m_TransformMatrixWorld.M[3][1], m_TransformMatrixWorld.M[3][2]);
 }
 
-ModuleBase* Transform::Clone()
+shared_ptr<ModuleBase> Transform::Clone()
 {
-	Transform* pTransform = new Transform();
+	shared_ptr<Transform> pTransform = shared_ptr<Transform>(new Transform());
 	pTransform->m_bDirt = m_bDirt;
 	pTransform->m_TransformMatrixLocal = m_TransformMatrixLocal;
 	pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;

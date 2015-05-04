@@ -10,7 +10,7 @@ template<> shared_ptr<FbxAppManager> Singleton<FbxAppManager>::_instance = nullp
 
 FbxAppManager::FbxAppManager()
 {
-	ResourceManager<MeshResource>::GetInstance();
+	//ResourceManager<MeshResource>::GetInstance();
 }
 
 

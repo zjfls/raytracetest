@@ -15,7 +15,7 @@ RayTracePerpViewPort::~RayTracePerpViewPort()
 
 void RayTracePerpViewPort::OnTransformChanged(const RayTraceCamera* pCamera)
 {
-	Transform* pTrans = pCamera->m_pOwnerObj->m_pTransform;
+	shared_ptr<Transform> pTrans = pCamera->m_pOwnerObj->m_pTransform;
 	Vector3 vecForward = pTrans->GetForward();
 	vecForward.normalize();
 	m_vecPlanePos = pTrans->GetWorldTranslate() + vecForward * m_fNear;

@@ -114,6 +114,9 @@ bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
 	//m_SwapChains.push_back(pSwapChain);
 	pRenderView = new D3D9RenderView;
 	pRenderView->m_nIndex = 0;
+	pRenderView->m_nWidth = d3dpp.BackBufferWidth;
+	pRenderView->m_nHeight = d3dpp.BackBufferHeight;
+	pRenderView->m_dpp = d3dpp;
 	pRenderView->m_pSwapChain = pSwapChain;
 	m_pDefaultRenderView = pRenderView;
 	pRenderView->m_pD3DDevice = m_pD3DDevice;
@@ -769,7 +772,19 @@ bool D3D9RenderSystem::OnFrameBegin()
 
 void D3D9RenderSystem::OnFrameEnd()
 {
-
+	for each (D3D9RenderTarget* pView in m_vecRenderTarget)
+	{
+		D3D9RenderView* pTargetView = dynamic_cast<D3D9RenderView*>(pView);
+		if (pTargetView != nullptr && pTargetView->m_pSwapChain != nullptr && pTargetView->m_nIndex != 0)
+		{
+			D3DPRESENT_PARAMETERS dpp;
+			pTargetView->m_pSwapChain->GetPresentParameters(&dpp);
+			if (dpp.BackBufferHeight != pTargetView->m_dpp.BackBufferHeight || dpp.BackBufferWidth != pTargetView->m_dpp.BackBufferWidth)
+			{
+				pTargetView->Resize(pTargetView->m_dpp.BackBufferWidth, pTargetView->m_dpp.BackBufferHeight);
+			}
+		}
+	}
 }
 
 stD3DVertexBuffDecal* D3D9RenderSystem::GetVertexDecal(std::vector<VertexData::VertexDataDesc>& decl)
@@ -818,6 +833,7 @@ RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
 	//
 	HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&d3dpp, &pView->m_pSwapChain);
 	pView->m_pD3DDevice = m_pD3DDevice;
+	pView->m_nIndex = -1;
 	if (hr != D3D_OK)
 	{
 		std::cout << "create view failed!" << std::endl;
@@ -827,6 +843,7 @@ RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
 	}
 	else
 	{
+		
 		std::cout << "create view success!" << std::endl;
 	}
 	m_vecRenderTarget.push_back(pView);

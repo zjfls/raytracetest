@@ -39,9 +39,9 @@ Vector3 PointLight::GetLightDirection(const Vector3& vecWorldPosition)
 	return vecDir;
 }
 
-ModuleBase* PointLight::Clone()
+shared_ptr<ModuleBase> PointLight::Clone()
 {
-	PointLight* pLight = new PointLight;
+	shared_ptr<PointLight> pLight = shared_ptr<PointLight>(new PointLight);
 	pLight->m_strName = m_strName;
 	pLight->m_bCastShadow = m_bCastShadow;
 	pLight->m_Color = m_Color;

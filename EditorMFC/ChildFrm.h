@@ -39,5 +39,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 protected:
-	EditorRenderView* m_pView;
+	
+	//
 };

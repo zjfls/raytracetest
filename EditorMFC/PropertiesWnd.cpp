@@ -5,12 +5,43 @@
 #include "Resource.h"
 #include "MainFrm.h"
 #include "EditorMFC.h"
+#include "IWorldObj.h"
+#include "ModuleBase.h"
+#include "Mesh.h"
+#include "Transform.h"
+#include "RasterCamera.h"
+#include "MathDefine.h"
+#include "MeshResource.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
+//
+class CMFCFloatGridProperty :public CMFCPropertyGridProperty
+{
+public:
+	//CMFCFloatGridProperty(){};
+	CMFCFloatGridProperty(const CString& strGroupName, DWORD_PTR dwData = 0, BOOL bIsValueList = FALSE)
+		:CMFCPropertyGridProperty(strGroupName,dwData,bIsValueList)
+	{
+
+	}
+	CMFCFloatGridProperty(const CString& strName, const COleVariant& varValue, LPCTSTR lpszDescr = NULL, DWORD_PTR dwData = 0,
+		LPCTSTR lpszEditMask = NULL, LPCTSTR lpszEditTemplate = NULL, LPCTSTR lpszValidChars = NULL)
+		:CMFCPropertyGridProperty(strName,varValue,lpszDescr,dwData,lpszEditMask,lpszEditTemplate,lpszValidChars)
+	{
+
+	}
+	virtual ~CMFCFloatGridProperty(){};
+	//virtual CString FormatProperty()
+	//{
+	//	float value = *m_varValue.pfltVal;
+	//	return CMFCFloatGridProperty::FormatProperty();
+	//}
+};
+//
 
 /////////////////////////////////////////////////////////////////////////////
 // CResourceViewBar
@@ -269,4 +300,138 @@ void CPropertiesWnd::SetPropListFont()
 
 	m_wndPropList.SetFont(&m_fntPropList);
 	m_wndObjectCombo.SetFont(&m_fntPropList);
+}
+
+void CPropertiesWnd::UpdateWorldObjProperty(shared_ptr<IWorldObj> pObj)
+{
+	ShowPane(TRUE, FALSE, TRUE);
+	SetPropListFont();
+
+	m_wndPropList.EnableHeaderCtrl(FALSE);
+	m_wndPropList.EnableDescriptionArea();
+	m_wndPropList.SetVSDotNetLook();
+	m_wndPropList.MarkModifiedProperties();
+	//
+	m_wndPropList.RemoveAll();
+	if (pObj == nullptr)
+	{
+		return;
+	}
+	CMFCPropertyGridProperty* pGroup1 = new CMFCPropertyGridProperty(_T("基本信息"));
+
+
+	pGroup1->AddSubItem(new CMFCPropertyGridProperty(_T("Name"), pObj->m_strName.c_str()));
+
+	//CMFCPropertyGridProperty* pProp = new CMFCPropertyGridProperty(_T("边框"), _T("对话框外框"), _T("其中之一: “无”、“细”、“可调整大小”或“对话框外框”"));
+	//pProp->AddOption(_T("无"));
+	//pProp->AddOption(_T("细"));
+	//pProp->AddOption(_T("可调整大小"));
+	//pProp->AddOption(_T("对话框外框"));
+	//pProp->AllowEdit(FALSE);
+
+	//pGroup1->AddSubItem(pProp);
+	//pGroup1->AddSubItem(new CMFCPropertyGridProperty(_T("标题"), (_variant_t)_T("关于"), _T("指定窗口标题栏中显示的文本")));
+
+	m_wndPropList.AddProperty(pGroup1);
+	//
+	for (int i = 0; i < pObj->GetModuleCount(); ++i)
+	{
+		std::shared_ptr<ModuleBase> pModule = pObj->GetModule(i);
+		AddModule(pModule);
+	}
+}
+
+void CPropertiesWnd::AddModule(shared_ptr<ModuleBase> pModule)
+{
+	//CMFCPropertyGridProperty* pSize = new CMFCPropertyGridProperty(_T("窗口大小"), 0, TRUE);
+
+	//pProp = new CMFCPropertyGridProperty(_T("高度"), (_variant_t)250l, _T("指定窗口的高度"));
+	//pProp->EnableSpinControl(TRUE, 50, 300);
+	//pSize->AddSubItem(pProp);
+
+	//pProp = new CMFCPropertyGridProperty(_T("宽度"), (_variant_t)150l, _T("指定窗口的宽度"));
+	//pProp->EnableSpinControl(TRUE, 50, 200);
+	//pSize->AddSubItem(pProp);
+
+	//m_wndPropList.AddProperty(pSize);
+	const type_info& tinfo = typeid(*pModule.get());
+	std::string className = tinfo.name();
+	if (typeid(*pModule.get()) == typeid(Transform))
+	{
+		//
+		shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(pModule);
+		//
+		CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Transform"));
+		//translate
+		CMFCPropertyGridProperty* pGroupTranslate = new CMFCPropertyGridProperty(_T("Translate"));
+		pGroup->AddSubItem(pGroupTranslate);
+		CMFCFloatGridProperty* pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetLocalTranslate().m_fx, "translate_x");
+		//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
+		pGroupTranslate->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetLocalTranslate().m_fy, "translate_y");
+		pGroupTranslate->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetLocalTranslate().m_fz, "translate_z");
+		pGroupTranslate->AddSubItem(pProp);
+		
+
+		//rotation
+		CMFCPropertyGridProperty* pGroupRotation = new CMFCPropertyGridProperty(_T("Rotation"));
+		pGroup->AddSubItem(pGroupRotation);
+		pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fx, "rotation_x");
+		//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
+		pGroupRotation->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fy, "rotation_y");
+		pGroupRotation->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fz, "rotation_z");
+		pGroupRotation->AddSubItem(pProp);
+
+		//scale
+		CMFCPropertyGridProperty* pGroupScale = new CMFCPropertyGridProperty(_T("Scale"));
+		pGroup->AddSubItem(pGroupScale);
+		pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetScale().m_fx, "scale_x");
+		//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
+		pGroupScale->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetScale().m_fy, "scale_y");
+		pGroupScale->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetScale().m_fz, "scale_z");
+		pGroupScale->AddSubItem(pProp);
+
+		//pGroup411->AddSubItem(new CMFCPropertyGridProperty(_T("项 1"), (_variant_t)_T("值 1"), _T("此为说明")));
+		//pGroup411->AddSubItem(new CMFCPropertyGridProperty(_T("项 2"), (_variant_t)_T("值 2"), _T("此为说明")));
+		//pGroup411->AddSubItem(new CMFCPropertyGridProperty(_T("项 3"), (_variant_t)_T("值 3"), _T("此为说明")));
+		m_wndPropList.AddProperty(pGroup);
+	}
+	if (typeid(*pModule.get()) == typeid(Mesh))
+	{
+		shared_ptr<Mesh> pMesh = dynamic_pointer_cast<Mesh>(pModule);
+		CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Mesh"));
+		std::string pMeshRef = "";
+		if (pMesh->GetMeshResource() != nullptr)
+		{
+			pMeshRef = pMesh->GetMeshResource()->GetRefPath();
+		}
+		CMFCPropertyGridFileProperty* pFile = new CMFCPropertyGridFileProperty("MeshFile", pMeshRef.c_str());
+		pGroup->AddSubItem(pFile);
+
+
+		m_wndPropList.AddProperty(pGroup);
+	}
+	if (typeid(*pModule.get()) == typeid(RasterCamera))
+	{
+		//float m_fFovy;
+		//float m_fAspect;
+		//float m_fNear;
+		//float m_fFar;
+		shared_ptr<RasterCamera> pCamera = dynamic_pointer_cast<RasterCamera>(pModule);
+		CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Camera"));
+		CMFCFloatGridProperty* pProp = new CMFCFloatGridProperty(_T("FOV"), (_variant_t)pCamera->m_fFovy, "CAMERAFOV");
+		pGroup->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("Aspect"), (_variant_t)pCamera->m_fAspect, "CAMERAFOV");
+		pGroup->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("Near Plane"), (_variant_t)pCamera->m_fNear, "NEARPLANE");
+		pGroup->AddSubItem(pProp);
+		pProp = new CMFCFloatGridProperty(_T("Far Plane"), (_variant_t)pCamera->m_fFar, "FARPLANE");
+		pGroup->AddSubItem(pProp);
+		m_wndPropList.AddProperty(pGroup);
+	}
 }

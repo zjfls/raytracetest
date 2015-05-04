@@ -18,7 +18,7 @@ public:
 	virtual ~RayTraceRender();
 
 
-	virtual int Render(CameraBase* pCammera, IWorld* pWorld);
+	virtual int Render(std::shared_ptr<CameraBase> pCammera, std::shared_ptr<IWorld> pWorld);
 	////////////////////////////////////////////////////
 	//void setViewPlane();
 
@@ -26,12 +26,12 @@ public:
 	GameColor RayTrace(const Ray3D& ray,int nDepth);
 	static int MAXDEPTH;
 protected:
-	bool ShadowRay(const Ray3D& r,LightBase* pLight);
+	bool ShadowRay(const Ray3D& r,std::shared_ptr<LightBase> pLight);
 	//
 protected:
-	RayTraceCamera* m_pCachedCamera;
-	IWorld*			m_pCachedWorld;
-	std::vector<IRenderable*> m_vecRenderables;
-	std::vector<LightBase*> m_vecLights;
+	std::shared_ptr<RayTraceCamera> m_pCachedCamera;
+	std::shared_ptr<IWorld>			m_pCachedWorld;
+	std::vector<std::shared_ptr<IRenderable>> m_vecRenderables;
+	std::vector<std::shared_ptr<LightBase>> m_vecLights;
 };
 

@@ -8,18 +8,18 @@ class WORLD_API IWorldObj
 public:
 	IWorldObj();
 	virtual ~IWorldObj();
-	virtual bool	addChild(IWorldObj* pObj);
-	virtual bool	removeChild(IWorldObj* pObj);
-	virtual bool	removeModule(ModuleBase* pModule);
+	virtual bool	addChild(shared_ptr<IWorldObj> pObj);
+	virtual bool	removeChild(shared_ptr<IWorldObj> pObj);
+	virtual bool	removeModule(shared_ptr<ModuleBase> pModule);
 	unsigned int	GetChildCount() const;
-	IWorldObj*		GetChild(int i) const;
-	virtual IWorldObj* Clone(bool bRecursive);
+	shared_ptr<IWorldObj>		GetChild(unsigned int i) const;
+	virtual shared_ptr<IWorldObj> Clone(bool bRecursive);
 
 	template<class T>
-	T* addModule()
+	shared_ptr<T> addModule(shared_ptr<IWorldObj> pObj)
 	{
-		T* pModule = new T;
-		pModule->m_pOwnerObj = this;
+		shared_ptr<T> pModule = shared_ptr<T>(new T);
+		pModule->m_pOwnerObj = pObj;
 		m_vecModules.push_back(pModule);
 		pModule->OnAdded();
 		return pModule;
@@ -28,37 +28,43 @@ public:
 	virtual void AfterUpdate();
 
 	template<class T>
-	void GetAllModuleRecursive(std::vector<T*>& vecResults);
-	void GetRenderableRecursive(std::vector<IRenderable*>& vecRenderabls);
+	void GetAllModuleRecursive(std::vector<shared_ptr<T>>& vecResults);
+	void GetRenderableRecursive(std::vector<shared_ptr<IRenderable>>& vecRenderabls);
 	/////////////////////////////////////////////////////
 	unsigned int	 GetModuleCount()	const;
-	ModuleBase*	GetModule(int i) const;
+	shared_ptr<ModuleBase>	GetModule(int i) const;
 
 	template<class T>
-	bool		IsHaveModule(T* module);
+	bool		IsHaveModule(shared_ptr<T> module);
 	template<class T>
 	bool		IsHaveModule();
 
-
+	static shared_ptr<IWorldObj> CreateWorldObj()
+	{
+		shared_ptr<IWorldObj> pObj(new IWorldObj);
+		
+		pObj->m_pTransform = pObj->addModule<Transform>(pObj);
+		return pObj;
+	}
 	//virtual IWorldObj* Clone(bool bRecursive);
 
 private:
-	IWorldObj*					m_pParent;
-	std::vector<IWorldObj*>		m_vecChildren;
-	std::vector<ModuleBase*>	m_vecModules;
+	shared_ptr<IWorldObj>					m_pParent;
+	std::vector<shared_ptr<IWorldObj>>		m_vecChildren;
+	std::vector<shared_ptr<ModuleBase>>	m_vecModules;
 public:
 	string						m_strName;
 	///////////////////////////////////
-	Transform*					m_pTransform;
+	shared_ptr<Transform>					m_pTransform;
 	friend class Transform;
 };
 
 template<class T>
 bool IWorldObj::IsHaveModule()
 {
-	for each (ModuleBase* var in m_vecModules)
+	for each (shared_ptr<ModuleBase> var in m_vecModules)
 	{
-		T* pModule = dynamic_cast<T*>(var);
+		shared_ptr<T> pModule = dynamic_pointer_cast<T>(var);
 		if (pModule != false)
 		{
 			return true;
@@ -68,11 +74,11 @@ bool IWorldObj::IsHaveModule()
 }
 
 template<class T>
-bool IWorldObj::IsHaveModule(T* module)
+bool IWorldObj::IsHaveModule(shared_ptr<T> module)
 {
-	for each (ModuleBase* var in m_vecModules)
+	for each (shared_ptr<ModuleBase> var in m_vecModules)
 	{
-		T* pModule = dynamic_cast<T*>(var);
+		shared_ptr<T> pModule = dynamic_pointer_cast<T>(var);
 		if (pModule == module)
 		{
 			return true;
@@ -82,17 +88,17 @@ bool IWorldObj::IsHaveModule(T* module)
 }
 
 template<class T>
-void IWorldObj::GetAllModuleRecursive(std::vector<T*>& vecResults)
+void IWorldObj::GetAllModuleRecursive(std::vector<shared_ptr<T>>& vecResults)
 {
-	for each (ModuleBase*  var in m_vecModules)
+	for each (shared_ptr<ModuleBase>  var in m_vecModules)
 	{
-		T* pModule = dynamic_cast<T*>(var);
+		shared_ptr<T> pModule = dynamic_pointer_cast<T>(var);
 		if (pModule != nullptr)
 		{
 			vecResults.push_back(pModule);
 		}
 	}
-	for each (IWorldObj* var in m_vecChildren)
+	for each (shared_ptr<IWorldObj> var in m_vecChildren)
 	{
 		var->GetAllModuleRecursive<T>(vecResults);
 	}

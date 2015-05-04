@@ -32,10 +32,10 @@ private:
 	void ImportSkeleton(shared_ptr<SkeletonResource> pSkeRes,string path);
 	void ImportMaterial(shared_ptr<RasterMaterial> pMatRes, string path);
 	void SkeletonProcessBone(tinyxml2::XMLDocument& doc,Bone* pBone,tinyxml2::XMLElement* pElem);
-	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,IWorldObj* pObj, tinyxml2::XMLElement* elem);
-	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,Mesh* pMesh,tinyxml2::XMLElement* pElem);
+	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,shared_ptr<IWorldObj> pObj, tinyxml2::XMLElement* elem);
+	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,shared_ptr<Mesh> pMesh,tinyxml2::XMLElement* pElem);
 	//void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, MaterialResource* pMat, tinyxml2::XMLElement* pElem);
-	void PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Transform* pTrans, tinyxml2::XMLElement* pElem);
+	void PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, shared_ptr<Transform> pTrans, tinyxml2::XMLElement* pElem);
 	void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_ptr<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem);
 
 

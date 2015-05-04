@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 class IListener;
 class FOUNDATION_API IListenerSubject
 {
@@ -7,12 +8,12 @@ public:
 	virtual ~IListenerSubject();
 	
 
-	virtual void AddListener(string strName, IListener* pListener);
+	virtual void AddListener(string strName, std::shared_ptr<IListener> pListener);
 	virtual void RemoveListener(string strName);
-	virtual void NotifyListener(string msg, IListenerSubject* pSubject);
+	virtual void NotifyListener(string msg, std::shared_ptr<IListenerSubject> pSubject);
 
 
-	std::map<string, IListener*> m_mapListener;
+	std::map<string, std::shared_ptr<IListener>> m_mapListener;
 	
 };
 

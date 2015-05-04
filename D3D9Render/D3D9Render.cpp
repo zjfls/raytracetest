@@ -104,7 +104,7 @@ bool D3D9Render::SetTexture(int nSamplerID, HardwareTexture* pTexture)
 	return false;
 }
 
-void D3D9Render::UpdateProjCamera(CameraBase* pCamera)
+void D3D9Render::UpdateProjCamera(shared_ptr<CameraBase> pCamera)
 {
 	float fovy, aspect, zn, zf;
 	fovy = pCamera->m_fFovy;

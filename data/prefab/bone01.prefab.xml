@@ -323,9 +323,9 @@
     </WorldObj>
     <WorldObj name="Env_rock_on_Dolchin">
         <Transform>
-            <Translation x="0" y="0" z="0"/>
+            <Translation x="0" y="-100" z="0"/>
             <Rotation x="0" y="0" z="0"/>
-            <Scale x="1" y="1" z="1"/>
+            <Scale x="3" y="3" z="3"/>
         </Transform>
         <Mesh refPath="./data/mesh/Env_rock_on_Dolchin_Env_rock_for_tower_MAT_INST.mesh">
             <Material refPath="./data/material/Env_rock_for_tower_MAT_INST.smat.xml"/>

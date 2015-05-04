@@ -1,5 +1,4 @@
-nullptr_t
-new_handler
+
 
 // ChildFrm.cpp : CChildFrame 类的实现
 //
@@ -9,8 +8,10 @@ new_handler
 
 #include "ChildFrm.h"
 #include <iostream>
-#include "EditorRenderView.h"
+#include "EditorSceneView.h"
+#include "EditorGameView.h"
 #include "EditorApplication.h"
+#include "Vector2.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -20,6 +21,10 @@ new_handler
 IMPLEMENT_DYNCREATE(CChildFrame, CMDIChildWndEx)
 
 BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWndEx)
+	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
+	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONDOWN()
 	ON_WM_SIZE()
 	ON_WM_CLOSE()
 END_MESSAGE_MAP()
@@ -28,7 +33,7 @@ END_MESSAGE_MAP()
 
 CChildFrame::CChildFrame()
 {
-	m_pView = nullptr;
+	
 	// TODO:  在此添加成员初始化代码
 }
 
@@ -60,6 +65,45 @@ BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 // CChildFrame 诊断
+void CChildFrame::OnSize(UINT nType, int cx, int cy)
+{
+	CMDIChildWndEx::OnSize(nType, cx, cy);
+
+
+
+}
+
+void CChildFrame::OnClose()
+{
+
+	CMDIChildWndEx::OnClose();
+}
+//BOOL CChildFrame::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+//{
+//	Vector2 v;
+//	v.m_fx = pt.x;
+//	v.m_fy = pt.y;
+//	m_pView->OnMouseWheel(zDelta, v);
+//	return FALSE;
+//}
+//
+//void CChildFrame::OnMouseMove(UINT nFlags, CPoint point)
+//{
+//
+//}
+//
+//void CChildFrame::OnLButtonUp(UINT nFlags, CPoint point)
+//{
+//	SetCapture();
+//}
+////
+//void CChildFrame::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
+//{
+//	Vector2 v;
+//	v.m_fx = pt.x;
+//	v.m_fy = pt.y;
+//	m_pView->OnMouseWheel(zDelta, v);
+//}
 
 #ifdef _DEBUG
 void CChildFrame::AssertValid() const
@@ -72,36 +116,10 @@ void CChildFrame::Dump(CDumpContext& dc) const
 	CMDIChildWndEx::Dump(dc);
 }
 
-void CChildFrame::OnSize(UINT nType, int cx, int cy)
-{
-	if (cx == 0 && cy == 0)
-	{
-		return;
-	}
-	std::cout << "window resize x:" << cx << "y:" << cy << std::endl;
-	if (m_pView != nullptr)
-	{
-		m_pView->Resize(cx, cy);
-	}
-	else
-	{
-		m_pView = new EditorRenderView();
-		m_pView->Create(10, 10, (int)m_hWnd);
-		EditorApplication::GetInstance()->AddView((int)m_hWnd, m_pView);
-	}
 
 
-}
 
-void CChildFrame::OnClose()
-{
-	delete m_pView;
-	m_pView = nullptr;
-	EditorApplication::GetInstance()->RemoveView((int)m_hWnd);
-	CMDIChildWndEx::OnClose();
 
-	
-}
 
 #endif //_DEBUG
 

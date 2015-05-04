@@ -4,7 +4,7 @@
 
 #pragma once
 
-
+class EditorRenderView;
 class CEditorMFCView : public CView
 {
 protected: // 仅从序列化创建
@@ -40,9 +40,14 @@ protected:
 // 生成的消息映射函数
 protected:
 	afx_msg void OnFilePrintPreview();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnClose();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt); 
 	DECLARE_MESSAGE_MAP()
+public:
+	EditorRenderView* m_pView;
 };
 
 #ifndef _DEBUG  // EditorMFCView.cpp 中的调试版本

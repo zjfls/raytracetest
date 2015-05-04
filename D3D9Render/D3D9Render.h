@@ -18,7 +18,7 @@ public:
 	virtual bool SetVertexShader(HardwareVertexShader* pVertexShader);
 	virtual bool SetFragShader(HardwareFragShader* pFragShader);
 	virtual bool SetTexture(int nSamplerID, HardwareTexture* pTexture);
-	virtual void UpdateProjCamera(CameraBase* pCamera);
+	virtual void UpdateProjCamera(shared_ptr<CameraBase> pCamera);
 	virtual bool SetRenderStateCollection(const RenderStateCollection& stateCollection);
 	virtual bool SetBlendEnable(bool b);
 	virtual bool SetBlendSrc(EALPHABLEND eBlend);
