@@ -26,6 +26,7 @@
 #include "World_Dll_Def.h"
 #include "Resource_Dll_Def.h"
 #include "Math_Dll_Def.h"
+#include "Editor_Dll_Def.h"
 #include <string>
 #include <unordered_map>
 #include <memory>

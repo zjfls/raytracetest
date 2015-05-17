@@ -822,7 +822,7 @@ RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
 	d3dpp.SwapEffect = getSwapEffect(viewInfo.m_eSwapEffect);
 	d3dpp.BackBufferFormat = getBufferFormat(viewInfo.m_eTargetFormt);
 	d3dpp.EnableAutoDepthStencil =  viewInfo.m_bDepth;
-	//d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
+	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 	d3dpp.hDeviceWindow = (HWND)viewInfo.m_windowID;
 	if (viewInfo.m_bDepth == true)
 	{

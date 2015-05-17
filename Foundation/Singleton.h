@@ -14,7 +14,7 @@ public:
 	{
 		if (_instance == nullptr)
 		{
-			std::lock_guard<mutex> mtx(g_SingletonMutex);
+			std::lock_guard<std::mutex> mtx(g_SingletonMutex);
 			if (_instance == nullptr)
 			{
 				_instance = shared_ptr<T>(new T);

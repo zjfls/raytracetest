@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\EngineEditor">
-      <UniqueIdentifier>{3dc1c2bd-1414-4b32-a0c7-0ada27a30f5c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\EngineEditor">
-      <UniqueIdentifier>{5b169472-96d0-49f0-8aff-707900097f33}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -69,18 +63,6 @@
     <ClInclude Include="SceneTreeView.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="EditorApplication.h">
-      <Filter>头文件\EngineEditor</Filter>
-    </ClInclude>
-    <ClInclude Include="EditorGameView.h">
-      <Filter>头文件\EngineEditor</Filter>
-    </ClInclude>
-    <ClInclude Include="EditorRenderView.h">
-      <Filter>头文件\EngineEditor</Filter>
-    </ClInclude>
-    <ClInclude Include="EditorSceneView.h">
-      <Filter>头文件\EngineEditor</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EditorMFC.cpp">
@@ -121,18 +103,6 @@
     </ClCompile>
     <ClCompile Include="SceneTreeView.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="EditorApplication.cpp">
-      <Filter>源文件\EngineEditor</Filter>
-    </ClCompile>
-    <ClCompile Include="EditorGameView.cpp">
-      <Filter>源文件\EngineEditor</Filter>
-    </ClCompile>
-    <ClCompile Include="EditorRenderView.cpp">
-      <Filter>源文件\EngineEditor</Filter>
-    </ClCompile>
-    <ClCompile Include="EditorSceneView.cpp">
-      <Filter>源文件\EngineEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

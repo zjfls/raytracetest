@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../main;../foundation;../world;../resource;../math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../main;../foundation;../world;../resource;../math;../editor</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
@@ -62,7 +62,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <RegisterOutput>true</RegisterOutput>
       <AdditionalLibraryDirectories>../lib/debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>main.lib;foundation.lib;world.lib;resource.lib;math.lib</AdditionalDependencies>
+      <AdditionalDependencies>main.lib;foundation.lib;world.lib;resource.lib;math.lib;Editor.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -117,13 +117,9 @@
     <ClInclude Include="CalendarBar.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
-    <ClInclude Include="EditorApplication.h" />
-    <ClInclude Include="EditorGameView.h" />
     <ClInclude Include="EditorMFC.h" />
     <ClInclude Include="EditorMFCDoc.h" />
     <ClInclude Include="EditorMFCView.h" />
-    <ClInclude Include="EditorRenderView.h" />
-    <ClInclude Include="EditorSceneView.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="OutputWnd.h" />
@@ -138,13 +134,9 @@
     <ClCompile Include="CalendarBar.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="ClassView.cpp" />
-    <ClCompile Include="EditorApplication.cpp" />
-    <ClCompile Include="EditorGameView.cpp" />
     <ClCompile Include="EditorMFC.cpp" />
     <ClCompile Include="EditorMFCDoc.cpp" />
     <ClCompile Include="EditorMFCView.cpp" />
-    <ClCompile Include="EditorRenderView.cpp" />
-    <ClCompile Include="EditorSceneView.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
