@@ -13,9 +13,10 @@ public:
 	QtEditor(QWidget *parent = 0);
 	~QtEditor();
 	virtual void OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubject);
-
+	//virtual void keyPressEvent(QKeyEvent * event);
+	virtual bool eventFilter(QObject *obj, QEvent *event);
+	virtual void childEvent(QChildEvent *event);
 	private slots:
-
 	void OnTimer();
 private:
 	Ui::QtEditorClass ui;

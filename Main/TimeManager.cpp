@@ -21,7 +21,7 @@ TimeManager::~TimeManager()
 void TimeManager::Update()
 {
 	clock_t curClock = clock();
-	float curTime = curClock / CLOCKS_PER_SEC;
+	float curTime = (float)curClock / CLOCKS_PER_SEC;
 	m_fElapseTime = curTime - m_fLastFrameTime;
 	m_fLastFrameTime = curTime;
 	m_fFpsTimeCounter -= m_fElapseTime;

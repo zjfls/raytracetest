@@ -8,6 +8,8 @@
 #include "RenderManager.h"
 #include "RenderSystem.h"
 #include "MathFunc.h"
+#include "IOManager.h"
+#include "TimeManager.h"
 
 EditorSceneView::EditorSceneView()
 {
@@ -76,10 +78,51 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 
 void EditorSceneView::OnMouseMove(Vector2& pt)
 {
+	if (IOManager::GetInstance()->m_pIO->IsRBDown() == true)
+	{
+		Vector2 diff = pt - m_LastMousePos;
+		//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
+		Orientation rot = m_pCamera->m_pTransform->GetOrientation();
+		Vector3 vecRot = rot.m_vecEulerAngle;
+		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0001;
+		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0001;
+		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx,vecRot.m_fy,vecRot.m_fz);
 
+
+		m_LastMousePos = pt;
+	}
 }
 
 void EditorSceneView::OnMouseLButtonDown(Vector2& pt)
 {
 
+}
+
+void EditorSceneView::OnMouseRButtonDown(Vector2& pt)
+{
+	m_LastMousePos = pt;
+}
+
+void EditorSceneView::OnKeyPressed(int key)
+{
+	if (key == 'W')
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = m_pCamera->m_pTransform->GetForward();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 700 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
+	if (key == 'S')
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = m_pCamera->m_pTransform->GetForward();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 700 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		position = position - diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
 }

@@ -41,6 +41,8 @@
     <ClInclude Include="ImageFileHelper.h" />
     <ClInclude Include="IntersectTest.h" />
     <ClInclude Include="IntersetResults.h" />
+    <ClInclude Include="IOInterface.h" />
+    <ClInclude Include="IOManager.h" />
     <ClInclude Include="IRender.h" />
     <ClInclude Include="IRenderTarget.h" />
     <ClInclude Include="Main_Dll_Def.h" />
@@ -90,6 +92,7 @@
     <ClInclude Include="TextureSampler.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="WindowsIO.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +118,8 @@
     <ClCompile Include="ImageFileHelper.cpp" />
     <ClCompile Include="IntersectTest.cpp" />
     <ClCompile Include="IntersetResults.cpp" />
+    <ClCompile Include="IOInterface.cpp" />
+    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="IRender.cpp" />
     <ClCompile Include="IRenderTarget.cpp" />
     <ClCompile Include="MaterialAsset.cpp" />
@@ -157,6 +162,7 @@
     <ClCompile Include="TextureAssetLoader.cpp" />
     <ClCompile Include="TextureSampler.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="WindowsIO.cpp" />
     <ClCompile Include="XmlPrefabLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

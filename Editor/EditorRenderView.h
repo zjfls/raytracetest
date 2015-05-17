@@ -13,6 +13,9 @@ public:
 	virtual void OnMouseWheel(short zDelta, Vector2& pt);
 	virtual void OnMouseMove(Vector2& pt);
 	virtual void OnMouseLButtonDown(Vector2& pt);
+	virtual void OnMouseRButtonDown(Vector2& pt);
+	virtual void OnMouseRButtonRelease(Vector2& pt);
+	virtual void OnKeyPressed(int key);
 	//
 	virtual void Update() = 0;
 	//

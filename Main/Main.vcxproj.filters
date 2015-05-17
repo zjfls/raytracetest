@@ -19,6 +19,12 @@
     <Filter Include="源文件\Render">
       <UniqueIdentifier>{64d2a882-0fcc-459d-a8f6-43a760e76391}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\IO">
+      <UniqueIdentifier>{cbdcc783-13fe-4cfd-847f-1bb4b1e6b158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\IO">
+      <UniqueIdentifier>{64372965-dd09-41f9-a6da-323b193ed9e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h">
@@ -237,6 +243,15 @@
     <ClInclude Include="TimeManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="WindowsIO.h">
+      <Filter>头文件\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager.h">
+      <Filter>头文件\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="IOInterface.h">
+      <Filter>头文件\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -424,6 +439,15 @@
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IOInterface.cpp">
+      <Filter>源文件\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager.cpp">
+      <Filter>源文件\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsIO.cpp">
+      <Filter>源文件\IO</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

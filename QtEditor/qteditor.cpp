@@ -2,6 +2,7 @@
 #include "qteditor.h"
 #include "EditorApplication.h"
 #include "QtRenderView.h"
+//#include "QtRenderView.h"
 
 QtEditor::QtEditor(QWidget *parent)
 	: QMainWindow(parent)
@@ -66,14 +67,17 @@ QtEditor::QtEditor(QWidget *parent)
 
 
 	QtRenderView* pRender = new QtRenderView();
+	
 	//setCentralWidget(pRender);
 	//ui.tabWidget->addTab(pRender, tr("Scene"));
 	m_pTabWidget = new QTabWidget;
 	m_pTabWidget->addTab(pRender, tr("Scene"));
+	m_pTabWidget->installEventFilter(this);
 	setCentralWidget(m_pTabWidget);
-
+	pRender->installEventFilter(m_pTabWidget);
 
 	QtRenderView* pRender2 = new QtRenderView();
+	pRender2->installEventFilter(m_pTabWidget);
 	m_pTabWidget->addTab(pRender2, tr("Scene_2"));
 	QTimer *timer = new QTimer(this); 
 
@@ -99,4 +103,40 @@ void QtEditor::OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubj
 void QtEditor::OnTimer()
 {
 	EditorApplication::GetInstance()->Run();
+}
+
+//void QtEditor::keyPressEvent(QKeyEvent * event)
+//{
+//	std::cout << "key pressed!" << std::endl;
+//}
+
+bool QtEditor::eventFilter(QObject *obj, QEvent *event)
+{
+	if (event->type() == QEvent::KeyPress) {
+		//and here put your own logic!!
+		QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+		QtRenderView* pRenderView = dynamic_cast<QtRenderView*>(obj);
+		if (pRenderView != nullptr)
+		{
+			pRenderView->keyPressEvent(keyEvent);
+			return true;
+		}
+		if (dynamic_cast<QTabWidget*>(obj) != nullptr)
+		{
+			return true;
+		}
+		//qDebug("Ate key press %d", keyEvent->key());
+		return false;
+	}
+	else {
+		// standard event processing
+		return QObject::eventFilter(obj, event);
+	}
+}
+
+void QtEditor::childEvent(QChildEvent *event)
+{
+	if (event->added()) {
+		event->child()->installEventFilter(this);
+	}
 }

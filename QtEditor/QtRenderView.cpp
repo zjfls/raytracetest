@@ -37,7 +37,20 @@ void QtRenderView::wheelEvent(QWheelEvent * event)
 
 void QtRenderView::mousePressEvent(QMouseEvent * event)
 {
-
+	Vector2 v;
+	v.m_fx = event->pos().rx();
+	v.m_fy = event->pos().ry();
+	Qt::MouseButton mb = event->button();
+	Qt::MouseButton b = (Qt::MouseButton)(mb & Qt::MouseButton::RightButton);
+	if (b != 0)
+	{
+		m_pRenderView->OnMouseRButtonDown(v);
+	}
+	b = (Qt::MouseButton)(mb & Qt::MouseButton::LeftButton);
+	if (b != 0)
+	{
+		m_pRenderView->OnMouseLButtonDown(v);
+	}
 }
 
 void QtRenderView::mouseMoveEvent(QMouseEvent * event)
@@ -52,3 +65,18 @@ void QtRenderView::mouseReleaseEvent(QMouseEvent * event)
 {
 
 }
+
+void QtRenderView::keyPressEvent(QKeyEvent * event)
+{
+	int key = event->key();
+	m_pRenderView->OnKeyPressed(key);
+}
+//bool QtRenderView::event(QEvent *event)
+//{
+//	if (event->type() == QEvent::KeyPress) {
+//		QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+//		keyPressEvent(ke);
+//	}
+//
+//	return QWidget::event(event);
+//}

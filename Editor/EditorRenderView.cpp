@@ -46,3 +46,18 @@ void EditorRenderView::OnMouseLButtonDown(Vector2& pt)
 {
 
 }
+
+void EditorRenderView::OnMouseRButtonDown(Vector2& pt)
+{
+
+}
+
+void EditorRenderView::OnMouseRButtonRelease(Vector2& pt)
+{
+
+}
+
+void EditorRenderView::OnKeyPressed(int key)
+{
+
+}
