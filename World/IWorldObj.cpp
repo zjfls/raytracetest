@@ -37,7 +37,7 @@ bool IWorldObj::removeChild(shared_ptr<IWorldObj> pObj)
 	{
 		if (*iter == pObj)
 		{
-			pObj->m_pParent = nullptr;
+			//pObj->m_pParent = nullptr;
 			m_vecChildren.erase(iter);
 			return true;
 		}
