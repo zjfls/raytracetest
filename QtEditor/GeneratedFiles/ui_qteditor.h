@@ -20,7 +20,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QTreeView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -32,9 +31,6 @@ public:
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
-    QDockWidget *dockWidget;
-    QWidget *dockWidgetContents;
-    QTreeView *treeView;
     QDockWidget *dockWidget_2;
     QWidget *dockWidgetContents_2;
     QListView *listView;
@@ -64,28 +60,6 @@ public:
         statusBar = new QStatusBar(QtEditorClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         QtEditorClass->setStatusBar(statusBar);
-        dockWidget = new QDockWidget(QtEditorClass);
-        dockWidget->setObjectName(QStringLiteral("dockWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(dockWidget->sizePolicy().hasHeightForWidth());
-        dockWidget->setSizePolicy(sizePolicy1);
-        dockWidget->setMinimumSize(QSize(200, 38));
-        dockWidgetContents = new QWidget();
-        dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
-        sizePolicy1.setHeightForWidth(dockWidgetContents->sizePolicy().hasHeightForWidth());
-        dockWidgetContents->setSizePolicy(sizePolicy1);
-        treeView = new QTreeView(dockWidgetContents);
-        treeView->setObjectName(QStringLiteral("treeView"));
-        treeView->setGeometry(QRect(0, 0, 1024, 900));
-        QSizePolicy sizePolicy2(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(treeView->sizePolicy().hasHeightForWidth());
-        treeView->setSizePolicy(sizePolicy2);
-        dockWidget->setWidget(dockWidgetContents);
-        QtEditorClass->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidget);
         dockWidget_2 = new QDockWidget(QtEditorClass);
         dockWidget_2->setObjectName(QStringLiteral("dockWidget_2"));
         dockWidget_2->setMinimumSize(QSize(80, 180));
@@ -105,13 +79,6 @@ public:
     void retranslateUi(QMainWindow *QtEditorClass)
     {
         QtEditorClass->setWindowTitle(QApplication::translate("QtEditorClass", "QtEditor", 0));
-        dockWidget->setWindowTitle(QApplication::translate("QtEditorClass", "SceneTreeView", 0));
-#ifndef QT_NO_ACCESSIBILITY
-        dockWidgetContents->setAccessibleName(QApplication::translate("QtEditorClass", "SceneTreeVew", 0));
-#endif // QT_NO_ACCESSIBILITY
-#ifndef QT_NO_ACCESSIBILITY
-        treeView->setAccessibleName(QApplication::translate("QtEditorClass", "SceneTreeView", 0));
-#endif // QT_NO_ACCESSIBILITY
         dockWidget_2->setWindowTitle(QApplication::translate("QtEditorClass", "Output", 0));
 #ifndef QT_NO_ACCESSIBILITY
         listView->setAccessibleName(QApplication::translate("QtEditorClass", "Output", 0));

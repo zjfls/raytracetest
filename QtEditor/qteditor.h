@@ -4,7 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_qteditor.h"
 #include "IListener.h"
-
+class IWorldObj;
+class QtSceneTreeItem;
 class QtEditor : public QMainWindow,public IListener
 {
 	Q_OBJECT
@@ -18,9 +19,16 @@ public:
 	virtual void childEvent(QChildEvent *event);
 	private slots:
 	void OnTimer();
+	//
+private:
+	void	InitSceneTreeView();
+	void	AddSceneTreeViewItem(QtSceneTreeItem* pParent,shared_ptr<IWorldObj> pObj);
+	//
 private:
 	Ui::QtEditorClass ui;
 	QTabWidget* m_pTabWidget;
+public:
+	QTreeWidget* m_pSceneTreeView;
 };
 
 #endif // QTEDITOR_H

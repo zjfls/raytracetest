@@ -2,11 +2,23 @@
 #include "qteditor.h"
 #include "EditorApplication.h"
 #include "QtRenderView.h"
+#include "QtSceneTreeItem.h"
+#include "IWorldObj.h"
+#include "IWorld.h"
+
 //#include "QtRenderView.h"
 
 QtEditor::QtEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
+	m_pSceneTreeView = nullptr;
+	QDockWidget *dock = new QDockWidget(tr("SceneTreeView"), this);
+	m_pSceneTreeView = new QTreeWidget();
+	dock->setWidget(m_pSceneTreeView);
+	dock->setAllowedAreas(Qt::LeftDockWidgetArea);
+	addDockWidget(Qt::LeftDockWidgetArea, dock);
+	//
+	//
 	ui.setupUi(this);
 	//
 	//EditorApplication::GetInstance()->Init(nullptr,nullptr);
@@ -19,7 +31,7 @@ QtEditor::QtEditor(QWidget *parent)
 	QMainWindow::setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 	//setCorner(Qt:TopRightCorner, Qt::LeftDockWidgetArea);
 
-	QDockWidget *dock = new QDockWidget(tr("Customers"), this);
+	dock = new QDockWidget(tr("Customers"), this);
 	dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	QListWidget* customerList = new QListWidget(dock);
 	customerList->addItems(QStringList()
@@ -66,6 +78,10 @@ QtEditor::QtEditor(QWidget *parent)
 		this, SLOT(addParagraph(QString)));
 
 
+
+
+
+
 	QtRenderView* pRender = new QtRenderView();
 	
 	//setCentralWidget(pRender);
@@ -74,10 +90,10 @@ QtEditor::QtEditor(QWidget *parent)
 	m_pTabWidget->addTab(pRender, tr("Scene"));
 	m_pTabWidget->installEventFilter(this);
 	setCentralWidget(m_pTabWidget);
-	pRender->installEventFilter(m_pTabWidget);
+	pRender->installEventFilter(this);
 
 	QtRenderView* pRender2 = new QtRenderView();
-	pRender2->installEventFilter(m_pTabWidget);
+	pRender2->installEventFilter(this);
 	m_pTabWidget->addTab(pRender2, tr("Scene_2"));
 	QTimer *timer = new QTimer(this); 
 
@@ -97,7 +113,16 @@ QtEditor::~QtEditor()
 
 void QtEditor::OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubject)
 {
-
+	if (msg == "InitScene")
+	{
+		//pFrm->m_wndSceneTreeView.InitSceneTreeView();
+		InitSceneTreeView();
+		
+	}
+	if (msg == "SelectChange")
+	{
+		//pFrm->m_wndProperties.UpdateWorldObjProperty(EditorApplication::GetInstance()->m_SelectObj);
+	}
 }
 
 void QtEditor::OnTimer()
@@ -119,11 +144,12 @@ bool QtEditor::eventFilter(QObject *obj, QEvent *event)
 		if (pRenderView != nullptr)
 		{
 			pRenderView->keyPressEvent(keyEvent);
-			return true;
+			return false;
 		}
 		if (dynamic_cast<QTabWidget*>(obj) != nullptr)
 		{
-			return true;
+			((QtRenderView*)dynamic_cast<QTabWidget*>(obj)->currentWidget())->keyPressEvent(keyEvent);
+			return false;
 		}
 		//qDebug("Ate key press %d", keyEvent->key());
 		return false;
@@ -138,5 +164,30 @@ void QtEditor::childEvent(QChildEvent *event)
 {
 	if (event->added()) {
 		event->child()->installEventFilter(this);
+	}
+}
+
+void QtEditor::InitSceneTreeView()
+{
+	shared_ptr<IWorldObj> pObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+	QtSceneTreeItem *pRoot = new QtSceneTreeItem();
+	m_pSceneTreeView->addTopLevelItem(pRoot);
+	pRoot->setText(0, tr("SceneRoot"));
+	pRoot->m_pObj = pObj;
+	for (int i = 0; i < pObj->GetChildCount(); ++i)
+	{
+		AddSceneTreeViewItem(pRoot,pObj->GetChild(i));
+	}
+
+}
+
+void QtEditor::AddSceneTreeViewItem(QtSceneTreeItem* pParent, shared_ptr<IWorldObj> pObj)
+{
+	QtSceneTreeItem* pItem = new QtSceneTreeItem();
+	pParent->addChild(pItem);
+	pItem->setText(0, QString::fromStdString(pObj->m_strName));
+	for (int i = 0; i < pObj->GetChildCount(); ++i)
+	{
+		AddSceneTreeViewItem(pItem, pObj->GetChild(i));
 	}
 }
