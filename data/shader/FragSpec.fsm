@@ -1,6 +1,6 @@
 struct PS_INPUT
 {
-    float4	Normal			: TEXCOORD0; 
+    float3	Normal			: TEXCOORD0; 
     float2	TC		  		: TEXCOORD1;
 	float3	worldPosition	: TEXCOORD2;
 	float3	Tangent			: TEXCOORD3;
@@ -12,7 +12,7 @@ static const float4 ambientColor = {0.1f,0.1f,0.1f,1.0f};
 static const float3 lightDir = {0.0f,1.0f,-1.0f};
 static const float4	lightColor = {0.7f,0.7f,0.7f,1.0f};
 static const float	lightIntensity = 0.5f;
-static const float	Ks = 0.5f;
+static const float	Ks = 0.8f;
 static const float	Kd = 1.0f;
 static const float SpecExpon = 32.0f;
 //
@@ -61,5 +61,6 @@ float4 pMain(PS_INPUT input):Color0
 	//output.Color.rgb = diffContrib;
 	outputColor.a = texColor.a;
 	//return float4(specContrib,1.0f);
+	//outputColor = float4(Nn,1.0f);
 	return outputColor;
 }
