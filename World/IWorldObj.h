@@ -49,7 +49,8 @@ public:
 	//virtual IWorldObj* Clone(bool bRecursive);
 
 private:
-	shared_ptr<IWorldObj>					m_pParent;
+	//shared_ptr<IWorldObj>					
+	IWorldObj*								m_pParent;
 	std::vector<shared_ptr<IWorldObj>>		m_vecChildren;
 	std::vector<shared_ptr<ModuleBase>>	m_vecModules;
 public:

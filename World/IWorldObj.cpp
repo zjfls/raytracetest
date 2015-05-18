@@ -25,7 +25,7 @@ bool IWorldObj::addChild(shared_ptr<IWorldObj> pObj)
 			return false;
 		}
 	}
-	pObj->m_pParent = shared_ptr<IWorldObj>(this);
+	pObj->m_pParent = this;// shared_ptr<IWorldObj>(this);
 	m_vecChildren.push_back(pObj);
 	return true;
 }
@@ -37,7 +37,7 @@ bool IWorldObj::removeChild(shared_ptr<IWorldObj> pObj)
 	{
 		if (*iter == pObj)
 		{
-			//pObj->m_pParent = nullptr;
+			pObj->m_pParent = nullptr;
 			m_vecChildren.erase(iter);
 			return true;
 		}
