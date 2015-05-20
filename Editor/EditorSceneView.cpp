@@ -107,11 +107,13 @@ void EditorSceneView::OnKeyPressed(int key)
 {
 	if (key == 'W')
 	{
+		
 		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
 		Vector3 dir = m_pCamera->m_pTransform->GetForward();
 		dir = dir.normalize();
 		//
-		Vector3 diff = 700 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		Vector3 diff = 1000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		std::cout << "move front:"<<"x:"<<diff.m_fx<<"y:"<<diff.m_fy<<"z:"<<diff.m_fz<<"ElapseTime:"<<TimeManager::GetInstance()->m_fElapseTime << std::endl;
 		position += diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}
@@ -121,7 +123,7 @@ void EditorSceneView::OnKeyPressed(int key)
 		Vector3 dir = m_pCamera->m_pTransform->GetForward();
 		dir = dir.normalize();
 		//
-		Vector3 diff = 700 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		Vector3 diff = 1000 * TimeManager::GetInstance()->m_fElapseTime * dir;
 		position = position - diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}

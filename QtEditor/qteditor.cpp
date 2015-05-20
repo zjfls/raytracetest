@@ -5,7 +5,11 @@
 #include "QtSceneTreeItem.h"
 #include "IWorldObj.h"
 #include "IWorld.h"
-
+#include "qtvariantproperty.h"
+#include "qttreepropertybrowser.h"
+#include "qtgroupboxpropertybrowser.h"
+#include "qtpropertymanager.h"
+#include "WorldObjPropertyBrowser.h"
 //#include "QtRenderView.h"
 
 QtEditor::QtEditor(QWidget *parent)
@@ -76,10 +80,11 @@ QtEditor::QtEditor(QWidget *parent)
 		this, SLOT(insertCustomer(QString)));
 	connect(paragraphsList, SIGNAL(currentTextChanged(QString)),
 		this, SLOT(addParagraph(QString)));
-
-
-
-
+	//
+	QDockWidget* pPropertyDock = new QDockWidget(tr("Property"));
+	WorldObjPropertyBrowser* pTreePropertyBrowser = new WorldObjPropertyBrowser();
+	pPropertyDock->setWidget(pTreePropertyBrowser);
+	tabifyDockWidget(doc1, pPropertyDock);
 
 
 	QtRenderView* pRender = new QtRenderView();
@@ -103,7 +108,7 @@ QtEditor::QtEditor(QWidget *parent)
 
 	//关联定时器计满信号和相应的槽函数
 
-	timer->start(0);
+	timer->start(1);
 }
 
 QtEditor::~QtEditor()
