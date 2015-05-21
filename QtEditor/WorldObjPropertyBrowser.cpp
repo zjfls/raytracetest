@@ -12,7 +12,7 @@ WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 	variantManager = new QtVariantPropertyManager(this);
 	variantFactory = new QtVariantEditorFactory(this);
 	groupManager = new QtGroupPropertyManager(this);
-
+	stringManager = new QtStringPropertyManager(this);
 
 
 	setFactoryForManager(variantManager, variantFactory);
@@ -41,5 +41,12 @@ void WorldObjPropertyBrowser::SetTarget(shared_ptr<IWorldObj> pObj)
 	}
 	//
 	//
-	removeProperty()
+	QList<QtProperty*> pList = properties();
+	QListIterator<QtProperty*> it(pList);
+	while (it.hasNext())
+	{
+		QtProperty* item = it.next();
+		delete item;
+	}
+	QtProperty* pName = stringManager->addProperty(tr("Name"));
 }

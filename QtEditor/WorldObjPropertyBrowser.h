@@ -1,7 +1,9 @@
 #pragma once
-#include "H:\github\raytracetest\thirdparty\qtpropertybrowser\src\qttreepropertybrowser.h"
-
-
+#include "qttreepropertybrowser.h"
+class QtVariantPropertyManager;
+class QtVariantEditorFactory;
+class QtGroupPropertyManager;
+class QtStringPropertyManager;
 class IWorldObj;
 class WorldObjPropertyBrowser :
 	public QtTreePropertyBrowser
@@ -19,5 +21,6 @@ private:
 	QtVariantPropertyManager* variantManager;// = new QtVariantPropertyManager(this);
 	QtVariantEditorFactory*	variantFactory;// = new QtVariantEditorFactory(this);
 	QtGroupPropertyManager *groupManager;// = new QtGroupPropertyManager(this);
+	QtStringPropertyManager *stringManager;// = new QtStringPropertyManager(w);
 };
 

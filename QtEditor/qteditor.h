@@ -6,6 +6,7 @@
 #include "IListener.h"
 class IWorldObj;
 class QtSceneTreeItem;
+class SceneTreeView;
 class QtEditor : public QMainWindow,public IListener
 {
 	Q_OBJECT
@@ -17,8 +18,9 @@ public:
 	//virtual void keyPressEvent(QKeyEvent * event);
 	virtual bool eventFilter(QObject *obj, QEvent *event);
 	virtual void childEvent(QChildEvent *event);
-	private slots:
+private slots:
 	void OnTimer();
+	void SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);
 	//
 private:
 	void	InitSceneTreeView();
@@ -28,7 +30,7 @@ private:
 	Ui::QtEditorClass ui;
 	QTabWidget* m_pTabWidget;
 public:
-	QTreeWidget* m_pSceneTreeView;
+	SceneTreeView* m_pSceneTreeView;
 };
 
 #endif // QTEDITOR_H

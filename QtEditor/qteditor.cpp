@@ -10,6 +10,7 @@
 #include "qtgroupboxpropertybrowser.h"
 #include "qtpropertymanager.h"
 #include "WorldObjPropertyBrowser.h"
+#include "SceneTreeView.h"
 //#include "QtRenderView.h"
 
 QtEditor::QtEditor(QWidget *parent)
@@ -17,7 +18,7 @@ QtEditor::QtEditor(QWidget *parent)
 {
 	m_pSceneTreeView = nullptr;
 	QDockWidget *dock = new QDockWidget(tr("SceneTreeView"), this);
-	m_pSceneTreeView = new QTreeWidget();
+	m_pSceneTreeView = new SceneTreeView();
 	dock->setWidget(m_pSceneTreeView);
 	dock->setAllowedAreas(Qt::LeftDockWidgetArea);
 	addDockWidget(Qt::LeftDockWidgetArea, dock);
@@ -103,12 +104,14 @@ QtEditor::QtEditor(QWidget *parent)
 	QTimer *timer = new QTimer(this); 
 
 	//新建定时器
-
+	connect(m_pSceneTreeView, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this, SLOT(SceneTreeItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
 	connect(timer, SIGNAL(timeout()), this, SLOT(OnTimer()));
 
 	//关联定时器计满信号和相应的槽函数
 
 	timer->start(1);
+	
+		//connect(myTreeView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(myTreeSelectionChanged(QModelIndex)));
 }
 
 QtEditor::~QtEditor()
@@ -191,8 +194,25 @@ void QtEditor::AddSceneTreeViewItem(QtSceneTreeItem* pParent, shared_ptr<IWorldO
 	QtSceneTreeItem* pItem = new QtSceneTreeItem();
 	pParent->addChild(pItem);
 	pItem->setText(0, QString::fromStdString(pObj->m_strName));
+	pItem->m_pObj = pObj;
 	for (int i = 0; i < pObj->GetChildCount(); ++i)
 	{
 		AddSceneTreeViewItem(pItem, pObj->GetChild(i));
 	}
+}
+
+
+
+void QtEditor::SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre)
+{
+	if (pCur == nullptr)
+	{
+		return;
+	}
+	QtSceneTreeItem* pSceneItem = (QtSceneTreeItem*)pCur;
+	if (pSceneItem->m_pObj == nullptr)
+	{
+		return;
+	}
+	std::cout << "Name:" << pSceneItem->m_pObj->m_strName << std::endl;
 }
