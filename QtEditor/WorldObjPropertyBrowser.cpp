@@ -32,6 +32,11 @@ WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 	FileEditFactory* fileEditFactory = new FileEditFactory;
 	setFactoryForManager(filePathManager, fileEditFactory);
 	SetTarget(nullptr);
+
+
+
+	connect(variantManager, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
+		this, SLOT(valueChanged(QtProperty *, const QVariant &)));
 	////
 	//QtProperty* pTransform = groupManager->addProperty("WorldObj");
 	//QtVariantProperty* pProperty;
@@ -261,4 +266,9 @@ void WorldObjPropertyBrowser::AddModule(shared_ptr<ModuleBase> pModule)
 	//	pGroup->AddSubItem(pProp);
 	//	m_wndPropList.AddProperty(pGroup);
 	//}
+}
+
+void WorldObjPropertyBrowser::valueChanged(QtProperty *pProp, const QVariant &v)
+{
+	//std::cout << "value changed" << std::endl;
 }

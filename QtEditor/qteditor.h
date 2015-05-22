@@ -8,6 +8,7 @@ class IWorldObj;
 class QtSceneTreeItem;
 class SceneTreeView;
 class WorldObjPropertyBrowser;
+class QtProperty;
 class QtEditor : public QMainWindow,public IListener
 {
 	Q_OBJECT
@@ -20,8 +21,9 @@ public:
 	virtual bool eventFilter(QObject *obj, QEvent *event);
 	virtual void childEvent(QChildEvent *event);
 private slots:
-	void OnTimer();
-	void SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);
+	void	OnTimer();
+	void	SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);
+	//void	valueChanged(QtProperty *pProp, const QVariant &variant);
 	//
 private:
 	void	InitSceneTreeView();

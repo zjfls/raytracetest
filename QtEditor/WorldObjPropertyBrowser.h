@@ -8,7 +8,8 @@ class QtLocalePropertyManager;
 class FilePathManager;
 class IWorldObj;
 class ModuleBase;
-
+class QtProperty;
+class QVariant;
 class WorldObjPropertyBrowser :
 	public QtTreePropertyBrowser
 {
@@ -22,6 +23,8 @@ public:
 	void	SetTarget(shared_ptr<IWorldObj> pObj);
 private:
 	void	AddModule(shared_ptr<ModuleBase> pModule);
+	private slots:
+	void valueChanged(QtProperty *pProp, const QVariant &v);
 private:
 	shared_ptr<IWorldObj> m_pSelectObj;
 	QtVariantPropertyManager* variantManager;// = new QtVariantPropertyManager(this);

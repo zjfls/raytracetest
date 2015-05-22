@@ -110,7 +110,8 @@ QtEditor::QtEditor(QWidget *parent)
 	//关联定时器计满信号和相应的槽函数
 
 	timer->start(1);
-	
+	/*connect(variantManager, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
+		this, SLOT(valueChanged(QtProperty *, const QVariant &)));*/
 		//connect(myTreeView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(myTreeSelectionChanged(QModelIndex)));
 }
 
@@ -219,3 +220,8 @@ void QtEditor::SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre
 	EditorApplication::GetInstance()->OnSelectChange(pSceneItem->m_pObj);
 	//std::cout << "Name:" << pSceneItem->m_pObj->m_strName << std::endl;
 }
+
+//void QtEditor::valueChanged(QtProperty *pProp, const QVariant &variant)
+//{
+//
+//}
