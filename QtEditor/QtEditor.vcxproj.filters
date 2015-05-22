@@ -33,6 +33,9 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="QtExtension">
+      <UniqueIdentifier>{d99af57d-d4e4-4108-b856-1ef2fdcc2cc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -83,6 +86,51 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SceneTreeView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\thirdparty\qtpropertybrowser\src\fileedit.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_fileedit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_fileedit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\qtpropertybrowser\src\fileeditfactory.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_fileeditfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_fileeditfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\qtpropertybrowser\src\filepathmanager.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_filepathmanager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_filepathmanager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\qtpropertybrowser\src\variantfactory.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_variantfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_variantfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\qtpropertybrowser\src\variantmanager.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_variantmanager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_variantmanager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -113,6 +161,21 @@
     </CustomBuild>
     <CustomBuild Include="SceneTreeView.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\thirdparty\qtpropertybrowser\src\fileedit.h">
+      <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\thirdparty\qtpropertybrowser\src\fileeditfactory.h">
+      <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\thirdparty\qtpropertybrowser\src\filepathmanager.h">
+      <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\thirdparty\qtpropertybrowser\src\variantfactory.h">
+      <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\thirdparty\qtpropertybrowser\src\variantmanager.h">
+      <Filter>QtExtension</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

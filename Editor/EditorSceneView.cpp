@@ -84,8 +84,8 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 		//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
 		Orientation rot = m_pCamera->m_pTransform->GetOrientation();
 		Vector3 vecRot = rot.m_vecEulerAngle;
-		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0001;
-		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0001;
+		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0003;
+		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0003;
 		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx,vecRot.m_fy,vecRot.m_fz);
 
 
@@ -112,7 +112,7 @@ void EditorSceneView::OnKeyPressed(int key)
 		Vector3 dir = m_pCamera->m_pTransform->GetForward();
 		dir = dir.normalize();
 		//
-		Vector3 diff = 1000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
 		std::cout << "move front:"<<"x:"<<diff.m_fx<<"y:"<<diff.m_fy<<"z:"<<diff.m_fz<<"ElapseTime:"<<TimeManager::GetInstance()->m_fElapseTime << std::endl;
 		position += diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
@@ -123,7 +123,7 @@ void EditorSceneView::OnKeyPressed(int key)
 		Vector3 dir = m_pCamera->m_pTransform->GetForward();
 		dir = dir.normalize();
 		//
-		Vector3 diff = 1000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
 		position = position - diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}

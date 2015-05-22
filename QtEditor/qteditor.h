@@ -7,6 +7,7 @@
 class IWorldObj;
 class QtSceneTreeItem;
 class SceneTreeView;
+class WorldObjPropertyBrowser;
 class QtEditor : public QMainWindow,public IListener
 {
 	Q_OBJECT
@@ -29,6 +30,7 @@ private:
 private:
 	Ui::QtEditorClass ui;
 	QTabWidget* m_pTabWidget;
+	WorldObjPropertyBrowser* m_pTreePropertyBrowser;
 public:
 	SceneTreeView* m_pSceneTreeView;
 };

@@ -7,6 +7,7 @@
 IWorld::IWorld()
 {
 	m_pRoot = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+	m_pRoot->m_strName = "SceneRoot";
 }
 
 

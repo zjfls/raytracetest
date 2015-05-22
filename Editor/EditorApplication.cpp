@@ -91,6 +91,7 @@ void EditorApplication::Run()
 	//
 	TimeManager::GetInstance()->Update();
 	//
+	//NotifyListener("SelectChange", EditorApplication::GetInstance());
 }
 void EditorApplication::SetupScene()
 {

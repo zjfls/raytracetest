@@ -83,8 +83,8 @@ QtEditor::QtEditor(QWidget *parent)
 		this, SLOT(addParagraph(QString)));
 	//
 	QDockWidget* pPropertyDock = new QDockWidget(tr("Property"));
-	WorldObjPropertyBrowser* pTreePropertyBrowser = new WorldObjPropertyBrowser();
-	pPropertyDock->setWidget(pTreePropertyBrowser);
+	m_pTreePropertyBrowser = new WorldObjPropertyBrowser();
+	pPropertyDock->setWidget(m_pTreePropertyBrowser);
 	tabifyDockWidget(doc1, pPropertyDock);
 
 
@@ -129,7 +129,9 @@ void QtEditor::OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubj
 	}
 	if (msg == "SelectChange")
 	{
+		m_pTreePropertyBrowser->SetTarget(EditorApplication::GetInstance()->m_SelectObj);
 		//pFrm->m_wndProperties.UpdateWorldObjProperty(EditorApplication::GetInstance()->m_SelectObj);
+		
 	}
 }
 
@@ -214,5 +216,6 @@ void QtEditor::SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre
 	{
 		return;
 	}
-	std::cout << "Name:" << pSceneItem->m_pObj->m_strName << std::endl;
+	EditorApplication::GetInstance()->OnSelectChange(pSceneItem->m_pObj);
+	//std::cout << "Name:" << pSceneItem->m_pObj->m_strName << std::endl;
 }
