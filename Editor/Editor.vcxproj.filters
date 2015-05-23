@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\ModuleProperty">
+      <UniqueIdentifier>{e4c14b63-9d35-4627-8301-fe16e3eb71c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModuleProperty">
+      <UniqueIdentifier>{bb0310b8-d5cf-4c50-b908-aa5b0ec31038}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -42,6 +48,9 @@
     <ClInclude Include="EditorSceneView.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="EditorModuleProperty.h">
+      <Filter>头文件\ModuleProperty</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -64,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="EditorApplication.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorModuleProperty.cpp">
+      <Filter>源文件\ModuleProperty</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

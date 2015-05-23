@@ -51,6 +51,8 @@ void QtRenderView::mousePressEvent(QMouseEvent * event)
 	{
 		m_pRenderView->OnMouseLButtonDown(v);
 	}
+	QWidget::mousePressEvent(event);
+	setFocus();
 }
 
 void QtRenderView::mouseMoveEvent(QMouseEvent * event)

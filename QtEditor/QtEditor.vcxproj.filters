@@ -131,6 +131,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_variantmanager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="CommonToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CommonToolBar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CommonToolBar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -176,6 +185,9 @@
     </CustomBuild>
     <CustomBuild Include="..\thirdparty\qtpropertybrowser\src\variantmanager.h">
       <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CommonToolBar.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

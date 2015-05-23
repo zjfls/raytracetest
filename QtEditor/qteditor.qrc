@@ -1,4 +1,9 @@
 <RCC>
-    <qresource prefix="QtEditor">
+    <qresource prefix="/QtEditor">
+        <file>EditorRes/Icon/background3.png</file>
+        <file>EditorRes/Icon/pointer.png</file>
+        <file>EditorRes/Icon/rotate.png</file>
+        <file>EditorRes/Icon/scale.png</file>
+        <file>EditorRes/Icon/move.png</file>
     </qresource>
 </RCC>

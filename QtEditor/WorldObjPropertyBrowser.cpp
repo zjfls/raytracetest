@@ -13,7 +13,10 @@
 #include "variantmanager.h"
 #include "filepathmanager.h"
 #include "FileEditFactory.h"
-
+#include "PointLight.h"
+#include "DirectionalLight.h"
+#include "EditorModuleProperty.h"
+#include <unordered_map>
 
 WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 {
@@ -58,6 +61,11 @@ void WorldObjPropertyBrowser::SetTarget(shared_ptr<IWorldObj> pObj)
 		return;
 	}
 	//
+	for each (std::pair<QtProperty*, EditorModuleProperty*> p in m_PropertyMap)
+	{
+		delete p.second;
+	}
+	m_PropertyMap.clear();
 	//
 	QList<QtProperty*> pList = properties();
 	QListIterator<QtProperty*> it(pList);
@@ -95,40 +103,49 @@ void WorldObjPropertyBrowser::AddModule(shared_ptr<ModuleBase> pModule)
 		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
 		pProperty->setValue(pTransform->GetLocalTranslate().m_fx);
 		pPropTranslate->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "TRANSLATEX", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
 		pProperty->setValue(pTransform->GetLocalTranslate().m_fy);
 		pPropTranslate->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "TRANSLATEY", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
 		pProperty->setValue(pTransform->GetLocalTranslate().m_fz);
 		pPropTranslate->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "TRANSLATEZ", pProperty);
 		//
 		//Rotation
 		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
 		pProperty->setValue(pTransform->GetOrientation().m_vecEulerAngle.m_fx);
 		pPropRotation->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "ROTATIONX", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
 		pProperty->setValue(pTransform->GetOrientation().m_vecEulerAngle.m_fy);
 		pPropRotation->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "ROTATIONY", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
 		pProperty->setValue(pTransform->GetOrientation().m_vecEulerAngle.m_fz);
 		pPropRotation->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "ROTATIONZ", pProperty);
 		//
 		//scale
 		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
 		pProperty->setValue(pTransform->GetScale().m_fx);
 		pPropScale->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "SCALEX", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
 		pProperty->setValue(pTransform->GetScale().m_fy);
 		pPropScale->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "SCALEY", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
 		pProperty->setValue(pTransform->GetScale().m_fz);
 		pPropScale->addSubProperty(pProperty);
+		AddEditorProperty(pTransform, "SCALEZ", pProperty);
 		//
 		pPropGroup->addSubProperty(pPropTranslate);
 		pPropGroup->addSubProperty(pPropRotation);
@@ -171,104 +188,86 @@ void WorldObjPropertyBrowser::AddModule(shared_ptr<ModuleBase> pModule)
 		pProperty->setValue(pCamera->m_fFar);
 		pCameraProperty->addSubProperty(pProperty);
 		addProperty(pCameraProperty);
-		//
-		//float m_fFovy;
-		//float m_fAspect;
-		//float m_fNear;
-		//float m_fFar;
-		//shared_ptr<RasterCamera> pCamera = dynamic_pointer_cast<RasterCamera>(pModule);
-		//CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Camera"));
-		//CMFCFloatGridProperty* pProp = new CMFCFloatGridProperty(_T("FOV"), (_variant_t)pCamera->m_fFovy, "CAMERAFOV");
-		//pGroup->AddSubItem(pProp);
-		//pProp = new CMFCFloatGridProperty(_T("Aspect"), (_variant_t)pCamera->m_fAspect, "CAMERAFOV");
-		//pGroup->AddSubItem(pProp);
-		//pProp = new CMFCFloatGridProperty(_T("Near Plane"), (_variant_t)pCamera->m_fNear, "NEARPLANE");
-		//pGroup->AddSubItem(pProp);
-		//pProp = new CMFCFloatGridProperty(_T("Far Plane"), (_variant_t)pCamera->m_fFar, "FARPLANE");
-		//pGroup->AddSubItem(pProp);
-		//m_wndPropList.AddProperty(pGroup);
 	}
-	//if (typeid(*pModule.get()) == typeid(Transform))
-	//{
-	//	//
-	//	shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(pModule);
-	//	//
-	//	CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Transform"));
-	//	//translate
-	//	CMFCPropertyGridProperty* pGroupTranslate = new CMFCPropertyGridProperty(_T("Translate"));
-	//	pGroup->AddSubItem(pGroupTranslate);
-	//	CMFCFloatGridProperty* pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetLocalTranslate().m_fx, "translate_x");
-	//	//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
-	//	pGroupTranslate->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetLocalTranslate().m_fy, "translate_y");
-	//	pGroupTranslate->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetLocalTranslate().m_fz, "translate_z");
-	//	pGroupTranslate->AddSubItem(pProp);
-
-
-	//	//rotation
-	//	CMFCPropertyGridProperty* pGroupRotation = new CMFCPropertyGridProperty(_T("Rotation"));
-	//	pGroup->AddSubItem(pGroupRotation);
-	//	pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fx, "rotation_x");
-	//	//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
-	//	pGroupRotation->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fy, "rotation_y");
-	//	pGroupRotation->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fz, "rotation_z");
-	//	pGroupRotation->AddSubItem(pProp);
-
-	//	//scale
-	//	CMFCPropertyGridProperty* pGroupScale = new CMFCPropertyGridProperty(_T("Scale"));
-	//	pGroup->AddSubItem(pGroupScale);
-	//	pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetScale().m_fx, "scale_x");
-	//	//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
-	//	pGroupScale->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetScale().m_fy, "scale_y");
-	//	pGroupScale->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetScale().m_fz, "scale_z");
-	//	pGroupScale->AddSubItem(pProp);
-
-	//	//pGroup411->AddSubItem(new CMFCPropertyGridProperty(_T("项 1"), (_variant_t)_T("值 1"), _T("此为说明")));
-	//	//pGroup411->AddSubItem(new CMFCPropertyGridProperty(_T("项 2"), (_variant_t)_T("值 2"), _T("此为说明")));
-	//	//pGroup411->AddSubItem(new CMFCPropertyGridProperty(_T("项 3"), (_variant_t)_T("值 3"), _T("此为说明")));
-	//	m_wndPropList.AddProperty(pGroup);
-	//}
-	//if (typeid(*pModule.get()) == typeid(Mesh))
-	//{
-	//	shared_ptr<Mesh> pMesh = dynamic_pointer_cast<Mesh>(pModule);
-	//	CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Mesh"));
-	//	std::string pMeshRef = "";
-	//	if (pMesh->GetMeshResource() != nullptr)
-	//	{
-	//		pMeshRef = pMesh->GetMeshResource()->GetRefPath();
-	//	}
-	//	CMFCPropertyGridFileProperty* pFile = new CMFCPropertyGridFileProperty("MeshFile", pMeshRef.c_str());
-	//	pGroup->AddSubItem(pFile);
-
-
-	//	m_wndPropList.AddProperty(pGroup);
-	//}
-	//if (typeid(*pModule.get()) == typeid(RasterCamera))
-	//{
-	//	//float m_fFovy;
-	//	//float m_fAspect;
-	//	//float m_fNear;
-	//	//float m_fFar;
-	//	shared_ptr<RasterCamera> pCamera = dynamic_pointer_cast<RasterCamera>(pModule);
-	//	CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Camera"));
-	//	CMFCFloatGridProperty* pProp = new CMFCFloatGridProperty(_T("FOV"), (_variant_t)pCamera->m_fFovy, "CAMERAFOV");
-	//	pGroup->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("Aspect"), (_variant_t)pCamera->m_fAspect, "CAMERAFOV");
-	//	pGroup->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("Near Plane"), (_variant_t)pCamera->m_fNear, "NEARPLANE");
-	//	pGroup->AddSubItem(pProp);
-	//	pProp = new CMFCFloatGridProperty(_T("Far Plane"), (_variant_t)pCamera->m_fFar, "FARPLANE");
-	//	pGroup->AddSubItem(pProp);
-	//	m_wndPropList.AddProperty(pGroup);
-	//}
+	if (typeid(*pModule.get()) == typeid(PointLight))
+	{
+		//LightBase
+		//GameColor	m_Color;
+		//float	m_fIntensity;
+		//float	m_bCastShadow;
+		//PointLight
+		//float m_fRange;
+		//float m_fAttenConst;
+		//float m_fAttenLinear;
+		//float m_fAttenExp;
+		shared_ptr<PointLight> pPointLight = dynamic_pointer_cast<PointLight>(pModule);
+		QtProperty* pPTGroup = groupManager->addProperty(tr("PointLight"));
+		//
+		QtVariantProperty* pProperty = variantManager->addProperty(QVariant::Color, tr("LightColor"));
+		QColor c;
+		/*c.alpha = pPointLight->m_Color.m_fA;*/
+		c.setAlphaF(pPointLight->m_Color.m_fA);
+		c.setRedF(pPointLight->m_Color.m_fR);
+		c.setGreenF(pPointLight->m_Color.m_fG);
+		c.setBlueF(pPointLight->m_Color.m_fB);
+		pProperty->setValue(c);
+		pPTGroup->addSubProperty(pProperty);
+		addProperty(pPTGroup);
+	}
+	if (typeid(*pModule.get()) == typeid(DirectionalLight))
+	{
+		//LightBase
+		//GameColor	m_Color;
+		//float	m_fIntensity;
+		//float	m_bCastShadow;
+		shared_ptr<DirectionalLight> pDirLight = dynamic_pointer_cast<DirectionalLight>(pModule);
+		QtProperty* pPTGroup = groupManager->addProperty(tr("DirectioLight"));
+		//
+		QtVariantProperty* pProperty = variantManager->addProperty(QVariant::Color, tr("LightColor"));
+		QColor c;
+		/*c.alpha = pPointLight->m_Color.m_fA;*/
+		c.setAlphaF(pDirLight->m_Color.m_fA);
+		c.setRedF(pDirLight->m_Color.m_fR);
+		c.setGreenF(pDirLight->m_Color.m_fG);
+		c.setBlueF(pDirLight->m_Color.m_fB);
+		pProperty->setValue(c);
+		pPTGroup->addSubProperty(pProperty);
+		addProperty(pPTGroup);
+	}
 }
 
 void WorldObjPropertyBrowser::valueChanged(QtProperty *pProp, const QVariant &v)
 {
+	if (m_PropertyMap.find(pProp) == std::end(m_PropertyMap))
+	{
+		return;
+	}
 	//std::cout << "value changed" << std::endl;
+
+	switch (v.type())
+	{
+		case QVariant::Double:
+		{
+			float fValue = v.toDouble();
+			m_PropertyMap[pProp]->SetProperty(&fValue);
+
+		}
+		break;
+		default:
+		{
+		}
+		break;
+	}
+}
+
+void WorldObjPropertyBrowser::AddEditorProperty(shared_ptr<ModuleBase> pModule, std::string propName, QtProperty* pProp)
+{
+	if (m_PropertyMap.find(pProp) != std::end(m_PropertyMap))
+	{
+		return;
+	}
+	EditorModuleProperty* pEditorProp = new EditorModuleProperty;
+	pEditorProp->m_pModule = pModule;
+	pEditorProp->m_PropName = propName;
+	m_PropertyMap[pProp] = pEditorProp;
 }

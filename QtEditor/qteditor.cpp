@@ -11,6 +11,7 @@
 #include "qtpropertymanager.h"
 #include "WorldObjPropertyBrowser.h"
 #include "SceneTreeView.h"
+#include "CommonToolBar.h"
 //#include "QtRenderView.h"
 
 QtEditor::QtEditor(QWidget *parent)
@@ -102,7 +103,8 @@ QtEditor::QtEditor(QWidget *parent)
 	pRender2->installEventFilter(this);
 	m_pTabWidget->addTab(pRender2, tr("Scene_2"));
 	QTimer *timer = new QTimer(this); 
-
+	//tool bar
+	CreateToolBar();
 	//新建定时器
 	connect(m_pSceneTreeView, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this, SLOT(SceneTreeItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
 	connect(timer, SIGNAL(timeout()), this, SLOT(OnTimer()));
@@ -219,6 +221,12 @@ void QtEditor::SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre
 	}
 	EditorApplication::GetInstance()->OnSelectChange(pSceneItem->m_pObj);
 	//std::cout << "Name:" << pSceneItem->m_pObj->m_strName << std::endl;
+}
+
+void QtEditor::CreateToolBar()
+{
+	m_pCommonToolBar = new CommonToolBar(tr("CommonToolBar"), this);
+	addToolBar(Qt::LeftToolBarArea, m_pCommonToolBar);
 }
 
 //void QtEditor::valueChanged(QtProperty *pProp, const QVariant &variant)

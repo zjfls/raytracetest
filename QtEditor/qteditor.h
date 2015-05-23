@@ -9,6 +9,7 @@ class QtSceneTreeItem;
 class SceneTreeView;
 class WorldObjPropertyBrowser;
 class QtProperty;
+class CommonToolBar;
 class QtEditor : public QMainWindow,public IListener
 {
 	Q_OBJECT
@@ -28,11 +29,16 @@ private slots:
 private:
 	void	InitSceneTreeView();
 	void	AddSceneTreeViewItem(QtSceneTreeItem* pParent,shared_ptr<IWorldObj> pObj);
+	void	CreateToolBar();
 	//
 private:
 	Ui::QtEditorClass ui;
 	QTabWidget* m_pTabWidget;
 	WorldObjPropertyBrowser* m_pTreePropertyBrowser;
+
+
+	//
+	CommonToolBar* m_pCommonToolBar;
 public:
 	SceneTreeView* m_pSceneTreeView;
 };

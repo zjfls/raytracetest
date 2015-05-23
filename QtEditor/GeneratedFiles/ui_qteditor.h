@@ -27,13 +27,14 @@ QT_BEGIN_NAMESPACE
 class Ui_QtEditorClass
 {
 public:
+    QAction *actionSelect;
     QWidget *centralWidget;
     QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QDockWidget *dockWidget_2;
     QWidget *dockWidgetContents_2;
     QListView *listView;
+    QToolBar *mainToolBar;
 
     void setupUi(QMainWindow *QtEditorClass)
     {
@@ -45,8 +46,16 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(QtEditorClass->sizePolicy().hasHeightForWidth());
         QtEditorClass->setSizePolicy(sizePolicy);
+        QtEditorClass->setIconSize(QSize(32, 32));
+        QtEditorClass->setToolButtonStyle(Qt::ToolButtonIconOnly);
         QtEditorClass->setTabShape(QTabWidget::Rounded);
         QtEditorClass->setDockOptions(QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks);
+        actionSelect = new QAction(QtEditorClass);
+        actionSelect->setObjectName(QStringLiteral("actionSelect"));
+        actionSelect->setCheckable(true);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/QtEditor/EditorRes/Icon/pointer.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSelect->setIcon(icon);
         centralWidget = new QWidget(QtEditorClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QtEditorClass->setCentralWidget(centralWidget);
@@ -54,9 +63,6 @@ public:
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1600, 23));
         QtEditorClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(QtEditorClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        QtEditorClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(QtEditorClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         QtEditorClass->setStatusBar(statusBar);
@@ -70,6 +76,15 @@ public:
         listView->setGeometry(QRect(0, 0, 1920, 1080));
         dockWidget_2->setWidget(dockWidgetContents_2);
         QtEditorClass->addDockWidget(static_cast<Qt::DockWidgetArea>(8), dockWidget_2);
+        mainToolBar = new QToolBar(QtEditorClass);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setAllowedAreas(Qt::AllToolBarAreas);
+        mainToolBar->setIconSize(QSize(32, 32));
+        mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        QtEditorClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
+
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionSelect);
 
         retranslateUi(QtEditorClass);
 
@@ -79,6 +94,11 @@ public:
     void retranslateUi(QMainWindow *QtEditorClass)
     {
         QtEditorClass->setWindowTitle(QApplication::translate("QtEditorClass", "QtEditor", 0));
+        actionSelect->setText(QApplication::translate("QtEditorClass", "Select", 0));
+#ifndef QT_NO_TOOLTIP
+        actionSelect->setToolTip(QApplication::translate("QtEditorClass", "select obj", 0));
+#endif // QT_NO_TOOLTIP
+        actionSelect->setShortcut(QApplication::translate("QtEditorClass", "Ctrl+B", 0));
         dockWidget_2->setWindowTitle(QApplication::translate("QtEditorClass", "Output", 0));
 #ifndef QT_NO_ACCESSIBILITY
         listView->setAccessibleName(QApplication::translate("QtEditorClass", "Output", 0));
