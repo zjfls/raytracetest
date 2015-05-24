@@ -53,6 +53,7 @@
     <ClInclude Include="MeshAsset.h" />
     <ClInclude Include="MeshFileLoader.h" />
     <ClInclude Include="ModuleBase.h" />
+    <ClInclude Include="PickUtil.h" />
     <ClInclude Include="PrefabAsset.h" />
     <ClInclude Include="RasterRender.h" />
     <ClInclude Include="RayTraceApplication.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="MaterialAssetLoader.cpp" />
     <ClCompile Include="MeshAsset.cpp" />
     <ClCompile Include="MeshFileLoader.cpp" />
+    <ClCompile Include="PickUtil.cpp" />
     <ClCompile Include="PrefabAsset.cpp" />
     <ClCompile Include="RasterRender.cpp" />
     <ClCompile Include="RayTraceApplication.cpp" />

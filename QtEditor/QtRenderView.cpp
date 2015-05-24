@@ -6,11 +6,16 @@
 #include <iostream>
 #include "EditorApplication.h"
 #include "Vector2.h"
+#include "PickUtil.h"
+#include "qteditor.h"
+#include "QListDataView.h"
+//
 QtRenderView::QtRenderView()
 {
 	m_pRenderView = new EditorSceneView();
 	m_pRenderView->Create(10, 10, winId());
 	EditorApplication::GetInstance()->AddView(winId(), m_pRenderView);
+	setAcceptDrops(true);
 }
 
 
@@ -73,6 +78,53 @@ void QtRenderView::keyPressEvent(QKeyEvent * event)
 	int key = event->key();
 	m_pRenderView->OnKeyPressed(key);
 }
+
+void QtRenderView::dragEnterEvent(QDragEnterEvent *event)
+{
+	QtEditor* pEditor = (QtEditor*)EditorApplication::GetInstance()->m_pEditorApp;
+
+	
+	if (event->source() == pEditor->m_pDataView)
+	{
+		QList<QUrl> urls = event->mimeData()->urls();
+		QUrl u = urls.at(0);
+		std::cout << u.toString().toStdString().c_str() << std::endl;
+		//std::cout << "drag enter" << std::endl;
+		int nWidth = width();
+		int nHeight = height();
+		Vector2 screenPos(event->pos().x(), event->pos().y());
+		m_pRenderView->OnDragEnter(screenPos,u.toString().toStdString());
+		event->accept();
+		
+		//Vector3 pos = PickUtil::ScreenPosToWorldPos(screenPos, 500.0f, nullptr, nWidth, nHeight);
+	}
+
+}
+
+void QtRenderView::dragMoveEvent(QDragMoveEvent *event)
+{
+
+}
+
+void QtRenderView::dropEvent(QDropEvent *event)
+{
+	QtEditor* pEditor = (QtEditor*)EditorApplication::GetInstance()->m_pEditorApp;
+	if (event->source() == pEditor->m_pDataView)
+	{
+		QList<QUrl> urls = event->mimeData()->urls();
+		QUrl u = urls.at(0);
+		std::cout << u.toString().toStdString().c_str() << std::endl;
+		//std::cout << "drag enter" << std::endl;
+		int nWidth = width();
+		int nHeight = height();
+		Vector2 screenPos(event->pos().x(), event->pos().y());
+		m_pRenderView->OnDrop(screenPos, u.toString().toStdString());
+		event->accept();
+
+		//Vector3 pos = PickUtil::ScreenPosToWorldPos(screenPos, 500.0f, nullptr, nWidth, nHeight);
+	}
+}
+
 //bool QtRenderView::event(QEvent *event)
 //{
 //	if (event->type() == QEvent::KeyPress) {

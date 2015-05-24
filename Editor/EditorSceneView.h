@@ -21,7 +21,8 @@ public:
 	//
 	std::shared_ptr<IWorldObj> m_pCamera;
 
-
+	virtual void OnDragEnter(Vector2& pos,std::string file);
+	virtual void OnDrop(Vector2& pos, std::string path);
 private:
 	Vector2 m_LastMousePos;
 };

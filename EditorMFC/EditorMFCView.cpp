@@ -129,6 +129,16 @@ CEditorMFCDoc* CEditorMFCView::GetDocument() const // 非调试版本是内联的
 	return (CEditorMFCDoc*)m_pDocument;
 }
 
+
+
+void CEditorMFCView::OnClose()
+{
+	delete m_pView;
+	m_pView = nullptr;
+	EditorApplication::GetInstance()->RemoveView((int)m_hWnd);
+}
+
+#endif //_DEBUG
 BOOL CEditorMFCView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
 	//
@@ -163,15 +173,5 @@ void CEditorMFCView::OnSize(UINT nType, int cx, int cy)
 		EditorApplication::GetInstance()->AddView((int)m_hWnd, m_pView);
 	}
 }
-
-void CEditorMFCView::OnClose()
-{
-	delete m_pView;
-	m_pView = nullptr;
-	EditorApplication::GetInstance()->RemoveView((int)m_hWnd);
-}
-
-#endif //_DEBUG
-
 
 // CEditorMFCView 消息处理程序

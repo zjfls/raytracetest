@@ -140,6 +140,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CommonToolBar.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="QListDataView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QListDataView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QListDataView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -187,6 +196,9 @@
       <Filter>QtExtension</Filter>
     </CustomBuild>
     <CustomBuild Include="CommonToolBar.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QListDataView.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

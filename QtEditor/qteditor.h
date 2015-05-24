@@ -10,6 +10,7 @@ class SceneTreeView;
 class WorldObjPropertyBrowser;
 class QtProperty;
 class CommonToolBar;
+class QListDataView;
 class QtEditor : public QMainWindow,public IListener
 {
 	Q_OBJECT
@@ -24,6 +25,7 @@ public:
 private slots:
 	void	OnTimer();
 	void	SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);
+	//void	DataItemClicked(const QModelIndex &);
 	//void	valueChanged(QtProperty *pProp, const QVariant &variant);
 	//
 private:
@@ -36,11 +38,12 @@ private:
 	QTabWidget* m_pTabWidget;
 	WorldObjPropertyBrowser* m_pTreePropertyBrowser;
 
-
+	
 	//
 	CommonToolBar* m_pCommonToolBar;
 public:
 	SceneTreeView* m_pSceneTreeView;
+	QListDataView* m_pDataView;
 };
 
 #endif // QTEDITOR_H

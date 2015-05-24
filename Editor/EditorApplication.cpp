@@ -19,6 +19,7 @@
 #include "MathFunc.h"
 #include "Vector3.h"
 #include "TimeManager.h"
+//#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
 template<> shared_ptr<EditorApplication> Singleton<EditorApplication>::_instance = nullptr;
 

@@ -86,7 +86,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../main;../math;../resource;../foundation;../world</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../main;../math;../resource;../foundation;../world;../editor</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -95,7 +95,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <RegisterOutput>true</RegisterOutput>
       <AdditionalLibraryDirectories>../lib/release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>main.lib;foundation.lib;world.lib;math.lib;resource.lib</AdditionalDependencies>
+      <AdditionalDependencies>main.lib;foundation.lib;world.lib;math.lib;resource.lib;editor.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

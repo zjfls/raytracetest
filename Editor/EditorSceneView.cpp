@@ -10,7 +10,10 @@
 #include "MathFunc.h"
 #include "IOManager.h"
 #include "TimeManager.h"
-
+#include "PickUtil.h"
+#include "PrefabResource.h"
+#include "AssetManager.h"
+#include "FilePath.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -127,4 +130,55 @@ void EditorSceneView::OnKeyPressed(int key)
 		position = position - diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}
+	if (key == 'A')
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = -m_pCamera->m_pTransform->GetRight();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
+	if (key == 'D')
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = m_pCamera->m_pTransform->GetRight();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
 }
+
+void EditorSceneView::OnDragEnter(Vector2& pos, std::string file)
+{
+
+}
+
+void EditorSceneView::OnDrop(Vector2& pos, std::string path)
+{
+	std::string filesuffix = getFileSuffix(path);
+	if (filesuffix == "prefab.xml")
+	{
+		Vector3 worldPos = PickUtil::ScreenPosToWorldPos(pos, 500, dynamic_pointer_cast<CameraBase>(m_pCamera), m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
+		const char* strPath = path.c_str() + 8;
+
+
+		AssetManager::GetInstance()->LoadAsset(strPath);
+		shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
+		shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
+
+		//m_pTargetObj = pObj;
+		EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
+
+		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+	}
+
+	
+}
+
+

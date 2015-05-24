@@ -15,6 +15,12 @@ public:
 	virtual void	mouseMoveEvent(QMouseEvent * event);
 	virtual void	mouseReleaseEvent(QMouseEvent * event);
 	virtual void	keyPressEvent(QKeyEvent * event);
+
+	//
+	void dragEnterEvent(QDragEnterEvent *event) Q_DECL_OVERRIDE;
+	void dragMoveEvent(QDragMoveEvent *event) Q_DECL_OVERRIDE;
+	void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
+	//
 	//virtual bool	event(QEvent* evt);
 	EditorRenderView* m_pRenderView;
 };

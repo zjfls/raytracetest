@@ -25,6 +25,12 @@
     <Filter Include="源文件\IO">
       <UniqueIdentifier>{64372965-dd09-41f9-a6da-323b193ed9e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Util">
+      <UniqueIdentifier>{9d4b5fa5-fabc-43f7-98c5-1391067a3602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Util">
+      <UniqueIdentifier>{820e72d5-076f-4a05-8763-b9871bd9c9b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h">
@@ -252,6 +258,9 @@
     <ClInclude Include="IOInterface.h">
       <Filter>头文件\IO</Filter>
     </ClInclude>
+    <ClInclude Include="PickUtil.h">
+      <Filter>头文件\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -448,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="WindowsIO.cpp">
       <Filter>源文件\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="PickUtil.cpp">
+      <Filter>源文件\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

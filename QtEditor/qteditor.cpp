@@ -12,6 +12,7 @@
 #include "WorldObjPropertyBrowser.h"
 #include "SceneTreeView.h"
 #include "CommonToolBar.h"
+#include "QListDataView.h"
 //#include "QtRenderView.h"
 
 QtEditor::QtEditor(QWidget *parent)
@@ -112,9 +113,49 @@ QtEditor::QtEditor(QWidget *parent)
 	//关联定时器计满信号和相应的槽函数
 
 	timer->start(1);
-	/*connect(variantManager, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
-		this, SLOT(valueChanged(QtProperty *, const QVariant &)));*/
-		//connect(myTreeView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(myTreeSelectionChanged(QModelIndex)));
+
+
+	QDockWidget* pDataDock = new QDockWidget(tr("Data"));
+	QWidget*	pDataWidget = new QWidget(this);
+	pDataDock->setWidget(pDataWidget);
+	QHBoxLayout* layout = new QHBoxLayout(pDataDock);
+	
+	//
+	m_pDataView = new QListDataView;
+	QFileSystemModel *pFileModel = new QFileSystemModel;
+	pFileModel->setReadOnly(false);
+	pFileModel->setFilter(QDir::Files);
+	m_pDataView->setModel(pFileModel);
+	m_pDataView->setViewMode(QListView::IconMode);
+	m_pDataView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+	m_pDataView->setAlternatingRowColors(false);
+	m_pDataView->viewport()->setAttribute(Qt::WA_StaticContents);
+	m_pDataView->setAttribute(Qt::WA_MacShowFocusRect, false);
+	pFileModel->setRootPath(QDir::currentPath());
+	m_pDataView->setRootIndex(pFileModel->index(QDir::currentPath() + tr("/data/")));
+
+	
+	///
+	QTreeView* pTreeView = new QTreeView;
+	QFileSystemModel *pDirModel = new QFileSystemModel;
+	pDirModel->setFilter(QDir::Dirs | QDir::NoDot | QDir::NoDotDot);
+	pTreeView->setModel(pDirModel);
+	pDirModel->setRootPath(QDir::currentPath());
+	pTreeView->setRootIndex(pDirModel->index(QDir::currentPath() + tr("/data/")));
+	pTreeView->setMinimumHeight(100);
+	pTreeView->setMinimumWidth(50);
+	pTreeView->setBaseSize(QSize(50, 100));
+
+	//
+	layout->addWidget(pTreeView);
+	layout->addWidget(m_pDataView);
+	layout->setStretchFactor(pTreeView, 2.0f);
+	layout->setStretchFactor(m_pDataView, 10.0f);
+	pDataWidget->setLayout(layout);
+	tabifyDockWidget(ui.dockWidget_2, pDataDock);
+	m_pDataView->m_pDirectoryView = pTreeView;
+	connect(pTreeView, SIGNAL(doubleClicked(const QModelIndex &)), m_pDataView, SLOT(DirectoryDoubleClicked(const QModelIndex &)));
+	
 }
 
 QtEditor::~QtEditor()
@@ -182,6 +223,7 @@ void QtEditor::childEvent(QChildEvent *event)
 
 void QtEditor::InitSceneTreeView()
 {
+	m_pSceneTreeView->clear();
 	shared_ptr<IWorldObj> pObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
 	QtSceneTreeItem *pRoot = new QtSceneTreeItem();
 	m_pSceneTreeView->addTopLevelItem(pRoot);
@@ -228,6 +270,11 @@ void QtEditor::CreateToolBar()
 	m_pCommonToolBar = new CommonToolBar(tr("CommonToolBar"), this);
 	addToolBar(Qt::LeftToolBarArea, m_pCommonToolBar);
 }
+
+//void QtEditor::DataItemClicked(const QModelIndex &)
+//{
+//	std::cout << "data item clicked" << std::endl;
+//}
 
 //void QtEditor::valueChanged(QtProperty *pProp, const QVariant &variant)
 //{
