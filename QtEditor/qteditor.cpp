@@ -197,12 +197,12 @@ bool QtEditor::eventFilter(QObject *obj, QEvent *event)
 		QtRenderView* pRenderView = dynamic_cast<QtRenderView*>(obj);
 		if (pRenderView != nullptr)
 		{
-			pRenderView->keyPressEvent(keyEvent);
+			//pRenderView->keyPressEvent(keyEvent);
 			return false;
 		}
 		if (dynamic_cast<QTabWidget*>(obj) != nullptr)
 		{
-			((QtRenderView*)dynamic_cast<QTabWidget*>(obj)->currentWidget())->keyPressEvent(keyEvent);
+			//((QtRenderView*)dynamic_cast<QTabWidget*>(obj)->currentWidget())->keyPressEvent(keyEvent);
 			return false;
 		}
 		//qDebug("Ate key press %d", keyEvent->key());
