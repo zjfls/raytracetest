@@ -14,6 +14,7 @@
 #include "PrefabResource.h"
 #include "AssetManager.h"
 #include "FilePath.h"
+#include "RasterCamera.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -164,7 +165,8 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 	std::string filesuffix = getFileSuffix(path);
 	if (filesuffix == "prefab.xml")
 	{
-		Vector3 worldPos = PickUtil::ScreenPosToWorldPos(pos, 500, dynamic_pointer_cast<CameraBase>(m_pCamera), m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
+		std::shared_ptr<CameraBase> pCameraModule = dynamic_pointer_cast<CameraBase>(m_pCamera->GetModule(1));
+		Vector3 worldPos = PickUtil::ScreenPosToWorldPos(pos, 500, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
 		const char* strPath = path.c_str() + 8;
 
 
@@ -172,8 +174,11 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
 		shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 
+
+
 		//m_pTargetObj = pObj;
 		EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
+		pObj->m_pTransform->SetTranslate(worldPos);
 
 		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
 	}

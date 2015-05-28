@@ -834,6 +834,8 @@ RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
 	HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&d3dpp, &pView->m_pSwapChain);
 	pView->m_pD3DDevice = m_pD3DDevice;
 	pView->m_nIndex = -1;
+	pView->m_nWidth = viewInfo.m_nWidth;
+	pView->m_nHeight = viewInfo.m_nHeight;
 	if (hr != D3D_OK)
 	{
 		std::cout << "create view failed!" << std::endl;

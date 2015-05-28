@@ -3,6 +3,7 @@
 #include "RenderManager.h"
 #include "RenderSystem.h"
 #include "RenderView.h"
+#include "RasterCamera.h"
 EditorRenderView::EditorRenderView()
 {
 	m_pRenderView = nullptr;
@@ -30,6 +31,7 @@ void EditorRenderView::Create(unsigned int nWidth, unsigned int nHeight, int win
 void EditorRenderView::Resize(unsigned int nWidth, unsigned int nHeight)
 {
 	m_pRenderView->Resize(nWidth, nHeight);
+	
 }
 
 void EditorRenderView::OnMouseMove(Vector2& pt)

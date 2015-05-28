@@ -33,8 +33,10 @@ public:
 
 
 	Matrix44 GetWorldMatrix() const;
+	//only update self transform
+	//Matrix44 UpdateSelfTransform() const;
 	virtual shared_ptr<ModuleBase> Clone();
-
+	
 ////////////////////////////////////////////////
 
 	

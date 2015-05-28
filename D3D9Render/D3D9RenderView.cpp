@@ -58,6 +58,8 @@ void D3D9RenderView::OnDeviceReset()
 
 bool D3D9RenderView::Resize(int nX, int nY)
 {
+	m_nWidth = nX;
+	m_nHeight = nY;
 	m_dpp.BackBufferWidth = nX;
 	m_dpp.BackBufferHeight = nY;
 	SAFE_RELEASE(m_pSwapChain);
