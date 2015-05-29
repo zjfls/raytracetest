@@ -6,14 +6,31 @@ class IndexData;
 class FOUNDATION_API VertexData
 {
 public:
-	VertexData()
+	VertexData() :nBoneNum(0)
+		, nNumVertex(0){};
+	virtual ~VertexData(){};
+	virtual void getBoundingMaxAndMin(Vector3& min,Vector3 max) = 0;
+	struct VertexDataDesc
+	{
+		EnumVertexUseDesc usedesc;
+		EnumVertexTypeDesc typedesc;
+		unsigned int nOffset;//in byte
+	};
+public:
+	std::vector<VertexData::VertexDataDesc> vecDataDesc;
+	unsigned int nNumVertex;
+	unsigned int nBoneNum;//每个顶点对应的骨头数量
+};
+class FOUNDATION_API MeshVertexData:public VertexData
+{
+public:
+	MeshVertexData()
 		:pData(nullptr)
-		, nBoneNum(0)
-		, nNumVertex(0)
+
 	{
 
 	}
-	~VertexData()
+	virtual ~MeshVertexData()
 	{
 		if (pData != nullptr)
 		{
@@ -24,12 +41,8 @@ public:
 	}
 	void* pData;
 
-	struct VertexDataDesc
-	{
-		EnumVertexUseDesc usedesc;
-		EnumVertexTypeDesc typedesc;
-		unsigned int nOffset;//in byte
-	};
+
+	virtual void getBoundingMaxAndMin( Vector3& min, Vector3 max);
 	Vector3 GetPositionDataAt(int nIndex)
 	{
 		Vector3 vecPos;
@@ -63,9 +76,8 @@ public:
 	void*	GetElementData(int descIndex, int posIndex) const;
 	int		GetVertexDataLength()const;
 	static int		GetTypeLength(const VertexDataDesc& desc);
-	std::vector<VertexData::VertexDataDesc> vecDataDesc;
-	unsigned int nNumVertex;
-	unsigned int nBoneNum;//每个顶点对应的骨头数量
+	
+
 
 };
 

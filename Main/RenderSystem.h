@@ -13,10 +13,11 @@ class FragShaderDesc;
 class HardwareVertexBuffer;
 class HardwareIndexBuffer;
 class IndexData;
-class VertexData;
+class MeshVertexData;
 class HardwareTexture;
 class Texture;
 class IRenderTarget;
+class VertexData;
 class MAIN_API RenderSystem
 {
 public:

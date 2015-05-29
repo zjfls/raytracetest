@@ -5,8 +5,9 @@
 #include "Vector2.h"
 #include "IndexData.h"
 #include <iostream>
+#include "MathDefine.h"
 //
-void* VertexData::GetElementData(int descIndex, int posIndex) const
+void* MeshVertexData::GetElementData(int descIndex, int posIndex) const
 {
 	if (descIndex >= vecDataDesc.size())
 	{
@@ -23,7 +24,7 @@ void* VertexData::GetElementData(int descIndex, int posIndex) const
 	return (unsigned char*)pData + posIndex * GetVertexDataLength() + nOffset;
 }
 
-int VertexData::GetTypeLength(const VertexDataDesc& desc)
+int MeshVertexData::GetTypeLength(const VertexDataDesc& desc)
 {
 	switch (desc.typedesc)
 	{
@@ -56,7 +57,7 @@ int VertexData::GetTypeLength(const VertexDataDesc& desc)
 
 }
 
-int VertexData::GetVertexDataLength() const
+int MeshVertexData::GetVertexDataLength() const
 {
 	int nLength = 0;
 	for each (VertexDataDesc desc in vecDataDesc)
@@ -66,12 +67,12 @@ int VertexData::GetVertexDataLength() const
 	return nLength;
 }
 
-unsigned int VertexData::GetBuffLength() const
+unsigned int MeshVertexData::GetBuffLength() const
 {
 	return GetVertexDataLength() * nNumVertex;
 }
 
-void VertexData::ComputeTangent(const IndexData& iData)
+void MeshVertexData::ComputeTangent(const IndexData& iData)
 {
 	int nNormalIndex = -1;
 	int nUVIndex = -1;
@@ -204,4 +205,44 @@ void VertexData::ComputeTangent(const IndexData& iData)
 	pData = pNewData;
 	delete[] tan1;
 	delete[] tan2;
+}
+
+void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3 max)
+{
+	min.m_fx = MINFLOAT;
+	min.m_fy = MINFLOAT;
+	min.m_fz = MINFLOAT;
+	max.m_fx = MAXFLOAT;
+	max.m_fy = MAXFLOAT;
+	max.m_fz = MAXFLOAT;
+	//to do
+	for (int i = 0; i < nNumVertex; ++i)
+	{
+		Vector3 v = GetPositionDataAt(i);
+		if (v.m_fx < min.m_fx)
+		{
+			min.m_fx = v.m_fx;
+		}
+		if (v.m_fy < min.m_fy)
+		{
+			min.m_fy = v.m_fy;
+		}
+		if (v.m_fz < min.m_fz)
+		{
+			min.m_fz = v.m_fz;
+		}
+
+		if (v.m_fx > max.m_fx)
+		{
+			max.m_fx = v.m_fx;
+		}
+		if (v.m_fy > max.m_fy)
+		{
+			max.m_fy = v.m_fy;
+		}
+		if (v.m_fz > max.m_fz)
+		{
+			max.m_fz = v.m_fz;
+		}
+	}
 }

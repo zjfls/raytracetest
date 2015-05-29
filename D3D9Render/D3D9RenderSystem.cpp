@@ -382,38 +382,45 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	{
 		return m_VertexDataMap[pData];
 	}
-	D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
-	pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pData->vecDataDesc);
-	pBuff->m_nNumVertex = pData->nNumVertex;
-	pBuff->m_nStrip = pData->GetVertexDataLength();
-	//
-	if (FAILED(m_pD3DDevice->CreateVertexBuffer(pData->nNumVertex * pData->GetVertexDataLength(),
-		0, 0,
-		D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+	
+	MeshVertexData* pMeshVertexData = dynamic_cast<MeshVertexData*>(pData);
+	if (pMeshVertexData != nullptr)
 	{
-		delete pBuff;
-		return nullptr;
-	}
+		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
+		pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pMeshVertexData->vecDataDesc);
+		pBuff->m_nNumVertex = pData->nNumVertex;
+		pBuff->m_nStrip = pMeshVertexData->GetVertexDataLength();
+		//
+		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pMeshVertexData->nNumVertex * pMeshVertexData->GetVertexDataLength(),
+			0, 0,
+			D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+		{
+			delete pBuff;
+			return nullptr;
+		}
 
-	///
-	void* pVertexData;
-	if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pData->GetVertexDataLength() * pData->nNumVertex, &pVertexData, 0)))
-	{
-		delete pBuff;
-		return nullptr;
-	}
+		///
+		void* pVertexData;
+		if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pMeshVertexData->GetVertexDataLength() * pMeshVertexData->nNumVertex, &pVertexData, 0)))
+		{
+			delete pBuff;
+			return nullptr;
+		}
 
-	float* pf = (float*)pData->pData;
-	//for (int i = 0; i < 4; ++i)
-	//{
-	//	 pf[3 + i * 11] = fabs(pf[8 + i * 11]);
-	//	 pf[4 + i * 11] = fabs(pf[9 + i * 11]);
-	//	   pf[5 + i * 11] = fabs(pf[10 + i * 11]);
-	//}
-	memcpy(pVertexData,pf,pData->GetVertexDataLength() * pData->nNumVertex);
-	pBuff->m_pVertexBuffer->Unlock();
-	m_VertexDataMap[pData] = pBuff;
-	return pBuff;
+		float* pf = (float*)pMeshVertexData->pData;
+		//for (int i = 0; i < 4; ++i)
+		//{
+		//	 pf[3 + i * 11] = fabs(pf[8 + i * 11]);
+		//	 pf[4 + i * 11] = fabs(pf[9 + i * 11]);
+		//	   pf[5 + i * 11] = fabs(pf[10 + i * 11]);
+		//}
+		memcpy(pVertexData, pf, pMeshVertexData->GetVertexDataLength() * pMeshVertexData->nNumVertex);
+		pBuff->m_pVertexBuffer->Unlock();
+		m_VertexDataMap[pData] = pBuff;
+		return pBuff;
+	}
+	return nullptr;
+
 }
 HardwareIndexBuffer* D3D9RenderSystem::GetHardwareIndexBuffer(IndexData* pData)
 {
@@ -471,7 +478,7 @@ stD3DVertexBuffDecal* D3D9RenderSystem::CreateVertexDeclarationFromDesc(std::vec
 		elem = { 0, nOffset, type, D3DDECLMETHOD_DEFAULT, usage, useIndexMap[usage] };
 		useIndexMap[usage] = useIndexMap[usage] + 1;
 		vecVertElem.push_back(elem);
-		nOffset += VertexData::GetTypeLength(desc);
+		nOffset += MeshVertexData::GetTypeLength(desc);
 	}
 	vecVertElem.push_back(D3DDECL_END());
 
@@ -741,7 +748,7 @@ bool D3D9RenderSystem::OnFrameBegin()
 					elem = { 0, nOffset, type, D3DDECLMETHOD_DEFAULT, usage, useIndexMap[usage] };
 					useIndexMap[usage] = useIndexMap[usage] + 1;
 					vecVertElem.push_back(elem);
-					nOffset += VertexData::GetTypeLength(desc);
+					nOffset += MeshVertexData::GetTypeLength(desc);
 				}
 				vecVertElem.push_back(D3DDECL_END());
 				m_pD3DDevice->CreateVertexDeclaration(&vecVertElem[0], &(*iter)->m_pVertexDecal);

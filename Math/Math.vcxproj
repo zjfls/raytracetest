@@ -82,6 +82,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABBBox.h" />
+    <ClInclude Include="BoundingBase.h" />
     <ClInclude Include="Math_Dll.h" />
     <ClInclude Include="MathDefine.h" />
     <ClInclude Include="MathFunc.h" />
@@ -99,6 +101,8 @@
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AABBBox.cpp" />
+    <ClCompile Include="BoundingBase.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
