@@ -7,19 +7,25 @@ class FOUNDATION_API VertexData
 {
 public:
 	VertexData() :nBoneNum(0)
-		, nNumVertex(0){};
+		, nNumVertex(0)
+		, m_PrimitiveType(EPRIMITIVE_TRIANGLE)
+	{};
 	virtual ~VertexData(){};
 	virtual void getBoundingMaxAndMin(Vector3& min,Vector3 max) = 0;
+	int		GetVertexDataLength()const;
 	struct VertexDataDesc
 	{
 		EnumVertexUseDesc usedesc;
 		EnumVertexTypeDesc typedesc;
 		unsigned int nOffset;//in byte
 	};
+	static int		GetTypeLength(const VertexDataDesc& desc);
+
 public:
 	std::vector<VertexData::VertexDataDesc> vecDataDesc;
 	unsigned int nNumVertex;
 	unsigned int nBoneNum;//每个顶点对应的骨头数量
+	EDRAWPRIMITIVETYPE m_PrimitiveType;
 };
 class FOUNDATION_API MeshVertexData:public VertexData
 {
@@ -74,8 +80,8 @@ public:
 	unsigned int GetBuffLength() const;
 
 	void*	GetElementData(int descIndex, int posIndex) const;
-	int		GetVertexDataLength()const;
-	static int		GetTypeLength(const VertexDataDesc& desc);
+	
+	
 	
 
 

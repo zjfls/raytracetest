@@ -83,6 +83,7 @@ void RasterRender::GetRenderables(std::vector<std::shared_ptr<IRenderable>>& vec
 		if (pMatRes == nullptr)
 		{
 			pMatRes = pRenderable->GetDefaultMaterial();
+			pRenderable->m_pSharedMaterial = pMatRes;
 		}
 		if (pMatRes != nullptr && pMatRes->m_eFillter == eFillter)
 		{

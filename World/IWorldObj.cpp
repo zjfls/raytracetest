@@ -5,7 +5,7 @@
 IWorldObj::IWorldObj()
 	:m_pParent(nullptr)
 {
-	
+	m_strName = "WorldObj";
 	//m_pTransform = addModule<Transform>(nullptr);
 }
 

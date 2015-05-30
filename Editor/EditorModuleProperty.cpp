@@ -2,6 +2,11 @@
 #include "EditorModuleProperty.h"
 #include "Transform.h"
 #include "Vector3.h"
+#include "Sphere3D.h"
+#include <iostream>
+#include <thread>
+#include "RenderManager.h"
+#include "RenderSystem.h"
 EditorModuleProperty::EditorModuleProperty()
 {
 }
@@ -13,8 +18,24 @@ EditorModuleProperty::~EditorModuleProperty()
 
 void EditorModuleProperty::SetProperty(void* pData)
 {
+	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
 	const type_info& tinfo = typeid(*m_pModule.get());
 	std::string className = tinfo.name();
+	if (typeid(*m_pModule.get()) == typeid(Sphere3D))
+	{
+		shared_ptr<Sphere3D> pSphere = dynamic_pointer_cast<Sphere3D>(m_pModule);
+		if (m_PropName == "RADIUS")
+		{
+			pSphere->m_fRadius = *((float*)pData);
+			pSphere->GeneratePolygon();
+			//RenderManager::GetInstance()->GetDefaultRenderSystem->
+		}
+		if (m_PropName == "SUBDIVIDE")
+		{
+			pSphere->m_nSubdivide = *((int*)pData);
+			pSphere->GeneratePolygon();
+		}
+	}
 	if (typeid(*m_pModule.get()) == typeid(Transform))
 	{
 		shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(m_pModule);

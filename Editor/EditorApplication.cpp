@@ -19,6 +19,7 @@
 #include "MathFunc.h"
 #include "Vector3.h"
 #include "TimeManager.h"
+#include "Sphere3D.h"
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
 template<> shared_ptr<EditorApplication> Singleton<EditorApplication>::_instance = nullptr;
@@ -63,6 +64,13 @@ bool EditorApplication::RemoveView(int id)
 
 void EditorApplication::Run()
 {
+	static bool bout = true;
+	if (bout == true)
+	{
+		std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
+		bout = false;
+	}
+	
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin();
 	//
 	std::vector<std::shared_ptr<RasterCamera>> m_CameraList;
@@ -96,6 +104,7 @@ void EditorApplication::Run()
 }
 void EditorApplication::SetupScene()
 {
+	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
 	AssetManager::GetInstance()->LoadAsset("./data/prefab/plane.prefab.xml");
 	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
 	shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
@@ -138,6 +147,13 @@ void EditorApplication::SetupScene()
 	m_pWorld->m_pRoot->addChild(pLightObj);
 
 
+	shared_ptr<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
+	m_pWorld->m_pRoot->addChild(pSphereObj);
+	pSphereObj->m_strName = "Sphere";
+	shared_ptr<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
+	pSphere->m_fRadius = 100.0f;
+	pSphere->m_nSubdivide = 100;
+	pSphere->GeneratePolygon();
 	NotifyListener("InitScene", EditorApplication::GetInstance());
 
 	

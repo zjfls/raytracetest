@@ -13,6 +13,7 @@
 #include <direct.h>
 #include "RenderSystem.h"
 #include "BuiltInResource.h"
+#include "BuiltInMaterialManager.h"
 ApplicationBase::ApplicationBase()
 	:m_pRenderView(nullptr)
 {
@@ -35,6 +36,7 @@ bool ApplicationBase::Init(int argc, char** argv)
 	}
 	ReadSettings();
 	CreateAppWindow();
+
 	if (false == RenderPathManager::GetInstance()->Init())
 	{
 		return false;
@@ -52,6 +54,10 @@ bool ApplicationBase::Init(int argc, char** argv)
 		return false;
 	}
 	if (false == BuiltInResource::GetInstance()->InitBuiltInResource())
+	{
+		return false;
+	}
+	if (false == BuiltInMaterialManager::GetInstance()->InitBuiltInMaterial())
 	{
 		return false;
 	}

@@ -91,7 +91,7 @@ void RenderPass::Render(RasterRender* pRender, std::shared_ptr<IRenderable> pRen
 		//
 		pRender->Render(pIndexBuff, pVertexBuff);
 	}
-	else if (ESTAGESHADERRADIANCEONLIGHTING)
+	else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)
 	{
 		int index = 0;
 		for each (shared_ptr<LightBase> pLight in pRenderable->m_vecLight)

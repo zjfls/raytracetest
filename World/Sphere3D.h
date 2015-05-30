@@ -8,6 +8,8 @@ public:
 
 ////////////////////////////////////////////////
 	float m_fRadius;
+	int m_nSubdivide;
+	void GeneratePolygon();
 private:
 	Sphere3D();
 	friend class IWorldObj;

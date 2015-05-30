@@ -17,6 +17,7 @@
 #include "Texture.h"
 #include "D3D9RenderTarget.h"
 #include "EnviromentSetting.h"
+#include "DynamicVertexData.h"
 D3D9RenderSystem::D3D9RenderSystem()
 	:m_pD3D(nullptr)
 	, m_pD3DDevice(nullptr)
@@ -381,6 +382,38 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	if (m_VertexDataMap.find(pData) != std::end(m_VertexDataMap))
 	{
 		return m_VertexDataMap[pData];
+	}
+	DynamicVertexData* pDynamicVertexData = dynamic_cast<DynamicVertexData*>(pData);
+	if (pDynamicVertexData)
+	{
+		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
+		pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pDynamicVertexData->vecDataDesc);
+		pBuff->m_nNumVertex = pData->nNumVertex;
+		pBuff->m_nStrip = pData->GetVertexDataLength();
+		//
+		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pData->nNumVertex * pData->GetVertexDataLength(),
+			0, 0,
+			D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+		{
+			delete pBuff;
+			return nullptr;
+		}
+		void* pVertexData;
+		if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pData->GetVertexDataLength() * pData->nNumVertex, &pVertexData, 0)))
+		{
+			delete pBuff;
+			return nullptr;
+		}
+		float* pFVertexData = (float*)pVertexData;
+		for (int i = 0; i < pData->nNumVertex; ++i)
+		{
+			memcpy(pFVertexData + i * 3 + 0, &pDynamicVertexData->m_PositionData[i].m_fx, sizeof(float));
+			memcpy(pFVertexData + i * 3 + 1, &pDynamicVertexData->m_PositionData[i].m_fy, sizeof(float));
+			memcpy(pFVertexData + i * 3 + 2, &pDynamicVertexData->m_PositionData[i].m_fz, sizeof(float));
+		}
+		pBuff->m_pVertexBuffer->Unlock();
+		m_VertexDataMap[pData] = pBuff;
+		return pBuff;
 	}
 	
 	MeshVertexData* pMeshVertexData = dynamic_cast<MeshVertexData*>(pData);

@@ -181,6 +181,7 @@ void QtEditor::OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubj
 
 void QtEditor::OnTimer()
 {
+
 	EditorApplication::GetInstance()->Run();
 }
 

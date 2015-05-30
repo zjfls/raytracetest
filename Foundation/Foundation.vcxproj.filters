@@ -60,6 +60,9 @@
     <ClInclude Include="threadmutex.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DynamicVertexData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp">
@@ -90,6 +93,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="threadmutex.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicVertexData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

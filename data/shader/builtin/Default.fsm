@@ -1,0 +1,20 @@
+
+struct PS_OUTPUT
+{
+	float4 Color:Color0;
+};
+struct PS_INPUT
+{
+    //float2	TC		  		: TEXCOORD0;
+};
+
+float4 MainColor;
+PS_OUTPUT pMain(PS_INPUT input)
+{
+	PS_OUTPUT output;
+	output.Color = 0.0f;
+	output.Color.rgb = MainColor.rgb;
+	output.Color.a = 1.0f;
+	//output.Color = pow(output.Color,1.0f/2.2f);
+	return output;
+}

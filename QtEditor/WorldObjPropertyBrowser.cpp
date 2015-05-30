@@ -17,6 +17,7 @@
 #include "DirectionalLight.h"
 #include "EditorModuleProperty.h"
 #include <unordered_map>
+#include "Sphere3D.h"
 
 WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 {
@@ -234,6 +235,22 @@ void WorldObjPropertyBrowser::AddModule(shared_ptr<ModuleBase> pModule)
 		pPTGroup->addSubProperty(pProperty);
 		addProperty(pPTGroup);
 	}
+	if (typeid(*pModule.get()) == typeid(Sphere3D))
+	{
+		shared_ptr<Sphere3D> pSphere = dynamic_pointer_cast<Sphere3D>(pModule);
+		QtProperty* pSphereGroup = groupManager->addProperty(tr("Sphere"));
+		addProperty(pSphereGroup);
+
+		QtVariantProperty* pProperty = variantManager->addProperty(QVariant::Double, tr("Radius"));
+		pSphereGroup->addSubProperty(pProperty);
+		pProperty->setValue(pSphere->m_fRadius);
+		AddEditorProperty(pSphere, "RADIUS", pProperty);
+
+		pProperty = variantManager->addProperty(QVariant::Int, tr("Subdivide"));
+		pSphereGroup->addSubProperty(pProperty);
+		pProperty->setValue(pSphere->m_nSubdivide);
+		AddEditorProperty(pSphere, "SUBDIVIDE", pProperty);
+	}
 }
 
 void WorldObjPropertyBrowser::valueChanged(QtProperty *pProp, const QVariant &v)
@@ -251,6 +268,12 @@ void WorldObjPropertyBrowser::valueChanged(QtProperty *pProp, const QVariant &v)
 			float fValue = v.toDouble();
 			m_PropertyMap[pProp]->SetProperty(&fValue);
 
+		}
+		break;
+		case QVariant::Int:
+		{
+			int nValue = v.toInt();
+			m_PropertyMap[pProp]->SetProperty(&nValue);
 		}
 		break;
 		default:

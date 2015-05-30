@@ -3,6 +3,7 @@
 #include "VertexData.h"
 #include "IndexData.h"
 #include <vector>
+#include "IListenerSubject.h"
 class LightBase;
 class MaterialResource;
 class BoundingBase;

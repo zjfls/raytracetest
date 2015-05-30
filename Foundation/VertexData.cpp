@@ -24,7 +24,7 @@ void* MeshVertexData::GetElementData(int descIndex, int posIndex) const
 	return (unsigned char*)pData + posIndex * GetVertexDataLength() + nOffset;
 }
 
-int MeshVertexData::GetTypeLength(const VertexDataDesc& desc)
+int VertexData::GetTypeLength(const VertexDataDesc& desc)
 {
 	switch (desc.typedesc)
 	{
@@ -57,7 +57,7 @@ int MeshVertexData::GetTypeLength(const VertexDataDesc& desc)
 
 }
 
-int MeshVertexData::GetVertexDataLength() const
+int VertexData::GetVertexDataLength() const
 {
 	int nLength = 0;
 	for each (VertexDataDesc desc in vecDataDesc)

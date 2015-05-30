@@ -3,6 +3,8 @@
 #include "CommonDef.h"
 #include "BoundingBase.h"
 #include "AABBBox.h"
+#include "ResourceManager.h"
+#include "MaterialResource.h"
 
 
 IRenderable::IRenderable()
@@ -26,7 +28,7 @@ void IRenderable::Update()
 
 shared_ptr<MaterialResource> IRenderable::GetDefaultMaterial()
 {
-	return m_pSharedMaterial;
+	return ResourceManager<MaterialResource>::GetInstance()->GetResource("GAMEDEFAULTMATERIAL");
 }
 
 void IRenderable::BuildBoundingVolume()

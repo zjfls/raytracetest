@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Geometry">
+      <UniqueIdentifier>{943b3568-e12e-4cda-a4f1-bb6938ebf1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Geometry">
+      <UniqueIdentifier>{bdcfa12a-cd06-4cf2-9f85-6b30d0feed73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,9 +63,6 @@
     <ClInclude Include="SkeletonObj.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Sphere3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="World_Dll_Def.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -77,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="RasterCamera.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere3D.h">
+      <Filter>头文件\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +128,6 @@
     <ClCompile Include="SkeletonObj.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="RasterCamera.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere3D.cpp">
+      <Filter>源文件\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

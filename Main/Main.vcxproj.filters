@@ -261,6 +261,9 @@
     <ClInclude Include="PickUtil.h">
       <Filter>头文件\Util</Filter>
     </ClInclude>
+    <ClInclude Include="BuiltInMaterialManager.h">
+      <Filter>头文件\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -459,6 +462,9 @@
       <Filter>源文件\IO</Filter>
     </ClCompile>
     <ClCompile Include="PickUtil.cpp">
+      <Filter>源文件\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="BuiltInMaterialManager.cpp">
       <Filter>源文件\Util</Filter>
     </ClCompile>
   </ItemGroup>
