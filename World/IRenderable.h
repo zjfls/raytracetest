@@ -18,15 +18,21 @@ public:
 	virtual shared_ptr<MaterialResource> GetDefaultMaterial();
 
 	virtual void Update();
-	shared_ptr<MaterialResource> m_pMaterialInstance;
+	
 	shared_ptr<MaterialResource> m_pSharedMaterial;
 	virtual shared_ptr<ModuleBase> Clone(){ return nullptr; };
 	virtual void BuildBoundingVolume();
+
+
+	virtual shared_ptr<MaterialResource> GetMaterialInstance();
+	//if MaterialInstance is not nullptr return MaterialInstance else return sharedMaterial;
+	virtual shared_ptr<MaterialResource> getRenderMaterial();
 protected:
 	SmartPointer<VertexData> m_pVertexData;
 	SmartPointer<IndexData> m_pIndexData;
 	BoundingBase* m_pBounding;
 	friend class RenderPass;
+	shared_ptr<MaterialResource> m_pMaterialInstance;
 public:
 	std::vector<shared_ptr<LightBase>> m_vecLight;
 };

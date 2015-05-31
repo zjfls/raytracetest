@@ -89,6 +89,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cone.h" />
+    <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="GizmoManager.h" />
     <ClInclude Include="RasterCamera.h" />
     <ClInclude Include="CameraBase.h" />
     <ClInclude Include="Cube3D.h" />
@@ -109,9 +112,13 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="TranslateGizmo.h" />
     <ClInclude Include="World_Dll_Def.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cone.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
+    <ClCompile Include="GizmoManager.cpp" />
     <ClCompile Include="RasterCamera.cpp" />
     <ClCompile Include="CameraBase.cpp" />
     <ClCompile Include="Cube3D.cpp" />
@@ -142,6 +149,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TranslateGizmo.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

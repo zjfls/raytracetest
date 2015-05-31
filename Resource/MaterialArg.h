@@ -31,6 +31,7 @@ public:
 		TMatArg<T>* pMatArg = (TMatArg<T>*)this;
 		return &pMatArg->m_Data;
 	};
+	virtual MaterialArg* clone(){ return nullptr; };
 	void SetShaderType(EMATARGSHADERTYPE eShadertype){ m_EShaderType = eShadertype; }
 	string m_strName;
 	EMATARGTYPE m_EType;
@@ -43,11 +44,22 @@ class TMatArg:public MaterialArg
 {
 public:
 	TMatArg(EMATARGTYPE eArgType){ m_EType = eArgType; m_EShaderType = (EMATARGSHADERTYPE)(EMATSHADERVERTE | EMATSHADERFRAG); };
+	MaterialArg* clone();
 	virtual ~TMatArg(){};
 	//template<class T1>
 	//virtual T* GetValue() const{ return (T1*)&m_Data; };
 	T m_Data;
 };
+
+template < class T >
+MaterialArg* TMatArg<T>::clone()
+{
+	TMatArg<T>* pCloneObj = new TMatArg<T>();
+	pCloneObj->m_Data = m_Data;
+	pCloneObj->m_EType = m_EType;
+	pCloneObj->m_strName = m_strName;
+	pCloneObj->m_EShaderType = m_EShaderType;
+}
 
 
 //template<class T>

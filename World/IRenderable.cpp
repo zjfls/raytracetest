@@ -11,6 +11,7 @@ IRenderable::IRenderable()
 	:m_pVertexData(nullptr)
 	, m_pIndexData(nullptr)
 	, m_pSharedMaterial(nullptr)
+	, m_pMaterialInstance(nullptr)
 	, m_pBounding(nullptr)
 {
 	
@@ -46,4 +47,25 @@ void IRenderable::BuildBoundingVolume()
 		m_pBox->m_pMax = vecMax;
 		m_pBox->m_pMin = vecMin;
 	}
+}
+
+shared_ptr<MaterialResource> IRenderable::GetMaterialInstance()
+{
+	if (m_pMaterialInstance == nullptr)
+	{
+		if (m_pSharedMaterial != nullptr)
+		{
+			m_pMaterialInstance = m_pSharedMaterial->clone();
+		}
+	}
+	return m_pMaterialInstance;
+}
+
+shared_ptr<MaterialResource> IRenderable::getRenderMaterial()
+{
+	if (m_pMaterialInstance != nullptr)
+	{
+		return m_pMaterialInstance;
+	}
+	return m_pSharedMaterial;
 }

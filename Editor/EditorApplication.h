@@ -28,6 +28,8 @@ public:
 	virtual void NotifyListener(std::string msg, std::shared_ptr<IListenerSubject> pSubject);
 	//
 	void	OnSelectChange(shared_ptr<IWorldObj> pObj);
+
+	virtual void OnInit();
 private:
 public:
 	int m_nWindowID;

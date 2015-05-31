@@ -72,7 +72,7 @@ void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<std::
 	bool bAllLight = EnviromentSetting::GetInstance()->GetIntSetting("FOWARDLIGHTONEPASS");
 	for each (shared_ptr<IRenderable>	pRenderable in vecRenderabls)
 	{
-		shared_ptr<RasterMaterial> pMaterial = dynamic_pointer_cast<RasterMaterial>(pRenderable->m_pSharedMaterial);
+		shared_ptr<RasterMaterial> pMaterial = dynamic_pointer_cast<RasterMaterial>(pRenderable->getRenderMaterial());
 		for each (std::pair<string,RenderPass*> p in pMaterial->m_RenderPassMap)
 		{	
 			SetRenderStateCollection(pRender, p.second->m_RenderState);

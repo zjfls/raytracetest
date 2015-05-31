@@ -134,7 +134,7 @@ GameColor RayTraceRender::RayTrace(const Ray3D& r,int nDepth)
 	if (pInterGeo != nullptr)
 	{
 
-		shared_ptr<SimpleRTMaterial> pRTMat = dynamic_pointer_cast<SimpleRTMaterial>(pInterGeo->m_pSharedMaterial);
+		shared_ptr<SimpleRTMaterial> pRTMat = dynamic_pointer_cast<SimpleRTMaterial>(pInterGeo->getRenderMaterial());
 		if (pRTMat == nullptr)
 		{
 			pixColor = GameColor::white;

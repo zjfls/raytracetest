@@ -35,7 +35,11 @@ shared_ptr<ModuleBase> Mesh::Clone()
 	pCloneMesh->m_pSharedMaterial = m_pSharedMaterial;
 	if (m_pSharedMaterial != nullptr)
 	{
-		pCloneMesh->m_pMaterialInstance = m_pSharedMaterial->clone();
+		if (m_pMaterialInstance != nullptr)
+		{
+			pCloneMesh->m_pMaterialInstance = m_pMaterialInstance->clone();
+		}
+		// = m_pSharedMaterial->clone();
 	}
 	pCloneMesh->m_bCpuSkin = m_bCpuSkin;
 	//

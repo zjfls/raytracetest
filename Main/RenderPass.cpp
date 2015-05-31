@@ -43,7 +43,7 @@ void RenderPass::Render(RasterRender* pRender, std::shared_ptr<IRenderable> pRen
 	pRender->SetAlphaTestFactor(128);
 	pRender->SetAlphaFunc(RENDERCMP_GREATER);
 	//
-	shared_ptr<RasterMaterial> pMat = dynamic_pointer_cast<RasterMaterial>(pRenderable->m_pSharedMaterial);
+	shared_ptr<RasterMaterial> pMat = dynamic_pointer_cast<RasterMaterial>(pRenderable->getRenderMaterial());
 
 	HardwareIndexBuffer* pIndexBuff = pRender->m_pRenderSystem->GetHardwareIndexBuffer(pRenderable->m_pIndexData.get());
 	HardwareVertexBuffer* pVertexBuff = pRender->m_pRenderSystem->GetHardwareVertexBuffer(pRenderable->m_pVertexData.get());
@@ -350,4 +350,10 @@ void RenderPass::SetPerLightArg(RasterRender* pRender, shared_ptr<LightBase> pLi
 		pFragShader->SetVector("GAMELIGHTPOS", v);
 
 	}
+}
+
+RenderPass* RenderPass::clone()
+{
+	RenderPass* pPass = new RenderPass();
+	return pPass;
 }

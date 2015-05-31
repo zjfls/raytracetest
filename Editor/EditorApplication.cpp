@@ -20,6 +20,11 @@
 #include "Vector3.h"
 #include "TimeManager.h"
 #include "Sphere3D.h"
+#include "Cylinder.h"
+#include "Cone.h"
+#include "GizmoManager.h"
+#include "TranslateGizmo.h"
+using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
 template<> shared_ptr<EditorApplication> Singleton<EditorApplication>::_instance = nullptr;
@@ -147,6 +152,7 @@ void EditorApplication::SetupScene()
 	m_pWorld->m_pRoot->addChild(pLightObj);
 
 
+	//sphere
 	shared_ptr<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
 	m_pWorld->m_pRoot->addChild(pSphereObj);
 	pSphereObj->m_strName = "Sphere";
@@ -155,9 +161,33 @@ void EditorApplication::SetupScene()
 	pSphere->m_nSubdivide = 40;
 	pSphere->GeneratePolygon();
 	pSphereObj->m_pTransform->SetTranslate(110.0, 150, 0.0);
-	NotifyListener("InitScene", EditorApplication::GetInstance());
 
-	
+	//cyilnder
+	shared_ptr<IWorldObj> pCylinderObj(IWorldObj::CreateWorldObj());
+	m_pWorld->m_pRoot->addChild(pCylinderObj);
+	pCylinderObj->m_strName = "Cylinder";
+	shared_ptr<Cylinder> pCylinder = pSphereObj->addModule<Cylinder>(pCylinderObj);
+	pCylinder->m_fRadius = 25.0f;
+	pCylinder->m_fHeight = 100.0f;
+	pCylinder->m_nSubdivide = 40;
+	pCylinder->GeneratePolygon();
+	pCylinderObj->m_pTransform->SetTranslate(0.0, 150, 0.0);
+	//
+	shared_ptr<IWorldObj> pConeObj(IWorldObj::CreateWorldObj());
+	m_pWorld->m_pRoot->addChild(pConeObj);
+	pConeObj->m_strName = "Cone";
+	shared_ptr<Cone> pCone = pSphereObj->addModule<Cone>(pConeObj);
+	pCone->m_fRadius = 25.0f;
+	pCone->m_fHeight = 100.0f;
+	pCone->m_nSubdivide = 40;
+	pCone->GeneratePolygon();
+	pConeObj->m_pTransform->SetTranslate(-100.0, 150, 0.0);
+	//
+	m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
+	GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(0.0f, 150.0f, -100.0f);
+
+
+	NotifyListener("InitScene", EditorApplication::GetInstance());
 }
 
 void EditorApplication::NotifyListener(string msg, std::shared_ptr<IListenerSubject> pSubject)
@@ -170,4 +200,12 @@ void EditorApplication::OnSelectChange(shared_ptr<IWorldObj> pObj)
 {
 	m_SelectObj = pObj;
 	NotifyListener("SelectChange", EditorApplication::GetInstance());
+}
+
+void EditorApplication::OnInit()
+{
+	if (false == GizmoManager::GetInstance()->Init())
+	{
+
+	}
 }

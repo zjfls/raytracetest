@@ -31,7 +31,7 @@ public:
 
 
 	RenderStateCollection m_RenderState;//THE STATE SET FROM STAGE
-
+	RenderPass*	clone();
 private:
 	//build args like matrix bone
 	void BuildShaderArgs(RasterRender* pRender, std::shared_ptr<IRenderable> pRenderabl, shared_ptr<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
