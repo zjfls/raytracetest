@@ -511,9 +511,9 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			pBuff++;
 		}
 	}
-	pMeshResource->m_IndexData.indexNum = indexVec.size();
-	pMeshResource->m_IndexData.indexDesc = eIndexDesc;
-	pMeshResource->m_IndexData.pData = pTemp;
+	pMeshResource->m_IndexData->indexNum = indexVec.size();
+	pMeshResource->m_IndexData->indexDesc = eIndexDesc;
+	pMeshResource->m_IndexData->pData = pTemp;
 	//vertex data
 	int nVBOffset = 0;
 	VertexData::VertexDataDesc desc;
@@ -521,19 +521,19 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	desc.usedesc = EVertexPosition;
 	desc.typedesc = EVertexTypeFloat3;
 	desc.nOffset = 0;
-	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+	pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 	nVBOffset = sizeof(float) * 3;
 	//
 	desc.usedesc = EVertexNormal;
 	desc.typedesc = EVertexTypeFloat3;
 	desc.nOffset = nVBOffset;
-	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+	pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 	nVBOffset += sizeof(float) * 3;
 	//
 	desc.usedesc = EVertexUV;
 	desc.typedesc = EVertexTypeFloat2;
 	desc.nOffset = nVBOffset;
-	pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+	pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 	nVBOffset += sizeof(float) * 2;
 	if (bHasSkinInfo)
 	{
@@ -541,38 +541,38 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		desc.usedesc = EVertexBlendIndex;
 		desc.typedesc = EVertexTypeUByte4;
 		desc.nOffset = nVBOffset;
-		pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+		pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 		nVBOffset += sizeof(unsigned char) * 4;
 		//blend weight
 		desc.usedesc = EVertexBlendWeight;
 		desc.typedesc = EVertexTypeFloat4;
 		desc.nOffset = nVBOffset;
-		pMeshResource->m_VertexData.vecDataDesc.push_back(desc);
+		pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 		nVBOffset += sizeof(float) * 4;
-		pMeshResource->m_VertexData.nBoneNum = nMaxBonePerVertex;
+		pMeshResource->m_VertexData->nBoneNum = nMaxBonePerVertex;
 	}
 	else
 	{
-		pMeshResource->m_VertexData.nBoneNum = 0;
+		pMeshResource->m_VertexData->nBoneNum = 0;
 	}
 
 
 
-	pMeshResource->m_VertexData.nNumVertex = cpCount;
-	pMeshResource->m_VertexData.pData = new unsigned char[nVBOffset * cpCount];
+	pMeshResource->m_VertexData->nNumVertex = cpCount;
+	pMeshResource->m_VertexData->pData = new unsigned char[nVBOffset * cpCount];
 	for (unsigned int cpIndex = 0; cpIndex < cpCount; ++cpIndex)
 	{
-		for (unsigned int i = 0; i < pMeshResource->m_VertexData.vecDataDesc.size(); ++i)
+		for (unsigned int i = 0; i < pMeshResource->m_VertexData->vecDataDesc.size(); ++i)
 		{
-			VertexData::VertexDataDesc desc = pMeshResource->m_VertexData.vecDataDesc[i];
-			void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData.pData + desc.nOffset + cpIndex * pMeshResource->m_VertexData.GetVertexDataLength();
+			VertexData::VertexDataDesc desc = pMeshResource->m_VertexData->vecDataDesc[i];
+			void* pTempVoid = (unsigned char*)pMeshResource->m_VertexData->pData + desc.nOffset + cpIndex * pMeshResource->m_VertexData->GetVertexDataLength();
 			switch (desc.typedesc)
 			{
 
 				case EVertexTypeFloat4:
 				{
 					float* pFloat = (float*)pTempVoid;
-					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+					switch (pMeshResource->m_VertexData->vecDataDesc[i].usedesc)
 					{
 						case EVertexBlendWeight:
 						{
@@ -600,7 +600,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 				case EVertexTypeUByte4:
 				{
 					unsigned char* pChar = (unsigned char*)pTempVoid;
-					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+					switch (pMeshResource->m_VertexData->vecDataDesc[i].usedesc)
 					{
 						case EVertexBlendIndex:
 						{
@@ -628,7 +628,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 					float* pFloat = (float*)pTempVoid;
 					//for (int j = 0; j < cpCount; ++j)
 					//{
-					if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == EVertexPosition)
+					if (pMeshResource->m_VertexData->vecDataDesc[i].usedesc == EVertexPosition)
 					{
 						*pFloat = vertexVec[cpIndex * 3 + 0];
 						//std::cout <<"VertexBin:"<< *pFloat<<" ";
@@ -640,7 +640,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 						//std::cout << *pFloat << std::endl;
 						pFloat++;
 					}
-					else if (pMeshResource->m_VertexData.vecDataDesc[i].usedesc == EVertexNormal)
+					else if (pMeshResource->m_VertexData->vecDataDesc[i].usedesc == EVertexNormal)
 					{
 						*pFloat = normalVec[cpIndex * 3 + 0];
 						//std::cout << "NormalBin:" << *pFloat << " ";
@@ -660,7 +660,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 					float* pFloat = (float*)pTempVoid;
 					//for (int j = 0; j < cpCount; ++j)
 					//{
-					switch (pMeshResource->m_VertexData.vecDataDesc[i].usedesc)
+					switch (pMeshResource->m_VertexData->vecDataDesc[i].usedesc)
 					{
 						case EVertexUV:
 						{
@@ -780,13 +780,13 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 
 
 
-		pSubMesh->m_VertexData.vecDataDesc = pMeshResource->m_VertexData.vecDataDesc;
-		pSubMesh->m_VertexData.nNumVertex = mapIndex.size();
+		pSubMesh->m_VertexData->vecDataDesc = pMeshResource->m_VertexData->vecDataDesc;
+		pSubMesh->m_VertexData->nNumVertex = mapIndex.size();
 		//check skin info
-		if (pMeshResource->m_VertexData.nBoneNum > 0)
+		if (pMeshResource->m_VertexData->nBoneNum > 0)
 		{
 			int skindescindex = 0;
-			for each (VertexData::VertexDataDesc desc in pSubMesh->m_VertexData.vecDataDesc)
+			for each (VertexData::VertexDataDesc desc in pSubMesh->m_VertexData->vecDataDesc)
 			{
 				if (desc.usedesc == EVertexBlendIndex)
 				{
@@ -795,9 +795,9 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 				skindescindex++;
 			}
 			bool bRemoveSkin = false;
-			for (unsigned int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
+			for (unsigned int i = 0; i < pSubMesh->m_VertexData->nNumVertex; ++i)
 			{
-				void* pSrc = pMeshResource->m_VertexData.GetElementData(skindescindex, remapIndex[i]);
+				void* pSrc = pMeshResource->m_VertexData->GetElementData(skindescindex, remapIndex[i]);
 				unsigned char* pUByte = (unsigned char*)pSrc;
 				if (*pUByte == 0 && *(pUByte + 1) == 0 && *(pUByte + 2) == 0 && *(pUByte + 3) == 0)
 				{
@@ -806,58 +806,58 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			}
 			if (bRemoveSkin == true)
 			{
-				std::vector<VertexData::VertexDataDesc>::iterator iter = pSubMesh->m_VertexData.vecDataDesc.begin();
-				for (; iter != pSubMesh->m_VertexData.vecDataDesc.end();)
+				std::vector<VertexData::VertexDataDesc>::iterator iter = pSubMesh->m_VertexData->vecDataDesc.begin();
+				for (; iter != pSubMesh->m_VertexData->vecDataDesc.end();)
 				{
 					if (iter->usedesc == EVertexBlendIndex || iter->usedesc == EVertexBlendWeight)
 					{
-						iter = pSubMesh->m_VertexData.vecDataDesc.erase(iter);
+						iter = pSubMesh->m_VertexData->vecDataDesc.erase(iter);
 						continue;
 					}
 					iter++;
 				}
 			}
 		}
-		int nVertexDataLength = pSubMesh->m_VertexData.GetVertexDataLength();
-		int nBuffLength = nVertexDataLength * pSubMesh->m_VertexData.nNumVertex;
+		int nVertexDataLength = pSubMesh->m_VertexData->GetVertexDataLength();
+		int nBuffLength = nVertexDataLength * pSubMesh->m_VertexData->nNumVertex;
 		if (nBuffLength <= 0)
 		{
 			break;
 		}
 		void* pVertexBuff = new unsigned char[nBuffLength];
-		pSubMesh->m_VertexData.pData = pVertexBuff;
+		pSubMesh->m_VertexData->pData = pVertexBuff;
 		int descIndex = 0;
-		for each (VertexData::VertexDataDesc desc in pSubMesh->m_VertexData.vecDataDesc)
+		for each (VertexData::VertexDataDesc desc in pSubMesh->m_VertexData->vecDataDesc)
 		{
-			int nElementLength = pSubMesh->m_VertexData.GetTypeLength(desc);
+			int nElementLength = pSubMesh->m_VertexData->GetTypeLength(desc);
 
-			for (unsigned int i = 0; i < pSubMesh->m_VertexData.nNumVertex; ++i)
+			for (unsigned int i = 0; i < pSubMesh->m_VertexData->nNumVertex; ++i)
 			{
 				void* pDst;
 				void* pSrc;
-				pDst = pSubMesh->m_VertexData.GetElementData(descIndex, i);
-				pSrc = pMeshResource->m_VertexData.GetElementData(descIndex, remapIndex[i]);
+				pDst = pSubMesh->m_VertexData->GetElementData(descIndex, i);
+				pSrc = pMeshResource->m_VertexData->GetElementData(descIndex, remapIndex[i]);
 				memcpy(pDst, pSrc, nElementLength);
 			}
 			descIndex++;
 		}
 		//index data
-		pSubMesh->m_IndexData.indexNum = subIndexVec.size();
-		pSubMesh->m_IndexData.indexDesc = pMeshResource->m_IndexData.indexDesc;
-		if (pSubMesh->m_IndexData.indexDesc == EIndexShort)
+		pSubMesh->m_IndexData->indexNum = subIndexVec.size();
+		pSubMesh->m_IndexData->indexDesc = pMeshResource->m_IndexData->indexDesc;
+		if (pSubMesh->m_IndexData->indexDesc == EIndexShort)
 		{
-			pSubMesh->m_IndexData.pData = (void*)new unsigned char[subIndexVec.size() * sizeof(short)];
-			short* pShortData = (short*)pSubMesh->m_IndexData.pData;
+			pSubMesh->m_IndexData->pData = (void*)new unsigned char[subIndexVec.size() * sizeof(short)];
+			short* pShortData = (short*)pSubMesh->m_IndexData->pData;
 			for each (int index in subIndexVec)
 			{
 				*pShortData = index;
 				pShortData++;
 			}
 		}
-		else if (pSubMesh->m_IndexData.indexDesc == EIndexInt)
+		else if (pSubMesh->m_IndexData->indexDesc == EIndexInt)
 		{
-			pSubMesh->m_IndexData.pData = (void*)new unsigned char[subIndexVec.size() * sizeof(int)];
-			short* pIntData = (short*)pSubMesh->m_IndexData.pData;
+			pSubMesh->m_IndexData->pData = (void*)new unsigned char[subIndexVec.size() * sizeof(int)];
+			short* pIntData = (short*)pSubMesh->m_IndexData->pData;
 			for each (int index in subIndexVec)
 			{
 				*pIntData = index;

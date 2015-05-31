@@ -4,6 +4,7 @@
 #include "VertexShader.h"
 #include "FragShader.h"
 #include "ShaderGenerator.h"
+#include "VertexIndexDataEventProxy.h"
 RenderSystem::RenderSystem()
 {
 }
@@ -89,4 +90,24 @@ void RenderSystem::ReleaseRenderTarget(IRenderTarget* pTarget)
 			m_vecRenderTarget.erase(iter);
 		}
 	}
+}
+
+void RenderSystem::OnVertexDataDelete(ZG::VertexDataEventArg& e)
+{
+	if (m_VertexDataMap.find(e.m_pVertexData) != std::end(m_VertexDataMap))
+	{
+		delete m_VertexDataMap[e.m_pVertexData];
+		m_VertexDataMap.erase(e.m_pVertexData);
+	}
+	return;
+}
+
+void RenderSystem::OnIndexDataDelete(ZG::IndexDataEventArg& e)
+{
+	if (m_IndexDataMap.find(e.m_pIndexData) != std::end(m_IndexDataMap))
+	{
+		delete m_IndexDataMap[e.m_pIndexData];
+		m_IndexDataMap.erase(e.m_pIndexData);
+	}
+	return;
 }

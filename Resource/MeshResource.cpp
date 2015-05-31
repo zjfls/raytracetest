@@ -6,6 +6,8 @@ template<> shared_ptr<ResourceManager<MeshResource>> Singleton<ResourceManager<M
 
 MeshResource::MeshResource() 
 {
+	m_VertexData = new MeshVertexData;
+	m_IndexData = new IndexData;
 }
 
 
@@ -17,10 +19,10 @@ shared_ptr<MeshResource> MeshResource::clone()
 {
 	shared_ptr<MeshResource> pCloneMeshRes(new MeshResource);
 	*pCloneMeshRes = *this;
-	pCloneMeshRes->m_IndexData.pData = new unsigned char[m_IndexData.GetBuffLength()];
-	memcpy((void*)pCloneMeshRes->m_IndexData.pData, (void*)m_IndexData.pData, m_IndexData.GetBuffLength());
-	pCloneMeshRes->m_VertexData.pData = new unsigned char[m_VertexData.GetBuffLength()];
-	memcpy((void*)pCloneMeshRes->m_VertexData.pData, (void*)m_VertexData.pData, m_VertexData.GetBuffLength());
+	pCloneMeshRes->m_IndexData->pData = new unsigned char[m_IndexData->GetBuffLength()];
+	memcpy((void*)pCloneMeshRes->m_IndexData->pData, (void*)m_IndexData->pData, m_IndexData->GetBuffLength());
+	pCloneMeshRes->m_VertexData->pData = new unsigned char[m_VertexData->GetBuffLength()];
+	memcpy((void*)pCloneMeshRes->m_VertexData->pData, (void*)m_VertexData->pData, m_VertexData->GetBuffLength());
 	return pCloneMeshRes;
 }
 

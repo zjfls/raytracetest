@@ -15,12 +15,12 @@ Sphere3D::~Sphere3D()
 {
 	if (m_pVertexData != nullptr)
 	{
-		delete m_pVertexData;
+		//delete m_pVertexData;
 		m_pVertexData = nullptr;
 	}
 	if (m_pIndexData != nullptr)
 	{
-		delete m_pIndexData;
+		//delete m_pIndexData;
 		m_pIndexData = nullptr;
 	}
 	

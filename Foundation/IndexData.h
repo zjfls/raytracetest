@@ -1,7 +1,9 @@
 #pragma once
 #include "RenderEnum.h"
+#include "GameObjectBase.h"
 class IndexData;
-class FOUNDATION_API IndexData
+using ZG::GameObjectBase;
+class FOUNDATION_API IndexData:public GameObjectBase
 {
 public:
 	IndexData()
@@ -11,15 +13,8 @@ public:
 
 	}
 	void* pData;
-	~IndexData()
-	{
-		if (pData != nullptr)
-		{
-			delete[] pData;
-			pData = nullptr;
-		}
+	~IndexData();
 
-	}
 	unsigned int GetBuffLength() const;
 
 	//nv:0,1,2

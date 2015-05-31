@@ -13,11 +13,30 @@
 #include "SceneTreeView.h"
 #include "CommonToolBar.h"
 #include "QListDataView.h"
+#include <typeinfo>
+#include <unordered_map>
+#include <vector>
 //#include "QtRenderView.h"
-
+//struct test
+//{
+//	test(const type_info& i):info(i){};
+//	const type_info& info;
+//
+//};
 QtEditor::QtEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
+	//std::vector<test> test2;
+	//test a(typeid(EditorApplication));
+	//test2.push_back(a);
+	//for each (test a in test2)
+	//{
+	//	if (a.info == typeid(EditorApplication))
+	//	{
+	//		std::cout << "find:" << "EditorApplication" << std::endl;
+	//	}
+	//}
+	//kmap[typeid(EditorApplication)] = typeid(EditorApplication).name();
 	m_pSceneTreeView = nullptr;
 	QDockWidget *dock = new QDockWidget(tr("SceneTreeView"), this);
 	m_pSceneTreeView = new SceneTreeView();
@@ -32,6 +51,10 @@ QtEditor::QtEditor(QWidget *parent)
 	EditorApplication::GetInstance()->SetWindowID(winId());
 	EditorApplication::GetInstance()->m_pEditorApp = this;
 	EditorApplication::GetInstance()->Init(0, nullptr);
+
+
+	//const type_info& info = typeid(EditorApplication);
+	//std::cout << typeid(EditorApplication).name() << std::endl;
 	//
 	QMainWindow::setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	QMainWindow::setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);

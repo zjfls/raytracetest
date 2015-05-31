@@ -14,6 +14,9 @@
 #include "RenderSystem.h"
 #include "BuiltInResource.h"
 #include "BuiltInMaterialManager.h"
+#include "RenderAbleEventProxy.h"
+#include "VertexIndexDataEventProxy.h"
+using namespace ZG;
 ApplicationBase::ApplicationBase()
 	:m_pRenderView(nullptr)
 {
@@ -64,6 +67,11 @@ bool ApplicationBase::Init(int argc, char** argv)
 	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 
 
+	//
+	RenderSystem* pDefaultRenderSystem = RenderManager::GetInstance()->GetDefaultRenderSystem();
+	VertexIndexDataEventProxy::GetInstance()->getEvent<VertexDataEventArg>("VERTEXDATADELETE")->addEventHandler(pDefaultRenderSystem, std::bind(&(RenderSystem::OnVertexDataDelete), pDefaultRenderSystem, std::placeholders::_1));
+	VertexIndexDataEventProxy::GetInstance()->getEvent<IndexDataEventArg>("INDEXDATADELETE")->addEventHandler(pDefaultRenderSystem, std::bind(&(RenderSystem::OnIndexDataDelete), pDefaultRenderSystem, std::placeholders::_1));
+	//
 
 	m_pWorld = shared_ptr<IWorld>(new IWorld);
 	OnInit();

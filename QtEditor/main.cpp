@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "qteditor.h"
 #include <QtWidgets/QApplication>
-
+#include <iostream>
 int main(int argc, char *argv[])
 {
+	
 	//
 	AllocConsole();
 	FILE* pFile;

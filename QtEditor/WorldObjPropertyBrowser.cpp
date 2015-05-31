@@ -89,6 +89,7 @@ void WorldObjPropertyBrowser::SetTarget(shared_ptr<IWorldObj> pObj)
 
 void WorldObjPropertyBrowser::AddModule(shared_ptr<ModuleBase> pModule)
 {
+	
 	//
 	const type_info& tinfo = typeid(*pModule.get());
 	std::string className = tinfo.name();

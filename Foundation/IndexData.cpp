@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "IndexData.h"
-
+#include "VertexIndexDataEventProxy.h"
+using namespace ZG;
 
 
 unsigned int IndexData::GetBuffLength() const
@@ -33,4 +34,18 @@ unsigned int IndexData::GetIndexAt(int nTriangle, int nV) const
 	{
 		return *((unsigned short*)pData + nTriangle * 3 + nV);
 	}
+}
+
+IndexData::~IndexData()
+{
+	IndexDataEventArg arg;
+	arg.m_pIndexData = this;
+	Event<IndexDataEventArg>* e = VertexIndexDataEventProxy::GetInstance()->getEvent<IndexDataEventArg>("INDEXDATADELETE");
+	(*e)(arg);
+	if (pData != nullptr)
+	{
+		delete[] pData;
+		pData = nullptr;
+	}
+
 }

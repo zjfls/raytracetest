@@ -39,16 +39,16 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	unsigned int nIndexNum;
 	fread((void*)&nIndexNum, sizeof(unsigned int), 1, fp);
 	nLength += 4;
-	res->m_IndexData.indexNum = nIndexNum;
-	res->m_IndexData.indexDesc = (EnumIndexDesc)indexDesc;
+	res->m_IndexData->indexNum = nIndexNum;
+	res->m_IndexData->indexDesc = (EnumIndexDesc)indexDesc;
 	unsigned int nIndexStrip = 2;
-	if (res->m_IndexData.indexDesc == EIndexInt)
+	if (res->m_IndexData->indexDesc == EIndexInt)
 	{
 		nIndexStrip = 4;
 	}
 	unsigned int nIndexBuffLength = nIndexStrip * nIndexNum;
-	res->m_IndexData.pData = (void*)new unsigned char[nIndexBuffLength];
-	fread((void*)res->m_IndexData.pData, nIndexBuffLength, 1, fp);
+	res->m_IndexData->pData = (void*)new unsigned char[nIndexBuffLength];
+	fread((void*)res->m_IndexData->pData, nIndexBuffLength, 1, fp);
 	nLength += nIndexBuffLength;
 
 
@@ -67,19 +67,19 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 		desc.usedesc = (EnumVertexUseDesc)usedesc;
 		desc.typedesc = (EnumVertexTypeDesc)typedesc;
 		desc.nOffset = nOffset;
-		res->m_VertexData.vecDataDesc.push_back(desc);
+		res->m_VertexData->vecDataDesc.push_back(desc);
 	}
 	unsigned int nSizeOfVB;
 	fread((void*)&nSizeOfVB, sizeof(unsigned int), 1, fp);
 	nLength += 4;
-	res->m_VertexData.nNumVertex = nSizeOfVB / res->m_VertexData.GetVertexDataLength();
+	res->m_VertexData->nNumVertex = nSizeOfVB / res->m_VertexData->GetVertexDataLength();
 	//unsigned int nVBuffSize = nVertexNum * res->m_VertexData.GetVertexDataLength();
-	res->m_VertexData.pData = (void*)new unsigned char[nSizeOfVB];
-	fread(res->m_VertexData.pData, nSizeOfVB, 1, fp);
+	res->m_VertexData->pData = (void*)new unsigned char[nSizeOfVB];
+	fread(res->m_VertexData->pData, nSizeOfVB, 1, fp);
 	nLength += nSizeOfVB;
-	for (unsigned int i = 0; i < res->m_VertexData.nNumVertex; ++i)
+	for (unsigned int i = 0; i < res->m_VertexData->nNumVertex; ++i)
 	{
-		Vector3 pos = *((Vector3*)res->m_VertexData.GetElementData(1,i));
+		Vector3 pos = *((Vector3*)res->m_VertexData->GetElementData(1,i));
 		//std::cout << "normal:" << pos.m_fx << " " << pos.m_fy << " "<<pos.m_fz << std::endl;
 	}
 	pMeshAsset->AddResource(path, res);

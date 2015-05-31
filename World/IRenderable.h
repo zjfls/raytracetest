@@ -4,9 +4,11 @@
 #include "IndexData.h"
 #include <vector>
 #include "IListenerSubject.h"
+#include "SmartPointer.h"
 class LightBase;
 class MaterialResource;
 class BoundingBase;
+using ZG::SmartPointer;
 class WORLD_API IRenderable :public ModuleBase
 {
 public:
@@ -21,8 +23,8 @@ public:
 	virtual shared_ptr<ModuleBase> Clone(){ return nullptr; };
 	virtual void BuildBoundingVolume();
 protected:
-	VertexData* m_pVertexData;
-	IndexData* m_pIndexData;
+	SmartPointer<VertexData> m_pVertexData;
+	SmartPointer<IndexData> m_pIndexData;
 	BoundingBase* m_pBounding;
 	friend class RenderPass;
 public:

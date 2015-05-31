@@ -121,7 +121,7 @@ void EditorApplication::SetupScene()
 	pCamera->m_strName = "Camera";
 	m_pWorld->m_pRoot->addChild(pCamera);
 	shared_ptr<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
-	pCameraModule->m_fFar = 2000.0f;
+	pCameraModule->m_fFar = 12000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
 	pCameraModule->m_fFovy = PI / 4;
@@ -151,9 +151,10 @@ void EditorApplication::SetupScene()
 	m_pWorld->m_pRoot->addChild(pSphereObj);
 	pSphereObj->m_strName = "Sphere";
 	shared_ptr<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
-	pSphere->m_fRadius = 100.0f;
-	pSphere->m_nSubdivide = 100;
+	pSphere->m_fRadius = 50.0f;
+	pSphere->m_nSubdivide = 40;
 	pSphere->GeneratePolygon();
+	pSphereObj->m_pTransform->SetTranslate(110.0, 150, 0.0);
 	NotifyListener("InitScene", EditorApplication::GetInstance());
 
 	

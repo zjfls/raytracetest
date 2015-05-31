@@ -1,5 +1,12 @@
 #pragma once
 #include "RenderEnum.h"
+#include "GameObjectBase.h"
+namespace ZG
+{
+	class VertexDataEventArg;
+	class IndexDataEventArg;
+}
+
 struct stRenderViewInfo;
 class IRender;
 class RenderView;
@@ -18,7 +25,7 @@ class HardwareTexture;
 class Texture;
 class IRenderTarget;
 class VertexData;
-class MAIN_API RenderSystem
+class MAIN_API RenderSystem:public ZG::GameObjectBase
 {
 public:
 	virtual ~RenderSystem();
@@ -44,6 +51,10 @@ public:
 
 	RenderView*						GetActiveRenderView(){ return m_pActiveView; };
 	void							SetActiveRenderView(RenderView* pView){ m_pActiveView = pView; };
+	//
+	//
+	void							OnVertexDataDelete(ZG::VertexDataEventArg& e);
+	void							OnIndexDataDelete(ZG::IndexDataEventArg& e);
 protected:
 	const char*			GetVertexShaderCode(const VertexShaderDesc& vertexShaderDesc);
 	const char*			GetFragShaderCode(const FragShaderDesc& fragShaderDesc);

@@ -6,6 +6,15 @@
 #include "IndexData.h"
 #include <iostream>
 #include "MathDefine.h"
+#include "VertexIndexDataEventProxy.h"
+using namespace ZG;
+VertexData::~VertexData()
+{
+	VertexDataEventArg arg;
+	arg.m_pVertexData = this;
+	Event<VertexDataEventArg>* e = VertexIndexDataEventProxy::GetInstance()->getEvent<VertexDataEventArg>("VERTEXDATADELETE");
+	(*e)(arg);
+}
 //
 void* MeshVertexData::GetElementData(int descIndex, int posIndex) const
 {

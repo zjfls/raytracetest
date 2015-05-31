@@ -33,6 +33,8 @@ using namespace std;
 #include "Vector3.h"
 #include "CommonDef.h"
 #include "fbxsdk.h"
+//
+#include "Event.h"
 
 
 // TODO:  在此处引用程序需要的其他头文件

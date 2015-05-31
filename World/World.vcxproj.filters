@@ -84,6 +84,9 @@
     <ClInclude Include="Sphere3D.h">
       <Filter>头文件\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="RenderAbleEventProxy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="Sphere3D.cpp">
       <Filter>源文件\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderAbleEventProxy.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

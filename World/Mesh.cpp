@@ -15,8 +15,8 @@ Mesh::~Mesh()
 void Mesh::SetMeshResource(shared_ptr<MeshResource> pRes)
 {
 		m_pSharedMesh = pRes;
-		m_pVertexData = &pRes->m_VertexData;
-		m_pIndexData = &pRes->m_IndexData;
+		m_pVertexData = pRes->m_VertexData.SmartPointerCast<VertexData>();
+		m_pIndexData = pRes->m_IndexData;
 }
 
 shared_ptr<MeshResource> Mesh::GetMeshResource()
@@ -26,7 +26,7 @@ shared_ptr<MeshResource> Mesh::GetMeshResource()
 
 bool Mesh::HasSkinInfo() const
 {
-	return m_pVertexData->nBoneNum > 0;
+	return m_pSharedMesh->m_VertexData->nBoneNum > 0;
 }
 
 shared_ptr<ModuleBase> Mesh::Clone()
@@ -39,7 +39,7 @@ shared_ptr<ModuleBase> Mesh::Clone()
 	}
 	pCloneMesh->m_bCpuSkin = m_bCpuSkin;
 	//
-	if (m_pSharedMesh->m_VertexData.nBoneNum > 0 && m_bCpuSkin == true)
+	if (m_pSharedMesh->m_VertexData->nBoneNum > 0 && m_bCpuSkin == true)
 	{
 		pCloneMesh->m_pMeshInstance = m_pSharedMesh->clone();
 	}

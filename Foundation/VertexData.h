@@ -2,15 +2,17 @@
 #include "RenderEnum.h"
 #include "VertexData.h"
 #include "Vector3.h"
+#include "GameObjectBase.h"
+using ZG::GameObjectBase;
 class IndexData;
-class FOUNDATION_API VertexData
+class FOUNDATION_API VertexData:public GameObjectBase
 {
 public:
 	VertexData() :nBoneNum(0)
 		, nNumVertex(0)
 		, m_PrimitiveType(EPRIMITIVE_TRIANGLE)
 	{};
-	virtual ~VertexData(){};
+	virtual ~VertexData();
 	virtual void getBoundingMaxAndMin(Vector3& min,Vector3 max) = 0;
 	int		GetVertexDataLength()const;
 	struct VertexDataDesc

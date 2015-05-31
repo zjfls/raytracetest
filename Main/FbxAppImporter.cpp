@@ -247,7 +247,7 @@ void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_pt
 void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 {
 	//
-	pMesh->m_VertexData.ComputeTangent(pMesh->m_IndexData);
+	pMesh->m_VertexData->ComputeTangent(*pMesh->m_IndexData);
 	//
 	std::cout << "save mesh:" << path.c_str() << std::endl;
 	if (_access(path.c_str(), 0) != -1)
@@ -269,25 +269,25 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 	fwrite((void*)&version, sizeof(int), 1, fp);
 	//write index data
 	unsigned int nIndexStrip = 2;
-	if (pMesh->m_IndexData.indexDesc == EIndexInt)
+	if (pMesh->m_IndexData->indexDesc == EIndexInt)
 	{
 		nIndexStrip = 1;
 	}
 	//4×Ö½Ú write indexdesc
-	int indexType = (int)pMesh->m_IndexData.indexDesc;
+	int indexType = (int)pMesh->m_IndexData->indexDesc;
 	fwrite((void*)&indexType, sizeof(indexType), 1, fp);
 
 	//index number
-	fwrite((void*)&pMesh->m_IndexData.indexNum, sizeof(int), 1, fp);
+	fwrite((void*)&pMesh->m_IndexData->indexNum, sizeof(int), 1, fp);
 	//index value
-	fwrite((void*)pMesh->m_IndexData.pData, nIndexStrip * pMesh->m_IndexData.indexNum, 1, fp);
+	fwrite((void*)pMesh->m_IndexData->pData, nIndexStrip * pMesh->m_IndexData->indexNum, 1, fp);
 	//write vertex data
 	//write desc data
-	unsigned int nVDescNum = pMesh->m_VertexData.vecDataDesc.size();
+	unsigned int nVDescNum = pMesh->m_VertexData->vecDataDesc.size();
 	fwrite((void*)&nVDescNum, sizeof(unsigned int), 1, fp);
 	for (unsigned int i = 0; i < nVDescNum; ++i)
 	{
-		VertexData::VertexDataDesc desc = pMesh->m_VertexData.vecDataDesc[i];
+		VertexData::VertexDataDesc desc = pMesh->m_VertexData->vecDataDesc[i];
 		int useDesc, typeDesc;
 		useDesc = (int)desc.usedesc;
 		typeDesc = (int)desc.typedesc;
@@ -296,10 +296,10 @@ void FbxAppImporter::ImportMesh(shared_ptr<MeshResource> pMesh, string path)
 		fwrite((void*)&typeDesc, sizeof(int), 1, fp);
 		fwrite((void*)&nOffset, sizeof(unsigned int), 1, fp);
 	}
-	unsigned int nNumVertex = pMesh->m_VertexData.nNumVertex;
-	unsigned int nSizeofVB = pMesh->m_VertexData.GetVertexDataLength() * pMesh->m_VertexData.nNumVertex;
+	unsigned int nNumVertex = pMesh->m_VertexData->nNumVertex;
+	unsigned int nSizeofVB = pMesh->m_VertexData->GetVertexDataLength() * pMesh->m_VertexData->nNumVertex;
 	fwrite((void*)&nSizeofVB, sizeof(unsigned int), 1, fp);
-	fwrite(pMesh->m_VertexData.pData, nSizeofVB, 1, fp);
+	fwrite(pMesh->m_VertexData->pData, nSizeofVB, 1, fp);
 	fclose(fp);
 }
 
