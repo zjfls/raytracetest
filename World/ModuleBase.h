@@ -2,20 +2,20 @@
 
 
 class IWorldObj;
-class WORLD_API ModuleBase
+class WORLD_API ModuleBase:public GameObjectBase
 {
 public:
 	ModuleBase();
 	virtual ~ModuleBase();
 	virtual void OnAdded(){};
 	virtual void OnRemoved(){};
-	virtual void Update(std::shared_ptr<ModuleBase> pModule);
-	virtual void OnLateUpdate(std::shared_ptr<ModuleBase> pModule);
-	virtual shared_ptr<ModuleBase> Clone() = 0;
+	virtual void Update(SmartPointer<ModuleBase> pModule);
+	virtual void OnLateUpdate(SmartPointer<ModuleBase> pModule);
+	virtual SmartPointer<ModuleBase> Clone() = 0;
 
 
 
-	shared_ptr<IWorldObj> m_pOwnerObj;
+	SmartPointer<IWorldObj> m_pOwnerObj;
 	string m_strName;
 };
 

@@ -3,7 +3,7 @@
 #include "tinyxml2.h"
 using namespace tinyxml2;
 template class MAIN_API Singleton < EnviromentSetting >;
-template<> shared_ptr<EnviromentSetting> Singleton<EnviromentSetting>::_instance = nullptr;
+template<> SmartPointer<EnviromentSetting> Singleton<EnviromentSetting>::_instance = nullptr;
 
 EnviromentSetting::EnviromentSetting()
 {

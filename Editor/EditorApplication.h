@@ -9,7 +9,7 @@ class EditorRenderView;
 //class RenderView;
 //
 
-class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject
+class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject,public GameObjectBase
 {
 public:
 	EditorApplication();
@@ -25,9 +25,9 @@ public:
 	std::map<int, EditorRenderView*> m_ViewMap;
 	//RenderView* CreateRenderView(int WindowID);
 	virtual void SetupScene();
-	virtual void NotifyListener(std::string msg, std::shared_ptr<IListenerSubject> pSubject);
+	virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
 	//
-	void	OnSelectChange(shared_ptr<IWorldObj> pObj);
+	void	OnSelectChange(SmartPointer<IWorldObj> pObj);
 
 	virtual void OnInit();
 private:
@@ -36,8 +36,8 @@ public:
 	IListener* m_pEditorApp;
 
 	//
-	std::vector<shared_ptr<IWorldObj>> m_vecSelectObjs;
-	shared_ptr<IWorldObj> m_SelectObj;
+	std::vector<SmartPointer<IWorldObj>> m_vecSelectObjs;
+	SmartPointer<IWorldObj> m_SelectObj;
 	//
 };
 

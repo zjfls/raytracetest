@@ -19,24 +19,24 @@ CameraBase::~CameraBase()
 {
 }
 
-void CameraBase::Render(std::shared_ptr<CameraBase> pCamera)
+void CameraBase::Render(SmartPointer<CameraBase> pCamera)
 {
 	//m_pRender->SetRenderTarget(m_pRenderTarget);
 	//m_pRender->m_pCurrentRenderCamera = this;
 	//m_pRender->Render(this, IWorld::pSingleWorld);
-	NotifyListener("Render", pCamera);
+	NotifyListener("Render", pCamera.get());
 }
 
-void CameraBase::Update(std::shared_ptr<ModuleBase> pModule)
+void CameraBase::Update(SmartPointer<ModuleBase> pModule)
 {
-	std::shared_ptr<CameraBase> pCamera = dynamic_pointer_cast<CameraBase>(pModule);
-	NotifyListener("UpdateMatrix", pCamera);
+	SmartPointer<CameraBase> pCamera = pModule.SmartPointerCast<CameraBase>();
+	NotifyListener("UpdateMatrix", pCamera.get());
 	UpdateMatrix();
 }
 
-void CameraBase::OnLateUpdate(std::shared_ptr<ModuleBase> pModule)
+void CameraBase::OnLateUpdate(SmartPointer<ModuleBase> pModule)
 {
-	std::shared_ptr<CameraBase> pCamera = dynamic_pointer_cast<CameraBase>(pModule);
+	SmartPointer<CameraBase> pCamera = pModule.SmartPointerCast<CameraBase>();
 	Render(pCamera);
 }
 void CameraBase::UpdateMatrix()
@@ -64,10 +64,10 @@ void CameraBase::UpdateMatrix()
 	m_MatViewProj = m_MatView * m_MatProj;
 }
 
-shared_ptr<ModuleBase> CameraBase::Clone()
+SmartPointer<ModuleBase> CameraBase::Clone()
 {
-	shared_ptr<CameraBase> pCamera = shared_ptr<CameraBase>(new CameraBase);
+	SmartPointer<CameraBase> pCamera = SmartPointer<CameraBase>(new CameraBase);
 	pCamera->m_fAspect = m_fFovy;
 	pCamera->m_fFovy = m_fAspect;
-	return pCamera;
+	return pCamera.get();
 }

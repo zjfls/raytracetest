@@ -82,28 +82,28 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	{
 		return pAsset;
 	}
-	shared_ptr<IWorldObj> pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
+	SmartPointer<IWorldObj> pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
 
 
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + name + ".prefab.xml");
+	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + name + ".prefab.xml");
 	pPrefab->m_pRoot = pRoot;
-	pAsset->AddResource(m_fileDir + name + ".prefab.xml", pPrefab);
+	pAsset->AddResource(m_fileDir + name + ".prefab.xml", pPrefab.get());
 	//
 	return pAsset;
 }
 
-shared_ptr<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> pParent, shared_ptr<IWorldObj> pSkeletonObj)
+SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> pParent, SmartPointer<IWorldObj> pSkeletonObj)
 {
 	refPath = refPath + "/" + pNode->GetName() + ".mesh";
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
-	shared_ptr<IWorldObj> pObj = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pObj = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
 	pObj->m_strName = pNode->GetName();
 	FbxTransform nodeTrans = pNode->GetTransform();
 	FbxDouble3 trans = pNode->LclTranslation.Get();
 	FbxDouble3 rot = pNode->LclRotation.Get();
 	FbxDouble3 scal = pNode->LclScaling.Get();
 
-	shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(pObj->GetModule(0));
+	SmartPointer<Transform> pTransform = pObj->GetModule(0).SmartPointerCast<Transform>();
 	pTransform->SetTranslate((float)trans.mData[0], (float)trans.mData[2], (float)trans.mData[1]);
 	pTransform->SetScale((float)scal.mData[0], (float)scal.mData[2], (float)scal.mData[1]);
 	pTransform->SetOrientation((float)rot.mData[0], (float)rot.mData[2], (float)rot.mData[1]);
@@ -116,7 +116,7 @@ shared_ptr<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath,
 			case FbxNodeAttribute::EType::eMesh:
 			{
 
-				shared_ptr<MeshResource> pRes = ProcessMesh(pNode, refPath, pObj, pSkeletonObj);
+				SmartPointer<MeshResource> pRes = ProcessMesh(pNode, refPath, pObj, pSkeletonObj);
 
 			}
 			break;
@@ -142,7 +142,7 @@ shared_ptr<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath,
 	for (int i = 0; i < nChild; ++i)
 	{
 		FbxNode* pChildNode = pNode->GetChild(i);
-		shared_ptr<IWorldObj> pChild = ProcessNode(pChildNode, refPath, nullptr, pSkeletonObj);
+		SmartPointer<IWorldObj> pChild = ProcessNode(pChildNode, refPath, nullptr, pSkeletonObj);
 		pObj->addChild(pChild);
 	}
 	return pObj;
@@ -157,7 +157,7 @@ struct stSkinInfo
 	int m_nIndex;
 	float m_fWeight;
 };
-shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> obj, shared_ptr<IWorldObj> pSkeletonObj)
+SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> obj, SmartPointer<IWorldObj> pSkeletonObj)
 {
 	FbxMesh* pMesh = pNode->GetMesh();
 	for each (FbxMesh* pM in vecMeshList)
@@ -178,12 +178,12 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	}
 
 	vecMeshList.push_back(pMesh);
-	shared_ptr<MeshResource> pMeshResource = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(refPath);
-	m_pAsset->AddResource(refPath, pMeshResource);
+	SmartPointer<MeshResource> pMeshResource = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(refPath);
+	m_pAsset->AddResource(refPath, pMeshResource.get());
 
 
 
-	shared_ptr<IWorldObj> pModuleOwener = obj;
+	SmartPointer<IWorldObj> pModuleOwener = obj;
 	//
 
 
@@ -426,7 +426,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 			int			clusterCount = pSkin->GetClusterCount();
 
 			FbxNode* pSkeletonRoot = nullptr;
-			shared_ptr<SkeletonResource> pSkeRes = nullptr;
+			SmartPointer<SkeletonResource> pSkeRes = nullptr;
 			if (clusterCount >= 1)
 			{
 				pCluster = pSkin->GetCluster(0);
@@ -479,7 +479,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 #pragma region CalTangent
 #pragma endregion
 #pragma region AddMeshResource
-	shared_ptr<Mesh> pMeshModule;
+	SmartPointer<Mesh> pMeshModule;
 	pMeshModule = pModuleOwener->addModule<Mesh>(pModuleOwener);
 	pMeshModule->SetMeshResource(pMeshResource);
 	EnumIndexDesc eIndexDesc = EIndexInt;
@@ -707,9 +707,9 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		std::cout << "can not find material for " << pNode->GetName() << std::endl;
 	}
 	//
-	shared_ptr<RasterMaterial> pMatRes = ProcessMaterial(pMat);
-	m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes);
-	pMeshModule->m_pSharedMaterial = pMatRes;
+	SmartPointer<RasterMaterial> pMatRes = ProcessMaterial(pMat);
+	m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes.get());
+	pMeshModule->m_pSharedMaterial = pMatRes.get();
 	//
 #pragma endregion
 	//return pMeshResource;
@@ -767,15 +767,15 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 		}
 		string meshName = getFileNameWithoutSuffix(refPath);
 		string subRefPath = strMeshPath + meshName + "_" + pMat->GetName() + ".mesh";
-		shared_ptr<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
-		m_pAsset->AddResource(subRefPath, pSubMesh);
-		shared_ptr<Mesh> pSubMeshModule = obj->addModule<Mesh>(obj);
+		SmartPointer<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
+		m_pAsset->AddResource(subRefPath, pSubMesh.get());
+		SmartPointer<Mesh> pSubMeshModule = obj->addModule<Mesh>(obj);
 		pSubMeshModule->SetMeshResource(pSubMesh);
 		bRemoveMainMesh = true;
 		//
-		shared_ptr<RasterMaterial> pMatRes = ProcessMaterial(pMat);
-		m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes);
-		pSubMeshModule->m_pSharedMaterial = pMatRes;
+		SmartPointer<RasterMaterial> pMatRes = ProcessMaterial(pMat);
+		m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes.get());
+		pSubMeshModule->m_pSharedMaterial = pMatRes.get();
 		//
 
 
@@ -869,7 +869,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	}
 	if (bRemoveMainMesh == true)
 	{
-		pModuleOwener->removeModule(pMeshModule);
+		pModuleOwener->removeModule(pMeshModule.get());
 		ResourceManager<MeshResource>::GetInstance()->RemoveResource(refPath);
 		m_pAsset->RemoveResource(refPath);
 	}
@@ -877,7 +877,7 @@ shared_ptr<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPa
 	return pMeshResource;
 }
 
-shared_ptr<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> pObj /*= nullptr*/)
+SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> pObj /*= nullptr*/)
 {
 	FbxSkeleton* pSke = pNode->GetSkeleton();
 	if (m_mapSkeleton.find(pSke) != std::end(m_mapSkeleton))
@@ -885,11 +885,11 @@ shared_ptr<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refP
 		return nullptr;
 	}
 	refPath = strShaderPath + pNode->GetName() + ".skeleton.xml";
-	shared_ptr<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(refPath);
+	SmartPointer<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(refPath);
 	Bone* pRoot = new Bone();
 	pSkeleton->m_pRoot = pRoot;
 	ProcessBone(pSkeleton, pRoot, pNode, 0);
-	m_pAsset->AddResource(refPath, pSkeleton);
+	m_pAsset->AddResource(refPath, pSkeleton.get());
 	m_mapSkeleton[pSke] = pSkeleton;
 	m_mapSkeObj[pSke] = pObj;
 	pSkeleton->m_nBoneNum = pSkeleton->m_mapBone.size();
@@ -897,7 +897,7 @@ shared_ptr<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refP
 
 }
 
-void FbxFileLoader::ProcessBone(shared_ptr<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int index)
+void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int index)
 {
 	if (pBone == nullptr)
 	{
@@ -972,19 +972,19 @@ FbxNode* FbxFileLoader::GetSkeletonRoot(FbxNode* pNode)
 	return nullptr;
 }
 
-shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pMat)
+SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pMat)
 {
 	if (m_mapMaterial.find(pMat) != std::end(m_mapMaterial))
 	{
-		return dynamic_pointer_cast<RasterMaterial>(m_mapMaterial[pMat]);
+		return m_mapMaterial[pMat].SmartPointerCast<RasterMaterial>();
 	}
 	FbxSurfacePhong* pSrfPhong = (FbxSurfacePhong*)pMat;
 	int nProp = pMat->GetSrcPropertyCount();
 	FbxProperty pProp = pSrfPhong->GetFirstProperty();
 
 
-	shared_ptr<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(strMaterialPath + pMat->GetName() + ".smat.xml");
-	m_mapMaterial[pMat] = pMatRes;
+	SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(strMaterialPath + pMat->GetName() + ".smat.xml");
+	m_mapMaterial[pMat] = pMatRes.get();
 
 	while (pProp.IsValid())
 	{
@@ -1005,7 +1005,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
 				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
 				{
 					CpyFile(pTex->GetName(), strTexturePath + fileName);
@@ -1017,7 +1017,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
 				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
 				{
 					CpyFile(pTex->GetName(), strTexturePath + fileName);
@@ -1028,7 +1028,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
 				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
 				{
 					CpyFile(pTex->GetName(), strTexturePath + fileName);
@@ -1039,7 +1039,7 @@ shared_ptr<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pM
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName);
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
 				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
 				{
 					CpyFile(pTex->GetName(), strTexturePath + fileName);

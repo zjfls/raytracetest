@@ -9,26 +9,26 @@ public:
 	virtual ~IWorld();
 	
 
-	shared_ptr<IWorldObj> m_pRoot;
+	SmartPointer<IWorldObj> m_pRoot;
 	void Update();
 
-	std::vector<shared_ptr<IRenderable>> GetAllRenderables();
-	virtual void GetRenderablesLightInfo(std::vector<shared_ptr<IRenderable>>& vec);
+	std::vector<SmartPointer<IRenderable>> GetAllRenderables();
+	virtual void GetRenderablesLightInfo(std::vector<SmartPointer<IRenderable>>& vec);
 
 
 
 	template<class T>
-	std::vector<shared_ptr<T>> GetAllModules();
+	std::vector<SmartPointer<T>> GetAllModules();
 
 
 	
 };
 
 template<class T>
-std::vector<shared_ptr<T>>
+std::vector<SmartPointer<T>>
 IWorld::GetAllModules()
 {
-	std::vector<shared_ptr<T>> vecModules;
+	std::vector<SmartPointer<T>> vecModules;
 	m_pRoot->GetAllModuleRecursive<T>(vecModules);
 	return vecModules;
 }

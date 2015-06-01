@@ -46,7 +46,7 @@ public:
 	virtual ~TextureSampler();
 
 
-	shared_ptr<Texture> m_pTexture;
+	SmartPointer<Texture> m_pTexture;
 	ETEXADDRESS m_EAddressU;
 	ETEXADDRESS m_EAddressV;
 	ETEXADDRESS m_EAddressW;

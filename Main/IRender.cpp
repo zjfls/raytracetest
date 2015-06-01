@@ -20,7 +20,7 @@ void IRender::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 
 
 
-void IRender::SetCurrentRenderCamera(shared_ptr<CameraBase> pCamera)
+void IRender::SetCurrentRenderCamera(SmartPointer<CameraBase> pCamera)
 {
 	m_pCurrentRenderCamera = pCamera;
 }

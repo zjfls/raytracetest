@@ -23,11 +23,11 @@ IAsset* VertexShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	VertexShaderAsset* pAsset = new VertexShaderAsset();
 	pAsset->m_strPath = path;
-	shared_ptr<VertexShader> pVSResource = nullptr;
+	SmartPointer<VertexShader> pVSResource = nullptr;
 	if (ResourceManager<VertexShader>::GetInstance()->GetResource(path) != nullptr)
 	{
 		pVSResource = ResourceManager<VertexShader>::GetInstance()->GetResource(path);
-		m_pAsset->AddResource(path, pVSResource);
+		m_pAsset->AddResource(path, pVSResource.get());
 		return m_pAsset;
 	}
 	m_pAsset = pAsset;
@@ -50,7 +50,7 @@ IAsset* VertexShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 
 	pVSResource = ResourceManager<VertexShader>::GetInstance()->CreateResource<VertexShader>(path);
 	pVSResource->m_pCodeBuffer = pCode;
-	m_pAsset->AddResource(path, pVSResource);
+	m_pAsset->AddResource(path, pVSResource.get());
 	fclose(fp);
 	return m_pAsset;
 
@@ -81,11 +81,11 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	FragShaderAsset* pAsset = new FragShaderAsset();
 	pAsset->m_strPath = path;
-	shared_ptr<FragShader> pFSResource = nullptr;
+	SmartPointer<FragShader> pFSResource = nullptr;
 	if (ResourceManager<FragShader>::GetInstance()->GetResource(path) != nullptr)
 	{
 		pFSResource = ResourceManager<FragShader>::GetInstance()->GetResource(path);
-		m_pAsset->AddResource(path, pFSResource);
+		m_pAsset->AddResource(path, pFSResource.get());
 		return m_pAsset;
 	}
 	m_pAsset = pAsset;
@@ -108,7 +108,7 @@ IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 
 	pFSResource = ResourceManager<FragShader>::GetInstance()->CreateResource<FragShader>(path);
 	pFSResource->m_pCodeBuffer = pCode;
-	m_pAsset->AddResource(path, pFSResource);
+	m_pAsset->AddResource(path, pFSResource.get());
 	fclose(fp);
 	ShaderGenerator::PreProcessShader(pCode, nLength + 1, pFSResource->m_mapEngineParam);
 	//

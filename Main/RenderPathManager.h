@@ -2,7 +2,7 @@
 
 
 class RenderPath;
-class RenderPathManager:public Singleton<RenderPathManager>
+class RenderPathManager:public Singleton<RenderPathManager>,public GameObjectBase
 {
 public:
 	RenderPathManager();

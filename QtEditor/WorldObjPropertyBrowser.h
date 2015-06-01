@@ -21,16 +21,16 @@ public:
 
 
 
-	void	SetTarget(shared_ptr<IWorldObj> pObj);
+	void	SetTarget(SmartPointer<IWorldObj> pObj);
 private:
-	void	AddModule(shared_ptr<ModuleBase> pModule);
+	void	AddModule(SmartPointer<ModuleBase> pModule);
 	private slots:
 	void valueChanged(QtProperty *pProp, const QVariant &v);
 
 
-	void	AddEditorProperty(shared_ptr<ModuleBase> pModule, std::string propName,QtProperty* pProp);
+	void	AddEditorProperty(SmartPointer<ModuleBase> pModule, std::string propName,QtProperty* pProp);
 private:
-	shared_ptr<IWorldObj> m_pSelectObj;
+	SmartPointer<IWorldObj> m_pSelectObj;
 	QtVariantPropertyManager* variantManager;// = new QtVariantPropertyManager(this);
 	QtVariantEditorFactory*	variantFactory;// = new QtVariantEditorFactory(this);
 	QtGroupPropertyManager *groupManager;// = new QtGroupPropertyManager(this);

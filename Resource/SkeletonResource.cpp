@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SkeletonResource.h"
 #include "ResourceManager.h"
-shared_ptr<ResourceManager<SkeletonResource>> Singleton<ResourceManager<SkeletonResource>>::_instance = nullptr;
+SmartPointer<ResourceManager<SkeletonResource>> Singleton<ResourceManager<SkeletonResource>>::_instance = nullptr;
 
 SkeletonResource::SkeletonResource()
 {

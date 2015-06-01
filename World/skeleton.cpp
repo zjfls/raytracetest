@@ -13,13 +13,13 @@ SkeletonModule::~SkeletonModule()
 {
 }
 
-void SkeletonModule::AddMesh(shared_ptr<Mesh> pMesh)
+void SkeletonModule::AddMesh(SmartPointer<Mesh> pMesh)
 {
 	if (m_pOwnerObj->IsHaveModule<Mesh>(pMesh) == false)
 	{
 		return;
 	}
-	for each (shared_ptr<Mesh> var in m_MeshVec)
+	for each (SmartPointer<Mesh> var in m_MeshVec)
 	{
 		if (var == pMesh)
 		{
@@ -29,7 +29,7 @@ void SkeletonModule::AddMesh(shared_ptr<Mesh> pMesh)
 	m_MeshVec.push_back(pMesh);
 }
 
-//void SkeletonModule::SetSkeletonResource(shared_ptr<SkeletonResource> pRes, bool bGenerateObj)
+//void SkeletonModule::SetSkeletonResource(SmartPointer<SkeletonResource> pRes, bool bGenerateObj)
 //{
 //	m_pSkeRes = pRes;
 //	if (bGenerateObj == true)

@@ -49,14 +49,14 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLDocument doc;
 	doc.LoadFile(path.c_str());
 	XMLElement* pElem = doc.FirstChildElement("Material");
-	shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(path));
+	SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->GetResource(path).SmartPointerCast<RasterMaterial>();
 	if (pMatRes != nullptr)
 	{
-		pAsset->AddResource(path, pMatRes);
+		pAsset->AddResource(path, pMatRes.get());
 		return pAsset;
 	}
 	pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(path);
-	pAsset->AddResource(path, pMatRes);
+	pAsset->AddResource(path, pMatRes.get());
 	XMLElement* pArgElem = pElem->FirstChildElement("MaterialArg");
 	while (pArgElem != nullptr)
 	{
@@ -79,7 +79,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			{
 				AssetManager::GetInstance()->LoadAsset(texPath);
 			}
-			shared_ptr<Texture> pTexRes = ResourceManager<Texture>::GetInstance()->GetResource(texPath);
+			SmartPointer<Texture> pTexRes = ResourceManager<Texture>::GetInstance()->GetResource(texPath);
 			if (pTexRes == nullptr)
 			{
 				AssetManager::GetInstance()->LoadAsset(texPath);
@@ -147,13 +147,13 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 		string fragShaderType = pFragShader->Attribute("ShaderType");
 
 
-		shared_ptr<VertexShader> pVSResource = ResourceManager<VertexShader>::GetInstance()->GetResource(vertShaderPath);
+		SmartPointer<VertexShader> pVSResource = ResourceManager<VertexShader>::GetInstance()->GetResource(vertShaderPath);
 		if (pVSResource == nullptr)
 		{
 			AssetManager::GetInstance()->LoadAsset(vertShaderPath);
 			pVSResource = ResourceManager<VertexShader>::GetInstance()->GetResource(vertShaderPath);
 		}
-		shared_ptr<FragShader> pFSResource = ResourceManager<FragShader>::GetInstance()->GetResource(fragShaderPath);
+		SmartPointer<FragShader> pFSResource = ResourceManager<FragShader>::GetInstance()->GetResource(fragShaderPath);
 		//fragShaderPath = "./data/shader/SurfaceSpec.srf";
 		if (pFSResource == nullptr)
 		{

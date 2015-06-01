@@ -12,12 +12,12 @@ class WORLD_API CameraBase :
 public:
 	CameraBase();
 	virtual ~CameraBase();
-	virtual void Update(std::shared_ptr<ModuleBase> pModule);
-	virtual void OnLateUpdate(std::shared_ptr<ModuleBase> pModule);
-	virtual void Render(std::shared_ptr<CameraBase> pCamera);
+	virtual void Update(SmartPointer<ModuleBase> pModule);
+	virtual void OnLateUpdate(SmartPointer<ModuleBase> pModule);
+	virtual void Render(SmartPointer<CameraBase> pCamera);
 	//IRender* m_pRender;
 	//IRenderTarget* m_pRenderTarget;
-	virtual shared_ptr<ModuleBase> Clone();
+	virtual SmartPointer<ModuleBase> Clone();
 
 
 	Matrix44 GetViewMatrix() const{ return m_MatView; };

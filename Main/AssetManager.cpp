@@ -9,7 +9,7 @@
 #include "TextureAssetLoader.h"
 #include <assert.h>
 template class MAIN_API  Singleton < AssetManager >;
-template<> shared_ptr<AssetManager> Singleton<AssetManager>::_instance = nullptr;
+template<> SmartPointer<AssetManager> Singleton<AssetManager>::_instance = nullptr;
 
 AssetManager::AssetManager()
 {

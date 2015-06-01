@@ -2,7 +2,7 @@
 #include "TimeManager.h"
 #include <time.h>
 template class MAIN_API Singleton < TimeManager > ;
-template<> shared_ptr<TimeManager> Singleton<TimeManager>::_instance = nullptr;
+template<> SmartPointer<TimeManager> Singleton<TimeManager>::_instance = nullptr;
 
 TimeManager::TimeManager()
 {

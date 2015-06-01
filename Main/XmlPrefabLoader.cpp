@@ -29,18 +29,18 @@ IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLDocument doc;
 	doc.LoadFile(path.c_str());
 	XMLElement* pElem = doc.FirstChildElement("WorldObj");
-	shared_ptr<IWorldObj> pRoot = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pRoot = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
 	ProcessWorldObjElem(pElem, pRoot);
 
 	//Prefab* pPrefab = new Prefab;
 	//pPrefab->m_pRoot = pRoot;
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(path);
+	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(path);
 	pPrefab->m_pRoot = pRoot;
-	pPrefabAsset->AddResource(path, pPrefab);
+	pPrefabAsset->AddResource(path, pPrefab.get());
 	return pPrefabAsset;
 }
 
-void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, shared_ptr<IWorldObj> pObj) const
+void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, SmartPointer<IWorldObj> pObj) const
 {
 	//char temp[128];
 	pObj->m_strName = pElem->Attribute("name");
@@ -59,7 +59,7 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, shared_ptr<IWorldOb
 		}
 		else if (name == "WorldObj")
 		{
-			shared_ptr<IWorldObj> pChild = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+			SmartPointer<IWorldObj> pChild = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
 			pObj->addChild(pChild);
 			ProcessWorldObjElem(pChildElem, pChild);
 		}
@@ -68,7 +68,7 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, shared_ptr<IWorldOb
 
 }
 
-void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, shared_ptr<IWorldObj> pObj) const
+void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj) const
 {
 	//XMLElement* pTransform = pElem->FirstChildElement("Transform");
 	XMLElement* pTrans = pElem->FirstChildElement("Translation");
@@ -87,17 +87,17 @@ void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, shared_p
 	pScale->QueryFloatAttribute("y", &s.m_fy);
 	pScale->QueryFloatAttribute("z", &s.m_fz);
 
-	shared_ptr<Transform> trans = pObj->m_pTransform;
+	SmartPointer<Transform> trans = pObj->m_pTransform;
 	trans->SetTranslate(t);
 	trans->SetScale(s.m_fx, s.m_fy, s.m_fz);
 	trans->SetOrientation(r.m_fx, r.m_fy, r.m_fz);
 }
 
-void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, shared_ptr<IWorldObj> pObj) const
+void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj) const
 {
 	string path = pElem->Attribute("refPath");
-	shared_ptr<Mesh> pMesh = pObj->addModule<Mesh>(pObj);
-	shared_ptr<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
+	SmartPointer<Mesh> pMesh = pObj->addModule<Mesh>(pObj);
+	SmartPointer<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	if (pMeshRes == nullptr)
 	{
 		AssetManager::GetInstance()->LoadAsset(path);
@@ -107,13 +107,13 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, shared_ptr<IW
 	if (pMatElem != nullptr)
 	{
 		string matpath = pMatElem->Attribute("refPath");
-		shared_ptr<RasterMaterial> pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
+		SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath).SmartPointerCast<RasterMaterial>();
 		if (pMatRes == nullptr)
 		{
 			AssetManager::GetInstance()->LoadAsset(matpath);
 		}
-		pMatRes = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath));
-		pMesh->m_pSharedMaterial = pMatRes;
+		pMatRes = ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath).SmartPointerCast<RasterMaterial>();
+		pMesh->m_pSharedMaterial = pMatRes.get();
 	}
 	pMesh->SetMeshResource(pMeshRes);
 

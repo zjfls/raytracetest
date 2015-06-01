@@ -21,6 +21,9 @@
 #include <iostream>
 #include <memory>
 using namespace std;
+#include "SmartPointer.h"
+#include "GameObjectBase.h"
+using namespace ZG;
 
 
 

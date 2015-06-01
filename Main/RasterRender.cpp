@@ -23,7 +23,7 @@ RasterRender::~RasterRender()
 {
 }
 
-int RasterRender::Render(shared_ptr<CameraBase> pCammera, shared_ptr<IWorld> pWorld, IRenderTarget* pTarget)
+int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld> pWorld, IRenderTarget* pTarget)
 {
 	if (RenderBegin() == false)
 	{
@@ -31,7 +31,7 @@ int RasterRender::Render(shared_ptr<CameraBase> pCammera, shared_ptr<IWorld> pWo
 		return -1;
 	}
 
-	std::vector<std::shared_ptr<IRenderable>> vecRenderables = pWorld->GetAllRenderables();
+	std::vector<SmartPointer<IRenderable>> vecRenderables = pWorld->GetAllRenderables();
 	if (m_pRenderPath->m_bGetPerObjLightInfo == true)
 	{
 		pWorld->GetRenderablesLightInfo(vecRenderables);
@@ -50,7 +50,7 @@ void RasterRender::Render(IRenderable* pRender)
 	return;
 }
 
-int RasterRender::Render(std::vector<shared_ptr<IRenderable>>& pRenderableList, IRenderTarget* pTarget)
+int RasterRender::Render(std::vector<SmartPointer<IRenderable>>& pRenderableList, IRenderTarget* pTarget)
 {
 	if (m_pRenderPath == nullptr)
 	{
@@ -64,7 +64,7 @@ int RasterRender::Render(std::vector<shared_ptr<IRenderable>>& pRenderableList, 
 		pStage->m_RenderTargetGroup.SetRenderTarget(0, pTarget);
 		
 		//
-		std::vector<shared_ptr<IRenderable>> vec;
+		std::vector<SmartPointer<IRenderable>> vec;
 		GetRenderables(pRenderableList,vec, pStage->m_eFillter);
 		//SetRenderStageState(pStage->m_eFillter);
 
@@ -75,11 +75,11 @@ int RasterRender::Render(std::vector<shared_ptr<IRenderable>>& pRenderableList, 
 	return 0;
 }
 
-void RasterRender::GetRenderables(std::vector<std::shared_ptr<IRenderable>>& vecRenderableIn,std::vector<std::shared_ptr<IRenderable>>& vecRenderable, ERENDERTYPEFILTER eFillter)
+void RasterRender::GetRenderables(std::vector<SmartPointer<IRenderable>>& vecRenderableIn,std::vector<SmartPointer<IRenderable>>& vecRenderable, ERENDERTYPEFILTER eFillter)
 {
-	for each (shared_ptr<IRenderable> pRenderable in vecRenderableIn)
+	for each (SmartPointer<IRenderable> pRenderable in vecRenderableIn)
 	{
-		shared_ptr<MaterialResource> pMatRes = pRenderable->getRenderMaterial();
+		SmartPointer<MaterialResource> pMatRes = pRenderable->getRenderMaterial();
 		if (pMatRes == nullptr)
 		{
 			pMatRes = pRenderable->GetDefaultMaterial();
@@ -105,7 +105,7 @@ void RasterRender::SetRenderTargetGroup(RenderTargetGroup* pTargetGroup)
 	}
 }
 
-void RasterRender::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat)
+void RasterRender::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, SmartPointer<RasterMaterial> pMat)
 {
 	
 }

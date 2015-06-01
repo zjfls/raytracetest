@@ -13,14 +13,14 @@ public:
 	virtual ~CameraRenderer();
 
 
-	virtual void OnNotify(string msg, shared_ptr<IListenerSubject> pSubject);
+	virtual void OnNotify(string msg, IListenerSubject* pSubject);
 private:
-	void Render(shared_ptr<CameraBase> pCamera);
-	void UpdateMatrix(shared_ptr<CameraBase> pCamera);
+	void Render(SmartPointer<CameraBase> pCamera);
+	void UpdateMatrix(SmartPointer<CameraBase> pCamera);
 public:
 	RasterRender*	m_pRender;
 	IRenderTarget*	m_pTarget;
-	std::weak_ptr<IWorld>			m_pWorld;
+	IWorld*			m_pWorld;
 	bool			m_bClearColor;
 	bool			m_bClearDepth;
 	GameColor			m_clrColr;

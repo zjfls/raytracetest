@@ -54,14 +54,14 @@ public:
 
 
 
-	void	Render(RasterRender* pRender,std::vector<std::shared_ptr<IRenderable>>& vecRenderabls);
+	void	Render(RasterRender* pRender,std::vector<SmartPointer<IRenderable>>& vecRenderabls);
 	void	SetStageRenderState(RasterRender* pRender);
 	string m_strName;
 	ERENDERTYPEFILTER m_eFillter;
 	ERENDERSTAGEMETHOD m_eMethod;
 private:
 
-	void	RenderDepthAndRadiance(RasterRender* pRender,std::vector<std::shared_ptr<IRenderable>>& vecRenderabls);
+	void	RenderDepthAndRadiance(RasterRender* pRender,std::vector<SmartPointer<IRenderable>>& vecRenderabls);
 	//void	SetMaterialParam();
 
 	/*

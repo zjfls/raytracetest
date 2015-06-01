@@ -61,7 +61,7 @@ bool operator<(const std::vector<D3DVERTEXELEMENT9>& e1,const std::vector<D3DVER
 	return true;
 }
 
-bool D3D9RenderSystem::InitRenderSystem(const stRenderViewInfo& viewInfo)
+bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 {
 	//return test(viewInfo);
 	//return;
@@ -232,7 +232,7 @@ void D3D9RenderSystem::CreateDefaultRender(const RenderPath* pPath)
 	InitRender(pRender);
 }
 
-HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc)
+HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader( VertexShaderDesc& vertexShaderDesc)
 {
 	string strDesc = GenerateVertexShaderDescString(vertexShaderDesc);
 	if (m_mapHardwareVertexShader.find(strDesc) != std::end(m_mapHardwareVertexShader))
@@ -304,7 +304,7 @@ HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader(const VertexShad
 	return pShader;
 }
 
-HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader(const FragShaderDesc& fragShaderDesc)
+HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader( FragShaderDesc& fragShaderDesc)
 {
 	string strDesc = GenerateFragShaderDescString(fragShaderDesc);
 	if (m_mapHardwareFragShader.find(strDesc) != std::end(m_mapHardwareFragShader))
@@ -622,7 +622,7 @@ BYTE D3D9RenderSystem::GetD3DDeclUsage(EnumVertexUseDesc desc) const
 	}
 }
 
-HardwareTexture* D3D9RenderSystem::GetHardwareTexture(shared_ptr<Texture> pTexture)
+HardwareTexture* D3D9RenderSystem::GetHardwareTexture(SmartPointer<Texture> pTexture)
 {
 	if (pTexture == nullptr)
 	{

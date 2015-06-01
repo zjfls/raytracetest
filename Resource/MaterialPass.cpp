@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "MaterialPass.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 using namespace ZG;
 
 ZG::MaterialPass::MaterialPass()

@@ -9,7 +9,7 @@ class VertexShader;
 class RESOURCE_API VertexShaderDesc
 {
 public:
-	shared_ptr<VertexShader>	m_pVertexShader;
+	SmartPointer<VertexShader>	m_pVertexShader;
 	ESTAGESHADERTYPE			m_eStageDesc;
 	EVERTEXSHADERTPYE			m_eVShaderDesc;
 	bool						m_bSkinInfo;

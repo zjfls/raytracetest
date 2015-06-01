@@ -39,9 +39,6 @@
     <ClInclude Include="CameraBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Cube3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="DirectionalLight.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -55,9 +52,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="LightBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Plane3D.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="PointLight.h">
@@ -96,14 +90,20 @@
     <ClInclude Include="Cylinder.h">
       <Filter>头文件\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Cone.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="TranslateGizmo.h">
       <Filter>头文件\Gizmo</Filter>
     </ClInclude>
     <ClInclude Include="GizmoManager.h">
       <Filter>头文件\Gizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Cone.h">
+      <Filter>头文件\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube3D.h">
+      <Filter>头文件\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane3D.h">
+      <Filter>头文件\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +119,6 @@
     <ClCompile Include="CameraBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Cube3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="DirectionalLight.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -135,9 +132,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="LightBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Plane3D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PointLight.cpp">
@@ -173,14 +167,20 @@
     <ClCompile Include="Cylinder.cpp">
       <Filter>源文件\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Cone.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="GizmoManager.cpp">
       <Filter>源文件\Gizmo</Filter>
     </ClCompile>
     <ClCompile Include="TranslateGizmo.cpp">
       <Filter>源文件\Gizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Cone.cpp">
+      <Filter>源文件\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube3D.cpp">
+      <Filter>源文件\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane3D.cpp">
+      <Filter>源文件\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

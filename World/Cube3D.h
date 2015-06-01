@@ -1,5 +1,5 @@
 #pragma once
-
+#include "IRenderable.h"
 class WORLD_API Cube3D :public IRenderable
 {
 public:

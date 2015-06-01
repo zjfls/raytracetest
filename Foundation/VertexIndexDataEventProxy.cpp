@@ -2,7 +2,7 @@
 #include "VertexIndexDataEventProxy.h"
 
 template class FOUNDATION_API  Singleton < ZG::VertexIndexDataEventProxy >;
-template<> shared_ptr<ZG::VertexIndexDataEventProxy> Singleton<ZG::VertexIndexDataEventProxy>::_instance = nullptr;
+template<> SmartPointer<ZG::VertexIndexDataEventProxy> Singleton<ZG::VertexIndexDataEventProxy>::_instance = nullptr;
 //
 ZG::VertexIndexDataEventProxy::VertexIndexDataEventProxy()
 {

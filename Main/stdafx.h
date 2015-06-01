@@ -35,6 +35,9 @@ using namespace std;
 #include "fbxsdk.h"
 //
 #include "Event.h"
+#include "SmartPointer.h"
+#include "GameObjectBase.h"
+using namespace ZG;
 
 
 // TODO:  在此处引用程序需要的其他头文件

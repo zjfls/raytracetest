@@ -3,7 +3,8 @@
 #include "DynamicVertexData.h"
 #include "MathDefine.h"
 #include <iostream>
-
+#include "MaterialResource.h"
+#include "IWorldObj.h"
 
 Sphere3D::Sphere3D()
 	:m_nSubdivide(10)

@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObjectBase.h"
 #include "MaterialResource.h"
+class IWorldObj;
+class MaterialResource;
 namespace ZG
 {
 	class TranslateGizmo:public GameObjectBase
@@ -11,13 +13,13 @@ namespace ZG
 
 
 		//
-		shared_ptr<IWorldObj> m_pRoot;
-		shared_ptr<MaterialResource> m_pUpMaterialCylinder;
-		shared_ptr<MaterialResource> m_pUpMaterialCone;
-		shared_ptr<MaterialResource> m_pRightMaterialCylinder;
-		shared_ptr<MaterialResource> m_pRightMaterialCone;
-		shared_ptr<MaterialResource> m_pForwardMaterialCylinder;
-		shared_ptr<MaterialResource> m_pForwardMaterialCone;
+		SmartPointer<IWorldObj> m_pRoot;
+		SmartPointer<MaterialResource> m_pUpMaterialCylinder;
+		SmartPointer<MaterialResource> m_pUpMaterialCone;
+		SmartPointer<MaterialResource> m_pRightMaterialCylinder;
+		SmartPointer<MaterialResource> m_pRightMaterialCone;
+		SmartPointer<MaterialResource> m_pForwardMaterialCylinder;
+		SmartPointer<MaterialResource> m_pForwardMaterialCone;
 		friend class GizmoManager;
 	};
 }

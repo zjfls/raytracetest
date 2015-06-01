@@ -18,17 +18,18 @@
 EditorSceneView::EditorSceneView()
 {
 	//
-	m_pCamera = std::shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+	m_pCamera = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
 	m_pCamera->m_strName = "EditorSceneCamera";
 
-	shared_ptr<RasterCamera> pCameraModule = m_pCamera->addModule<RasterCamera>(m_pCamera);
+	SmartPointer<RasterCamera> pCameraModule = m_pCamera->addModule<RasterCamera>(m_pCamera);
 	pCameraModule->m_fFar = 2000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = 1 / 1;
 	pCameraModule->m_fFovy = PI / 4;
 	//
-	std::shared_ptr<CameraRenderer> pCameraRenderer(new CameraRenderer);// = new CameraRenderer;
-	pCameraRenderer->m_pWorld = EditorApplication::GetInstance()->m_pWorld;
+	//SmartPointer<CameraRenderer> pCameraRenderer(new CameraRenderer);// = new CameraRenderer;
+	CameraRenderer* pCameraRenderer = new CameraRenderer;
+	pCameraRenderer->m_pWorld = EditorApplication::GetInstance()->m_pWorld.get();
 	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	pCameraRenderer->m_clrColr = GameColor::blue;
@@ -63,8 +64,9 @@ void EditorSceneView::Update()
 
 void EditorSceneView::Resize(unsigned int nWidth, unsigned int nHeight)
 {
-	std::shared_ptr<RasterCamera> pCameraModule = dynamic_pointer_cast<RasterCamera>(m_pCamera->GetModule(1));
-	std::shared_ptr<CameraRenderer> pCameraRenderer = dynamic_pointer_cast<CameraRenderer>(pCameraModule->m_mapListener["CameraRenderer"]);
+	SmartPointer<RasterCamera> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<RasterCamera>();
+	//SmartPointer<CameraRenderer> pCameraRenderer = dynamic_pointer_cast<CameraRenderer>(pCameraModule->m_mapListener["CameraRenderer"]);
+	CameraRenderer* pCameraRender = dynamic_cast<CameraRenderer*>(pCameraModule->m_mapListener["CameraRenderer"]);
 	pCameraModule->m_fAspect = float(nWidth) / nHeight;
 	EditorRenderView::Resize(nWidth, nHeight);
 }
@@ -165,14 +167,14 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 	std::string filesuffix = getFileSuffix(path);
 	if (filesuffix == "prefab.xml")
 	{
-		std::shared_ptr<CameraBase> pCameraModule = dynamic_pointer_cast<CameraBase>(m_pCamera->GetModule(1));
+		SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
 		Vector3 worldPos = PickUtil::ScreenPosToWorldPos(pos, 500, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
 		const char* strPath = path.c_str() + 8;
 
 
 		AssetManager::GetInstance()->LoadAsset(strPath);
-		shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
-		shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
+		SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
+		SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 
 
 

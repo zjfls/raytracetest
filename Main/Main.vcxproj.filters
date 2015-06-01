@@ -243,9 +243,6 @@
     <ClInclude Include="BuiltInResource.h">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="RenderTargetGroup.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -263,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="BuiltInMaterialManager.h">
       <Filter>头文件\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTargetGroup.h">
+      <Filter>头文件\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,9 +446,6 @@
     <ClCompile Include="BuiltInResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="RenderTargetGroup.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="TimeManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -466,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="BuiltInMaterialManager.cpp">
       <Filter>源文件\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTargetGroup.cpp">
+      <Filter>源文件\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

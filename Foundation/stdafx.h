@@ -8,3 +8,7 @@
 #include <vector>
 #include <unordered_map>
 using namespace std;
+
+#include "SmartPointer.h"
+#include "GameObjectBase.h"
+using namespace ZG;

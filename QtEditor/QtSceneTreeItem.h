@@ -8,6 +8,6 @@ public:
 	virtual ~QtSceneTreeItem();
 
 
-	shared_ptr<IWorldObj> m_pObj;
+	SmartPointer<IWorldObj> m_pObj;
 };
 

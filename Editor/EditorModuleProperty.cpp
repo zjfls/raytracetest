@@ -23,7 +23,7 @@ void EditorModuleProperty::SetProperty(void* pData)
 	std::string className = tinfo.name();
 	if (typeid(*m_pModule.get()) == typeid(Sphere3D))
 	{
-		shared_ptr<Sphere3D> pSphere = dynamic_pointer_cast<Sphere3D>(m_pModule);
+		SmartPointer<Sphere3D> pSphere = m_pModule.SmartPointerCast<Sphere3D>();
 		if (m_PropName == "RADIUS")
 		{
 			pSphere->m_fRadius = *((float*)pData);
@@ -38,7 +38,7 @@ void EditorModuleProperty::SetProperty(void* pData)
 	}
 	if (typeid(*m_pModule.get()) == typeid(Transform))
 	{
-		shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(m_pModule);
+		SmartPointer<Transform> pTransform = m_pModule.SmartPointerCast<Transform>();
 		if (m_PropName == "TRANSLATEX")
 		{
 			Vector3 pos = pTransform->GetLocalTranslate();

@@ -27,7 +27,7 @@ void IRenderable::Update()
 
 }
 
-shared_ptr<MaterialResource> IRenderable::GetDefaultMaterial()
+SmartPointer<MaterialResource> IRenderable::GetDefaultMaterial()
 {
 	return ResourceManager<MaterialResource>::GetInstance()->GetResource("GAMEDEFAULTMATERIAL");
 }
@@ -49,7 +49,7 @@ void IRenderable::BuildBoundingVolume()
 	}
 }
 
-shared_ptr<MaterialResource> IRenderable::GetMaterialInstance()
+SmartPointer<MaterialResource> IRenderable::GetMaterialInstance()
 {
 	if (m_pMaterialInstance == nullptr)
 	{
@@ -61,7 +61,7 @@ shared_ptr<MaterialResource> IRenderable::GetMaterialInstance()
 	return m_pMaterialInstance;
 }
 
-shared_ptr<MaterialResource> IRenderable::getRenderMaterial()
+SmartPointer<MaterialResource> IRenderable::getRenderMaterial()
 {
 	if (m_pMaterialInstance != nullptr)
 	{

@@ -39,9 +39,9 @@ Vector3 PointLight::GetLightDirection(const Vector3& vecWorldPosition)
 	return vecDir;
 }
 
-shared_ptr<ModuleBase> PointLight::Clone()
+SmartPointer<ModuleBase> PointLight::Clone()
 {
-	shared_ptr<PointLight> pLight = shared_ptr<PointLight>(new PointLight);
+	SmartPointer<PointLight> pLight = SmartPointer<PointLight>(new PointLight);
 	pLight->m_strName = m_strName;
 	pLight->m_bCastShadow = m_bCastShadow;
 	pLight->m_Color = m_Color;
@@ -50,7 +50,7 @@ shared_ptr<ModuleBase> PointLight::Clone()
 	pLight->m_fAttenConst = m_fRange;
 	pLight->m_fAttenLinear = m_fAttenLinear;
 	pLight->m_fAttenExp = m_fAttenExp;
-	return pLight;
+	return pLight.get();
 	//float m_fRange;
 	//float m_fAttenConst;
 	//float m_fAttenLinear;

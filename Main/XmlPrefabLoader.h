@@ -16,9 +16,9 @@ public:
 	virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
 private:
 	XmlPrefabLoader();
-	void ProcessWorldObjElem(tinyxml2::XMLElement* pElem,shared_ptr<IWorldObj> pObj) const;
-	void ProcessTransformElem(tinyxml2::XMLElement* pElem, shared_ptr<IWorldObj> pObj) const;
-	void ProcessMeshElem(tinyxml2::XMLElement* pElem, shared_ptr<IWorldObj> pObj) const;
+	void ProcessWorldObjElem(tinyxml2::XMLElement* pElem,SmartPointer<IWorldObj> pObj) const;
+	void ProcessTransformElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj) const;
+	void ProcessMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj) const;
 	friend class AssetManager;
 };
 

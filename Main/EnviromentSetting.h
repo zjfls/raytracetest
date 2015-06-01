@@ -1,6 +1,6 @@
 #pragma once
 #include "Color.h"
-class MAIN_API EnviromentSetting :public Singleton<EnviromentSetting>
+class MAIN_API EnviromentSetting :public Singleton<EnviromentSetting>, public GameObjectBase
 {
 public:
 	EnviromentSetting();

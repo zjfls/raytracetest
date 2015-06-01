@@ -7,7 +7,7 @@ public:
 	virtual ~PointLight();
 	virtual Vector3  GetLightDirection(const Vector3& vecWorldPosition);
 	virtual float GetIrradiance(const Vector3& vecWorldPosition, const Vector3& vecNormal);
-	virtual shared_ptr<ModuleBase> Clone();
+	virtual SmartPointer<ModuleBase> Clone();
 private:
 	PointLight();
 	friend class IWorldObj;

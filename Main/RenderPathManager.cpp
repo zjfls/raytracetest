@@ -2,7 +2,7 @@
 #include "RenderPathManager.h"
 #include "RenderPath.h"
 #include "RenderStage.h"
-shared_ptr<RenderPathManager> Singleton<RenderPathManager>::_instance = nullptr;
+SmartPointer<RenderPathManager> Singleton<RenderPathManager>::_instance = nullptr;
 
 RenderPathManager::RenderPathManager()
 {

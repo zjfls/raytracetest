@@ -72,20 +72,20 @@ IntersectResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,
 	return results;
 }
 
-IntersectResults IntersectTest::testRayRenderables(const Ray3D& r,std::shared_ptr<IRenderable> pRend, Transform& trans)
+IntersectResults IntersectTest::testRayRenderables(const Ray3D& r,SmartPointer<IRenderable> pRend, Transform& trans)
 {
 	IntersectResults results;
-	std::shared_ptr<Sphere3D> pSphere = dynamic_pointer_cast<Sphere3D>(pRend);
+	SmartPointer<Sphere3D> pSphere = pRend.SmartPointerCast<Sphere3D>();
 	if (pSphere != nullptr)
 	{
 		results = testRaySphere(r, *pSphere, trans);
 	}
-	std::shared_ptr<Plane3D> pPlane = dynamic_pointer_cast<Plane3D>(pRend);
+	SmartPointer<Plane3D> pPlane = pRend.SmartPointerCast<Plane3D>();
 	if (pPlane != nullptr)
 	{
 		results = testRayPlane(r, *pPlane, trans);
 	}
-	std::shared_ptr<Mesh> pMesh = dynamic_pointer_cast<Mesh>(pRend);
+	SmartPointer<Mesh> pMesh = pRend.SmartPointerCast<Mesh>();
 	if (pMesh != nullptr)
 	{
 		results = testRayMesh(r, *pMesh, trans);

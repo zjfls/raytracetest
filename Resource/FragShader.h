@@ -6,7 +6,7 @@ class FragShader;
 class FragShaderDesc
 {
 public:
-	shared_ptr<FragShader> m_pFragShader;
+	SmartPointer<FragShader> m_pFragShader;
 	ESTAGESHADERTYPE m_eStageDesc;
 	EFRAGSHADERTYPE	m_eFragShaderDesc;
 	ELIGHTTYPE		m_eLightType;

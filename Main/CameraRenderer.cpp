@@ -28,27 +28,27 @@ CameraRenderer::~CameraRenderer()
 {
 }
 
-void CameraRenderer::OnNotify(string msg, shared_ptr<IListenerSubject> pSubject)
+void CameraRenderer::OnNotify(string msg, IListenerSubject* pSubject)
 {
 	if (m_bActive == false)
 	{
 		return;
 	}
 	
-	shared_ptr<RasterCamera> pCamera = dynamic_pointer_cast<RasterCamera>(pSubject);
+	SmartPointer<RasterCamera> pCamera = dynamic_cast<RasterCamera*>(pSubject);
 	if (msg == "Render")
 	{
-		Render(shared_ptr<RasterCamera>(pCamera));
+		Render(pCamera.get());
 	}
 	if (msg == "UpdateMatrix")
 	{
-		UpdateMatrix(shared_ptr<RasterCamera>(pCamera));
+		UpdateMatrix(pCamera.get());
 	}
 }
 
-void CameraRenderer::Render(shared_ptr<CameraBase> pCamera)
+void CameraRenderer::Render(SmartPointer<CameraBase> pCamera)
 {
-	if (m_pRender == nullptr || std::shared_ptr<IWorld>(m_pWorld) == nullptr || pCamera == nullptr)
+	if (m_pRender == nullptr || m_pWorld == nullptr || pCamera == nullptr)
 	{
 		return;
 	}
@@ -68,9 +68,9 @@ void CameraRenderer::Render(shared_ptr<CameraBase> pCamera)
 	}
 	m_pRender->SetRenderTarget(0, pTarget);
 	m_pRender->ClearTarget(m_bClearColor, m_clrColr, m_bClearDepth, m_fDepth);
-	m_pRender->Render(pCamera, std::shared_ptr<IWorld>(m_pWorld),pTarget);
+	m_pRender->Render(pCamera, SmartPointer<IWorld>(m_pWorld),pTarget);
 
-	shared_ptr<RasterMaterial> mat = dynamic_pointer_cast<RasterMaterial>(ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml"));
+	SmartPointer<RasterMaterial> mat = ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml").SmartPointerCast<RasterMaterial>();
 
 
 	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
@@ -82,7 +82,7 @@ void CameraRenderer::Render(shared_ptr<CameraBase> pCamera)
 	
 }
 
-void CameraRenderer::UpdateMatrix(shared_ptr<CameraBase> pCamera)
+void CameraRenderer::UpdateMatrix(SmartPointer<CameraBase> pCamera)
 {
 	m_pRender->UpdateProjCamera(pCamera);
 }

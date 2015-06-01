@@ -186,7 +186,7 @@ QtEditor::~QtEditor()
 
 }
 
-void QtEditor::OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubject)
+void QtEditor::OnNotify(std::string msg, IListenerSubject* pSubject)
 {
 	if (msg == "InitScene")
 	{
@@ -248,7 +248,7 @@ void QtEditor::childEvent(QChildEvent *event)
 void QtEditor::InitSceneTreeView()
 {
 	m_pSceneTreeView->clear();
-	shared_ptr<IWorldObj> pObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+	SmartPointer<IWorldObj> pObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
 	QtSceneTreeItem *pRoot = new QtSceneTreeItem();
 	m_pSceneTreeView->addTopLevelItem(pRoot);
 	pRoot->setText(0, tr("SceneRoot"));
@@ -260,7 +260,7 @@ void QtEditor::InitSceneTreeView()
 
 }
 
-void QtEditor::AddSceneTreeViewItem(QtSceneTreeItem* pParent, shared_ptr<IWorldObj> pObj)
+void QtEditor::AddSceneTreeViewItem(QtSceneTreeItem* pParent, SmartPointer<IWorldObj> pObj)
 {
 	QtSceneTreeItem* pItem = new QtSceneTreeItem();
 	pParent->addChild(pItem);

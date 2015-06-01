@@ -15,7 +15,7 @@ PickUtil::~PickUtil()
 
 }
 
-Vector3 PickUtil::ScreenPosToWorldPos(Vector2& screenPos, float fDistToCamera, shared_ptr<CameraBase> pCamera, int nScreenWidth, int nScreenHeight)
+Vector3 PickUtil::ScreenPosToWorldPos(Vector2& screenPos, float fDistToCamera, SmartPointer<CameraBase> pCamera, int nScreenWidth, int nScreenHeight)
 {
 	//float m_fFovy;
 	//float m_fAspect;

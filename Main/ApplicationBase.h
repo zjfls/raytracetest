@@ -2,7 +2,7 @@
 #include "RenderView.h"
 class IWorld;
 class RenderView;
-class MAIN_API ApplicationBase
+class MAIN_API ApplicationBase:public GameObjectBase
 {
 public:
 	ApplicationBase();
@@ -28,6 +28,6 @@ protected:
 	stRenderViewInfo m_RenderViewInfo;
 	RenderView* m_pRenderView;
 public:
-	shared_ptr<IWorld> m_pWorld;
+	SmartPointer<IWorld> m_pWorld;
 };
 

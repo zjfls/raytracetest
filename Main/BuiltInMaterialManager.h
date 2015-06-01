@@ -1,7 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include "MaterialResource.h"
-class MAIN_API BuiltInMaterialManager:public Singleton<BuiltInMaterialManager>
+class MAIN_API BuiltInMaterialManager:public Singleton<BuiltInMaterialManager>,public GameObjectBase
 {
 public:
 	BuiltInMaterialManager();

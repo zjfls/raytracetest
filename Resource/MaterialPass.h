@@ -1,4 +1,5 @@
 #pragma once
+#include "ResourceManager.h"
 #include "GameObjectBase.h"
 #include "RenderEnum.h"
 #include "RenderBaseClass.h"
@@ -20,9 +21,9 @@ namespace ZG
 		std::vector<stRenderState> m_vecRenderState;
 		//
 		//	//
-		shared_ptr<VertexShader> m_pVertexShader;
+		SmartPointer<VertexShader> m_pVertexShader;
 		//
-		shared_ptr<FragShader>	m_pFragShader;
+		SmartPointer<FragShader>	m_pFragShader;
 		//
 		EVERTEXSHADERTPYE	m_eVertexShaderType;
 		EFRAGSHADERTYPE		m_eFragShaderType;

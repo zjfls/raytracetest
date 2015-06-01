@@ -3,7 +3,7 @@
 #include "AssetManager.h"
 
 template class MAIN_API  Singleton < BuiltInResource >;
-template<> shared_ptr<BuiltInResource> Singleton<BuiltInResource>::_instance = nullptr;
+template<> SmartPointer<BuiltInResource> Singleton<BuiltInResource>::_instance = nullptr;
 //
 BuiltInResource::BuiltInResource()
 {

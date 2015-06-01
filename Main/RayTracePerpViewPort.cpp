@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "RayTracePerpViewPort.h"
 #include "RayTraceCamera.h"
-#include "Transform.h"
 #include "IWorldObj.h"
-
+#include "Transform.h"
+//
 RayTracePerpViewPort::RayTracePerpViewPort()
 {
 }
@@ -13,9 +13,9 @@ RayTracePerpViewPort::~RayTracePerpViewPort()
 {
 }
 
-void RayTracePerpViewPort::OnTransformChanged(const RayTraceCamera* pCamera)
+void RayTracePerpViewPort::OnTransformChanged( RayTraceCamera* pCamera)
 {
-	shared_ptr<Transform> pTrans = pCamera->m_pOwnerObj->m_pTransform;
+	SmartPointer<Transform> pTrans = pCamera->m_pOwnerObj->m_pTransform;
 	Vector3 vecForward = pTrans->GetForward();
 	vecForward.normalize();
 	m_vecPlanePos = pTrans->GetWorldTranslate() + vecForward * m_fNear;

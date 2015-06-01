@@ -108,7 +108,7 @@ bool D3D9Render::SetTexture(int nSamplerID, HardwareTexture* pTexture)
 	return false;
 }
 
-void D3D9Render::UpdateProjCamera(shared_ptr<CameraBase> pCamera)
+void D3D9Render::UpdateProjCamera(SmartPointer<CameraBase> pCamera)
 {
 	float fovy, aspect, zn, zf;
 	fovy = pCamera->m_fFovy;
@@ -365,7 +365,7 @@ void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 	}	
 }
 
-void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat /*= nullptr*/)
+void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, SmartPointer<RasterMaterial> pMat /*= nullptr*/)
 {
 	float arrayScreen[] = 
 	{

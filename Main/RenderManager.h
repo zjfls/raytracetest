@@ -6,12 +6,12 @@ class IRender;
 class RenderView;
 class RenderSystem;
 struct stRenderViewInfo;
-class MAIN_API RenderManager :public Singleton < RenderManager >
+class MAIN_API RenderManager :public Singleton < RenderManager >,public GameObjectBase
 {
 public:
 	RenderManager();
 	virtual ~RenderManager();
-	bool	 Init(const stRenderViewInfo& renderViewInfo);
+	bool	 Init( stRenderViewInfo& renderViewInfo);
 
 
 	//IRender* CreateRenderBySetting(void* pArg);

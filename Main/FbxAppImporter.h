@@ -17,7 +17,7 @@ namespace tinyxml2
 	class XMLDocument;
 };
 class IWorldObj;
-class MAIN_API FbxAppImporter :public Singleton<FbxAppImporter>
+class MAIN_API FbxAppImporter :public Singleton<FbxAppImporter>, public GameObjectBase
 {
 public:
 	FbxAppImporter();
@@ -27,16 +27,16 @@ public:
 
 	void ImportFbxFile(string path);
 private:
-	void ImportPrefab(shared_ptr<PrefabResource> pPrefab,string path);
-	void ImportMesh(shared_ptr<MeshResource> pMesh, string path);
-	void ImportSkeleton(shared_ptr<SkeletonResource> pSkeRes,string path);
-	void ImportMaterial(shared_ptr<RasterMaterial> pMatRes, string path);
+	void ImportPrefab(SmartPointer<PrefabResource> pPrefab,string path);
+	void ImportMesh(SmartPointer<MeshResource> pMesh, string path);
+	void ImportSkeleton(SmartPointer<SkeletonResource> pSkeRes,string path);
+	void ImportMaterial(SmartPointer<RasterMaterial> pMatRes, string path);
 	void SkeletonProcessBone(tinyxml2::XMLDocument& doc,Bone* pBone,tinyxml2::XMLElement* pElem);
-	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,shared_ptr<IWorldObj> pObj, tinyxml2::XMLElement* elem);
-	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,shared_ptr<Mesh> pMesh,tinyxml2::XMLElement* pElem);
+	void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc,SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem);
+	void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc,SmartPointer<Mesh> pMesh,tinyxml2::XMLElement* pElem);
 	//void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, MaterialResource* pMat, tinyxml2::XMLElement* pElem);
-	void PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, shared_ptr<Transform> pTrans, tinyxml2::XMLElement* pElem);
-	void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, shared_ptr<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem);
+	void PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem);
+	void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem);
 
 
 	std::map<string, string> m_refNameMap;

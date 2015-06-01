@@ -3,7 +3,7 @@
 
 class IAssetLoader;
 class IAsset;
-class MAIN_API AssetManager :public Singleton<AssetManager>
+class MAIN_API AssetManager :public Singleton<AssetManager>,public GameObjectBase
 {
 public:
 	AssetManager();

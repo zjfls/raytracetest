@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Singleton.h"
-class MAIN_API BuiltInResource :public Singleton<BuiltInResource>
+class MAIN_API BuiltInResource :public Singleton<BuiltInResource>,public GameObjectBase
 {
 public:
 	BuiltInResource();

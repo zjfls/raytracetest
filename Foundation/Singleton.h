@@ -3,28 +3,29 @@
 #include <thread>
 #include <memory>
 #include "threadmutex.h"
-using std::shared_ptr;
+#include "SmartPointer.h"
+using ZG::SmartPointer;
 template<class T>
 class Singleton
 {
 public:
 	virtual ~Singleton(){};
 
-	static shared_ptr<T> GetInstance()
+	static T* GetInstance()
 	{
 		if (_instance == nullptr)
 		{
 			std::lock_guard<std::mutex> mtx(g_SingletonMutex);
 			if (_instance == nullptr)
 			{
-				_instance = shared_ptr<T>(new T);
+				_instance = new T;
 			}
 			//std::cout << "new singleton" << std::endl;
 		}
-		return _instance;
+		return _instance.get();
 	}
 
 protected:
 	Singleton(){};
-	static shared_ptr<T> _instance;
+	static SmartPointer<T> _instance;
 };

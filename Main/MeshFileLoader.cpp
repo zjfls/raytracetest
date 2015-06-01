@@ -16,7 +16,7 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	MeshAsset* pMeshAsset = new MeshAsset;
 	pMeshAsset->m_strPath = path;
-	shared_ptr<MeshResource> res = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(path);
+	SmartPointer<MeshResource> res = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(path);
 
 	//
 	FILE* fp;
@@ -82,6 +82,6 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 		Vector3 pos = *((Vector3*)res->m_VertexData->GetElementData(1,i));
 		//std::cout << "normal:" << pos.m_fx << " " << pos.m_fy << " "<<pos.m_fz << std::endl;
 	}
-	pMeshAsset->AddResource(path, res);
+	pMeshAsset->AddResource(path, res.get());
 	return pMeshAsset;
 }

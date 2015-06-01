@@ -21,12 +21,12 @@ public:
 
 	virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
 private:
-	shared_ptr<IWorldObj> ProcessNode(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> pParent = nullptr,shared_ptr<IWorldObj> pSkeletonObj = nullptr);
-	shared_ptr<IWorldObj> ProcessSkeleton(FbxNode* pNode, string refPath, shared_ptr<IWorldObj> pObj = nullptr);
-	void		ProcessBone(shared_ptr<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int index);
+	SmartPointer<IWorldObj> ProcessNode(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> pParent = nullptr,SmartPointer<IWorldObj> pSkeletonObj = nullptr);
+	SmartPointer<IWorldObj> ProcessSkeleton(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> pObj = nullptr);
+	void		ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int index);
 	FbxNode*	GetSkeletonRoot(FbxNode* pNode);
-	shared_ptr<MeshResource> ProcessMesh(FbxNode* pMesh, string refPath, shared_ptr<IWorldObj> obj = nullptr,shared_ptr<IWorldObj> pObj = nullptr);
-	shared_ptr<RasterMaterial>		ProcessMaterial(FbxSurfaceMaterial* pMat);
+	SmartPointer<MeshResource> ProcessMesh(FbxNode* pMesh, string refPath, SmartPointer<IWorldObj> obj = nullptr,SmartPointer<IWorldObj> pObj = nullptr);
+	SmartPointer<RasterMaterial>		ProcessMaterial(FbxSurfaceMaterial* pMat);
 	//void LoadPrefab(FbxNode* pNode,IWorld* pWorld);
 	FbxFileLoader()
 	{
@@ -34,8 +34,8 @@ private:
 	friend class AssetManager;
 	string m_fileDir;
 	std::vector<FbxMesh*> vecMeshList;
-	std::map<FbxSkeleton*,shared_ptr<SkeletonResource>> m_mapSkeleton;
-	std::map<FbxSkeleton*, shared_ptr<IWorldObj>> m_mapSkeObj;
-	std::map<FbxSurfaceMaterial*, shared_ptr<MaterialResource>> m_mapMaterial;
+	std::map<FbxSkeleton*,SmartPointer<SkeletonResource>> m_mapSkeleton;
+	std::map<FbxSkeleton*, SmartPointer<IWorldObj>> m_mapSkeObj;
+	std::map<FbxSurfaceMaterial*, SmartPointer<MaterialResource>> m_mapMaterial;
 };
 

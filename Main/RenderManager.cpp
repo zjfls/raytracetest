@@ -16,7 +16,7 @@
 #endif
 typedef RenderSystem* (WINAPI *CreateRSMethod)();
 template class MAIN_API Singleton < RenderManager >;
-template<> shared_ptr<RenderManager> Singleton<RenderManager>::_instance = nullptr;
+template<> SmartPointer<RenderManager> Singleton<RenderManager>::_instance = nullptr;
 
 RenderManager::RenderManager()
 {
@@ -28,7 +28,7 @@ RenderManager::~RenderManager()
 }
 
 
-bool RenderManager::Init(const stRenderViewInfo& renderViewInfo)
+bool RenderManager::Init( stRenderViewInfo& renderViewInfo)
 {
 	//stRenderViewInfo renderViewInfo;
 	string renderType = EnviromentSetting::GetInstance()->GetSetting("RenderType");

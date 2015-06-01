@@ -36,7 +36,7 @@ Vector3 Transform::GetForward()
 	return Vector3(m[2][0], m[2][1], m[2][2]);
 }
 
-void Transform::Update(std::shared_ptr<ModuleBase> pModule)
+void Transform::Update(SmartPointer<ModuleBase> pModule)
 {
 	m_bThisFrameUpdated = false;
 	if (m_bDirt == false)
@@ -74,7 +74,7 @@ void Transform::Update(std::shared_ptr<ModuleBase> pModule)
 
 void Transform::NotifyNeedTransform()
 {
-	for each (shared_ptr<IWorldObj> var in m_pOwnerObj->m_vecChildren)
+	for each (SmartPointer<IWorldObj> var in m_pOwnerObj->m_vecChildren)
 	{
 		var->m_pTransform->m_bDirt = true;
 	}
@@ -109,16 +109,16 @@ Vector3 Transform::GetWorldTranslate() const
 	return Vector3(m_TransformMatrixWorld.M[3][0], m_TransformMatrixWorld.M[3][1], m_TransformMatrixWorld.M[3][2]);
 }
 
-shared_ptr<ModuleBase> Transform::Clone()
+SmartPointer<ModuleBase> Transform::Clone()
 {
-	shared_ptr<Transform> pTransform = shared_ptr<Transform>(new Transform());
+	SmartPointer<Transform> pTransform = SmartPointer<Transform>(new Transform());
 	pTransform->m_bDirt = m_bDirt;
 	pTransform->m_TransformMatrixLocal = m_TransformMatrixLocal;
 	pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;
 	pTransform->m_vecTranslate = m_vecTranslate;
 	pTransform->m_Orientation = m_Orientation;
 	pTransform->m_vecScale = m_vecScale;
-	return pTransform;
+	return pTransform.get();
 }
 
 Matrix44 Transform::GetWorldMatrix() const

@@ -23,7 +23,7 @@ public:
 	virtual void Release(bool bReleaseResource);
 
 
-	std::vector<shared_ptr<IResource>> GetAllResource() const;
+	std::vector<SmartPointer<IResource>> GetAllResource() const;
 private:
 	FbxScene*	m_pFbxScene;
 	friend class FbxFileLoader;

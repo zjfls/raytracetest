@@ -19,7 +19,7 @@ public:
 	IntersectTest();
 	virtual ~IntersectTest();
 
-	static IntersectResults testRayRenderables(const Ray3D& r, std::shared_ptr<IRenderable> renderable, Transform& trans);
+	static IntersectResults testRayRenderables(const Ray3D& r, SmartPointer<IRenderable> renderable, Transform& trans);
 	static IntersectResults testRaySphere(const Ray3D& r, const Sphere3D& s, const Transform& trans);
 	static IntersectResults testRayPlane(const Ray3D& r, const Plane3D& p, const Transform& trans);
 

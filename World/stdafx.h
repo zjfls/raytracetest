@@ -23,7 +23,11 @@
 #include <assert.h>
 #include <algorithm>
 using namespace std;
+//
+#include "SmartPointer.h"
+#include "GameObjectBase.h"
+using namespace ZG;
+//#include "IRenderable.h"
 
-#include "IRenderable.h"
 
 // TODO:  在此处引用程序需要的其他头文件

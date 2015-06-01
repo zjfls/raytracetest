@@ -19,22 +19,22 @@ public:
 	*/
 	virtual void Release(bool bReleaseResource);
 
-	shared_ptr<IResource>		GetResource(string refPath)
+	SmartPointer<IResource>		GetResource(string refPath)
 	{
 		if (m_ResourceMap.find(refPath) != std::end(m_ResourceMap))
 		{
-			return m_ResourceMap[refPath].lock();
+			return m_ResourceMap[refPath].get();
 		}
 		return nullptr;
 	}
-	void			AddResource(string refPath, shared_ptr<IResource> pRes)
+	void			AddResource(string refPath, SmartPointer<IResource> pRes)
 	{
 		m_ResourceMap[refPath] = pRes;
 	}
 	void			RemoveResource(string refPath);
 
 protected:
-	std::unordered_map<string, weak_ptr<IResource>> m_ResourceMap;
+	std::unordered_map<string, SmartPointer<IResource>> m_ResourceMap;
 public:
 	string	m_strPath;
 

@@ -2,7 +2,7 @@
 #include "MeshResource.h"
 #include "ResourceManager.h"
 template class RESOURCE_API Singleton<ResourceManager<MeshResource>>;
-template<> shared_ptr<ResourceManager<MeshResource>> Singleton<ResourceManager<MeshResource>>::_instance = nullptr;
+template<> SmartPointer<ResourceManager<MeshResource>> Singleton<ResourceManager<MeshResource>>::_instance = nullptr;
 
 MeshResource::MeshResource() 
 {
@@ -15,9 +15,9 @@ MeshResource::~MeshResource()
 {
 }
 
-shared_ptr<MeshResource> MeshResource::clone()
+SmartPointer<MeshResource> MeshResource::clone()
 {
-	shared_ptr<MeshResource> pCloneMeshRes(new MeshResource);
+	SmartPointer<MeshResource> pCloneMeshRes(new MeshResource);
 	*pCloneMeshRes = *this;
 	pCloneMeshRes->m_IndexData->pData = new unsigned char[m_IndexData->GetBuffLength()];
 	memcpy((void*)pCloneMeshRes->m_IndexData->pData, (void*)m_IndexData->pData, m_IndexData->GetBuffLength());

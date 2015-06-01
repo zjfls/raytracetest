@@ -13,7 +13,7 @@ ShaderGenerator::~ShaderGenerator()
 {
 }
 
-const char* ShaderGenerator::ForwardGenSingleLight(const FragShaderDesc& pShader)
+const char* ShaderGenerator::ForwardGenSingleLight(FragShaderDesc& pShader)
 {
 	string rtCode = "";
 	if (pShader.m_bAmbient == true)
@@ -81,7 +81,7 @@ const char* ShaderGenerator::ForwardGenSingleLight(const FragShaderDesc& pShader
 	return temp;
 }
 
-const char* ShaderGenerator::GetFragShader(const FragShaderDesc& pShader)
+const char* ShaderGenerator::GetFragShader(FragShaderDesc& pShader)
 {
 	if (pShader.m_eStageDesc == ESTAGESHADERRADIANCEONLIGHTING)
 	{

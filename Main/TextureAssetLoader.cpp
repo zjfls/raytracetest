@@ -18,15 +18,15 @@ IAsset* TextureAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	TextureAsset* pAsset = new TextureAsset;
 	pAsset->m_strPath = path;
-	shared_ptr<Texture> pTextureResource;
+	SmartPointer<Texture> pTextureResource;
 	if ((pTextureResource = ResourceManager<Texture>::GetInstance()->GetResource(path)) != nullptr)
 	{
-		pAsset->AddResource(path, pTextureResource);
+		pAsset->AddResource(path, pTextureResource.get());
 	}
 	else
 	{
-		pTextureResource = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(path);
-		pAsset->AddResource(path, pTextureResource);
+		pTextureResource = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(path).get();
+		pAsset->AddResource(path, pTextureResource.get());
 	}
 	return pAsset;
 }

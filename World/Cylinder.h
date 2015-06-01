@@ -1,5 +1,6 @@
 #pragma once
 #include "Geometry.h"
+#include "SmartPointer.h"
 namespace ZG
 {
 	class WORLD_API Cylinder :

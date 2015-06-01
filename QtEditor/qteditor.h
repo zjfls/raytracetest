@@ -18,7 +18,7 @@ class QtEditor : public QMainWindow,public IListener
 public:
 	QtEditor(QWidget *parent = 0);
 	~QtEditor();
-	virtual void OnNotify(std::string msg, std::shared_ptr<IListenerSubject> pSubject);
+	virtual void OnNotify(std::string msg, IListenerSubject* pSubject);
 	//virtual void keyPressEvent(QKeyEvent * event);
 	virtual bool eventFilter(QObject *obj, QEvent *event);
 	virtual void childEvent(QChildEvent *event);
@@ -30,7 +30,7 @@ private slots:
 	//
 private:
 	void	InitSceneTreeView();
-	void	AddSceneTreeViewItem(QtSceneTreeItem* pParent,shared_ptr<IWorldObj> pObj);
+	void	AddSceneTreeViewItem(QtSceneTreeItem* pParent,SmartPointer<IWorldObj> pObj);
 	void	CreateToolBar();
 	//
 private:

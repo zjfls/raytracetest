@@ -7,9 +7,9 @@ class WORLD_API RasterCamera :
 public:
 	RasterCamera();
 	~RasterCamera();
-	virtual void Update(std::shared_ptr<ModuleBase> pModule);
+	virtual void Update(SmartPointer<ModuleBase> pModule);
 
-	virtual shared_ptr<ModuleBase> Clone();
+	virtual SmartPointer<ModuleBase> Clone();
 	//
 	//
 };

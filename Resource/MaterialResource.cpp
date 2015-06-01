@@ -2,7 +2,7 @@
 #include "MaterialResource.h"
 #include "ResourceManager.h"
 #include "Singleton.h"
-shared_ptr<ResourceManager<MaterialResource>> Singleton<ResourceManager<MaterialResource>>::_instance = nullptr;
+SmartPointer<ResourceManager<MaterialResource>> Singleton<ResourceManager<MaterialResource>>::_instance = nullptr;
 
 
 MaterialResource::MaterialResource()

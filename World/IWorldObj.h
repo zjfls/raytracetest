@@ -3,24 +3,24 @@
 #include "LightBase.h"
 #include "Transform.h"
 class IRenderable;
-class WORLD_API IWorldObj
+class WORLD_API IWorldObj:public GameObjectBase
 {
 public:
 	IWorldObj();
 	virtual ~IWorldObj();
-	virtual bool	addChild(shared_ptr<IWorldObj> pObj);
-	virtual bool	removeChild(shared_ptr<IWorldObj> pObj);
-	virtual bool	removeModule(shared_ptr<ModuleBase> pModule);
+	virtual bool	addChild(SmartPointer<IWorldObj> pObj);
+	virtual bool	removeChild(SmartPointer<IWorldObj> pObj);
+	virtual bool	removeModule(SmartPointer<ModuleBase> pModule);
 	unsigned int	GetChildCount() const;
-	shared_ptr<IWorldObj>		GetChild(unsigned int i) const;
-	virtual shared_ptr<IWorldObj> Clone(bool bRecursive);
+	SmartPointer<IWorldObj>		GetChild(unsigned int i) const;
+	virtual SmartPointer<IWorldObj> Clone(bool bRecursive);
 
 	template<class T>
-	shared_ptr<T> addModule(shared_ptr<IWorldObj> pObj)
+	SmartPointer<T> addModule(SmartPointer<IWorldObj> pObj)
 	{
-		shared_ptr<T> pModule = shared_ptr<T>(new T);
+		SmartPointer<T> pModule = SmartPointer<T>(new T);
 		pModule->m_pOwnerObj = pObj;
-		m_vecModules.push_back(pModule);
+		m_vecModules.push_back(pModule.SmartPointerCast<ModuleBase>());
 		pModule->OnAdded();
 		return pModule;
 	};
@@ -28,20 +28,20 @@ public:
 	virtual void AfterUpdate();
 
 	template<class T>
-	void GetAllModuleRecursive(std::vector<shared_ptr<T>>& vecResults);
-	void GetRenderableRecursive(std::vector<shared_ptr<IRenderable>>& vecRenderabls);
+	void GetAllModuleRecursive(std::vector<SmartPointer<T>>& vecResults);
+	void GetRenderableRecursive(std::vector<SmartPointer<IRenderable>>& vecRenderabls);
 	/////////////////////////////////////////////////////
 	unsigned int	 GetModuleCount()	const;
-	shared_ptr<ModuleBase>	GetModule(int i) const;
+	SmartPointer<ModuleBase>	GetModule(int i) const;
 
 	template<class T>
-	bool		IsHaveModule(shared_ptr<T> module);
+	bool		IsHaveModule(SmartPointer<T> module);
 	template<class T>
 	bool		IsHaveModule();
 
-	static shared_ptr<IWorldObj> CreateWorldObj()
+	static SmartPointer<IWorldObj> CreateWorldObj()
 	{
-		shared_ptr<IWorldObj> pObj(new IWorldObj);
+		SmartPointer<IWorldObj> pObj(new IWorldObj);
 		
 		pObj->m_pTransform = pObj->addModule<Transform>(pObj);
 		return pObj;
@@ -49,23 +49,23 @@ public:
 	//virtual IWorldObj* Clone(bool bRecursive);
 
 private:
-	//shared_ptr<IWorldObj>					
+	//SmartPointer<IWorldObj>					
 	IWorldObj*								m_pParent;
-	std::vector<shared_ptr<IWorldObj>>		m_vecChildren;
-	std::vector<shared_ptr<ModuleBase>>	m_vecModules;
+	std::vector<SmartPointer<IWorldObj>>		m_vecChildren;
+	std::vector<SmartPointer<ModuleBase>>	m_vecModules;
 public:
 	string						m_strName;
 	///////////////////////////////////
-	shared_ptr<Transform>					m_pTransform;
+	SmartPointer<Transform>					m_pTransform;
 	friend class Transform;
 };
 
 template<class T>
 bool IWorldObj::IsHaveModule()
 {
-	for each (shared_ptr<ModuleBase> var in m_vecModules)
+	for each (SmartPointer<ModuleBase> var in m_vecModules)
 	{
-		shared_ptr<T> pModule = dynamic_pointer_cast<T>(var);
+		SmartPointer<T> pModule = dynamic_pointer_cast<T>(var);
 		if (pModule != false)
 		{
 			return true;
@@ -75,11 +75,11 @@ bool IWorldObj::IsHaveModule()
 }
 
 template<class T>
-bool IWorldObj::IsHaveModule(shared_ptr<T> module)
+bool IWorldObj::IsHaveModule(SmartPointer<T> module)
 {
-	for each (shared_ptr<ModuleBase> var in m_vecModules)
+	for each (SmartPointer<ModuleBase> var in m_vecModules)
 	{
-		shared_ptr<T> pModule = dynamic_pointer_cast<T>(var);
+		SmartPointer<T> pModule = var.SmartPointerCast<T>();
 		if (pModule == module)
 		{
 			return true;
@@ -89,17 +89,17 @@ bool IWorldObj::IsHaveModule(shared_ptr<T> module)
 }
 
 template<class T>
-void IWorldObj::GetAllModuleRecursive(std::vector<shared_ptr<T>>& vecResults)
+void IWorldObj::GetAllModuleRecursive(std::vector<SmartPointer<T>>& vecResults)
 {
-	for each (shared_ptr<ModuleBase>  var in m_vecModules)
+	for each (SmartPointer<ModuleBase>  var in m_vecModules)
 	{
-		shared_ptr<T> pModule = dynamic_pointer_cast<T>(var);
+		SmartPointer<T> pModule = var.SmartPointerCast<T>();
 		if (pModule != nullptr)
 		{
 			vecResults.push_back(pModule);
 		}
 	}
-	for each (shared_ptr<IWorldObj> var in m_vecChildren)
+	for each (SmartPointer<IWorldObj> var in m_vecChildren)
 	{
 		var->GetAllModuleRecursive<T>(vecResults);
 	}

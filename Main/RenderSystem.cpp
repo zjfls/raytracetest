@@ -29,7 +29,7 @@ RenderView* RenderSystem::GetDefaultRenderView() const
 	return m_pDefaultRenderView;
 }
 
-const char* RenderSystem::GetFragShaderCode(const FragShaderDesc& fragShaderDesc)
+const char* RenderSystem::GetFragShaderCode(FragShaderDesc& fragShaderDesc)
 {
 	if (fragShaderDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN)
 	{
@@ -43,7 +43,7 @@ const char* RenderSystem::GetFragShaderCode(const FragShaderDesc& fragShaderDesc
 	return nullptr;
 }
 
-const char* RenderSystem::GetVertexShaderCode(const VertexShaderDesc& vertexShaderDesc)
+const char* RenderSystem::GetVertexShaderCode(VertexShaderDesc& vertexShaderDesc)
 {
 	if (vertexShaderDesc.m_eVShaderDesc == EVERTEXSHADERORIGIN)
 	{
@@ -52,7 +52,7 @@ const char* RenderSystem::GetVertexShaderCode(const VertexShaderDesc& vertexShad
 	return nullptr;
 }
 
-std::string RenderSystem::GenerateVertexShaderDescString(const VertexShaderDesc& vertexShaderDesc)
+std::string RenderSystem::GenerateVertexShaderDescString(VertexShaderDesc& vertexShaderDesc)
 {
 	if (vertexShaderDesc.m_eVShaderDesc == EVERTEXSHADERORIGIN)
 	{
@@ -63,7 +63,7 @@ std::string RenderSystem::GenerateVertexShaderDescString(const VertexShaderDesc&
 	return temp;
 }
 
-std::string RenderSystem::GenerateFragShaderDescString(const FragShaderDesc& fragShaderDesc)
+std::string RenderSystem::GenerateFragShaderDescString(FragShaderDesc& fragShaderDesc)
 {
 	if (fragShaderDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN)
 	{

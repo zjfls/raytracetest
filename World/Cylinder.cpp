@@ -4,6 +4,8 @@
 #include "MathDefine.h"
 #include "Vector3.h"
 #include <vector>
+#include "IWorldObj.h"
+#include "MaterialResource.h"
 
 ZG::Cylinder::Cylinder()
 	:m_fRadius(1.0f)

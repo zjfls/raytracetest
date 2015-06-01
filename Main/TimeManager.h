@@ -2,7 +2,7 @@
 #pragma once
 #include "Singleton.h"
 class MAIN_API TimeManager :
-	public Singleton<TimeManager>
+	public Singleton<TimeManager>,public GameObjectBase
 {
 public:
 	TimeManager();

@@ -14,11 +14,11 @@ public:
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff);
-	virtual bool SetVertexShader(HardwareVertexShader* pVertexShader);
-	virtual bool SetFragShader(HardwareFragShader* pFragShader);
-	virtual bool SetTexture(int nSamplerID, HardwareTexture* pTexture);
-	virtual void UpdateProjCamera(shared_ptr<CameraBase> pCamera);
+	void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff) override;
+	bool SetVertexShader(HardwareVertexShader* pVertexShader) override;
+	bool SetFragShader(HardwareFragShader* pFragShader) override;
+	bool SetTexture(int nSamplerID, HardwareTexture* pTexture) override;
+	void UpdateProjCamera(SmartPointer<CameraBase> pCamera) override;
 	virtual bool SetRenderStateCollection(const RenderStateCollection& stateCollection);
 	virtual bool SetBlendEnable(bool b);
 	virtual bool SetBlendSrc(EALPHABLEND eBlend);
@@ -38,7 +38,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual void SetRenderTarget(int nIndex, IRenderTarget* pTarget);
-	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shared_ptr<RasterMaterial> pMat = nullptr);
+	virtual void DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, SmartPointer<RasterMaterial> pMat = nullptr);
 	IDirect3DDevice9*	m_pDevice;
 private:
 	D3DBLEND GetD3DBlendType(EALPHABLEND eBlend);

@@ -12,3 +12,6 @@
 #include <string>
 #include <vector>
 using namespace std;
+#include "GameObjectBase.h"
+#include "SmartPointer.h"
+using namespace ZG;

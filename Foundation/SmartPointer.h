@@ -1,6 +1,9 @@
 #pragma once
+
 namespace ZG
 {
+	//#include "GameObjectBase.h"
+	class GameObjectBase;
 	template<class T>
 	class SmartPointer
 	{
@@ -39,13 +42,13 @@ namespace ZG
 		//
 		T* get();
 	private:
-		T* m_pTarget;
+		GameObjectBase* m_pTarget;
 	};
 
 	template<class T> template<class T2>
 	SmartPointer<T2> ZG::SmartPointer<T>::SmartPointerCast()
 	{
-		return SmartPointer<T2>(m_pTarget);
+		return SmartPointer<T2>(dynamic_cast<T2*>(m_pTarget));
 	}
 
 	template<class T>
@@ -84,13 +87,13 @@ namespace ZG
 	template<class T>
 	T* ZG::SmartPointer<T>::get()
 	{
-		return m_pTarget;
+		return (T*)m_pTarget;
 	}
 
 	template<class T>
 	T& ZG::SmartPointer<T>::operator*()
 	{
-		return *m_pTarget;
+		return *((T*)m_pTarget);
 	}
 
 
@@ -121,7 +124,7 @@ namespace ZG
 	template<class T>
 	bool ZG::SmartPointer<T>::operator!=(T* t)
 	{
-		if (m_pTarget != t)
+		if (m_pTarget != (GameObjectBase*)t)
 		{
 			return true;
 		}
@@ -152,9 +155,9 @@ namespace ZG
 	template<class T>
 	T* ZG::SmartPointer<T>::operator=(const SmartPointer<T>& pTarget)
 	{
-		if (m_pTarget = pTarget.m_pTarget)
+		if (m_pTarget == pTarget.m_pTarget)
 		{
-			return m_pTarget;
+			return (T*)m_pTarget;
 		}
 		if (m_pTarget != nullptr)
 		{
@@ -169,21 +172,21 @@ namespace ZG
 		{
 			m_pTarget->m_nRefCount++;
 		}
-		return m_pTarget;
+		return (T*)m_pTarget;
 	}
 
 	template<class T>
 	T* ZG::SmartPointer<T>::operator->()
 	{
-		return m_pTarget;
+		return (T*)m_pTarget;
 	}
 
 	template<class T>
 	T* ZG::SmartPointer<T>::operator=(T* pTarget)
 	{
-		if (m_pTarget == pTarget)
+		if (m_pTarget == (GameObjectBase*)pTarget)
 		{
-			return m_pTarget;
+			return (T*)m_pTarget;
 		}
 		if (m_pTarget != nullptr)
 		{
@@ -193,12 +196,12 @@ namespace ZG
 				delete m_pTarget;
 			}
 		}
-		m_pTarget = pTarget;
+		m_pTarget = (GameObjectBase*)pTarget;
 		if (m_pTarget != nullptr)
 		{
 			m_pTarget->m_nRefCount++;
 		}
-		return m_pTarget;
+		return (T*)m_pTarget;
 	}
 
 	template<class T>
@@ -228,8 +231,9 @@ namespace ZG
 
 	template<class T>
 	ZG::SmartPointer<T>::SmartPointer(T* pTarget)
-		:m_pTarget(pTarget)
+		//:m_pTarget((T*)pTarget)
 	{
+		m_pTarget = (GameObjectBase*)pTarget;
 		if (m_pTarget == nullptr)
 		{
 			return;

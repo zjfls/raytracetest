@@ -15,12 +15,12 @@ public:
 	D3D9RenderSystem();
 
 
-	virtual bool					InitRenderSystem(const stRenderViewInfo& viewInfo);
-	virtual HardwareVertexShader*	GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc);
-	virtual HardwareFragShader*		GetHardwareFragShader(const FragShaderDesc& fragShaderDesc);
+	bool					InitRenderSystem(stRenderViewInfo& viewInfo) override;
+	HardwareVertexShader*	GetHardwareVertexShader(VertexShaderDesc& vertexShaderDesc) override;
+	HardwareFragShader*		GetHardwareFragShader(FragShaderDesc& fragShaderDesc) override;
 	virtual HardwareVertexBuffer*	GetHardwareVertexBuffer(VertexData* pData);
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData);
-	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture);
+	virtual HardwareTexture*		GetHardwareTexture(SmartPointer<Texture> pTexture);
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality);
 	virtual RenderView*				CreateRenderView(stRenderViewInfo& renderViewInfo);
 	virtual bool					OnFrameBegin();

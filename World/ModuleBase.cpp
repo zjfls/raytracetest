@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ModuleBase.h"
-
+#include "IWorldObj.h"
 
 ModuleBase::ModuleBase()
 {
@@ -11,12 +11,12 @@ ModuleBase::~ModuleBase()
 {
 }
 
-void ModuleBase::OnLateUpdate(std::shared_ptr<ModuleBase> pModule)
+void ModuleBase::OnLateUpdate(SmartPointer<ModuleBase> pModule)
 {
 
 }
 
-void ModuleBase::Update(std::shared_ptr<ModuleBase> pModule)
+void ModuleBase::Update(SmartPointer<ModuleBase> pModule)
 {
 
 }

@@ -19,7 +19,7 @@ public:
 	virtual void OnMouseRButtonDown(Vector2& pt);
 	virtual void OnKeyPressed(int key);
 	//
-	std::shared_ptr<IWorldObj> m_pCamera;
+	SmartPointer<IWorldObj> m_pCamera;
 
 	virtual void OnDragEnter(Vector2& pos,std::string file);
 	virtual void OnDrop(Vector2& pos, std::string path);

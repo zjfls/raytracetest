@@ -27,7 +27,7 @@
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
-template<> shared_ptr<EditorApplication> Singleton<EditorApplication>::_instance = nullptr;
+template<> SmartPointer<EditorApplication> Singleton<EditorApplication>::_instance = nullptr;
 
 EditorApplication::EditorApplication()
 {
@@ -39,7 +39,7 @@ EditorApplication::~EditorApplication()
 	int i = m_mapListener.size();
 
 
-	for each (std::pair<string,std::shared_ptr<IListener>> p in m_mapListener)
+	for each (std::pair<string,SmartPointer<IListener>> p in m_mapListener)
 	{
 		p.second = nullptr;
 	}
@@ -78,15 +78,15 @@ void EditorApplication::Run()
 	
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin();
 	//
-	std::vector<std::shared_ptr<RasterCamera>> m_CameraList;
-	std::vector<std::shared_ptr<CameraRenderer>> m_CameraIgnoreList;
+	std::vector<SmartPointer<RasterCamera>> m_CameraList;
+	std::vector<SmartPointer<CameraRenderer>> m_CameraIgnoreList;
 	//camera will not render
 	m_CameraList = EditorApplication::GetInstance()->m_pWorld->GetAllModules<RasterCamera>();
-	for each (shared_ptr<CameraBase> pCamera in m_CameraList)
+	for each (SmartPointer<RasterCamera> pCamera in m_CameraList)
 	{
-		for each (std::pair<string, std::shared_ptr<IListener>> p in pCamera->m_mapListener)
+		for each (std::pair<string, IListener*> p in pCamera->m_mapListener)
 		{
-			std::shared_ptr<CameraRenderer> cameraRender = dynamic_pointer_cast<CameraRenderer>(p.second);
+			SmartPointer<CameraRenderer> cameraRender = dynamic_cast<CameraRenderer*>(p.second);
 			if (cameraRender->m_pTarget == nullptr)
 			{
 				cameraRender->m_bActive = false;
@@ -111,8 +111,8 @@ void EditorApplication::SetupScene()
 {
 	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
 	AssetManager::GetInstance()->LoadAsset("./data/prefab/plane.prefab.xml");
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
-	shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
+	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
+	SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 
 	//m_pTargetObj = pObj;
 	m_pWorld->m_pRoot->addChild(pObj);
@@ -122,61 +122,61 @@ void EditorApplication::SetupScene()
 
 
 
-	shared_ptr<IWorldObj> pCamera(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pCamera(IWorldObj::CreateWorldObj());
 	pCamera->m_strName = "Camera";
 	m_pWorld->m_pRoot->addChild(pCamera);
-	shared_ptr<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
+	SmartPointer<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
 	pCameraModule->m_fFar = 12000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
 	pCameraModule->m_fFovy = PI / 4;
 
 
-	std::shared_ptr<CameraRenderer> pCameraRenderer(new CameraRenderer);// = new CameraRenderer;
-	pCameraRenderer->m_pWorld = m_pWorld;
+	SmartPointer<CameraRenderer> pCameraRenderer(new CameraRenderer);// = new CameraRenderer;
+	pCameraRenderer->m_pWorld = m_pWorld.get();
 	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	pCameraRenderer->m_clrColr = GameColor::white;
-	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
+	pCameraModule->AddListener("CameraRenderer", pCameraRenderer.get());
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 400.0f, -550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
 
-	shared_ptr<IWorldObj> pLightObj(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pLightObj(IWorldObj::CreateWorldObj());
 	pLightObj->m_pTransform->SetTranslate(0.0f, 130.0f, 0.0f);
 	pLightObj->m_pTransform->SetOrientation(AngleToRad(35.0f), 0.0f, 0.0f);
 	pLightObj->m_strName = "Lights";
-	shared_ptr<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>(pLightObj);
+	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>(pLightObj);
 	pDirLight->m_fIntensity = 1.5f;
 	pDirLight->m_Color = GameColor::white;
 	m_pWorld->m_pRoot->addChild(pLightObj);
 
 
 	////sphere
-	//shared_ptr<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
+	//SmartPointer<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
 	//m_pWorld->m_pRoot->addChild(pSphereObj);
 	//pSphereObj->m_strName = "Sphere";
-	//shared_ptr<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
+	//SmartPointer<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
 	//pSphere->m_fRadius = 50.0f;
 	//pSphere->m_nSubdivide = 40;
 	//pSphere->GeneratePolygon();
 	//pSphereObj->m_pTransform->SetTranslate(110.0, 150, 0.0);
 
 	////cyilnder
-	//shared_ptr<IWorldObj> pCylinderObj(IWorldObj::CreateWorldObj());
+	//SmartPointer<IWorldObj> pCylinderObj(IWorldObj::CreateWorldObj());
 	//m_pWorld->m_pRoot->addChild(pCylinderObj);
 	//pCylinderObj->m_strName = "Cylinder";
-	//shared_ptr<Cylinder> pCylinder = pSphereObj->addModule<Cylinder>(pCylinderObj);
+	//SmartPointer<Cylinder> pCylinder = pSphereObj->addModule<Cylinder>(pCylinderObj);
 	//pCylinder->m_fRadius = 25.0f;
 	//pCylinder->m_fHeight = 100.0f;
 	//pCylinder->m_nSubdivide = 40;
 	//pCylinder->GeneratePolygon();
 	//pCylinderObj->m_pTransform->SetTranslate(0.0, 150, 0.0);
 	////
-	//shared_ptr<IWorldObj> pConeObj(IWorldObj::CreateWorldObj());
+	//SmartPointer<IWorldObj> pConeObj(IWorldObj::CreateWorldObj());
 	//m_pWorld->m_pRoot->addChild(pConeObj);
 	//pConeObj->m_strName = "Cone";
-	//shared_ptr<Cone> pCone = pSphereObj->addModule<Cone>(pConeObj);
+	//SmartPointer<Cone> pCone = pSphereObj->addModule<Cone>(pConeObj);
 	//pCone->m_fRadius = 25.0f;
 	//pCone->m_fHeight = 100.0f;
 	//pCone->m_nSubdivide = 40;
@@ -191,13 +191,13 @@ void EditorApplication::SetupScene()
 	NotifyListener("InitScene", EditorApplication::GetInstance());
 }
 
-void EditorApplication::NotifyListener(string msg, std::shared_ptr<IListenerSubject> pSubject)
+void EditorApplication::NotifyListener(string msg, IListenerSubject* pSubject)
 {
 	IListenerSubject::NotifyListener(msg, pSubject);
 	m_pEditorApp->OnNotify(msg, pSubject);
 }
 
-void EditorApplication::OnSelectChange(shared_ptr<IWorldObj> pObj)
+void EditorApplication::OnSelectChange(SmartPointer<IWorldObj> pObj)
 {
 	m_SelectObj = pObj;
 	NotifyListener("SelectChange", EditorApplication::GetInstance());

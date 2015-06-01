@@ -16,7 +16,7 @@ public:
 	~MeshResource();
 	//Vector3 GetPositionDataAt(int nIndex);
 	//Vector3	GetNormalDataAt(int nIndex);
-	shared_ptr<MeshResource> clone();
+	SmartPointer<MeshResource> clone();
 	SmartPointer<MeshVertexData> m_VertexData;
 	SmartPointer<IndexData> m_IndexData;
 	friend class ResourceManager<MeshResource>;

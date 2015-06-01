@@ -7,7 +7,7 @@ namespace fbxsdk_2015_1
 	class FbxScene;
 };
 
-class MAIN_API FbxAppManager :public Singleton<FbxAppManager>
+class MAIN_API FbxAppManager :public Singleton<FbxAppManager>, public GameObjectBase
 {
 public:
 	FbxAppManager();

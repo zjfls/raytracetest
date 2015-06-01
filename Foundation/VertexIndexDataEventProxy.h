@@ -5,7 +5,7 @@ class IndexData;
 class VertexData;
 namespace ZG
 {
-	class IndexDataEventArg
+	class IndexDataEventArg :public GameObjectBase
 	{
 	public:
 		IndexDataEventArg(){};

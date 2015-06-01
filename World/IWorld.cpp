@@ -3,10 +3,11 @@
 #include "IWorldObj.h"
 #include "LightBase.h"
 #include "IRenderable.h"
+#include "MaterialResource.h"
 
 IWorld::IWorld()
 {
-	m_pRoot = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+	m_pRoot = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
 	m_pRoot->m_strName = "SceneRoot";
 }
 
@@ -24,20 +25,20 @@ void IWorld::Update()
 	}
 }
 
-std::vector<shared_ptr<IRenderable>> IWorld::GetAllRenderables()
+std::vector<SmartPointer<IRenderable>> IWorld::GetAllRenderables()
 {
-	std::vector<shared_ptr<IRenderable>> vecRenderables;
+	std::vector<SmartPointer<IRenderable>> vecRenderables;
 	m_pRoot->GetRenderableRecursive(vecRenderables);
 	return vecRenderables;
 }
 
-void IWorld::GetRenderablesLightInfo(std::vector<shared_ptr<IRenderable>>& vec)
+void IWorld::GetRenderablesLightInfo(std::vector<SmartPointer<IRenderable>>& vec)
 {
-	std::vector<shared_ptr<LightBase>> vecLight = GetAllModules<LightBase>();
-	for each (shared_ptr<IRenderable> pRenderable in vec)
+	std::vector<SmartPointer<LightBase>> vecLight = GetAllModules<LightBase>();
+	for each (SmartPointer<IRenderable> pRenderable in vec)
 	{
 		pRenderable->m_vecLight.clear();
-		for each (shared_ptr<LightBase> pLight in vecLight)
+		for each (SmartPointer<LightBase> pLight in vecLight)
 		{
 			pRenderable->m_vecLight.push_back(pLight);
 		}

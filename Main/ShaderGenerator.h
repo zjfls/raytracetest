@@ -6,8 +6,8 @@ public:
 	ShaderGenerator();
 	virtual ~ShaderGenerator();
 
-	static const char* GetFragShader(const FragShaderDesc& pShader);
-	static const char* ForwardGenSingleLight(const FragShaderDesc& pShader);
+	static const char* GetFragShader(FragShaderDesc& pShader);
+	static const char* ForwardGenSingleLight(FragShaderDesc& pShader);
 
 	static std::unordered_map<string, const char*> m_mapCode;
 	static std::vector<string> m_vecPPParam;

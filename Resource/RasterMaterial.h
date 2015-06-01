@@ -18,7 +18,7 @@ public:
 	RasterMaterial();
 	virtual ~RasterMaterial();
 	//void	AddPass(string strName, RenderPass* pPass);
-	virtual shared_ptr<MaterialResource> clone();
+	virtual SmartPointer<MaterialResource> clone();
 	void AddPass(string strName, ZG::MaterialPass* pPass);
 	//void BuildPassParameter(RenderPass* pPass);
 public:

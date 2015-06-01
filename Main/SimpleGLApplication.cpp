@@ -9,7 +9,7 @@
 #include "gl/GL.h"
 
 
-shared_ptr<SimpleGLApplication> Singleton<SimpleGLApplication>::_instance = nullptr;
+SmartPointer<SimpleGLApplication> Singleton<SimpleGLApplication>::_instance = nullptr;
 
 SimpleGLApplication::SimpleGLApplication()
 {

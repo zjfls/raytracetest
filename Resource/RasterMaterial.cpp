@@ -2,6 +2,8 @@
 #include "RasterMaterial.h"
 #include "MaterialArg.h"
 #include "MaterialPass.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 using namespace ZG;
 RasterMaterial::RasterMaterial()
 
@@ -31,9 +33,9 @@ void RasterMaterial::AddPass(string strName, ZG::MaterialPass* pPass)
 	m_MaterialPass[strName] = pPass;
 }
 
-shared_ptr<MaterialResource> RasterMaterial::clone()
+SmartPointer<MaterialResource> RasterMaterial::clone()
 {
-	shared_ptr<RasterMaterial> pMaterial(new RasterMaterial);
+	SmartPointer<RasterMaterial> pMaterial = new RasterMaterial;
 	for each (std::pair<string,MaterialArg*> p in m_matArgs)
 	{
 		pMaterial->m_matArgs[p.first] = p.second->clone();
@@ -46,5 +48,5 @@ shared_ptr<MaterialResource> RasterMaterial::clone()
 	{
 		pMaterial->m_MaterialPass[p.first] = p.second->clone();
 	}
-	return pMaterial;
+	return pMaterial.SmartPointerCast<MaterialResource>();
 }

@@ -19,7 +19,7 @@ public:
 	bool	SetArg(std::string strName, const T& arg);
 	//
 	std::unordered_map<string, MaterialArg*> m_matArgs;
-	virtual shared_ptr<MaterialResource> clone(){ return nullptr; };
+	virtual SmartPointer<MaterialResource> clone(){ return nullptr; };
 protected:
 	MaterialResource();
 	friend class ResourceManager < MaterialResource > ;
@@ -45,4 +45,4 @@ bool MaterialResource::SetArg(std::string strName, const T& arg)
 
 RESOURCE_TEMPLATE template class RESOURCE_API  Singleton < ResourceManager<MaterialResource> > ;
 
-//extern template shared_ptr<ResourceManager<MaterialResource>> Singleton<ResourceManager<MaterialResource>>::_instance;
+//extern template SmartPointer<ResourceManager<MaterialResource>> Singleton<ResourceManager<MaterialResource>>::_instance;

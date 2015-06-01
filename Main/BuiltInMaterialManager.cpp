@@ -8,7 +8,7 @@
 #include "MaterialPass.h"
 using namespace ZG;
 template class MAIN_API  Singleton < BuiltInMaterialManager >;
-template<> shared_ptr<BuiltInMaterialManager> Singleton<BuiltInMaterialManager>::_instance = nullptr;
+template<> SmartPointer<BuiltInMaterialManager> Singleton<BuiltInMaterialManager>::_instance = nullptr;
 
 BuiltInMaterialManager::BuiltInMaterialManager()
 {
@@ -27,8 +27,8 @@ bool BuiltInMaterialManager::InitBuiltInMaterial()
 
 void BuiltInMaterialManager::CreateDefaultMaterial()
 {
-	shared_ptr<RasterMaterial> pMat(new RasterMaterial);
-	shared_ptr<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>("GAMEDEFAULTMATERIAL");
+	SmartPointer<RasterMaterial> pMat(new RasterMaterial);
+	SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>("GAMEDEFAULTMATERIAL");
 	MaterialPass* pPass = new MaterialPass();
 	TMatArg<GameColor>* pArg = new TMatArg<GameColor>(EMATARGTYPECOLOR);
 	pArg->m_Data = GameColor::white;

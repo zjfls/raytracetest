@@ -11,7 +11,7 @@ public:
 	RayTracePerpViewPort(const Point3D& vecPt,const Direction3D& vecNormal,float fVertFov,float fHorzFov,int pixWidth,int pixHeight);
 	virtual ~RayTracePerpViewPort();
 
-	virtual void OnTransformChanged(const RayTraceCamera* pCamera);
+	virtual void OnTransformChanged( RayTraceCamera* pCamera);
 
 public:
 	float m_fVertFov;

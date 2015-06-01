@@ -9,6 +9,6 @@ public:
 	virtual ~IListener();
 
 
-	virtual void OnNotify(std::string msg,std::shared_ptr<IListenerSubject> pSubject) = 0;
+	virtual void OnNotify(std::string msg,IListenerSubject* pSubject) = 0;
 };
 

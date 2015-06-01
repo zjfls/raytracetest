@@ -11,15 +11,15 @@ public:
 	virtual ~Mesh();
 
 
-	shared_ptr<MeshResource> GetMeshResource();
+	SmartPointer<MeshResource> GetMeshResource();
 
-	void SetMeshResource(shared_ptr<MeshResource> pRes);
-	bool	HasSkinInfo() const;
-	virtual shared_ptr<ModuleBase> Clone();
+	void SetMeshResource(SmartPointer<MeshResource> pRes);
+	bool	HasSkinInfo();
+	virtual SmartPointer<ModuleBase> Clone();
 private:
 	//
-	shared_ptr<MeshResource> m_pMeshInstance;
-	shared_ptr<MeshResource> m_pSharedMesh;
+	SmartPointer<MeshResource> m_pMeshInstance;
+	SmartPointer<MeshResource> m_pSharedMesh;
 public:
 	bool m_bCpuSkin;
 };

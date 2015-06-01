@@ -1,11 +1,12 @@
 #pragma once
 #include "Singleton.h"
 #include "SmartPointer.h"
+#include "GameObjectBase.h"
 
 namespace ZG
 {
 	class TranslateGizmo;
-	class WORLD_API GizmoManager:public Singleton<GizmoManager>
+	class WORLD_API GizmoManager:public Singleton<GizmoManager>,public ZG::GameObjectBase
 	{
 	public:
 		GizmoManager();

@@ -6,7 +6,7 @@
 #include "MeshResource.h"
 
 template class MAIN_API Singleton < FbxAppManager >;
-template<> shared_ptr<FbxAppManager> Singleton<FbxAppManager>::_instance = nullptr;
+template<> SmartPointer<FbxAppManager> Singleton<FbxAppManager>::_instance = nullptr;
 
 FbxAppManager::FbxAppManager()
 {

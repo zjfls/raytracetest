@@ -11,12 +11,12 @@ public:
 	virtual ~IListenerSubject();
 	
 
-	virtual void AddListener(std::string strName, std::shared_ptr<IListener> pListener);
+	virtual void AddListener(std::string strName, IListener* pListener);
 	virtual void RemoveListener(std::string strName);
-	virtual void NotifyListener(std::string msg, std::shared_ptr<IListenerSubject> pSubject);
+	virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
 
 
-	std::map<std::string, std::shared_ptr<IListener>> m_mapListener;
+	std::map<std::string, IListener*> m_mapListener;
 	
 };
 

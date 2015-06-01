@@ -36,18 +36,18 @@ public:
 
 
 
-	virtual bool					InitRenderSystem(const stRenderViewInfo& viewInfo) = 0;
-	virtual HardwareVertexShader*	GetHardwareVertexShader(const VertexShaderDesc& vertexShaderDesc) = 0;
-	virtual HardwareFragShader*		GetHardwareFragShader(const FragShaderDesc& fragShaderDesc) = 0;
+	virtual bool					InitRenderSystem( stRenderViewInfo& viewInfo) = 0;
+	virtual HardwareVertexShader*	GetHardwareVertexShader( VertexShaderDesc& vertexShaderDesc) = 0;
+	virtual HardwareFragShader*		GetHardwareFragShader( FragShaderDesc& fragShaderDesc) = 0;
 	virtual HardwareVertexBuffer*	GetHardwareVertexBuffer(VertexData* pData) = 0;
 	virtual HardwareIndexBuffer*	GetHardwareIndexBuffer(IndexData* pData) = 0;
-	virtual HardwareTexture*		GetHardwareTexture(shared_ptr<Texture> pTexture) = 0;
+	virtual HardwareTexture*		GetHardwareTexture(SmartPointer<Texture> pTexture) = 0;
 	virtual IRenderTarget*			CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample,unsigned int nQuality) = 0;
 	virtual RenderView*				CreateRenderView(stRenderViewInfo& renderViewInfo) = 0;
 	virtual bool					OnFrameBegin() = 0;
 	virtual void					OnFrameEnd() = 0;
 	virtual void					ReleaseRenderTarget(IRenderTarget* pTarget);
-	//shared_ptr<
+	//SmartPointer<
 
 	RenderView*						GetActiveRenderView(){ return m_pActiveView; };
 	void							SetActiveRenderView(RenderView* pView){ m_pActiveView = pView; };
@@ -56,10 +56,10 @@ public:
 	void							OnVertexDataDelete(ZG::VertexDataEventArg& e);
 	void							OnIndexDataDelete(ZG::IndexDataEventArg& e);
 protected:
-	const char*			GetVertexShaderCode(const VertexShaderDesc& vertexShaderDesc);
-	const char*			GetFragShaderCode(const FragShaderDesc& fragShaderDesc);
-	string				GenerateVertexShaderDescString(const VertexShaderDesc& vertexShaderDesc);
-	string				GenerateFragShaderDescString(const FragShaderDesc& fragShaderDesc);
+	const char*			GetVertexShaderCode(VertexShaderDesc& vertexShaderDesc);
+	const char*			GetFragShaderCode(FragShaderDesc& fragShaderDesc);
+	string				GenerateVertexShaderDescString(VertexShaderDesc& vertexShaderDesc);
+	string				GenerateFragShaderDescString(FragShaderDesc& fragShaderDesc);
 
 protected:
 	virtual void	CreateDefaultRender(const RenderPath* pPath) = 0;

@@ -11,7 +11,7 @@ namespace ZG
 		RenderableEventArgs(){};
 		virtual ~RenderableEventArgs(){};
 	public:
-		shared_ptr<IRenderable> m_pRenderable;
+		SmartPointer<IRenderable> m_pRenderable;
 	};
 	class RenderAbleEventProxy:public Singleton<RenderAbleEventProxy>,public GameObjectBase
 	{

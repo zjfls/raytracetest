@@ -19,7 +19,7 @@
 #include "Transform.h"
 #include "RenderSystem.h"
 template class MAIN_API  Singleton < D3D9Application>;
-template<> shared_ptr<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
+template<> SmartPointer<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
 D3D9Application::D3D9Application()
 	:m_pTargetObj(nullptr)
@@ -39,8 +39,8 @@ void D3D9Application::OnInit()
 void D3D9Application::SetupScene()
 {
 	AssetManager::GetInstance()->LoadAsset("./data/prefab/plane.prefab.xml");
-	shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
-	shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
+	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
+	SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 
 	m_pTargetObj = pObj;
 	m_pWorld->m_pRoot->addChild(pObj);
@@ -50,9 +50,9 @@ void D3D9Application::SetupScene()
 
 
 
-	shared_ptr<IWorldObj> pCamera(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pCamera(IWorldObj::CreateWorldObj());
 	m_pWorld->m_pRoot->addChild(pCamera);
-	shared_ptr<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
+	SmartPointer<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
 	pCameraModule->m_fFar = 2000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
@@ -60,20 +60,20 @@ void D3D9Application::SetupScene()
 
 
 	CameraRenderer* pCameraRenderer = new CameraRenderer;
-	pCameraRenderer->m_pWorld = m_pWorld;
+	pCameraRenderer->m_pWorld = m_pWorld.get();
 	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	pCameraRenderer->m_clrColr = GameColor::black;
-	pCameraModule->AddListener("CameraRenderer", std::shared_ptr<CameraRenderer>(pCameraRenderer));
+	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
 
-	shared_ptr<IWorldObj> pLightObj = shared_ptr<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pLightObj = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
 	pLightObj->m_pTransform->SetTranslate(0.0f, 130.0f, 0.0f);
 	pLightObj->m_pTransform->SetOrientation(AngleToRad(35.0f), 0.0f, 0.0f);
 	pLightObj->m_strName = "Lights";
-	shared_ptr<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>(pLightObj);
+	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>(pLightObj);
 	pDirLight->m_fIntensity = 1.5f;
 	pDirLight->m_Color = GameColor::white;
 
@@ -166,8 +166,8 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 		if (suffix == "prefab.xml")
 		{
 			AssetManager::GetInstance()->LoadAsset(lpszFile);
-			shared_ptr<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(lpszFile);
-			shared_ptr<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
+			SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(lpszFile);
+			SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 			D3D9Application::GetInstance()->m_pWorld->m_pRoot->removeChild(D3D9Application::GetInstance()->m_pTargetObj);
 			D3D9Application::GetInstance()->m_pTargetObj = pObj;
 			D3D9Application::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);

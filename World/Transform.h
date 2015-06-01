@@ -11,7 +11,7 @@ public:
 	
 	~Transform();
 
-	virtual void Update(std::shared_ptr<ModuleBase> pModule);
+	virtual void Update(SmartPointer<ModuleBase> pModule);
 	Vector3	GetRight();
 	Vector3 GetForward();
 	Vector3	GetUp();
@@ -35,7 +35,7 @@ public:
 	Matrix44 GetWorldMatrix() const;
 	//only update self transform
 	//Matrix44 UpdateSelfTransform() const;
-	virtual shared_ptr<ModuleBase> Clone();
+	virtual SmartPointer<ModuleBase> Clone();
 	
 ////////////////////////////////////////////////
 

@@ -1,5 +1,5 @@
 #pragma once
-class RESOURCE_API IResource
+class RESOURCE_API IResource:public GameObjectBase
 {
 public:
 	IResource();

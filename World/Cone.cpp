@@ -2,7 +2,8 @@
 #include "Cone.h"
 #include "DynamicVertexData.h"
 #include "MathDefine.h"
-
+#include "MaterialResource.h"
+#include "IWorldObj.h"
 
 ZG::Cone::Cone()
 	:m_fRadius(30.0f)
