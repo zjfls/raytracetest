@@ -5,6 +5,8 @@
 #include "AssetManager.h"
 #include "VertexShader.h"
 #include "FragShader.h"
+#include "MaterialPass.h"
+using namespace ZG;
 template class MAIN_API  Singleton < BuiltInMaterialManager >;
 template<> shared_ptr<BuiltInMaterialManager> Singleton<BuiltInMaterialManager>::_instance = nullptr;
 
@@ -27,7 +29,7 @@ void BuiltInMaterialManager::CreateDefaultMaterial()
 {
 	shared_ptr<RasterMaterial> pMat(new RasterMaterial);
 	shared_ptr<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>("GAMEDEFAULTMATERIAL");
-	RenderPass* pPass = new RenderPass();
+	MaterialPass* pPass = new MaterialPass();
 	TMatArg<GameColor>* pArg = new TMatArg<GameColor>(EMATARGTYPECOLOR);
 	pArg->m_Data = GameColor::white;
 	pMatRes->AddArg("MainColor", pArg);

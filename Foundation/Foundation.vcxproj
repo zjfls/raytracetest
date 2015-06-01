@@ -98,6 +98,7 @@
     <ClInclude Include="IListenerSubject.h" />
     <ClInclude Include="IndexData.h" />
     <ClInclude Include="GameObjectBase.h" />
+    <ClInclude Include="RenderBaseClass.h" />
     <ClInclude Include="RenderEnum.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Singleton.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="IListenerSubject.cpp" />
     <ClCompile Include="IndexData.cpp" />
     <ClCompile Include="GameObjectBase.cpp" />
+    <ClCompile Include="RenderBaseClass.cpp" />
     <ClCompile Include="SmartPointer.cpp" />
     <ClCompile Include="StrUtil.cpp" />
     <ClCompile Include="threadmutex.cpp" />

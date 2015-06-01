@@ -10,6 +10,8 @@
 #include "RenderPass.h"
 #include "VertexShader.h"
 #include "FragShader.h"
+#include "MaterialPass.h"
+using namespace ZG;
 using namespace tinyxml2;
 
 MaterialAssetLoader::MaterialAssetLoader()
@@ -95,7 +97,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLElement* pPassElem = pElem->FirstChildElement("RenderPass");
 	while (pPassElem != nullptr)
 	{
-		RenderPass* pPass = new RenderPass;
+		MaterialPass* pPass = new MaterialPass;
 		//
 		XMLElement* pPassStateElem = pPassElem->FirstChildElement("PassState");
 		if (pPassStateElem != nullptr)

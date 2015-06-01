@@ -16,6 +16,8 @@
 #include "RenderPass.h"
 #include "VertexShader.h"
 #include "EnviromentSetting.h"
+#include "MaterialPass.h"
+using namespace ZG;
 D3D9Render::D3D9Render(const RenderPath* pPath)
 	:RasterRender(pPath)
 	, m_pDevice(nullptr)
@@ -378,11 +380,11 @@ void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, shar
 	};
 	m_pDevice->SetFVF(D3DFVF_XYZ);
 	FragShaderDesc fragDesc;
-	fragDesc.m_pFragShader = pMat->m_RenderPassMap.begin()->second->m_pFragShader;
+	fragDesc.m_pFragShader = pMat->m_MaterialPass.begin()->second->m_pFragShader;
 	fragDesc.m_eFragShaderDesc = EFRAGSHADERORIGIN;
 	HardwareFragShader* pfragshader = m_pRenderSystem->GetHardwareFragShader(fragDesc);
 	VertexShaderDesc vertDesc;
-	vertDesc.m_pVertexShader = pMat->m_RenderPassMap.begin()->second->m_pVertexShader;
+	vertDesc.m_pVertexShader = pMat->m_MaterialPass.begin()->second->m_pVertexShader;
 	vertDesc.m_eVShaderDesc = EVERTEXSHADERORIGIN;
 	HardwareVertexShader* pVertexShader = m_pRenderSystem->GetHardwareVertexShader(vertDesc);
 	SetVertexShader(pVertexShader);

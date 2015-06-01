@@ -91,6 +91,7 @@
     <ClInclude Include="FragShader.h" />
     <ClInclude Include="IResource.h" />
     <ClInclude Include="MaterialArg.h" />
+    <ClInclude Include="MaterialPass.h" />
     <ClInclude Include="MaterialResource.h" />
     <ClInclude Include="MeshResource.h" />
     <ClInclude Include="PrefabResource.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="FragShader.cpp" />
     <ClCompile Include="IResource.cpp" />
     <ClCompile Include="MaterialArg.cpp" />
+    <ClCompile Include="MaterialPass.cpp" />
     <ClCompile Include="MaterialResource.cpp" />
     <ClCompile Include="MeshResource.cpp" />
     <ClCompile Include="PrefabResource.cpp" />

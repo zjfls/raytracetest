@@ -41,17 +41,19 @@ void ZG::GizmoManager::createTranlateGizmo()
 	m_pTranslateGizmo->m_pUpMaterialCylinder->SetArg<GameColor>("MainColor",GameColor::red * 0.5f);
 	//
 	pCylinder->m_fHeight = 50.0f;
-	pCylinder->m_fRadius = 5.0f;
-	pCylinder->m_nSubdivide = 40.0;
+	pCylinder->m_fRadius = 3.0f;
+	pCylinder->m_nSubdivide = 100;
+	pCylinder->GeneratePolygon();
 	shared_ptr<IWorldObj> pTransUPCone = IWorldObj::CreateWorldObj();
 	shared_ptr<Cone> pCone = pTransUPCone->addModule<Cone>(pTransUPCone);
 	pCone->m_pSharedMaterial = pCone->GetDefaultMaterial();
-	m_pTranslateGizmo->m_pUpMaterialCone = pCylinder->GetMaterialInstance();
+	m_pTranslateGizmo->m_pUpMaterialCone = pCone->GetMaterialInstance();
 	m_pTranslateGizmo->m_pUpMaterialCone->SetArg<GameColor>("MainColor", GameColor::red * 0.5f);
 	//
-	pCone->m_fHeight = 8.0f;
-	pCone->m_fRadius = 10.0f;
-	pCone->m_nSubdivide = 40;
+	pCone->m_fHeight = 10.0f;
+	pCone->m_fRadius = 5.0f;
+	pCone->m_nSubdivide = 100;
+	pCone->GeneratePolygon();
 	pTransUP->addChild(pTransUPCylinder);
 	pTransUP->addChild(pTransUPCone);
 	pTransUPCone->m_pTransform->SetTranslate(0.0f, 50.0f, 0.0f);

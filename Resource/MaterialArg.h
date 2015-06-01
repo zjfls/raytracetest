@@ -44,6 +44,10 @@ class TMatArg:public MaterialArg
 {
 public:
 	TMatArg(EMATARGTYPE eArgType){ m_EType = eArgType; m_EShaderType = (EMATARGSHADERTYPE)(EMATSHADERVERTE | EMATSHADERFRAG); };
+	TMatArg()
+	{
+		m_EType = EMATARGTYPEINVALID; m_EShaderType = (EMATARGSHADERTYPE)(EMATSHADERVERTE | EMATSHADERFRAG);
+	}
 	MaterialArg* clone();
 	virtual ~TMatArg(){};
 	//template<class T1>
@@ -59,6 +63,7 @@ MaterialArg* TMatArg<T>::clone()
 	pCloneObj->m_EType = m_EType;
 	pCloneObj->m_strName = m_strName;
 	pCloneObj->m_EShaderType = m_EShaderType;
+	return pCloneObj;
 }
 
 

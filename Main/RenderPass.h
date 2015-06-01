@@ -3,6 +3,11 @@
 #include "RenderStateCollection.h"
 #include "HardwareShader.h"
 #include "MaterialArg.h"
+#include "MaterialPass.h"
+#include "RenderBaseClass.h"
+using ZG::stRenderState;
+using ZG::MaterialPass;
+
 class VertexShader;
 class FragShader;
 class RasterRender;
@@ -12,14 +17,11 @@ class HardwareFragShader;
 class HardwareVertexShader;
 class LightBase;
 class FragShaderDesc;
-struct stRenderState
-{
-	RENDERSTATEMASK m_eRenderState;
-	int				m_nValue;
-};
+
 class RenderPass
 {
 public:
+	RenderPass(MaterialPass* pPass);
 	RenderPass();
 	virtual ~RenderPass();
 
@@ -55,13 +57,14 @@ protected:
 	std::unordered_map<string, MaterialArg*> m_VertexShaderArgs;
 	std::unordered_map<string, MaterialArg*> m_FragShaderArgs;
 	//
-
-
 	std::unordered_map<string, MaterialArg*> m_ArgLib;
+	MaterialPass*		m_MaterialPass;
 public:
 	EVERTEXSHADERTPYE	m_eVertexShaderType;
 	EFRAGSHADERTYPE		m_eFragShaderType;
+	
 	friend class MaterialAssetLoader;
+
 
 };
 

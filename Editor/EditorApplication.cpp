@@ -152,39 +152,40 @@ void EditorApplication::SetupScene()
 	m_pWorld->m_pRoot->addChild(pLightObj);
 
 
-	//sphere
-	shared_ptr<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
-	m_pWorld->m_pRoot->addChild(pSphereObj);
-	pSphereObj->m_strName = "Sphere";
-	shared_ptr<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
-	pSphere->m_fRadius = 50.0f;
-	pSphere->m_nSubdivide = 40;
-	pSphere->GeneratePolygon();
-	pSphereObj->m_pTransform->SetTranslate(110.0, 150, 0.0);
+	////sphere
+	//shared_ptr<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
+	//m_pWorld->m_pRoot->addChild(pSphereObj);
+	//pSphereObj->m_strName = "Sphere";
+	//shared_ptr<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
+	//pSphere->m_fRadius = 50.0f;
+	//pSphere->m_nSubdivide = 40;
+	//pSphere->GeneratePolygon();
+	//pSphereObj->m_pTransform->SetTranslate(110.0, 150, 0.0);
 
-	//cyilnder
-	shared_ptr<IWorldObj> pCylinderObj(IWorldObj::CreateWorldObj());
-	m_pWorld->m_pRoot->addChild(pCylinderObj);
-	pCylinderObj->m_strName = "Cylinder";
-	shared_ptr<Cylinder> pCylinder = pSphereObj->addModule<Cylinder>(pCylinderObj);
-	pCylinder->m_fRadius = 25.0f;
-	pCylinder->m_fHeight = 100.0f;
-	pCylinder->m_nSubdivide = 40;
-	pCylinder->GeneratePolygon();
-	pCylinderObj->m_pTransform->SetTranslate(0.0, 150, 0.0);
-	//
-	shared_ptr<IWorldObj> pConeObj(IWorldObj::CreateWorldObj());
-	m_pWorld->m_pRoot->addChild(pConeObj);
-	pConeObj->m_strName = "Cone";
-	shared_ptr<Cone> pCone = pSphereObj->addModule<Cone>(pConeObj);
-	pCone->m_fRadius = 25.0f;
-	pCone->m_fHeight = 100.0f;
-	pCone->m_nSubdivide = 40;
-	pCone->GeneratePolygon();
-	pConeObj->m_pTransform->SetTranslate(-100.0, 150, 0.0);
+	////cyilnder
+	//shared_ptr<IWorldObj> pCylinderObj(IWorldObj::CreateWorldObj());
+	//m_pWorld->m_pRoot->addChild(pCylinderObj);
+	//pCylinderObj->m_strName = "Cylinder";
+	//shared_ptr<Cylinder> pCylinder = pSphereObj->addModule<Cylinder>(pCylinderObj);
+	//pCylinder->m_fRadius = 25.0f;
+	//pCylinder->m_fHeight = 100.0f;
+	//pCylinder->m_nSubdivide = 40;
+	//pCylinder->GeneratePolygon();
+	//pCylinderObj->m_pTransform->SetTranslate(0.0, 150, 0.0);
+	////
+	//shared_ptr<IWorldObj> pConeObj(IWorldObj::CreateWorldObj());
+	//m_pWorld->m_pRoot->addChild(pConeObj);
+	//pConeObj->m_strName = "Cone";
+	//shared_ptr<Cone> pCone = pSphereObj->addModule<Cone>(pConeObj);
+	//pCone->m_fRadius = 25.0f;
+	//pCone->m_fHeight = 100.0f;
+	//pCone->m_nSubdivide = 40;
+	//pCone->GeneratePolygon();
+	//pConeObj->m_pTransform->SetTranslate(-100.0, 150, 0.0);
 	//
 	m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
-	GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(0.0f, 150.0f, -100.0f);
+	GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(0.0f, 150.0f, 0.0f);
+	GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetScale(2, 2, 2);
 
 
 	NotifyListener("InitScene", EditorApplication::GetInstance());

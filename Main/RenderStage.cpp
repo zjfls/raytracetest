@@ -6,6 +6,8 @@
 #include "RenderPass.h"
 #include "RenderStateCollection.h"
 #include "EnviromentSetting.h"
+#include "MaterialPass.h"
+using namespace ZG;
 RenderStage::RenderStage(string strName, ERENDERTYPEFILTER eFillter, ERENDERSTAGEMETHOD eMethod)
 	:m_strName(strName)
 	, m_eFillter(eFillter)
@@ -73,16 +75,17 @@ void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<std::
 	for each (shared_ptr<IRenderable>	pRenderable in vecRenderabls)
 	{
 		shared_ptr<RasterMaterial> pMaterial = dynamic_pointer_cast<RasterMaterial>(pRenderable->getRenderMaterial());
-		for each (std::pair<string,RenderPass*> p in pMaterial->m_RenderPassMap)
+		for each (std::pair<string,SmartPointer<MaterialPass>> p in pMaterial->m_MaterialPass)
 		{	
-			SetRenderStateCollection(pRender, p.second->m_RenderState);
+			RenderPass rPass(p.second.get());
+			SetRenderStateCollection(pRender, rPass.m_RenderState);
 			if (bAllLight)
 			{
-				p.second->Render(pRender, pRenderable, ESTAGESHADERRADIANCEALLLIGHTING, p.second->m_RenderState);
+				rPass.Render(pRender, pRenderable, ESTAGESHADERRADIANCEALLLIGHTING, rPass.m_RenderState);
 			}
 			else
 			{
-				p.second->Render(pRender, pRenderable, ESTAGESHADERRADIANCEONLIGHTING, p.second->m_RenderState);
+				rPass.Render(pRender, pRenderable, ESTAGESHADERRADIANCEONLIGHTING, rPass.m_RenderState);
 			}
 		}
 	}
