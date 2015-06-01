@@ -58,7 +58,54 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pTransUP->addChild(pTransUPCone);
 	pTransUPCone->m_pTransform->SetTranslate(0.0f, 50.0f, 0.0f);
 	//right
-	//forward
+	shared_ptr<IWorldObj> pTransRightCylinder = IWorldObj::CreateWorldObj();
+	pCylinder = pTransRightCylinder->addModule<Cylinder>(pTransRightCylinder);
+	pCylinder->m_pSharedMaterial = pCylinder->GetDefaultMaterial();
+	m_pTranslateGizmo->m_pRightMaterialCylinder = pCylinder->GetMaterialInstance();
+	m_pTranslateGizmo->m_pRightMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::blue * 0.5f);
+	//
+	pCylinder->m_fHeight = 50.0f;
+	pCylinder->m_fRadius = 3.0f;
+	pCylinder->m_nSubdivide = 100;
+	pCylinder->GeneratePolygon();
+	shared_ptr<IWorldObj> pTransRightCone = IWorldObj::CreateWorldObj();
+	pCone = pTransRightCone->addModule<Cone>(pTransRightCone);
+	pCone->m_pSharedMaterial = pCone->GetDefaultMaterial();
+	m_pTranslateGizmo->m_pRightMaterialCone = pCone->GetMaterialInstance();
+	m_pTranslateGizmo->m_pRightMaterialCone->SetArg<GameColor>("MainColor", GameColor::blue * 0.5f);
+	pCone->m_fHeight = 10.0f;
+	pCone->m_fRadius = 5.0f;
+	pCone->m_nSubdivide = 100;
+	pCone->GeneratePolygon();
+	pTransRight->addChild(pTransRightCylinder);
+	pTransRight->addChild(pTransRightCone);
+	pTransRightCone->m_pTransform->SetTranslate(0.0f, 50.0f, 0.0f);
+	pTransRight->m_pTransform->SetOrientation(0.0f, 0.0f, -1.5707f);
+	/////////////////////////////////////////////////////////////////////////////////////////forward
+	shared_ptr<IWorldObj> pTransForwardCylinder = IWorldObj::CreateWorldObj();
+	pCylinder = pTransForwardCylinder->addModule<Cylinder>(pTransForwardCylinder);
+	pCylinder->m_pSharedMaterial = pCylinder->GetDefaultMaterial();
+	m_pTranslateGizmo->m_pForwardMaterialCylinder = pCylinder->GetMaterialInstance();
+	m_pTranslateGizmo->m_pForwardMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::green * 0.5f);
+	//
+	pCylinder->m_fHeight = 50.0f;
+	pCylinder->m_fRadius = 3.0f;
+	pCylinder->m_nSubdivide = 100;
+	pCylinder->GeneratePolygon();
+	shared_ptr<IWorldObj> pTransForwardCone = IWorldObj::CreateWorldObj();
+	pCone = pTransForwardCone->addModule<Cone>(pTransForwardCone);
+	pCone->m_pSharedMaterial = pCone->GetDefaultMaterial();
+	m_pTranslateGizmo->m_pForwardMaterialCone = pCone->GetMaterialInstance();
+	m_pTranslateGizmo->m_pForwardMaterialCone->SetArg<GameColor>("MainColor", GameColor::green * 0.5f);
+	//
+	pCone->m_fHeight = 10.0f;
+	pCone->m_fRadius = 5.0f;
+	pCone->m_nSubdivide = 100;
+	pCone->GeneratePolygon();
+	pTransForward->addChild(pTransForwardCylinder);
+	pTransForward->addChild(pTransForwardCone);
+	pTransForwardCone->m_pTransform->SetTranslate(0.0f, 50.0f, 0.0f);
+	pTransForward->m_pTransform->SetOrientation(1.5707f, 0.0f, 0.0f);
 }
 
 void ZG::GizmoManager::createRotationGizmo()

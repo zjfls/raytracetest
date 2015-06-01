@@ -63,8 +63,8 @@ void ZG::Cone::GeneratePolygon()
 	for (int i = 0; i < m_nSubdivide; ++i)
 	{
 		vecIndex.push_back((m_nSubdivide + 1));
-		vecIndex.push_back(i + 1);
 		vecIndex.push_back(i);
+		vecIndex.push_back(i+1);
 	}
 	//
 	for (int i = 0; i < m_nSubdivide; ++i)
