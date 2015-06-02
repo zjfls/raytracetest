@@ -132,12 +132,12 @@ void EditorApplication::SetupScene()
 	pCameraModule->m_fFovy = PI / 4;
 
 
-	SmartPointer<CameraRenderer> pCameraRenderer(new CameraRenderer);// = new CameraRenderer;
+	CameraRenderer* pCameraRenderer = new CameraRenderer;
 	pCameraRenderer->m_pWorld = m_pWorld.get();
 	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	pCameraRenderer->m_clrColr = GameColor::white;
-	pCameraModule->AddListener("CameraRenderer", pCameraRenderer.get());
+	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 400.0f, -550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);

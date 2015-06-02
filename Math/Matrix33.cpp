@@ -177,3 +177,61 @@ float Matrix33::Determinate() const
 {
 	return M[0][0] * M[1][1] * M[2][2] + M[0][1] * M[1][2] * M[2][0] + M[0][2] * M[1][0] * M[2][1] - M[0][0] * M[1][2] * M[2][1] - M[0][1] * M[1][0] * M[2][2] - M[0][2] * M[1][1] * M[2][0];
 }
+
+void Matrix33::FromEulerAngleYXZ(const Vector3& v)
+{
+	Matrix33 matx;
+	Matrix33 maty;
+	Matrix33 matz;
+	matx.RotAboutX(v.m_fx);
+	maty.RotAboutY(v.m_fy);
+	matz.RotAboutZ(v.m_fz);
+	*this = maty * matx * matz;
+}
+
+Vector3 Matrix33::toEulerAngleYXZ()
+{
+	Vector3 rt;
+	float m11 = M[0][0];
+	float m12 = M[0][1];
+	float m13 = M[0][2];
+	float m21 = M[1][0];
+	float m22 = M[1][1];
+	float m23 = M[1][2];
+	float m31 = M[2][0];
+	float m32 = M[2][1];
+	float m33 = M[2][2];
+	//
+	//to do;
+	//
+	float h, p, b;//yxz
+	float sp = -m23;
+	if (sp <= -1.0f)
+	{
+		p = -1.570796f;
+	}
+	else if (sp >= 1.0f)
+	{
+		p = 1.570796f;
+	}
+	else
+	{
+		p = asin(sp);
+	}
+	//
+	//
+	if (sp > 0.9999f)
+	{
+		b = 0.0f;
+		h = atan2(-m31, m11);
+	}
+	else
+	{
+		h = atan2(m13, m33);
+		b = atan2(m21, m22);
+	}
+	rt.m_fy = h;
+	rt.m_fx = p;
+	rt.m_fz = b;
+	return rt;
+}

@@ -20,6 +20,8 @@ public:
 	void RotAboutVector(const Vector3& vec,float f);
 	void ScaleMatrix(float fX,float fY,float fZ);
 	void FromMatrix44(const Matrix44* mat44);
+	void FromEulerAngleYXZ(const Vector3& v);
+	Vector3 toEulerAngleYXZ();
 	//void ScaleY(float f);
 	//void ScaleZ(float f);
 	const static Matrix33 Identity;

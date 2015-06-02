@@ -14,6 +14,7 @@ IWorld::IWorld()
 
 IWorld::~IWorld()
 {
+	std::cout << "delete world" << std::endl;
 }
 
 void IWorld::Update()
