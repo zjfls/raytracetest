@@ -54,7 +54,7 @@ public:
 	virtual bool RenderBegin() = 0;
 	virtual bool RenderEnd() = 0;
 	virtual bool ClearTarget(bool bClearColor, GameColor clr, bool bClearDepth = true, float fDepth = 1.0f) = 0;
-	
+	void RenderCamera(CameraRenderEvent& event) override;
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	virtual void SetRenderTargetGroup(RenderTargetGroup* pTargetGroup);

@@ -5,15 +5,17 @@
 #include "GameObjectBase.h"
 using ZG::GameObjectBase;
 class IndexData;
+class AABBBox;
 class FOUNDATION_API VertexData:public GameObjectBase
 {
 public:
 	VertexData() :nBoneNum(0)
 		, nNumVertex(0)
 		, m_PrimitiveType(EPRIMITIVE_TRIANGLE)
+		, m_pAABB(nullptr)
 	{};
 	virtual ~VertexData();
-	virtual void getBoundingMaxAndMin(Vector3& min,Vector3 max) = 0;
+	virtual void getBoundingMaxAndMin(Vector3& min,Vector3& max) = 0;
 	int		GetVertexDataLength()const;
 	struct VertexDataDesc
 	{
@@ -28,6 +30,9 @@ public:
 	unsigned int nNumVertex;
 	unsigned int nBoneNum;//每个顶点对应的骨头数量
 	EDRAWPRIMITIVETYPE m_PrimitiveType;
+
+
+	AABBBox* m_pAABB;
 };
 class FOUNDATION_API MeshVertexData:public VertexData
 {
@@ -50,7 +55,7 @@ public:
 	void* pData;
 
 
-	virtual void getBoundingMaxAndMin( Vector3& min, Vector3 max);
+	void getBoundingMaxAndMin( Vector3& min, Vector3& max) override;
 	Vector3 GetPositionDataAt(int nIndex)
 	{
 		Vector3 vecPos;

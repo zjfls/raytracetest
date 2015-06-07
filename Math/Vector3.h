@@ -1,4 +1,6 @@
 #pragma once
+class Matrix33;
+class Vector4;
 class MATH_API Vector3
 {
 public:
@@ -16,6 +18,7 @@ public:
 	Vector3 operator*(float f) const;
 	Vector3 operator-() const;
 	Vector3 operator+=(const Vector3& vecIn);
+	Vector3 operator=(const Vector4& vecIn);
 
 
 	//------------------------------------------------------------------
@@ -26,6 +29,7 @@ public:
 	float dot(const Vector3& vecIn) const;
 	Vector3 cross(const Vector3& vecIn) const;
 	float angle(const Vector3& vecIn) const;
+	Vector3 operator*(const Matrix33& mat);
 	~Vector3();
 	//------------------------------------------------------------------
 

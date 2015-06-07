@@ -11,7 +11,7 @@ extern CEditorMFCApp theApp;
 
 struct stSceneNodeAttribute
 {
-	std::shared_ptr<IWorldObj> m_pObj;
+	SmartPointer<IWorldObj> m_pObj;
 };
 
 class CSceneTreeViewMenuButton : public CMFCToolBarMenuButton
@@ -37,7 +37,7 @@ public:
 
 		pImages->EndDrawImage(ds);
 	}
-	shared_ptr<IWorldObj> m_pTarget;
+	SmartPointer<IWorldObj> m_pTarget;
 };
 IMPLEMENT_SERIAL(CSceneTreeViewMenuButton, CMFCToolBarMenuButton, 1)
 ///
@@ -185,14 +185,14 @@ void CSceneTreeView::OnNewFolder()
 
 void CSceneTreeView::InitSceneTreeView()
 {
-	shared_ptr<IWorldObj> pObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+	SmartPointer<IWorldObj> pObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
 	for (int i = 0; i < pObj->GetChildCount(); ++i)
 	{
 		AddWorldObj(pObj->GetChild(i),nullptr);
 	}
 }
 
-void CSceneTreeView::AddWorldObj(shared_ptr<IWorldObj> pObj, HTREEITEM* pParent)
+void CSceneTreeView::AddWorldObj(SmartPointer<IWorldObj> pObj, HTREEITEM* pParent)
 {
 	HTREEITEM hItem;
 	if (pParent == nullptr)
@@ -218,7 +218,7 @@ void CSceneTreeView::OnTreeSelect(NMHDR * pNMHDR, LRESULT * pResult)
 	CString str = m_wndTreeView.GetItemText(item);
 	//std::cout << "select tree item:"<<LPCSTR(str) << std::endl;
 	stSceneNodeAttribute* pAttribute = (stSceneNodeAttribute*)m_wndTreeView.GetItemData(item);
-	shared_ptr<IWorldObj> pObj = pAttribute->m_pObj;
+	SmartPointer<IWorldObj> pObj = pAttribute->m_pObj;
 	EditorApplication::GetInstance()->OnSelectChange(pObj);
 }
 

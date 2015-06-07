@@ -302,7 +302,7 @@ void CPropertiesWnd::SetPropListFont()
 	m_wndObjectCombo.SetFont(&m_fntPropList);
 }
 
-void CPropertiesWnd::UpdateWorldObjProperty(shared_ptr<IWorldObj> pObj)
+void CPropertiesWnd::UpdateWorldObjProperty(SmartPointer<IWorldObj> pObj)
 {
 	ShowPane(TRUE, FALSE, TRUE);
 	SetPropListFont();
@@ -336,12 +336,12 @@ void CPropertiesWnd::UpdateWorldObjProperty(shared_ptr<IWorldObj> pObj)
 	//
 	for (int i = 0; i < pObj->GetModuleCount(); ++i)
 	{
-		std::shared_ptr<ModuleBase> pModule = pObj->GetModule(i);
+		SmartPointer<ModuleBase> pModule = pObj->GetModule(i);
 		AddModule(pModule);
 	}
 }
 
-void CPropertiesWnd::AddModule(shared_ptr<ModuleBase> pModule)
+void CPropertiesWnd::AddModule(SmartPointer<ModuleBase> pModule)
 {
 	//CMFCPropertyGridProperty* pSize = new CMFCPropertyGridProperty(_T("´°¿Ú´óÐ¡"), 0, TRUE);
 
@@ -359,7 +359,7 @@ void CPropertiesWnd::AddModule(shared_ptr<ModuleBase> pModule)
 	if (typeid(*pModule.get()) == typeid(Transform))
 	{
 		//
-		shared_ptr<Transform> pTransform = dynamic_pointer_cast<Transform>(pModule);
+		SmartPointer<Transform> pTransform = pModule.SmartPointerCast<Transform>();
 		//
 		CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Transform"));
 		//translate
@@ -403,7 +403,7 @@ void CPropertiesWnd::AddModule(shared_ptr<ModuleBase> pModule)
 	}
 	if (typeid(*pModule.get()) == typeid(Mesh))
 	{
-		shared_ptr<Mesh> pMesh = dynamic_pointer_cast<Mesh>(pModule);
+		SmartPointer<Mesh> pMesh = pModule.SmartPointerCast<Mesh>();
 		CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Mesh"));
 		std::string pMeshRef = "";
 		if (pMesh->GetMeshResource() != nullptr)
@@ -422,7 +422,7 @@ void CPropertiesWnd::AddModule(shared_ptr<ModuleBase> pModule)
 		//float m_fAspect;
 		//float m_fNear;
 		//float m_fFar;
-		shared_ptr<RasterCamera> pCamera = dynamic_pointer_cast<RasterCamera>(pModule);
+		SmartPointer<RasterCamera> pCamera = pModule.SmartPointerCast<RasterCamera>();
 		CMFCPropertyGridProperty* pGroup = new CMFCPropertyGridProperty(_T("Camera"));
 		CMFCFloatGridProperty* pProp = new CMFCFloatGridProperty(_T("FOV"), (_variant_t)pCamera->m_fFovy, "CAMERAFOV");
 		pGroup->AddSubItem(pProp);

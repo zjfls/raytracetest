@@ -2,23 +2,30 @@
 #include "ModuleBase.h"
 #include "Matrix44.h"
 #include "IListenerSubject.h"
-
+#include "Color.h"
+class IWorld;
+class IRenderTarget;
 //class IRender;
 class IWorldObj;
 //class IRenderTarget;
+class CameraBase;
+struct WORLD_API CameraRenderEvent
+{
+	SmartPointer<CameraBase> m_pTargetCamera;
+};
 class WORLD_API CameraBase :
-	public ModuleBase,public IListenerSubject
+	public ModuleBase
 {
 public:
 	CameraBase();
 	virtual ~CameraBase();
-	virtual void Update(SmartPointer<ModuleBase> pModule);
-	virtual void OnLateUpdate(SmartPointer<ModuleBase> pModule);
-	virtual void Render(SmartPointer<CameraBase> pCamera);
+	virtual void Update();
+	virtual void OnLateUpdate();
+	virtual void Render();
 	//IRender* m_pRender;
 	//IRenderTarget* m_pRenderTarget;
 	virtual SmartPointer<ModuleBase> Clone();
-
+	//void	RegistRender(SmartPointer<IRender> pRender);
 
 	Matrix44 GetViewMatrix() const{ return m_MatView; };
 	Matrix44 GetProjMatrix() const{ return m_MatProj; };
@@ -31,6 +38,13 @@ public:
 	float m_fAspect;
 	float m_fNear;
 	float m_fFar;
+	//
+	SmartPointer<IRenderTarget>	m_pTarget;
+	SmartPointer<IWorld>	m_pWorld;
+	bool				m_bClearColor;
+	bool				m_bClearDepth;
+	GameColor			m_clrColr;
+	float				m_fDepth;
 public:
 	Matrix44 m_MatView;
 	Matrix44 m_MatProj;

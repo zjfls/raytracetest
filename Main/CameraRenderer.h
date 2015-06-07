@@ -18,16 +18,15 @@ private:
 	void Render(SmartPointer<CameraBase> pCamera);
 	void UpdateMatrix(SmartPointer<CameraBase> pCamera);
 public:
-	RasterRender*	m_pRender;
-	IRenderTarget*	m_pTarget;
-	IWorld*			m_pWorld;
-	bool			m_bClearColor;
-	bool			m_bClearDepth;
+	RasterRender*		m_pRender;
+	IRenderTarget*		m_pTarget;
+	IWorld*				m_pWorld;
+	bool				m_bClearColor;
+	bool				m_bClearDepth;
 	GameColor			m_clrColr;
-	float			m_fDepth;
+	float				m_fDepth;
+
 	//
-	RenderTargetGroup	m_pTargetGroup;
-	//
-	bool			m_bActive;
+	bool				m_bActive;
 };
 

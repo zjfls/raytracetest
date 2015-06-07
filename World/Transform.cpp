@@ -36,7 +36,7 @@ Vector3 Transform::GetForward()
 	return Vector3(m[2][0], m[2][1], m[2][2]);
 }
 
-void Transform::Update(SmartPointer<ModuleBase> pModule)
+void Transform::Update()
 {
 	m_bThisFrameUpdated = false;
 	if (m_bDirt == false)
@@ -77,6 +77,10 @@ void Transform::NotifyNeedTransform()
 	for each (SmartPointer<IWorldObj> var in m_pOwnerObj->m_vecChildren)
 	{
 		var->m_pTransform->m_bDirt = true;
+	}
+	for each (SmartPointer<ModuleBase> var in m_pOwnerObj->m_vecModules)
+	{
+		var->m_bTransformUpdated = true;
 	}
 }
 

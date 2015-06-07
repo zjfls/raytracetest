@@ -45,6 +45,8 @@ void QtRenderView::mousePressEvent(QMouseEvent * event)
 	Vector2 v;
 	v.m_fx = event->pos().rx();
 	v.m_fy = event->pos().ry();
+	m_nPtPressPos = event->pos();
+	//
 	Qt::MouseButton mb = event->button();
 	Qt::MouseButton b = (Qt::MouseButton)(mb & Qt::MouseButton::RightButton);
 	if (b != 0)
@@ -70,7 +72,10 @@ void QtRenderView::mouseMoveEvent(QMouseEvent * event)
 
 void QtRenderView::mouseReleaseEvent(QMouseEvent * event)
 {
-
+	if (m_nPtPressPos == event->pos())
+	{
+		//std::cout << "clicked" << std::endl;
+	}
 }
 
 void QtRenderView::keyPressEvent(QKeyEvent * event)
@@ -123,6 +128,30 @@ void QtRenderView::dropEvent(QDropEvent *event)
 
 		//Vector3 pos = PickUtil::ScreenPosToWorldPos(screenPos, 500.0f, nullptr, nWidth, nHeight);
 	}
+}
+
+void QtRenderView::focusInEvent(QFocusEvent *)
+{
+	//std::cout << "focus in" << std::endl;
+	m_pRenderView->m_bIsFocus = true;
+}
+
+void QtRenderView::focusOutEvent(QFocusEvent *)
+{
+	//std::cout << "focus out" << std::endl;
+	m_pRenderView->m_bIsFocus = false;
+}
+
+void QtRenderView::showEvent(QShowEvent *)
+{
+	m_pRenderView->m_bShow = true;
+	//std::cout << "show" << std::endl;
+}
+
+void QtRenderView::hideEvent(QHideEvent *)
+{
+	m_pRenderView->m_bShow = false;
+	//std::cout << "hide" << std::endl;
 }
 
 //bool QtRenderView::event(QEvent *event)

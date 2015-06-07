@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Vector3.h"
+#include "Vector4.h"
+#include "Matrix33.h"
 const Vector3 Vector3::ZERO = Vector3(0.0f, 0.0f, 0.0f);
 const Vector3 Vector3::ONE = Vector3(1.0f, 1.0f, 1.0f);
 const Vector3 Vector3::XAxis = Vector3(1.0f, 0.0f, 0.0f);
@@ -64,6 +66,16 @@ Vector3 Vector3::operator*(float f) const
 	return vecRt;
 }
 
+Vector3 Vector3::operator*(const Matrix33& mat)
+{
+		Vector3 vec3Ret;
+		vec3Ret.m_fx = m_fx * mat.M[0][0] + m_fy * mat.M[1][0] + m_fz * mat.M[2][0];// +m_fw * mat44.M[3][0];
+		vec3Ret.m_fy = m_fx * mat.M[0][1] + m_fy * mat.M[1][1] + m_fz * mat.M[2][1];// +m_fw * mat44.M[3][1];
+		vec3Ret.m_fz = m_fx * mat.M[0][2] + m_fy * mat.M[1][2] + m_fz * mat.M[2][2];// +m_fw * mat44.M[3][2];
+		
+		return vec3Ret;
+}
+
 Vector3 Vector3::operator-() const
 {
 	//Vector3 vecRt;
@@ -110,6 +122,15 @@ Vector3 Vector3::operator+=(const Vector3& vecIn)
 	m_fx = m_fx + vecIn.m_fx;
 	m_fy = m_fy + vecIn.m_fy;
 	m_fz = m_fz + vecIn.m_fz;
+
+	return *this;
+}
+
+Vector3 Vector3::operator=(const Vector4& vecIn)
+{
+	m_fx = vecIn.m_fx;
+	m_fy = vecIn.m_fy;
+	m_fz = vecIn.m_fz;
 
 	return *this;
 }

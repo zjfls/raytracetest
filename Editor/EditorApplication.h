@@ -4,14 +4,21 @@
 #include "ApplicationBase.h"
 #include <map>
 #include "IListenerSubject.h"
+class IWorld;
 class IWorldObj;
 class EditorRenderView;
 //class RenderView;
 //
-
 class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject,public GameObjectBase
 {
 public:
+	enum EOperationState
+	{
+		EStateSelect,
+		EStateTranslate,
+		EStateRotate,
+		EStateScale
+	};
 	EditorApplication();
 	virtual ~EditorApplication();
 
@@ -39,6 +46,9 @@ public:
 	std::vector<SmartPointer<IWorldObj>> m_vecSelectObjs;
 	SmartPointer<IWorldObj> m_SelectObj;
 	//
+	EOperationState m_eOperState;
+	//
+	SmartPointer<IWorld> m_pGizmoScene;
 };
 
 extern template  class EDITOR_API  Singleton<EditorApplication>;

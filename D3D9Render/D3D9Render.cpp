@@ -66,11 +66,23 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 	{
 		return;
 	}
+	D3DPRIMITIVETYPE eType = D3DPT_TRIANGLELIST;
+	int nPrimiDivide = 3;
+	if (pD3DVertexBuff->m_eType == EPRIMITIVE_TRIANGLE)
+	{
+		nPrimiDivide = 3;
+		eType = D3DPT_TRIANGLELIST;
+	}
+	else if (pD3DVertexBuff->m_eType == EPRIMITIVE_LINE)
+	{
+		nPrimiDivide = 2;
+		eType = D3DPT_LINELIST;
+	}
 	if (pD3DIndexBuff == nullptr)
 	{
 		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexBuffDecal->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
-		m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, pD3DVertexBuff->m_nNumVertex / 3);
+		m_pDevice->DrawPrimitive(eType, 0, pD3DVertexBuff->m_nNumVertex / nPrimiDivide);
 	}
 	else
 	{
@@ -83,7 +95,7 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexBuffDecal->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
 		//m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-		m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, pD3DVertexBuff->m_nNumVertex, 0, pD3DIndexBuff->m_nIndexNum / 3);
+		m_pDevice->DrawIndexedPrimitive(eType, 0, 0, pD3DVertexBuff->m_nNumVertex, 0, pD3DIndexBuff->m_nIndexNum / nPrimiDivide);
 		//m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	}
 }
@@ -123,6 +135,12 @@ void D3D9Render::UpdateProjCamera(SmartPointer<CameraBase> pCamera)
 		0, yScale, 0, 0,
 		0, 0, zf / (zf - zn), 1,
 		0, 0, -zn*zf / (zf - zn), 0);
+
+
+	//D3DXMATRIX mat;
+	//D3DXMatrixPerspectiveFovLH(&mat,fovy,aspect,zn,zf);
+	//int i = 0;
+		
 }
 
 //

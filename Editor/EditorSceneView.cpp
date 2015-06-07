@@ -15,25 +15,33 @@
 #include "AssetManager.h"
 #include "FilePath.h"
 #include "RasterCamera.h"
+#include "RenderManager.h"
+#include "IOManager.h"
+#include "IOInterface.h"
+#include "IRender.h"
 EditorSceneView::EditorSceneView()
 {
 	//
-	m_pCamera = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+	m_pCamera = SmartPointer<IWorldObj>(new IWorldObj);
 	m_pCamera->m_strName = "EditorSceneCamera";
 
-	SmartPointer<RasterCamera> pCameraModule = m_pCamera->addModule<RasterCamera>(m_pCamera);
-	pCameraModule->m_fFar = 2000.0f;
+	SmartPointer<RasterCamera> pCameraModule = m_pCamera->addModule<RasterCamera>();
+	pCameraModule->m_fFar = 12000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = 1 / 1;
 	pCameraModule->m_fFovy = PI / 4;
 	//
-	//SmartPointer<CameraRenderer> pCameraRenderer(new CameraRenderer);// = new CameraRenderer;
-	CameraRenderer* pCameraRenderer = new CameraRenderer;
-	pCameraRenderer->m_pWorld = EditorApplication::GetInstance()->m_pWorld.get();
-	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
-	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
-	pCameraRenderer->m_clrColr = GameColor::blue;
-	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
+
+	//CameraRenderer* pCameraRenderer = new CameraRenderer;
+	//pCameraRenderer->m_pWorld = EditorApplication::GetInstance()->m_pWorld.get();
+	//pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
+	//pCameraRenderer->m_clrColr = GameColor::blue;
+	//pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
+	pCameraModule->m_pWorld = EditorApplication::GetInstance()->m_pWorld;
+	pCameraModule->m_clrColr = GameColor::blue;
+	//pCameraModule->m_pTarget = m_pRenderView;
+	m_pCameraModule = pCameraModule.get();
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());
 	//
 	m_pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 400.0f, -550.0f));
 	m_pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
@@ -53,20 +61,28 @@ void EditorSceneView::Update()
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->SetActiveRenderView(m_pRenderView);
 
 
+	if (m_bIsFocus)
+	{
+		UpdateCamera();
+	}
 
 
-
+	if (m_bShow == false)
+	{
+		return;
+	}
 	//
 	m_pCamera->Update();
 	m_pCamera->AfterUpdate();
+	//
+	DrawGizmo();
+	//
 	m_pRenderView->Present();
 }
 
 void EditorSceneView::Resize(unsigned int nWidth, unsigned int nHeight)
 {
 	SmartPointer<RasterCamera> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<RasterCamera>();
-	//SmartPointer<CameraRenderer> pCameraRenderer = dynamic_pointer_cast<CameraRenderer>(pCameraModule->m_mapListener["CameraRenderer"]);
-	CameraRenderer* pCameraRender = dynamic_cast<CameraRenderer*>(pCameraModule->m_mapListener["CameraRenderer"]);
 	pCameraModule->m_fAspect = float(nWidth) / nHeight;
 	EditorRenderView::Resize(nWidth, nHeight);
 }
@@ -77,7 +93,7 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 	Vector3 dir = m_pCamera->m_pTransform->GetForward();
 	dir = dir.normalize();
 	//
-	position += zDelta * 0.1 * dir;
+	position += zDelta * 0.2 * dir;
 	m_pCamera->m_pTransform->SetTranslate(position);
 	//
 }
@@ -90,8 +106,8 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 		//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
 		Orientation rot = m_pCamera->m_pTransform->GetOrientation();
 		Vector3 vecRot = rot.m_vecEulerAngle;
-		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0003;
-		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0003;
+		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0004;
+		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0004;
 		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx,vecRot.m_fy,vecRot.m_fz);
 
 
@@ -111,50 +127,7 @@ void EditorSceneView::OnMouseRButtonDown(Vector2& pt)
 
 void EditorSceneView::OnKeyPressed(int key)
 {
-	if (key == 'W')
-	{
-		
-		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
-		Vector3 dir = m_pCamera->m_pTransform->GetForward();
-		dir = dir.normalize();
-		//
-		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
-		std::cout << "move front:"<<"x:"<<diff.m_fx<<"y:"<<diff.m_fy<<"z:"<<diff.m_fz<<"ElapseTime:"<<TimeManager::GetInstance()->m_fElapseTime << std::endl;
-		position += diff;
-		m_pCamera->m_pTransform->SetTranslate(position);
-	}
-	if (key == 'S')
-	{
-		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
-		Vector3 dir = m_pCamera->m_pTransform->GetForward();
-		dir = dir.normalize();
-		//
-		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
-		position = position - diff;
-		m_pCamera->m_pTransform->SetTranslate(position);
-	}
-	if (key == 'A')
-	{
-		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
-		Vector3 dir = -m_pCamera->m_pTransform->GetRight();
-		dir = dir.normalize();
-		//
-		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
-		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
-		position += diff;
-		m_pCamera->m_pTransform->SetTranslate(position);
-	}
-	if (key == 'D')
-	{
-		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
-		Vector3 dir = m_pCamera->m_pTransform->GetRight();
-		dir = dir.normalize();
-		//
-		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
-		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
-		position += diff;
-		m_pCamera->m_pTransform->SetTranslate(position);
-	}
+
 }
 
 void EditorSceneView::OnDragEnter(Vector2& pos, std::string file)
@@ -186,6 +159,71 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 	}
 
 	
+}
+
+void EditorSceneView::Create(unsigned int nWidth, unsigned int nHeight, int windowID)
+{
+	EditorRenderView::Create(nWidth, nHeight, windowID);
+	m_pCameraModule->m_pTarget = m_pRenderView;
+}
+
+void EditorSceneView::UpdateCamera()
+{
+	SmartPointer<IOInterface> pInterface = IOManager::GetInstance()->m_pIO;
+	if (pInterface->IsKeyDown('W') == true)
+	{
+
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = m_pCamera->m_pTransform->GetForward();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
+	if (pInterface->IsKeyDown('S') == true)
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = m_pCamera->m_pTransform->GetForward();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		position = position - diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
+	if (pInterface->IsKeyDown('A') == true)
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = -m_pCamera->m_pTransform->GetRight();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
+	if (pInterface->IsKeyDown('D') == true)
+	{
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dir = m_pCamera->m_pTransform->GetRight();
+		dir = dir.normalize();
+		//
+		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
+		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
+}
+
+void EditorSceneView::OnClick(Vector2& pos)
+{
+
+}
+
+void EditorSceneView::DrawGizmo()
+{
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->Render(m_pCameraModule,EditorApplication::GetInstance()->m_pGizmoScene,m_pRenderView);
 }
 
 

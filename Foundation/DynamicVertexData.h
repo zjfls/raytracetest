@@ -8,7 +8,8 @@ class FOUNDATION_API DynamicVertexData :
 public:
 	DynamicVertexData();
 	virtual ~DynamicVertexData();
-	virtual void getBoundingMaxAndMin(Vector3& min, Vector3 max);
+	void getBoundingMaxAndMin(Vector3& min, Vector3& max) override;
+	void autoGenDesc();
 	std::vector<Vector3> m_PositionData;
 	std::vector<Vector2> m_UVData;
 	std::vector<Vector3> m_NormalData;

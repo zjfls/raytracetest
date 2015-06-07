@@ -3,6 +3,8 @@
 #include "SmartPointer.h"
 #include "GameObjectBase.h"
 
+class IWorldObj;
+class IRenderable;
 namespace ZG
 {
 	class TranslateGizmo;
@@ -17,8 +19,10 @@ namespace ZG
 		void createTranlateGizmo();
 		void createRotationGizmo();
 		void createScaleGizmo();
+		void createSceneGridGizmo();
 	public:
 		SmartPointer<TranslateGizmo> m_pTranslateGizmo;
+		SmartPointer<IWorldObj>	 m_pSceneGrid;
 	};
 	extern template  class WORLD_API  Singleton<GizmoManager>;
 }

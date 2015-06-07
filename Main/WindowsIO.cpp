@@ -18,7 +18,7 @@ bool WindowsIO::IsLBDown()
 
 bool WindowsIO::IsKeyDown(char c)
 {
-	return false;
+	return GetAsyncKeyState(c) < 0;
 }
 
 bool WindowsIO::IsRBDown()

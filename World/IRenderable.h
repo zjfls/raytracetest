@@ -9,6 +9,7 @@ class LightBase;
 class MaterialResource;
 class BoundingBase;
 using ZG::SmartPointer;
+class AABBBox;
 class WORLD_API IRenderable :public ModuleBase
 {
 public:
@@ -28,12 +29,13 @@ public:
 	//if MaterialInstance is not nullptr return MaterialInstance else return sharedMaterial;
 	virtual SmartPointer<MaterialResource> getRenderMaterial();
 protected:
-	SmartPointer<VertexData> m_pVertexData;
-	SmartPointer<IndexData> m_pIndexData;
-	BoundingBase* m_pBounding;
 	friend class RenderPass;
 	SmartPointer<MaterialResource> m_pMaterialInstance;
 public:
 	std::vector<SmartPointer<LightBase>> m_vecLight;
+	BoundingBase* m_pBounding;
+	SmartPointer<VertexData> m_pVertexData;
+	SmartPointer<IndexData> m_pIndexData;
+	//AABBBox* m_pBox
 };
 

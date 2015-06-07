@@ -11,7 +11,7 @@ public:
 	
 	~Transform();
 
-	virtual void Update(SmartPointer<ModuleBase> pModule);
+	virtual void Update();
 	Vector3	GetRight();
 	Vector3 GetForward();
 	Vector3	GetUp();

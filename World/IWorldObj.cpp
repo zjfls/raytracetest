@@ -8,7 +8,7 @@ IWorldObj::IWorldObj()
 	:m_pParent(nullptr)
 {
 	m_strName = "WorldObj";
-	//m_pTransform = addModule<Transform>(nullptr);
+	m_pTransform = addModule<Transform>();
 }
 
 
@@ -65,7 +65,7 @@ void IWorldObj::Update()
 {
 	for each (SmartPointer<ModuleBase> var in m_vecModules)
 	{
-		var->Update(var);
+		var->Update();
 	}
 	for each (SmartPointer<IWorldObj> varChild in m_vecChildren)
 	{
@@ -119,7 +119,7 @@ SmartPointer<IWorldObj> IWorldObj::GetChild(unsigned int i) const
 
 SmartPointer<IWorldObj> IWorldObj::Clone(bool bRecursive)
 {
-	SmartPointer<IWorldObj> pCloneObj = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pCloneObj = SmartPointer<IWorldObj>(new IWorldObj);
 	pCloneObj->m_strName = m_strName;
 	pCloneObj->removeModule(pCloneObj->m_pTransform.SmartPointerCast<ModuleBase>());
 	for each (SmartPointer<ModuleBase> pModule in m_vecModules)
@@ -152,7 +152,7 @@ void IWorldObj::AfterUpdate()
 {
 	for each (SmartPointer<ModuleBase> pModule in m_vecModules)
 	{
-		pModule->OnLateUpdate(pModule);
+		pModule->OnLateUpdate();
 	}
 	for each (SmartPointer<IWorldObj> pObj in m_vecChildren)
 	{

@@ -26,7 +26,7 @@ public:
 	//
 	void InitSceneTreeView();
 private:
-	void AddWorldObj(shared_ptr<IWorldObj> pObj, HTREEITEM* pItem);
+	void AddWorldObj(SmartPointer<IWorldObj> pObj, HTREEITEM* pItem);
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);

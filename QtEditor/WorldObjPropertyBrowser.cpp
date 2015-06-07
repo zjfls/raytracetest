@@ -295,3 +295,8 @@ void WorldObjPropertyBrowser::AddEditorProperty(SmartPointer<ModuleBase> pModule
 	pEditorProp->m_PropName = propName;
 	m_PropertyMap[pProp] = pEditorProp;
 }
+
+void WorldObjPropertyBrowser::UpdateProperty()
+{
+
+}

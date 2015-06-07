@@ -26,6 +26,7 @@ CameraRenderer::CameraRenderer()
 
 CameraRenderer::~CameraRenderer()
 {
+	
 }
 
 void CameraRenderer::OnNotify(string msg, IListenerSubject* pSubject)
@@ -38,7 +39,7 @@ void CameraRenderer::OnNotify(string msg, IListenerSubject* pSubject)
 	SmartPointer<RasterCamera> pCamera = dynamic_cast<RasterCamera*>(pSubject);
 	if (msg == "Render")
 	{
-		Render(pCamera.get());
+		Render(dynamic_cast<RasterCamera*>(pSubject));
 	}
 	if (msg == "UpdateMatrix")
 	{
@@ -68,7 +69,7 @@ void CameraRenderer::Render(SmartPointer<CameraBase> pCamera)
 	}
 	m_pRender->SetRenderTarget(0, pTarget);
 	m_pRender->ClearTarget(m_bClearColor, m_clrColr, m_bClearDepth, m_fDepth);
-	m_pRender->Render(pCamera, SmartPointer<IWorld>(m_pWorld),pTarget);
+	m_pRender->Render(pCamera, SmartPointer<IWorld>(m_pWorld), pTarget);
 
 	SmartPointer<RasterMaterial> mat = ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml").SmartPointerCast<RasterMaterial>();
 

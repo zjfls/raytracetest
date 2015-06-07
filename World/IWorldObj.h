@@ -16,10 +16,10 @@ public:
 	virtual SmartPointer<IWorldObj> Clone(bool bRecursive);
 
 	template<class T>
-	SmartPointer<T> addModule(SmartPointer<IWorldObj> pObj)
+	SmartPointer<T> addModule()
 	{
 		SmartPointer<T> pModule = SmartPointer<T>(new T);
-		pModule->m_pOwnerObj = pObj;
+		pModule->m_pOwnerObj = this;
 		m_vecModules.push_back(pModule.SmartPointerCast<ModuleBase>());
 		pModule->OnAdded();
 		return pModule;
@@ -39,13 +39,13 @@ public:
 	template<class T>
 	bool		IsHaveModule();
 
-	static SmartPointer<IWorldObj> CreateWorldObj()
-	{
-		SmartPointer<IWorldObj> pObj(new IWorldObj);
-		
-		pObj->m_pTransform = pObj->addModule<Transform>(pObj);
-		return pObj;
-	}
+	//static SmartPointer<IWorldObj> new IWorldObj
+	//{
+	//	SmartPointer<IWorldObj> pObj(new IWorldObj);
+	//	
+	//	//pObj->m_pTransform = pObj->addModule<Transform>();
+	//	return pObj;
+	//}
 	//virtual IWorldObj* Clone(bool bRecursive);
 
 private:

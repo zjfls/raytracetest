@@ -7,7 +7,7 @@
 
 IWorld::IWorld()
 {
-	m_pRoot = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+	m_pRoot = SmartPointer<IWorldObj>(new IWorldObj);
 	m_pRoot->m_strName = "SceneRoot";
 }
 

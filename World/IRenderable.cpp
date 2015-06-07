@@ -5,6 +5,10 @@
 #include "AABBBox.h"
 #include "ResourceManager.h"
 #include "MaterialResource.h"
+#include "IWorldObj.h"
+#include "Transform.h"
+#include "Matrix44.h"
+#include "Vector4.h"
 
 
 IRenderable::IRenderable()
@@ -24,7 +28,22 @@ IRenderable::~IRenderable()
 
 void IRenderable::Update()
 {
-
+	if (m_bTransformUpdated == true)
+	{
+		if (m_pBounding == nullptr)
+		{
+			BuildBoundingVolume();
+		}
+		Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		Vector4 vMin, vMax;
+		AABBBox* pBox = dynamic_cast<AABBBox*>(m_pBounding);
+		if (pBox != nullptr)
+		{
+			*pBox = *m_pVertexData->m_pAABB;
+			pBox->Transform(mat);
+		}
+		m_bTransformUpdated = false;
+	}
 }
 
 SmartPointer<MaterialResource> IRenderable::GetDefaultMaterial()
@@ -42,10 +61,28 @@ void IRenderable::BuildBoundingVolume()
 	Vector3 vecMax, vecMin;
 	if (m_pVertexData != nullptr)
 	{
+		if (m_pBounding != nullptr)
+		{
+			delete m_pBounding;
+		}
 		m_pVertexData->getBoundingMaxAndMin(vecMin, vecMax);
-		AABBBox* m_pBox = new AABBBox();
-		m_pBox->m_pMax = vecMax;
-		m_pBox->m_pMin = vecMin;
+		AABBBox* pBox = new AABBBox();
+		m_pBounding = pBox;
+		pBox->m_Max = vecMax;
+		pBox->m_Min = vecMin;
+
+
+		if (m_pOwnerObj != nullptr)
+		{
+			Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+			Vector4 vMin,vMax;
+			vMin.Vector3ToPoint(pBox->m_Min);
+			vMax.Vector3ToPoint(pBox->m_Max);
+			vMin = vMin * mat;
+			vMax = vMax * mat;
+			pBox->m_Max = vMax;
+			pBox->m_Min = vMin;
+		}
 	}
 }
 

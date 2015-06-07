@@ -20,9 +20,9 @@ public:
 	CPropertiesWnd();
 
 	void AdjustLayout();
-	void UpdateWorldObjProperty(shared_ptr<IWorldObj> pObj);
+	void UpdateWorldObjProperty(SmartPointer<IWorldObj> pObj);
 private:
-	void AddModule(shared_ptr<ModuleBase> pModule);
+	void AddModule(SmartPointer<ModuleBase> pModule);
 // Ьиад
 public:
 	void SetVSDotNetLook(BOOL bSet)

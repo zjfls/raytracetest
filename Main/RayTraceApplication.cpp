@@ -47,8 +47,8 @@ SmartPointer<SimpleRTMaterial> CreateMaterial(GameColor colorEmission, GameColor
 
 SmartPointer<IWorldObj> CreateSphere3D(float fRadius, const Vector3& vecPos, GameColor colorEmission, GameColor colorDiffuse,bool bReflect,bool bRefract,float ri = 1.0f,float t = 1.0)
 {
-	SmartPointer<IWorldObj> pObj = IWorldObj::CreateWorldObj();
-	SmartPointer<Sphere3D> pSphere = pObj->addModule<Sphere3D>(pObj);
+	SmartPointer<IWorldObj> pObj = new IWorldObj;
+	SmartPointer<Sphere3D> pSphere = pObj->addModule<Sphere3D>();
 	pSphere->m_fRadius = fRadius;
 	//pObj->addModule(pSphere);
 	pObj->m_pTransform->SetTranslate(vecPos.m_fx,vecPos.m_fy,vecPos.m_fz);
@@ -64,8 +64,8 @@ SmartPointer<IWorldObj> CreateSphere3D(float fRadius, const Vector3& vecPos, Gam
 
 SmartPointer<IWorldObj> AddPlane3D(SmartPointer<IWorldObj> pParent)
 {
-	SmartPointer<IWorldObj> pObj = IWorldObj::CreateWorldObj();
-	SmartPointer<Plane3D>	pPlane = pObj->addModule<Plane3D>(pObj);
+	SmartPointer<IWorldObj> pObj = new IWorldObj;
+	SmartPointer<Plane3D>	pPlane = pObj->addModule<Plane3D>();
 	pPlane->m_vecPt = Vector3(0.0f, -100.0f, 0.0f);
 	pPlane->m_vecNormal = Vector3(0.0f, 1.0f, 0.0f);
 	SmartPointer<SimpleRTMaterial> pMat = CreateMaterial(GameColor(0.1f,0.1f,0.1f,1.0f), GameColor(0.4f,0.4f,0.1f,1.0f));
@@ -86,21 +86,21 @@ void RayTraceApplication::SetupScene()
 	SmartPointer<IWorld> pWorld = m_pWorld;
 	SmartPointer<IWorldObj> pObj = new SimpleWorldObj();
 	pObj->m_pTransform->SetTranslate(0.0f, 0.0f, -650.0f);// = Vector3(0.0f, 0.0f, 0.0f);
-	m_pCamera = pObj->addModule<RayTraceCamera>(pObj);
+	m_pCamera = pObj->addModule<RayTraceCamera>();
 	pWorld->m_pRoot->addChild(pObj);
 
 	
 	//add directionallight
-	SmartPointer<IWorldObj> pLightObj = IWorldObj::CreateWorldObj();
-	SmartPointer<DirectionalLight> pLight = pLightObj->addModule<DirectionalLight>(pLightObj);
+	SmartPointer<IWorldObj> pLightObj = new IWorldObj;
+	SmartPointer<DirectionalLight> pLight = pLightObj->addModule<DirectionalLight>();
 	pLight->m_Color = GameColor(0.0f, 0.7f, 0.3f, 1.0f);
 	pLight->m_fIntensity = 0.5f;
 	pLightObj->m_pTransform->SetOrientation(-PI - 1.0f,0.0f,0.0f);
 	pWorld->m_pRoot->addChild(pLightObj);
 	//
 	//add pointlight
-	SmartPointer<IWorldObj> pPointLightObj = IWorldObj::CreateWorldObj();
-	SmartPointer<PointLight> pPointLight = pPointLightObj->addModule<PointLight>(pPointLightObj);
+	SmartPointer<IWorldObj> pPointLightObj = new IWorldObj;
+	SmartPointer<PointLight> pPointLight = pPointLightObj->addModule<PointLight>();
 	pPointLight->m_Color = GameColor(0.5f, 0.1f, 0.0f, 1.0f);
 	pPointLight->m_fIntensity = 8.0f;
 	pPointLight->m_fAttenConst = 10.0f;

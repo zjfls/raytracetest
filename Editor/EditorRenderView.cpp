@@ -5,6 +5,8 @@
 #include "RenderView.h"
 #include "RasterCamera.h"
 EditorRenderView::EditorRenderView()
+	:m_bIsFocus(false)
+	, m_bShow(false)
 {
 	m_pRenderView = nullptr;
 }
@@ -22,7 +24,7 @@ void EditorRenderView::Create(unsigned int nWidth, unsigned int nHeight, int win
 	renderView.m_nHeight = nHeight;
 	renderView.m_windowID = windowID;
 	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->CreateRenderView(renderView);
-
+	
 
 
 
@@ -60,6 +62,11 @@ void EditorRenderView::OnMouseRButtonRelease(Vector2& pt)
 }
 
 void EditorRenderView::OnKeyPressed(int key)
+{
+
+}
+
+void EditorRenderView::Update()
 {
 
 }

@@ -22,4 +22,7 @@
 #include <map>
 #include <unordered_map>
 using namespace std;
+#include "GameObjectBase.h"
+#include "SmartPointer.h"
+using namespace ZG;
 // TODO:  在此处引用程序需要的其他头文件

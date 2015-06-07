@@ -6,6 +6,12 @@
 #include "MaterialResource.h"
 #include "IRenderable.h"
 #include "RenderTargetGroup.h"
+#include "EnviromentSetting.h"
+#include "RenderSystem.h"
+#include "CameraBase.h"
+#include "RenderView.h"
+#include "RasterMaterial.h"
+#include "Culler.h"
 //RasterRender::RasterRender()
 //	:m_pRenderPath(nullptr)
 //{
@@ -36,7 +42,12 @@ int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld>
 	{
 		pWorld->GetRenderablesLightInfo(vecRenderables);
 	}
-	int nRet = Render(vecRenderables,pTarget);
+	//
+	Culler culler;
+	std::vector<SmartPointer<IRenderable>> vecCulled;
+	culler.cull(vecRenderables, vecCulled, pCammera);
+	//
+	int nRet = Render(vecCulled, pTarget);
 	if (RenderEnd() == false)
 	{
 		std::cout << "End Scene Failed!" << std::endl;
@@ -110,7 +121,37 @@ void RasterRender::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, Sm
 	
 }
 
-//void RasterRender::SetRenderStageState(ERENDERTYPEFILTER eFillter)
-//{
-//	//
-//}
+void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
+{
+
+	SmartPointer<CameraBase> pCamera = rEvent.m_pTargetCamera;
+	if (pCamera == nullptr || pCamera->m_pTarget == nullptr)
+	{
+		return;
+	}
+	m_pCurrentRenderCamera = pCamera;
+
+
+
+
+	IRenderTarget* pTarget = nullptr;
+	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	{
+		pTarget = m_pRenderSystem->GetDefaultRenderTarget();
+	}
+	else
+	{
+		pTarget = pCamera->m_pTarget.get();
+	}
+	SetRenderTarget(0, pTarget);
+	ClearTarget(pCamera->m_bClearColor, pCamera->m_clrColr, pCamera->m_bClearDepth, pCamera->m_fDepth);
+	Render(pCamera, pCamera->m_pWorld, pTarget);
+
+	SmartPointer<RasterMaterial> mat = ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml").SmartPointerCast<RasterMaterial>();
+
+
+	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	{
+		DrawScreen(m_pRenderSystem->GetDefaultRenderTarget(), m_pRenderSystem->GetActiveRenderView(), mat);
+	}
+}

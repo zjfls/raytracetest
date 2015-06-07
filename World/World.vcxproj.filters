@@ -105,6 +105,12 @@
     <ClInclude Include="Plane3D.h">
       <Filter>头文件\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="Ring.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Culler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -181,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="Plane3D.cpp">
       <Filter>源文件\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Culler.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

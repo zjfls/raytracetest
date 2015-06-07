@@ -17,11 +17,11 @@ public:
 	}
 	~Vector4();
 
-
+	Vector4 operator*(float f) const;
 	void Vector3ToPoint(const Vector3& vec3In);
 	void Vector3ToDirection(const Vector3& vec3In);
 	void ToVector3(Vector3& vecIn) const;
-	Vector4 operator*(const Matrix44 mat44)const;
+	Vector4 operator*(const Matrix44& mat44)const;
 
 	float m_fx;
 	float m_fy;

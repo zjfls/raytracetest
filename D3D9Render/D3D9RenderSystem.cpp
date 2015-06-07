@@ -387,6 +387,11 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	if (pDynamicVertexData)
 	{
 		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
+		pBuff->m_eType = pDynamicVertexData->m_PrimitiveType;
+		if (pDynamicVertexData->vecDataDesc.size() == 0)
+		{
+			pDynamicVertexData->autoGenDesc();
+		}
 		pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pDynamicVertexData->vecDataDesc);
 		pBuff->m_nNumVertex = pData->nNumVertex;
 		pBuff->m_nStrip = pData->GetVertexDataLength();

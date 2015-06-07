@@ -77,6 +77,8 @@ Matrix33 Matrix33::operator*(const Matrix33& matIn)
 	return matRet;
 }
 
+
+
 void Matrix33::RotAboutX(float f)
 {
 	float cosf = cos(f);
@@ -234,4 +236,9 @@ Vector3 Matrix33::toEulerAngleYXZ()
 	rt.m_fx = p;
 	rt.m_fz = b;
 	return rt;
+}
+
+Vector3 Matrix33::GetForwardDir() const
+{
+	return Vector3(M[2][0], M[2][1], M[2][2]);
 }

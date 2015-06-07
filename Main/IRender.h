@@ -1,5 +1,7 @@
 #pragma once
 #include "RenderEnum.h"
+#include "GameObjectBase.h"
+#include "CameraBase.h"
 //#include "RenderTargetGroup.h"
 class CameraBase;
 class IWorld;
@@ -8,13 +10,19 @@ class RenderView;
 class CameraBase;
 class IRenderable;
 struct stRenderViewInfo;
-class MAIN_API IRender
+class MAIN_API IRender:public GameObjectBase
 {
 public:
 	IRender();
 	virtual ~IRender();
 
 
+
+	void RegistCamera(SmartPointer<CameraBase> pCamera);
+	void OnCameraRender(CameraRenderEvent& event);
+	void OnCameraUpdate(CameraRenderEvent& event);
+	virtual void RenderCamera(CameraRenderEvent& event){};
+	virtual void UpdateProjCamera(SmartPointer<CameraBase> pCamera) = 0;
 	/*
 
 	*Summary: render a world

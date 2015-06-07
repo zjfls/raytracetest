@@ -1,6 +1,7 @@
 #pragma once
 #include "BoundingBase.h"
 #include "Vector3.h"
+class Matrix44;
 class MATH_API AABBBox :
 	public BoundingBase
 {
@@ -10,7 +11,11 @@ public:
 
 	virtual bool testAABB(const AABBBox& aabb);
 	virtual bool testRay(const Ray3D& r);
-	Vector3 m_pMax;
-	Vector3 m_pMin;
+
+
+
+	void	Transform(Matrix44& mat);
+	Vector3 m_Max;
+	Vector3 m_Min;
 };
 

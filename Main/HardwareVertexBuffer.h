@@ -11,5 +11,8 @@ public:
 
 	unsigned int m_nNumVertex;
 	unsigned int m_nStrip;
+
+
+	EDRAWPRIMITIVETYPE m_eType;
 };
 

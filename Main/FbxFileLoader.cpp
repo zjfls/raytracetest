@@ -96,7 +96,7 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPat
 {
 	refPath = refPath + "/" + pNode->GetName() + ".mesh";
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
-	SmartPointer<IWorldObj> pObj = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pObj = SmartPointer<IWorldObj>(new IWorldObj);
 	pObj->m_strName = pNode->GetName();
 	FbxTransform nodeTrans = pNode->GetTransform();
 	FbxDouble3 trans = pNode->LclTranslation.Get();
@@ -480,7 +480,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 #pragma endregion
 #pragma region AddMeshResource
 	SmartPointer<Mesh> pMeshModule;
-	pMeshModule = pModuleOwener->addModule<Mesh>(pModuleOwener);
+	pMeshModule = pModuleOwener->addModule<Mesh>();
 	pMeshModule->SetMeshResource(pMeshResource);
 	EnumIndexDesc eIndexDesc = EIndexInt;
 	int nIndexLength = indexVec.size();
@@ -769,7 +769,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 		string subRefPath = strMeshPath + meshName + "_" + pMat->GetName() + ".mesh";
 		SmartPointer<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
 		m_pAsset->AddResource(subRefPath, pSubMesh.get());
-		SmartPointer<Mesh> pSubMeshModule = obj->addModule<Mesh>(obj);
+		SmartPointer<Mesh> pSubMeshModule = obj->addModule<Mesh>();
 		pSubMeshModule->SetMeshResource(pSubMesh);
 		bRemoveMainMesh = true;
 		//

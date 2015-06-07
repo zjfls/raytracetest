@@ -69,9 +69,6 @@
     <ClInclude Include="Main_Dll_Def.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MaterialArg.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="MaterialAsset.h">
       <Filter>头文件</Filter>
     </ClInclude>

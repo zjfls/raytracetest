@@ -7,6 +7,7 @@
 #include <iostream>
 #include "MathDefine.h"
 #include "VertexIndexDataEventProxy.h"
+#include "AABBBox.h"
 using namespace ZG;
 VertexData::~VertexData()
 {
@@ -216,14 +217,24 @@ void MeshVertexData::ComputeTangent(const IndexData& iData)
 	delete[] tan2;
 }
 
-void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3 max)
+void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3& max)
 {
-	min.m_fx = MINFLOAT;
-	min.m_fy = MINFLOAT;
-	min.m_fz = MINFLOAT;
-	max.m_fx = MAXFLOAT;
-	max.m_fy = MAXFLOAT;
-	max.m_fz = MAXFLOAT;
+	if (m_pAABB == nullptr)
+	{
+		m_pAABB = new AABBBox;
+	}
+	else
+	{
+		min = m_pAABB->m_Min;
+		max = m_pAABB->m_Max;
+		return;
+	}
+	min.m_fx = MAXFLOAT;
+	min.m_fy = MAXFLOAT;
+	min.m_fz = MAXFLOAT;
+	max.m_fx = MINFLOAT;
+	max.m_fy = MINFLOAT;
+	max.m_fz = MINFLOAT;
 	//to do
 	for (int i = 0; i < nNumVertex; ++i)
 	{
@@ -254,4 +265,6 @@ void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3 max)
 			max.m_fz = v.m_fz;
 		}
 	}
+	m_pAABB->m_Min = min;
+	m_pAABB->m_Max = max;
 }

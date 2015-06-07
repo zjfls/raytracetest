@@ -16,6 +16,9 @@ public:
 	int	  m_nFps;
 	float m_fFpsTimeCounter;
 	int	  m_nFpsCount;
+
+
+
 };
 
 extern template class MAIN_API Singleton < TimeManager >;

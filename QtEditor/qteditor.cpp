@@ -206,6 +206,9 @@ void QtEditor::OnTimer()
 {
 
 	EditorApplication::GetInstance()->Run();
+	//
+
+	//
 }
 
 //void QtEditor::keyPressEvent(QKeyEvent * event)

@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderEnum.h"
-class MAIN_API IRenderTarget
+class MAIN_API IRenderTarget:public GameObjectBase
 {
 public:
 	IRenderTarget();

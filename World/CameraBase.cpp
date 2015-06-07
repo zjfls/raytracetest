@@ -3,15 +3,24 @@
 //#include "IRender.h"
 #include "IWorld.h"
 #include "IWorldObj.h"
+#include "Event.h"
 //#include "RenderManager.h"
 //#include "RenderView.h"
 //#include "RenderSystem.h"
 
 
 CameraBase::CameraBase()
+	: m_pTarget(nullptr)
+	, m_pWorld(nullptr)
+	, m_bClearColor(true)
+	, m_bClearDepth(true)
+	, m_fDepth(1.0f)
+	, m_clrColr(GameColor::blue)
 {
 	//m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	//m_pRenderTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
+	addEvent("CAMERARENDER",new Event<CameraRenderEvent> );
+	addEvent("CAMERAUPDATE", new Event<CameraRenderEvent>);
 }
 
 
@@ -19,25 +28,32 @@ CameraBase::~CameraBase()
 {
 }
 
-void CameraBase::Render(SmartPointer<CameraBase> pCamera)
+void CameraBase::Render()
 {
-	//m_pRender->SetRenderTarget(m_pRenderTarget);
-	//m_pRender->m_pCurrentRenderCamera = this;
-	//m_pRender->Render(this, IWorld::pSingleWorld);
-	NotifyListener("Render", pCamera.get());
+	if (m_bActive == false)
+	{
+		return;
+	}
+	CameraRenderEvent rEvent;
+	rEvent.m_pTargetCamera = this;
+	(*getEvent<CameraRenderEvent>("CAMERARENDER"))(rEvent);
 }
 
-void CameraBase::Update(SmartPointer<ModuleBase> pModule)
+void CameraBase::Update()
 {
-	SmartPointer<CameraBase> pCamera = pModule.SmartPointerCast<CameraBase>();
-	NotifyListener("UpdateMatrix", pCamera.get());
+	if (m_bActive == false)
+	{
+		return;
+	}
+	CameraRenderEvent rEvent;
+	rEvent.m_pTargetCamera = this;
+	(*getEvent<CameraRenderEvent>("CAMERAUPDATE"))(rEvent);
 	UpdateMatrix();
 }
 
-void CameraBase::OnLateUpdate(SmartPointer<ModuleBase> pModule)
+void CameraBase::OnLateUpdate()
 {
-	SmartPointer<CameraBase> pCamera = pModule.SmartPointerCast<CameraBase>();
-	Render(pCamera);
+	Render();
 }
 void CameraBase::UpdateMatrix()
 {
@@ -71,3 +87,4 @@ SmartPointer<ModuleBase> CameraBase::Clone()
 	pCamera->m_fFovy = m_fAspect;
 	return pCamera.get();
 }
+

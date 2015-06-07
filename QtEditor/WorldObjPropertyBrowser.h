@@ -27,7 +27,7 @@ private:
 	private slots:
 	void valueChanged(QtProperty *pProp, const QVariant &v);
 
-
+	void	UpdateProperty();
 	void	AddEditorProperty(SmartPointer<ModuleBase> pModule, std::string propName,QtProperty* pProp);
 private:
 	SmartPointer<IWorldObj> m_pSelectObj;

@@ -16,7 +16,7 @@ class RayTraceRender :
 public:
 	RayTraceRender();
 	virtual ~RayTraceRender();
-
+	virtual void UpdateProjCamera(SmartPointer<CameraBase> pCamera){};
 
 	virtual int Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld> pWorld);
 	////////////////////////////////////////////////////

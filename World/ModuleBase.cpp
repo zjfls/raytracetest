@@ -3,6 +3,7 @@
 #include "IWorldObj.h"
 
 ModuleBase::ModuleBase()
+	:m_bTransformUpdated(false)
 {
 }
 
@@ -11,12 +12,12 @@ ModuleBase::~ModuleBase()
 {
 }
 
-void ModuleBase::OnLateUpdate(SmartPointer<ModuleBase> pModule)
+void ModuleBase::OnLateUpdate()
 {
 
 }
 
-void ModuleBase::Update(SmartPointer<ModuleBase> pModule)
+void ModuleBase::Update()
 {
 
 }

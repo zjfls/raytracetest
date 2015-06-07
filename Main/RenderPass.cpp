@@ -44,6 +44,14 @@ RenderPass::RenderPass(MaterialPass* pPass)
 
 RenderPass::~RenderPass()
 {
+	for each (std::pair<std::string, MaterialArg*> p in m_ArgLib)
+	{
+		delete p.second;
+	}
+	//for each (std::pair<std::string, MaterialArg*> p in m_FragShaderArgs)
+	//{
+	//	delete p.second;
+	//}
 }
 
 void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)

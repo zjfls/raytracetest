@@ -50,30 +50,36 @@ void D3D9Application::SetupScene()
 
 
 
-	SmartPointer<IWorldObj> pCamera(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pCamera(new IWorldObj);
 	m_pWorld->m_pRoot->addChild(pCamera);
-	SmartPointer<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
+	SmartPointer<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>();
 	pCameraModule->m_fFar = 2000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
 	pCameraModule->m_fFovy = PI/4;
 
 
-	CameraRenderer* pCameraRenderer = new CameraRenderer;
-	pCameraRenderer->m_pWorld = m_pWorld.get();
-	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
-	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
-	pCameraRenderer->m_clrColr = GameColor::black;
-	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
+	//CameraRenderer* pCameraRenderer = new CameraRenderer;
+	//pCameraRenderer->m_pWorld = m_pWorld.get();
+	////pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
+	//pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
+	//pCameraRenderer->m_clrColr = GameColor::black;
+	//pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
+	//
+	pCameraModule->m_pWorld = m_pWorld;
+	pCameraModule->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
+	pCameraModule->m_clrColr = GameColor::black;
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());
+	//
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f,400.0f,-550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
 
-	SmartPointer<IWorldObj> pLightObj = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pLightObj = SmartPointer<IWorldObj>(new IWorldObj);
 	pLightObj->m_pTransform->SetTranslate(0.0f, 130.0f, 0.0f);
 	pLightObj->m_pTransform->SetOrientation(AngleToRad(35.0f), 0.0f, 0.0f);
 	pLightObj->m_strName = "Lights";
-	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>(pLightObj);
+	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>();
 	pDirLight->m_fIntensity = 1.5f;
 	pDirLight->m_Color = GameColor::white;
 

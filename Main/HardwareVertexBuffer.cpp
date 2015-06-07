@@ -4,6 +4,7 @@
 
 HardwareVertexBuffer::HardwareVertexBuffer()
 	:m_nNumVertex(0)
+	, m_eType(EPRIMITIVE_TRIANGLE)
 {
 }
 

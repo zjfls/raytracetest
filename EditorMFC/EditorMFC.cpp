@@ -317,7 +317,7 @@ int CEditorMFCApp::Run()
 	return 0;
 }
 
-void CEditorMFCApp::OnNotify(string msg, std::shared_ptr<IListenerSubject> pSubject)
+void CEditorMFCApp::OnNotify(string msg, IListenerSubject* pSubject)
 {
 	CMainFrame* pFrm = (CMainFrame*)m_pMainWnd;
 	if (msg == "InitScene")

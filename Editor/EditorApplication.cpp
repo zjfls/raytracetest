@@ -24,13 +24,17 @@
 #include "Cone.h"
 #include "GizmoManager.h"
 #include "TranslateGizmo.h"
+#include "Ring.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
 template<> SmartPointer<EditorApplication> Singleton<EditorApplication>::_instance = nullptr;
 
 EditorApplication::EditorApplication()
+	:m_eOperState(EditorApplication::EStateTranslate)
+	, m_pGizmoScene(nullptr)
 {
+
 }
 
 
@@ -84,17 +88,14 @@ void EditorApplication::Run()
 	m_CameraList = EditorApplication::GetInstance()->m_pWorld->GetAllModules<RasterCamera>();
 	for each (SmartPointer<RasterCamera> pCamera in m_CameraList)
 	{
-		for each (std::pair<string, IListener*> p in pCamera->m_mapListener)
+		if (pCamera->m_pTarget == RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView())
 		{
-			SmartPointer<CameraRenderer> cameraRender = dynamic_cast<CameraRenderer*>(p.second);
-			if (cameraRender->m_pTarget == nullptr)
-			{
-				cameraRender->m_bActive = false;
-			}
+			pCamera->m_bActive = false;
 		}
 	}
 	//
 	m_pWorld->Update();
+	m_pGizmoScene->Update();
 	std::map<int, EditorRenderView*>::iterator iter = m_ViewMap.begin();
 	for (; iter != m_ViewMap.end(); ++iter)
 	{
@@ -109,51 +110,66 @@ void EditorApplication::Run()
 }
 void EditorApplication::SetupScene()
 {
+
 	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
 	AssetManager::GetInstance()->LoadAsset("./data/prefab/plane.prefab.xml");
 	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
 	SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 
 	//m_pTargetObj = pObj;
-	m_pWorld->m_pRoot->addChild(pObj);
+	//m_pWorld->m_pRoot->addChild(pObj);
 
 
 
 
 
 
-	SmartPointer<IWorldObj> pCamera(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pCamera(new IWorldObj);
 	pCamera->m_strName = "Camera";
 	m_pWorld->m_pRoot->addChild(pCamera);
-	SmartPointer<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>(pCamera);
+	SmartPointer<RasterCamera> pCameraModule = pCamera->addModule<RasterCamera>();
 	pCameraModule->m_fFar = 12000.0f;
-	pCameraModule->m_fNear = 3.0f;
+	pCameraModule->m_fNear = 10.0f;
 	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
 	pCameraModule->m_fFovy = PI / 4;
 
+	pCameraModule->m_pWorld = m_pWorld;
+	pCameraModule->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
+	pCameraModule->m_clrColr = GameColor::white;
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());
+	//pCameraModule->getEvent<CameraRenderEvent>("CAMERARENDER")->addEventHandler(RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender(), std::bind(&(IRender::OnCameraRender), RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender(), std::placeholders::_1));
 
-	CameraRenderer* pCameraRenderer = new CameraRenderer;
-	pCameraRenderer->m_pWorld = m_pWorld.get();
-	//pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
-	pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
-	pCameraRenderer->m_clrColr = GameColor::white;
-	pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
+
+	//CameraRenderer* pCameraRenderer = new CameraRenderer;
+	//pCameraRenderer->m_pWorld = m_pWorld.get();
+	////pCameraRenderer->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
+	//pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
+	//pCameraRenderer->m_clrColr = GameColor::white;
+	//pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 
 	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 400.0f, -550.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
 
-	SmartPointer<IWorldObj> pLightObj(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pLightObj(new IWorldObj);
 	pLightObj->m_pTransform->SetTranslate(0.0f, 130.0f, 0.0f);
 	pLightObj->m_pTransform->SetOrientation(AngleToRad(35.0f), 0.0f, 0.0f);
 	pLightObj->m_strName = "Lights";
-	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>(pLightObj);
+	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>();
 	pDirLight->m_fIntensity = 1.5f;
 	pDirLight->m_Color = GameColor::white;
 	m_pWorld->m_pRoot->addChild(pLightObj);
+	//ring
+	//SmartPointer<IWorldObj> pRingObj(new IWorldObj);
+	//m_pWorld->m_pRoot->addChild(pRingObj);
+	//pRingObj->m_strName = "Ring";
+	//SmartPointer<Ring> pRing = pRingObj->addModule<Ring>();
+	//pRing->GeneratePolygon();
+	//pRingObj->m_pTransform->SetTranslate(0.0f, 150.0f, 0.0f);
+
 
 
 	////sphere
-	//SmartPointer<IWorldObj> pSphereObj(IWorldObj::CreateWorldObj());
+	//SmartPointer<IWorldObj> pSphereObj(new IWorldObj);
 	//m_pWorld->m_pRoot->addChild(pSphereObj);
 	//pSphereObj->m_strName = "Sphere";
 	//SmartPointer<Sphere3D> pSphere = pSphereObj->addModule<Sphere3D>(pSphereObj);
@@ -163,7 +179,7 @@ void EditorApplication::SetupScene()
 	//pSphereObj->m_pTransform->SetTranslate(110.0, 150, 0.0);
 
 	////cyilnder
-	//SmartPointer<IWorldObj> pCylinderObj(IWorldObj::CreateWorldObj());
+	//SmartPointer<IWorldObj> pCylinderObj(new IWorldObj);
 	//m_pWorld->m_pRoot->addChild(pCylinderObj);
 	//pCylinderObj->m_strName = "Cylinder";
 	//SmartPointer<Cylinder> pCylinder = pSphereObj->addModule<Cylinder>(pCylinderObj);
@@ -173,7 +189,7 @@ void EditorApplication::SetupScene()
 	//pCylinder->GeneratePolygon();
 	//pCylinderObj->m_pTransform->SetTranslate(0.0, 150, 0.0);
 	////
-	//SmartPointer<IWorldObj> pConeObj(IWorldObj::CreateWorldObj());
+	//SmartPointer<IWorldObj> pConeObj(new IWorldObj);
 	//m_pWorld->m_pRoot->addChild(pConeObj);
 	//pConeObj->m_strName = "Cone";
 	//SmartPointer<Cone> pCone = pSphereObj->addModule<Cone>(pConeObj);
@@ -183,11 +199,12 @@ void EditorApplication::SetupScene()
 	//pCone->GeneratePolygon();
 	//pConeObj->m_pTransform->SetTranslate(-100.0, 150, 0.0);
 	//
-	m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
-	GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(0.0f, 150.0f, 0.0f);
-	GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetScale(2, 2, 2);
-
-
+	//m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
+	//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(0.0f, 150.0f, 0.0f);
+	//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetScale(2, 2, 2);
+	m_pGizmoScene = new IWorld;
+	//m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
+	m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
 	NotifyListener("InitScene", EditorApplication::GetInstance());
 }
 

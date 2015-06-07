@@ -27,7 +27,7 @@ public:
 public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
-	virtual void OnNotify(string msg, std::shared_ptr<IListenerSubject> pSubject);
+	virtual void OnNotify(string msg, IListenerSubject* pSubject);
 // 实现
 	COleTemplateServer m_server;
 		// 用于文档创建的服务器对象

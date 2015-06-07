@@ -29,7 +29,7 @@ IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLDocument doc;
 	doc.LoadFile(path.c_str());
 	XMLElement* pElem = doc.FirstChildElement("WorldObj");
-	SmartPointer<IWorldObj> pRoot = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+	SmartPointer<IWorldObj> pRoot = SmartPointer<IWorldObj>(new IWorldObj);
 	ProcessWorldObjElem(pElem, pRoot);
 
 	//Prefab* pPrefab = new Prefab;
@@ -59,7 +59,7 @@ void XmlPrefabLoader::ProcessWorldObjElem(XMLElement* pElem, SmartPointer<IWorld
 		}
 		else if (name == "WorldObj")
 		{
-			SmartPointer<IWorldObj> pChild = SmartPointer<IWorldObj>(IWorldObj::CreateWorldObj());
+			SmartPointer<IWorldObj> pChild = SmartPointer<IWorldObj>(new IWorldObj);
 			pObj->addChild(pChild);
 			ProcessWorldObjElem(pChildElem, pChild);
 		}
@@ -96,7 +96,7 @@ void XmlPrefabLoader::ProcessTransformElem(tinyxml2::XMLElement* pElem, SmartPoi
 void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj) const
 {
 	string path = pElem->Attribute("refPath");
-	SmartPointer<Mesh> pMesh = pObj->addModule<Mesh>(pObj);
+	SmartPointer<Mesh> pMesh = pObj->addModule<Mesh>();
 	SmartPointer<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	if (pMeshRes == nullptr)
 	{

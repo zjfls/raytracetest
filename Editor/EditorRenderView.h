@@ -8,7 +8,7 @@ public:
 	EditorRenderView();
 	virtual ~EditorRenderView();
 
-	void Create(unsigned int nWidth, unsigned int nHeight, int windowID);
+	virtual void Create(unsigned int nWidth, unsigned int nHeight, int windowID);
 	virtual void Resize(unsigned int nWidth, unsigned int nHeight);
 	virtual void OnMouseWheel(short zDelta, Vector2& pt);
 	virtual void OnMouseMove(Vector2& pt);
@@ -21,8 +21,14 @@ public:
 	virtual void OnDragEnter(Vector2& pos,std::string path){};
 	virtual void OnDrop(Vector2& pos, std::string path){};
 	//
-	virtual void Update() = 0;
+	virtual void Update();
+	//
+	virtual void OnClick(Vector2& pos){};
 	//
 	RenderView* m_pRenderView;
+	//
+	bool m_bIsFocus;
+	//
+	bool m_bShow;
 };
 

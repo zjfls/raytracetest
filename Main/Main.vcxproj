@@ -47,7 +47,6 @@
     <ClInclude Include="IRender.h" />
     <ClInclude Include="IRenderTarget.h" />
     <ClInclude Include="Main_Dll_Def.h" />
-    <ClInclude Include="MaterialArg.h" />
     <ClInclude Include="MaterialAsset.h" />
     <ClInclude Include="MaterialAssetLoader.h" />
     <ClInclude Include="Mesh.h" />
