@@ -18,17 +18,17 @@ bool ZG::IntersectTest::AABBBox_AABBBoxTest(const AABBBox& a, const AABBBox& b)
 	Vector3 diffCenter = vecCB - vecCA;
 	if (fabs(diffCenter.m_fx) > fabs(diffCA.m_fx + diffCB.m_fx))
 	{
-		std::cout << "cull x" << std::endl;
+		//std::cout << "cull x" << std::endl;
 		return false;
 	}
 	if (fabs(diffCenter.m_fy) > fabs(diffCA.m_fy + diffCB.m_fy))
 	{
-		std::cout << "cull y" << std::endl;
+		//std::cout << "cull y" << std::endl;
 		return false;
 	}
 	if (fabs(diffCenter.m_fz) > fabs(diffCA.m_fz + diffCB.m_fz))
 	{
-		std::cout << "cull z" << std::endl;
+		//std::cout << "cull z" << std::endl;
 		return true;
 	}
 	return true;

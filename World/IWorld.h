@@ -2,7 +2,7 @@
 class IRenderable;
 class LightBase;
 class IWorldObj;
-class WORLD_API IWorld
+class WORLD_API IWorld:public GameObjectBase
 {
 public:
 	IWorld();

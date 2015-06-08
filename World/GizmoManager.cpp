@@ -8,6 +8,10 @@
 #include "Color.h"
 #include "DynamicVertexData.h"
 #include "IWorldObj.h"
+#include "RasterMaterial.h"
+#include "MaterialPass.h"
+#include <string>
+#include "materialpass.h"
 using namespace ZG;
 template class WORLD_API Singleton < GizmoManager >;
 template<> SmartPointer<GizmoManager> Singleton<GizmoManager>::_instance = nullptr;
@@ -145,7 +149,30 @@ void ZG::GizmoManager::createSceneGridGizmo()
 	m_pSceneGrid->m_strName = "GridObject";
 	IRenderable* pSceneGridRenderable = m_pSceneGrid->addModule<IRenderable>().get();
 	pSceneGridRenderable->m_pSharedMaterial = pSceneGridRenderable->GetDefaultMaterial();
+	
 	pSceneGridRenderable->GetMaterialInstance()->SetArg<GameColor>("MainColor", GameColor::white * 0.3f);
+	RasterMaterial* mat = (RasterMaterial*)pSceneGridRenderable->GetMaterialInstance().get();
+	for each (std::pair<string, ZG::SmartPointer<ZG::MaterialPass>> p in mat->m_MaterialPass)
+	{
+		bool bFoundZTest = false;
+		for each (stRenderState var in p.second->m_vecRenderState)
+		{
+			if (var.m_eRenderState == ZTEST)
+			{
+				bFoundZTest = true;
+				var.m_nValue = 1;
+			}
+		}
+		if (bFoundZTest == false)
+		{
+			
+			stRenderState s;
+			s.m_eRenderState = ZTEST;
+			s.m_nValue = 1;
+			p.second->m_vecRenderState.push_back(s);
+			//s.m_eRenderState = ZFUNC;
+		}
+	}
 	//
 	int nSubdivide = 100;
 	float fInterval = 30;

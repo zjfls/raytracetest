@@ -27,18 +27,19 @@
 //#include "GlobalRenderConfig.h"
 
 RenderPass::RenderPass()
-	:m_MaterialPass(nullptr)
+	//:m_MaterialPass(nullptr)
 {
 }
 
 RenderPass::RenderPass(MaterialPass* pPass)
 {
-	m_MaterialPass = pPass;
+	//m_MaterialPass = pPass;
 	m_vecRenderState = pPass->m_vecRenderState;
 	m_pFragShader = pPass->m_pFragShader;
 	m_pVertexShader = pPass->m_pVertexShader;
 	m_eVertexShaderType = pPass->m_eVertexShaderType;
 	m_eFragShaderType = pPass->m_eFragShaderType;
+	m_vecRenderState = pPass->m_vecRenderState;
 }
 
 
@@ -215,6 +216,11 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 			case ALPHABLEND:
 			{
 				pRender->SetBlendEnable((bool)rs.m_nValue);
+			}
+			break;
+			case ZTEST:
+			{
+				pRender->SetZTestEnable((bool)rs.m_nValue);
 			}
 			break;
 			default:

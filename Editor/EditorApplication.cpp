@@ -117,7 +117,7 @@ void EditorApplication::SetupScene()
 	SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
 
 	//m_pTargetObj = pObj;
-	//m_pWorld->m_pRoot->addChild(pObj);
+	m_pWorld->m_pRoot->addChild(pObj);
 
 
 
@@ -202,6 +202,10 @@ void EditorApplication::SetupScene()
 	//m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
 	//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(0.0f, 150.0f, 0.0f);
 	//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetScale(2, 2, 2);
+
+	//
+	m_pWorld->addEvent("PRESCENERENDER", new Event<IWorld>());
+	m_pWorld->addEvent("POSTSCENERENDER", new Event<IWorld>());
 	m_pGizmoScene = new IWorld;
 	//m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
 	m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);

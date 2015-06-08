@@ -58,7 +58,7 @@ protected:
 	std::unordered_map<string, MaterialArg*> m_FragShaderArgs;
 	//
 	std::unordered_map<string, MaterialArg*> m_ArgLib;
-	MaterialPass*		m_MaterialPass;
+	//MaterialPass*		m_MaterialPass;
 public:
 	EVERTEXSHADERTPYE	m_eVertexShaderType;
 	EFRAGSHADERTYPE		m_eFragShaderType;
