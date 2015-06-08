@@ -144,6 +144,8 @@ void ZG::GizmoManager::createSceneGridGizmo()
 	m_pSceneGrid = new IWorldObj;
 	m_pSceneGrid->m_strName = "GridObject";
 	IRenderable* pSceneGridRenderable = m_pSceneGrid->addModule<IRenderable>().get();
+	pSceneGridRenderable->m_pSharedMaterial = pSceneGridRenderable->GetDefaultMaterial();
+	pSceneGridRenderable->GetMaterialInstance()->SetArg<GameColor>("MainColor", GameColor::white * 0.3f);
 	//
 	int nSubdivide = 100;
 	float fInterval = 30;
@@ -176,41 +178,41 @@ void ZG::GizmoManager::createSceneGridGizmo()
 	dVertexData->nNumVertex = (nSubdivide + 1) * 4;
 
 
-	std::vector<int> vecIndex;
-	IndexData* pIndexData = new IndexData;
-	pSceneGridRenderable->m_pIndexData = pIndexData;
-	int nLineNum = (nSubdivide + 1) * 2;
-	pIndexData->indexNum = nLineNum * 2;
-	for (int i = 0; i < nSubdivide + 1; ++i)
-	{
-		vecIndex.push_back(i * 4);
-		vecIndex.push_back(i * 4 + 1);
-		vecIndex.push_back(i * 4 + 2);
-		vecIndex.push_back(i * 4 +  3);
-	}
+	//std::vector<int> vecIndex;
+	//IndexData* pIndexData = new IndexData;
+	//pSceneGridRenderable->m_pIndexData = pIndexData;
+	//int nLineNum = (nSubdivide + 1) * 2;
+	//pIndexData->indexNum = nLineNum * 2;
+	//for (int i = 0; i < nSubdivide + 1; ++i)
+	//{
+	//	vecIndex.push_back(i * 4);
+	//	vecIndex.push_back(i * 4 + 1);
+	//	vecIndex.push_back(i * 4 + 2);
+	//	vecIndex.push_back(i * 4 +  3);
+	//}
 
-	//
-	if (dVertexData->nNumVertex > 65535)
-	{
-		pIndexData->indexDesc = EIndexInt;
-		pIndexData->pData = new int[pIndexData->indexNum];
-		int* pData = (int*)pIndexData->pData;
-		for (int i = 0; i < pIndexData->indexNum; ++i)
-		{
-			pData[i] = vecIndex[i];
-			//std::cout <<"index:" << i << " = " << vecIndex[i] << std::endl;
-		}
-	}
-	else
-	{
-		pIndexData->indexDesc = EIndexShort;
-		pIndexData->pData = new unsigned short[pIndexData->indexNum];
-		unsigned short* pData = (unsigned short*)pIndexData->pData;
-		for (int i = 0; i < pIndexData->indexNum; ++i)
-		{
-			pData[i] = (unsigned short)vecIndex[i];
-			//std::cout << "index:" << i << " = " << vecIndex[i];// << std::endl;
-		}
-		//std::cout << endl;
-	}
+	////
+	//if (dVertexData->nNumVertex > 65535)
+	//{
+	//	pIndexData->indexDesc = EIndexInt;
+	//	pIndexData->pData = new int[pIndexData->indexNum];
+	//	int* pData = (int*)pIndexData->pData;
+	//	for (int i = 0; i < pIndexData->indexNum; ++i)
+	//	{
+	//		pData[i] = vecIndex[i];
+	//		//std::cout <<"index:" << i << " = " << vecIndex[i] << std::endl;
+	//	}
+	//}
+	//else
+	//{
+	//	pIndexData->indexDesc = EIndexShort;
+	//	pIndexData->pData = new unsigned short[pIndexData->indexNum];
+	//	unsigned short* pData = (unsigned short*)pIndexData->pData;
+	//	for (int i = 0; i < pIndexData->indexNum; ++i)
+	//	{
+	//		pData[i] = (unsigned short)vecIndex[i];
+	//		//std::cout << "index:" << i << " = " << vecIndex[i];// << std::endl;
+	//	}
+	//	//std::cout << endl;
+	//}
 }

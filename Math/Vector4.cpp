@@ -51,11 +51,11 @@ Vector4 Vector4::operator*(const Matrix44& mat44) const
 	vec4Ret.m_fy = m_fx * mat44.M[0][1] + m_fy * mat44.M[1][1] + m_fz * mat44.M[2][1] + m_fw * mat44.M[3][1];
 	vec4Ret.m_fz = m_fx * mat44.M[0][2] + m_fy * mat44.M[1][2] + m_fz * mat44.M[2][2] + m_fw * mat44.M[3][2];
 	vec4Ret.m_fw = m_fx * mat44.M[0][3] + m_fy * mat44.M[1][3] + m_fz * mat44.M[2][3] + m_fw * mat44.M[3][3];
-	if (vec4Ret.m_fw != 0.0f)
-	{
-		float fratio = 1 / vec4Ret.m_fw;
-		vec4Ret = vec4Ret * fratio;
-	}
+	//if (vec4Ret.m_fw != 0.0f)
+	//{
+	//	float fratio = 1 / vec4Ret.m_fw;
+	//	vec4Ret = vec4Ret * fratio;
+	//}
 	return vec4Ret;
 }
 

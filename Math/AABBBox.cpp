@@ -40,12 +40,23 @@ void AABBBox::Transform(Matrix44& mat)
 	max.Vector3ToPoint(m_Max);
 	min = min * mat;
 	max = max * mat;
-
+	if (min.m_fw != 0.0f)
+	{
+		min = min * fabs(1.0f / min.m_fw);
+	}
+	if (max.m_fw != 0.0f)
+	{
+		max = max * fabs(1.0f / max.m_fw);
+	}
 	for each (Vector3 v in ptList)
 	{
 		Vector4 vPos;
 		vPos.Vector3ToPoint(v);
 		vPos = vPos * mat;
+		if (vPos.m_fw != 0.0f)
+		{
+			vPos = vPos * fabs(1.0f / vPos.m_fw);
+		}
 		if (vPos.m_fx < min.m_fx)
 		{
 			min.m_fx = vPos.m_fx;
