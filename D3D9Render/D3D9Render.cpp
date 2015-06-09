@@ -369,7 +369,7 @@ void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 	{
 		pView->m_pSwapChain->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pSurface);
 	}
-	D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(nIndex,pTarget);
+	D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(pTarget);
 	//
 	if (pD3DTarget != nullptr)
 	{
