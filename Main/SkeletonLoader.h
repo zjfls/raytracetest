@@ -1,10 +1,13 @@
 #pragma once
 #include "IAssetLoader.h"
-class SkeletonLoader :
-	public IAssetLoader
+namespace ZG
 {
-public:
-	SkeletonLoader();
-	~SkeletonLoader();
-};
+	class SkeletonLoader :
+		public IAssetLoader
+	{
+	public:
+		SkeletonLoader();
+		~SkeletonLoader();
+	};
 
+}

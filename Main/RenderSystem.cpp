@@ -19,14 +19,14 @@ void RenderSystem::InitRender(RasterRender* pRender)
 	pRender->m_pRenderSystem = this;
 }
 
-RasterRender* RenderSystem::GetDefaultRender() const
+RasterRender* RenderSystem::GetDefaultRender()
 {
-	return m_pDefaultRender;
+	return dynamic_cast<RasterRender*>(m_pDefaultRender.get());
 }
 
 RenderView* RenderSystem::GetDefaultRenderView() const
 {
-	return m_pDefaultRenderView;
+	return m_pDefaultRenderView.get();
 }
 
 const char* RenderSystem::GetFragShaderCode(FragShaderDesc& fragShaderDesc)
@@ -74,19 +74,19 @@ std::string RenderSystem::GenerateFragShaderDescString(FragShaderDesc& fragShade
 	return temp;
 }
 
-IRenderTarget* RenderSystem::GetDefaultRenderTarget() const
-{
-	return m_pDefaultRenderTarget;
-}
+//IRenderTarget* RenderSystem::GetDefaultRenderTarget() const
+//{
+//	return m_pDefaultRenderTarget.get();
+//}
 
 void RenderSystem::ReleaseRenderTarget(IRenderTarget* pTarget)
 {
-	std::vector<IRenderTarget*>::iterator iter = m_vecRenderTarget.begin();
+	std::vector<SmartPointer<IRenderTarget>>::iterator iter = m_vecRenderTarget.begin();
 	for (; iter != m_vecRenderTarget.end(); ++iter)
 	{
 		if (*iter == pTarget)
 		{
-			delete *iter;
+			*iter == nullptr;
 			m_vecRenderTarget.erase(iter);
 		}
 	}

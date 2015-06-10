@@ -1,17 +1,21 @@
 #pragma once
 #include "HardwareIndexBuffer.h"
 struct IDirect3DIndexBuffer9;
-class D3D9IndexBuffer :
-	public HardwareIndexBuffer
+namespace ZG
 {
-public:
-	
-	virtual ~D3D9IndexBuffer();
+	class D3D9IndexBuffer :
+		public HardwareIndexBuffer
+	{
+	public:
+
+		virtual ~D3D9IndexBuffer();
 
 
-	IDirect3DIndexBuffer9* m_pIndexBuffer;
-private:
-	D3D9IndexBuffer();
-	friend class D3D9RenderSystem;
-};
+		IDirect3DIndexBuffer9* m_pIndexBuffer;
+	private:
+		D3D9IndexBuffer();
+		friend class D3D9RenderSystem;
+	};
+}
+
 

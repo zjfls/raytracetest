@@ -1,5 +1,7 @@
 #include <thread>
 #include <mutex>
 
-
-extern FOUNDATION_API std::mutex g_SingletonMutex;
+namespace ZG
+{
+	extern FOUNDATION_API std::mutex g_SingletonMutex;
+}

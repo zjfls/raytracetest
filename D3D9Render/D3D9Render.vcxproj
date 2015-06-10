@@ -98,6 +98,7 @@
     <ClInclude Include="D3D9Texture2D.h" />
     <ClInclude Include="D3D9VertexBuffer.h" />
     <ClInclude Include="D3D9VertexShader.h" />
+    <ClInclude Include="D3DDepthBuffer.h" />
     <ClInclude Include="D3DRender_Dll_def.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -113,6 +114,7 @@
     <ClCompile Include="D3D9Texture2D.cpp" />
     <ClCompile Include="D3D9VertexBuffer.cpp" />
     <ClCompile Include="D3D9VertexShader.cpp" />
+    <ClCompile Include="D3DDepthBuffer.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

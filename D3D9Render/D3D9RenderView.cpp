@@ -58,24 +58,57 @@ void D3D9RenderView::OnDeviceReset()
 
 bool D3D9RenderView::Resize(int nX, int nY)
 {
+	if (nX == 0 || nY == 0)
+	{
+		return true;
+	}
+	if (nX == m_nWidth || nY == m_nHeight)
+	{
+		return true;
+	}
 	m_nWidth = nX;
 	m_nHeight = nY;
 	m_dpp.BackBufferWidth = nX;
 	m_dpp.BackBufferHeight = nY;
 	SAFE_RELEASE(m_pSwapChain);
-	//m_pSwapChain->Release();
-	//m_pSwapChain = nullptr;
-	HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&m_dpp, &m_pSwapChain);
-
-	if (hr == D3D_OK)
+	D3D9RenderView* pRenderView = dynamic_cast<D3D9RenderView*>(RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView());
+	if (this == pRenderView)
 	{
-		std::cout << "resize view success!" << std::endl;
+		m_pD3DDevice->Reset(&m_dpp);
 	}
 	else
 	{
-		std::cout << "resize view failed!" << std::endl;
+		HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&m_dpp, &m_pSwapChain);
+
+		if (hr == D3D_OK)
+		{
+			std::cout << "resize view success!" << std::endl;
+		}
+		else
+		{
+			std::cout << "resize view failed!" << std::endl;
+		}
 	}
+	if (nX != m_DepthBuffer->m_nDepth || nY != m_DepthBuffer->m_nHeight)
+	{
+		m_DepthBuffer->Resize(nX, nY);
+	}
+	m_pHDRTarget->Resize(nX, nY);
 	return true;
+}
+
+bool D3D9RenderView::CreateHdrTarget()
+{
+	m_pHDRTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->CreateRenderTarget(m_nWidth, m_nHeight, TFA16B16G16R16F, MSNONE, 0);
+	m_pHDRTarget->m_DepthBuffer = m_DepthBuffer;
+	if (m_pHDRTarget != nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 

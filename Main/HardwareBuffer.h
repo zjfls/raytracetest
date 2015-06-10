@@ -1,12 +1,16 @@
 #pragma once
 #include "RenderEnum.h"
-class MAIN_API HardwareBuffer
+namespace ZG
 {
-public:
-	HardwareBuffer();
-	virtual ~HardwareBuffer();
+	class MAIN_API HardwareBuffer
+	{
+	public:
+		HardwareBuffer();
+		virtual ~HardwareBuffer();
 
 
-	EMAMANGETYPE m_eManageType;
-};
+		EMAMANGETYPE m_eManageType;
+	};
+}
+
 

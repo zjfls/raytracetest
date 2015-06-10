@@ -223,6 +223,16 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 				pRender->SetZTestEnable((bool)rs.m_nValue);
 			}
 			break;
+			case ZFUNC:
+			{
+				pRender->SetZFunc((ERENDERCMPFUNC)rs.m_nValue);
+			}
+			break;
+			case FILLMODE:
+			{
+				pRender->SetFillMode((EFILLMODE)rs.m_nValue);
+			}
+			break;
 			default:
 			break;
 		}

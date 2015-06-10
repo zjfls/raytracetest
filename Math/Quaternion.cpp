@@ -4,8 +4,8 @@
 #include "vector3.h"
 #include "Matrix33.h"
 #include "MathDefine.h"
-using namespace ZG;
-ZG::Quaternion Quaternion::Identity(1, 0, 0, 0);
+
+Quaternion Quaternion::Identity(1, 0, 0, 0);
 
 Quaternion::Quaternion(Matrix33& mat)
 {

@@ -1,10 +1,13 @@
 #pragma once
 #include "IAsset.h"
-class TextureAsset :
-	public IAsset
+namespace ZG
 {
-public:
-	TextureAsset();
-	virtual ~TextureAsset();
-};
+	class TextureAsset :
+		public IAsset
+	{
+	public:
+		TextureAsset();
+		virtual ~TextureAsset();
+	};
 
+}

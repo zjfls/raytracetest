@@ -4,7 +4,7 @@
 #include "CommonDef.h"
 #include <tchar.h>
 #include <string.h>
-std::string getFileSuffix(string fullFilePath)
+std::string ZG::getFileSuffix(string fullFilePath)
 {
 	if (fullFilePath[fullFilePath.length() - 1] == '.')
 	{
@@ -41,7 +41,7 @@ std::string getFileSuffix(string fullFilePath)
 	return suffix;
 }
 
-std::string getFileName(string fullFilePath)
+std::string ZG::getFileName(string fullFilePath)
 {
 	replaceCharInString(fullFilePath, '\\', '/');
 	string strRet;
@@ -60,7 +60,7 @@ std::string getFileName(string fullFilePath)
 	return strRet;
 }
 
-std::string getFileDirectory(string fullFilePath)
+std::string ZG::getFileDirectory(string fullFilePath)
 {
 	replaceCharInString(fullFilePath, '\\', '/');
 	string strRet;
@@ -80,7 +80,7 @@ std::string getFileDirectory(string fullFilePath)
 	return strRet;
 }
 
-std::string removeSuffix(string fileName)
+std::string ZG::removeSuffix(string fileName)
 {
 	string strRet;
 	const char* pPos = strrchr(fileName.c_str(), '.');
@@ -98,7 +98,7 @@ std::string removeSuffix(string fileName)
 	return strRet;
 }
 
-std::string getFileNameWithoutSuffix(string fullFilePath)
+std::string ZG::getFileNameWithoutSuffix(string fullFilePath)
 {
 	string fileName = getFileName(fullFilePath);
 	return removeSuffix(fileName);

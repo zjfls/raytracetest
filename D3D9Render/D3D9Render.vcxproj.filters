@@ -57,6 +57,9 @@
     <ClInclude Include="D3D9Texture2D.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="D3DDepthBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -93,6 +96,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="D3D9Texture2D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DDepthBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -159,3 +159,15 @@ void IWorldObj::AfterUpdate()
 		pObj->AfterUpdate();
 	}
 }
+
+bool ZG::IWorldObj::removeAllChildren()
+{
+	std::vector<SmartPointer<IWorldObj>>::iterator iter;
+	for (iter = m_vecChildren.begin(); iter != m_vecChildren.end(); ++iter)
+	{
+			(*iter)->m_pParent = nullptr;
+			//m_vecChildren.erase(iter);
+	}
+	m_vecChildren.clear();
+	return true;
+}

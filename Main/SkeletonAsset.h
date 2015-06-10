@@ -1,10 +1,13 @@
 #pragma once
 #include "IAsset.h"
-class MAIN_API SkeletonAsset :
-	public IAsset
+namespace ZG
 {
-public:
-	SkeletonAsset();
-	virtual ~SkeletonAsset();
-};
+	class MAIN_API SkeletonAsset :
+		public IAsset
+	{
+	public:
+		SkeletonAsset();
+		virtual ~SkeletonAsset();
+	};
 
+}

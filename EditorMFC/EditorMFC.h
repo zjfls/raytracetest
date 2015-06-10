@@ -14,35 +14,40 @@
 // 有关此类的实现，请参阅 EditorMFC.cpp
 //
 #include "IListener.h"
-class CEditorMFCApp : public CWinAppEx,public IListener
+namespace ZG
 {
-public:
-	CEditorMFCApp();
-	virtual ~CEditorMFCApp();
+	class CEditorMFCApp : public CWinAppEx, public IListener
+	{
+	public:
+		CEditorMFCApp();
+		virtual ~CEditorMFCApp();
 
 
 
 
-// 重写
-public:
-	virtual BOOL InitInstance();
-	virtual int ExitInstance();
-	virtual void OnNotify(string msg, IListenerSubject* pSubject);
-// 实现
-	COleTemplateServer m_server;
+		// 重写
+	public:
+		virtual BOOL InitInstance();
+		virtual int ExitInstance();
+		virtual void OnNotify(string msg, IListenerSubject* pSubject);
+		// 实现
+		COleTemplateServer m_server;
 		// 用于文档创建的服务器对象
-	UINT  m_nAppLook;
-	BOOL  m_bHiColorIcons;
+		UINT  m_nAppLook;
+		BOOL  m_bHiColorIcons;
 
-	virtual void PreLoadState();
-	virtual void LoadCustomState();
-	virtual void SaveCustomState();
-	//virtual BOOL OnIdle(LONG lCount);
-	virtual int		Run();
-	afx_msg void OnAppAbout();
-	DECLARE_MESSAGE_MAP()
+		virtual void PreLoadState();
+		virtual void LoadCustomState();
+		virtual void SaveCustomState();
+		//virtual BOOL OnIdle(LONG lCount);
+		virtual int		Run();
+		afx_msg void OnAppAbout();
+		DECLARE_MESSAGE_MAP()
 
 
-};
+	};
+
+	
+}
 
 extern CEditorMFCApp theApp;

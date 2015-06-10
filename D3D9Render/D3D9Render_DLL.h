@@ -20,6 +20,9 @@
 //extern D3D9RENDER_API int nD3D9Render;
 //
 //D3D9RENDER_API int fnD3D9Render(void);
+namespace ZG
+{
+	class RenderSystem;
+}
 
-class RenderSystem;
 extern "C" D3D9RENDER_API RenderSystem* CreateRenderSystem();

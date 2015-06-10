@@ -1,10 +1,13 @@
 #pragma once
 #include "IWorldObj.h"
-class SimpleWorldObj :
-	public IWorldObj
+namespace ZG
 {
-public:
-	SimpleWorldObj();
-	virtual ~SimpleWorldObj();
-};
+	class SimpleWorldObj :
+		public IWorldObj
+	{
+	public:
+		SimpleWorldObj();
+		virtual ~SimpleWorldObj();
+	};
 
+}

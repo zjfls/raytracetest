@@ -8,7 +8,6 @@
 #include "ResourceManager.h"
 #include "PrefabResource.h"
 #include "RasterCamera.h"
-#include "CameraRenderer.h"
 #include "RenderManager.h"
 #include "RenderSystem.h"
 #include "MathFunc.h"
@@ -18,6 +17,7 @@
 #include "PointLight.h"
 #include "Transform.h"
 #include "RenderSystem.h"
+#include "RasterRender.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> SmartPointer<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 

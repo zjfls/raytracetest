@@ -1,13 +1,16 @@
 #pragma once
 #include "RenderEnum.h"
-class RenderStateCollection
+namespace ZG
 {
-public:
-	RenderStateCollection();
-	virtual ~RenderStateCollection();
+	class RenderStateCollection
+	{
+	public:
+		RenderStateCollection();
+		virtual ~RenderStateCollection();
 
 
 
-	std::unordered_map<RENDERSTATEMASK, void*> m_mapRenderState;
-};
+		std::unordered_map<RENDERSTATEMASK, void*> m_mapRenderState;
+	};
 
+}

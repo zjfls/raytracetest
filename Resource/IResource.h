@@ -1,15 +1,19 @@
 #pragma once
-class RESOURCE_API IResource:public GameObjectBase
+namespace ZG
 {
-public:
-	IResource();
-	virtual ~IResource();
+	class RESOURCE_API IResource :public GameObjectBase
+	{
+	public:
+		IResource();
+		virtual ~IResource();
 
-	string GetRefPath()const{ return m_refPath; }
+		string GetRefPath()const{ return m_refPath; }
 
-protected:
-	string m_refPath;
-//public:
-//	string m_Name;
-};
+	protected:
+		string m_refPath;
+		//public:
+		//	string m_Name;
+	};
+}
+
 

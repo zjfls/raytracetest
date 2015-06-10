@@ -1,8 +1,11 @@
 #pragma once
-class MAIN_API HardwareTexture
+namespace ZG
 {
-public:
-	HardwareTexture();
-	virtual ~HardwareTexture();
-};
+	class MAIN_API HardwareTexture
+	{
+	public:
+		HardwareTexture();
+		virtual ~HardwareTexture();
+	};
+}
 

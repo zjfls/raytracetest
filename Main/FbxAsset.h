@@ -1,32 +1,35 @@
 #pragma once
 #include "IAsset.h"
 #include "fbxsdk.h"
-class MAIN_API FbxAsset :
-	public IAsset
+namespace ZG
 {
-public:
-	FbxAsset();
-	virtual ~FbxAsset();
+	class MAIN_API FbxAsset :
+		public IAsset
+	{
+	public:
+		FbxAsset();
+		virtual ~FbxAsset();
 
-	/*
+		/*
 
-	*Summary: release asset and associate resource
+		*Summary: release asset and associate resource
 
-	*Parameters:
+		*Parameters:
 
-	*     bReleaseResource:if release associate resource
-
-
-	*Return : void
-
-	*/
-	virtual void Release(bool bReleaseResource);
+		*     bReleaseResource:if release associate resource
 
 
-	std::vector<SmartPointer<IResource>> GetAllResource() const;
-private:
-	FbxScene*	m_pFbxScene;
-	friend class FbxFileLoader;
-	friend class FbxAppImporter;
-};
+		*Return : void
 
+		*/
+		virtual void Release(bool bReleaseResource);
+
+
+		std::vector<SmartPointer<IResource>> GetAllResource() const;
+	private:
+		FbxScene*	m_pFbxScene;
+		friend class FbxFileLoader;
+		friend class FbxAppImporter;
+	};
+
+}

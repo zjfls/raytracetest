@@ -1,15 +1,18 @@
 #pragma once
 #include "IOInterface.h"
-class WindowsIO :
-	public IOInterface
+namespace ZG
 {
-public:
-	WindowsIO();
-	virtual ~WindowsIO();
+	class WindowsIO :
+		public IOInterface
+	{
+	public:
+		WindowsIO();
+		virtual ~WindowsIO();
 
 
-	virtual bool IsLBDown();
-	virtual bool IsRBDown();
-	virtual bool IsKeyDown(char c);
-};
+		virtual bool IsLBDown();
+		virtual bool IsRBDown();
+		virtual bool IsKeyDown(char c);
+	};
+}
 

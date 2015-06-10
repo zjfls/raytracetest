@@ -3,19 +3,19 @@
 #include "Vector3.h"
 #include "assert.h"
 
-float AngleToRad(float angle)
+float ZG::AngleToRad(float angle)
 {
 	return angle * PI / 180.0f;
 }
 
-Vector3 GetReflectionDir(const Vector3& vecInDir, const Vector3& vecNormal)
+Vector3 ZG::GetReflectionDir(const Vector3& vecInDir, const Vector3& vecNormal)
 {
 	Vector3 vecReflect;
 	vecReflect = vecNormal * (vecNormal.dot(-vecInDir)) * 2 - (-vecInDir);
 	return vecReflect;
 }
 
-Vector3 GetRefracionDir(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
+Vector3 ZG::GetRefracionDir(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
 {
 	
 	Vector3 vecRefract;
@@ -54,7 +54,7 @@ Vector3 GetRefracionDir(float fInRefraIndex, float fTransRefraIndex, const Vecto
 
 }
 
-float GetFresnelReflectance(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
+float ZG::GetFresnelReflectance(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
 {
 	float fIndexRatio = fTransRefraIndex / fInRefraIndex;
 	float fR0 = pow((1- fIndexRatio)/(1 + fIndexRatio),2);
@@ -63,7 +63,7 @@ float GetFresnelReflectance(float fInRefraIndex, float fTransRefraIndex, const V
 
 }
 
-float Saturate(float fIn)
+float ZG::Saturate(float fIn)
 {
 	if (fIn <= 0.0f)
 	{
@@ -76,19 +76,19 @@ float Saturate(float fIn)
 	return fIn;
 }
 
-float GetTransmitRadianceCoef(float fR, float fInRefraIndex, float fTransRefraIndex)
+float ZG::GetTransmitRadianceCoef(float fR, float fInRefraIndex, float fTransRefraIndex)
 {
 	float fIndexRatio = fTransRefraIndex / fInRefraIndex;
 	return (1 - fR) * fIndexRatio * fIndexRatio;
 }
 
-float GetTransmitRadianceCoef(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
+float ZG::GetTransmitRadianceCoef(float fInRefraIndex, float fTransRefraIndex, const Vector3& vecInDir, const Vector3& vecNormal)
 {
 	float fR = GetFresnelReflectance(fInRefraIndex,fTransRefraIndex,vecInDir,vecNormal);
 	return GetTransmitRadianceCoef(fR, fInRefraIndex, fTransRefraIndex);
 }
 
-float Interpolate(float f1, float f2, float fInterp)
+float ZG::Interpolate(float f1, float f2, float fInterp)
 {
 	return f1 * (1 - fInterp) + f2 * fInterp;
 }

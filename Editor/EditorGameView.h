@@ -1,10 +1,13 @@
 #pragma once
 #include "EditorRenderView.h"
-class EDITOR_API EditorGameView :
-	public EditorRenderView
+namespace ZG
 {
-public:
-	EditorGameView();
-	virtual ~EditorGameView();
-};
+	class EDITOR_API EditorGameView :
+		public EditorRenderView
+	{
+	public:
+		EditorGameView();
+		virtual ~EditorGameView();
+	};
 
+}

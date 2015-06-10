@@ -13,7 +13,7 @@
 QtRenderView::QtRenderView()
 {
 	m_pRenderView = new EditorSceneView();
-	m_pRenderView->Create(10, 10, winId());
+	m_pRenderView->Create(100, 100, winId());
 	EditorApplication::GetInstance()->AddView(winId(), m_pRenderView);
 	setAcceptDrops(true);
 }
@@ -27,7 +27,7 @@ void QtRenderView::resizeEvent(QResizeEvent * pEvent)
 {
 	if (m_pRenderView != nullptr)
 	{
-		std::cout << "width:" << pEvent->size().width() << "height:" << pEvent->size().height() << std::endl;
+		std::cout << m_strName.c_str()<< "width:" << pEvent->size().width() << "height:" << pEvent->size().height() << std::endl;
 		m_pRenderView->Resize(pEvent->size().width(), pEvent->size().height());
 	}
 }
@@ -145,6 +145,7 @@ void QtRenderView::focusOutEvent(QFocusEvent *)
 void QtRenderView::showEvent(QShowEvent *)
 {
 	m_pRenderView->m_bShow = true;
+	m_pRenderView->Resize(size().rwidth(), size().rheight());
 	//std::cout << "show" << std::endl;
 }
 

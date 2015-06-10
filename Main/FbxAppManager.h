@@ -7,20 +7,23 @@ namespace fbxsdk_2015_1
 	class FbxScene;
 };
 
-class MAIN_API FbxAppManager :public Singleton<FbxAppManager>, public GameObjectBase
+namespace ZG
 {
-public:
-	FbxAppManager();
-	virtual ~FbxAppManager();
+	class MAIN_API FbxAppManager :public Singleton<FbxAppManager>, public GameObjectBase
+	{
+	public:
+		FbxAppManager();
+		virtual ~FbxAppManager();
 
 
-	bool Init();
+		bool Init();
 
 
 
-	fbxsdk_2015_1::FbxManager* m_pFbxSdkManager;
-	fbxsdk_2015_1::FbxScene*	m_pFbxScene;
+		fbxsdk_2015_1::FbxManager* m_pFbxSdkManager;
+		fbxsdk_2015_1::FbxScene*	m_pFbxScene;
 
-};
+	};
 
-extern template class MAIN_API Singleton < FbxAppManager > ;
+	extern template class MAIN_API Singleton < FbxAppManager > ;
+}

@@ -16,6 +16,7 @@ CameraBase::CameraBase()
 	, m_bClearDepth(true)
 	, m_fDepth(1.0f)
 	, m_clrColr(GameColor::blue)
+	, m_bHDR(true)
 {
 	//m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	//m_pRenderTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();

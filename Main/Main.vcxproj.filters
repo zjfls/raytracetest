@@ -75,16 +75,10 @@
     <ClInclude Include="MaterialAssetLoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="MeshAsset.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="MeshFileLoader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="PrefabAsset.h">
@@ -103,9 +97,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="RayTraceViewPort.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderEnum.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Resource_Dll_Def.h">
@@ -135,13 +126,7 @@
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="StrUtil.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="TextureAsset.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="XmlPrefabLoader.h">
@@ -163,9 +148,6 @@
       <Filter>头文件\Application</Filter>
     </ClInclude>
     <ClInclude Include="HardwareTexture.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
     <ClInclude Include="RenderView.h">
@@ -222,9 +204,6 @@
     <ClInclude Include="IRenderTarget.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="CameraRenderer.h">
-      <Filter>头文件\Render</Filter>
-    </ClInclude>
     <ClInclude Include="TextureSampler.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
@@ -259,6 +238,9 @@
       <Filter>头文件\Util</Filter>
     </ClInclude>
     <ClInclude Include="RenderTargetGroup.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthBuffer.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
   </ItemGroup>
@@ -425,9 +407,6 @@
     <ClCompile Include="TextureSampler.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="CameraRenderer.cpp">
-      <Filter>源文件\Render</Filter>
-    </ClCompile>
     <ClCompile Include="IRender.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
@@ -462,6 +441,9 @@
       <Filter>源文件\Util</Filter>
     </ClCompile>
     <ClCompile Include="RenderTargetGroup.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthBuffer.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,6 +17,7 @@
 #include "VertexShader.h"
 #include "EnviromentSetting.h"
 #include "MaterialPass.h"
+#include "d3ddepthbuffer.h"
 using namespace ZG;
 D3D9Render::D3D9Render(const RenderPath* pPath)
 	:RasterRender(pPath)
@@ -127,8 +128,8 @@ void D3D9Render::UpdateProjCamera(SmartPointer<CameraBase> pCamera)
 	aspect = pCamera->m_fAspect;
 	zn = pCamera->m_fNear;
 	zf = pCamera->m_fFar;
-	
-	float yScale = 1/tan(fovy / 2);
+
+	float yScale = 1 / tan(fovy / 2);
 	float xScale = yScale / aspect;
 	pCamera->m_MatProj = Matrix44(
 		xScale, 0, 0, 0,
@@ -140,7 +141,7 @@ void D3D9Render::UpdateProjCamera(SmartPointer<CameraBase> pCamera)
 	//D3DXMATRIX mat;
 	//D3DXMatrixPerspectiveFovLH(&mat,fovy,aspect,zn,zf);
 	//int i = 0;
-		
+
 }
 
 //
@@ -362,7 +363,7 @@ bool D3D9Render::SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB)
 
 void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 {
-	RasterRender::SetRenderTarget(nIndex,pTarget);
+	RasterRender::SetRenderTarget(nIndex, pTarget);
 	IDirect3DSurface9* pSurface = nullptr;
 	D3D9RenderView* pView = dynamic_cast<D3D9RenderView*>(pTarget);
 	if (pView != nullptr && pView->m_pSwapChain != nullptr)
@@ -380,18 +381,18 @@ void D3D9Render::SetRenderTarget(int nIndex, IRenderTarget* pTarget)
 	{
 		m_pDevice->SetRenderTarget(nIndex, pSurface);
 		pSurface->Release();
-	}	
+	}
 }
 
 void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, SmartPointer<RasterMaterial> pMat /*= nullptr*/)
 {
-	float arrayScreen[] = 
+	float arrayScreen[] =
 	{
 		-1.0f, -1.0f, 0.0f,
 		-1.0f, 1.0f, 0.0f,
 		1.0f, -1.0f, 0.0f,
 
-		
+
 		1.0f, -1.0f, 0.0f,
 		-1.0f, 1.0f, 0.0f,
 		1.0f, 1.0f, 0.0f,
@@ -409,7 +410,7 @@ void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, Smar
 	SetFragShader(pfragshader);
 	SetZTestEnable(false);
 	SetAlphaTest(false);
-	SetRenderTarget(0,pTarget);
+	SetRenderTarget(0, pTarget);
 	D3D9RenderTarget* pD3DRenderTarget = (D3D9RenderTarget*)pSource;
 	ShaderConstantInfo info = pfragshader->m_mapConstants["sourceTex"];
 	m_pDevice->SetTexture(0, pD3DRenderTarget->m_pSurfTexture);
@@ -418,12 +419,12 @@ void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, Smar
 		SetSamplerSRGB(info.m_nRegIndex, 1);
 	}
 
-	
+
 	//
-	
+
 	//SetTexture(0, pD3DTex->m_pSurfTexture);
 
-	
+
 
 	m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	m_pDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, arrayScreen, 12);
@@ -431,4 +432,42 @@ void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, Smar
 
 	//m_pDevice->StretchRect()
 
+}
+
+void ZG::D3D9Render::SetDepthBuffer(DepthBuffer* pDepthBuffer)
+{
+	D3DDepthBuffer* pBuffer = dynamic_cast<D3DDepthBuffer*>(pDepthBuffer);
+	if (pBuffer != nullptr)
+	{
+		m_pDevice->SetDepthStencilSurface(pBuffer->m_pDepthSurface);
+	}
+
+}
+
+bool ZG::D3D9Render::SetFillMode(EFILLMODE eFill)
+{
+	HRESULT hr = S_FALSE;
+	switch (eFill)
+	{
+		case EFILLMODE_WIREFRAME:
+		{
+			hr = m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+		}
+		break;
+		case EFILLMODE_SOLID:
+		{
+			hr = m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+		}
+		break;
+		case EFILLMODE_POINT:
+		{
+			hr = m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);
+		}
+		break;
+	}
+	if (hr == S_OK)
+	{
+		return true;
+	}
+	return false;
 }

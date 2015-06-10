@@ -10,7 +10,6 @@
 #include "AssetManager.h"
 #include "IWorld.h"
 #include "IWorldObj.h"
-#include "CameraRenderer.h"
 #include "PrefabResource.h"
 #include "ResourceManager.h"
 #include "RasterCamera.h"
@@ -25,6 +24,7 @@
 #include "GizmoManager.h"
 #include "TranslateGizmo.h"
 #include "Ring.h"
+#include "IListener.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -95,6 +95,7 @@ void EditorApplication::Run()
 	}
 	//
 	m_pWorld->Update();
+	UpdateGizemo();
 	m_pGizmoScene->Update();
 	std::map<int, EditorRenderView*>::iterator iter = m_ViewMap.begin();
 	for (; iter != m_ViewMap.end(); ++iter)
@@ -207,8 +208,8 @@ void EditorApplication::SetupScene()
 	m_pWorld->addEvent("PRESCENERENDER", new Event<IWorld>());
 	m_pWorld->addEvent("POSTSCENERENDER", new Event<IWorld>());
 	m_pGizmoScene = new IWorld;
-	//m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
-	m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
+	m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
+	//m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
 	NotifyListener("InitScene", EditorApplication::GetInstance());
 }
 
@@ -230,4 +231,43 @@ void EditorApplication::OnInit()
 	{
 
 	}
+}
+
+void ZG::EditorApplication::UpdateGizemo()
+{
+	
+	m_pGizmoScene->m_pRoot->removeAllChildren();
+	m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
+	if (m_SelectObj != nullptr)
+	{
+		switch (m_eOperState)
+		{
+			case ZG::EditorApplication::EStateSelect:
+			{
+				
+			}
+			break;
+			case ZG::EditorApplication::EStateTranslate:
+			{
+				m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
+			}
+			break;
+			case ZG::EditorApplication::EStateRotate:
+			{
+
+			}
+			break;
+			case ZG::EditorApplication::EStateScale:
+			{
+
+			}
+			break;
+			default:
+			break;
+		}
+		GizmoManager::GetInstance()->BuildSelectObj(m_SelectObj);
+		m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSelectObjWireFrame);
+	}
+	
+
 }

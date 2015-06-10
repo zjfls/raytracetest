@@ -4,10 +4,11 @@
 #include "RenderEnum.h"
 #include "RenderBaseClass.h"
 #include <vector>
-class VertexShader;
-class FragShader;
+
 namespace ZG
 { 
+	class VertexShader;
+	class FragShader;
 	class RESOURCE_API MaterialPass:public GameObjectBase
 	{
 	public:
@@ -15,7 +16,7 @@ namespace ZG
 		virtual ~MaterialPass();
 
 		MaterialPass* clone();
-
+		void	SetRenderState(stRenderState state);
 
 		
 		std::vector<stRenderState> m_vecRenderState;

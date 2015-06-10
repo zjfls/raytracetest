@@ -1,15 +1,17 @@
 #pragma once
 #include "IRenderable.h"
 
-
-class WORLD_API Geometry :
-	public IRenderable
+namespace ZG
 {
-public:
-	Geometry();
-	virtual ~Geometry();
+	class WORLD_API Geometry :
+		public IRenderable
+	{
+	public:
+		Geometry();
+		virtual ~Geometry();
 
-protected:
+	protected:
 
-};
+	};
 
+}

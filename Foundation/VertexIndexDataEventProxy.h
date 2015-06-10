@@ -1,10 +1,11 @@
 #pragma once
 #include "Singleton.h"
 #include "GameObjectBase.h"
-class IndexData;
-class VertexData;
+
 namespace ZG
 {
+	class IndexData;
+	class VertexData;
 	class IndexDataEventArg :public GameObjectBase
 	{
 	public:

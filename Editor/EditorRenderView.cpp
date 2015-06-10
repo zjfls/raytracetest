@@ -23,7 +23,7 @@ void EditorRenderView::Create(unsigned int nWidth, unsigned int nHeight, int win
 	renderView.m_nWidth = nWidth;
 	renderView.m_nHeight = nHeight;
 	renderView.m_windowID = windowID;
-	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->CreateRenderView(renderView);
+	m_pRenderView = RenderManager::GetInstance()->GetDefaultRenderSystem()->CreateRenderView(renderView,24);
 	
 
 

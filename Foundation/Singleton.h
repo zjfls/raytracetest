@@ -4,28 +4,30 @@
 #include <memory>
 #include "threadmutex.h"
 #include "SmartPointer.h"
-using ZG::SmartPointer;
-template<class T>
-class Singleton
+namespace ZG
 {
-public:
-	virtual ~Singleton(){};
-
-	static T* GetInstance()
+	template<class T>
+	class Singleton
 	{
-		if (_instance == nullptr)
+	public:
+		virtual ~Singleton(){};
+
+		static T* GetInstance()
 		{
-			std::lock_guard<std::mutex> mtx(g_SingletonMutex);
 			if (_instance == nullptr)
 			{
-				_instance = new T;
+				std::lock_guard<std::mutex> mtx(g_SingletonMutex);
+				if (_instance == nullptr)
+				{
+					_instance = new T;
+				}
+				//std::cout << "new singleton" << std::endl;
 			}
-			//std::cout << "new singleton" << std::endl;
+			return _instance.get();
 		}
-		return _instance.get();
-	}
 
-protected:
-	Singleton(){};
-	static SmartPointer<T> _instance;
-};
+	protected:
+		Singleton(){};
+		static SmartPointer<T> _instance;
+	};
+}

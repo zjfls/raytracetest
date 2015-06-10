@@ -12,7 +12,7 @@
 #include "MaterialPass.h"
 #include <string>
 #include "materialpass.h"
-using namespace ZG;
+
 template class WORLD_API Singleton < GizmoManager >;
 template<> SmartPointer<GizmoManager> Singleton<GizmoManager>::_instance = nullptr;
 
@@ -242,4 +242,33 @@ void ZG::GizmoManager::createSceneGridGizmo()
 	//	}
 	//	//std::cout << endl;
 	//}
+}
+
+void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
+{
+	m_pSelectObjWireFrame = pSelObj->Clone(false);
+	std::vector<SmartPointer<IRenderable>> vecRend;
+	m_pSelectObjWireFrame->GetAllModule<IRenderable>(vecRend);
+	for each (SmartPointer<IRenderable> rend in vecRend)
+	{
+		rend->m_pSharedMaterial = rend->GetDefaultMaterial();
+		RasterMaterial* pMat = dynamic_cast<RasterMaterial*>(rend->GetMaterialInstance().get());
+		if (pMat != nullptr)
+		{
+			for each (std::pair<string, ZG::SmartPointer<ZG::MaterialPass>> p in pMat->m_MaterialPass)
+			{
+				stRenderState s;
+				s.m_eRenderState = FILLMODE;
+				s.m_nValue = EFILLMODE_WIREFRAME;
+				p.second->SetRenderState(s);
+				s.m_eRenderState = ZTEST;
+				s.m_nValue = true;
+				p.second->SetRenderState(s);
+				s.m_eRenderState = ZFUNC;
+				s.m_nValue = RENDERCMP_LESSEQUAL;
+				p.second->SetRenderState(s);
+
+			}
+		}
+	}
 }

@@ -1,2 +1,5 @@
 #pragma once
-void replaceCharInString(string& str,char cSrc,char cDst);
+namespace ZG
+{
+	void replaceCharInString(string& str, char cSrc, char cDst);
+}

@@ -1,11 +1,13 @@
 #pragma once
 #include "Matrix33.h"
 #include "Vector3.h"
-class Matrix33;
-class Orientation;
-class Vector3;
+
+
 namespace ZG
 {
+	class Matrix33;
+	class Orientation;
+	class Vector3;
 	class MATH_API Quaternion
 	{
 	public:

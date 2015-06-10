@@ -36,19 +36,19 @@ void RenderPath::AddStage(RenderStage* stage)
 }
 
 
-void RenderPath::InitTargetBuffer()
-{
-	if (m_strName == "Forward")
-	{
-		IRenderTarget* pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderTarget();
-		m_RenderTargetGroup.SetRenderTarget(0, pTarget);
-		for each (RenderStage* pState in m_vecStages)
-		{
-			pState->m_RenderTargetGroup = m_RenderTargetGroup;
-		}
-	}
-	else if (m_strName == "Deferred")
-	{
-
-	}
-}
+//void RenderPath::InitTargetBuffer()
+//{
+//	if (m_strName == "Forward")
+//	{
+//		IRenderTarget* pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderTarget();
+//		m_RenderTargetGroup.SetRenderTarget(0, pTarget);
+//		for each (RenderStage* pState in m_vecStages)
+//		{
+//			pState->m_RenderTargetGroup = m_RenderTargetGroup;
+//		}
+//	}
+//	else if (m_strName == "Deferred")
+//	{
+//
+//	}
+//}

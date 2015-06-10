@@ -114,6 +114,7 @@ QtEditor::QtEditor(QWidget *parent)
 
 
 	QtRenderView* pRender = new QtRenderView();
+	pRender->m_strName = "Scene1";
 	
 	//setCentralWidget(pRender);
 	//ui.tabWidget->addTab(pRender, tr("Scene"));
@@ -124,6 +125,7 @@ QtEditor::QtEditor(QWidget *parent)
 	pRender->installEventFilter(this);
 
 	QtRenderView* pRender2 = new QtRenderView();
+	pRender2->m_strName = "Scene2";
 	pRender2->installEventFilter(this);
 	m_pTabWidget->addTab(pRender2, tr("Scene_2"));
 	QTimer *timer = new QTimer(this); 

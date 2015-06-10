@@ -1,13 +1,16 @@
 #pragma once
 #include "IAsset.h"
-class MAIN_API MeshAsset :
-	public IAsset
+namespace ZG
 {
-public:
-	MeshAsset();
-	virtual ~MeshAsset();
+	class MAIN_API MeshAsset :
+		public IAsset
+	{
+	public:
+		MeshAsset();
+		virtual ~MeshAsset();
 
 
-	virtual void Release(bool bReleaseResource);
-};
+		virtual void Release(bool bReleaseResource);
+	};
 
+}

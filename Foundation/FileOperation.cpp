@@ -19,7 +19,7 @@ long filesize(FILE *stream)
 
 
 
-FOUNDATION_API bool CpyFile(std::string src, std::string dst)
+FOUNDATION_API bool ZG::CpyFile(std::string src, std::string dst)
 {
 	std::cout << "copy file from " << src.c_str() << "\" to \"" << dst.c_str()<<"\"" << std::endl;
 

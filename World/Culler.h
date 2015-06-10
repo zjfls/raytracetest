@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
-class IRenderable;
-class Matrix44;
-class CameraBase;
+
 namespace ZG
 {
+	class IRenderable;
+	class Matrix44;
+	class CameraBase;
 	class WORLD_API Culler
 	{
 	public:

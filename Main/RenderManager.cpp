@@ -47,26 +47,30 @@ bool RenderManager::Init( stRenderViewInfo& renderViewInfo)
 		//return b;
 	}
 #endif
+	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	{
+		m_pDefualtRenderSystem->GetDefaultRenderView()->CreateHdrTarget();
+	}
 	m_pDefualtRenderSystem->m_pActiveView = m_pDefualtRenderSystem->GetDefaultRenderView();
-	//Create Default RenderTarget Group
-	bool bHdr = (bool)EnviromentSetting::GetInstance()->GetIntSetting("HDR");
-	if (bHdr == true)
-	{
-		IRenderTarget* pRenderTarget = m_pDefualtRenderSystem->CreateRenderTarget(renderViewInfo.m_nWidth, renderViewInfo.m_nHeight, TFA16B16G16R16F, MSNONE, 0);
-		if (pRenderTarget == nullptr)
-		{
-			m_pDefualtRenderSystem->m_pDefaultRenderTarget = m_pDefualtRenderSystem->m_pDefaultRenderView;
-		}
-		else
-		{
-			m_pDefualtRenderSystem->m_pDefaultRenderTarget = pRenderTarget;
-		}
-	}
-	else
-	{
-		m_pDefualtRenderSystem->m_pDefaultRenderTarget = m_pDefualtRenderSystem->m_pDefaultRenderView;
-	}
-	pRenderPath->InitTargetBuffer();
+	////Create Default RenderTarget Group
+	//bool bHdr = (bool)EnviromentSetting::GetInstance()->GetIntSetting("HDR");
+	//if (bHdr == true)
+	//{
+	//	IRenderTarget* pRenderTarget = m_pDefualtRenderSystem->CreateRenderTarget(renderViewInfo.m_nWidth, renderViewInfo.m_nHeight, TFA16B16G16R16F, MSNONE, 0);
+	//	if (pRenderTarget == nullptr)
+	//	{
+	//		m_pDefualtRenderSystem->m_pDefaultRenderTarget = m_pDefualtRenderSystem->m_pDefaultRenderView.get();
+	//	}
+	//	else
+	//	{
+	//		m_pDefualtRenderSystem->m_pDefaultRenderTarget = pRenderTarget;
+	//	}
+	//}
+	//else
+	//{
+	//	m_pDefualtRenderSystem->m_pDefaultRenderTarget = m_pDefualtRenderSystem->m_pDefaultRenderView.get();
+	//}
+	//pRenderPath->InitTargetBuffer();
 
 	LoadShaderChunk();
 	return true;

@@ -130,28 +130,51 @@ void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
 		return;
 	}
 	m_pCurrentRenderCamera = pCamera;
-
-
-
-
 	IRenderTarget* pTarget = nullptr;
-	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	RenderView* pView = dynamic_cast<RenderView*>(rEvent.m_pTargetCamera->m_pTarget.get());
+	if (pView != nullptr)
 	{
-		pTarget = m_pRenderSystem->GetDefaultRenderTarget();
+		if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true && pCamera->m_bHDR)
+		{
+			SetRenderTarget(0, pView->m_pHDRTarget.get());
+			pTarget = pView->m_pHDRTarget.get();
+		}
+		else
+		{
+			SetRenderTarget(0, pView);
+			pTarget = pView;
+		}
 	}
 	else
 	{
-		pTarget = pCamera->m_pTarget.get();
+		SetRenderTarget(0, rEvent.m_pTargetCamera->m_pTarget.get());
+		pTarget = rEvent.m_pTargetCamera->m_pTarget.get();
 	}
-	SetRenderTarget(0, pTarget);
+
+
+	//IRenderTarget* pTarget = nullptr;
+	//if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	//{
+	//	pTarget = m_pRenderSystem->GetDef;
+	//}
+	//else
+	//{
+	//	pTarget = pCamera->m_pTarget.get();
+	//}
+	
+	SetDepthBuffer(rEvent.m_pTargetCamera->m_pTarget->m_DepthBuffer.get());
 	ClearTarget(pCamera->m_bClearColor, pCamera->m_clrColr, pCamera->m_bClearDepth, pCamera->m_fDepth);
+	//
 	Render(pCamera, pCamera->m_pWorld, pTarget);
 
 	SmartPointer<RasterMaterial> mat = ResourceManager<MaterialResource>::GetInstance()->GetResource("./data/material/builtin/quad.smat.xml").SmartPointerCast<RasterMaterial>();
 
-
-	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	if (pView != nullptr)
 	{
-		DrawScreen(m_pRenderSystem->GetDefaultRenderTarget(), m_pRenderSystem->GetActiveRenderView(), mat);
+		if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+		{
+			DrawScreen(pTarget, pView, mat);
+		}
 	}
+
 }

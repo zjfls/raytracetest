@@ -40,7 +40,7 @@ namespace ZG
 		//
 		T& operator*();
 		//
-		T* get();
+		T* get() const;
 	private:
 		GameObjectBase* m_pTarget;
 	};
@@ -85,7 +85,7 @@ namespace ZG
 	//}
 
 	template<class T>
-	T* ZG::SmartPointer<T>::get()
+	T* ZG::SmartPointer<T>::get() const
 	{
 		return (T*)m_pTarget;
 	}
@@ -134,7 +134,7 @@ namespace ZG
 	template<class T>
 	bool ZG::SmartPointer<T>::operator==(T* t)
 	{
-		if (m_pTarget == t)
+		if (m_pTarget == (GameObjectBase*)t)
 		{
 			return true;
 		}

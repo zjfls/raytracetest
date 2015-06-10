@@ -1,63 +1,65 @@
 #pragma once
 
-
-class IAssetLoader;
-class IAsset;
-class MAIN_API AssetManager :public Singleton<AssetManager>,public GameObjectBase
+namespace ZG
 {
-public:
-	AssetManager();
-	~AssetManager();
+	class IAssetLoader;
+	class IAsset;
+	class MAIN_API AssetManager :public Singleton<AssetManager>, public GameObjectBase
+	{
+	public:
+		AssetManager();
+		~AssetManager();
 
 
 
-	//void LoadAsset(string path);
-	/*
+		//void LoadAsset(string path);
+		/*
 
-	*Summary: release asset and associate resource
+		*Summary: release asset and associate resource
 
-	*Parameters:
+		*Parameters:
 
-	*     bReleaseResource:if release associate resource
+		*     bReleaseResource:if release associate resource
 
 
-	*Return : void
+		*Return : void
 
-	*/
-	void ReleaseAsset(string path,bool bReleaseResource);
-	/*
+		*/
+		void ReleaseAsset(string path, bool bReleaseResource);
+		/*
 
-	*Summary: release asset and associate resource
+		*Summary: release asset and associate resource
 
-	*Parameters:
+		*Parameters:
 
-	*     path:path of asset
+		*     path:path of asset
 
-	*	  pArg:addition arg
+		*	  pArg:addition arg
 
-	*Return : the loaded asset
+		*Return : the loaded asset
 
-	*/
-	IAsset* LoadAsset(string path,void* pArg = nullptr);
-	/*
+		*/
+		IAsset* LoadAsset(string path, void* pArg = nullptr);
+		/*
 
-	*Summary: regist loader by suffix
+		*Summary: regist loader by suffix
 
-	*Parameters:
+		*Parameters:
 
-	*     strSuff:suffix
+		*     strSuff:suffix
 
-	*	  pLoader:บ๓ืบ
+		*	  pLoader:บ๓ืบ
 
-	*Return : if exist replace the loader
+		*Return : if exist replace the loader
 
-	*/
-	void	AddLoader(string strSuff, IAssetLoader* pLoader);
-	bool	Init();
-	IAsset*	GetAsset(string strPath);
-private:
-	std::map<string, IAssetLoader*> m_LoaderMap;
-	std::map<string, IAsset*> m_AssetMap;
-};
+		*/
+		void	AddLoader(string strSuff, IAssetLoader* pLoader);
+		bool	Init();
+		IAsset*	GetAsset(string strPath);
+	private:
+		std::map<string, IAssetLoader*> m_LoaderMap;
+		std::map<string, IAsset*> m_AssetMap;
+	};
 
-extern template class MAIN_API  Singleton < AssetManager >;
+	extern template class MAIN_API  Singleton < AssetManager > ;
+}

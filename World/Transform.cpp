@@ -116,7 +116,7 @@ Vector3 Transform::GetWorldTranslate() const
 SmartPointer<ModuleBase> Transform::Clone()
 {
 	SmartPointer<Transform> pTransform = SmartPointer<Transform>(new Transform());
-	pTransform->m_bDirt = m_bDirt;
+	pTransform->m_bDirt = true;
 	pTransform->m_TransformMatrixLocal = m_TransformMatrixLocal;
 	pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;
 	pTransform->m_vecTranslate = m_vecTranslate;

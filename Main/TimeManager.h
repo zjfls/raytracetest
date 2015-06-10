@@ -1,24 +1,27 @@
 
 #pragma once
 #include "Singleton.h"
-class MAIN_API TimeManager :
-	public Singleton<TimeManager>,public GameObjectBase
+namespace ZG
 {
-public:
-	TimeManager();
-	virtual ~TimeManager();
+	class MAIN_API TimeManager :
+		public Singleton<TimeManager>, public GameObjectBase
+	{
+	public:
+		TimeManager();
+		virtual ~TimeManager();
 
-	void Update();
+		void Update();
 
-public:
-	float m_fElapseTime;
-	float m_fLastFrameTime;
-	int	  m_nFps;
-	float m_fFpsTimeCounter;
-	int	  m_nFpsCount;
+	public:
+		float m_fElapseTime;
+		float m_fLastFrameTime;
+		int	  m_nFps;
+		float m_fFpsTimeCounter;
+		int	  m_nFpsCount;
 
 
 
-};
+	};
 
-extern template class MAIN_API Singleton < TimeManager >;
+	extern template class MAIN_API Singleton < TimeManager > ;
+}

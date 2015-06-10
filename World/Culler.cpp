@@ -16,7 +16,7 @@ ZG::Culler::~Culler()
 
 }
 
-void ZG::Culler::cull(const std::vector<SmartPointer<IRenderable>>& vecRend, std::vector<SmartPointer<IRenderable>>& vecOut,SmartPointer<CameraBase> pCamera)
+void ZG::Culler::cull(const std::vector<SmartPointer<IRenderable>>& vecRend, std::vector<SmartPointer<IRenderable>>& vecOut, SmartPointer<CameraBase> pCamera)
 {
 	AABBBox cvv;
 	cvv.m_Min = Vector3(-1.0f, -1.0f, 0.0f);
@@ -33,7 +33,7 @@ void ZG::Culler::cull(const std::vector<SmartPointer<IRenderable>>& vecRend, std
 				AABBBox box2 = *pBox;
 				box2.Transform(pCamera->m_MatView);
 				box2.Transform(pCamera->m_MatViewProj);
-				
+
 
 				Vector4 vPos;
 				vPos.Vector3ToPoint(pBox->m_Min);
@@ -49,6 +49,6 @@ void ZG::Culler::cull(const std::vector<SmartPointer<IRenderable>>& vecRend, std
 			}
 		}
 	}
-	//
-	//vecOut = vecRend;
 }
+
+

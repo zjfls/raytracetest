@@ -1,8 +1,8 @@
 #pragma once
-class AABBBox;
+
 namespace ZG
 {
-
+	class AABBBox;
 	class MATH_API IntersectTest
 	{
 	public:
@@ -11,7 +11,7 @@ namespace ZG
 
 
 
-		static bool AABBBox_AABBBoxTest(const AABBBox& a,const AABBBox& b);
+		static bool AABBBox_AABBBoxTest(const AABBBox& a, const AABBBox& b);
 	};
 }
 

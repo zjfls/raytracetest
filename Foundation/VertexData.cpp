@@ -8,7 +8,6 @@
 #include "MathDefine.h"
 #include "VertexIndexDataEventProxy.h"
 #include "AABBBox.h"
-using namespace ZG;
 VertexData::~VertexData()
 {
 	VertexDataEventArg arg;

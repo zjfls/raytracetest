@@ -3,58 +3,61 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // COutputList 窗口
-
-class COutputList : public CListBox
+namespace ZG
 {
-// 构造
-public:
-	COutputList();
+	class COutputList : public CListBox
+	{
+		// 构造
+	public:
+		COutputList();
 
-// 实现
-public:
-	virtual ~COutputList();
-	//virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
-	
-protected:
-	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
-	afx_msg void OnEditCopy();
-	afx_msg void OnEditClear();
-	afx_msg void OnViewOutput();
+		// 实现
+	public:
+		virtual ~COutputList();
+		//virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 
-	DECLARE_MESSAGE_MAP()
-};
+	protected:
+		afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+		afx_msg void OnEditCopy();
+		afx_msg void OnEditClear();
+		afx_msg void OnViewOutput();
 
-class COutputWnd : public CDockablePane
-{
-// 构造
-public:
-	COutputWnd();
+		DECLARE_MESSAGE_MAP()
+	};
 
-	void UpdateFonts();
+	class COutputWnd : public CDockablePane
+	{
+		// 构造
+	public:
+		COutputWnd();
 
-// 特性
-protected:
-	CMFCTabCtrl	m_wndTabs;
+		void UpdateFonts();
 
-	COutputList m_wndOutputBuild;
-	COutputList m_wndOutputDebug;
-	COutputList m_wndOutputFind;
+		// 特性
+	protected:
+		CMFCTabCtrl	m_wndTabs;
 
-protected:
-	void FillBuildWindow();
-	void FillDebugWindow();
-	void FillFindWindow();
+		COutputList m_wndOutputBuild;
+		COutputList m_wndOutputDebug;
+		COutputList m_wndOutputFind;
 
-	void AdjustHorzScroll(CListBox& wndListBox);
+	protected:
+		void FillBuildWindow();
+		void FillDebugWindow();
+		void FillFindWindow();
 
-// 实现
-public:
-	virtual ~COutputWnd();
+		void AdjustHorzScroll(CListBox& wndListBox);
 
-protected:
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
+		// 实现
+	public:
+		virtual ~COutputWnd();
 
-	DECLARE_MESSAGE_MAP()
-};
+	protected:
+		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+		afx_msg void OnSize(UINT nType, int cx, int cy);
+
+		DECLARE_MESSAGE_MAP()
+	};
+}
+
 

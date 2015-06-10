@@ -1,22 +1,24 @@
 #pragma once
-
-class RayTraceCamera;
-class RayTraceViewPort
+namespace ZG
 {
-public:
-	RayTraceViewPort();
-	virtual ~RayTraceViewPort();
-	virtual void OnTransformChanged(const RayTraceCamera* pCamera);
+	class RayTraceCamera;
+	class RayTraceViewPort
+	{
+	public:
+		RayTraceViewPort();
+		virtual ~RayTraceViewPort();
+		virtual void OnTransformChanged(const RayTraceCamera* pCamera);
 
 
-public:
-	Point3D		m_vecPlanePos;
-	Direction3D	m_vecPlaneNormal;
+	public:
+		Point3D		m_vecPlanePos;
+		Direction3D	m_vecPlaneNormal;
 
-	int			m_pixWidth;
-	int			m_pixHeight;
+		int			m_pixWidth;
+		int			m_pixHeight;
 
 
-	Point3D		m_vecPt[4]; //tl tr bl br
-};
+		Point3D		m_vecPt[4]; //tl tr bl br
+	};
 
+}

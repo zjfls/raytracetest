@@ -8,19 +8,20 @@
 using ZG::SmartPointer;
 
 //
-
-class RESOURCE_API MeshResource :public IResource
+namespace ZG
 {
-public:
-	MeshResource();
-	~MeshResource();
-	//Vector3 GetPositionDataAt(int nIndex);
-	//Vector3	GetNormalDataAt(int nIndex);
-	SmartPointer<MeshResource> clone();
-	SmartPointer<MeshVertexData> m_VertexData;
-	SmartPointer<IndexData> m_IndexData;
-	friend class ResourceManager<MeshResource>;
-};
-extern template  class RESOURCE_API  Singleton<ResourceManager<MeshResource>>;
+	class RESOURCE_API MeshResource :public IResource
+	{
+	public:
+		MeshResource();
+		~MeshResource();
+		//Vector3 GetPositionDataAt(int nIndex);
+		//Vector3	GetNormalDataAt(int nIndex);
+		SmartPointer<MeshResource> clone();
+		SmartPointer<MeshVertexData> m_VertexData;
+		SmartPointer<IndexData> m_IndexData;
+		friend class ResourceManager < MeshResource > ;
+	};
+	extern template  class RESOURCE_API  Singleton < ResourceManager<MeshResource> > ;
 
-
+}

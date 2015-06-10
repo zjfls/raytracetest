@@ -1,10 +1,12 @@
 #pragma once
 #include "GameObjectBase.h"
 #include "MaterialResource.h"
-class IWorldObj;
-class MaterialResource;
+
 namespace ZG
 {
+
+	class IWorldObj;
+	class MaterialResource;
 	class TranslateGizmo:public GameObjectBase
 	{
 	public:

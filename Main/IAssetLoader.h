@@ -1,22 +1,25 @@
 #pragma once
-class IAsset;
-class MAIN_API IAssetLoader
+namespace ZG
 {
-public:
-
-	IAssetLoader()
+	class IAsset;
+	class MAIN_API IAssetLoader
 	{
-		m_pAsset = nullptr;
-	}
+	public:
 
-	virtual ~IAssetLoader()
-	{
-	}
+		IAssetLoader()
+		{
+			m_pAsset = nullptr;
+		}
+
+		virtual ~IAssetLoader()
+		{
+		}
 
 
-	virtual IAsset* Load(string path, void* pArg /*= nullptr*/) = 0;
+		virtual IAsset* Load(string path, void* pArg /*= nullptr*/) = 0;
 
 
-	IAsset* m_pAsset;
-};
+		IAsset* m_pAsset;
+	};
 
+}

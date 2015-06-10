@@ -3,23 +3,24 @@
 #include "Color.h"
 
 
-
-class LightBase;
-class SimpleRTMaterial :
-	public RayTraceMaterial
+namespace ZG
 {
-public:
-	SimpleRTMaterial();
-	virtual ~SimpleRTMaterial();
+	class LightBase;
+	class SimpleRTMaterial :
+		public RayTraceMaterial
+	{
+	public:
+		SimpleRTMaterial();
+		virtual ~SimpleRTMaterial();
 
-	//Color	GetLightContribute(LightBase* pLight);
-	GameColor	m_ColorEmi;
-	GameColor	m_ColorDiffuse;
-	//
-	bool	m_bReflection;
-	bool	m_bRefraction;
-	float	m_fRefractiveIndex;
-	float	m_fTransparecy;
-	//
-};
-
+		//Color	GetLightContribute(LightBase* pLight);
+		GameColor	m_ColorEmi;
+		GameColor	m_ColorDiffuse;
+		//
+		bool	m_bReflection;
+		bool	m_bRefraction;
+		float	m_fRefractiveIndex;
+		float	m_fTransparecy;
+		//
+	};
+}

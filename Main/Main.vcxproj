@@ -23,8 +23,8 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="BuiltInMaterialManager.h" />
     <ClInclude Include="BuiltInResource.h" />
-    <ClInclude Include="CameraRenderer.h" />
     <ClInclude Include="D3D9Application.h" />
+    <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="EnviromentSetting.h" />
     <ClInclude Include="FbxAppImporter.h" />
     <ClInclude Include="FbxAppManager.h" />
@@ -49,10 +49,8 @@
     <ClInclude Include="Main_Dll_Def.h" />
     <ClInclude Include="MaterialAsset.h" />
     <ClInclude Include="MaterialAssetLoader.h" />
-    <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshAsset.h" />
     <ClInclude Include="MeshFileLoader.h" />
-    <ClInclude Include="ModuleBase.h" />
     <ClInclude Include="PickUtil.h" />
     <ClInclude Include="PrefabAsset.h" />
     <ClInclude Include="RasterRender.h" />
@@ -62,7 +60,6 @@
     <ClInclude Include="RayTracePerpViewPort.h" />
     <ClInclude Include="RayTraceRender.h" />
     <ClInclude Include="RayTraceViewPort.h" />
-    <ClInclude Include="RenderEnum.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="RenderPass.h" />
     <ClInclude Include="RenderPath.h" />
@@ -74,7 +71,6 @@
     <ClInclude Include="RenderTargetGroup.h" />
     <ClInclude Include="RenderView.h" />
     <ClInclude Include="ResDef.h" />
-    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resource_Dll_Def.h" />
     <ClInclude Include="ShaderAsset.h" />
     <ClInclude Include="ShaderAssetLoader.h" />
@@ -87,12 +83,10 @@
     <ClInclude Include="SkeletonAsset.h" />
     <ClInclude Include="SkeletonLoader.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="StrUtil.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetLoader.h" />
     <ClInclude Include="TextureSampler.h" />
     <ClInclude Include="TimeManager.h" />
-    <ClInclude Include="Triangle.h" />
     <ClInclude Include="WindowsIO.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
@@ -101,8 +95,8 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="BuiltInMaterialManager.cpp" />
     <ClCompile Include="BuiltInResource.cpp" />
-    <ClCompile Include="CameraRenderer.cpp" />
     <ClCompile Include="D3D9Application.cpp" />
+    <ClCompile Include="DepthBuffer.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="EnviromentSetting.cpp" />
     <ClCompile Include="FbxAppImporter.cpp" />

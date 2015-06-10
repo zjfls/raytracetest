@@ -3,7 +3,6 @@
 #include "IWorldObj.h"
 #include "RasterCamera.h"
 #include "MathDefine.h"
-#include "CameraRenderer.h"
 #include "EditorApplication.h"
 #include "RenderManager.h"
 #include "RenderSystem.h"
@@ -19,6 +18,8 @@
 #include "IOManager.h"
 #include "IOInterface.h"
 #include "IRender.h"
+#include "RasterRender.h"
+#include "IWorld.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -223,7 +224,10 @@ void EditorSceneView::OnClick(Vector2& pos)
 
 void EditorSceneView::DrawGizmo()
 {
+	bool bCameraHDR = m_pCameraModule->m_bHDR;
+	m_pCameraModule->m_bHDR = false;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->Render(m_pCameraModule,EditorApplication::GetInstance()->m_pGizmoScene,m_pRenderView);
+	m_pCameraModule->m_bHDR = bCameraHDR;
 }
 
 

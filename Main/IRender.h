@@ -3,69 +3,75 @@
 #include "GameObjectBase.h"
 #include "CameraBase.h"
 //#include "RenderTargetGroup.h"
-class CameraBase;
-class IWorld;
-class IRenderTarget;
-class RenderView;
-class CameraBase;
-class IRenderable;
-struct stRenderViewInfo;
-class MAIN_API IRender:public GameObjectBase
+
+namespace ZG
 {
-public:
-	IRender();
-	virtual ~IRender();
+	class CameraBase;
+	class IWorld;
+	class IRenderTarget;
+	class RenderView;
+	class IRenderable;
+	struct stRenderViewInfo;
+	class DepthBuffer;
+	class MAIN_API IRender :public GameObjectBase
+	{
+	public:
+		IRender();
+		virtual ~IRender();
 
 
 
-	void RegistCamera(SmartPointer<CameraBase> pCamera);
-	void OnCameraRender(CameraRenderEvent& event);
-	void OnCameraUpdate(CameraRenderEvent& event);
-	virtual void RenderCamera(CameraRenderEvent& event){};
-	virtual void UpdateProjCamera(SmartPointer<CameraBase> pCamera) = 0;
-	/*
+		void RegistCamera(SmartPointer<CameraBase> pCamera);
+		void OnCameraRender(CameraRenderEvent& event);
+		void OnCameraUpdate(CameraRenderEvent& event);
+		virtual void RenderCamera(CameraRenderEvent& event){};
+		virtual void UpdateProjCamera(SmartPointer<CameraBase> pCamera) = 0;
+		/*
 
-	*Summary: render a world
+		*Summary: render a world
 
-	*Parameters:
+		*Parameters:
 
-	*   pCammera:the camera render to use
-	*	pWorld:the world to be render
+		*   pCammera:the camera render to use
+		*	pWorld:the world to be render
 
-	*Return : int if success return 0
+		*Return : int if success return 0
 
-	*/
-	virtual int Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld> pWorld,IRenderTarget* pTarget) = 0;
-	/*
+		*/
+		virtual int Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld> pWorld, IRenderTarget* pTarget) = 0;
+		/*
 
-	*Summary: render a renderable
+		*Summary: render a renderable
 
-	*Parameters:
+		*Parameters:
 
-	*   pRenderable:the target to be rendered
+		*   pRenderable:the target to be rendered
 
-	*Return : void
+		*Return : void
 
-	*/
-	virtual void Render(SmartPointer<IRenderable> pRenderable){};
-	//
-	virtual void	SetRenderTarget(int nIndex,IRenderTarget* pTarget);
-	//
-	IRenderTarget*	CreateRenderTarget(unsigned int width, unsigned int height, TARGETFORMAT eTargetFormat, bool bDepth = false, TARGETFORMAT eDepthFormat = TFNONE, EMULTISAMPLETYPE = MSNONE, unsigned int nMultiSampleQuality = 0);
-	//
-	RenderView*	CreateRenderView(const stRenderViewInfo& renderView);
+		*/
+		virtual void Render(SmartPointer<IRenderable> pRenderable){};
+		//
+		virtual void	SetRenderTarget(int nIndex, IRenderTarget* pTarget);
+		virtual void	SetDepthBuffer(DepthBuffer* pDepthBuffer);
+		//
+		IRenderTarget*	CreateRenderTarget(unsigned int width, unsigned int height, TARGETFORMAT eTargetFormat, bool bDepth = false, TARGETFORMAT eDepthFormat = TFNONE, EMULTISAMPLETYPE = MSNONE, unsigned int nMultiSampleQuality = 0);
+		//
+		RenderView*	CreateRenderView(const stRenderViewInfo& renderView);
 
 
 
-private:
-	void SetCurrentRenderCamera(SmartPointer<CameraBase> pCamera);
+	private:
+		void SetCurrentRenderCamera(SmartPointer<CameraBase> pCamera);
 
-protected:
-	SmartPointer<CameraBase> m_pCurrentRenderCamera;
+	protected:
+		SmartPointer<CameraBase> m_pCurrentRenderCamera;
 
-	friend class CameraBase;
-	friend class RenderState;
-	friend class RenderPass;
-	friend class CameraRenderer;
-};
+		friend class CameraBase;
+		friend class RenderState;
+		friend class RenderPass;
+		friend class CameraRenderer;
+	};
+
+}
 

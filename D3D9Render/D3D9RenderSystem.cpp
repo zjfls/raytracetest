@@ -18,6 +18,7 @@
 #include "D3D9RenderTarget.h"
 #include "EnviromentSetting.h"
 #include "DynamicVertexData.h"
+#include "D3DDepthBuffer.h"
 D3D9RenderSystem::D3D9RenderSystem()
 	:m_pD3D(nullptr)
 	, m_pD3DDevice(nullptr)
@@ -108,6 +109,7 @@ bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 
 
 
+
 	D3D9RenderView* pRenderView;
 	IDirect3DSwapChain9* pSwapChain = nullptr;
 	m_pD3DDevice->GetSwapChain(0, &pSwapChain);
@@ -124,7 +126,17 @@ bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 
 
 	m_vecRenderTarget.push_back(pRenderView);
-
+	D3DDepthBuffer* pBuffer = new D3DDepthBuffer;
+	m_pD3DDevice->GetDepthStencilSurface(&pBuffer->m_pDepthSurface);
+	m_vecDepthBuffer.push_back(pBuffer);
+	pBuffer->m_nDepth = 24;
+	pBuffer->m_nWidth = pRenderView->m_nWidth;
+	pBuffer->m_nHeight = pRenderView->m_nHeight;
+	pBuffer->m_pD3DDevice = m_pD3DDevice;
+	//if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	//{
+	//	pRenderView->CreateHdrTarget();
+	//}
 
 
 	//D3D9Manager::GetInstance()->m_pDefaultRender = new D3D9Render(RenderPathManager::GetInstance()->GetRenderPath(
@@ -685,7 +697,7 @@ HardwareTexture* D3D9RenderSystem::GetHardwareTexture(SmartPointer<Texture> pTex
 	return nullptr;
 }
 
-IRenderTarget* D3D9RenderSystem::CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality)
+IRenderTarget* D3D9RenderSystem::CreateRenderTarget(unsigned int nWidth, unsigned int nHeight, TARGETFORMAT eTarget, EMULTISAMPLETYPE eMultiSample, unsigned int nQuality,int nDepth)
 {
 	D3D9RenderTarget* pTarget = new D3D9RenderTarget;
 	D3DFORMAT d3dFormat = getBufferFormat(eTarget);
@@ -703,6 +715,10 @@ IRenderTarget* D3D9RenderSystem::CreateRenderTarget(unsigned int nWidth, unsigne
 	pTarget->m_pSurfTexture = pTexture;
 	pTarget->m_pD3DDevice = m_pD3DDevice;
 	m_vecRenderTarget.push_back(pTarget);
+	if (nDepth != 0)
+	{
+		pTarget->m_DepthBuffer = CreateDepthBuffer(pTarget->m_nWidth, pTarget->m_nHeight, nDepth);
+	}
 	return pTarget;
 }
 
@@ -738,10 +754,10 @@ bool D3D9RenderSystem::OnFrameBegin()
 					SAFE_RELEASE((*iter)->m_pVertexDecal);
 				}
 
-				std::vector<IRenderTarget*>::iterator iterRT = m_vecRenderTarget.begin();
+				std::vector<SmartPointer<IRenderTarget>>::iterator iterRT = m_vecRenderTarget.begin();
 				for (; iterRT != m_vecRenderTarget.end(); ++iterRT)
 				{
-					IRenderTarget* pTarget = *iterRT;
+					IRenderTarget* pTarget = (*iterRT).get();
 					D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(pTarget);
 					D3D9RenderView* pD3DView = dynamic_cast<D3D9RenderView*>(pTarget);
 					if (pD3DTarget != nullptr)
@@ -753,18 +769,23 @@ bool D3D9RenderSystem::OnFrameBegin()
 						pD3DView->OnDeviceLost();
 					}
 				}
+				std::vector<SmartPointer<DepthBuffer>>::iterator iterDpth = m_vecDepthBuffer.begin();
+				for (; iterDpth != m_vecDepthBuffer.end(); ++iterDpth)
+				{
+					D3DDepthBuffer* pDepthBuffer = dynamic_cast<D3DDepthBuffer*>((*iterDpth).get());
+					if (pDepthBuffer != nullptr)
+					{
+						pDepthBuffer->OnDeviceLost();
+					}
+				}
 			}
-			//m_pD3DDevice->GetSwapChain(0, &((D3D9RenderView*)m_pDefaultRenderView)->m_pSwapChain);
+			//////////////////////////////////reset
 			HRESULT hr = m_pD3DDevice->Reset(&m_D3DPresentParamenter);
 			if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
 			{
 				m_pD3DDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
 			}
 
-			//if (hr == D3D_OK)
-			//{
-				
-			//}
 			if (hr != D3D_OK)
 			{
 				
@@ -792,10 +813,10 @@ bool D3D9RenderSystem::OnFrameBegin()
 				m_pD3DDevice->CreateVertexDeclaration(&vecVertElem[0], &(*iter)->m_pVertexDecal);
 			}
 
-			std::vector<IRenderTarget*>::iterator iterRT = m_vecRenderTarget.begin();
+			std::vector<SmartPointer<IRenderTarget>>::iterator iterRT = m_vecRenderTarget.begin();
 			for (; iterRT != m_vecRenderTarget.end(); ++iterRT)
 			{
-				IRenderTarget* pTarget = *iterRT;
+				IRenderTarget* pTarget = (*iterRT).get();
 				D3D9RenderTarget* pD3DTarget = dynamic_cast<D3D9RenderTarget*>(pTarget);
 				D3D9RenderView* pD3DView = dynamic_cast<D3D9RenderView*>(pTarget);
 				if (pD3DTarget != nullptr)
@@ -805,6 +826,15 @@ bool D3D9RenderSystem::OnFrameBegin()
 				if (pD3DView != nullptr)
 				{
 					pD3DView->OnDeviceReset();
+				}
+			}
+			std::vector<SmartPointer<DepthBuffer>>::iterator iterDpth = m_vecDepthBuffer.begin();
+			for (; iterDpth != m_vecDepthBuffer.end(); ++iterDpth)
+			{
+				D3DDepthBuffer* pDepthBuffer = dynamic_cast<D3DDepthBuffer*>((*iterDpth).get());
+				if (pDepthBuffer != nullptr)
+				{
+					pDepthBuffer->OnDeviceReset();
 				}
 			}
 
@@ -817,19 +847,19 @@ bool D3D9RenderSystem::OnFrameBegin()
 
 void D3D9RenderSystem::OnFrameEnd()
 {
-	for each (D3D9RenderTarget* pView in m_vecRenderTarget)
-	{
-		D3D9RenderView* pTargetView = dynamic_cast<D3D9RenderView*>(pView);
-		if (pTargetView != nullptr && pTargetView->m_pSwapChain != nullptr && pTargetView->m_nIndex != 0)
-		{
-			D3DPRESENT_PARAMETERS dpp;
-			pTargetView->m_pSwapChain->GetPresentParameters(&dpp);
-			if (dpp.BackBufferHeight != pTargetView->m_dpp.BackBufferHeight || dpp.BackBufferWidth != pTargetView->m_dpp.BackBufferWidth)
-			{
-				pTargetView->Resize(pTargetView->m_dpp.BackBufferWidth, pTargetView->m_dpp.BackBufferHeight);
-			}
-		}
-	}
+	//for each (SmartPointer<IRenderTarget> pView in m_vecRenderTarget)
+	//{
+	//	D3D9RenderView* pTargetView = dynamic_cast<D3D9RenderView*>(pView.get());
+	//	if (pTargetView != nullptr && pTargetView->m_pSwapChain != nullptr && pTargetView->m_nIndex != 0)
+	//	{
+	//		D3DPRESENT_PARAMETERS dpp;
+	//		pTargetView->m_pSwapChain->GetPresentParameters(&dpp);
+	//		if (dpp.BackBufferHeight != pTargetView->m_dpp.BackBufferHeight || dpp.BackBufferWidth != pTargetView->m_dpp.BackBufferWidth)
+	//		{
+	//			pTargetView->Resize(pTargetView->m_dpp.BackBufferWidth, pTargetView->m_dpp.BackBufferHeight);
+	//		}
+	//	}
+	//}
 }
 
 stD3DVertexBuffDecal* D3D9RenderSystem::GetVertexDecal(std::vector<VertexData::VertexDataDesc>& decl)
@@ -853,7 +883,7 @@ stD3DVertexBuffDecal* D3D9RenderSystem::GetVertexDecal(std::vector<VertexData::V
 	return nullptr;
 }
 
-RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
+RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo,int nDepth)
 {
 	D3D9RenderView* pView = new D3D9RenderView;
 	//D3DPRESENT_PARAMETERS dpp;
@@ -893,6 +923,52 @@ RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo)
 		
 		std::cout << "create view success!" << std::endl;
 	}
+	if (nDepth != 0)
+	{
+		pView->m_DepthBuffer = CreateDepthBuffer(pView->m_nWidth, pView->m_nHeight, nDepth);
+	}
+	if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+	{
+		pView->CreateHdrTarget();
+	}
 	m_vecRenderTarget.push_back(pView);
 	return pView;
+}
+
+DepthBuffer* ZG::D3D9RenderSystem::CreateDepthBuffer(int nWidth, int nHeight, int nDepth)
+{
+	if (nDepth <= 0)
+	{
+		return nullptr;
+	}
+	D3DDepthBuffer* pBuffer = new D3DDepthBuffer;
+	D3DFORMAT d3dFormat;
+	switch (nDepth)
+	{
+		case 16:
+		{
+			d3dFormat = D3DFMT_D16;
+		}
+		break;
+		case 24:
+		{
+			d3dFormat = D3DFMT_D24S8;
+		}
+		break;
+		default:
+		break;
+	}
+	pBuffer->m_nDepth = nDepth;
+	pBuffer->m_nWidth = nWidth;
+	pBuffer->m_nHeight = nHeight;
+	pBuffer->m_pD3DDevice = m_pD3DDevice;
+	m_pD3DDevice->CreateDepthStencilSurface(nWidth, nHeight, d3dFormat, D3DMULTISAMPLE_NONE, 0, true, &pBuffer->m_pDepthSurface, nullptr);
+	if (pBuffer->m_pDepthSurface == nullptr)
+	{
+		std::cout << "create DepthBuffer Failed!" << std::endl;
+		delete pBuffer;
+		return nullptr;
+	}
+	m_vecDepthBuffer.push_back(pBuffer);
+	return pBuffer;
 }

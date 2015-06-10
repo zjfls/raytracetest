@@ -41,3 +41,8 @@ void IRender::OnCameraUpdate(CameraRenderEvent& rEvent)
 {
 	UpdateProjCamera(rEvent.m_pTargetCamera);
 }
+
+void ZG::IRender::SetDepthBuffer(DepthBuffer* pDepthBuffer)
+{
+
+}

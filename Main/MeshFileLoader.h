@@ -1,15 +1,18 @@
 #pragma once
 #include "IAssetLoader.h"
-class MeshFileLoader :
-	public IAssetLoader
+namespace ZG
 {
-public:
-	
-	virtual ~MeshFileLoader();
+	class MeshFileLoader :
+		public IAssetLoader
+	{
+	public:
 
-	virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
-private:
-	MeshFileLoader();
-	friend class AssetManager;
-};
+		virtual ~MeshFileLoader();
 
+		virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
+	private:
+		MeshFileLoader();
+		friend class AssetManager;
+	};
+
+}

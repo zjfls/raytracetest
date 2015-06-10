@@ -4,45 +4,47 @@
 #include "RenderEnum.h"
 #include "Singleton.h"
 #include "ResourceManager.h"
-template<class T>
-class ResourceManager;
-class RESOURCE_API MaterialResource :
-	public IResource
+namespace ZG
 {
-public:
-
-	virtual ~MaterialResource();
-	void	AddArg(string name, MaterialArg* pArg);
-
-	//
 	template<class T>
-	bool	SetArg(std::string strName, const T& arg);
-	//
-	std::unordered_map<string, MaterialArg*> m_matArgs;
-	virtual SmartPointer<MaterialResource> clone(){ return nullptr; };
-protected:
-	MaterialResource();
-	friend class ResourceManager < MaterialResource > ;
-public:
-	ERENDERTYPEFILTER m_eFillter;
-};
+	class ResourceManager;
+	class RESOURCE_API MaterialResource :
+		public IResource
+	{
+	public:
 
-template<class T>
-bool MaterialResource::SetArg(std::string strName, const T& arg)
-{
-	if (m_matArgs.find(strName) == std::end(m_matArgs))
+		virtual ~MaterialResource();
+		void	AddArg(string name, MaterialArg* pArg);
+
+		//
+		template<class T>
+		bool	SetArg(std::string strName, const T& arg);
+		//
+		std::unordered_map<string, MaterialArg*> m_matArgs;
+		virtual SmartPointer<MaterialResource> clone(){ return nullptr; };
+	protected:
+		MaterialResource();
+		friend class ResourceManager < MaterialResource > ;
+	public:
+		ERENDERTYPEFILTER m_eFillter;
+	};
+
+	template<class T>
+	bool MaterialResource::SetArg(std::string strName, const T& arg)
 	{
-		return false;
+		if (m_matArgs.find(strName) == std::end(m_matArgs))
+		{
+			return false;
+		}
+		TMatArg<T>* pArg = dynamic_cast<TMatArg<T>*>(m_matArgs[strName]);
+		if (pArg == nullptr)
+		{
+			return false;
+		}
+		pArg->m_Data = arg;
+		return true;
 	}
-	TMatArg<T>* pArg = dynamic_cast<TMatArg<T>*>(m_matArgs[strName]);
-	if (pArg == nullptr)
-	{
-		return false;
-	}
-	pArg->m_Data = arg;
-	return true;
+
+	RESOURCE_TEMPLATE template class RESOURCE_API  Singleton < ResourceManager<MaterialResource> > ;
 }
-
-RESOURCE_TEMPLATE template class RESOURCE_API  Singleton < ResourceManager<MaterialResource> > ;
-
 //extern template SmartPointer<ResourceManager<MaterialResource>> Singleton<ResourceManager<MaterialResource>>::_instance;
