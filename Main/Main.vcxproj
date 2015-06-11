@@ -23,6 +23,7 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="BuiltInMaterialManager.h" />
     <ClInclude Include="BuiltInResource.h" />
+    <ClInclude Include="Culler.h" />
     <ClInclude Include="D3D9Application.h" />
     <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="EnviromentSetting.h" />
@@ -95,6 +96,7 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="BuiltInMaterialManager.cpp" />
     <ClCompile Include="BuiltInResource.cpp" />
+    <ClCompile Include="Culler.cpp" />
     <ClCompile Include="D3D9Application.cpp" />
     <ClCompile Include="DepthBuffer.cpp" />
     <ClCompile Include="dllmain.cpp" />

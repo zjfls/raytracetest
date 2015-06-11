@@ -58,7 +58,7 @@ RenderPass::~RenderPass()
 void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)
 {	
 
-
+	std::cout << "pRender->SetAlphaTest(true);" << std::endl;
 	pRender->SetAlphaTest(true);
 	pRender->SetAlphaTestFactor(128);
 	pRender->SetAlphaFunc(RENDERCMP_GREATER);
@@ -86,6 +86,7 @@ void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRender
 	//HardwareFragShader* pFragShader;
 	if (eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING || fsDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN)
 	{
+		std::cout << "eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING || fsDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN" << std::endl;
 		HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
 		if (nullptr == pVertexShader)
 		{
@@ -101,18 +102,23 @@ void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRender
 		//
 		pRender->SetVertexShader(pVertexShader);
 		pRender->SetFragShader(pFragShader);
-
+		std::cout << "pRender->SetFragShader(pFragShader);" << std::endl;
 		//
 		BuildShaderArgs(pRender, pRenderable, pMat, eStageShaderType, pVertexShader, pFragShader);
+		std::cout << "SetPassStates(pRender, mapStates);" << std::endl;
 		//
 		SetPassStates(pRender, mapStates);
+		std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
 		//
 		SetShaderArgs(pRender, pVertexShader, pFragShader);
+
+		std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
 		//
 		pRender->Render(pIndexBuff, pVertexBuff);
 	}
 	else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)
 	{
+		std::cout << "else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)" << std::endl;
 		int index = 0;
 		for each (SmartPointer<LightBase> pLight in pRenderable->m_vecLight)
 		{
@@ -177,10 +183,11 @@ void RenderPass::BuildShaderArgs(RasterRender* pRender, SmartPointer<IRenderable
 	//
 	std::unordered_map<string, ShaderConstantInfo>& vertexShaderParam = pVertexShader->GetContants();
 	std::unordered_map<string, ShaderConstantInfo>& fragShaderParam = pFragShader->GetContants();
-
+	std::cout << "SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);" << std::endl;
 	SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);
+	std::cout << "SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);" << std::endl;
 	SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);
-
+	std::cout << "for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)" << std::endl;
 	//
 	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
 	{
@@ -199,6 +206,8 @@ void RenderPass::BuildShaderArgs(RasterRender* pRender, SmartPointer<IRenderable
 
 void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates)
 {
+
+	bool bFillModeChanged = false;
 	for each (stRenderState rs in m_vecRenderState)
 	{
 		switch (rs.m_eRenderState)
@@ -231,11 +240,16 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 			case FILLMODE:
 			{
 				pRender->SetFillMode((EFILLMODE)rs.m_nValue);
+				bFillModeChanged = true;
 			}
 			break;
 			default:
 			break;
 		}
+	}
+	if (bFillModeChanged == false)
+	{
+		pRender->SetFillMode(EFILLMODE_SOLID);
 	}
 }
 void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)
@@ -262,6 +276,32 @@ void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVert
 void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
 {
 
+	if (pRender == nullptr || pRender->m_pCurrentRenderCamera == nullptr || pRenderable == nullptr || pRenderable->m_pOwnerObj == nullptr || pRenderable->m_pOwnerObj->m_pTransform == nullptr)
+	{
+		if (pRender == nullptr)
+		{
+			std::cout << "render is null" << std::endl;
+		}
+		if (pRender->m_pCurrentRenderCamera == nullptr)
+		{
+			std::cout << "render camera is null" << std::endl;
+		}
+		if (pRenderable == nullptr)
+		{
+			std::cout << "renderable is null" << std::endl;
+		}
+		if (pRenderable->m_pOwnerObj == nullptr)
+		{
+			std::cout << "pRenderable->m_pOwnerObj is null" << std::endl;
+		}
+		if (pRenderable->m_pOwnerObj->m_pTransform == nullptr)
+		{
+			std::cout << "pRenderable->m_pOwnerObj->m_pTransform is null" << std::endl;
+		}
+		*((int*)0) = 11;
+		//std::cout << "pRener is null" << std::endl;
+		return;
+	}
 
 	Matrix44 matWorld = pRenderable->m_pOwnerObj->m_pTransform->GetWorldMatrix();
 	Matrix44 matView = pRender->m_pCurrentRenderCamera->GetViewMatrix();
@@ -270,6 +310,7 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable>
 
 	for each (std::pair<string, ShaderConstantInfo> p in argIn)
 	{
+		std::cout << p.first << std::endl;
 
 		//  MATRIX_WORLD
 		//	MATRIX_VIEW

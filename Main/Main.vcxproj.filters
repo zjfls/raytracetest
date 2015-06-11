@@ -243,6 +243,9 @@
     <ClInclude Include="DepthBuffer.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Culler.h">
+      <Filter>头文件\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -445,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="DepthBuffer.cpp">
       <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Culler.cpp">
+      <Filter>源文件\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

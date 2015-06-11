@@ -12,7 +12,7 @@
 #include "RenderView.h"
 #include "RasterMaterial.h"
 #include "Culler.h"
-//RasterRender::RasterRender()
+//RasterRender::RasterRender
 //	:m_pRenderPath(nullptr)
 //{
 //}
@@ -36,7 +36,10 @@ int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld>
 		std::cout << "Begin Scene Failed!" << std::endl;
 		return -1;
 	}
-
+	if (m_pCurrentRenderCamera == nullptr)
+	{
+		m_pCurrentRenderCamera = pCammera;
+	}
 	std::vector<SmartPointer<IRenderable>> vecRenderables = pWorld->GetAllRenderables();
 	if (m_pRenderPath->m_bGetPerObjLightInfo == true)
 	{
@@ -47,6 +50,7 @@ int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld>
 	std::vector<SmartPointer<IRenderable>> vecCulled;
 	culler.cull(vecRenderables, vecCulled, pCammera);
 	//
+	std::cout << "int nRet = Render(vecCulled, pTarget);" << std::endl;
 	int nRet = Render(vecCulled, pTarget);
 	if (RenderEnd() == false)
 	{
@@ -78,9 +82,10 @@ int RasterRender::Render(std::vector<SmartPointer<IRenderable>>& pRenderableList
 		std::vector<SmartPointer<IRenderable>> vec;
 		GetRenderables(pRenderableList,vec, pStage->m_eFillter);
 		//SetRenderStageState(pStage->m_eFillter);
-
+		std::cout << "pStage->Render(this,vec);" << std::endl;
 		//pStage->SetStageRenderState(this);
 		pStage->Render(this,vec);
+		std::cout << "pStage->Render(this,vec); end" << std::endl;
 
 	}
 	return 0;
@@ -129,6 +134,8 @@ void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
 	{
 		return;
 	}
+
+	std::cout << "fsdffffffffffffffffffffffffffffffffff"<<(int)pCamera.get() << std::endl;
 	m_pCurrentRenderCamera = pCamera;
 	IRenderTarget* pTarget = nullptr;
 	RenderView* pView = dynamic_cast<RenderView*>(rEvent.m_pTargetCamera->m_pTarget.get());
@@ -171,7 +178,7 @@ void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
 
 	if (pView != nullptr)
 	{
-		if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
+		if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true && pCamera->m_bHDR)
 		{
 			DrawScreen(pTarget, pView, mat);
 		}

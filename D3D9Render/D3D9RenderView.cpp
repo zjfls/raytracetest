@@ -82,7 +82,7 @@ bool D3D9RenderView::Resize(int nX, int nY)
 
 		if (hr == D3D_OK)
 		{
-			std::cout << "resize view success!" << std::endl;
+			//std::cout << "resize view success!" << std::endl;
 		}
 		else
 		{

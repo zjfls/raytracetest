@@ -96,6 +96,10 @@ bool ZG::D3DDepthBuffer::Resize(int nWidth, int nHeight)
 		break;
 	}
 	m_pD3DDevice->CreateDepthStencilSurface(m_nWidth, m_nHeight, d3dFormat, D3DMULTISAMPLE_NONE, 0, true, &m_pDepthSurface, nullptr);
+	if (m_pDepthSurface == nullptr)
+	{
+		std::cout << "create Depth Stencil Failed!" << std::endl;
+	}
 	return true;
 }
 

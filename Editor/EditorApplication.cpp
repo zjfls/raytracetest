@@ -73,14 +73,16 @@ bool EditorApplication::RemoveView(int id)
 
 void EditorApplication::Run()
 {
-	static bool bout = true;
-	if (bout == true)
-	{
-		std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
-		bout = false;
-	}
+	//static bool bout = true;
+	//if (bout == true)
+	//{
+	//	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
+	//	bout = false;
+	//}
 	
+	//std::cout << "frame begin start" << std::endl;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin();
+	//std::cout << "frame begin end" << std::endl;
 	//
 	std::vector<SmartPointer<RasterCamera>> m_CameraList;
 	std::vector<SmartPointer<CameraRenderer>> m_CameraIgnoreList;
@@ -93,17 +95,20 @@ void EditorApplication::Run()
 			pCamera->m_bActive = false;
 		}
 	}
+	
 	//
 	m_pWorld->Update();
 	UpdateGizemo();
 	m_pGizmoScene->Update();
 	std::map<int, EditorRenderView*>::iterator iter = m_ViewMap.begin();
+	std::cout << "update start" << std::endl;
 	for (; iter != m_ViewMap.end(); ++iter)
 	{
 		iter->second->Update();
 	}
+	std::cout << "update end" << std::endl;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
-
+	
 	//
 	TimeManager::GetInstance()->Update();
 	//
@@ -112,7 +117,7 @@ void EditorApplication::Run()
 void EditorApplication::SetupScene()
 {
 
-	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
+	//std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
 	AssetManager::GetInstance()->LoadAsset("./data/prefab/plane.prefab.xml");
 	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource("./data/prefab/plane.prefab.xml");
 	SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
@@ -250,6 +255,7 @@ void ZG::EditorApplication::UpdateGizemo()
 			case ZG::EditorApplication::EStateTranslate:
 			{
 				m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
+				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
 			}
 			break;
 			case ZG::EditorApplication::EStateRotate:

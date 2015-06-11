@@ -70,7 +70,7 @@ void RenderStage::Render(RasterRender* pRender,std::vector<SmartPointer<IRendera
 
 void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<SmartPointer<IRenderable>>& vecRenderabls)
 {
-
+	std::cout << "RenderDepthAndRadiance" << std::endl;
 	bool bAllLight = EnviromentSetting::GetInstance()->GetIntSetting("FOWARDLIGHTONEPASS");
 	for each (SmartPointer<IRenderable>	pRenderable in vecRenderabls)
 	{

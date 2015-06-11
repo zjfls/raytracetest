@@ -84,7 +84,6 @@
   <ItemGroup>
     <ClInclude Include="AABBBox.h" />
     <ClInclude Include="BoundingBase.h" />
-    <ClInclude Include="IntersectTest.h" />
     <ClInclude Include="Math_Dll.h" />
     <ClInclude Include="MathDefine.h" />
     <ClInclude Include="MathFunc.h" />
@@ -112,7 +111,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="IntersectTest.cpp" />
     <ClCompile Include="Math_Dll.cpp" />
     <ClCompile Include="MathFunc.cpp" />
     <ClCompile Include="Matrix33.cpp" />
