@@ -4,6 +4,7 @@
 
 ModuleBase::ModuleBase()
 	:m_bTransformUpdated(false)
+	, m_bActive(true)
 {
 }
 

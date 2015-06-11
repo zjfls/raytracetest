@@ -16,7 +16,7 @@ namespace ZG
 
 
 
-		SmartPointer<IWorldObj> m_pOwnerObj;
+		IWorldObj* m_pOwnerObj;
 		string	m_strName;
 		bool	m_bActive;
 		bool	m_bTransformUpdated;

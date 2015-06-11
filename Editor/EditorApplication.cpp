@@ -73,14 +73,7 @@ bool EditorApplication::RemoveView(int id)
 
 void EditorApplication::Run()
 {
-	//static bool bout = true;
-	//if (bout == true)
-	//{
-	//	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
-	//	bout = false;
-	//}
-	
-	//std::cout << "frame begin start" << std::endl;
+	//return;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameBegin();
 	//std::cout << "frame begin end" << std::endl;
 	//
@@ -90,7 +83,7 @@ void EditorApplication::Run()
 	m_CameraList = EditorApplication::GetInstance()->m_pWorld->GetAllModules<RasterCamera>();
 	for each (SmartPointer<RasterCamera> pCamera in m_CameraList)
 	{
-		if (pCamera->m_pTarget == RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView())
+		if (pCamera->m_pTarget == nullptr)
 		{
 			pCamera->m_bActive = false;
 		}
@@ -101,12 +94,12 @@ void EditorApplication::Run()
 	UpdateGizemo();
 	m_pGizmoScene->Update();
 	std::map<int, EditorRenderView*>::iterator iter = m_ViewMap.begin();
-	std::cout << "update start" << std::endl;
+	//std::cout << "update start" << std::endl;
 	for (; iter != m_ViewMap.end(); ++iter)
 	{
 		iter->second->Update();
 	}
-	std::cout << "update end" << std::endl;
+	//std::cout << "update end" << std::endl;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
 	
 	//

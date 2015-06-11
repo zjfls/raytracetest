@@ -24,6 +24,11 @@ IRenderable::IRenderable()
 
 IRenderable::~IRenderable()
 {
+	if (m_pBounding != nullptr)
+	{
+		delete m_pBounding;
+		m_pBounding = nullptr;
+	}
 }
 
 void IRenderable::Update()

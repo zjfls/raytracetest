@@ -249,6 +249,8 @@ void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 	m_pSelectObjWireFrame = pSelObj->Clone(false);
 	std::vector<SmartPointer<IRenderable>> vecRend;
 	m_pSelectObjWireFrame->GetAllModule<IRenderable>(vecRend);
+	m_pSelectObjWireFrame->m_pTransform->SetWorldTransform(pSelObj->m_pTransform->GetWorldMatrix());
+
 	for each (SmartPointer<IRenderable> rend in vecRend)
 	{
 		rend->m_pSharedMaterial = rend->GetDefaultMaterial();

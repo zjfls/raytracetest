@@ -27,7 +27,7 @@ void QtRenderView::resizeEvent(QResizeEvent * pEvent)
 {
 	if (m_pRenderView != nullptr)
 	{
-		std::cout << m_strName.c_str()<< "width:" << pEvent->size().width() << "height:" << pEvent->size().height() << std::endl;
+		//std::cout << m_strName.c_str()<< "width:" << pEvent->size().width() << "height:" << pEvent->size().height() << std::endl;
 		m_pRenderView->Resize(pEvent->size().width(), pEvent->size().height());
 	}
 }

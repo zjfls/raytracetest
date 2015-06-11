@@ -13,6 +13,9 @@ RasterMaterial::RasterMaterial()
 
 RasterMaterial::~RasterMaterial()
 {
+	for each (std::pair<string, SmartPointer<ZG::MaterialPass>> p in m_MaterialPass)
+	{
+	}
 }
 
 //void RasterMaterial::AddPass(string strName, RenderPass* pPass)

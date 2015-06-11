@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ZG::IWorld" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAQAAAAAAAAAACAAAEAAAAAAAAAAABIAAAAAAAA=</HashCode>
+      <FileName>h:\github\raytracetest\world\iworld.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::IWorldObj" Collapsed="true">
+    <Position X="7" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YIQgAAAggBACAAAAABIAAAgAAgCAAAAEQAYAAEAAYBI=</HashCode>
+      <FileName>h:\github\raytracetest\world\iworldobj.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::EditorRenderView" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUCBAAAAEEAAAGAAAAABEACABAAAEAAAAAwAEEAAAA=</HashCode>
+      <FileName>editorrenderview.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::EditorApplication" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAABBQAAEAEgAADAAAgAYAAAHAEQAAAAAAAAAACI=</HashCode>
+      <FileName>editorapplication.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::EditorGameView" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>editorgameview.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::CameraBase" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQCQAIAIAQBCQIAAAKgAAIAACgAAABAIBSggAABABA=</HashCode>
+      <FileName>h:\github\raytracetest\world\camerabase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::EditorSceneView" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgCAAACEAAAGRAAEABAACABAAAEAAAAAQAEGAAAA=</HashCode>
+      <FileName>editorsceneview.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::ModuleBase" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACQAACAAAAsAAABAAAAAAAAAAAgAAAAAQBA=</HashCode>
+      <FileName>h:\github\raytracetest\world\modulebase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::EditorModuleProperty" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACACAgAAAAAAAAAAAEAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>editormoduleproperty.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZG::DepthBuffer" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAEGAAAAAAAAAAAAQAAAAAEAAAA=</HashCode>
+      <FileName>h:\github\raytracetest\main\depthbuffer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

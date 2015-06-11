@@ -58,7 +58,7 @@ RenderPass::~RenderPass()
 void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, ESTAGESHADERTYPE eStageShaderType, const RenderStateCollection& mapStates)
 {	
 
-	std::cout << "pRender->SetAlphaTest(true);" << std::endl;
+	//std::cout << "pRender->SetAlphaTest(true);" << std::endl;
 	pRender->SetAlphaTest(true);
 	pRender->SetAlphaTestFactor(128);
 	pRender->SetAlphaFunc(RENDERCMP_GREATER);
@@ -86,39 +86,39 @@ void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRender
 	//HardwareFragShader* pFragShader;
 	if (eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING || fsDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN)
 	{
-		std::cout << "eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING || fsDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN" << std::endl;
+		//std::cout << "eStageShaderType == ESTAGESHADERRADIANCEALLLIGHTING || fsDesc.m_eFragShaderDesc == EFRAGSHADERORIGIN" << std::endl;
 		HardwareVertexShader* pVertexShader = pRender->m_pRenderSystem->GetHardwareVertexShader(vsdesc);
 		if (nullptr == pVertexShader)
 		{
-			std::cout << "can not get hardware shader:" << vsdesc.m_pVertexShader->GetRefPath() << std::endl;
+			//std::cout << "can not get hardware shader:" << vsdesc.m_pVertexShader->GetRefPath() << std::endl;
 			return;
 		}
 		HardwareFragShader* pFragShader = pRender->m_pRenderSystem->GetHardwareFragShader(fsDesc);
 		if (nullptr == pFragShader)
 		{
-			std::cout << "can not get hardware shader:" << fsDesc.m_pFragShader->GetRefPath() << std::endl;
+			//std::cout << "can not get hardware shader:" << fsDesc.m_pFragShader->GetRefPath() << std::endl;
 			return;
 		}
 		//
 		pRender->SetVertexShader(pVertexShader);
 		pRender->SetFragShader(pFragShader);
-		std::cout << "pRender->SetFragShader(pFragShader);" << std::endl;
+		//std::cout << "pRender->SetFragShader(pFragShader);" << std::endl;
 		//
 		BuildShaderArgs(pRender, pRenderable, pMat, eStageShaderType, pVertexShader, pFragShader);
-		std::cout << "SetPassStates(pRender, mapStates);" << std::endl;
+		//std::cout << "SetPassStates(pRender, mapStates);" << std::endl;
 		//
 		SetPassStates(pRender, mapStates);
-		std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
+		//std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
 		//
 		SetShaderArgs(pRender, pVertexShader, pFragShader);
 
-		std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
+		//std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
 		//
 		pRender->Render(pIndexBuff, pVertexBuff);
 	}
 	else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)
 	{
-		std::cout << "else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)" << std::endl;
+		//std::cout << "else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)" << std::endl;
 		int index = 0;
 		for each (SmartPointer<LightBase> pLight in pRenderable->m_vecLight)
 		{
@@ -183,11 +183,11 @@ void RenderPass::BuildShaderArgs(RasterRender* pRender, SmartPointer<IRenderable
 	//
 	std::unordered_map<string, ShaderConstantInfo>& vertexShaderParam = pVertexShader->GetContants();
 	std::unordered_map<string, ShaderConstantInfo>& fragShaderParam = pFragShader->GetContants();
-	std::cout << "SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);" << std::endl;
+	//std::cout << "SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);" << std::endl;
 	SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);
-	std::cout << "SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);" << std::endl;
+	//std::cout << "SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);" << std::endl;
 	SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);
-	std::cout << "for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)" << std::endl;
+	//std::cout << "for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)" << std::endl;
 	//
 	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
 	{
@@ -310,7 +310,7 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable>
 
 	for each (std::pair<string, ShaderConstantInfo> p in argIn)
 	{
-		std::cout << p.first << std::endl;
+		//std::cout << p.first << std::endl;
 
 		//  MATRIX_WORLD
 		//	MATRIX_VIEW

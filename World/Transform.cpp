@@ -118,19 +118,34 @@ SmartPointer<ModuleBase> Transform::Clone()
 	SmartPointer<Transform> pTransform = SmartPointer<Transform>(new Transform());
 	pTransform->m_bDirt = true;
 	//pTransform->m_TransformMatrixLocal = m_TransformMatrixLocal;
-	pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;
-	pTransform->m_vecTranslate = m_TransformMatrixWorld.GetTranslate();
-	pTransform->m_vecScale = m_TransformMatrixWorld.GetScale();
-	pTransform->m_Orientation.m_vecEulerAngle = m_TransformMatrixWorld.GetRotation();
-	//pTransform->m_vecTranslate = m_vecTranslate;
-	//pTransform->m_Orientation = m_Orientation;
-	//pTransform->m_vecScale = m_vecScale;
+	//pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;
+	//pTransform->m_vecTranslate = m_TransformMatrixWorld.GetTranslate();
+	//pTransform->m_vecScale = m_TransformMatrixWorld.GetScale();
+	//pTransform->m_Orientation.m_vecEulerAngle = m_TransformMatrixWorld.GetRotation();
+	pTransform->m_vecTranslate = m_vecTranslate;
+	pTransform->m_Orientation = m_Orientation;
+	pTransform->m_vecScale = m_vecScale;
 	return pTransform.get();
 }
 
 Matrix44 Transform::GetWorldMatrix() const
 {
 	return m_TransformMatrixWorld;
+}
+
+void ZG::Transform::SetWorldTransform(const Matrix44& mat)
+{
+	Matrix44 matParent;
+	if (m_pOwnerObj != nullptr)
+	{
+		matParent = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
+	}
+	//
+	//
+	Matrix44 matLocal = mat * Matrix44::QuikInverse(matParent);
+	m_vecTranslate = matLocal.GetTranslate();
+	m_vecScale = matLocal.GetScale();
+	m_Orientation.m_vecEulerAngle = matLocal.GetRotation();
 }
 
 

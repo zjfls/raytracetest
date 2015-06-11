@@ -97,8 +97,6 @@ bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 		&d3dpp, &m_pD3DDevice)))
 	{
 		std::cout << "create device failed" << std::endl;
-		std::cout << hr << std::endl;
-		//system("pause");
 		return false;
 	}
 	//
@@ -920,8 +918,7 @@ RenderView* D3D9RenderSystem::CreateRenderView(stRenderViewInfo& viewInfo,int nD
 	}
 	else
 	{
-		
-		std::cout << "create view success!" << std::endl;
+		//std::cout << "create view success!" << std::endl;
 	}
 	if (nDepth != 0)
 	{

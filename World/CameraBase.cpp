@@ -4,6 +4,7 @@
 #include "IWorld.h"
 #include "IWorldObj.h"
 #include "Event.h"
+#include <iostream>
 //#include "RenderManager.h"
 //#include "RenderView.h"
 //#include "RenderSystem.h"
@@ -33,10 +34,12 @@ void CameraBase::Render()
 {
 	if (m_bActive == false)
 	{
+		std::cout << "camera is not active" << std::endl;
 		return;
 	}
 	CameraRenderEvent rEvent;
 	rEvent.m_pTargetCamera = this;
+	
 	(*getEvent<CameraRenderEvent>("CAMERARENDER"))(rEvent);
 }
 

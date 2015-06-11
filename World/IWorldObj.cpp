@@ -3,7 +3,7 @@
 #include "ModuleBase.h"
 #include "IRenderable.h"
 #include "MaterialResource.h"
-
+#include "CameraBase.h"
 IWorldObj::IWorldObj()
 	:m_pParent(nullptr)
 {
@@ -125,7 +125,7 @@ SmartPointer<IWorldObj> IWorldObj::Clone(bool bRecursive)
 	for each (SmartPointer<ModuleBase> pModule in m_vecModules)
 	{
 		SmartPointer<ModuleBase> pCloneModule = pModule->Clone();
-		pCloneModule->m_pOwnerObj = pCloneObj;
+		pCloneModule->m_pOwnerObj = pCloneObj.get();
 		pCloneObj->m_vecModules.push_back(pCloneModule);
 
 		SmartPointer<Transform> pTrans = pCloneModule.SmartPointerCast<Transform>();

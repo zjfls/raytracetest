@@ -58,33 +58,32 @@ EditorSceneView::~EditorSceneView()
 
 void EditorSceneView::Update()
 {
-	
-	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->SetRenderTarget(0, m_pRenderView);
-	RenderManager::GetInstance()->GetDefaultRenderSystem()->SetActiveRenderView(m_pRenderView);
-
-	std::cout << "scene end" << std::endl;
-	if (m_bIsFocus)
-	{
-		std::cout << "UpdateCamera" << std::endl;
-		UpdateCamera();
-	}
-
-	
 	if (m_bShow == false)
 	{
 		return;
 	}
 	
-	//
-	std::cout << "m_pCamera->Update();" << std::endl;
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->SetRenderTarget(0, m_pRenderView);
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->SetActiveRenderView(m_pRenderView);
+
+	//std::cout << "scene end" << std::endl;
+	if (m_bIsFocus)
+	{
+		//std::cout << "UpdateCamera" << std::endl;
+		UpdateCamera();
+	}
+
+	
+
+	
+
 	m_pCamera->Update();
-	std::cout << "m_pCamera->AfterUpdate();" << std::endl;
 	m_pCamera->AfterUpdate();
 	//
-	std::cout << "DrawGizmo(); " << std::endl;
+
 	DrawGizmo();
 	//
-	std::cout << "m_pRenderView->Present();" << std::endl;
+
 	m_pRenderView->Present();
 	
 }
@@ -208,7 +207,7 @@ void EditorSceneView::UpdateCamera()
 		dir = dir.normalize();
 		//
 		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
-		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		//std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
 		position += diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}
@@ -219,7 +218,7 @@ void EditorSceneView::UpdateCamera()
 		dir = dir.normalize();
 		//
 		Vector3 diff = 2000 * TimeManager::GetInstance()->m_fElapseTime * dir;
-		std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		//std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
 		position += diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}
@@ -232,13 +231,12 @@ void EditorSceneView::OnClick(Vector2& pos)
 
 void EditorSceneView::DrawGizmo()
 {
-	return;
 	bool bCameraHDR = m_pCameraModule->m_bHDR;
 	m_pCameraModule->m_bHDR = false;
-	std::cout << "draw gizmo render" << std::endl;
+	//std::cout << "draw gizmo render" << std::endl;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->Render(m_pCameraModule,EditorApplication::GetInstance()->m_pGizmoScene,m_pRenderView);
 	m_pCameraModule->m_bHDR = bCameraHDR;
-	std::cout << "draw gizmo end" << std::endl;
+	//std::cout << "draw gizmo end" << std::endl;
 }
 
 

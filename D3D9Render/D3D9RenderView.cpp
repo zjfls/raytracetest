@@ -93,7 +93,10 @@ bool D3D9RenderView::Resize(int nX, int nY)
 	{
 		m_DepthBuffer->Resize(nX, nY);
 	}
-	m_pHDRTarget->Resize(nX, nY);
+	if (m_pHDRTarget != 0)
+	{
+		m_pHDRTarget->Resize(nX, nY);
+	}
 	return true;
 }
 
