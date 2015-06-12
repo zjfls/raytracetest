@@ -68,7 +68,7 @@ void EditorSceneView::Update()
 	{
 		return;
 	}
-	
+
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->SetRenderTarget(0, m_pRenderView);
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->SetActiveRenderView(m_pRenderView);
 
@@ -79,9 +79,9 @@ void EditorSceneView::Update()
 		UpdateCamera();
 	}
 
-	
 
-	
+
+
 
 	m_pCamera->Update();
 	m_pCamera->AfterUpdate();
@@ -91,7 +91,7 @@ void EditorSceneView::Update()
 	//
 
 	m_pRenderView->Present();
-	
+
 }
 
 void EditorSceneView::Resize(unsigned int nWidth, unsigned int nHeight)
@@ -120,18 +120,129 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 		//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
 		Orientation rot = m_pCamera->m_pTransform->GetOrientation();
 		Vector3 vecRot = rot.m_vecEulerAngle;
-		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0004;
-		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0004;
-		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx,vecRot.m_fy,vecRot.m_fz);
+		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
+		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
+		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);
 
 
-		m_LastMousePos = pt;
+		
 	}
+	if (EditorApplication::GetInstance()->m_eOperState == EditorApplication::EStateTranslate
+		&&EditorApplication::GetInstance()->m_SelectObj != nullptr)
+	{
+		if (EditorApplication::GetInstance()->m_eSelState == EditorApplication::ESelNone)
+		{
+
+		}
+		else
+		{
+			//
+			Vector3 vecDiff = m_pCamera->m_pTransform->GetWorldTranslate() - EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate();
+			float zValue = vecDiff.length();
+			float yValue = zValue * tan(m_pCameraModule->m_fFovy / 2);
+			float xValue = yValue * m_pCameraModule->m_fAspect;
+
+			Vector3 movDir = Vector3::ZERO;
+			//
+			int nWidth = m_pRenderView->m_nWidth;
+			int nHeight = m_pRenderView->m_nHeight;
+			//
+			Vector2 diff = pt - m_LastMousePos;
+			//std::cout << "diffy:" << diff.m_fy << std::endl;
+			//
+			float fMoveDist = 0.0f;
+			switch (EditorApplication::GetInstance()->m_eSelState)
+			{
+				case EditorApplication::ETranslateUp:
+				{
+					movDir = Vector3::YAxis;
+					fMoveDist = -diff.m_fy * yValue / nHeight;
+				}
+				break;
+				case EditorApplication::ETranslateForward:
+				{
+					movDir = Vector3::ZAxis;
+					fMoveDist = -diff.m_fy * zValue / nHeight;
+				}
+				break;
+				case EditorApplication::ETranslateRight:
+				{
+					movDir = Vector3::XAxis;
+					fMoveDist = diff.m_fx * xValue / nWidth;
+				}
+				break;
+				default:
+				break;
+			}
+			Vector3 worldPos = EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate();
+			worldPos = fMoveDist * movDir + worldPos;
+			EditorApplication::GetInstance()->m_SelectObj->m_pTransform->SetWorldTranslate(worldPos);
+
+
+		}
+	}
+	m_LastMousePos = pt;
 }
 
-void EditorSceneView::OnMouseLButtonDown(Vector2& pt)
+void EditorSceneView::OnMouseLButtonDown(Vector2& pos)
 {
+	EditorApplication::EOperationState eOperState = EditorApplication::GetInstance()->m_eOperState;
+	if (EditorApplication::GetInstance()->m_SelectObj != nullptr)
+	{
+		switch (eOperState)
+		{
+			case EditorApplication::EStateTranslate:
+			{
+				SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
+				Vector3 worldDir = PickUtil::ScreenPosToWorldDir(pos, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
+				Ray3D r(pCameraModule->m_pOwnerObj->m_pTransform->GetWorldTranslate(), worldDir);
 
+				std::vector<SmartPointer<IRenderable>> vecRends;
+				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->GetAllModuleRecursive<IRenderable>(vecRends);
+				for each (SmartPointer<IRenderable> pRend in vecRends)
+				{
+					BoundingBase* pBound = pRend->m_pBounding;
+					if (IntersectTest::Ray_BoundingTest(r, *pBound, pCameraModule->m_fNear, pCameraModule->m_fFar) == true)
+					{
+						IntersectResults result = IntersectTest::testRayRenderable(r, *pRend.get(), *pRend->m_pOwnerObj->m_pTransform);
+						if (result.m_bInterset == true)
+						{
+							result.sortNearFirst();
+							IRenderable* pRend = result.m_vecIntersetDatas[0].pRender;
+							const char* pName = pRend->m_strName.c_str();
+							if (strstr(pRend->m_strName.c_str(), "UP") != nullptr)
+							{
+								EditorApplication::GetInstance()->m_eSelState = EditorApplication::ETranslateUp;
+								m_LastMousePos = pos;
+								//std::cout << "up" << std::endl;
+							}
+							else if (strstr(pRend->m_strName.c_str(), "RIGHT") != nullptr)
+							{
+								EditorApplication::GetInstance()->m_eSelState = EditorApplication::ETranslateRight;
+								m_LastMousePos = pos;
+								//std::cout << "right" << std::endl;
+							}
+							else if (strstr(pRend->m_strName.c_str(), "FORWARD") != nullptr)
+							{
+								EditorApplication::GetInstance()->m_eSelState = EditorApplication::ETranslateForward;
+								m_LastMousePos = pos;
+								//std::cout << "forward" << std::endl;
+							}
+						}
+					}
+				}
+				//for each (SmartPointer<IRenderable> pRend in vecRightRends)
+				//{
+
+				//}
+				//for each (SmartPointer<IRenderable> pRend in vecForwardRends)
+				//{
+
+				//}
+			}
+			break;
+		}
+	}
 }
 
 void EditorSceneView::OnMouseRButtonDown(Vector2& pt)
@@ -172,7 +283,7 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
 	}
 
-	
+
 }
 
 void EditorSceneView::Create(unsigned int nWidth, unsigned int nHeight, int windowID)
@@ -237,26 +348,40 @@ void EditorSceneView::UpdateCamera()
 
 void ZG::EditorSceneView::OnClick(Vector2& pos)
 {
-	SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
-	Vector3 worldDir = PickUtil::ScreenPosToWorldDir(pos, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
-	Ray3D r(pCameraModule->m_pOwnerObj->m_pTransform->GetWorldTranslate(), worldDir);
-
-	std::vector<SmartPointer<IRenderable>> vecRend;
-	EditorApplication::GetInstance()->m_pWorld->m_pRoot->GetAllModuleRecursive<IRenderable>(vecRend);
-	for each (SmartPointer<IRenderable> pRend in vecRend)
+	switch (EditorApplication::GetInstance()->m_eOperState)
 	{
-		BoundingBase* pBound = pRend->m_pBounding;
-		if (IntersectTest::Ray_BoundingTest(r,*pBound,pCameraModule->m_fNear,pCameraModule->m_fFar) == true)
+		case EditorApplication::EStateTranslate:
 		{
-			//std::cout << "click obj:" << pRend->m_pOwnerObj->m_strName << std::endl;
-			IntersectResults result = IntersectTest::testRayRenderable(r, *pRend.get(),*pRend->m_pOwnerObj->m_pTransform);
-			if (result.m_bInterset == true)
+			if (EditorApplication::GetInstance()->m_eSelState != EditorApplication::ESelNone)
 			{
-				EditorApplication::GetInstance()->m_SelectObj = pRend->m_pOwnerObj;
-				EditorApplication::GetInstance()->NotifyListener("SelectChange", EditorApplication::GetInstance());
+				break;
+			}
+			SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
+			Vector3 worldDir = PickUtil::ScreenPosToWorldDir(pos, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
+			Ray3D r(pCameraModule->m_pOwnerObj->m_pTransform->GetWorldTranslate(), worldDir);
+
+			std::vector<SmartPointer<IRenderable>> vecRend;
+			EditorApplication::GetInstance()->m_pWorld->m_pRoot->GetAllModuleRecursive<IRenderable>(vecRend);
+			for each (SmartPointer<IRenderable> pRend in vecRend)
+			{
+				BoundingBase* pBound = pRend->m_pBounding;
+				if (IntersectTest::Ray_BoundingTest(r, *pBound, pCameraModule->m_fNear, pCameraModule->m_fFar) == true)
+				{
+					//std::cout << "click obj:" << pRend->m_pOwnerObj->m_strName << std::endl;
+					IntersectResults result = IntersectTest::testRayRenderable(r, *pRend.get(), *pRend->m_pOwnerObj->m_pTransform);
+					if (result.m_bInterset == true)
+					{
+						EditorApplication::GetInstance()->m_SelectObj = pRend->m_pOwnerObj;
+						EditorApplication::GetInstance()->NotifyListener("SelectChange", EditorApplication::GetInstance());
+					}
+				}
 			}
 		}
+		break;
+		default:
+		break;
 	}
+
 }
 
 void ZG::EditorSceneView::UpdateGizmo()
@@ -280,12 +405,17 @@ void ZG::EditorSceneView::UpdateGizmo()
 	}
 }
 
+void ZG::EditorSceneView::OnMouseLButtonRelease(Vector2& pt)
+{
+	EditorApplication::GetInstance()->m_eSelState = EditorApplication::ESelNone;
+}
+
 void EditorSceneView::DrawGizmo()
 {
 	bool bCameraHDR = m_pCameraModule->m_bHDR;
 	m_pCameraModule->m_bHDR = false;
 	//std::cout << "draw gizmo render" << std::endl;
-	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->Render(m_pCameraModule,EditorApplication::GetInstance()->m_pGizmoScene,m_pRenderView);
+	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->Render(m_pCameraModule, EditorApplication::GetInstance()->m_pGizmoScene, m_pRenderView);
 	m_pCameraModule->m_bHDR = bCameraHDR;
 	//std::cout << "draw gizmo end" << std::endl;
 }

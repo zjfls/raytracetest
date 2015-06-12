@@ -21,6 +21,8 @@ namespace ZG
 		virtual ~IntersectResults();
 
 		bool m_bInterset;
+		void sortNearFirst();
+		void sortFarFirst();
 		//
 		void appendResult(IntersectResults& r);
 		//

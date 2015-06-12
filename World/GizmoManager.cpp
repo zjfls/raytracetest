@@ -40,12 +40,16 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pTranslate->addChild(pTransUP);
 	pTranslate->addChild(pTransRight);
 	pTranslate->addChild(pTransForward);
+	m_pTranslateGizmo->m_pUp = pTransUP;
+	m_pTranslateGizmo->m_pRight = pTransRight;
+	m_pTranslateGizmo->m_pForward = pTransForward;
 
 
 	//up
 	SmartPointer<IWorldObj> pTransUPCylinder = new IWorldObj;
-	pTransUPCylinder->m_strName = "UpTransform";
+	pTransUPCylinder->m_strName = "UpCylinder";
 	SmartPointer<Cylinder> pCylinder = pTransUPCylinder->addModule<Cylinder>();
+	pCylinder->m_strName = "UPCylinder";
 	pCylinder->m_pSharedMaterial = pCylinder->GetDefaultMaterial();
 	m_pTranslateGizmo->m_pUpMaterialCylinder = pCylinder->GetMaterialInstance();
 	m_pTranslateGizmo->m_pUpMaterialCylinder->SetArg<GameColor>("MainColor",GameColor::red * 0.5f);
@@ -73,6 +77,7 @@ void ZG::GizmoManager::createTranlateGizmo()
 	//right
 	SmartPointer<IWorldObj> pTransRightCylinder = new IWorldObj;
 	pCylinder = pTransRightCylinder->addModule<Cylinder>();
+	pCylinder->m_strName = "RIGHTCylinder";
 	pCylinder->m_pSharedMaterial = pCylinder->GetDefaultMaterial();
 	m_pTranslateGizmo->m_pRightMaterialCylinder = pCylinder->GetMaterialInstance();
 	m_pTranslateGizmo->m_pRightMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::blue * 0.5f);
@@ -83,6 +88,7 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pCylinder->GeneratePolygon();
 	SmartPointer<IWorldObj> pTransRightCone = new IWorldObj;
 	pCone = pTransRightCone->addModule<Cone>();
+	pCone->m_strName = "RIGHTCone";
 	pCone->m_pSharedMaterial = pCone->GetDefaultMaterial();
 	m_pTranslateGizmo->m_pRightMaterialCone = pCone->GetMaterialInstance();
 	m_pTranslateGizmo->m_pRightMaterialCone->SetArg<GameColor>("MainColor", GameColor::blue * 0.5f);
@@ -97,6 +103,7 @@ void ZG::GizmoManager::createTranlateGizmo()
 	/////////////////////////////////////////////////////////////////////////////////////////forward
 	SmartPointer<IWorldObj> pTransForwardCylinder = new IWorldObj;
 	pCylinder = pTransForwardCylinder->addModule<Cylinder>();
+	pCylinder->m_strName = "FORWARDCylinder";
 	pCylinder->m_pSharedMaterial = pCylinder->GetDefaultMaterial();
 	m_pTranslateGizmo->m_pForwardMaterialCylinder = pCylinder->GetMaterialInstance();
 	m_pTranslateGizmo->m_pForwardMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::green * 0.5f);
@@ -107,6 +114,7 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pCylinder->GeneratePolygon();
 	SmartPointer<IWorldObj> pTransForwardCone = new IWorldObj;
 	pCone = pTransForwardCone->addModule<Cone>();
+	pCone->m_strName = "FORWRDCone";
 	pCone->m_pSharedMaterial = pCone->GetDefaultMaterial();
 	m_pTranslateGizmo->m_pForwardMaterialCone = pCone->GetMaterialInstance();
 	m_pTranslateGizmo->m_pForwardMaterialCone->SetArg<GameColor>("MainColor", GameColor::green * 0.5f);

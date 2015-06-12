@@ -22,6 +22,13 @@ namespace ZG
 			EStateRotate,
 			EStateScale
 		};
+		enum ESelectOperState
+		{
+			ESelNone,
+			ETranslateRight,
+			ETranslateUp,
+			ETranslateForward
+		};
 		EditorApplication();
 		virtual ~EditorApplication();
 
@@ -51,6 +58,7 @@ namespace ZG
 		SmartPointer<IWorldObj> m_SelectObj;
 		//
 		EOperationState m_eOperState;
+		ESelectOperState m_eSelState;
 		//
 		SmartPointer<IWorld> m_pGizmoScene;
 	};

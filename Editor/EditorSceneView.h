@@ -20,6 +20,7 @@ namespace ZG
 		virtual void OnMouseWheel(short zDelta, Vector2& pt);
 		virtual void OnMouseMove(Vector2& pt);
 		virtual void OnMouseLButtonDown(Vector2& pt);
+		void OnMouseLButtonRelease(Vector2& pt) override;
 		virtual void OnMouseRButtonDown(Vector2& pt);
 		virtual void OnKeyPressed(int key);
 		void	OnClick(Vector2& pt) override;

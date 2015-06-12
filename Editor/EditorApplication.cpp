@@ -32,6 +32,7 @@ template<> SmartPointer<EditorApplication> Singleton<EditorApplication>::_instan
 
 EditorApplication::EditorApplication()
 	:m_eOperState(EditorApplication::EStateTranslate)
+	, m_eSelState(ESelNone)
 	, m_pGizmoScene(nullptr)
 {
 

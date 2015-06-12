@@ -16,6 +16,9 @@ namespace ZG
 
 		//
 		SmartPointer<IWorldObj> m_pRoot;
+		SmartPointer<IWorldObj> m_pUp;
+		SmartPointer<IWorldObj> m_pRight;
+		SmartPointer<IWorldObj> m_pForward;
 		SmartPointer<MaterialResource> m_pUpMaterialCylinder;
 		SmartPointer<MaterialResource> m_pUpMaterialCone;
 		SmartPointer<MaterialResource> m_pRightMaterialCylinder;

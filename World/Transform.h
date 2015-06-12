@@ -29,6 +29,7 @@ namespace ZG
 
 		Vector3 GetLocalTranslate() const { return m_vecTranslate; };
 		Vector3 GetWorldTranslate()const;// { return m_vecTranslate; };
+		void	SetWorldTranslate(const Vector3& vecTrans);
 		void	SetWorldTransform(const Matrix44& mat);
 		Vector3 GetScale()const{ return m_vecScale; };
 		Orientation GetOrientation()const{ return m_Orientation; };

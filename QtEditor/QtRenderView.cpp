@@ -72,16 +72,20 @@ void QtRenderView::mouseMoveEvent(QMouseEvent * event)
 
 void QtRenderView::mouseReleaseEvent(QMouseEvent * event)
 {
-	if (m_nPtPressPos == event->pos())
+	Vector2 v;
+	v.m_fx = event->pos().rx();
+	v.m_fy = event->pos().ry();
+	if (event->button() & Qt::LeftButton)
 	{
-		//std::cout << "clicked" << std::endl;
-		Vector2 v;
-		v.m_fx = event->pos().rx();
-		v.m_fy = event->pos().ry();
 		//
-		m_pRenderView->OnClick(v);
+		if (m_nPtPressPos == event->pos())
+		{
+			m_pRenderView->OnClick(v);
+		}
+		m_pRenderView->OnMouseLButtonRelease(v);
 	}
 }
+
 
 void QtRenderView::keyPressEvent(QKeyEvent * event)
 {

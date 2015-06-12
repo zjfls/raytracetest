@@ -70,3 +70,8 @@ void EditorRenderView::Update()
 {
 
 }
+
+void ZG::EditorRenderView::OnMouseLButtonRelease(Vector2& pt)
+{
+
+}

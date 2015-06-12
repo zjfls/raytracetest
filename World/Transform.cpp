@@ -136,7 +136,7 @@ Matrix44 Transform::GetWorldMatrix() const
 void ZG::Transform::SetWorldTransform(const Matrix44& mat)
 {
 	Matrix44 matParent;
-	if (m_pOwnerObj != nullptr)
+	if (m_pOwnerObj != nullptr && m_pOwnerObj->m_pParent != nullptr)
 	{
 		matParent = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
 	}
@@ -146,6 +146,42 @@ void ZG::Transform::SetWorldTransform(const Matrix44& mat)
 	m_vecTranslate = matLocal.GetTranslate();
 	m_vecScale = matLocal.GetScale();
 	m_Orientation.m_vecEulerAngle = matLocal.GetRotation();
+}
+
+void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
+{
+	m_bDirt = true;
+	if (m_pOwnerObj != nullptr && m_pOwnerObj->m_pParent == nullptr)
+	{
+		m_vecTranslate = vecTrans;
+		return;
+	}
+	//
+	Vector3 vecScale = m_TransformMatrixWorld.GetScale();
+	Vector3 vecRot = m_TransformMatrixWorld.GetRotation();
+
+	//
+	Matrix33 matScale;
+	matScale.ScaleMatrix(vecScale.m_fx, vecScale.m_fy, vecScale.m_fz);
+	Matrix33 matRot;//
+	matRot.FromEulerAngleYXZ(vecRot);
+	Matrix44 matTraslate;
+	matTraslate.TraslateMatrix(vecTrans.m_fx, vecTrans.m_fy, vecTrans.m_fz);
+
+
+	;
+	Matrix44 mat44s, mat44r;
+	mat44s.FromMatrix33(&matScale);
+	mat44r.FromMatrix33(&matRot);
+
+	Matrix44 matWorld = mat44s * mat44r * matTraslate;
+	//
+	Matrix44 matParent;
+	m_TransformMatrixWorld = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
+	//
+	Matrix44 matLocal = matWorld * Matrix44::QuikInverse(matParent);
+	m_vecTranslate = matLocal.GetTranslate();
+	//
 }
 
 

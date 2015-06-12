@@ -145,9 +145,9 @@ IntersectResults IntersectTest::testRayRenderable(const Ray3D& r, const IRendera
 		IntersectResults tmpResult;
 		Triangle tri = rend.GetWorldTriangle(i);
 		tmpResult = testRayTriangle(r, tri);
-		for each (IntersectData data in tmpResult.m_vecIntersetDatas)
+		for (int i = 0; i < tmpResult.m_vecIntersetDatas.size(); ++i)
 		{
-			data.pRender = (IRenderable *)&rend;
+			tmpResult.m_vecIntersetDatas[i].pRender = (IRenderable *)&rend;
 		}
 		results.appendResult(tmpResult);
 	}
