@@ -111,3 +111,85 @@ SmartPointer<MaterialResource> IRenderable::getRenderMaterial()
 	}
 	return m_pSharedMaterial;
 }
+
+ZG::Triangle ZG::IRenderable::GetTriangle(int nTriIndex) const
+{
+	Triangle tri;
+	if (m_pVertexData == nullptr)
+	{
+		return tri;
+	}
+	if (m_pIndexData == nullptr)
+	{
+		if (nTriIndex * 3 > m_pVertexData->nNumVertex)
+		{
+			return tri;
+		}
+		tri.v0 = m_pVertexData->GetPositionDataAt(nTriIndex * 3 + 0);
+		tri.v1 = m_pVertexData->GetPositionDataAt(nTriIndex * 3 + 1);
+		tri.v2 = m_pVertexData->GetPositionDataAt(nTriIndex * 3 + 2);
+	}
+	else
+	{
+		if (m_pIndexData->indexNum < nTriIndex * 3)
+		{
+			return tri;
+		}
+		for (int i = 0; i < 3; ++i)
+		{
+			int nIndex = m_pIndexData->GetIndexAt(nTriIndex, i);
+			if (nIndex >= m_pVertexData->nNumVertex)
+			{
+				return tri;
+			}
+			if (i == 0)
+			{
+				tri.v0 = m_pVertexData->GetPositionDataAt(nIndex);
+			}
+			else if (i == 1)
+			{
+				tri.v1 = m_pVertexData->GetPositionDataAt(nIndex);
+			}
+			else if (i == 2)
+			{
+				tri.v2 = m_pVertexData->GetPositionDataAt(nIndex);
+			}		
+		}
+	}
+	return tri;
+}
+
+ZG::Triangle ZG::IRenderable::GetWorldTriangle(int nIndex) const
+{
+	Triangle tri = GetTriangle(nIndex);
+	if (m_pOwnerObj != nullptr)
+	{
+		Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		Vector4 v;
+		v.Vector3ToPoint(tri.v0);
+		v = v * mat;
+		tri.v0 = v;
+		//
+		v.Vector3ToPoint(tri.v1);
+		v = v * mat;
+		tri.v1 = v;
+		//
+		v.Vector3ToPoint(tri.v2);
+		v = v * mat;
+		tri.v2 = v;
+	}
+	return tri;
+}
+
+int ZG::IRenderable::GetTriangleNum() const
+{
+	if (m_pVertexData == nullptr)
+	{
+		return 0;
+	}
+	if (m_pIndexData == nullptr)
+	{
+		return m_pVertexData->nNumVertex / 3;
+	}
+	return m_pIndexData->indexNum / 3;
+}

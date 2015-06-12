@@ -21,6 +21,9 @@ namespace ZG
 		virtual ~IntersectResults();
 
 		bool m_bInterset;
+		//
+		void appendResult(IntersectResults& r);
+		//
 		std::vector<IntersectData> m_vecIntersetDatas;
 	};
 }

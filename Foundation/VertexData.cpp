@@ -267,3 +267,4 @@ void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3& max)
 	m_pAABB->m_Min = min;
 	m_pAABB->m_Max = max;
 }
+

@@ -40,6 +40,8 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pTranslate->addChild(pTransUP);
 	pTranslate->addChild(pTransRight);
 	pTranslate->addChild(pTransForward);
+
+
 	//up
 	SmartPointer<IWorldObj> pTransUPCylinder = new IWorldObj;
 	pTransUPCylinder->m_strName = "UpTransform";
@@ -47,6 +49,8 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pCylinder->m_pSharedMaterial = pCylinder->GetDefaultMaterial();
 	m_pTranslateGizmo->m_pUpMaterialCylinder = pCylinder->GetMaterialInstance();
 	m_pTranslateGizmo->m_pUpMaterialCylinder->SetArg<GameColor>("MainColor",GameColor::red * 0.5f);
+	//
+
 	//
 	pCylinder->m_fHeight = 50.0f;
 	pCylinder->m_fRadius = 3.0f;
@@ -115,6 +119,16 @@ void ZG::GizmoManager::createTranlateGizmo()
 	pTransForward->addChild(pTransForwardCone);
 	pTransForwardCone->m_pTransform->SetTranslate(0.0f, 50.0f, 0.0f);
 	pTransForward->m_pTransform->SetOrientation(1.5707f, 0.0f, 0.0f);
+
+	stRenderState s;
+	s.m_eRenderState = ZTEST;
+	s.m_nValue = 0;
+	dynamic_cast<RasterMaterial*>(m_pTranslateGizmo->m_pUpMaterialCylinder.get())->SetRenderState(s);
+	dynamic_cast<RasterMaterial*>(m_pTranslateGizmo->m_pUpMaterialCone.get())->SetRenderState(s);
+	dynamic_cast<RasterMaterial*>(m_pTranslateGizmo->m_pRightMaterialCylinder.get())->SetRenderState(s);
+	dynamic_cast<RasterMaterial*>(m_pTranslateGizmo->m_pRightMaterialCone.get())->SetRenderState(s);
+	dynamic_cast<RasterMaterial*>(m_pTranslateGizmo->m_pForwardMaterialCylinder.get())->SetRenderState(s);
+	dynamic_cast<RasterMaterial*>(m_pTranslateGizmo->m_pForwardMaterialCone.get())->SetRenderState(s);
 }
 
 void ZG::GizmoManager::createRotationGizmo()

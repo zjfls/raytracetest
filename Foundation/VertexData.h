@@ -17,6 +17,7 @@ namespace ZG
 		{};
 		virtual ~VertexData();
 		virtual void getBoundingMaxAndMin(Vector3& min, Vector3& max) = 0;
+		virtual Vector3 GetPositionDataAt(int nIndex) const = 0;
 		int		GetVertexDataLength()const;
 		struct VertexDataDesc
 		{
@@ -25,6 +26,9 @@ namespace ZG
 			unsigned int nOffset;//in byte
 		};
 		static int		GetTypeLength(const VertexDataDesc& desc);
+
+
+
 
 	public:
 		std::vector<VertexData::VertexDataDesc> vecDataDesc;
@@ -55,9 +59,9 @@ namespace ZG
 		}
 		void* pData;
 
-
+		//Vector3 getPositionByIndex(int nIndex) override;
 		void getBoundingMaxAndMin(Vector3& min, Vector3& max) override;
-		Vector3 GetPositionDataAt(int nIndex)
+		Vector3 GetPositionDataAt(int nIndex) const override
 		{
 			Vector3 vecPos;
 			VertexDataDesc desc = vecDataDesc[0];

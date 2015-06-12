@@ -248,7 +248,7 @@ void ZG::EditorApplication::UpdateGizemo()
 			case ZG::EditorApplication::EStateTranslate:
 			{
 				m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot);
-				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
+				//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
 			}
 			break;
 			case ZG::EditorApplication::EStateRotate:
@@ -268,5 +268,10 @@ void ZG::EditorApplication::UpdateGizemo()
 		m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSelectObjWireFrame);
 	}
 	
+
+}
+
+void ZG::EditorApplication::OnClickScene(SmartPointer<CameraBase> pCamera, SmartPointer<RenderView> pRenderView)
+{
 
 }

@@ -12,6 +12,7 @@ namespace ZG
 		virtual ~DynamicVertexData();
 		void getBoundingMaxAndMin(Vector3& min, Vector3& max) override;
 		void autoGenDesc();
+		Vector3 GetPositionDataAt(int nIndex) const override;
 		std::vector<Vector3> m_PositionData;
 		std::vector<Vector2> m_UVData;
 		std::vector<Vector3> m_NormalData;

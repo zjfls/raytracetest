@@ -71,3 +71,13 @@ void DynamicVertexData::autoGenDesc()
 		vecDataDesc.push_back(desc);
 	}
 }
+
+ZG::Vector3 ZG::DynamicVertexData::GetPositionDataAt(int nIndex) const
+{
+	Vector3 pos;
+	if (nIndex < m_PositionData.size())
+	{
+		pos = m_PositionData[nIndex];
+	}
+	return pos;
+}

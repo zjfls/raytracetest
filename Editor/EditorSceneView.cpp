@@ -20,6 +20,12 @@
 #include "IRender.h"
 #include "RasterRender.h"
 #include "IWorld.h"
+#include "Ray3D.h"
+#include "BoundingBase.h"
+#include "IRenderable.h"
+#include "IntersectTest.h"
+#include "GizmoManager.h"
+#include "TranslateGizmo.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -80,7 +86,7 @@ void EditorSceneView::Update()
 	m_pCamera->Update();
 	m_pCamera->AfterUpdate();
 	//
-
+	UpdateGizmo();
 	DrawGizmo();
 	//
 
@@ -224,9 +230,54 @@ void EditorSceneView::UpdateCamera()
 	}
 }
 
-void EditorSceneView::OnClick(Vector2& pos)
+//void EditorSceneView::OnClick(Vector2& pos)
+//{
+//
+//}
+
+void ZG::EditorSceneView::OnClick(Vector2& pos)
+{
+	SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
+	Vector3 worldDir = PickUtil::ScreenPosToWorldDir(pos, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
+	Ray3D r(pCameraModule->m_pOwnerObj->m_pTransform->GetWorldTranslate(), worldDir);
+
+	std::vector<SmartPointer<IRenderable>> vecRend;
+	EditorApplication::GetInstance()->m_pWorld->m_pRoot->GetAllModuleRecursive<IRenderable>(vecRend);
+	for each (SmartPointer<IRenderable> pRend in vecRend)
+	{
+		BoundingBase* pBound = pRend->m_pBounding;
+		if (IntersectTest::Ray_BoundingTest(r,*pBound,pCameraModule->m_fNear,pCameraModule->m_fFar) == true)
+		{
+			//std::cout << "click obj:" << pRend->m_pOwnerObj->m_strName << std::endl;
+			IntersectResults result = IntersectTest::testRayRenderable(r, *pRend.get(),*pRend->m_pOwnerObj->m_pTransform);
+			if (result.m_bInterset == true)
+			{
+				EditorApplication::GetInstance()->m_SelectObj = pRend->m_pOwnerObj;
+				EditorApplication::GetInstance()->NotifyListener("SelectChange", EditorApplication::GetInstance());
+			}
+		}
+	}
+}
+
+void ZG::EditorSceneView::UpdateGizmo()
 {
 
+
+	EditorApplication::EOperationState eOperState = EditorApplication::GetInstance()->m_eOperState;
+	if (EditorApplication::GetInstance()->m_SelectObj != nullptr)
+	{
+		switch (eOperState)
+		{
+			case EditorApplication::EStateTranslate:
+			{
+				Vector3 dir = EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate();
+				dir.normalize();
+				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_pCamera->m_pTransform->GetWorldTranslate() + dir * 200);
+				//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
+			}
+			break;
+		}
+	}
 }
 
 void EditorSceneView::DrawGizmo()

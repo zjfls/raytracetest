@@ -22,8 +22,9 @@ namespace ZG
 		virtual void OnMouseLButtonDown(Vector2& pt);
 		virtual void OnMouseRButtonDown(Vector2& pt);
 		virtual void OnKeyPressed(int key);
-
+		void	OnClick(Vector2& pt) override;
 		//
+		void		UpdateGizmo();
 		void		DrawGizmo();
 		//
 		SmartPointer<IWorldObj> m_pCamera;
@@ -31,7 +32,7 @@ namespace ZG
 		virtual void OnDragEnter(Vector2& pos, std::string file);
 		virtual void OnDrop(Vector2& pos, std::string path);
 		//
-		virtual void OnClick(Vector2& pos);
+		//virtual void OnClick(Vector2& pos);
 	private:
 		void	UpdateCamera();
 	private:

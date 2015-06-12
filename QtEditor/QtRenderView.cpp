@@ -75,6 +75,11 @@ void QtRenderView::mouseReleaseEvent(QMouseEvent * event)
 	if (m_nPtPressPos == event->pos())
 	{
 		//std::cout << "clicked" << std::endl;
+		Vector2 v;
+		v.m_fx = event->pos().rx();
+		v.m_fy = event->pos().ry();
+		//
+		m_pRenderView->OnClick(v);
 	}
 }
 
@@ -134,6 +139,7 @@ void QtRenderView::focusInEvent(QFocusEvent *)
 {
 	//std::cout << "focus in" << std::endl;
 	m_pRenderView->m_bIsFocus = true;
+
 }
 
 void QtRenderView::focusOutEvent(QFocusEvent *)

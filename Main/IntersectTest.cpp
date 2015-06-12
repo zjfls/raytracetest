@@ -8,6 +8,9 @@
 #include "Triangle.h"
 #include "Transform.h"
 #include "AABBBox.h"
+#include "IWorldObj.h"
+#include "Transform.h"
+#include "Matrix44.h"
 
 
 IntersectTest::IntersectTest()
@@ -86,10 +89,14 @@ IntersectResults IntersectTest::testRayRenderables(const Ray3D& r,SmartPointer<I
 	{
 		results = testRayPlane(r, *pPlane, trans);
 	}
-	SmartPointer<Mesh> pMesh = pRend.SmartPointerCast<Mesh>();
-	if (pMesh != nullptr)
+
+
+
+	//
+	SmartPointer<IRenderable> pRenderable = pRend;
+	if (pRenderable != nullptr)
 	{
-		results = testRayMesh(r, *pMesh, trans);
+		results = testRayRenderable(r, *pRenderable, trans);
 	}
 	std::sort(std::begin(results.m_vecIntersetDatas), std::end(results.m_vecIntersetDatas), SortByDistance);
 	return IntersectResults();
@@ -129,9 +136,25 @@ bool IntersectTest::SortByDistance(const IntersectData& d1, const IntersectData&
 	return d1.fDist < d2.fDist;
 }
 
-IntersectResults IntersectTest::testRayMesh(const Ray3D& r, const Mesh& mesh, const Transform& trans)
+IntersectResults IntersectTest::testRayRenderable(const Ray3D& r, const IRenderable& rend, const Transform& trans)
 {
 	IntersectResults results;
+	int nTriangleNum = rend.GetTriangleNum();
+	for (int i = 0; i < nTriangleNum; ++i)
+	{
+		IntersectResults tmpResult;
+		Triangle tri = rend.GetWorldTriangle(i);
+		tmpResult = testRayTriangle(r, tri);
+		for each (IntersectData data in tmpResult.m_vecIntersetDatas)
+		{
+			data.pRender = (IRenderable *)&rend;
+		}
+		results.appendResult(tmpResult);
+	}
+	if (results.m_vecIntersetDatas.size() != 0)
+	{
+		results.m_bInterset = true;
+	}
 	return results;
 }
 
@@ -228,4 +251,99 @@ bool ZG::IntersectTest::AABBBox_AABBBoxTest(const AABBBox& a, const AABBBox& b)
 		return true;
 	}
 	return true;
+}
+
+bool ZG::IntersectTest::Ray_AABBBoxTest(const Ray3D& r, const AABBBox& b,float t0,float t1)
+{
+	float tmin, tmax, tymin, tymax, tzmin, tzmax;
+	//IntersectResults results;
+
+
+	float xDir = r.GetDir().m_fx;
+	if (xDir == 0.0f)
+	{
+		xDir = 0.00001f;
+	}
+	//
+	if (xDir > 0)
+	{
+		tmin = (b.m_Min.m_fx - r.m_vecPos.m_fx) / xDir;
+		tmax = (b.m_Max.m_fx - r.m_vecPos.m_fx) / xDir;
+	}
+	else
+	{
+		tmin = (b.m_Max.m_fx - r.m_vecPos.m_fx) / xDir;
+		tmax = (b.m_Min.m_fx - r.m_vecPos.m_fx) / xDir;
+	}
+	//
+	float yDir = r.GetDir().m_fy;
+	if (yDir == 0.0f)
+	{
+		yDir = 0.00001f;
+	}
+	//
+	if (yDir > 0)
+	{
+		tymin = (b.m_Min.m_fy - r.m_vecPos.m_fy) / yDir;
+		tymax = (b.m_Max.m_fy - r.m_vecPos.m_fy) / yDir;
+	}
+	else
+	{
+		tymin = (b.m_Max.m_fy - r.m_vecPos.m_fy) / yDir;
+		tymax = (b.m_Min.m_fy - r.m_vecPos.m_fy) / yDir;
+	}
+	if ((tmin > tymax) || (tymin > tmax))
+	{
+		return false;
+	}
+	//
+	if (tymin > tmin)
+	{
+		tmin = tymin;
+	}
+	if (tymax < tmax)
+	{
+		tmax = tymax;
+	}
+	float zDir = r.GetDir().m_fz;
+	if (zDir == 0.0f)
+	{
+		zDir = 0.00001f;
+	}
+	if (zDir > 0)
+	{
+		tzmin = (b.m_Min.m_fz - r.m_vecPos.m_fz) / zDir;
+		tzmax = (b.m_Max.m_fz - r.m_vecPos.m_fz) / zDir;
+	}
+	else
+	{
+		tzmin = (b.m_Max.m_fz - r.m_vecPos.m_fz) / zDir;
+		tzmax = (b.m_Min.m_fz - r.m_vecPos.m_fz) / zDir;
+	}
+	if ((tmin > tzmax) || (tzmin > tmax))
+	{
+		return false;
+	}
+	if (tzmin > tmin)
+	{
+		tmin = tzmin;
+	}
+	if (tzmax < tmax)
+	{
+		tmax = tzmax;
+	}
+	//IntersectResults results;
+	
+	return ((tmin < t1) && (tmax > t0));
+}
+
+bool ZG::IntersectTest::Ray_BoundingTest(const Ray3D& r, const BoundingBase& b, float t0, float t1)
+{
+	BoundingBase* p = (BoundingBase*)&b;
+	AABBBox* pBox = dynamic_cast<AABBBox*>(p);
+	if (pBox != nullptr)
+	{
+		return Ray_AABBBoxTest(r, *pBox, t0, t1);
+	}
+	return false;
 }

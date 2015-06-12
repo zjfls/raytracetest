@@ -9,6 +9,7 @@ namespace ZG
 	class IWorld;
 	class IWorldObj;
 	class EditorRenderView;
+	class CameraBase;
 	//class RenderView;
 	//
 	class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject, public GameObjectBase
@@ -37,6 +38,7 @@ namespace ZG
 		virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
 		//
 		void	OnSelectChange(SmartPointer<IWorldObj> pObj);
+		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
 
 		virtual void OnInit();
 	private:

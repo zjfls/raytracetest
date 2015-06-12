@@ -4,6 +4,7 @@
 #include "MaterialPass.h"
 #include "VertexShader.h"
 #include "FragShader.h"
+#include "RenderBaseClass.h"
 using namespace ZG;
 RasterMaterial::RasterMaterial()
 
@@ -52,4 +53,12 @@ SmartPointer<MaterialResource> RasterMaterial::clone()
 		pMaterial->m_MaterialPass[p.first] = p.second->clone();
 	}
 	return pMaterial.SmartPointerCast<MaterialResource>();
+}
+
+void ZG::RasterMaterial::SetRenderState(stRenderState& s)
+{
+	for each (std::pair<string, SmartPointer<ZG::MaterialPass>> p in m_MaterialPass)
+	{
+		p.second->SetRenderState(s);
+	}
 }

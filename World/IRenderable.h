@@ -5,6 +5,7 @@
 #include <vector>
 #include "IListenerSubject.h"
 #include "SmartPointer.h"
+#include "Triangle.h"
 namespace ZG
 {
 	class LightBase;
@@ -29,6 +30,11 @@ namespace ZG
 		virtual SmartPointer<MaterialResource> GetMaterialInstance();
 		//if MaterialInstance is not nullptr return MaterialInstance else return sharedMaterial;
 		virtual SmartPointer<MaterialResource> getRenderMaterial();
+
+		//
+		Triangle GetTriangle(int nIndex) const;
+		Triangle GetWorldTriangle(int nIndex) const;
+		int		GetTriangleNum() const;
 	protected:
 		friend class RenderPass;
 		SmartPointer<MaterialResource> m_pMaterialInstance;

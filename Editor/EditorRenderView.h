@@ -17,19 +17,21 @@ namespace ZG
 		virtual void OnMouseRButtonDown(Vector2& pt);
 		virtual void OnMouseRButtonRelease(Vector2& pt);
 		virtual void OnKeyPressed(int key);
-
+		virtual void OnClick(Vector2& pos) = 0;
 
 		virtual void OnDragEnter(Vector2& pos, std::string path){};
 		virtual void OnDrop(Vector2& pos, std::string path){};
 		//
 		virtual void Update();
 		//
-		virtual void OnClick(Vector2& pos){};
+		//virtual void OnClick(Vector2& pos){};
 		//
 		RenderView* m_pRenderView;
 		//
 		bool m_bIsFocus;
 		//
 		bool m_bShow;
+		//
+
 	};
 }

@@ -23,17 +23,17 @@ namespace ZG
 		//
 		T* operator=(const SmartPointer<T>& pTarget);
 		//
-		T* operator->();
+		T* operator->() const;
 		//
 		bool operator!();
 		//
-		bool operator==(T* t);
+		bool operator==(T* t) const;
 		//
-		bool operator!=(T* t);
+		bool operator!=(T* t) const ;
 		//
-		bool operator==(const SmartPointer<T>& pTarget);
+		bool operator==(const SmartPointer<T>& pTarget) const;
 		//
-		bool operator!=(const SmartPointer<T>& pTarget);
+		bool operator!=(const SmartPointer<T>& pTarget) const;
 		//
 		template<class T2>
 		SmartPointer<T2> SmartPointerCast();
@@ -102,7 +102,7 @@ namespace ZG
 
 
 	template<class T>
-	bool ZG::SmartPointer<T>::operator!=(const SmartPointer<T>& pTarget)
+	bool ZG::SmartPointer<T>::operator!=(const SmartPointer<T>& pTarget) const
 	{
 		if (m_pTarget != pTarget.m_pTarget)
 		{
@@ -112,7 +112,7 @@ namespace ZG
 	}
 
 	template<class T>
-	bool ZG::SmartPointer<T>::operator==(const SmartPointer<T>& pTarget)
+	bool ZG::SmartPointer<T>::operator==(const SmartPointer<T>& pTarget) const
 	{
 		if (m_pTarget == pTarget.m_pTarget)
 		{
@@ -122,7 +122,7 @@ namespace ZG
 	}
 
 	template<class T>
-	bool ZG::SmartPointer<T>::operator!=(T* t)
+	bool ZG::SmartPointer<T>::operator!=(T* t) const
 	{
 		if (m_pTarget != (GameObjectBase*)t)
 		{
@@ -132,7 +132,7 @@ namespace ZG
 	}
 
 	template<class T>
-	bool ZG::SmartPointer<T>::operator==(T* t)
+	bool ZG::SmartPointer<T>::operator==(T* t) const
 	{
 		if (m_pTarget == (GameObjectBase*)t)
 		{
@@ -176,7 +176,7 @@ namespace ZG
 	}
 
 	template<class T>
-	T* ZG::SmartPointer<T>::operator->()
+	T* ZG::SmartPointer<T>::operator->() const
 	{
 		return (T*)m_pTarget;
 	}

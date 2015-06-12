@@ -12,3 +12,11 @@ IntersectResults::~IntersectResults()
 {
 
 }
+
+void ZG::IntersectResults::appendResult(IntersectResults& r)
+{
+	for each (IntersectData data in r.m_vecIntersetDatas)
+	{
+		m_vecIntersetDatas.push_back(data);
+	}
+}
