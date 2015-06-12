@@ -164,7 +164,7 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 	Matrix33 matScale;
 	matScale.ScaleMatrix(vecScale.m_fx, vecScale.m_fy, vecScale.m_fz);
 	Matrix33 matRot;//
-	matRot.FromEulerAngleYXZ(vecRot);
+	matRot.FromEulerAngleXYZ(vecRot);
 	Matrix44 matTraslate;
 	matTraslate.TraslateMatrix(vecTrans.m_fx, vecTrans.m_fy, vecTrans.m_fz);
 
@@ -176,7 +176,7 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 
 	Matrix44 matWorld = mat44s * mat44r * matTraslate;
 	//
-	Matrix44 matParent;
+	Matrix44 matParent = m_pOwnerObj->m_pParent->m_pTransform->GetWorldMatrix();
 	m_TransformMatrixWorld = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
 	//
 	Matrix44 matLocal = matWorld * Matrix44::QuikInverse(matParent);

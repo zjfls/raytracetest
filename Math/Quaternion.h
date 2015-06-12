@@ -15,11 +15,11 @@ namespace ZG
 		virtual ~Quaternion();
 		Quaternion(Matrix33& mat);
 		//Quaternions(Orientation& ori);
-		Quaternion(Vector3& eulAnglesyxz);
+		Quaternion(Vector3& eulAnglesxyz);
 		Quaternion(float fw, float fx, float fy, float fz);
 		Quaternion(float fRadian, Vector3& Axis);
 		//
-		Vector3		toEulerAngleYXZ();
+		Vector3		toEulerAngleXYZ();
 		Matrix33	toMatrix33();
 		//
 		void	normalize();

@@ -18,5 +18,5 @@ Matrix33 Orientation::ToMatrix33() const
 	matY.RotAboutY(m_vecEulerAngle.m_fy);
 	matZ.RotAboutZ(m_vecEulerAngle.m_fz);
 
-	return  matY * matX * matZ;
+	return  matX * matY    * matZ;
 }

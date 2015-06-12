@@ -13,10 +13,10 @@ Quaternion::Quaternion(Matrix33& mat)
 	*this = FromMatrix(mat);
 }
 
-Quaternion::Quaternion(Vector3& eulAnglesyxz)
+Quaternion::Quaternion(Vector3& eulAnglesxyz)
 {
 	Matrix33 mat;
-	mat.FromEulerAngleYXZ(eulAnglesyxz);
+	mat.FromEulerAngleXYZ(eulAnglesxyz);
 	*this = FromMatrix(mat);
 }
 
@@ -292,8 +292,8 @@ Matrix33 ZG::Quaternion::toMatrix33()
 	return mat;
 }
 
-Vector3 ZG::Quaternion::toEulerAngleYXZ()
+Vector3 ZG::Quaternion::toEulerAngleXYZ()
 {
-	return toMatrix33().toEulerAngleYXZ();
+	return toMatrix33().toEulerAngleXYZ();
 }
 

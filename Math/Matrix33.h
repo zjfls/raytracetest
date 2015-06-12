@@ -24,8 +24,8 @@ namespace ZG
 		void RotAboutVector(const Vector3& vec, float f);
 		void ScaleMatrix(float fX, float fY, float fZ);
 		void FromMatrix44(const Matrix44* mat44);
-		void FromEulerAngleYXZ(const Vector3& v);
-		Vector3 toEulerAngleYXZ();
+		void FromEulerAngleXYZ(const Vector3& v);
+		Vector3 toEulerAngleXYZ();
 
 
 		//static Vector3  operator*(Vector3& v, Matrix33& mat);

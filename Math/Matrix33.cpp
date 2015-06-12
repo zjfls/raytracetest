@@ -180,7 +180,7 @@ float Matrix33::Determinate() const
 	return M[0][0] * M[1][1] * M[2][2] + M[0][1] * M[1][2] * M[2][0] + M[0][2] * M[1][0] * M[2][1] - M[0][0] * M[1][2] * M[2][1] - M[0][1] * M[1][0] * M[2][2] - M[0][2] * M[1][1] * M[2][0];
 }
 
-void Matrix33::FromEulerAngleYXZ(const Vector3& v)
+void Matrix33::FromEulerAngleXYZ(const Vector3& v)
 {
 	Matrix33 matx;
 	Matrix33 maty;
@@ -188,10 +188,10 @@ void Matrix33::FromEulerAngleYXZ(const Vector3& v)
 	matx.RotAboutX(v.m_fx);
 	maty.RotAboutY(v.m_fy);
 	matz.RotAboutZ(v.m_fz);
-	*this = maty * matx * matz;
+	*this = matx * maty * matz;
 }
 
-Vector3 Matrix33::toEulerAngleYXZ()
+Vector3 Matrix33::toEulerAngleXYZ()
 {
 	Vector3 rt;
 	float m11 = M[0][0];
