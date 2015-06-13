@@ -29,8 +29,12 @@ RasterRender::~RasterRender()
 {
 }
 
-int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld> pWorld, IRenderTarget* pTarget)
+int RasterRender::Render(SmartPointer<CameraBase> pCamera, SmartPointer<IWorld> pWorld, IRenderTarget* pTarget)
 {
+	SetRenderTarget(0, pTarget);
+	SetDepthBuffer(pTarget->m_DepthBuffer.get());
+	ClearTarget(pCamera->m_bClearColor, pCamera->m_clrColr, pCamera->m_bClearDepth, pCamera->m_fDepth);
+	
 	if (RenderBegin() == false)
 	{
 		std::cout << "Begin Scene Failed!" << std::endl;
@@ -38,7 +42,7 @@ int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld>
 	}
 	if (m_pCurrentRenderCamera == nullptr)
 	{
-		m_pCurrentRenderCamera = pCammera;
+		m_pCurrentRenderCamera = pCamera;
 	}
 	std::vector<SmartPointer<IRenderable>> vecRenderables = pWorld->GetAllRenderables();
 	if (m_pRenderPath->m_bGetPerObjLightInfo == true)
@@ -48,7 +52,7 @@ int RasterRender::Render(SmartPointer<CameraBase> pCammera, SmartPointer<IWorld>
 	//
 	Culler culler;
 	std::vector<SmartPointer<IRenderable>> vecCulled;
-	culler.cull(vecRenderables, vecCulled, pCammera);
+	culler.cull(vecRenderables, vecCulled, pCamera);
 	//
 	//std::cout << "int nRet = Render(vecCulled, pTarget);" << std::endl;
 	int nRet = Render(vecCulled, pTarget);
@@ -141,20 +145,21 @@ void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
 	RenderView* pView = dynamic_cast<RenderView*>(rEvent.m_pTargetCamera->m_pTarget.get());
 	if (pView != nullptr)
 	{
+		ClearTarget(pCamera->m_bClearColor, pCamera->m_clrColr, pCamera->m_bClearDepth, pCamera->m_fDepth);
 		if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true && pCamera->m_bHDR)
 		{
-			SetRenderTarget(0, pView->m_pHDRTarget.get());
+			//SetRenderTarget(0, pView->m_pHDRTarget.get());
 			pTarget = pView->m_pHDRTarget.get();
 		}
 		else
 		{
-			SetRenderTarget(0, pView);
+			//SetRenderTarget(0, pView);
 			pTarget = pView;
 		}
 	}
 	else
 	{
-		SetRenderTarget(0, rEvent.m_pTargetCamera->m_pTarget.get());
+		//SetRenderTarget(0, rEvent.m_pTargetCamera->m_pTarget.get());
 		pTarget = rEvent.m_pTargetCamera->m_pTarget.get();
 	}
 
@@ -170,7 +175,7 @@ void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
 	//}
 	
 	SetDepthBuffer(rEvent.m_pTargetCamera->m_pTarget->m_DepthBuffer.get());
-	ClearTarget(pCamera->m_bClearColor, pCamera->m_clrColr, pCamera->m_bClearDepth, pCamera->m_fDepth);
+	
 	//
 	Render(pCamera, pCamera->m_pWorld, pTarget);
 

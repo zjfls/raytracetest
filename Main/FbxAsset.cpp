@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "FbxAsset.h"
-#include "fbxsdk.h"
-
-
+#include <fbxsdk.h>
+#include "PrefabResource.h"
 FbxAsset::FbxAsset()
 {
 }
@@ -31,4 +30,18 @@ std::vector<SmartPointer<IResource>> FbxAsset::GetAllResource() const
 		resVec.push_back(keyValue.second.get());
 	}
 	return resVec;
+}
+
+SmartPointer<PrefabResource> ZG::FbxAsset::getPrefabResource() const
+{
+	for each (std::pair<std::string,SmartPointer<IResource>> p in m_ResourceMap)
+	{
+		IResource* pRes = p.second.get();
+		PrefabResource* pPrefab = dynamic_cast<PrefabResource*>(pRes);
+		if (pPrefab != nullptr)
+		{
+			return pPrefab;
+		}
+	}
+	return nullptr;
 }

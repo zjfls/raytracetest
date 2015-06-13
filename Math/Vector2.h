@@ -18,6 +18,8 @@ namespace ZG
 		}
 		virtual ~Vector2();
 		Vector2 operator-(const Vector2& v);
+		void normalize();
+		float length();
 
 		float m_fx;
 		float m_fy;

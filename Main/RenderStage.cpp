@@ -47,7 +47,7 @@ void RenderStage::SetStageRenderState(RasterRender* pRender)
 
 void RenderStage::Render(RasterRender* pRender,std::vector<SmartPointer<IRenderable>>& vecRenderabls)
 {
-	pRender->SetRenderTargetGroup(&m_RenderTargetGroup);
+	//pRender->SetRenderTargetGroup(&m_RenderTargetGroup);
 	SetStageRenderState(pRender);
 	switch (m_eMethod)
 	{

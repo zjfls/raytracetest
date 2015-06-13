@@ -31,6 +31,12 @@
     <Filter Include="源文件\Util">
       <UniqueIdentifier>{820e72d5-076f-4a05-8763-b9871bd9c9b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Animation">
+      <UniqueIdentifier>{3c3755aa-2b84-47f2-a619-0de73c16bd79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Animation">
+      <UniqueIdentifier>{67b7d412-a469-4176-baae-131e40765811}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h">
@@ -246,6 +252,27 @@
     <ClInclude Include="Culler.h">
       <Filter>头文件\Util</Filter>
     </ClInclude>
+    <ClInclude Include="KeyFrame.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTrack.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationCurve.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBind.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationModule.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="skeleton.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonObj.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -451,6 +478,27 @@
     </ClCompile>
     <ClCompile Include="Culler.cpp">
       <Filter>源文件\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyFrame.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTrack.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationCurve.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationBind.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationModule.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="skeleton.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonObj.cpp">
+      <Filter>源文件\Animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

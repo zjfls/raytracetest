@@ -84,7 +84,7 @@ void EditorApplication::Run()
 	m_CameraList = EditorApplication::GetInstance()->m_pWorld->GetAllModules<RasterCamera>();
 	for each (SmartPointer<RasterCamera> pCamera in m_CameraList)
 	{
-		if (pCamera->m_pTarget == nullptr)
+		if (pCamera->m_pTarget == nullptr || pCamera->m_pTarget == RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView())
 		{
 			pCamera->m_bActive = false;
 		}

@@ -52,7 +52,11 @@ void ZG::D3DDepthBuffer::OnDeviceReset()
 		default:
 		break;
 	}
-	m_pD3DDevice->CreateDepthStencilSurface(m_nWidth, m_nHeight, d3dFormat, D3DMULTISAMPLE_NONE, 0, true, &m_pDepthSurface, nullptr);
+	HRESULT hr = m_pD3DDevice->CreateDepthStencilSurface(m_nWidth, m_nHeight, d3dFormat, D3DMULTISAMPLE_NONE, 0, true, &m_pDepthSurface, nullptr);
+	if (hr != S_OK)
+	{
+		std::cout << "reset depth buffer failed" << std::endl;
+	}
 }
 
 bool ZG::D3DDepthBuffer::Resize(int nWidth, int nHeight)

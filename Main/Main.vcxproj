@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationBind.h" />
+    <ClInclude Include="AnimationCurve.h" />
+    <ClInclude Include="AnimationModule.h" />
+    <ClInclude Include="AnimationTrack.h" />
     <ClInclude Include="ApplicationBase.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="BuiltInMaterialManager.h" />
@@ -47,6 +51,7 @@
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="IRender.h" />
     <ClInclude Include="IRenderTarget.h" />
+    <ClInclude Include="KeyFrame.h" />
     <ClInclude Include="Main_Dll_Def.h" />
     <ClInclude Include="MaterialAsset.h" />
     <ClInclude Include="MaterialAssetLoader.h" />
@@ -81,8 +86,10 @@
     <ClInclude Include="SimpleRTMaterial.h" />
     <ClInclude Include="SimpleWorld.h" />
     <ClInclude Include="SimpleWorldObj.h" />
+    <ClInclude Include="skeleton.h" />
     <ClInclude Include="SkeletonAsset.h" />
     <ClInclude Include="SkeletonLoader.h" />
+    <ClInclude Include="SkeletonObj.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetLoader.h" />
@@ -92,6 +99,10 @@
     <ClInclude Include="XmlPrefabLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationBind.cpp" />
+    <ClCompile Include="AnimationCurve.cpp" />
+    <ClCompile Include="AnimationModule.cpp" />
+    <ClCompile Include="AnimationTrack.cpp" />
     <ClCompile Include="ApplicationBase.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="BuiltInMaterialManager.cpp" />
@@ -120,6 +131,7 @@
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="IRender.cpp" />
     <ClCompile Include="IRenderTarget.cpp" />
+    <ClCompile Include="KeyFrame.cpp" />
     <ClCompile Include="MaterialAsset.cpp" />
     <ClCompile Include="MaterialAssetLoader.cpp" />
     <ClCompile Include="MeshAsset.cpp" />
@@ -151,8 +163,10 @@
     <ClCompile Include="SimpleRTMaterial.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
     <ClCompile Include="SimpleWorldObj.cpp" />
+    <ClCompile Include="skeleton.cpp" />
     <ClCompile Include="SkeletonAsset.cpp" />
     <ClCompile Include="SkeletonLoader.cpp" />
+    <ClCompile Include="SkeletonObj.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

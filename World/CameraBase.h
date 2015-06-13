@@ -44,12 +44,12 @@ namespace ZG
 		float m_fFar;
 		//
 		SmartPointer<IRenderTarget>	m_pTarget;
-		SmartPointer<IWorld>	m_pWorld;
-		bool				m_bClearColor;
-		bool				m_bClearDepth;
-		GameColor			m_clrColr;
-		float				m_fDepth;
-		bool				m_bHDR;
+		SmartPointer<IWorld>		m_pWorld;
+		bool						m_bClearColor;
+		bool						m_bClearDepth;
+		GameColor					m_clrColr;
+		float						m_fDepth;
+		bool						m_bHDR;
 	public:
 		Matrix44 m_MatView;
 		Matrix44 m_MatProj;

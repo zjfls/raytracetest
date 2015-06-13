@@ -1,8 +1,14 @@
 #pragma once
 #include "IAsset.h"
-#include "fbxsdk.h"
+
+namespace fbxsdk_2015_1
+{
+	class FbxScene;
+}
 namespace ZG
 {
+
+	class PrefabResource;
 	class MAIN_API FbxAsset :
 		public IAsset
 	{
@@ -23,11 +29,13 @@ namespace ZG
 
 		*/
 		virtual void Release(bool bReleaseResource);
+		//
+		SmartPointer<PrefabResource> getPrefabResource() const;
 
 
 		std::vector<SmartPointer<IResource>> GetAllResource() const;
 	private:
-		FbxScene*	m_pFbxScene;
+		fbxsdk_2015_1::FbxScene*	m_pFbxScene;
 		friend class FbxFileLoader;
 		friend class FbxAppImporter;
 	};

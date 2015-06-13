@@ -88,6 +88,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationResource.h" />
     <ClInclude Include="FragShader.h" />
     <ClInclude Include="IResource.h" />
     <ClInclude Include="MaterialArg.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationResource.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

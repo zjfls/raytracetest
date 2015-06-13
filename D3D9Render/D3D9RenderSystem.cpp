@@ -131,6 +131,8 @@ bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 	pBuffer->m_nWidth = pRenderView->m_nWidth;
 	pBuffer->m_nHeight = pRenderView->m_nHeight;
 	pBuffer->m_pD3DDevice = m_pD3DDevice;
+
+	pRenderView->m_DepthBuffer = pBuffer;
 	//if (EnviromentSetting::GetInstance()->GetIntSetting("HDR") == true)
 	//{
 	//	pRenderView->CreateHdrTarget();

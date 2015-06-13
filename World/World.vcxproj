@@ -109,8 +109,6 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="RenderAbleEventProxy.h" />
     <ClInclude Include="Ring.h" />
-    <ClInclude Include="skeleton.h" />
-    <ClInclude Include="SkeletonObj.h" />
     <ClInclude Include="Sphere3D.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -145,8 +143,6 @@
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RenderAbleEventProxy.cpp" />
     <ClCompile Include="Ring.cpp" />
-    <ClCompile Include="skeleton.cpp" />
-    <ClCompile Include="SkeletonObj.cpp" />
     <ClCompile Include="Sphere3D.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -34,7 +34,7 @@ void CameraBase::Render()
 {
 	if (m_bActive == false)
 	{
-		std::cout << "camera is not active" << std::endl;
+		//std::cout << "camera is not active" << std::endl;
 		return;
 	}
 	CameraRenderEvent rEvent;

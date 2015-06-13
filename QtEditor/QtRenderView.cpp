@@ -77,8 +77,9 @@ void QtRenderView::mouseReleaseEvent(QMouseEvent * event)
 	v.m_fy = event->pos().ry();
 	if (event->button() & Qt::LeftButton)
 	{
+		QPoint diff = m_nPtPressPos - event->pos();
 		//
-		if (m_nPtPressPos == event->pos())
+		if (abs(diff.x()) < 2 && abs(diff.y()) < 2)
 		{
 			m_pRenderView->OnClick(v);
 		}

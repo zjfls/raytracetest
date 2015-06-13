@@ -19,6 +19,10 @@
 #include "ResDef.h"
 #include "FileOperation.h"
 #include <io.h>
+#include "VertexShader.h"
+#include "FragShader.h"
+#include "MaterialPass.h"
+#include "AssetManager.h"
 
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
@@ -1046,6 +1050,32 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				}
 			}
 		}
+		MaterialPass* pPass = new MaterialPass();
+		TMatArg<GameColor>* pArg = new TMatArg<GameColor>(EMATARGTYPECOLOR);
+		pArg->m_Data = GameColor::white;
+		//pMatRes->AddArg("MainColor", pArg);
+		pMatRes->AddPass("First", pPass);
+		AssetManager::GetInstance()->LoadAsset("./data/shader/VertexStandard.vsm");
+		AssetManager::GetInstance()->LoadAsset("./data/shader/FragSpec.fsm");
+		pPass->m_eVertexShaderType = EVERTEXSHADERORIGIN;
+		pPass->m_eFragShaderType = EFRAGSHADERORIGIN;
+		pPass->m_pVertexShader = ResourceManager<VertexShader>::GetInstance()->GetResource("./data/shader/VertexStandard.vsm");
+		pPass->m_pFragShader = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/FragSpec.fsm");
+		//
+		//XMLElement* pPass = doc.NewElement("RenderPass");
+		//root->InsertEndChild(pPass);
+		//XMLElement* pVertShader = doc.NewElement("VertexShader");
+		//XMLElement* pFragShader = doc.NewElement("FragElem");
+		//pPass->SetAttribute("Name", "bladesouldefault");
+		//pPass->SetAttribute("BRDF", "BlinPhong");
+		//pPass->InsertEndChild(pVertShader);
+		//pPass->InsertEndChild(pFragShader);
+		//pVertShader->SetAttribute("refPath", "./data/shader/VertexStandard.vsm");
+		//pVertShader->SetAttribute("ShaderType", "Origin");
+		//pFragShader->SetAttribute("refPath", "./data/shader/FragSpec.fsm");
+		//pVertShader->SetAttribute("ShaderType", "Origin");
+		//pFragShader->SetAttribute("ShaderType", "Origin");
+		//
 	}
 	return pMatRes;
 

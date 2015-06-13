@@ -26,6 +26,9 @@
 #include "IntersectTest.h"
 #include "GizmoManager.h"
 #include "TranslateGizmo.h"
+#include "Vector4.h"
+#include "FbxAsset.h"
+#include <algorithm>
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -69,8 +72,7 @@ void EditorSceneView::Update()
 		return;
 	}
 
-	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->SetRenderTarget(0, m_pRenderView);
-	RenderManager::GetInstance()->GetDefaultRenderSystem()->SetActiveRenderView(m_pRenderView);
+
 
 	//std::cout << "scene end" << std::endl;
 	if (m_bIsFocus)
@@ -156,19 +158,49 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 				case EditorApplication::ETranslateUp:
 				{
 					movDir = Vector3::YAxis;
-					fMoveDist = -diff.m_fy * yValue / nHeight;
+					Vector4 screenDir;
+					screenDir.Vector3ToDirection(movDir);
+					screenDir = screenDir * m_pCameraModule->m_MatViewProj;
+					Vector2 vec2Screen;
+					vec2Screen.m_fx = screenDir.m_fx;
+					vec2Screen.m_fy = screenDir.m_fy;
+					vec2Screen.normalize();
+
+					fMoveDist = -diff.m_fy * vec2Screen.m_fy * yValue / nHeight + diff.m_fx * vec2Screen.m_fx * xValue / nWidth;
+
+
+					
+					//fMoveDist = -diff.m_fy * yValue / nHeight;
 				}
 				break;
 				case EditorApplication::ETranslateForward:
 				{
 					movDir = Vector3::ZAxis;
-					fMoveDist = -diff.m_fy * zValue / nHeight;
+					Vector4 screenDir;
+					screenDir.Vector3ToDirection(movDir);
+					screenDir = screenDir * m_pCameraModule->m_MatViewProj;
+					Vector2 vec2Screen;
+					vec2Screen.m_fx = screenDir.m_fx;
+					vec2Screen.m_fy = screenDir.m_fy;
+					vec2Screen.normalize();
+
+					fMoveDist = -diff.m_fy * vec2Screen.m_fy * yValue / nHeight + diff.m_fx * vec2Screen.m_fx * xValue / nWidth;
+
 				}
 				break;
 				case EditorApplication::ETranslateRight:
 				{
 					movDir = Vector3::XAxis;
-					fMoveDist = diff.m_fx * xValue / nWidth;
+					Vector4 screenDir;
+					screenDir.Vector3ToDirection(movDir);
+					screenDir = screenDir * m_pCameraModule->m_MatViewProj;
+					//
+					Vector2 vec2Screen;
+					vec2Screen.m_fx = screenDir.m_fx;
+					vec2Screen.m_fy = screenDir.m_fy;
+					vec2Screen.normalize();
+
+					fMoveDist = -diff.m_fy * vec2Screen.m_fy * yValue / nHeight + diff.m_fx * vec2Screen.m_fx * xValue / nWidth;
 				}
 				break;
 				default:
@@ -263,13 +295,13 @@ void EditorSceneView::OnDragEnter(Vector2& pos, std::string file)
 void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 {
 	std::string filesuffix = getFileSuffix(path);
+	SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
+	Vector3 worldPos = PickUtil::ScreenPosToWorldPos(pos, 500, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
+	const char* strPath = path.c_str() + 8;
+
+	std::transform(filesuffix.begin(), filesuffix.end(), filesuffix.begin(), tolower);
 	if (filesuffix == "prefab.xml")
 	{
-		SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
-		Vector3 worldPos = PickUtil::ScreenPosToWorldPos(pos, 500, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
-		const char* strPath = path.c_str() + 8;
-
-
 		AssetManager::GetInstance()->LoadAsset(strPath);
 		SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
 		SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
@@ -281,6 +313,24 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		pObj->m_pTransform->SetTranslate(worldPos);
 
 		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+	}
+	if (filesuffix == "fbx")
+	{
+		FbxAsset* pAsset = (FbxAsset*)AssetManager::GetInstance()->LoadAsset(strPath);
+		SmartPointer<PrefabResource> pPrefab = pAsset->getPrefabResource();
+		if (pPrefab != nullptr)
+		{
+			SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
+
+
+
+			//m_pTargetObj = pObj;
+			EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
+			pObj->m_pTransform->SetTranslate(worldPos);
+
+			EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		}
+
 	}
 
 
@@ -414,9 +464,13 @@ void EditorSceneView::DrawGizmo()
 {
 	bool bCameraHDR = m_pCameraModule->m_bHDR;
 	m_pCameraModule->m_bHDR = false;
+	m_pCameraModule->m_bClearColor = false;
+	m_pCameraModule->m_bClearDepth = false;
 	//std::cout << "draw gizmo render" << std::endl;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->Render(m_pCameraModule, EditorApplication::GetInstance()->m_pGizmoScene, m_pRenderView);
 	m_pCameraModule->m_bHDR = bCameraHDR;
+	m_pCameraModule->m_bClearColor = true;
+	m_pCameraModule->m_bClearDepth = true;
 	//std::cout << "draw gizmo end" << std::endl;
 }
 

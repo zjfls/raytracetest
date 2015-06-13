@@ -43,12 +43,15 @@ void D3D9RenderView::OnDeviceReset()
 	if (m_nIndex != 0)
 	{
 		//to do fix temp code
-		int width = m_dpp.BackBufferWidth;
-		int height = m_dpp.BackBufferHeight;
-		m_dpp.BackBufferWidth = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView()->m_nWidth;
-		m_dpp.BackBufferHeight = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView()->m_nHeight;
+		//int width = m_dpp.BackBufferWidth;
+		//int height = m_dpp.BackBufferHeight;
+		//m_dpp.BackBufferWidth = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView()->m_nWidth;
+		//m_dpp.BackBufferHeight = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView()->m_nHeight;
 		HRESULT hr = m_pD3DDevice->CreateAdditionalSwapChain(&m_dpp, &m_pSwapChain);
-		//Resize(width, height);
+		if (hr != S_OK)
+		{
+			std::cout << "reset swap chain failed" << std::endl;
+		}
 	}
 	else
 	{
