@@ -58,3 +58,29 @@ SmartPointer<ModuleBase> Mesh::Clone()
 
 	return pCloneMesh.get();
 }
+
+void ZG::Mesh::CopyFrom(Mesh* pMesh)
+{
+	this->m_pSharedMaterial = pMesh->m_pSharedMaterial;
+	if (pMesh->m_pSharedMaterial != nullptr)
+	{
+		if (pMesh->m_pMaterialInstance != nullptr)
+		{
+			this->m_pMaterialInstance = pMesh->m_pMaterialInstance->clone();
+		}
+		// = m_pSharedMaterial->clone();
+	}
+	this->m_bCpuSkin = pMesh->m_bCpuSkin;
+	//
+	if (pMesh->m_pSharedMesh->m_VertexData->nBoneNum > 0 && pMesh->m_bCpuSkin == true)
+	{
+		this->m_pMeshInstance = pMesh->m_pSharedMesh->clone();
+	}
+	else
+	{
+		this->m_pIndexData = pMesh->m_pIndexData;
+		this->m_pVertexData = pMesh->m_pVertexData;
+		this->m_pSharedMesh = pMesh->m_pSharedMesh;
+		this->m_pMeshInstance = pMesh->m_pSharedMesh;
+	}
+}

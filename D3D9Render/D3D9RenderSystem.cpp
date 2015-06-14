@@ -673,7 +673,7 @@ HardwareTexture* D3D9RenderSystem::GetHardwareTexture(SmartPointer<Texture> pTex
 			//	&pHardwareTex->m_pTexture
 			//	)))
 			{
-				std::cout << "can not find texture:" << pTexture->GetRefPath().c_str() << std::endl;
+				//std::cout << "can not find texture:" << pTexture->GetRefPath().c_str() << std::endl;
 				delete pHardwareTex;	
 				//MessageBox(NULL, "Could not find banana.bmp", "Textures.exe", MB_OK);
 				return nullptr;

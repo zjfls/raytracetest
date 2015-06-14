@@ -65,7 +65,7 @@ bool D3D9RenderView::Resize(int nX, int nY)
 	{
 		return true;
 	}
-	if (nX == m_nWidth || nY == m_nHeight)
+	if (nX == m_nWidth && nY == m_nHeight)
 	{
 		return true;
 	}

@@ -17,7 +17,7 @@ namespace ZG
 
 
 		virtual IAsset* Load(string path, void* pArg /*= nullptr*/) = 0;
-
+		virtual void	Save(IAsset* pAsset){};
 
 		IAsset* m_pAsset;
 	};

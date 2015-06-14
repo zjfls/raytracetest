@@ -174,7 +174,7 @@ void RasterRender::RenderCamera(CameraRenderEvent& rEvent)
 	//	pTarget = pCamera->m_pTarget.get();
 	//}
 	
-	SetDepthBuffer(rEvent.m_pTargetCamera->m_pTarget->m_DepthBuffer.get());
+	//SetDepthBuffer(rEvent.m_pTargetCamera->m_pTarget->m_DepthBuffer.get());
 	
 	//
 	Render(pCamera, pCamera->m_pWorld, pTarget);

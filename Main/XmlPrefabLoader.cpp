@@ -9,6 +9,7 @@
 #include "AssetManager.h"
 #include "PrefabResource.h"
 #include "RasterMaterial.h"
+#include "FilePath.h"
 //extern template  class __declspec(dllimport) Singleton < ResourceManager<MeshResource> >;
 
 using namespace tinyxml2;
@@ -31,12 +32,12 @@ IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLElement* pElem = doc.FirstChildElement("WorldObj");
 	SmartPointer<IWorldObj> pRoot = SmartPointer<IWorldObj>(new IWorldObj);
 	ProcessWorldObjElem(pElem, pRoot);
-
 	//Prefab* pPrefab = new Prefab;
 	//pPrefab->m_pRoot = pRoot;
 	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(path);
 	pPrefab->m_pRoot = pRoot;
 	pPrefabAsset->AddResource(path, pPrefab.get());
+	pRoot->m_strName = getFileNameWithoutSuffix(path);
 	return pPrefabAsset;
 }
 

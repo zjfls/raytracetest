@@ -7,6 +7,12 @@
 /////////////////////////////////////////////////
 namespace ZG
 {
+	struct WORLD_API stTransformData
+	{
+		Point3D m_vecTranslate;
+		Vector3 m_vecRotation;
+		Vector3 m_vecScale;
+	};
 	class WORLD_API Transform :public ModuleBase
 	{
 	public:

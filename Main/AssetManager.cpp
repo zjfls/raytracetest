@@ -7,6 +7,7 @@
 #include "MaterialAssetLoader.h"
 #include "ShaderAssetLoader.h"
 #include "TextureAssetLoader.h"
+#include "AnimationAssetLoader.h"
 #include <assert.h>
 template class MAIN_API  Singleton < AssetManager >;
 template<> SmartPointer<AssetManager> Singleton<AssetManager>::_instance = nullptr;
@@ -59,6 +60,7 @@ bool AssetManager::Init()
 	AddLoader("srf", new FragShaderAssetLoader);
 	AddLoader("tga", new TextureAssetLoader);
 	AddLoader("png", new TextureAssetLoader);
+	AddLoader("animation.xml", new AnimationAssetLoader);
 
 
 	return true;

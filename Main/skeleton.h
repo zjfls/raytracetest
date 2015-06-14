@@ -12,15 +12,19 @@ namespace ZG
 		SkeletonModule();
 		virtual ~SkeletonModule();
 		void	AddMesh(SmartPointer<Mesh> pMesh);
-
-
+		virtual SmartPointer<ModuleBase> Clone();
+		virtual void Update();
+		void	GenerateSkeletonArchi();
+		SkeletonResource*	GetSkeletonRes(){ return m_SkeletonRes.get(); };
+		void				SetSkeletonRes(SkeletonResource* pRes){ m_SkeletonRes = pRes; };
 		//void	SetSkeletonResource(SmartPointer<SkeletonResource> pRes,bool bGenerateObj = true);
 	private:
 		void	GenerateSkeletonObj();
 	private:
-		SkeletonObj* m_pSkeletonRoot;
+		//SkeletonObj* m_pSkeletonRoot;
 		std::vector<SmartPointer<Mesh>> m_MeshVec;
-		SmartPointer<SkeletonResource> m_pSkeRes;
+		SmartPointer<SkeletonObj> m_pSkeletonRoot;
+		SmartPointer<SkeletonResource> m_SkeletonRes;
 		string m_strSkeleton;
 	};
 

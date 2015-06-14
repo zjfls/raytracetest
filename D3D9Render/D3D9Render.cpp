@@ -18,6 +18,7 @@
 #include "EnviromentSetting.h"
 #include "MaterialPass.h"
 #include "d3ddepthbuffer.h"
+#include "RenderStatistics.h"
 using namespace ZG;
 D3D9Render::D3D9Render(const RenderPath* pPath)
 	:RasterRender(pPath)
@@ -61,6 +62,7 @@ bool D3D9Render::SetFragShader(HardwareFragShader* pFragShader)
 
 void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff)
 {
+
 	D3D9VertexBuffer* pD3DVertexBuff = (D3D9VertexBuffer*)pVertexBuff;
 	D3D9IndexBuffer* pD3DIndexBuff = (D3D9IndexBuffer*)pIndexBuff;
 	if (pD3DVertexBuff == nullptr)
@@ -78,6 +80,19 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 	{
 		nPrimiDivide = 2;
 		eType = D3DPT_LINELIST;
+	}
+	RenderStatistics::GetInstance()->m_nDrawCall++;
+	RenderStatistics::GetInstance()->m_nVertexNum += pD3DVertexBuff->m_nNumVertex;
+	if (pD3DVertexBuff->m_eType == EPRIMITIVE_TRIANGLE)
+	{
+		if (pD3DIndexBuff == nullptr)
+		{
+			RenderStatistics::GetInstance()->m_nTriangleNum += pD3DVertexBuff->m_nNumVertex / 3;
+		}
+		else
+		{
+			RenderStatistics::GetInstance()->m_nTriangleNum += pD3DIndexBuff->m_nIndexNum / 3;
+		}
 	}
 	if (pD3DIndexBuff == nullptr)
 	{

@@ -9,6 +9,9 @@ namespace ZG
 		SkeletonObj();
 		virtual ~SkeletonObj();
 		virtual void OnAdded();
+
+		virtual SmartPointer<IWorldObj> Clone(bool bRecursive);
+		bool m_bIsRoot;
 	};
 
 }

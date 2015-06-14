@@ -2,7 +2,7 @@
 #include "Transform.h"
 #include "Orientation.h"
 #include "IWorldObj.h"
-
+#include <iostream>
 
 Transform::Transform()
 :m_bDirt(true)
@@ -69,7 +69,7 @@ void Transform::Update()
 	m_bThisFrameUpdated = true;
 	m_bDirt = false;
 	NotifyNeedTransform();
-
+	//std::cout << m_pOwnerObj->m_strName << "  updated" << std::endl;
 }
 
 void Transform::NotifyNeedTransform()
@@ -177,10 +177,16 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 	Matrix44 matWorld = mat44s * mat44r * matTraslate;
 	//
 	Matrix44 matParent = m_pOwnerObj->m_pParent->m_pTransform->GetWorldMatrix();
-	m_TransformMatrixWorld = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
+	//m_TransformMatrixWorld = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
 	//
 	Matrix44 matLocal = matWorld * Matrix44::QuikInverse(matParent);
 	m_vecTranslate = matLocal.GetTranslate();
+
+
+	Matrix44 matworld2 = matLocal * matParent;
+
+	Matrix44 matIdentity = matParent * Matrix44::QuikInverse(matParent);
+	int i = 3;
 	//
 }
 

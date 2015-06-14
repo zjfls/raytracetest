@@ -5,15 +5,18 @@
 //
 namespace ZG
 {
-	class AnimationCurve;
-	class AnimationResource :public IResource
+	class AnimationCurveBase;
+	class RESOURCE_API AnimationResource :public IResource
 	{
 	public:
 		AnimationResource();
 		virtual ~AnimationResource();
 
 
-		std::unordered_map<std::string, SmartPointer<AnimationCurve>> m_mapCurves;
+		std::unordered_map<std::string, SmartPointer<AnimationCurveBase>> m_mapCurves;
+
+
+		friend class ResourceManager < AnimationResource > ;
 	};
 	RESOURCE_TEMPLATE template class RESOURCE_API  Singleton < ResourceManager<AnimationResource> >;
 }

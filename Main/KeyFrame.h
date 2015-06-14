@@ -6,7 +6,8 @@ namespace ZG
 	class KeyFrame:public GameObjectBase
 	{
 	public:
-		KeyFrame(const T& theData,float fTime);
+		KeyFrame(const T& theData, float fTime);
+		KeyFrame(){};
 		virtual ~KeyFrame();
 
 		float m_fTime;

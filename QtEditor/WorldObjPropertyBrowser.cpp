@@ -18,7 +18,8 @@
 #include "EditorModuleProperty.h"
 #include <unordered_map>
 #include "Sphere3D.h"
-
+#include "skeleton.h"
+#include "SkeletonResource.h"
 WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 {
 	//
@@ -76,7 +77,10 @@ void WorldObjPropertyBrowser::SetTarget(SmartPointer<IWorldObj> pObj)
 		delete item;
 	}
 	QtProperty* pName = stringManager->addProperty(tr("Name"));
-	stringManager->setValue(pName, QString::fromStdString(pObj->m_strName));
+	std::string strName = typeid(*pObj.get()).name();
+	strName = strName.c_str() + 6;
+
+	stringManager->setValue(pName, QString::fromStdString(strName));
 	addProperty(pName);
 	//
 	//
@@ -251,6 +255,24 @@ void WorldObjPropertyBrowser::AddModule(SmartPointer<ModuleBase> pModule)
 		pSphereGroup->addSubProperty(pProperty);
 		pProperty->setValue(pSphere->m_nSubdivide);
 		AddEditorProperty(pSphere.get(), "SUBDIVIDE", pProperty);
+	}
+	if (typeid(*pModule.get()) == typeid(SkeletonModule))
+	{
+		SmartPointer<SkeletonModule> pSkeleton = pModule.SmartPointerCast<SkeletonModule>();
+		QtProperty* pSkeletonGroup = groupManager->addProperty(tr("Skeleton"));
+		addProperty(pSkeletonGroup);
+		std::string pSkeletonRef = "";
+		if (pSkeleton->GetSkeletonRes() != nullptr)
+		{
+			pSkeletonRef = pSkeleton->GetSkeletonRes()->GetRefPath();
+		}
+ 		QtProperty * pFilePath = filePathManager->addProperty(tr("SkeletonPath"));
+		filePathManager->setValue(pFilePath, pSkeletonRef.c_str());
+		filePathManager->setFilter(pFilePath, "MeshFile files (*.Skeleton)");
+		pSkeletonGroup->addSubProperty(pFilePath);
+
+
+
 	}
 }
 

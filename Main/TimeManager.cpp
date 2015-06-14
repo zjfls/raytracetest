@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TimeManager.h"
 #include <time.h>
+#include "RenderStatistics.h"
 template class MAIN_API Singleton < TimeManager > ;
 template<> SmartPointer<TimeManager> Singleton<TimeManager>::_instance = nullptr;
 
@@ -31,8 +32,9 @@ void TimeManager::Update()
 		m_fFpsTimeCounter += 1.0f;
 		m_nFps = m_nFpsCount;
 		m_nFpsCount = 0;
-		std::cout << "fps:" << m_nFps << std::endl;
+		//std::cout << "fps:" << m_nFps << "drawcall:" << RenderStatistics::GetInstance()->m_nDrawCall << "Triangle:" << RenderStatistics::GetInstance()->m_nTriangleNum<< ::endl;
 	}
+	RenderStatistics::GetInstance()->Reset();
 	
 	
 }

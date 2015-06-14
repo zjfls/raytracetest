@@ -4,15 +4,34 @@
 #include "MathFunc.h"
 namespace ZG
 {
+	enum AnimationType
+	{
+		EANITYPENONE,
+		EANIFLOAT,
+		EANIVECTOR3,
+		EANITRANSFORM
+	};
 	enum AnimationWarpMode
 	{
 
 	};
-	template<class T>
-	class AnimationCurve:public GameObjectBase
+	class AnimationCurveBase :public GameObjectBase
 	{
 	public:
-		AnimationCurve();
+		AnimationCurveBase(AnimationType eType)
+			:m_eType(eType)
+		{
+
+		}
+		virtual ~AnimationCurveBase(){};
+	private:
+		AnimationType m_eType;
+	};
+	template<class T>
+	class AnimationCurve :public AnimationCurveBase
+	{
+	public:
+		AnimationCurve(AnimationType eType);
 		virtual ~AnimationCurve();
 		//
 		void AddKeyFrame(float fTime, T& value);
@@ -103,7 +122,7 @@ namespace ZG
 	void ZG::AnimationCurve<T>::AddKeyFrame(float fTime, T& value)
 	{
 		RemoveKeyFrame(fTime);
-		KeyFrame<T> keyframe(fTime, value);
+		KeyFrame<T> keyframe(value, fTime);
 		//
 		m_KeyFrames.push_back(keyframe);
 		sort();
@@ -122,9 +141,11 @@ namespace ZG
 	}
 
 	template<class T>
-	ZG::AnimationCurve<T>::AnimationCurve()
+	ZG::AnimationCurve<T>::AnimationCurve(AnimationType eType)
+		:AnimationCurveBase(eType)
 	{
 		m_fLength = 0.0f;
+		
 	}
 
 }

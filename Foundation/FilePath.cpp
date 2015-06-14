@@ -83,7 +83,7 @@ std::string ZG::getFileDirectory(string fullFilePath)
 std::string ZG::removeSuffix(string fileName)
 {
 	string strRet;
-	const char* pPos = strrchr(fileName.c_str(), '.');
+	const char* pPos = strchr(fileName.c_str(), '.');
 	if (pPos == nullptr)
 	{
 		strRet = fileName;

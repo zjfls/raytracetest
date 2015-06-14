@@ -43,7 +43,7 @@ bool ZG::D3D9RenderTarget::Resize(int nWidth, int nHeight)
 	{
 		return true;
 	}
-	if (nWidth == m_nWidth || nHeight == m_nHeight)
+	if (nWidth == m_nWidth && nHeight == m_nHeight)
 	{
 		return true;
 	}

@@ -150,7 +150,7 @@ Matrix44 Matrix44::QuikInverse(const Matrix44& mat)
 
 
 
-	return si * ri * ti;
+	return ti * ri * si;
 	
 	
 }

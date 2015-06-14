@@ -208,6 +208,7 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 			}
 			Vector3 worldPos = EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate();
 			worldPos = fMoveDist * movDir + worldPos;
+			std::cout << "move dist" << fMoveDist << std::endl;
 			EditorApplication::GetInstance()->m_SelectObj->m_pTransform->SetWorldTranslate(worldPos);
 
 
@@ -226,6 +227,7 @@ void EditorSceneView::OnMouseLButtonDown(Vector2& pos)
 			case EditorApplication::EStateTranslate:
 			{
 				SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
+				//std::cout << "clicked:" << m_pRenderView->m_nWidth<<" " << m_pRenderView->m_nHeight << std::endl;
 				Vector3 worldDir = PickUtil::ScreenPosToWorldDir(pos, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
 				Ray3D r(pCameraModule->m_pOwnerObj->m_pTransform->GetWorldTranslate(), worldDir);
 
@@ -447,7 +449,7 @@ void ZG::EditorSceneView::UpdateGizmo()
 			{
 				Vector3 dir = EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate();
 				dir.normalize();
-				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_pCamera->m_pTransform->GetWorldTranslate() + dir * 200);
+				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_pCamera->m_pTransform->GetWorldTranslate() + dir * 250);
 				//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
 			}
 			break;

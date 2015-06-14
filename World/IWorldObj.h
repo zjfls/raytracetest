@@ -15,6 +15,7 @@ namespace ZG
 		virtual bool	removeAllChildren();
 		virtual bool	removeModule(SmartPointer<ModuleBase> pModule);
 		unsigned int	GetChildCount() const;
+		IWorldObj*		GetParent(){ return m_pParent; }
 		SmartPointer<IWorldObj>		GetChild(unsigned int i) const;
 		virtual SmartPointer<IWorldObj> Clone(bool bRecursive);
 
@@ -53,7 +54,7 @@ namespace ZG
 		//}
 		//virtual IWorldObj* Clone(bool bRecursive);
 
-	private:
+		protected:
 		//SmartPointer<IWorldObj>					
 		IWorldObj*								m_pParent;
 		std::vector<SmartPointer<IWorldObj>>		m_vecChildren;

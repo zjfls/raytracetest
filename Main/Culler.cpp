@@ -29,19 +29,19 @@ void ZG::Culler::cull(const std::vector<SmartPointer<IRenderable>>& vecRend, std
 		if (pBox != nullptr)
 		{
 			AABBBox box = *pBox;
-			{
-				AABBBox box2 = *pBox;
-				box2.Transform(pCamera->m_MatView);
-				box2.Transform(pCamera->m_MatViewProj);
+			//{
+			//	AABBBox box2 = *pBox;
+			//	box2.Transform(pCamera->m_MatView);
+			//	box2.Transform(pCamera->m_MatViewProj);
 
 
-				Vector4 vPos;
-				vPos.Vector3ToPoint(pBox->m_Min);
-				Vector4 vPos2 = vPos;
-				vPos = vPos * pCamera->m_MatView;
-				vPos = vPos * pCamera->m_MatProj;
-				vPos2 = vPos2 * pCamera->m_MatViewProj;
-			}
+			//	Vector4 vPos;
+			//	vPos.Vector3ToPoint(pBox->m_Min);
+			//	Vector4 vPos2 = vPos;
+			//	vPos = vPos * pCamera->m_MatView;
+			//	vPos = vPos * pCamera->m_MatProj;
+			//	vPos2 = vPos2 * pCamera->m_MatViewProj;
+			//}
 			box.Transform(matViewProj);
 			if (IntersectTest::AABBBox_AABBBoxTest(cvv, box) == true)
 			{
