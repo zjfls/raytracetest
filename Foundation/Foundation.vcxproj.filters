@@ -81,6 +81,12 @@
     <ClInclude Include="RenderBaseClass.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IReceiver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp">
@@ -129,6 +135,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RenderBaseClass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommand.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IReceiver.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

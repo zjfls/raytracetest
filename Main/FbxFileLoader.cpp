@@ -124,7 +124,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 				aniName = aniName + temp;
 			}
 			std::string refPath = getFileDirectory(path) + aniName + ".animation.xml";
-			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(aniName).get();
+			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(refPath).get();
 			for each (FbxNode* pNode in p.second)
 			{
 				

@@ -1,7 +1,14 @@
 #pragma once
 #include "IAssetLoader.h"
+namespace tinyxml2
+{
+	class XMLElement;
+}
 namespace ZG
 {
+	template<class T>
+	class AnimationCurve;
+	struct stTransformData;
 	class MAIN_API AnimationAssetLoader :public IAssetLoader
 	{
 	public:
@@ -10,6 +17,8 @@ namespace ZG
 
 		IAsset* Load(string path, void* pArg /*= nullptr*/) override;
 		void	Save(IAsset* pAsset) override;
+	private:
+		void	SaveTransformCurve(AnimationCurve<stTransformData>* pCurve,tinyxml2::XMLElement* pElem);
 	};
 
 }

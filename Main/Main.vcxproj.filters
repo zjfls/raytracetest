@@ -273,9 +273,15 @@
     <ClInclude Include="SkeletonObj.h">
       <Filter>头文件\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="RenderStatistics.h" />
-    <ClInclude Include="AnimationAssetLoader.h" />
-    <ClInclude Include="AnimationAsset.h" />
+    <ClInclude Include="RenderStatistics.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationAssetLoader.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationAsset.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -503,8 +509,14 @@
     <ClCompile Include="SkeletonObj.cpp">
       <Filter>源文件\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="RenderStatistics.cpp" />
-    <ClCompile Include="AnimationAssetLoader.cpp" />
-    <ClCompile Include="AnimationAsset.cpp" />
+    <ClCompile Include="AnimationAsset.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationAssetLoader.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStatistics.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

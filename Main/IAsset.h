@@ -1,5 +1,6 @@
 #pragma once
 #include "IResource.h"
+#include <vector>
 namespace ZG
 {
 	class MAIN_API IAsset
@@ -34,12 +35,27 @@ namespace ZG
 			m_ResourceMap[refPath] = pRes;
 		}
 		void			RemoveResource(string refPath);
-
+		template<class T>
+		void			GetAllResource(std::vector<T*>& vecRes);
 	protected:
 		std::unordered_map<string, SmartPointer<IResource>> m_ResourceMap;
 	public:
 		string	m_strPath;
 
 	};
+
+	template<class T>
+	void ZG::IAsset::GetAllResource(std::vector<T*>& vecRes)
+	{
+		vecRes.clear();
+		for each (std::pair<std::string,SmartPointer<IResource>> p in m_ResourceMap)
+		{
+			T* pRes = dynamic_cast<T*>(p.second.get());
+			if (pRes != nullptr)
+			{
+				vecRes.push_back(pRes);
+			}
+		}
+	}
 
 }

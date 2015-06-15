@@ -24,6 +24,7 @@ namespace ZG
 
 		}
 		virtual ~AnimationCurveBase(){};
+		AnimationType getType(){ return m_eType; }
 	private:
 		AnimationType m_eType;
 	};

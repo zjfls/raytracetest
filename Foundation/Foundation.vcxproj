@@ -97,10 +97,12 @@
     <ClInclude Include="FileOperation.h" />
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="Foundation_Dll_Def.h" />
+    <ClInclude Include="ICommand.h" />
     <ClInclude Include="IListener.h" />
     <ClInclude Include="IListenerSubject.h" />
     <ClInclude Include="IndexData.h" />
     <ClInclude Include="GameObjectBase.h" />
+    <ClInclude Include="IReceiver.h" />
     <ClInclude Include="RenderBaseClass.h" />
     <ClInclude Include="RenderEnum.h" />
     <ClInclude Include="resource.h" />
@@ -119,10 +121,12 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="FileOperation.cpp" />
     <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="IListener.cpp" />
     <ClCompile Include="IListenerSubject.cpp" />
     <ClCompile Include="IndexData.cpp" />
     <ClCompile Include="GameObjectBase.cpp" />
+    <ClCompile Include="IReceiver.cpp" />
     <ClCompile Include="RenderBaseClass.cpp" />
     <ClCompile Include="SmartPointer.cpp" />
     <ClCompile Include="StrUtil.cpp" />
