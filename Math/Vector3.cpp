@@ -9,6 +9,9 @@ const Vector3 Vector3::YAxis = Vector3(0.0f, 1.0f, 0.0f);
 const Vector3 Vector3::ZAxis = Vector3(0.0f, 0.0f, 1.0f);
 
 Vector3::Vector3()
+	:m_fx(0.0f)
+	, m_fy(0.0f)
+	, m_fz(0.0f)
 {
 }
 

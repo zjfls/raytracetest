@@ -28,11 +28,11 @@ IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 	{
 		return nullptr;
 	}
-	//std::cout << "load:" << path.c_str() << std::endl;
 	if (m_AssetMap.find(path) != std::end(m_AssetMap))
 	{
 		return m_AssetMap[path];
 	}
+	std::cout << "load:" << path.c_str() << std::endl;
 	string strSuff = getFileSuffix(path);
 	std::transform(strSuff.begin(), strSuff.end(), strSuff.begin(), tolower);
 	if (m_LoaderMap.find(strSuff) == std::end(m_LoaderMap))
