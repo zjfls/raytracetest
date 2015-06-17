@@ -1,0 +1,42 @@
+float4x4 MATRIX_WORLD;	// World * View * Projection transformatio
+float4x4 MATRIX_VP;			//Projection
+float3 VIEW_POS;			//Camera Position
+float4x4 MATRIX_INVERSETRANSPOSEWV;
+//-----------------------------------------------------------------------------
+// Vertex shader output structure
+//-----------------------------------------------------------------------------
+struct VS_OUTPUT
+{
+    float4 	Position   		: POSITION;   // vertex position
+    float3	Normal			: TEXCOORD0; 
+    float2	TC		  		: TEXCOORD1;
+	float3	worldPosition	: TEXCOORD2;
+	float3	Tangent			: TEXCOORD3;
+	//float3	Binormal		: TEXCOORD4;
+	//float3	WorldEyeVec		: TEXCOORD4;
+};
+struct VS_INPUT
+{
+	float3	Position	:POSITION;
+	float3	Normal		:NORMAL;
+	float2	TC			:TEXCOORD0;
+	float3	Tangent		:TANGENT;
+	float4 weights		: BLENDWEIGHT0;
+	int4 boneIndices	: BLENDINDICES0;
+};
+
+
+VS_OUTPUT vMain( VS_INPUT input )
+{
+	VS_OUTPUT Output;
+	Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
+	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);
+    Output.Normal			=   mul(float4(input.Normal,0.0f),MATRIX_INVERSETRANSPOSEWV).xyz;
+    Output.Tangent			=	mul(float4(input.Tangent,0.0f),MATRIX_INVERSETRANSPOSEWV);
+    //Output.Binormal			=	cross(Output.Normal,Output.Tangent);
+    Output.TC				=	input.TC;
+	//Output.WorldEyeVec		=	normalize(VIEW_POS - Output.Position);
+    return Output;
+}
+
+

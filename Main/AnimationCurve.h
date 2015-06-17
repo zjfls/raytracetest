@@ -15,7 +15,7 @@ namespace ZG
 	{
 
 	};
-	class AnimationCurveBase :public GameObjectBase
+	class MAIN_API AnimationCurveBase :public GameObjectBase
 	{
 	public:
 		AnimationCurveBase(AnimationType eType)
@@ -29,7 +29,7 @@ namespace ZG
 		AnimationType m_eType;
 	};
 	template<class T>
-	class AnimationCurve :public AnimationCurveBase
+	class MAIN_API AnimationCurve :public AnimationCurveBase
 	{
 	public:
 		AnimationCurve(AnimationType eType);
@@ -42,7 +42,7 @@ namespace ZG
 		//
 		T	Evaluate(float fTime);
 		unsigned int GetSize() const;
-
+		KeyFrame<T>   GetKeyFrame(int nIndex){ return m_KeyFrames[nIndex]; };
 
 
 
@@ -54,6 +54,12 @@ namespace ZG
 		float m_fLength;
 		std::vector<KeyFrame<T>> m_KeyFrames;
 	};
+
+	template<class T>
+	unsigned int ZG::AnimationCurve<T>::GetSize() const
+	{
+		return m_KeyFrames.size();
+	}
 
 	template<class T>
 	bool ZG::AnimationCurve<T>::SortFunc(const KeyFrame<T>& d1, const KeyFrame<T>& d2)

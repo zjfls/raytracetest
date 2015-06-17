@@ -37,12 +37,23 @@ namespace ZG
 		void			RemoveResource(string refPath);
 		template<class T>
 		void			GetAllResource(std::vector<T*>& vecRes);
+		//
+		template<class T>
+		unsigned int			GetResourceCount();
 	protected:
 		std::unordered_map<string, SmartPointer<IResource>> m_ResourceMap;
 	public:
 		string	m_strPath;
 
 	};
+
+	template<class T>
+	unsigned int ZG::IAsset::GetResourceCount()
+	{
+		std::vector<T*>& vecRes;
+		GetAllResource<T>(vecRes);
+		return vecRes.size();
+	}
 
 	template<class T>
 	void ZG::IAsset::GetAllResource(std::vector<T*>& vecRes)

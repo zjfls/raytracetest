@@ -71,6 +71,9 @@ bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 		std::cout << "get d3d9 object failed!" << std::endl;
 		return false;
 	}
+	D3DCAPS9 d3dcaps;
+	m_pD3D->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &d3dcaps);
+	std::cout << "Device Caps VertexShaderConstant:" << d3dcaps.MaxVertexShaderConst << std::endl;
 	//create device
 
 

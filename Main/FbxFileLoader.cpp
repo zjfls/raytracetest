@@ -29,12 +29,13 @@
 #include "AnimationResource.h"
 #include "AnimationAsset.h"
 #include "AnimationAssetLoader.h"
+#include "StrUtil.h"
 //
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	m_fileDir = getFileDirectory(path);
-	string name = getFileName(path);
-	name = removeSuffix(name);
+	m_strFbxAssetName = getFileName(path);
+	m_strFbxAssetName = removeSuffix(m_strFbxAssetName);
 	FbxAsset* pAsset = new FbxAsset;
 	m_pAsset = pAsset;
 	pAsset->m_strPath = path;
@@ -55,237 +56,96 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	bImportStatus = pImporter->Import(pAsset->m_pFbxScene);
 	pImporter->Destroy();
 
-
-
-	//FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
-	//if (kConverter.SplitMeshesPerMaterial(pAsset->m_pFbxScene, false))
-	//{
-	//	std::cout << "Error:can not split per material!" << std::endl;
-	//}
-	////FbxCriteria kfbxCriteria;
-	////kfbxCriteria.ObjectType()
-	//std::vector<FbxMesh*> meshVec;
-	//for (int i = 0; i < pAsset->m_pFbxScene->GetSrcObjectCount(FbxCriteria::ObjectType(FbxMesh::ClassId)); ++i)
-	//{
-	//	FbxMesh* pMesh = (FbxMesh*)pAsset->m_pFbxScene->GetSrcObject(FbxCriteria::ObjectType(FbxMesh::ClassId), i);
-	//	meshVec.push_back(pMesh);
-	//	//FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
-	//	//if (kConverter.SplitMeshPerMaterial(pMesh, true))
-	//	//{
-	//	//	std::cout << "Error:can not split per material!" << std::endl;
-	//	//}
-	//	//if (!pMesh->GetDeformerCount())
-	//	//	std::cout << "Error: mesh " << i << " with no deformers." << std::endl;
-	//	//else
-	//	//	std::cout << "Mesh " << i << " with " << pMesh->GetDeformerCount() << " deformers." << std::endl;
-	//}
-	//for each (FbxMesh* pMesh in meshVec)
-	//{
-	//	FbxGeometryConverter kConverter(FbxAppManager::GetInstance()->m_pFbxSdkManager);
-	//	if (kConverter.SplitMeshPerMaterial(pMesh, false))
-	//	{
-	//		std::cout << pMesh->GetName()<< "Error:can not split per material!" << std::endl;
-	//	}
-	//}
+	//
 	FbxNode* pRootNode = pAsset->m_pFbxScene->GetRootNode();
 	if (pRootNode == nullptr)
 	{
 		return pAsset;
 	}
-	SmartPointer<IWorldObj> pRoot = ProcessNode(pRootNode, path, nullptr, nullptr);
+	SmartPointer<IWorldObj> pRoot = ProcessNode(pRootNode, nullptr);
+	m_mapFbxToObj[pRootNode] = pRoot.get();
+	ProcessMesh(pRootNode);
 
-
-	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + name + ".prefab.xml");
+	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + m_strFbxAssetName + ".prefab.xml");
 	pPrefab->m_pRoot = pRoot;
-	pAsset->AddResource(m_fileDir + name + ".prefab.xml", pPrefab.get());
+	pAsset->AddResource(m_fileDir + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
 	pRoot->m_strName = getFileNameWithoutSuffix(path);
 
+	ProcessAnimation(false);
 
-	FbxAnimStack* pAniStack = pAsset->m_pFbxScene->GetCurrentAnimationStack();
-	if (pAniStack != nullptr)
-	{
-		//return pAsset;
-		//std::cout << "find Stack:"<<pAniStack->GetName() << std::endl;
-		
-	}
-	else
-	{
-		return pAsset;
-	}
-	int nAnimLayerCount = pAniStack->GetMemberCount<FbxAnimLayer>();
-	for (int i = 0; i < nAnimLayerCount; ++i)
-	{
-		FbxAnimLayer* pLayer = pAniStack->GetMember<FbxAnimLayer>(i);
-		//std::cout << "find layer:" << i << " " << pLayer->GetName() << std::endl;
-
-		for each (std::pair<SkeletonResource*, std::vector<FbxNode*>> p in m_SkeletonToFbxNode)
-		{
-			//
-
-			std::string aniName = pAniStack->GetName();
-			if (m_SkeletonToFbxNode.size() > 0)
-			{
-				char temp[10];
-				_itoa_s(i, temp, 10, 10);
-				aniName = aniName + temp;
-			}
-			std::string refPath = getFileDirectory(path) + aniName + ".animation.xml";
-			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(refPath).get();
-			for each (FbxNode* pNode in p.second)
-			{
-				
-				FbxAnimCurve* pAniCurveTX = pNode->LclTranslation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_X);
-				FbxAnimCurve* pAniCurveTY = pNode->LclTranslation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-				FbxAnimCurve* pAniCurveTZ = pNode->LclTranslation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-				FbxAnimCurve* pAniCurveRX = pNode->LclRotation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_X);
-				FbxAnimCurve* pAniCurveRY = pNode->LclRotation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-				FbxAnimCurve* pAniCurveRZ = pNode->LclRotation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-				FbxAnimCurve* pAniCurveSX = pNode->LclScaling.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_X);
-				FbxAnimCurve* pAniCurveSY = pNode->LclScaling.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-				FbxAnimCurve* pAniCurveSZ = pNode->LclScaling.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-				if (pAniCurveTX == nullptr && pAniCurveRX == nullptr && pAniCurveSX == nullptr)
-				{
-					continue;
-				}
-
-				AnimationCurve<stTransformData>* pTransCurve = new AnimationCurve<stTransformData>(EANITRANSFORM);
-				for (int i = 0; i < pAniCurveTX->KeyGetCount(); ++i)
-				{
-					KeyFrame<stTransformData> kf;
-					FbxAnimCurveKey key = pAniCurveTX->KeyGet(i);
-					float fTime = key.GetTime().GetSecondDouble();
-					float fValueTX = key.GetValue();
-					kf.m_fTime = fTime;
-					kf.m_KeyFrameData.m_vecTranslate.m_fx = fValueTX;
-					//
-					kf.m_KeyFrameData.m_vecTranslate.m_fy = pAniCurveTY->KeyGet(i).GetValue();
-					kf.m_KeyFrameData.m_vecTranslate.m_fz = pAniCurveTZ->KeyGet(i).GetValue();
-					int nKeyCount = pAniCurveRX->KeyGetCount();
-					if (pAniCurveRX != nullptr && nKeyCount > i)
-					{
-						kf.m_KeyFrameData.m_vecRotation.m_fx = pAniCurveRX->KeyGet(i).GetValue();
-						kf.m_KeyFrameData.m_vecRotation.m_fy = pAniCurveRY->KeyGet(i).GetValue();
-						kf.m_KeyFrameData.m_vecRotation.m_fz = pAniCurveRZ->KeyGet(i).GetValue();
-					}
-
-					if (pAniCurveSX != nullptr)
-					{
-						kf.m_KeyFrameData.m_vecScale.m_fx = pAniCurveSX->KeyGet(i).GetValue();
-						kf.m_KeyFrameData.m_vecScale.m_fy = pAniCurveSY->KeyGet(i).GetValue();
-						kf.m_KeyFrameData.m_vecScale.m_fz = pAniCurveSZ->KeyGet(i).GetValue();
-					}
-					pTransCurve->AddKeyFrame(fTime, kf.m_KeyFrameData);
-
-
-				}
-				pAniRes->m_mapCurves[pNode->GetName()] = pTransCurve;
-				std::cout << "add curve:" << pNode->GetName() << std::endl;
-			}
-			//
-			m_pAsset->AddResource(refPath, pAniRes);
-
-			AnimationAsset AniAsset;
-			AniAsset.AddResource(refPath, pAniRes);
-			AnimationAssetLoader loader;
-			loader.Save(&AniAsset);
-
-		}
-	}
 	//
 	return pAsset;
 }
-
-SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> pParent, SmartPointer<SkeletonObj> pSkeletonObj)
+void ZG::FbxFileLoader::ProcessMesh(FbxNode* pNode)
 {
-	refPath = refPath + "/" + pNode->GetName() + ".mesh";
 	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
-
-	//
-	SmartPointer<IWorldObj> pObj;// = SmartPointer<IWorldObj>(new IWorldObj);
-
-	//
-
-	
+	SmartPointer<IWorldObj> pObj;
 	if (pAttribute != nullptr)
 	{
 		switch (pAttribute->GetAttributeType())
 		{
 			case FbxNodeAttribute::EType::eMesh:
 			{
-				pObj = new IWorldObj;
-				SmartPointer<MeshResource> pRes = ProcessMesh(pNode, refPath, pObj, pSkeletonObj.get());
+				IWorldObj* pObj = m_mapFbxToObj[pNode];
+				SmartPointer<MeshResource> pRes = ProcessMeshData(pNode, pObj);
 			}
 			break;
+		}
+	}
+	int nChild = pNode->GetChildCount();
+	for (int i = 0; i < nChild; ++i)
+	{
+		FbxNode* pChildNode = pNode->GetChild(i);
+		ProcessMesh(pChildNode);
+	}
+}
+SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, SmartPointer<IWorldObj> pParent)
+{
+	FbxNodeAttribute* pAttribute = pNode->GetNodeAttribute();
+	SmartPointer<IWorldObj> pObj;
+	if (pAttribute != nullptr)
+	{
+		switch (pAttribute->GetAttributeType())
+		{
 			case FbxNodeAttribute::EType::eSkeleton:
 			{
 				
 				SkeletonObj* pSkel = new SkeletonObj;
 				pObj = pSkel;
-				FbxSkeleton* pskl = pNode->GetSkeleton();
-				//std::cout << "skeleton type:" << pskl->GetSkeletonType() << std::endl;
-				FbxNode* pSkeRootNode = GetSkeletonRoot(pNode);
-				FbxSkeleton* pSklRoot = pSkeRootNode->GetSkeleton();
-				if (pSkeRootNode == pNode)
+				SkeletonModule* pSklModule = pParent->addModule<SkeletonModule>().get();
+				//
+				std::string skeletonPath = m_pAsset->m_strPath;
+				skeletonPath = getFileDirectory(m_pAsset->m_strPath);
+				if (m_SkeletonToFbxNode.size() == 0)
 				{
-					pSkeletonObj = pSkel;
-					pSkeletonObj->m_bIsRoot = true;
-					pObj->m_strName = "SkeletonRoot";
+					skeletonPath = skeletonPath + m_strFbxAssetName + ".skeleton.xml";
 				}
-				if (pSkeletonObj->m_bIsRoot == true)
+				else
 				{
-					ProcessSkeleton(pSkeRootNode, m_fileDir + pNode->GetName() + ".skeleton.xml", pObj);
+					skeletonPath = skeletonPath + m_strFbxAssetName + numberToString(m_SkeletonToFbxNode.size(),10) + ".skeleton.xml";
 				}
+				SkeletonResource* pSkeRes = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(skeletonPath).get();
+				pSklModule->SetSkeletonRes(pSkeRes);
+				ProcessSkeleton(pNode, pSkeRes, pSkel);
+				//
+				m_pAsset->AddResource(skeletonPath, pSkeRes);
+				return pSkel;
 			}
 			default:
 			break;
 		}
 	}
 	//
-	if (pObj == nullptr)
-	{
-		pObj = new IWorldObj;
-	}
-	pObj->m_strName = pNode->GetName();
-	FbxTransform nodeTrans = pNode->GetTransform();
-	FbxDouble3 trans = pNode->LclTranslation.Get();
-	FbxDouble3 rot = pNode->LclRotation.Get();
-	FbxDouble3 scal = pNode->LclScaling.Get();
-
-	SmartPointer<Transform> pTransform = pObj->GetModule(0).SmartPointerCast<Transform>();
-	pTransform->SetTranslate((float)trans.mData[0], (float)trans.mData[2], (float)trans.mData[1]);
-	pTransform->SetScale((float)scal.mData[0], (float)scal.mData[2], (float)scal.mData[1]);
-	pTransform->SetOrientation(AngleToRad((float)rot.mData[0]), AngleToRad((float)rot.mData[2]), AngleToRad((float)rot.mData[1]));
+	pObj = new IWorldObj;
+	SetWorldObjPropByFbxNode(pObj.get(), pNode);
 	//
 	int nChild = pNode->GetChildCount();
-
-	//
-	bool processSkeletonParent = false;
-	std::string SkeleonName = "";
 	for (int i = 0; i < nChild; ++i)
 	{
 		FbxNode* pChildNode = pNode->GetChild(i);
-		if (pChildNode->GetSkeleton() != nullptr)
-		{
-			SkeleonName = pChildNode->GetName();
-		}
-		SmartPointer<IWorldObj> pChild = ProcessNode(pChildNode, refPath, nullptr, pSkeletonObj);
-		SkeletonObj* pSkel = dynamic_cast<SkeletonObj*>(pChild.get());
-		if (pSkel != nullptr && pSkel->m_bIsRoot)
-		{
- 			processSkeletonParent = true;
-			//SkeleonName = pChildNode->GetName();
-		}
+		SmartPointer<IWorldObj> pChild = ProcessNode(pChildNode, pObj);
 		pObj->addChild(pChild);
-	}
-	if (processSkeletonParent == true)
-	{
-		SkeletonModule* pSkeleton = pObj->addModule<SkeletonModule>().get();
-		ProcessSkeletonRoot(pObj.get());
-		//
-		std::string refPath;// = m_fileDir + pNode->GetName() + ".skeleton.xml";
-		refPath = strSkeletonPath + SkeleonName + ".skeleton.xml";
-		pSkeleton->SetSkeletonRes(ResourceManager<SkeletonResource>::GetInstance()->GetResource(refPath).get());
-		//
+		m_mapFbxToObj[pChildNode] = pChild.get();
 	}
 	return pObj;
 }
@@ -299,7 +159,7 @@ struct stSkinInfo
 	int m_nIndex;
 	float m_fWeight;
 };
-SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> obj, SmartPointer<IWorldObj> pSkeletonObj)
+SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPointer<IWorldObj> obj)
 {
 	FbxMesh* pMesh = pNode->GetMesh();
 	for each (FbxMesh* pM in vecMeshList)
@@ -310,9 +170,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 		}
 	}
 	//
-	char temp[25];
-	_itoa_s((int)pMesh, temp, 10);
-	refPath = strMeshPath + pNode->GetName() + ".mesh";
+	std::string refPath = strMeshPath + pNode->GetName() + ".mesh";
 	//
 	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
 	{
@@ -552,7 +410,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 #pragma region AddSkinInfo
 	bool bHasSkinInfo = false;
 	int deformerCount = pMesh->GetDeformerCount();
-	if (deformerCount == 1 && false)
+	if (deformerCount >= 1)
 	{
 		bHasSkinInfo = true;
 		FbxDeformer* pDeformer = pMesh->GetDeformer(0);
@@ -561,7 +419,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 			FbxSkin* pSkin = (FbxSkin*)(pDeformer);
 			FbxCluster::ELinkMode linkMode = FbxCluster::eNormalize;
 			FbxCluster* pCluster;
-			FbxNode*	pLinkNode;
+			FbxNode*	pLinkNode = nullptr;
 			FbxMatrix	transformMatrix, transformLinkMatrix;
 			int			clusterCount = pSkin->GetClusterCount();
 
@@ -571,21 +429,8 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 			{
 				pCluster = pSkin->GetCluster(0);
 				pLinkNode = pCluster->GetLink();
-				pSkeletonRoot = GetSkeletonRoot(pLinkNode);
-				FbxSkeleton* pSR = pSkeletonRoot->GetSkeleton();
-
-
-				if (m_mapSkeleton.find(pSR) == std::end(m_mapSkeleton))
-				{
-					ProcessSkeleton(pSkeletonRoot, m_fileDir + pSkeletonRoot->GetName() + ".skeleton.xml");
-
-				}
-
-				pModuleOwener = m_mapSkeObj[pSR];
-				pSkeRes = m_mapSkeleton[pSR];
-
-
-
+				FbxSkeleton* pSkeleton = pLinkNode->GetSkeleton();
+				pSkeRes = m_mapSkeleton[pSkeleton];
 			}
 			for (int i = 0; i < clusterCount; ++i)
 			{
@@ -847,7 +692,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 		std::cout << "can not find material for " << pNode->GetName() << std::endl;
 	}
 	//
-	SmartPointer<RasterMaterial> pMatRes = ProcessMaterial(pMat);
+	SmartPointer<RasterMaterial> pMatRes = ProcessMaterial(pMat, bHasSkinInfo);
 	m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes.get());
 	pMeshModule->m_pSharedMaterial = pMatRes.get();
 	//
@@ -913,7 +758,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 		pSubMeshModule->SetMeshResource(pSubMesh);
 		bRemoveMainMesh = true;
 		//
-		SmartPointer<RasterMaterial> pMatRes = ProcessMaterial(pMat);
+		SmartPointer<RasterMaterial> pMatRes = ProcessMaterial(pMat, bHasSkinInfo);
 		m_pAsset->AddResource(pMatRes->GetRefPath(), pMatRes.get());
 		pSubMeshModule->m_pSharedMaterial = pMatRes.get();
 		//
@@ -1017,76 +862,78 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMesh(FbxNode* pNode, string ref
 	return pMeshResource;
 }
 
-SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, string refPath, SmartPointer<IWorldObj> pObj /*= nullptr*/)
+SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, SkeletonResource* pRes,SkeletonObj* pObj)
 {
+
 	FbxSkeleton* pSke = pNode->GetSkeleton();
-	if (m_mapSkeleton.find(pSke) != std::end(m_mapSkeleton))
-	{
-		return nullptr;
-	}
-	refPath = strSkeletonPath + pNode->GetName() + ".skeleton.xml";
-	SmartPointer<SkeletonResource> pSkeleton = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(refPath);
 	Bone* pRoot = new Bone();
-	pSkeleton->m_pRoot = pRoot;
+	pRes->m_pRoot = pRoot;
 	int BoneIndex = 0;
-	ProcessBone(pSkeleton, pRoot, pNode, BoneIndex);
-	m_pAsset->AddResource(refPath, pSkeleton.get());
-	m_mapSkeleton[pSke] = pSkeleton;
+	ProcessBone(pRes, pRoot, pNode, BoneIndex,pObj);
+	m_mapSkeleton[pSke] = pRes;
 	m_mapSkeObj[pSke] = pObj;
-	pSkeleton->m_nBoneNum = pSkeleton->m_mapBone.size();
+	pRes->m_nBoneNum = pRes->m_mapBone.size();
 	return nullptr;
 
 }
 
-void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pObj, int& index)
+void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pFbxObj, int& index,SkeletonObj* pSkeObj)
 {
+	m_mapFbxToObj[pFbxObj] = pSkeObj;
 	if (pBone == nullptr)
 	{
 		return;
 	}
-	m_SkeletonToFbxNode[pRes.get()].push_back(pObj);
-	FbxSkeleton* pSkeleton = pObj->GetSkeleton();
+	
+	m_SkeletonToFbxNode[pRes.get()].push_back(pFbxObj);
+	FbxSkeleton* pSkeleton = pFbxObj->GetSkeleton();
+	m_mapSkeleton[pSkeleton] = pRes;
 	if (pSkeleton == nullptr)
 	{
 		return;
 	}
-	FbxPropertyT<FbxDouble3> t = pObj->LclTranslation;
-	FbxPropertyT<FbxDouble3> r = pObj->LclRotation;
-	FbxPropertyT<FbxDouble3> s = pObj->LclScaling;
+	FbxPropertyT<FbxDouble3> t = pFbxObj->LclTranslation;
+	FbxPropertyT<FbxDouble3> r = pFbxObj->LclRotation;
+	FbxPropertyT<FbxDouble3> s = pFbxObj->LclScaling;
 	pBone->t.m_fx = (float)t.Get().mData[0];
-	pBone->t.m_fy = (float)t.Get().mData[1];
-	pBone->t.m_fz = (float)t.Get().mData[2];
+	pBone->t.m_fy = (float)t.Get().mData[2];
+	pBone->t.m_fz = (float)t.Get().mData[1];
 
 	pBone->r.m_fx = (float)r.Get().mData[0];
-	pBone->r.m_fy = (float)r.Get().mData[1];
-	pBone->r.m_fz = (float)r.Get().mData[2];
+	pBone->r.m_fy = (float)r.Get().mData[2];
+	pBone->r.m_fz = (float)r.Get().mData[1];
 
 
 	pBone->s.m_fx = (float)s.Get().mData[0];
-	pBone->s.m_fy = (float)s.Get().mData[1];
-	pBone->s.m_fz = (float)s.Get().mData[2];
+	pBone->s.m_fy = (float)s.Get().mData[2];
+	pBone->s.m_fz = (float)s.Get().mData[1];
+	SetWorldObjPropByFbxNode(pSkeObj, pFbxObj);
 
 	char temp[10];
 	_itoa_s(index, temp, 10);
-	pBone->m_strName = pObj->GetName();
+	pBone->m_strName = pFbxObj->GetName();
 	//pObj->SetName(pBone->m_strName.c_str());
 	pBone->nIndex = index;
 	//std::cout << "boneindex:" << index<<std::endl;
 	pRes->m_mapBone[index] = pBone;
 	//index++;
-	int nChildCount = pObj->GetChildCount();
+	int nChildCount = pFbxObj->GetChildCount();
 	for (int i = 0; i < nChildCount; ++i)
 	{
-		FbxNode* pChild = pObj->GetChild(i);
+		FbxNode* pChild = pFbxObj->GetChild(i);
 		FbxSkeleton* pChildSke = pChild->GetSkeleton();
 		if (nullptr == pChildSke)
-		{
+		{	
+			SmartPointer<IWorldObj> pChildObj = ProcessNode(pChild, pSkeObj);
+			pSkeObj->addChild(pChildObj);
 			continue;
 		}
 		index++;
 		Bone* pChildBone = new Bone;
 		pBone->vecChild.push_back(pChildBone);
-		ProcessBone(pRes, pChildBone, pChild, index);
+		SkeletonObj *pChildObj = new SkeletonObj;
+		pSkeObj->addChild(pChildObj);
+		ProcessBone(pRes, pChildBone, pChild, index, pChildObj);
 	}
 
 }
@@ -1115,7 +962,7 @@ FbxNode* FbxFileLoader::GetSkeletonRoot(FbxNode* pNode)
 	return nullptr;
 }
 
-SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pMat)
+SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* pMat, bool bHasSkinInfo)
 {
 	if (m_mapMaterial.find(pMat) != std::end(m_mapMaterial))
 	{
@@ -1205,10 +1052,19 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 		//pMatRes->AddArg("MainColor", pArg);
 		pMatRes->AddPass("First", pPass);
 		AssetManager::GetInstance()->LoadAsset("./data/shader/VertexStandard.vsm");
+		AssetManager::GetInstance()->LoadAsset("./data/shader/VertexSkin.vsm");
 		AssetManager::GetInstance()->LoadAsset("./data/shader/FragSpec.fsm");
 		pPass->m_eVertexShaderType = EVERTEXSHADERORIGIN;
 		pPass->m_eFragShaderType = EFRAGSHADERORIGIN;
-		pPass->m_pVertexShader = ResourceManager<VertexShader>::GetInstance()->GetResource("./data/shader/VertexStandard.vsm");
+		if (bHasSkinInfo == true)
+		{
+			pPass->m_pVertexShader = ResourceManager<VertexShader>::GetInstance()->GetResource("./data/shader/VertexSkin.vsm");
+		}
+		else
+		{
+			pPass->m_pVertexShader = ResourceManager<VertexShader>::GetInstance()->GetResource("./data/shader/VertexStandard.vsm");
+		}	
+
 		pPass->m_pFragShader = ResourceManager<FragShader>::GetInstance()->GetResource("./data/shader/FragSpec.fsm");
 		//
 		//XMLElement* pPass = doc.NewElement("RenderPass");
@@ -1260,4 +1116,166 @@ void ZG::FbxFileLoader::ProcessSkeletonRoot(IWorldObj* pObj)
 	{
 		pObj->removeChild(pWorldObj);
 	}
+}
+
+void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
+{
+	FbxAsset* pAsset = dynamic_cast<FbxAsset*>(m_pAsset);
+	string path = pAsset->m_strPath;
+	//
+	FbxAnimStack* pAniStack = pAsset->m_pFbxScene->GetCurrentAnimationStack();
+	if (pAniStack != nullptr)
+	{
+		//return pAsset;
+		//std::cout << "find Stack:"<<pAniStack->GetName() << std::endl;
+
+	}
+	else
+	{
+		return;
+	}
+	int nAnimLayerCount = pAniStack->GetMemberCount<FbxAnimLayer>();
+	for (int i = 0; i < nAnimLayerCount; ++i)
+	{
+		FbxAnimLayer* pLayer = pAniStack->GetMember<FbxAnimLayer>(i);
+		//std::cout << "find layer:" << i << " " << pLayer->GetName() << std::endl;
+
+		for each (std::pair<SkeletonResource*, std::vector<FbxNode*>> p in m_SkeletonToFbxNode)
+		{
+			//
+
+			std::string aniName = pAniStack->GetName();
+			if (m_SkeletonToFbxNode.size() > 1)
+			{
+				char temp[10];
+				_itoa_s(i, temp, 10, 10);
+				aniName = aniName + temp;
+			}
+			std::string refPath = getFileDirectory(path) + aniName + ".animation.xml";
+			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(refPath).get();
+			for each (FbxNode* pNode in p.second)
+			{
+				int nTransCount = 0;
+				int nScaleCount = 0;
+				int nRotCount = 0;
+				int nMaxKeyCount = 0;
+				FbxAnimCurve* pAniCurveTX = pNode->LclTranslation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_X);
+				if (pAniCurveTX != nullptr)
+				{
+					nMaxKeyCount = pAniCurveTX->KeyGetCount();
+					nTransCount = nMaxKeyCount;
+				}
+				FbxAnimCurve* pAniCurveTY = pNode->LclTranslation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+				FbxAnimCurve* pAniCurveTZ = pNode->LclTranslation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+				//
+				FbxAnimCurve* pAniCurveRX = pNode->LclRotation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_X);
+				if (pAniCurveRX != nullptr)
+				{
+					nRotCount = pAniCurveRX->KeyGetCount();
+					if (nRotCount > nMaxKeyCount)
+					{
+						nMaxKeyCount = nRotCount;
+					}
+				}
+				FbxAnimCurve* pAniCurveRY = pNode->LclRotation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+				FbxAnimCurve* pAniCurveRZ = pNode->LclRotation.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+				FbxAnimCurve* pAniCurveSX = pNode->LclScaling.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_X);
+				if (pAniCurveSX != nullptr)
+				{
+					nScaleCount = pAniCurveSX->KeyGetCount();
+					if (nScaleCount > nMaxKeyCount)
+					{
+						nMaxKeyCount = nScaleCount;
+					}
+				}
+				FbxAnimCurve* pAniCurveSY = pNode->LclScaling.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+				FbxAnimCurve* pAniCurveSZ = pNode->LclScaling.GetCurve(pLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+				if (pAniCurveTX == nullptr && pAniCurveRX == nullptr && pAniCurveSX == nullptr)
+				{
+					continue;
+				}
+
+				AnimationCurve<stTransformData>* pTransCurve = new AnimationCurve<stTransformData>(EANITRANSFORM);
+				//
+				Vector3 vecLastTrans(pNode->LclTranslation.Get().mData[0], pNode->LclTranslation.Get().mData[2], pNode->LclTranslation.Get().mData[2]);
+				Vector3 vecLastRot(pNode->LclRotation.Get().mData[0], pNode->LclRotation.Get().mData[2], pNode->LclRotation.Get().mData[2]);
+				Vector3 vecLastScale(pNode->LclScaling.Get().mData[0], pNode->LclScaling.Get().mData[2], pNode->LclScaling.Get().mData[2]);
+				for (int i = 0; i < nMaxKeyCount; ++i)
+				{
+					KeyFrame<stTransformData> kf;
+					float fTime = 0.0f;
+					if (pAniCurveTX != nullptr && i< nTransCount)
+					{
+						FbxAnimCurveKey key;
+						key = pAniCurveTX->KeyGet(i);
+						float fValueTX = key.GetValue();
+						fTime = key.GetTime().GetSecondDouble();
+						kf.m_fTime = fTime;
+						kf.m_KeyFrameData.m_vecTranslate.m_fx = fValueTX;
+						kf.m_KeyFrameData.m_vecTranslate.m_fz = pAniCurveTY->KeyGet(i).GetValue();
+						kf.m_KeyFrameData.m_vecTranslate.m_fy = pAniCurveTZ->KeyGet(i).GetValue();
+						vecLastTrans = kf.m_KeyFrameData.m_vecTranslate;
+					}
+					else
+					{
+						kf.m_KeyFrameData.m_vecTranslate = vecLastTrans;
+					}
+					
+					if (pAniCurveRX != nullptr && i < nRotCount)
+					{
+						kf.m_KeyFrameData.m_vecRotation.m_fx = pAniCurveRX->KeyGet(i).GetValue();
+						kf.m_KeyFrameData.m_vecRotation.m_fz = pAniCurveRY->KeyGet(i).GetValue();
+						kf.m_KeyFrameData.m_vecRotation.m_fy = pAniCurveRZ->KeyGet(i).GetValue();
+						vecLastRot = kf.m_KeyFrameData.m_vecRotation;
+						fTime = pAniCurveRX->KeyGet(i).GetTime().GetSecondDouble();
+					}
+					else
+					{
+						kf.m_KeyFrameData.m_vecRotation = vecLastRot;
+					}
+
+					if (pAniCurveSX != nullptr && i < nScaleCount)
+					{
+						kf.m_KeyFrameData.m_vecScale.m_fx = pAniCurveSX->KeyGet(i).GetValue();
+						kf.m_KeyFrameData.m_vecScale.m_fz = pAniCurveSY->KeyGet(i).GetValue();
+						kf.m_KeyFrameData.m_vecScale.m_fy = pAniCurveSZ->KeyGet(i).GetValue();
+						vecLastScale = kf.m_KeyFrameData.m_vecScale;
+						fTime = pAniCurveSX->KeyGet(i).GetTime().GetSecondDouble();
+					}
+					else
+					{
+						kf.m_KeyFrameData.m_vecScale = vecLastScale;
+					}
+					pTransCurve->AddKeyFrame(fTime, kf.m_KeyFrameData);
+
+
+				}
+				pAniRes->m_mapCurves[pNode->GetName()] = pTransCurve;
+				std::cout << "add curve:" << pNode->GetName() << std::endl;
+			}
+			//
+			m_pAsset->AddResource(refPath, pAniRes);
+
+			AnimationAsset AniAsset;
+			AniAsset.AddResource(refPath, pAniRes);
+			AnimationAssetLoader loader;
+			loader.Save(&AniAsset);
+
+		}
+	}
+}
+
+
+
+void ZG::FbxFileLoader::SetWorldObjPropByFbxNode(IWorldObj* pObj, FbxNode* pFbxObj)
+{
+	pObj->m_strName = pFbxObj->GetName();
+	FbxTransform nodeTrans = pFbxObj->GetTransform();
+	FbxDouble3 trans = pFbxObj->LclTranslation.Get();
+	FbxDouble3 rot = pFbxObj->LclRotation.Get();
+	FbxDouble3 scal = pFbxObj->LclScaling.Get();
+	SmartPointer<Transform> pTransform = pObj->GetModule(0).SmartPointerCast<Transform>();
+	pTransform->SetTranslate((float)trans.mData[0], (float)trans.mData[2], (float)trans.mData[1]);
+	pTransform->SetScale((float)scal.mData[0], (float)scal.mData[2], (float)scal.mData[1]);
+	pTransform->SetOrientation(AngleToRad((float)rot.mData[0]), AngleToRad((float)rot.mData[2]), AngleToRad((float)rot.mData[1]));
 }

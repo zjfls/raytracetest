@@ -3,6 +3,7 @@
 namespace tinyxml2
 {
 	class XMLElement;
+	class XMLDocument;
 }
 namespace ZG
 {
@@ -18,7 +19,7 @@ namespace ZG
 		IAsset* Load(string path, void* pArg /*= nullptr*/) override;
 		void	Save(IAsset* pAsset) override;
 	private:
-		void	SaveTransformCurve(AnimationCurve<stTransformData>* pCurve,tinyxml2::XMLElement* pElem);
+		void	SaveTransformCurve(AnimationCurve<stTransformData>* pCurve, tinyxml2::XMLElement* pElem, tinyxml2::XMLDocument& doc);
 	};
 
 }

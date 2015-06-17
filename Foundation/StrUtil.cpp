@@ -12,3 +12,10 @@ void ZG::replaceCharInString(string& str, char cSrc, char cDst)
 	}
 }
 
+FOUNDATION_API std::string ZG::numberToString(int nNumber, int rad)
+{
+	char temp[10];
+	_itoa_s(nNumber, temp, 10, rad);
+	return temp;
+}
+
