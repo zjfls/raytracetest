@@ -3,17 +3,21 @@
 #include "AnimationBind.h"
 namespace ZG
 {
-	class AnimationTrack
+	class AnimationResource;
+	class AnimationTrack:public GameObjectBase
 	{
 	public:
-		AnimationTrack();
+		//AnimationTrack();
+		AnimationTrack(AnimationResource* pRes);
 		virtual ~AnimationTrack();
-
-
-
-		void AddTrack(std::string strName, SmartPointer<AnimationBindBase>);
+		void SetBind(bool bBind);
+		
 	private:
 		std::unordered_map<std::string, SmartPointer<AnimationBindBase>> m_mapAnims;
+		bool m_bIsBind;
+	public:
+		SmartPointer<AnimationResource> m_pResource;
+		string m_strName;
 	};
 }
 

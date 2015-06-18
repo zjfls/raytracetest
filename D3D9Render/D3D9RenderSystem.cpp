@@ -86,7 +86,7 @@ bool D3D9RenderSystem::InitRenderSystem( stRenderViewInfo& viewInfo)
 	d3dpp.SwapEffect = getSwapEffect(viewInfo.m_eSwapEffect);
 	d3dpp.BackBufferFormat = getBufferFormat(viewInfo.m_eTargetFormt);
 	d3dpp.EnableAutoDepthStencil = viewInfo.m_bDepth;
-	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
+	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 	d3dpp.hDeviceWindow = (HWND)viewInfo.m_windowID;
 	if (viewInfo.m_bDepth == true)
 	{
@@ -272,7 +272,8 @@ HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader( VertexShaderDes
 		delete pShader;
 		return nullptr;
 	}
-	if (m_pD3DDevice->CreateVertexShader((DWORD*)pdxCode->GetBufferPointer(), &pShader->m_pVertexShader) != D3D_OK)
+	HRESULT hr = S_OK;
+	if ((hr = m_pD3DDevice->CreateVertexShader((DWORD*)pdxCode->GetBufferPointer(), &pShader->m_pVertexShader)) != D3D_OK)
 	{
 		std::cout << "create vertex shader:" << vertexShaderDesc.m_pVertexShader->GetRefPath().c_str() << " failed" << std::endl;
 		delete pShader;

@@ -8,18 +8,36 @@ namespace ZG
 	public:
 		ModuleBase();
 		virtual ~ModuleBase();
+		void		Added();
+		void		Removed();
+		void		Update();
+		void		SetActive(bool bActive);
+		bool		IsActive();
+		virtual SmartPointer<ModuleBase> Clone() = 0;
+	protected:
 		virtual void OnAdded(){};
 		virtual void OnRemoved(){};
-		virtual void Update();
-		virtual void OnLateUpdate();
-		virtual SmartPointer<ModuleBase> Clone() = 0;
+		virtual void OnInitialize(){};
+		virtual void OnUpdate(){};
+		virtual void OnLateUpdate(){};
+		virtual void OnStart(){};
+		virtual void OnActive(){};
+		virtual void OnDeactive(){};
+
+		
 
 
 
+		bool	m_bActive;
+	private:
+		bool	m_bInitialized;
+		bool	m_bStarted;
+		
+	public:
 		IWorldObj* m_pOwnerObj;
 		string	m_strName;
-		bool	m_bActive;
 		bool	m_bTransformUpdated;
+		friend class IWorldObj;
 	};
 
 }

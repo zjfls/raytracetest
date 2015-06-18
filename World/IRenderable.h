@@ -20,7 +20,7 @@ namespace ZG
 
 		virtual SmartPointer<MaterialResource> GetDefaultMaterial();
 
-		virtual void Update();
+		virtual void OnUpdate();
 
 		SmartPointer<MaterialResource> m_pSharedMaterial;
 		virtual SmartPointer<ModuleBase> Clone(){ return nullptr; };

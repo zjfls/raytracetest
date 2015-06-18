@@ -86,7 +86,7 @@ void EditorApplication::Run()
 	{
 		if (pCamera->m_pTarget == nullptr || pCamera->m_pTarget == RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView())
 		{
-			pCamera->m_bActive = false;
+			pCamera->SetActive(false);
 		}
 	}
 	

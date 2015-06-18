@@ -6,6 +6,6 @@ public:
 	Cube3D();
 	virtual ~Cube3D();
 
-	virtual void Update();
+	virtual void OnUpdate();
 };
 

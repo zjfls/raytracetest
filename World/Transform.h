@@ -19,7 +19,7 @@ namespace ZG
 
 		~Transform();
 
-		virtual void Update();
+		virtual void OnUpdate();
 		Vector3	GetRight();
 		Vector3 GetForward();
 		Vector3	GetUp();
@@ -48,7 +48,12 @@ namespace ZG
 		virtual SmartPointer<ModuleBase> Clone();
 
 		////////////////////////////////////////////////
-
+	private:
+		void SetDirty(bool bDirt)
+		{
+			m_bDirt = bDirt;
+		}
+		
 
 	private:
 		Matrix44	m_TransformMatrixLocal;

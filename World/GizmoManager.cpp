@@ -13,6 +13,7 @@
 #include <string>
 #include "materialpass.h"
 
+
 template class WORLD_API Singleton < GizmoManager >;
 template<> SmartPointer<GizmoManager> Singleton<GizmoManager>::_instance = nullptr;
 
@@ -269,6 +270,16 @@ void ZG::GizmoManager::createSceneGridGizmo()
 void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 {
 	m_pSelectObjWireFrame = pSelObj->Clone(false);
+	std::vector<SmartPointer<ModuleBase>> vecModule;
+	m_pSelectObjWireFrame->GetAllModule<ModuleBase>(vecModule);
+	for each (SmartPointer<ModuleBase> pModule in vecModule)
+	{
+		if (dynamic_cast<IRenderable*>(pModule.get()) == nullptr && dynamic_cast<Transform*>(pModule.get()) == nullptr)
+		{
+			pModule->m_pOwnerObj->removeModule(pModule);
+		}
+
+	}
 	std::vector<SmartPointer<IRenderable>> vecRend;
 	m_pSelectObjWireFrame->GetAllModule<IRenderable>(vecRend);
 	m_pSelectObjWireFrame->m_pTransform->SetWorldTransform(pSelObj->m_pTransform->GetWorldMatrix());

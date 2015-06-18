@@ -9,7 +9,7 @@ namespace ZG
 	public:
 		RasterCamera();
 		~RasterCamera();
-		virtual void Update();
+		virtual void OnUpdate();
 
 		virtual SmartPointer<ModuleBase> Clone();
 		//

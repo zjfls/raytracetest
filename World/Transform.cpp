@@ -36,7 +36,7 @@ Vector3 Transform::GetForward()
 	return Vector3(m[2][0], m[2][1], m[2][2]);
 }
 
-void Transform::Update()
+void Transform::OnUpdate()
 {
 	m_bThisFrameUpdated = false;
 	if (m_bDirt == false)
@@ -67,7 +67,7 @@ void Transform::Update()
 		m_TransformMatrixWorld = m_TransformMatrixLocal * m_pOwnerObj->m_pParent->m_pTransform->m_TransformMatrixWorld;
 	}
 	m_bThisFrameUpdated = true;
-	m_bDirt = false;
+	SetDirty(false);
 	NotifyNeedTransform();
 	//std::cout << m_pOwnerObj->m_strName << "  updated" << std::endl;
 }
@@ -76,7 +76,7 @@ void Transform::NotifyNeedTransform()
 {
 	for each (SmartPointer<IWorldObj> var in m_pOwnerObj->m_vecChildren)
 	{
-		var->m_pTransform->m_bDirt = true;
+		var->m_pTransform->SetDirty(true);;
 	}
 	for each (SmartPointer<ModuleBase> var in m_pOwnerObj->m_vecModules)
 	{
@@ -87,25 +87,25 @@ void Transform::NotifyNeedTransform()
 void Transform::SetTranslate(float fX, float fY, float fZ)
 {
 	m_vecTranslate = Vector3(fX, fY, fZ);
-	m_bDirt = true;
+	SetDirty(true);
 }
 
 void Transform::SetTranslate(const Vector3& vecIn)
 {
 	m_vecTranslate = vecIn; 
-	m_bDirt = true; 
+	SetDirty(true);
 }
 
 void Transform::SetOrientation(float fX, float fY, float fZ)
 {
 	m_Orientation.m_vecEulerAngle = Vector3(fX, fY, fZ);
-	m_bDirt = true;
+	SetDirty(true);
 }
 
 void Transform::SetScale(float fx, float fY, float fZ)
 {
 	m_vecScale = Vector3(fx, fY, fZ);
-	m_bDirt = true;
+	SetDirty(true);
 }
 
 Vector3 Transform::GetWorldTranslate() const
@@ -116,9 +116,9 @@ Vector3 Transform::GetWorldTranslate() const
 SmartPointer<ModuleBase> Transform::Clone()
 {
 	SmartPointer<Transform> pTransform = SmartPointer<Transform>(new Transform());
-	pTransform->m_bDirt = true;
+	pTransform->SetDirty(true);
 	//pTransform->m_TransformMatrixLocal = m_TransformMatrixLocal;
-	//pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;
+	pTransform->m_TransformMatrixWorld = m_TransformMatrixWorld;
 	//pTransform->m_vecTranslate = m_TransformMatrixWorld.GetTranslate();
 	//pTransform->m_vecScale = m_TransformMatrixWorld.GetScale();
 	//pTransform->m_Orientation.m_vecEulerAngle = m_TransformMatrixWorld.GetRotation();
@@ -150,7 +150,7 @@ void ZG::Transform::SetWorldTransform(const Matrix44& mat)
 
 void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 {
-	m_bDirt = true;
+	SetDirty(true);
 	if (m_pOwnerObj != nullptr && m_pOwnerObj->m_pParent == nullptr)
 	{
 		m_vecTranslate = vecTrans;

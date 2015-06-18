@@ -31,7 +31,7 @@ IRenderable::~IRenderable()
 	}
 }
 
-void IRenderable::Update()
+void IRenderable::OnUpdate()
 {
 	if (m_bTransformUpdated == true)
 	{

@@ -11,7 +11,7 @@ Cube3D::~Cube3D()
 {
 }
 
-void Cube3D::Update()
+void Cube3D::OnUpdate()
 {
 
 }

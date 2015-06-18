@@ -11,9 +11,9 @@ RasterCamera::~RasterCamera()
 {
 }
 
-void RasterCamera::Update()
+void RasterCamera::OnUpdate()
 {
-	CameraBase::Update();
+	CameraBase::OnUpdate();
 }
 
 SmartPointer<ModuleBase> RasterCamera::Clone()

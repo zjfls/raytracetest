@@ -85,3 +85,24 @@ bool D3D9VertexShader::SetFloatArray(string strName, const float* pData, unsigne
 	return true;
 }
 
+bool ZG::D3D9VertexShader::SetMatrixArray(string strName, const Matrix44* pMat, unsigned int nSize)
+{
+	D3DXMATRIX matArray[256];
+	for (int ii = 0; ii < nSize; ++ii)
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			for (int j = 0; j < 4; ++j)
+			{
+				matArray[ii].m[i][j] = pMat[ii].M[i][j];
+			}
+		}
+	}
+	HRESULT hr = m_pConstantTable->SetMatrixArray(m_pDevice, strName.c_str(), matArray, nSize);
+	if (hr != D3D_OK)
+	{
+		return false;
+	}
+	return true;
+}
+

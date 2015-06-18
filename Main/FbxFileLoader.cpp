@@ -30,6 +30,7 @@
 #include "AnimationAsset.h"
 #include "AnimationAssetLoader.h"
 #include "StrUtil.h"
+#include "AnimationTrack.h"
 //
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
@@ -65,7 +66,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	SmartPointer<IWorldObj> pRoot = ProcessNode(pRootNode, nullptr);
 	m_mapFbxToObj[pRootNode] = pRoot.get();
 	ProcessMesh(pRootNode);
-
+	PostProcessSkinMesh(pRoot.get());
 	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + m_strFbxAssetName + ".prefab.xml");
 	pPrefab->m_pRoot = pRoot;
 	pAsset->AddResource(m_fileDir + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
@@ -124,9 +125,9 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, SmartPointer<
 				{
 					skeletonPath = skeletonPath + m_strFbxAssetName + numberToString(m_SkeletonToFbxNode.size(),10) + ".skeleton.xml";
 				}
-				SkeletonResource* pSkeRes = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(skeletonPath).get();
-				pSklModule->SetSkeletonRes(pSkeRes);
+				SkeletonResource* pSkeRes = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(skeletonPath).get();	
 				ProcessSkeleton(pNode, pSkeRes, pSkel);
+				pSklModule->SetSkeletonRes(pSkeRes);
 				//
 				m_pAsset->AddResource(skeletonPath, pSkeRes);
 				return pSkel;
@@ -872,6 +873,7 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, SkeletonR
 	ProcessBone(pRes, pRoot, pNode, BoneIndex,pObj);
 	m_mapSkeleton[pSke] = pRes;
 	m_mapSkeObj[pSke] = pObj;
+	m_SkeResToSkeRoot[pRes] = pObj;
 	pRes->m_nBoneNum = pRes->m_mapBone.size();
 	return nullptr;
 
@@ -1088,6 +1090,7 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 
 void ZG::FbxFileLoader::ProcessSkeletonRoot(IWorldObj* pObj)
 {
+	SkeletonModule* pModule = pObj->GetModule<SkeletonModule>();
 	int n = pObj->GetChildCount();
 	std::vector<IWorldObj*> vecRemove;
 	for (int i = 0; i < n; ++i)
@@ -1106,6 +1109,7 @@ void ZG::FbxFileLoader::ProcessSkeletonRoot(IWorldObj* pObj)
 		{
 			Mesh* pMesh = pObj->addModule<Mesh>().get();
 			pMesh->CopyFrom(vecMesh[j].get());
+			pModule->AddMesh(pMesh);
 
 			vecMesh[j]->m_pOwnerObj->removeModule(vecMesh[j].get());
 		}
@@ -1153,6 +1157,15 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 			}
 			std::string refPath = getFileDirectory(path) + aniName + ".animation.xml";
 			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(refPath).get();
+			AnimationTrack* pTrack = new AnimationTrack(pAniRes);
+			//
+			SkeletonModule* pModule = m_SkeResToSkeRoot[p.first]->GetParent()->GetModule<SkeletonModule>();
+			pModule->AddAnimationTrack(pTrack);
+			if (pModule->GetDefaultAnimationTrack() == nullptr)
+			{
+				pModule->SetDefaultAnimationTrack(pTrack);
+			}
+			//
 			for each (FbxNode* pNode in p.second)
 			{
 				int nTransCount = 0;
@@ -1278,4 +1291,19 @@ void ZG::FbxFileLoader::SetWorldObjPropByFbxNode(IWorldObj* pObj, FbxNode* pFbxO
 	pTransform->SetTranslate((float)trans.mData[0], (float)trans.mData[2], (float)trans.mData[1]);
 	pTransform->SetScale((float)scal.mData[0], (float)scal.mData[2], (float)scal.mData[1]);
 	pTransform->SetOrientation(AngleToRad((float)rot.mData[0]), AngleToRad((float)rot.mData[2]), AngleToRad((float)rot.mData[1]));
+}
+
+void ZG::FbxFileLoader::PostProcessSkinMesh(IWorldObj* pNode)
+{
+	SkeletonModule* pModule = pNode->GetModule<SkeletonModule>();
+	if (pModule != nullptr)
+	{
+		ProcessSkeletonRoot(pNode);
+	}
+	int nChild = pNode->GetChildCount();
+	for (int i = 0; i < nChild; ++i)
+	{
+		IWorldObj* pChild = pNode->GetChild(i).get();
+		PostProcessSkinMesh(pChild);
+	}
 }

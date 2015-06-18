@@ -32,7 +32,7 @@ CameraBase::~CameraBase()
 
 void CameraBase::Render()
 {
-	if (m_bActive == false)
+	if (IsActive() == false)
 	{
 		//std::cout << "camera is not active" << std::endl;
 		return;
@@ -43,9 +43,9 @@ void CameraBase::Render()
 	(*getEvent<CameraRenderEvent>("CAMERARENDER"))(rEvent);
 }
 
-void CameraBase::Update()
+void CameraBase::OnUpdate()
 {
-	if (m_bActive == false)
+	if (IsActive() == false)
 	{
 		return;
 	}

@@ -9,6 +9,7 @@
 #include "RasterRender.h"
 #include "RenderSystem.h"
 #include "EnviromentSetting.h"
+#include "VertexData.h"
 HardwareShader::HardwareShader()
 {
 }
@@ -56,6 +57,11 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 		{
 			Matrix44* pMat = pArg->GetData<Matrix44>();
 			return SetMatrix(strName, *pMat);
+		}
+		case EMATARGMATRIX44ARRAY:
+		{
+			SmartPointer<SkinMatrixInfo> pInfo = *pArg->GetData<SmartPointer<SkinMatrixInfo> >();
+			return SetMatrixArray(strName, pInfo->matArray, pInfo->nSize);
 		}
 		case EMATARGTYPESAMPLER:
 		{

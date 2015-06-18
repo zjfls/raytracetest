@@ -3,8 +3,18 @@
 #include "VertexData.h"
 #include "Vector3.h"
 #include "GameObjectBase.h"
+#include "Matrix44.h"
 namespace ZG
 {
+	struct SkinMatrixInfo:public GameObjectBase
+	{
+		SkinMatrixInfo()
+		{
+			nSize = 0;
+		}
+		int nSize;
+		Matrix44 matArray[256];
+	};
 	class IndexData;
 	class AABBBox;
 	class FOUNDATION_API VertexData :public GameObjectBase
@@ -14,6 +24,7 @@ namespace ZG
 			, nNumVertex(0)
 			, m_PrimitiveType(EPRIMITIVE_TRIANGLE)
 			, m_pAABB(nullptr)
+			, m_SkinMatrix(nullptr)
 		{};
 		virtual ~VertexData();
 		virtual void getBoundingMaxAndMin(Vector3& min, Vector3& max) = 0;
@@ -36,7 +47,7 @@ namespace ZG
 		unsigned int nBoneNum;//每个顶点对应的骨头数量
 		EDRAWPRIMITIVETYPE m_PrimitiveType;
 
-
+		SmartPointer<SkinMatrixInfo> m_SkinMatrix;
 		AABBBox* m_pAABB;
 	};
 	class FOUNDATION_API MeshVertexData :public VertexData

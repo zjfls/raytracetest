@@ -23,7 +23,7 @@ namespace ZG
 	public:
 		CameraBase();
 		virtual ~CameraBase();
-		virtual void Update();
+		virtual void OnUpdate();
 		void OnLateUpdate() override;
 		virtual void Render();
 		//IRender* m_pRender;

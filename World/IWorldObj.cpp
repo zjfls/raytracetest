@@ -29,6 +29,8 @@ bool IWorldObj::addChild(SmartPointer<IWorldObj> pObj)
 	}
 	pObj->m_pParent = this;// SmartPointer<IWorldObj>(this);
 	m_vecChildren.push_back(pObj);
+
+	pObj->OnAdd();
 	return true;
 }
 
@@ -44,6 +46,8 @@ bool IWorldObj::removeChild(SmartPointer<IWorldObj> pObj)
 			return true;
 		}
 	}
+
+	pObj->OnRemove();
 	return false;
 }
 
@@ -170,4 +174,50 @@ bool ZG::IWorldObj::removeAllChildren()
 	}
 	m_vecChildren.clear();
 	return true;
+}
+
+void ZG::IWorldObj::OnAdd()
+{
+	for each (SmartPointer<ModuleBase> pModule in m_vecModules)
+	{
+		pModule->Added();
+	}
+	for each (SmartPointer<IWorldObj> pObj in m_vecChildren)
+	{
+		pObj->OnAdd();
+	}
+}
+
+void ZG::IWorldObj::OnRemove()
+{
+	for each (SmartPointer<ModuleBase> pModule in m_vecModules)
+	{
+		pModule->Removed();
+	}
+	for each (SmartPointer<IWorldObj> pObj in m_vecChildren)
+	{
+		pObj->OnRemove();
+	}
+}
+
+IWorldObj* ZG::IWorldObj::GetChildByName(std::string strName,bool bRecursive /*= false*/)
+{
+	unsigned int nChildCount = m_vecChildren.size();
+	for (int i = 0; i < nChildCount; ++i)
+	{
+		IWorldObj* pChild = m_vecChildren[i].get();
+		if (pChild->m_strName == strName)
+		{
+			return pChild;
+
+		}
+		if (bRecursive == true)
+		{
+			IWorldObj* pSubChild = pChild->GetChildByName(strName, true);
+			if (pSubChild != nullptr)
+			{
+				return pSubChild;
+			}
+		}
+	}
 }

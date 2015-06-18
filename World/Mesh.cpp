@@ -54,7 +54,6 @@ SmartPointer<ModuleBase> Mesh::Clone()
 		pCloneMesh->m_pSharedMesh = m_pSharedMesh;
 		pCloneMesh->m_pMeshInstance = m_pSharedMesh;
 	}
-	
 
 	return pCloneMesh.get();
 }

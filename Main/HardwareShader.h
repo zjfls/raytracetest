@@ -31,6 +31,7 @@ namespace ZG
 		virtual bool SetInt(string strName, const int nValue) = 0;
 		virtual bool SetVector(string strName, const Vector4& nValue) = 0;
 		virtual bool SetMatrix(string strName, const Matrix44& nValue) = 0;
+		virtual bool SetMatrixArray(string strName, const Matrix44* pMat, unsigned int nSize) = 0;
 
 
 

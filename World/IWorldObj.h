@@ -17,7 +17,12 @@ namespace ZG
 		unsigned int	GetChildCount() const;
 		IWorldObj*		GetParent(){ return m_pParent; }
 		SmartPointer<IWorldObj>		GetChild(unsigned int i) const;
+		IWorldObj*					GetChildByName(std::string strName,bool bRecursive = false);
 		virtual SmartPointer<IWorldObj> Clone(bool bRecursive);
+		void			OnAdd();
+		void			OnRemove();
+
+
 
 		template<class T>
 		SmartPointer<T> addModule()
@@ -39,6 +44,8 @@ namespace ZG
 		/////////////////////////////////////////////////////
 		unsigned int	 GetModuleCount()	const;
 		SmartPointer<ModuleBase>	GetModule(int i) const;
+		template<class T>
+		T*	GetModule() const;
 
 		template<class T>
 		bool		IsHaveModule(SmartPointer<T> module);
@@ -65,6 +72,20 @@ namespace ZG
 		SmartPointer<Transform>					m_pTransform;
 		friend class Transform;
 	};
+
+	template<class T>
+	T* ZG::IWorldObj::GetModule() const
+	{
+		for each (SmartPointer<ModuleBase>  var in m_vecModules)
+		{
+			T* pRt = dynamic_cast<T*>(var.get());
+			if (pRt != nullptr)
+			{
+				return pRt;
+			}
+		}
+		return nullptr;
+	}
 
 	template<class T>
 	void ZG::IWorldObj::GetAllModule(std::vector<SmartPointer<T>>& vecResults)

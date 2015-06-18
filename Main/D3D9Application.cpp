@@ -18,6 +18,7 @@
 #include "Transform.h"
 #include "RenderSystem.h"
 #include "RasterRender.h"
+#include "TimeManager.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> SmartPointer<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
@@ -117,6 +118,7 @@ void D3D9Application::Run()
 				}
 				m_pWorld->Update();
 				m_pRenderView->Present();
+				TimeManager::GetInstance()->Update();
 				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
 			}
 		}
