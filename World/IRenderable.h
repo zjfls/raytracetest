@@ -43,6 +43,7 @@ namespace ZG
 		BoundingBase* m_pBounding;
 		SmartPointer<VertexData> m_pVertexData;
 		SmartPointer<IndexData> m_pIndexData;
+		SmartPointer<SkinMatrixInfo> m_pSkinMatrixInfo;
 		//AABBBox* m_pBox
 	};
 

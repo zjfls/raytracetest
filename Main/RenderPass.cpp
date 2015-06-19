@@ -115,7 +115,7 @@ void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRender
 
 		//std::cout << "SetShaderArgs(pRender, pVertexShader, pFragShader);" << std::endl;
 		//
-		pRender->Render(pIndexBuff, pVertexBuff);
+		pRender->Render(pIndexBuff, pVertexBuff,pRenderable.get());
 	}
 	else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)
 	{
@@ -160,7 +160,7 @@ void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRender
 			SetShaderArgs(pRender, pVertexShader, pFragShader);
 			//
 			
-			pRender->Render(pIndexBuff, pVertexBuff);
+			pRender->Render(pIndexBuff, pVertexBuff,pRenderable.get());
 			index++;
 		}
 		pRender->SetBlendEnable(false);

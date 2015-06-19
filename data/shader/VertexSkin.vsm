@@ -2,7 +2,7 @@ float4x4 MATRIX_WORLD;	// World * View * Projection transformatio
 float4x4 MATRIX_VP;			//Projection
 float3 VIEW_POS;			//Camera Position
 float4x4 MATRIX_INVERSETRANSPOSEWV;
-float4x4 SKINMATRIX_ARRAY[60];
+float4x3 SKINMATRIX_ARRAY[70];
 //-----------------------------------------------------------------------------
 // Vertex shader output structure
 //-----------------------------------------------------------------------------
@@ -36,9 +36,9 @@ VS_OUTPUT vMain( VS_INPUT input )
 	for(int i = 0;i < 4;++i)
 	{
 		lastWeight += input.weights[i];
-		WorldPos += mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[i]]) * input.weights[i];
+		Output.worldPosition += mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[i]]) * input.weights[i];
 	}
-	Output.worldPosition = mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[0]]);
+	//Output.worldPosition = mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[0]]);
 	//Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
 	//Output.worldPosition = WorldPos.xyz/WorldPos.w;
 	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);

@@ -1,4 +1,5 @@
 #pragma once
+#include <assert.h>
 
 namespace ZG
 {
@@ -196,7 +197,8 @@ namespace ZG
 				delete m_pTarget;
 			}
 		}
-		m_pTarget = (GameObjectBase*)pTarget;
+		m_pTarget = (GameObjectBase*)(pTarget);
+		assert(pTarget != nullptr);
 		if (m_pTarget != nullptr)
 		{
 			m_pTarget->m_nRefCount++;

@@ -85,7 +85,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 		PrefabAsset prefabAsset;
 		prefabAsset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".prefab.xml";
 		prefabAsset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
-		AssetManager::GetInstance()->Save(&prefabAsset);
+		//AssetManager::GetInstance()->Save(&prefabAsset);
 		
 	}
 	SkeletonResource* pSkeleRes = m_pAsset->GetResource<SkeletonResource>();
@@ -94,7 +94,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 		PrefabAsset skelAasset;
 		skelAasset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml";
 		skelAasset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml", pSkeleRes);
-		AssetManager::GetInstance()->Save(&skelAasset);
+		//AssetManager::GetInstance()->Save(&skelAasset);
 
 	}
 	//
@@ -1304,7 +1304,7 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 			AnimationAsset AniAsset;
 			AniAsset.AddResource(refPath, pAniRes);
 			AnimationAssetLoader loader;
-			loader.Save(&AniAsset);
+			//loader.Save(&AniAsset);
 
 		}
 	}
@@ -1378,6 +1378,11 @@ void ZG::FbxFileLoader::SplitMeshDataByBone()
 		for (int i = 0; i < nBoneNumber; ++i)
 		{
 			indexRemapOldToNew[vecBoneIndex[i]] = i;
+		}
+		//
+		if (nBoneNumber >= MAX_BONE_NUMBER)
+		{
+			//pMesh->
 		}
 		//
 #pragma region Remap

@@ -17,6 +17,7 @@ IRenderable::IRenderable()
 	, m_pSharedMaterial(nullptr)
 	, m_pMaterialInstance(nullptr)
 	, m_pBounding(nullptr)
+	, m_pSkinMatrixInfo(nullptr)
 {
 	
 }

@@ -16,7 +16,7 @@ namespace ZG
 
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff) override;
+		void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff,IRenderable* pRenderable) override;
 		bool SetVertexShader(HardwareVertexShader* pVertexShader) override;
 		bool SetFragShader(HardwareFragShader* pFragShader) override;
 		bool SetTexture(int nSamplerID, HardwareTexture* pTexture) override;

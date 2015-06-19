@@ -18,6 +18,7 @@ namespace ZG
 		bool	HasSkinInfo();
 		virtual SmartPointer<ModuleBase> Clone();
 		void	CopyFrom(Mesh* pMesh);
+		void	SetCpuSkin(bool bCpuSkin);
 	private:
 		//
 		SmartPointer<MeshResource> m_pMeshInstance;

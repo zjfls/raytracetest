@@ -69,8 +69,8 @@ namespace ZG
 	protected:
 		virtual void	CreateDefaultRender(const RenderPath* pPath) = 0;
 		void	InitRender(RasterRender* pRender);
-		std::unordered_map<string, HardwareVertexShader*> m_mapHardwareVertexShader;
-		std::unordered_map<string, HardwareFragShader*> m_mapHardwareFragShader;
+		std::unordered_map<string, SmartPointer<HardwareVertexShader>> m_mapHardwareVertexShader;
+		std::unordered_map<string, SmartPointer<HardwareFragShader>> m_mapHardwareFragShader;
 		std::unordered_map<IndexData*, HardwareIndexBuffer*> m_IndexDataMap;
 		std::unordered_map<VertexData*, HardwareVertexBuffer*> m_VertexDataMap;
 		std::unordered_map<string, HardwareTexture*> m_mapTexture;

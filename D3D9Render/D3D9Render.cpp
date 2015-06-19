@@ -19,6 +19,7 @@
 #include "MaterialPass.h"
 #include "d3ddepthbuffer.h"
 #include "RenderStatistics.h"
+#include "IRenderable.h"
 using namespace ZG;
 D3D9Render::D3D9Render(const RenderPath* pPath)
 	:RasterRender(pPath)
@@ -62,7 +63,7 @@ bool D3D9Render::SetFragShader(HardwareFragShader* pFragShader)
 	return true;
 }
 
-void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff)
+void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff,IRenderable* pRenderable)
 {
 
 	D3D9VertexBuffer* pD3DVertexBuff = (D3D9VertexBuffer*)pVertexBuff;
@@ -113,19 +114,19 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexBuffDecal->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
 		//m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-		if (pVertexBuff->m_pVertexData->m_vecSubSkinInfo.size() == 0)
+		if (pRenderable->m_pVertexData->m_vecSubSkinInfo.size() == 0 || pRenderable->m_pSkinMatrixInfo == nullptr)
 		{
 			m_pDevice->DrawIndexedPrimitive(eType, 0, 0, pD3DVertexBuff->m_nNumVertex, 0, pD3DIndexBuff->m_nIndexNum / nPrimiDivide);
 		}
 		else
 		{
-			for (int i = 0; i < pVertexBuff->m_pVertexData->m_vecSubSkinInfo.size(); ++i)
+			for (int i = 0; i < pRenderable->m_pVertexData->m_vecSubSkinInfo.size(); ++i)
 			{
-				SmartPointer<SkinSubMeshInfo> pInfo = pVertexBuff->m_pVertexData->m_vecSubSkinInfo[i];
-				Matrix44 mat[64];
+				SmartPointer<SkinSubMeshInfo> pInfo = pRenderable->m_pVertexData->m_vecSubSkinInfo[i];
+				Matrix44 mat[MAX_BONE_NUMBER];
 				for (int i = 0; i < pInfo->m_vecBoneIndex.size(); ++i)
 				{
-					mat[i] = pVertexBuff->m_pVertexData->m_SkinMatrix->matArray[pInfo->m_vecBoneIndex[i]];
+					mat[i] = pRenderable->m_pSkinMatrixInfo->matArray[pInfo->m_vecBoneIndex[i]];
 				}
 				m_pVertexShader->SetMatrixArray("SKINMATRIX_ARRAY", mat, pInfo->m_vecBoneIndex.size());
 				//

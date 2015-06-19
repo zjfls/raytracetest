@@ -83,3 +83,13 @@ void ZG::Mesh::CopyFrom(Mesh* pMesh)
 		this->m_pMeshInstance = pMesh->m_pSharedMesh;
 	}
 }
+
+void ZG::Mesh::SetCpuSkin(bool bCpuSkin)
+{
+	if (m_pMeshInstance == nullptr)
+	{
+		m_pMeshInstance = m_pSharedMesh->clone();
+		m_pVertexData = m_pMeshInstance->m_VertexData.get();
+		m_pIndexData = m_pMeshInstance->m_IndexData.get();
+	}
+}

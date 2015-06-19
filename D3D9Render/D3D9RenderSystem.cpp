@@ -252,7 +252,7 @@ HardwareVertexShader* D3D9RenderSystem::GetHardwareVertexShader( VertexShaderDes
 	string strDesc = GenerateVertexShaderDescString(vertexShaderDesc);
 	if (m_mapHardwareVertexShader.find(strDesc) != std::end(m_mapHardwareVertexShader))
 	{
-		return m_mapHardwareVertexShader[strDesc];
+		return m_mapHardwareVertexShader[strDesc].get();
 	}
 	const char* pCode = GetVertexShaderCode(vertexShaderDesc);
 	unsigned int nCodeLength = strlen(pCode);
@@ -325,7 +325,7 @@ HardwareFragShader* D3D9RenderSystem::GetHardwareFragShader( FragShaderDesc& fra
 	string strDesc = GenerateFragShaderDescString(fragShaderDesc);
 	if (m_mapHardwareFragShader.find(strDesc) != std::end(m_mapHardwareFragShader))
 	{
-		return m_mapHardwareFragShader[strDesc];
+		return m_mapHardwareFragShader[strDesc].get();
 	}
 	const char* pCode = GetFragShaderCode(fragShaderDesc);
 	unsigned int nCodeLength = strlen(pCode);
@@ -403,7 +403,7 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	if (pDynamicVertexData)
 	{
 		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
-		pBuff->m_pVertexData = pData;
+		//pBuff->m_pVertexData = pData;
 		pBuff->m_eType = pDynamicVertexData->m_PrimitiveType;
 		if (pDynamicVertexData->vecDataDesc.size() == 0)
 		{
@@ -413,6 +413,7 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 		pBuff->m_nNumVertex = pData->m_nNumVertex;
 		pBuff->m_nStrip = pData->GetVertexDataLength();
 		//
+
 		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pData->m_nNumVertex * pData->GetVertexDataLength(),
 			0, 0,
 			D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
@@ -442,18 +443,32 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	if (pMeshVertexData != nullptr)
 	{
 		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
-		pBuff->m_pVertexData = pData;
+		//pBuff->m_pVertexData = pData;
 		pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pMeshVertexData->vecDataDesc);
 		pBuff->m_nNumVertex = pData->m_nNumVertex;
 		pBuff->m_nStrip = pMeshVertexData->GetVertexDataLength();
 		//
-		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pMeshVertexData->m_nNumVertex * pMeshVertexData->GetVertexDataLength(),
-			0, 0,
-			D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+		if (pMeshVertexData->m_nBoneNumber > MAX_BONE_NUMBER)
 		{
-			delete pBuff;
-			return nullptr;
+			if (FAILED(m_pD3DDevice->CreateVertexBuffer(pMeshVertexData->m_nNumVertex * pMeshVertexData->GetVertexDataLength(),
+				D3DUSAGE_DYNAMIC, 0,
+				D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+			{
+				delete pBuff;
+				return nullptr;
+			}
 		}
+		else
+		{
+			if (FAILED(m_pD3DDevice->CreateVertexBuffer(pMeshVertexData->m_nNumVertex * pMeshVertexData->GetVertexDataLength(),
+				0, 0,
+				D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
+			{
+				delete pBuff;
+				return nullptr;
+			}
+		}
+
 
 		///
 		void* pVertexData;

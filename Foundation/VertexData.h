@@ -40,7 +40,7 @@ namespace ZG
 			, m_nNumVertex(0)
 			, m_PrimitiveType(EPRIMITIVE_TRIANGLE)
 			, m_pAABB(nullptr)
-			, m_SkinMatrix(nullptr)
+			//, m_SkinMatrix(nullptr)
 			, m_nBoneNumber(0)
 		{};
 		virtual ~VertexData();
@@ -65,7 +65,7 @@ namespace ZG
 		unsigned int	m_nBoneNumber;
 		EDRAWPRIMITIVETYPE m_PrimitiveType;
 
-		SmartPointer<SkinMatrixInfo> m_SkinMatrix;
+		//SmartPointer<SkinMatrixInfo> m_SkinMatrix;
 		AABBBox* m_pAABB;
 		std::vector<SmartPointer<SkinSubMeshInfo>> m_vecSubSkinInfo;
 	};

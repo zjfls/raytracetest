@@ -5,7 +5,7 @@
 HardwareVertexBuffer::HardwareVertexBuffer()
 	:m_nNumVertex(0)
 	, m_eType(EPRIMITIVE_TRIANGLE)
-	, m_pVertexData(nullptr)
+	//, m_pVertexData(nullptr)
 {
 }
 

@@ -16,7 +16,7 @@ namespace ZG
 		ECSTREGTYPE	 m_eRegType;
 		unsigned int m_nRegIndex;
 	};
-	class MAIN_API HardwareShader
+	class MAIN_API HardwareShader:public GameObjectBase
 	{
 	public:
 		HardwareShader();

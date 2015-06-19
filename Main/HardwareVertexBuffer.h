@@ -18,7 +18,7 @@ namespace ZG
 
 		EDRAWPRIMITIVETYPE m_eType;
 	public:
-		SmartPointer<VertexData> m_pVertexData;
+		//SmartPointer<VertexData> m_pVertexData;
 	};
 }
 

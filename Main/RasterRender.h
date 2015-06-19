@@ -37,7 +37,7 @@ namespace ZG
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		virtual void UpdateProjCamera(SmartPointer<CameraBase> pCamera) = 0;
-		virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff) = 0;
+		virtual void Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* pVertexBuff, IRenderable* pRenderable) = 0;
 		virtual bool SetVertexShader(HardwareVertexShader* pVertexShader) = 0;
 		virtual bool SetFragShader(HardwareFragShader* pFragShader) = 0;
 		virtual bool SetTexture(int nSamplerID, HardwareTexture* pTexture) = 0;

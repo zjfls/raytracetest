@@ -1,0 +1,8 @@
+/////////////////////////////////////////////
+SkeletonModule中AddMesh,如果模型的骨骼数量大于MAX_BONE_NUMBER
+会自动替换为cpu蒙皮模式，这种情况下，会自动生成MaterialInstance并替换
+Material的VertexShader
+
+实现vertexshader自动生成之后，这些步骤需要去掉，
+不然在编辑器里不能保存材质
+/////////////////////////////////////////////

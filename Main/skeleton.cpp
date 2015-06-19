@@ -7,6 +7,10 @@
 #include "SkeletonResource.h"
 #include "vertexData.h"
 #include "SkeletonResource.h"
+#include "RasterMaterial.h"
+#include "MaterialPass.h"
+#include "VertexShader.h"
+
 
 SkeletonModule::SkeletonModule()
 	: m_pSkeletonRoot(nullptr)
@@ -32,8 +36,28 @@ void SkeletonModule::AddMesh(SmartPointer<Mesh> pMesh)
 			return;
 		}
 	}
-	pMesh->m_pVertexData->m_SkinMatrix = m_SkinMatrix;
+	//pMesh->m_pVertexData->m_SkinMatrix = m_SkinMatrix;
 	m_MeshVec.push_back(pMesh);
+	//
+	if (pMesh->m_pVertexData->m_nBoneNumber > MAX_BONE_NUMBER)
+	{
+		pMesh->SetCpuSkin(true);
+		MaterialResource* pMat = pMesh->GetMaterialInstance().get();
+		if (pMat != nullptr)
+		{
+			RasterMaterial* pRstMat = dynamic_cast<RasterMaterial*>(pMat);
+			for each (std::pair<std::string,SmartPointer<MaterialPass>> var in pRstMat->m_MaterialPass)
+			{
+				var.second->m_pVertexShader =  ResourceManager<VertexShader>::GetInstance()->GetResource("./data/shader/VertexStandard.vsm");
+			}
+		}
+
+	}
+	else
+	{
+		pMesh->m_pSkinMatrixInfo = m_SkinMatrix;
+	}
+	//
 }
 
 void SkeletonModule::GenerateSkeletonObj()
