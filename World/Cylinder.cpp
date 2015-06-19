@@ -45,7 +45,7 @@ void ZG::Cylinder::GeneratePolygon()
 	dVertexData->vecDataDesc.push_back(desc);
 	m_pVertexData = dVertexData;
 	
-	dVertexData->nNumVertex = (m_nSubdivide + 1) * 2 + 2;
+	dVertexData->m_nNumVertex = (m_nSubdivide + 1) * 2 + 2;
 	for (int i = 0; i < m_nSubdivide + 1; ++i)
 	{
 		float phi = 2 * PI / m_nSubdivide * i;
@@ -97,7 +97,7 @@ void ZG::Cylinder::GeneratePolygon()
 		vecIndex.push_back(i+1);
 	}
 	//
-	if (dVertexData->nNumVertex > 65535)
+	if (dVertexData->m_nNumVertex > 65535)
 	{
 		m_pIndexData->indexDesc = EIndexInt;
 		m_pIndexData->pData = new int[nTriNum * 3];

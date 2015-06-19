@@ -31,6 +31,9 @@
 #include "AnimationAssetLoader.h"
 #include "StrUtil.h"
 #include "AnimationTrack.h"
+#include "XmlPrefabLoader.h"
+#include "PrefabResource.h"
+#include "PrefabAsset.h"
 //
 IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 {
@@ -74,6 +77,26 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 
 	ProcessAnimation(false);
 
+	SplitMeshDataByBone();
+	
+
+	if (pPrefab != nullptr)
+	{
+		PrefabAsset prefabAsset;
+		prefabAsset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".prefab.xml";
+		prefabAsset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
+		AssetManager::GetInstance()->Save(&prefabAsset);
+		
+	}
+	SkeletonResource* pSkeleRes = m_pAsset->GetResource<SkeletonResource>();
+	if (pSkeleRes != nullptr)
+	{
+		PrefabAsset skelAasset;
+		skelAasset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml";
+		skelAasset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml", pSkeleRes);
+		AssetManager::GetInstance()->Save(&skelAasset);
+
+	}
 	//
 	return pAsset;
 }
@@ -127,6 +150,8 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, SmartPointer<
 				}
 				SkeletonResource* pSkeRes = ResourceManager<SkeletonResource>::GetInstance()->CreateResource<SkeletonResource>(skeletonPath).get();	
 				ProcessSkeleton(pNode, pSkeRes, pSkel);
+				pSkeRes->UpdateMatrix();
+				//
 				pSklModule->SetSkeletonRes(pSkeRes);
 				//
 				m_pAsset->AddResource(skeletonPath, pSkeRes);
@@ -436,6 +461,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 			for (int i = 0; i < clusterCount; ++i)
 			{
 				pCluster = pSkin->GetCluster(i);
+				pLinkNode = pCluster->GetLink();
 				int nCtrlPoint = pCluster->GetControlPointIndicesCount();
 				int* pCtrlPointIndices = pCluster->GetControlPointIndices();
 				double* pCtrlPointWeights = pCluster->GetControlPointWeights();
@@ -470,7 +496,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 	pMeshModule->SetMeshResource(pMeshResource);
 	EnumIndexDesc eIndexDesc = EIndexInt;
 	int nIndexLength = indexVec.size();
-	if (nIndexLength <= 65535)
+	if (cpCount <= 65535)
 	{
 		eIndexDesc = EIndexShort;
 	}
@@ -535,16 +561,16 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 		desc.nOffset = nVBOffset;
 		pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 		nVBOffset += sizeof(float) * 4;
-		pMeshResource->m_VertexData->nBoneNum = nMaxBonePerVertex;
+		pMeshResource->m_VertexData->m_BonePerVert = nMaxBonePerVertex;
 	}
 	else
 	{
-		pMeshResource->m_VertexData->nBoneNum = 0;
+		pMeshResource->m_VertexData->m_BonePerVert = 0;
 	}
 
 
 
-	pMeshResource->m_VertexData->nNumVertex = cpCount;
+	pMeshResource->m_VertexData->m_nNumVertex = cpCount;
 	pMeshResource->m_VertexData->pData = new unsigned char[nVBOffset * cpCount];
 	for (unsigned int cpIndex = 0; cpIndex < cpCount; ++cpIndex)
 	{
@@ -601,7 +627,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 							}
 							for (int ii = 0; ii < 4; ++ii)
 							{
-								*pChar = vecBlendIndex[i];
+								*pChar = vecBlendIndex[ii];
 								pChar++;
 							}
 						}
@@ -676,6 +702,9 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 	}
 
 #pragma endregion
+	//
+	pMeshResource->m_VertexData->ComputeTangent(*pMeshResource->m_IndexData.get());
+	//
 #pragma region processmaterial
 	//material
 	int nMatCount = pNode->GetMaterialCount();
@@ -767,9 +796,10 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 
 
 		pSubMesh->m_VertexData->vecDataDesc = pMeshResource->m_VertexData->vecDataDesc;
-		pSubMesh->m_VertexData->nNumVertex = mapIndex.size();
+		pSubMesh->m_VertexData->m_nNumVertex = mapIndex.size();
+		pSubMesh->m_VertexData->m_BonePerVert = nMaxBonePerVertex;
 		//check skin info
-		if (pMeshResource->m_VertexData->nBoneNum > 0)
+		/*if (pMeshResource->m_VertexData->m_BonePerVert > 0)
 		{
 			int skindescindex = 0;
 			for each (VertexData::VertexDataDesc desc in pSubMesh->m_VertexData->vecDataDesc)
@@ -781,7 +811,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 				skindescindex++;
 			}
 			bool bRemoveSkin = false;
-			for (unsigned int i = 0; i < pSubMesh->m_VertexData->nNumVertex; ++i)
+			for (unsigned int i = 0; i < pSubMesh->m_VertexData->m_nNumVertex; ++i)
 			{
 				void* pSrc = pMeshResource->m_VertexData->GetElementData(skindescindex, remapIndex[i]);
 				unsigned char* pUByte = (unsigned char*)pSrc;
@@ -803,9 +833,11 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 					iter++;
 				}
 			}
-		}
+		}*/
+
+		//vertex data
 		int nVertexDataLength = pSubMesh->m_VertexData->GetVertexDataLength();
-		int nBuffLength = nVertexDataLength * pSubMesh->m_VertexData->nNumVertex;
+		int nBuffLength = nVertexDataLength * pSubMesh->m_VertexData->m_nNumVertex;
 		if (nBuffLength <= 0)
 		{
 			break;
@@ -817,7 +849,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 		{
 			int nElementLength = pSubMesh->m_VertexData->GetTypeLength(desc);
 
-			for (unsigned int i = 0; i < pSubMesh->m_VertexData->nNumVertex; ++i)
+			for (unsigned int i = 0; i < pSubMesh->m_VertexData->m_nNumVertex; ++i)
 			{
 				void* pDst;
 				void* pSrc;
@@ -901,9 +933,9 @@ void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone
 	pBone->t.m_fy = (float)t.Get().mData[2];
 	pBone->t.m_fz = (float)t.Get().mData[1];
 
-	pBone->r.m_fx = (float)r.Get().mData[0];
-	pBone->r.m_fy = (float)r.Get().mData[2];
-	pBone->r.m_fz = (float)r.Get().mData[1];
+	pBone->r.m_fx = AngleToRad((float)r.Get().mData[0]);
+	pBone->r.m_fy = AngleToRad((float)r.Get().mData[2]);
+	pBone->r.m_fz = AngleToRad((float)r.Get().mData[1]);
 
 
 	pBone->s.m_fx = (float)s.Get().mData[0];
@@ -1306,4 +1338,70 @@ void ZG::FbxFileLoader::PostProcessSkinMesh(IWorldObj* pNode)
 		IWorldObj* pChild = pNode->GetChild(i).get();
 		PostProcessSkinMesh(pChild);
 	}
+}
+
+void ZG::FbxFileLoader::SplitMeshDataByBone()
+{
+	std::vector<MeshResource*> vecMesh;
+	m_pAsset->GetAllResource<MeshResource>(vecMesh);
+	for each (MeshResource* pMesh in vecMesh)
+	{
+		MeshVertexData* pVertexData = pMesh->m_VertexData.get();
+		if (pVertexData->m_BonePerVert == 0)
+		{
+			continue;
+		}
+		IndexData*		pIndexData = pMesh->m_IndexData.get();
+		std::map<int,bool> mapBoneIndex;
+		for (int i = 0; i < pVertexData->m_nNumVertex;++i)
+		{
+			unsigned char* pIndex = (unsigned char*)pVertexData->GetElementDataByDesc(EVertexBlendIndex, i);
+			if (pIndex == nullptr)
+			{
+				continue;
+			}
+			for (int i = 0; i < 4; ++i)
+			{
+				mapBoneIndex[*(pIndex + i)] = true;
+			}
+		}
+		unsigned int nBoneNumber = mapBoneIndex.size();	
+		std::vector<int> vecBoneIndex;
+		for each (std::pair<int,bool> p in mapBoneIndex)
+		{
+			vecBoneIndex.push_back(p.first);
+		}
+		//
+		std::cout << pMesh->GetRefPath().c_str() << " has bone:" << nBoneNumber << std::endl;
+
+		std::unordered_map<int, int> indexRemapOldToNew;
+		for (int i = 0; i < nBoneNumber; ++i)
+		{
+			indexRemapOldToNew[vecBoneIndex[i]] = i;
+		}
+		//
+#pragma region Remap
+		pMesh->m_VertexData->m_nBoneNumber = nBoneNumber;
+		for (int i = 0; i < pVertexData->m_nNumVertex; ++i)
+		{
+			unsigned char* pIndex = (unsigned char*)pVertexData->GetElementDataByDesc(EVertexBlendIndex, i);
+			if (pIndex == nullptr)
+			{
+				continue;
+			}
+			for (int i = 0; i < 4; ++i)
+			{
+				*(pIndex + i) = indexRemapOldToNew[*(pIndex + i)];
+			}
+		}
+		SkinSubMeshInfo* subSkinMeshInfo = new SkinSubMeshInfo;
+		subSkinMeshInfo->m_vecBoneIndex = vecBoneIndex;
+		subSkinMeshInfo->m_nStartIndex = 0;
+		subSkinMeshInfo->m_nPrimitiveCount = pIndexData->indexNum / 3;
+		pVertexData->m_vecSubSkinInfo.push_back(subSkinMeshInfo);
+#pragma  endregion
+		//
+		//unsigned int nSplitMeshSize = (nBoneNumber + 63) / 64;
+	}
+
 }

@@ -72,6 +72,8 @@ namespace ZG
 		const RenderPath* m_pRenderPath;
 		RenderSystem* m_pRenderSystem;
 		RenderTargetGroup m_TargetGroup;
+		SmartPointer<HardwareVertexShader> m_pVertexShader;
+		SmartPointer<HardwareFragShader> m_pFragShader;
 		friend class RenderPass;
 		//friend class RenderStage;
 		friend class RenderSystem;

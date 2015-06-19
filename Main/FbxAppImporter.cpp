@@ -247,7 +247,7 @@ void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, SmartPoin
 void FbxAppImporter::ImportMesh(SmartPointer<MeshResource> pMesh, string path)
 {
 	//
-	pMesh->m_VertexData->ComputeTangent(*pMesh->m_IndexData);
+	//pMesh->m_VertexData->ComputeTangent(*pMesh->m_IndexData);
 	//
 	std::cout << "save mesh:" << path.c_str() << std::endl;
 	if (_access(path.c_str(), 0) != -1)
@@ -296,8 +296,8 @@ void FbxAppImporter::ImportMesh(SmartPointer<MeshResource> pMesh, string path)
 		fwrite((void*)&typeDesc, sizeof(int), 1, fp);
 		fwrite((void*)&nOffset, sizeof(unsigned int), 1, fp);
 	}
-	unsigned int nNumVertex = pMesh->m_VertexData->nNumVertex;
-	unsigned int nSizeofVB = pMesh->m_VertexData->GetVertexDataLength() * pMesh->m_VertexData->nNumVertex;
+	unsigned int nNumVertex = pMesh->m_VertexData->m_nNumVertex;
+	unsigned int nSizeofVB = pMesh->m_VertexData->GetVertexDataLength() * pMesh->m_VertexData->m_nNumVertex;
 	fwrite((void*)&nSizeofVB, sizeof(unsigned int), 1, fp);
 	fwrite(pMesh->m_VertexData->pData, nSizeofVB, 1, fp);
 	fclose(fp);

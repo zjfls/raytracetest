@@ -17,7 +17,7 @@ namespace ZG
 		virtual ~AnimationAssetLoader();
 
 		IAsset* Load(string path, void* pArg /*= nullptr*/) override;
-		void	Save(IAsset* pAsset) override;
+		virtual bool	Save(IAsset* pAsset) override;
 	private:
 		void	SaveTransformCurve(AnimationCurve<stTransformData>* pCurve, tinyxml2::XMLElement* pElem, tinyxml2::XMLDocument& doc);
 	};

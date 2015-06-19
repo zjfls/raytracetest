@@ -26,7 +26,7 @@ SmartPointer<MeshResource> Mesh::GetMeshResource()
 
 bool Mesh::HasSkinInfo()
 {
-	return m_pSharedMesh->m_VertexData->nBoneNum > 0;
+	return m_pSharedMesh->m_VertexData->m_BonePerVert > 0;
 }
 
 SmartPointer<ModuleBase> Mesh::Clone()
@@ -43,7 +43,7 @@ SmartPointer<ModuleBase> Mesh::Clone()
 	}
 	pCloneMesh->m_bCpuSkin = m_bCpuSkin;
 	//
-	if (m_pSharedMesh->m_VertexData->nBoneNum > 0 && m_bCpuSkin == true)
+	if (m_pSharedMesh->m_VertexData->m_BonePerVert > 0 && m_bCpuSkin == true)
 	{
 		pCloneMesh->m_pMeshInstance = m_pSharedMesh->clone();
 	}
@@ -71,7 +71,7 @@ void ZG::Mesh::CopyFrom(Mesh* pMesh)
 	}
 	this->m_bCpuSkin = pMesh->m_bCpuSkin;
 	//
-	if (pMesh->m_pSharedMesh->m_VertexData->nBoneNum > 0 && pMesh->m_bCpuSkin == true)
+	if (pMesh->m_pSharedMesh->m_VertexData->m_BonePerVert > 0 && pMesh->m_bCpuSkin == true)
 	{
 		this->m_pMeshInstance = pMesh->m_pSharedMesh->clone();
 	}

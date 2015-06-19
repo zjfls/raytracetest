@@ -3,6 +3,7 @@
 #include "RenderEnum.h"
 namespace ZG
 {
+	class VertexData;
 	class MAIN_API HardwareVertexBuffer :public HardwareBuffer
 	{
 	public:
@@ -16,6 +17,8 @@ namespace ZG
 
 
 		EDRAWPRIMITIVETYPE m_eType;
+	public:
+		SmartPointer<VertexData> m_pVertexData;
 	};
 }
 

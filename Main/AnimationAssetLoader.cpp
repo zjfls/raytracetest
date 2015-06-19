@@ -18,19 +18,19 @@ IAsset* ZG::AnimationAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	return pAsset;
 }
 
-void ZG::AnimationAssetLoader::Save(IAsset* pAsset)
+bool ZG::AnimationAssetLoader::Save(IAsset* pAsset)
 {
 	AnimationAsset* pAniAsset = dynamic_cast<AnimationAsset*>(pAsset);
 	//
 	if (pAniAsset == nullptr)
 	{
-		return;
+		return false;
 	}
 	std::vector<AnimationResource*> vecRes;
 	pAniAsset->GetAllResource<AnimationResource>(vecRes);
 	if (vecRes.size() == 0)
 	{
-		return;
+		return false;
 	}
 	AnimationResource* pAniRes = vecRes[0];
 	//
@@ -65,7 +65,7 @@ void ZG::AnimationAssetLoader::Save(IAsset* pAsset)
 	}
 	doc.SaveFile(pAniRes->GetRefPath().c_str());
 	
-
+	return true;
 	//
 }
 

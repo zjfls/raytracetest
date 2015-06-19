@@ -225,7 +225,7 @@ void ZG::GizmoManager::createSceneGridGizmo()
 		dVertexData->m_PositionData.push_back(Vector3(x, y, z));
 	}
 	dVertexData->m_PrimitiveType = EPRIMITIVE_LINE;
-	dVertexData->nNumVertex = (nSubdivide + 1) * 4;
+	dVertexData->m_nNumVertex = (nSubdivide + 1) * 4;
 
 
 	//std::vector<int> vecIndex;

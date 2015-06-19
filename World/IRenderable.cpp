@@ -112,7 +112,7 @@ SmartPointer<MaterialResource> IRenderable::getRenderMaterial()
 	return m_pSharedMaterial;
 }
 
-ZG::Triangle ZG::IRenderable::GetTriangle(int nTriIndex) const
+ZG::Triangle ZG::IRenderable::GetTriangle(unsigned int nTriIndex) const
 {
 	Triangle tri;
 	if (m_pVertexData == nullptr)
@@ -121,7 +121,7 @@ ZG::Triangle ZG::IRenderable::GetTriangle(int nTriIndex) const
 	}
 	if (m_pIndexData == nullptr)
 	{
-		if (nTriIndex * 3 > m_pVertexData->nNumVertex)
+		if (nTriIndex * 3 > m_pVertexData->m_nNumVertex)
 		{
 			return tri;
 		}
@@ -138,7 +138,7 @@ ZG::Triangle ZG::IRenderable::GetTriangle(int nTriIndex) const
 		for (int i = 0; i < 3; ++i)
 		{
 			int nIndex = m_pIndexData->GetIndexAt(nTriIndex, i);
-			if (nIndex >= m_pVertexData->nNumVertex)
+			if (nIndex >= m_pVertexData->m_nNumVertex)
 			{
 				return tri;
 			}
@@ -159,7 +159,7 @@ ZG::Triangle ZG::IRenderable::GetTriangle(int nTriIndex) const
 	return tri;
 }
 
-ZG::Triangle ZG::IRenderable::GetWorldTriangle(int nIndex) const
+ZG::Triangle ZG::IRenderable::GetWorldTriangle(unsigned int nIndex) const
 {
 	Triangle tri = GetTriangle(nIndex);
 	if (m_pOwnerObj != nullptr)
@@ -189,7 +189,7 @@ int ZG::IRenderable::GetTriangleNum() const
 	}
 	if (m_pIndexData == nullptr)
 	{
-		return m_pVertexData->nNumVertex / 3;
+		return m_pVertexData->m_nNumVertex / 3;
 	}
 	return m_pIndexData->indexNum / 3;
 }

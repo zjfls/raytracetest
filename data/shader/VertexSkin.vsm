@@ -21,9 +21,9 @@ struct VS_INPUT
 	float3	Position	:POSITION;
 	float3	Normal		:NORMAL;
 	float2	TC			:TEXCOORD0;
-	float3	Tangent		:TANGENT;
+	int4  boneIndices	: BLENDINDICES0;
 	float4 weights		: BLENDWEIGHT0;
-	int4 boneIndices	: BLENDINDICES0;
+	float3	Tangent		:TANGENT;
 };
 
 
@@ -31,10 +31,16 @@ VS_OUTPUT vMain( VS_INPUT input )
 {
 	VS_OUTPUT Output = (VS_OUTPUT)0;
 	//Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
+	float4 WorldPos = 0.0f;
+	float lastWeight = 0.0f;
 	for(int i = 0;i < 4;++i)
 	{
-		Output.worldPosition += mul(float4(input.Position, 1.0f),SKINMATRIX_ARRAY[input.boneIndices[i]]) * input.weights[i];
+		lastWeight += input.weights[i];
+		WorldPos += mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[i]]) * input.weights[i];
 	}
+	Output.worldPosition = mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[0]]);
+	//Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
+	//Output.worldPosition = WorldPos.xyz/WorldPos.w;
 	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);
     Output.Normal			=   mul(float4(input.Normal,0.0f),MATRIX_INVERSETRANSPOSEWV).xyz;
     Output.Tangent			=	mul(float4(input.Tangent,0.0f),MATRIX_INVERSETRANSPOSEWV);

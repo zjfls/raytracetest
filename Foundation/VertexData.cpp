@@ -22,7 +22,7 @@ void* MeshVertexData::GetElementData(int descIndex, int posIndex) const
 	{
 		return nullptr;
 	}
-	if (posIndex >= nNumVertex)
+	if (posIndex >= m_nNumVertex)
 	{
 		return nullptr;
 	}
@@ -78,7 +78,7 @@ int VertexData::GetVertexDataLength() const
 
 unsigned int MeshVertexData::GetBuffLength() const
 {
-	return GetVertexDataLength() * nNumVertex;
+	return GetVertexDataLength() * m_nNumVertex;
 }
 
 void MeshVertexData::ComputeTangent(const IndexData& iData)
@@ -125,12 +125,12 @@ void MeshVertexData::ComputeTangent(const IndexData& iData)
 	int nTriangleNum = nIndexSize / 3;
 
 
-	Vector3* tan1 = new Vector3[nNumVertex];
-	Vector3* tan2 = new Vector3[nNumVertex];
-	Vector3* tangent = new Vector3[nNumVertex];
-	memset(tan1, 0, sizeof(Vector3) * nNumVertex);
-	memset(tan2, 0, sizeof(Vector3) * nNumVertex);
-	memset(tangent, 0, sizeof(Vector3) * nNumVertex);
+	Vector3* tan1 = new Vector3[m_nNumVertex];
+	Vector3* tan2 = new Vector3[m_nNumVertex];
+	Vector3* tangent = new Vector3[m_nNumVertex];
+	memset(tan1, 0, sizeof(Vector3) * m_nNumVertex);
+	memset(tan2, 0, sizeof(Vector3) * m_nNumVertex);
+	memset(tangent, 0, sizeof(Vector3) * m_nNumVertex);
 
 	for (int i = 0; i < nTriangleNum; ++i)
 	{
@@ -185,7 +185,7 @@ void MeshVertexData::ComputeTangent(const IndexData& iData)
 		tan2[i3] += tdir;
 	}
 	//
-	for (long a = 0; a < nNumVertex; a++)
+	for (long a = 0; a < m_nNumVertex; a++)
 	{
 		float* pNormal = (float*)GetElementData(nNormalIndex, a);
 		Vector3 n = *((Vector3*)pNormal);
@@ -202,10 +202,10 @@ void MeshVertexData::ComputeTangent(const IndexData& iData)
 	}
 	vecDataDesc.push_back(tangentdesc);
 	//
-	unsigned char* pNewData = new unsigned char[GetVertexDataLength() * nNumVertex];
+	unsigned char* pNewData = new unsigned char[GetVertexDataLength() * m_nNumVertex];
 	int nVertexSize = GetVertexDataLength();
 	int nVertexSizeOld = nVertexSize - 12;
-	for (int i = 0; i < nNumVertex; ++i)
+	for (int i = 0; i < m_nNumVertex; ++i)
 	{
 		memcpy(pNewData + i * nVertexSize, (unsigned char*)pData + i * nVertexSizeOld, nVertexSizeOld);
 		memcpy(pNewData + i * nVertexSize + nVertexSizeOld, &tangent[i], 12);
@@ -235,7 +235,7 @@ void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3& max)
 	max.m_fy = MINFLOAT;
 	max.m_fz = MINFLOAT;
 	//to do
-	for (int i = 0; i < nNumVertex; ++i)
+	for (int i = 0; i < m_nNumVertex; ++i)
 	{
 		Vector3 v = GetPositionDataAt(i);
 		if (v.m_fx < min.m_fx)
@@ -266,5 +266,18 @@ void MeshVertexData::getBoundingMaxAndMin( Vector3& min, Vector3& max)
 	}
 	m_pAABB->m_Min = min;
 	m_pAABB->m_Max = max;
+}
+
+void* ZG::MeshVertexData::GetElementDataByDesc(EnumVertexUseDesc desc, int nIndex) const
+{
+	for (int i = 0; i < vecDataDesc.size(); ++i)
+	{
+		if (vecDataDesc[i].usedesc == desc)
+		{
+			return GetElementData(i, nIndex);
+		}
+	}
+	//
+	return nullptr;
 }
 

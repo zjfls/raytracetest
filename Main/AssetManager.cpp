@@ -8,6 +8,8 @@
 #include "ShaderAssetLoader.h"
 #include "TextureAssetLoader.h"
 #include "AnimationAssetLoader.h"
+#include "SkeletonXmlLoader.h"
+#include "IAsset.h"
 #include <assert.h>
 template class MAIN_API  Singleton < AssetManager >;
 template<> SmartPointer<AssetManager> Singleton<AssetManager>::_instance = nullptr;
@@ -61,6 +63,7 @@ bool AssetManager::Init()
 	AddLoader("tga", new TextureAssetLoader);
 	AddLoader("png", new TextureAssetLoader);
 	AddLoader("animation.xml", new AnimationAssetLoader);
+	AddLoader("skeleton.xml", new SkeletonXmlLoader);
 
 
 	return true;
@@ -81,4 +84,22 @@ IAsset* AssetManager::GetAsset(string strPath)
 		return nullptr;
 	}
 	return m_AssetMap[strPath];
+}
+
+bool ZG::AssetManager::Save(IAsset* pAsset)
+{
+	std::string path = pAsset->m_strPath;
+	if (path == "")
+	{
+		return false;
+	}
+	std::cout << "load:" << path.c_str() << std::endl;
+	string strSuff = getFileSuffix(path);
+	std::transform(strSuff.begin(), strSuff.end(), strSuff.begin(), tolower);
+	if (m_LoaderMap.find(strSuff) == std::end(m_LoaderMap))
+	{
+		std::cout << "can not find loader for suffix:" << strSuff << std::endl;
+		return false;
+	}
+	return m_LoaderMap[strSuff]->Save(pAsset);
 }

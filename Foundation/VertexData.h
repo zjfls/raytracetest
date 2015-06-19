@@ -6,6 +6,22 @@
 #include "Matrix44.h"
 namespace ZG
 {
+	struct SkinSubMeshInfo :public GameObjectBase
+	{
+		SkinSubMeshInfo()
+			:m_nStartIndex(0)
+			, m_nPrimitiveCount(0)
+		{
+
+		}
+		~SkinSubMeshInfo()
+		{
+
+		}
+		std::vector<int>	m_vecBoneIndex;
+		unsigned int m_nStartIndex;
+		unsigned int m_nPrimitiveCount;
+	};
 	struct SkinMatrixInfo:public GameObjectBase
 	{
 		SkinMatrixInfo()
@@ -20,11 +36,12 @@ namespace ZG
 	class FOUNDATION_API VertexData :public GameObjectBase
 	{
 	public:
-		VertexData() :nBoneNum(0)
-			, nNumVertex(0)
+		VertexData() :m_BonePerVert(0)
+			, m_nNumVertex(0)
 			, m_PrimitiveType(EPRIMITIVE_TRIANGLE)
 			, m_pAABB(nullptr)
 			, m_SkinMatrix(nullptr)
+			, m_nBoneNumber(0)
 		{};
 		virtual ~VertexData();
 		virtual void getBoundingMaxAndMin(Vector3& min, Vector3& max) = 0;
@@ -43,12 +60,14 @@ namespace ZG
 
 	public:
 		std::vector<VertexData::VertexDataDesc> vecDataDesc;
-		unsigned int nNumVertex;
-		unsigned int nBoneNum;//每个顶点对应的骨头数量
+		unsigned int m_nNumVertex;
+		unsigned int m_BonePerVert;//每个顶点对应的骨头数量
+		unsigned int	m_nBoneNumber;
 		EDRAWPRIMITIVETYPE m_PrimitiveType;
 
 		SmartPointer<SkinMatrixInfo> m_SkinMatrix;
 		AABBBox* m_pAABB;
+		std::vector<SmartPointer<SkinSubMeshInfo>> m_vecSubSkinInfo;
 	};
 	class FOUNDATION_API MeshVertexData :public VertexData
 	{
@@ -103,7 +122,7 @@ namespace ZG
 		unsigned int GetBuffLength() const;
 
 		void*	GetElementData(int descIndex, int posIndex) const;
-
+		void*	GetElementDataByDesc(EnumVertexUseDesc desc, int nIndex) const;
 
 
 

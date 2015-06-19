@@ -33,7 +33,7 @@ namespace ZG
 		SmartPointer<RasterMaterial>		ProcessMaterial(FbxSurfaceMaterial* pMat, bool bHasSkinInfo);
 		void		ProcessAnimation(bool bPerFrame = false);
 		void		SetWorldObjPropByFbxNode(IWorldObj* pObj, FbxNode* pFbxObj);
-		//void LoadPrefab(FbxNode* pNode,IWorld* pWorld);
+		void		SplitMeshDataByBone();
 		FbxFileLoader()
 		{
 		}

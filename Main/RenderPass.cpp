@@ -303,16 +303,16 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable>
 		//std::cout << "pRener is null" << std::endl;
 		return;
 	}
-	if (pRenderable->m_pVertexData->m_SkinMatrix != nullptr)
-	{
-		TMatArg<SmartPointer<SkinMatrixInfo>>& skinArg = *(GetArgFromLib<SmartPointer<SkinMatrixInfo>>("SKINMATRIX_ARRAY", EMATARGMATRIX44ARRAY));;
-		skinArg.m_Data = pRenderable->m_pVertexData->m_SkinMatrix;
-		if (pRenderable->m_pVertexData->m_SkinMatrix->nSize > 256)
-		{
-			int c = 0;
-		}
-		argToBuild["SKINMATRIX_ARRAY"] = &skinArg;
-	}
+	//if (pRenderable->m_pVertexData->m_SkinMatrix != nullptr)
+	//{
+	//	TMatArg<SmartPointer<SkinMatrixInfo>>& skinArg = *(GetArgFromLib<SmartPointer<SkinMatrixInfo>>("SKINMATRIX_ARRAY", EMATARGMATRIX44ARRAY));;
+	//	skinArg.m_Data = pRenderable->m_pVertexData->m_SkinMatrix;
+	//	if (pRenderable->m_pVertexData->m_SkinMatrix->nSize > 256)
+	//	{
+	//		int c = 0;
+	//	}
+	//	argToBuild["SKINMATRIX_ARRAY"] = &skinArg;
+	//}
 	//
 	Matrix44 matWorld = pRenderable->m_pOwnerObj->m_pTransform->GetWorldMatrix();
 	Matrix44 matView = pRender->m_pCurrentRenderCamera->GetViewMatrix();

@@ -10,6 +10,11 @@
 #include "PrefabResource.h"
 #include "RasterMaterial.h"
 #include "FilePath.h"
+#include "MaterialResource.h"
+#include "Transform.h"
+#include "MeshResource.h"
+#include "RasterMaterial.h"
+
 //extern template  class __declspec(dllimport) Singleton < ResourceManager<MeshResource> >;
 
 using namespace tinyxml2;
@@ -119,4 +124,127 @@ void XmlPrefabLoader::ProcessMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<
 	pMesh->SetMeshResource(pMeshRes);
 
 
+}
+
+bool ZG::XmlPrefabLoader::Save(IAsset* pAsset)
+{
+	m_pAsset = pAsset;
+	std::string path = pAsset->m_strPath;
+	PrefabResource* pRes = pAsset->GetResource<PrefabResource>();
+	if (pRes == nullptr)
+	{
+		return false;
+	}
+	XMLDocument doc;
+	//XMLDeclaration *declare = new XMLDeclaration("1.0");
+	doc.LinkEndChild(doc.NewDeclaration("xml version=\"1.0\" encoding=\"UTF-8\""));
+	doc.LinkEndChild(doc.NewComment("prefab resource"));
+	tinyxml2::XMLElement* root = doc.NewElement("WorldObj");
+	doc.LinkEndChild(root);
+	PrefabProcessWorldObj(doc, pRes->m_pRoot, root);
+	doc.SaveFile(path.c_str());
+
+	return true;
+}
+
+void ZG::XmlPrefabLoader::PrefabProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem)
+{
+	if (pObj == nullptr || elem == nullptr)
+	{
+		return;
+	}
+	elem->SetAttribute("name", pObj->m_strName.c_str());
+	unsigned int nModuleCount = pObj->GetModuleCount();
+	for (unsigned int i = 0; i < nModuleCount; ++i)
+	{
+		SmartPointer<ModuleBase> pModule = pObj->GetModule(i);
+		SmartPointer<Transform> pTrans = pModule.SmartPointerCast<Transform>();
+		if (pTrans != nullptr)
+		{
+			XMLElement* pElemTrans = doc.NewElement("Transform");
+			PrefabProcessTransformModule(doc, pTrans, pElemTrans);
+			elem->LinkEndChild(pElemTrans);
+			continue;
+		}
+		SmartPointer<Mesh> pMesh = pModule.SmartPointerCast<Mesh>();
+		if (pMesh != nullptr)
+		{
+			XMLElement* pElementMesh = doc.NewElement("Mesh");
+			PrefabProcessMeshModule(doc, pMesh, pElementMesh);
+			elem->LinkEndChild(pElementMesh);
+
+			continue;
+		}
+
+	}
+
+	unsigned int nChildCount = pObj->GetChildCount();
+	for (unsigned int i = 0; i < nChildCount; ++i)
+	{
+		SmartPointer<IWorldObj> pChild = pObj->GetChild(i);
+		XMLElement* pChildElem = doc.NewElement("WorldObj");
+		elem->LinkEndChild(pChildElem);
+		PrefabProcessWorldObj(doc, pChild, pChildElem);
+	}
+}
+
+void ZG::XmlPrefabLoader::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem)
+{
+	Vector3 translate = pTrans->GetLocalTranslate();
+	Vector3 scale = pTrans->GetScale();
+	Orientation ori = pTrans->GetOrientation();
+	XMLElement* pElemT = doc.NewElement("Translation");
+	XMLElement* pElemS = doc.NewElement("Scale");
+	XMLElement* pElemR = doc.NewElement("Rotation");
+	pElem->LinkEndChild(pElemT);
+	pElem->LinkEndChild(pElemR);
+	pElem->LinkEndChild(pElemS);
+	//
+	pElemT->SetAttribute("x", translate.m_fx);
+	pElemT->SetAttribute("y", translate.m_fy);
+	pElemT->SetAttribute("z", translate.m_fz);
+
+	pElemR->SetAttribute("x", ori.m_vecEulerAngle.m_fx);
+	pElemR->SetAttribute("y", ori.m_vecEulerAngle.m_fy);
+	pElemR->SetAttribute("z", ori.m_vecEulerAngle.m_fz);
+
+	pElemS->SetAttribute("x", scale.m_fx);
+	pElemS->SetAttribute("y", scale.m_fy);
+	pElemS->SetAttribute("z", scale.m_fz);
+}
+
+void ZG::XmlPrefabLoader::PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem)
+{
+	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
+	if (pMesh->m_pSharedMaterial == nullptr)
+	{
+		return;
+	}
+	XMLElement* pMatElem = doc.NewElement("Material");
+	pElem->LinkEndChild(pMatElem);
+	//pMatElem->SetAttribute("Name", "testmat");
+	PrefabProcessMaterial(doc, pMesh->m_pSharedMaterial.SmartPointerCast<RasterMaterial>(), pMatElem);
+}
+
+void ZG::XmlPrefabLoader::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
+{
+	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
+	for each (std::pair<string, MaterialArg*> pair in pMaterial->m_matArgs)
+	{
+		switch (pair.second->m_EType)
+		{
+			case EMATARGTYPESAMPLER:
+			{
+				//XMLElement* pElemSamp = doc.NewElement("Sampler");
+				//pElemSamp->SetAttribute("Name", pair.first.c_str());
+
+				//TextureSampler* pTexSampler = pair.second->GetData<TextureSampler>();
+				//pElemSamp->SetAttribute("Ref", pTexSampler->m_pTexture->GetRefPath().c_str());
+				//pElem->LinkEndChild(pElemSamp);
+			}
+			break;
+			default:
+			break;
+		}
+	}
 }

@@ -282,6 +282,7 @@
     <ClInclude Include="AnimationAsset.h">
       <Filter>头文件\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="SkeletonXmlLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -518,5 +519,6 @@
     <ClCompile Include="RenderStatistics.cpp">
       <Filter>源文件\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletonXmlLoader.cpp" />
   </ItemGroup>
 </Project>

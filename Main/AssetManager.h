@@ -39,6 +39,8 @@ namespace ZG
 		*Return : the loaded asset
 
 		*/
+		//
+		bool	Save(IAsset* pAsset);
 		IAsset* LoadAsset(string path, void* pArg = nullptr);
 		/*
 

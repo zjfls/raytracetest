@@ -50,7 +50,7 @@ void Sphere3D::GeneratePolygon()
 	desc.usedesc = EVertexPosition;
 	dVertexData->vecDataDesc.push_back(desc);
 	m_pVertexData = dVertexData;
-	dVertexData->nNumVertex = (m_nSubdivide + 1) * (m_nSubdivide + 1);
+	dVertexData->m_nNumVertex = (m_nSubdivide + 1) * (m_nSubdivide + 1);
 	//
 	for (int i = 0; i <= m_nSubdivide + 1; ++i)
 	{
@@ -104,7 +104,7 @@ void Sphere3D::GeneratePolygon()
 
 	m_pIndexData = new IndexData;
 	m_pIndexData->indexNum = nTriNum * 3;
-	if (dVertexData->nNumVertex > 65535)
+	if (dVertexData->m_nNumVertex > 65535)
 	{
 		m_pIndexData->indexDesc = EIndexInt;
 		m_pIndexData->pData = new int[nTriNum * 3];

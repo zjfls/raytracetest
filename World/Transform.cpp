@@ -190,6 +190,11 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 	//
 }
 
+ZG::Matrix44 ZG::Transform::GetLocalMatrix() const
+{
+	return m_TransformMatrixLocal;
+}
+
 
 
 

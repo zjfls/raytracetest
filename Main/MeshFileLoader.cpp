@@ -72,12 +72,12 @@ IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	unsigned int nSizeOfVB;
 	fread((void*)&nSizeOfVB, sizeof(unsigned int), 1, fp);
 	nLength += 4;
-	res->m_VertexData->nNumVertex = nSizeOfVB / res->m_VertexData->GetVertexDataLength();
+	res->m_VertexData->m_nNumVertex = nSizeOfVB / res->m_VertexData->GetVertexDataLength();
 	//unsigned int nVBuffSize = nVertexNum * res->m_VertexData.GetVertexDataLength();
 	res->m_VertexData->pData = (void*)new unsigned char[nSizeOfVB];
 	fread(res->m_VertexData->pData, nSizeOfVB, 1, fp);
 	nLength += nSizeOfVB;
-	for (unsigned int i = 0; i < res->m_VertexData->nNumVertex; ++i)
+	for (unsigned int i = 0; i < res->m_VertexData->m_nNumVertex; ++i)
 	{
 		Vector3 pos = *((Vector3*)res->m_VertexData->GetElementData(1,i));
 		//std::cout << "normal:" << pos.m_fx << " " << pos.m_fy << " "<<pos.m_fz << std::endl;

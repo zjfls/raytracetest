@@ -220,4 +220,5 @@ IWorldObj* ZG::IWorldObj::GetChildByName(std::string strName,bool bRecursive /*=
 			}
 		}
 	}
+	return nullptr;
 }

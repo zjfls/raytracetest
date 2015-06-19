@@ -6,6 +6,7 @@
 #include "AnimationTrack.h"
 #include "SkeletonResource.h"
 #include "vertexData.h"
+#include "SkeletonResource.h"
 
 SkeletonModule::SkeletonModule()
 	: m_pSkeletonRoot(nullptr)
@@ -79,6 +80,17 @@ void ZG::SkeletonModule::OnInitialize()
 		return;
 	}
 	int nChild = m_pOwnerObj->GetChildCount();
+	std::vector < SmartPointer<Mesh>> vecMesh;
+	m_pOwnerObj->GetAllModule<Mesh>(vecMesh);
+	//
+	for each (SmartPointer<Mesh> pMesh in vecMesh)
+	{
+		if (pMesh->m_pVertexData->m_nBoneNumber > 0)
+		{
+			AddMesh(pMesh);
+		}
+	}
+	//
 	for (int i = 0; i < nChild; ++i)
 	{
 		IWorldObj* pObj = m_pOwnerObj->GetChild(i).get();
@@ -104,7 +116,7 @@ void ZG::SkeletonModule::GenerateSkeletonIndexMap()
 		SkeletonObj* pObj = (SkeletonObj*)m_pOwnerObj->GetChildByName(pBone->m_strName,true);
 		if (pObj != nullptr)
 		{
-			std::cout << "Find Bone" << i << ":" << pBone->m_strName.c_str() << std::endl;;
+			//std::cout << "Find Bone" << i << ":" << pBone->m_strName.c_str() << std::endl;;
 		}
 		m_mapSkeletonObj[i] = pObj;
 
@@ -114,7 +126,11 @@ void ZG::SkeletonModule::OnLateUpdate()
 {
 	for (int i = 0; i < m_mapSkeletonObj.size(); ++i)
 	{
-		//m_SkinMatrix->matArray[i] = m_mapSkeletonObj[i]->m_pTransform->GetWorldMatrix();
+		m_SkinMatrix->matArray[i] = m_SkeletonRes->m_mapBone[i]->m_MatrixInverse * m_mapSkeletonObj[i]->m_pTransform->GetWorldMatrix();
+		//m_SkinMatrix->matArray[i] = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		Matrix44 mat2 = m_SkinMatrix->matArray[i];
+		int c = 0;
 	}
 }
 

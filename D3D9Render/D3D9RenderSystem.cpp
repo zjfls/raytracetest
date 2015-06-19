@@ -403,16 +403,17 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	if (pDynamicVertexData)
 	{
 		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
+		pBuff->m_pVertexData = pData;
 		pBuff->m_eType = pDynamicVertexData->m_PrimitiveType;
 		if (pDynamicVertexData->vecDataDesc.size() == 0)
 		{
 			pDynamicVertexData->autoGenDesc();
 		}
 		pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pDynamicVertexData->vecDataDesc);
-		pBuff->m_nNumVertex = pData->nNumVertex;
+		pBuff->m_nNumVertex = pData->m_nNumVertex;
 		pBuff->m_nStrip = pData->GetVertexDataLength();
 		//
-		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pData->nNumVertex * pData->GetVertexDataLength(),
+		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pData->m_nNumVertex * pData->GetVertexDataLength(),
 			0, 0,
 			D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
 		{
@@ -420,13 +421,13 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 			return nullptr;
 		}
 		void* pVertexData;
-		if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pData->GetVertexDataLength() * pData->nNumVertex, &pVertexData, 0)))
+		if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pData->GetVertexDataLength() * pData->m_nNumVertex, &pVertexData, 0)))
 		{
 			delete pBuff;
 			return nullptr;
 		}
 		float* pFVertexData = (float*)pVertexData;
-		for (int i = 0; i < pData->nNumVertex; ++i)
+		for (int i = 0; i < pData->m_nNumVertex; ++i)
 		{
 			memcpy(pFVertexData + i * 3 + 0, &pDynamicVertexData->m_PositionData[i].m_fx, sizeof(float));
 			memcpy(pFVertexData + i * 3 + 1, &pDynamicVertexData->m_PositionData[i].m_fy, sizeof(float));
@@ -441,11 +442,12 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 	if (pMeshVertexData != nullptr)
 	{
 		D3D9VertexBuffer* pBuff = new D3D9VertexBuffer();
+		pBuff->m_pVertexData = pData;
 		pBuff->m_pVertexBuffDecal = CreateVertexDeclarationFromDesc(pMeshVertexData->vecDataDesc);
-		pBuff->m_nNumVertex = pData->nNumVertex;
+		pBuff->m_nNumVertex = pData->m_nNumVertex;
 		pBuff->m_nStrip = pMeshVertexData->GetVertexDataLength();
 		//
-		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pMeshVertexData->nNumVertex * pMeshVertexData->GetVertexDataLength(),
+		if (FAILED(m_pD3DDevice->CreateVertexBuffer(pMeshVertexData->m_nNumVertex * pMeshVertexData->GetVertexDataLength(),
 			0, 0,
 			D3DPOOL_MANAGED, &pBuff->m_pVertexBuffer, NULL)))
 		{
@@ -455,7 +457,7 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 
 		///
 		void* pVertexData;
-		if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pMeshVertexData->GetVertexDataLength() * pMeshVertexData->nNumVertex, &pVertexData, 0)))
+		if (FAILED(pBuff->m_pVertexBuffer->Lock(0, pMeshVertexData->GetVertexDataLength() * pMeshVertexData->m_nNumVertex, &pVertexData, 0)))
 		{
 			delete pBuff;
 			return nullptr;
@@ -468,7 +470,7 @@ HardwareVertexBuffer* D3D9RenderSystem::GetHardwareVertexBuffer(VertexData* pDat
 		//	 pf[4 + i * 11] = fabs(pf[9 + i * 11]);
 		//	   pf[5 + i * 11] = fabs(pf[10 + i * 11]);
 		//}
-		memcpy(pVertexData, pf, pMeshVertexData->GetVertexDataLength() * pMeshVertexData->nNumVertex);
+		memcpy(pVertexData, pf, pMeshVertexData->GetVertexDataLength() * pMeshVertexData->m_nNumVertex);
 		pBuff->m_pVertexBuffer->Unlock();
 		m_VertexDataMap[pData] = pBuff;
 		return pBuff;

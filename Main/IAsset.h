@@ -28,8 +28,13 @@ namespace ZG
 			{
 				return m_ResourceMap[refPath].get();
 			}
+
+
+
 			return nullptr;
 		}
+		template<class T>
+		T* GetResource();
 		void			AddResource(string refPath, SmartPointer<IResource> pRes)
 		{
 			m_ResourceMap[refPath] = pRes;
@@ -67,6 +72,19 @@ namespace ZG
 				vecRes.push_back(pRes);
 			}
 		}
+	}
+	template<class T>
+	T* ZG::IAsset::GetResource()
+	{
+		for each (std::pair<std::string, SmartPointer<IResource>> p in m_ResourceMap)
+		{
+			T* pRes = dynamic_cast<T*>(p.second.get());
+			if (pRes != nullptr)
+			{
+				return pRes;
+			}
+		}
+		return nullptr;
 	}
 
 }

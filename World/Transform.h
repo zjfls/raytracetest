@@ -43,6 +43,7 @@ namespace ZG
 
 
 		Matrix44 GetWorldMatrix() const;
+		Matrix44 GetLocalMatrix() const;
 		//only update self transform
 		//Matrix44 UpdateSelfTransform() const;
 		virtual SmartPointer<ModuleBase> Clone();

@@ -32,8 +32,8 @@ namespace ZG
 		virtual SmartPointer<MaterialResource> getRenderMaterial();
 
 		//
-		Triangle GetTriangle(int nIndex) const;
-		Triangle GetWorldTriangle(int nIndex) const;
+		Triangle GetTriangle(unsigned int nIndex) const;
+		Triangle GetWorldTriangle(unsigned int nIndex) const;
 		int		GetTriangleNum() const;
 	protected:
 		friend class RenderPass;

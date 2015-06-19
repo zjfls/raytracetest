@@ -23,7 +23,7 @@ namespace ZG
 		//IDirect3DVertexDeclaration9* m_pVertexDecal;
 		IDirect3DVertexBuffer9* m_pVertexBuffer;
 		stD3DVertexBuffDecal* m_pVertexBuffDecal;
-
+		
 
 
 		friend class D3D9RenderSystem;

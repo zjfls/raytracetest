@@ -33,6 +33,7 @@ D3D9Render::~D3D9Render()
 
 bool D3D9Render::SetVertexShader(HardwareVertexShader* pVertexShader)
 {
+	m_pVertexShader = pVertexShader;
 	D3D9VertexShader* pD3D9Shader = dynamic_cast<D3D9VertexShader*>(pVertexShader);
 	if (pD3D9Shader == nullptr)
 	{
@@ -48,6 +49,7 @@ bool D3D9Render::SetVertexShader(HardwareVertexShader* pVertexShader)
 
 bool D3D9Render::SetFragShader(HardwareFragShader* pFragShader)
 {
+	m_pFragShader = pFragShader;
 	D3D9FragShader* pD3D9Shader = dynamic_cast<D3D9FragShader*>(pFragShader);
 	if (pD3D9Shader == nullptr)
 	{
@@ -111,7 +113,26 @@ void D3D9Render::Render(HardwareIndexBuffer* pIndexBuff, HardwareVertexBuffer* p
 		m_pDevice->SetVertexDeclaration(pD3DVertexBuff->m_pVertexBuffDecal->m_pVertexDecal);
 		m_pDevice->SetStreamSource(0, pD3DVertexBuff->m_pVertexBuffer, 0, pVertexBuff->m_nStrip);
 		//m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-		m_pDevice->DrawIndexedPrimitive(eType, 0, 0, pD3DVertexBuff->m_nNumVertex, 0, pD3DIndexBuff->m_nIndexNum / nPrimiDivide);
+		if (pVertexBuff->m_pVertexData->m_vecSubSkinInfo.size() == 0)
+		{
+			m_pDevice->DrawIndexedPrimitive(eType, 0, 0, pD3DVertexBuff->m_nNumVertex, 0, pD3DIndexBuff->m_nIndexNum / nPrimiDivide);
+		}
+		else
+		{
+			for (int i = 0; i < pVertexBuff->m_pVertexData->m_vecSubSkinInfo.size(); ++i)
+			{
+				SmartPointer<SkinSubMeshInfo> pInfo = pVertexBuff->m_pVertexData->m_vecSubSkinInfo[i];
+				Matrix44 mat[64];
+				for (int i = 0; i < pInfo->m_vecBoneIndex.size(); ++i)
+				{
+					mat[i] = pVertexBuff->m_pVertexData->m_SkinMatrix->matArray[pInfo->m_vecBoneIndex[i]];
+				}
+				m_pVertexShader->SetMatrixArray("SKINMATRIX_ARRAY", mat, pInfo->m_vecBoneIndex.size());
+				//
+				m_pDevice->DrawIndexedPrimitive(eType, 0, 0, pD3DVertexBuff->m_nNumVertex, pInfo->m_nStartIndex, pInfo->m_nPrimitiveCount);
+			}
+		}
+		
 		//m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	}
 }
