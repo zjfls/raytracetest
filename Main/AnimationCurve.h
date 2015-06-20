@@ -11,10 +11,7 @@ namespace ZG
 		EANIVECTOR3,
 		EANITRANSFORM
 	};
-	enum AnimationWarpMode
-	{
 
-	};
 	class MAIN_API AnimationCurveBase :public GameObjectBase
 	{
 	public:
@@ -81,22 +78,41 @@ namespace ZG
 		{
 			if (fTime >= iter->m_fTime)
 			{
-				KeyFrame<T> prev = *iter;
 				std::vector<KeyFrame<T>>::iterator iterNext = iter + 1;
 				if (iterNext == m_KeyFrames.end())
 				{
-					return prev.m_KeyFrameData;
+					return iter->m_KeyFrameData;
 				}
-				else
+				else if (fTime < iterNext->m_fTime)
 				{
-					float time1 = prev.m_fTime;
+					float time1 = iter->m_fTime;
 					float time2 = iterNext->m_fTime;
 					//
 					float fi = (fTime - time1) / (time2 - time1);
-					return Interpolate(iter->m_KeyFrameData,iterNext->m_KeyFrameData,fi);
+					return ZG::Interpolate<T>(iter->m_KeyFrameData, iterNext->m_KeyFrameData, fi);
 				}
+				else
+				{
+					continue;
+				}
+				//KeyFrame<T> prev = *iter;
+				//std::vector<KeyFrame<T>>::iterator iterNext = iter + 1;
+				//if (iterNext == m_KeyFrames.end())
+				//{
+				//	return prev.m_KeyFrameData;
+				//}
+				//else
+				//{
+				//	float time1 = prev.m_fTime;
+				//	float time2 = iterNext->m_fTime;
+				//	//
+				//	float fi = (fTime - time1) / (time2 - time1);
+				//	return Interpolate(iter->m_KeyFrameData,iterNext->m_KeyFrameData,fi);
+				//}
 			}
 		}
+		return m_KeyFrames[m_KeyFrames.size() - 1].m_KeyFrameData;
+
 	}
 
 	template<class T>
@@ -138,7 +154,7 @@ namespace ZG
 		{
 			m_fLength = fTime;
 		}
-		
+
 	}
 
 	template<class T>
@@ -152,7 +168,7 @@ namespace ZG
 		:AnimationCurveBase(eType)
 	{
 		m_fLength = 0.0f;
-		
+
 	}
 
 }

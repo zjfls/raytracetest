@@ -120,8 +120,8 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 	{
 		Vector2 diff = pt - m_LastMousePos;
 		//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
-		Orientation rot = m_pCamera->m_pTransform->GetOrientation();
-		Vector3 vecRot = rot.m_vecEulerAngle;
+		Vector3 vecRot = m_pCamera->m_pTransform->GetRotation();
+		//Vector3 vecRot = rot.m_vecEulerAngle;
 		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
 		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
 		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);

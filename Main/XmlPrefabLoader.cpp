@@ -192,7 +192,7 @@ void ZG::XmlPrefabLoader::PrefabProcessTransformModule(tinyxml2::XMLDocument& do
 {
 	Vector3 translate = pTrans->GetLocalTranslate();
 	Vector3 scale = pTrans->GetScale();
-	Orientation ori = pTrans->GetOrientation();
+	Vector3 ori = pTrans->GetRotation();
 	XMLElement* pElemT = doc.NewElement("Translation");
 	XMLElement* pElemS = doc.NewElement("Scale");
 	XMLElement* pElemR = doc.NewElement("Rotation");
@@ -204,9 +204,9 @@ void ZG::XmlPrefabLoader::PrefabProcessTransformModule(tinyxml2::XMLDocument& do
 	pElemT->SetAttribute("y", translate.m_fy);
 	pElemT->SetAttribute("z", translate.m_fz);
 
-	pElemR->SetAttribute("x", ori.m_vecEulerAngle.m_fx);
-	pElemR->SetAttribute("y", ori.m_vecEulerAngle.m_fy);
-	pElemR->SetAttribute("z", ori.m_vecEulerAngle.m_fz);
+	pElemR->SetAttribute("x", ori.m_fx);
+	pElemR->SetAttribute("y", ori.m_fy);
+	pElemR->SetAttribute("z", ori.m_fz);
 
 	pElemS->SetAttribute("x", scale.m_fx);
 	pElemS->SetAttribute("y", scale.m_fy);

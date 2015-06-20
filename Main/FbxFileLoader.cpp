@@ -94,7 +94,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 		PrefabAsset skelAasset;
 		skelAasset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml";
 		skelAasset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml", pSkeleRes);
-		//AssetManager::GetInstance()->Save(&skelAasset);
+		AssetManager::GetInstance()->Save(&skelAasset);
 
 	}
 	//
@@ -1189,6 +1189,8 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 			}
 			std::string refPath = getFileDirectory(path) + aniName + ".animation.xml";
 			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(refPath).get();
+			pAniRes->m_bIsSkinAnimation = true;
+			pAniRes->m_eAniMode = EANILOOP;
 			AnimationTrack* pTrack = new AnimationTrack(pAniRes);
 			//
 			SkeletonModule* pModule = m_SkeResToSkeRoot[p.first]->GetParent()->GetModule<SkeletonModule>();
@@ -1245,6 +1247,7 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 				Vector3 vecLastTrans(pNode->LclTranslation.Get().mData[0], pNode->LclTranslation.Get().mData[2], pNode->LclTranslation.Get().mData[2]);
 				Vector3 vecLastRot(pNode->LclRotation.Get().mData[0], pNode->LclRotation.Get().mData[2], pNode->LclRotation.Get().mData[2]);
 				Vector3 vecLastScale(pNode->LclScaling.Get().mData[0], pNode->LclScaling.Get().mData[2], pNode->LclScaling.Get().mData[2]);
+				pAniRes->m_fLegnth = 0.0f;
 				for (int i = 0; i < nMaxKeyCount; ++i)
 				{
 					KeyFrame<stTransformData> kf;
@@ -1268,9 +1271,9 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 					
 					if (pAniCurveRX != nullptr && i < nRotCount)
 					{
-						kf.m_KeyFrameData.m_vecRotation.m_fx = pAniCurveRX->KeyGet(i).GetValue();
-						kf.m_KeyFrameData.m_vecRotation.m_fz = pAniCurveRY->KeyGet(i).GetValue();
-						kf.m_KeyFrameData.m_vecRotation.m_fy = pAniCurveRZ->KeyGet(i).GetValue();
+						kf.m_KeyFrameData.m_vecRotation.m_fx = AngleToRad(pAniCurveRX->KeyGet(i).GetValue());
+						kf.m_KeyFrameData.m_vecRotation.m_fz = AngleToRad(pAniCurveRY->KeyGet(i).GetValue());
+						kf.m_KeyFrameData.m_vecRotation.m_fy = AngleToRad(pAniCurveRZ->KeyGet(i).GetValue());
 						vecLastRot = kf.m_KeyFrameData.m_vecRotation;
 						fTime = pAniCurveRX->KeyGet(i).GetTime().GetSecondDouble();
 					}
@@ -1292,7 +1295,10 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 						kf.m_KeyFrameData.m_vecScale = vecLastScale;
 					}
 					pTransCurve->AddKeyFrame(fTime, kf.m_KeyFrameData);
-
+					if (pAniRes->m_fLegnth < fTime)
+					{
+						pAniRes->m_fLegnth = fTime;
+					}
 
 				}
 				pAniRes->m_mapCurves[pNode->GetName()] = pTransCurve;
@@ -1304,7 +1310,7 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 			AnimationAsset AniAsset;
 			AniAsset.AddResource(refPath, pAniRes);
 			AnimationAssetLoader loader;
-			//loader.Save(&AniAsset);
+			loader.Save(&AniAsset);
 
 		}
 	}

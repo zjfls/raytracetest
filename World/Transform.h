@@ -12,6 +12,19 @@ namespace ZG
 		Point3D m_vecTranslate;
 		Vector3 m_vecRotation;
 		Vector3 m_vecScale;
+		stTransformData()
+		{
+			m_vecScale = Vector3::ONE;
+		}
+		stTransformData(const stTransformData& tData)
+		{
+			m_vecTranslate = tData.m_vecTranslate;
+			m_vecRotation = tData.m_vecRotation;
+			m_vecScale = tData.m_vecScale;
+		}
+		stTransformData& operator=(const stTransformData& data);
+		stTransformData operator+(const stTransformData& data);
+		stTransformData operator*(const float fValue);
 	};
 	class WORLD_API Transform :public ModuleBase
 	{
@@ -33,12 +46,13 @@ namespace ZG
 		void SetScale(float fx, float fY, float fZ);
 
 
-		Vector3 GetLocalTranslate() const { return m_vecTranslate; };
+		
 		Vector3 GetWorldTranslate()const;// { return m_vecTranslate; };
 		void	SetWorldTranslate(const Vector3& vecTrans);
 		void	SetWorldTransform(const Matrix44& mat);
-		Vector3 GetScale()const{ return m_vecScale; };
-		Orientation GetOrientation()const{ return m_Orientation; };
+		Vector3 GetLocalTranslate() const { return m_TransformData.m_vecTranslate; };
+		Vector3 GetScale()const{ return m_TransformData.m_vecScale; };
+		Vector3 GetRotation()const{ return m_TransformData.m_vecRotation; };
 
 
 
@@ -61,13 +75,17 @@ namespace ZG
 		Matrix44	m_TransformMatrixWorld;
 		bool m_bDirt;
 
-		Point3D m_vecTranslate;
-		Orientation m_Orientation;
-		Vector3 m_vecScale;
+		//Point3D m_vecTranslate;
+		//Orientation m_Orientation;
+		//Vector3 m_vecScale;
+		
 
 	private:
 		Transform();
 		friend class IWorldObj;
+		private:
+		stTransformData m_TransformData;
+		friend class SkeletonModule;
 	};
 
 

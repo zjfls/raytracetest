@@ -377,12 +377,12 @@ void CPropertiesWnd::AddModule(SmartPointer<ModuleBase> pModule)
 		//rotation
 		CMFCPropertyGridProperty* pGroupRotation = new CMFCPropertyGridProperty(_T("Rotation"));
 		pGroup->AddSubItem(pGroupRotation);
-		pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fx, "rotation_x");
+		pProp = new CMFCFloatGridProperty(_T("x"), (_variant_t)pTransform->GetRotation().m_fx, "rotation_x");
 		//pProp->EnableSpinControl(TRUE, MINFLOAT, MAXFLOAT);
 		pGroupRotation->AddSubItem(pProp);
-		pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fy, "rotation_y");
+		pProp = new CMFCFloatGridProperty(_T("y"), (_variant_t)pTransform->GetRotation().m_fy, "rotation_y");
 		pGroupRotation->AddSubItem(pProp);
-		pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetOrientation().m_vecEulerAngle.m_fz, "rotation_z");
+		pProp = new CMFCFloatGridProperty(_T("z"), (_variant_t)pTransform->GetRotation().m_fz, "rotation_z");
 		pGroupRotation->AddSubItem(pProp);
 
 		//scale

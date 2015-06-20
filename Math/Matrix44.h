@@ -17,7 +17,8 @@ namespace ZG
 
 		static Matrix44 GetTranlateMatrix(const Vector3& translate);
 		static Matrix44 GetScaleMatrix(const Vector3& scale);
-
+		Vector3			TransformPosition(const Vector3& vecPos);
+		Vector3			TransformDirection(const Vector3& vecDir);
 
 
 		Vector3	GetTranslate() const;

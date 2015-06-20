@@ -15,6 +15,7 @@ namespace ZG
 	public:
 		float m_fElapseTime;
 		float m_fLastFrameTime;
+		float m_fThisFrameTime;
 		int	  m_nFps;
 		float m_fFpsTimeCounter;
 		int	  m_nFpsCount;

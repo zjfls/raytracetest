@@ -59,19 +59,19 @@ void EditorModuleProperty::SetProperty(void* pData)
 		}
 		if (m_PropName == "ROTATIONX")
 		{
-			Vector3 rot = pTransform->GetOrientation().m_vecEulerAngle;
+			Vector3 rot = pTransform->GetRotation();
 			rot.m_fx = *((float*)pData);
 			pTransform->SetOrientation(rot.m_fx, rot.m_fy, rot.m_fz);
 		}
 		if (m_PropName == "ROTATIONY")
 		{
-			Vector3 rot = pTransform->GetOrientation().m_vecEulerAngle;
+			Vector3 rot = pTransform->GetRotation();
 			rot.m_fy = *((float*)pData);
 			pTransform->SetOrientation(rot.m_fx, rot.m_fy, rot.m_fz);
 		}
 		if (m_PropName == "ROTATIONZ")
 		{
-			Vector3 rot = pTransform->GetOrientation().m_vecEulerAngle;
+			Vector3 rot = pTransform->GetRotation();
 			rot.m_fz = *((float*)pData);
 			pTransform->SetOrientation(rot.m_fx, rot.m_fy, rot.m_fz);
 		}

@@ -17,12 +17,13 @@ namespace ZG
 		virtual SmartPointer<ModuleBase> Clone();
 		virtual void OnUpdate();
 		virtual void OnLateUpdate();
+		void OnStart() override;
 		void	GenerateSkeletonArchi();
 		SkeletonResource*	GetSkeletonRes(){ return m_SkeletonRes.get(); };
 		void				SetSkeletonRes(SkeletonResource* pRes);
 
 		
-
+		bool PlayAnimation(AnimationTrack* pTrack) override;
 		bool BindAnimation(AnimationTrack* pTrack) override;
 		//void	SetSkeletonResource(SmartPointer<SkeletonResource> pRes,bool bGenerateObj = true);
 	protected:
@@ -37,6 +38,7 @@ namespace ZG
 		SmartPointer<SkeletonResource> m_SkeletonRes;
 
 		SmartPointer<SkinMatrixInfo> m_SkinMatrix;
+		std::map<std::string, SkeletonObj*> m_mapNameToSkeletonObj;
 		std::map<int, SkeletonObj*> m_mapSkeletonObj;
 		string m_strSkeleton;
 	};

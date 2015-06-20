@@ -38,6 +38,7 @@ bool ZG::AnimationAssetLoader::Save(IAsset* pAsset)
 	doc.LinkEndChild(doc.NewDeclaration("xml version=\"1.0\" encoding=\"UTF-8\""));
 	doc.LinkEndChild(doc.NewComment("material resource"));
 	tinyxml2::XMLElement* root = doc.NewElement("AnimationTrack");
+	root->SetAttribute("SkinAnimation", pAniRes->m_bIsSkinAnimation);
 	root->SetAttribute("Version", "1.0.0");
 	doc.InsertEndChild(root);
 	for each (std::pair<std::string, SmartPointer<AnimationCurveBase>> p in pAniRes->m_mapCurves)

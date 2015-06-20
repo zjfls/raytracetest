@@ -23,6 +23,7 @@ void TimeManager::Update()
 {
 	clock_t curClock = clock();
 	float curTime = (float)curClock / CLOCKS_PER_SEC;
+	m_fThisFrameTime = curTime;
 	m_fElapseTime = curTime - m_fLastFrameTime;
 	m_fLastFrameTime = curTime;
 	m_fFpsTimeCounter -= m_fElapseTime;

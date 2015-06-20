@@ -10,7 +10,9 @@
 #include "RasterMaterial.h"
 #include "MaterialPass.h"
 #include "VertexShader.h"
-
+#include "AnimationResource.h"
+#include "Transform.h"
+#include "AnimationTrack.h"
 
 SkeletonModule::SkeletonModule()
 	: m_pSkeletonRoot(nullptr)
@@ -74,7 +76,15 @@ SmartPointer<ModuleBase> ZG::SkeletonModule::Clone()
 	pCloneModule->m_bTransformUpdated = m_bTransformUpdated;
 	pCloneModule->m_pSkeletonRoot = nullptr;
 	pCloneModule->m_SkeletonRes = m_SkeletonRes;
-
+	for each (SmartPointer<AnimationTrack> pTrack in m_vecTracks)
+	{
+		AnimationTrack* pAniTrack = new AnimationTrack(pTrack->m_pResource.get());
+		pCloneModule->m_vecTracks.push_back(pAniTrack);
+		if (pTrack == m_pDefaultTrack)
+		{
+			pCloneModule->SetDefaultAnimationTrack(pAniTrack);
+		}
+	}
 
 
 	return pCloneModule;
@@ -82,7 +92,11 @@ SmartPointer<ModuleBase> ZG::SkeletonModule::Clone()
 
 void ZG::SkeletonModule::OnUpdate()
 {
-
+	AnimationModule::OnUpdate();
+	if (m_vecActiveTrack.size() != 0.0f)
+	{
+		m_pOwnerObj->m_pTransform->m_bDirt = true;
+	}
 
 }
 
@@ -93,7 +107,16 @@ void ZG::SkeletonModule::GenerateSkeletonArchi()
 
 bool ZG::SkeletonModule::BindAnimation(AnimationTrack* pTrack)
 {
+	if (pTrack->GetBind() == true)
+	{
+		pTrack->ClearBind();
+	}
 	pTrack->SetBind(true);
+	//for (int i = 0; i < pTrack->m_pResource->m_mapCurves.size();++i)
+	for each (std::pair<std::string, SmartPointer<AnimationCurveBase>> p in pTrack->m_pResource->m_mapCurves)
+	{
+		pTrack->AddBind<stTransformData>(p.first, &(m_mapNameToSkeletonObj[p.first]->m_pTransform->m_TransformData));
+	}
 	return true;
 }
 
@@ -143,18 +166,20 @@ void ZG::SkeletonModule::GenerateSkeletonIndexMap()
 			//std::cout << "Find Bone" << i << ":" << pBone->m_strName.c_str() << std::endl;;
 		}
 		m_mapSkeletonObj[i] = pObj;
+		m_mapNameToSkeletonObj[pBone->m_strName] = pObj;
 
 	}
 }
 void ZG::SkeletonModule::OnLateUpdate()
 {
+
 	for (int i = 0; i < m_mapSkeletonObj.size(); ++i)
 	{
 		m_SkinMatrix->matArray[i] = m_SkeletonRes->m_mapBone[i]->m_MatrixInverse * m_mapSkeletonObj[i]->m_pTransform->GetWorldMatrix();
 		//m_SkinMatrix->matArray[i] = m_pOwnerObj->m_pTransform->GetWorldMatrix();
-		Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
-		Matrix44 mat2 = m_SkinMatrix->matArray[i];
-		int c = 0;
+		//Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		//Matrix44 mat2 = m_SkinMatrix->matArray[i];
+		//int c = 0;
 	}
 }
 
@@ -162,4 +187,25 @@ void ZG::SkeletonModule::SetSkeletonRes(SkeletonResource* pRes)
 {
 	m_SkeletonRes = pRes;
 	m_SkinMatrix->nSize = pRes->m_nBoneNum;
+}
+
+bool ZG::SkeletonModule::PlayAnimation(AnimationTrack* pTrack)
+{
+	if (pTrack->GetBind() == true)
+	{
+
+	}
+	else
+	{
+		BindAnimation(pTrack);
+	}
+	//
+	m_vecActiveTrack.clear();
+	m_vecActiveTrack.push_back(pTrack);
+	return true;
+}
+
+void ZG::SkeletonModule::OnStart()
+{
+	AnimationModule::OnStart();
 }

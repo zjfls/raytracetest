@@ -33,6 +33,11 @@ bool ZG::AnimationModule::PlayAnimation(unsigned int index)
 	return false;
 }
 
+bool ZG::AnimationModule::PlayAnimation(AnimationTrack* pTrack)
+{
+	return true;
+}
+
 bool ZG::AnimationModule::AddAnimationTrack(AnimationTrack* pt)
 {
 	for each (SmartPointer<AnimationTrack> pTrack in m_vecTracks)
@@ -55,4 +60,20 @@ void ZG::AnimationModule::SetDefaultAnimationTrack(AnimationTrack* pTrack)
 {
 	AddAnimationTrack(pTrack);
 	m_pDefaultTrack = pTrack;
+}
+
+void ZG::AnimationModule::OnUpdate()
+{
+	for each (AnimationTrack* pTrack in m_vecActiveTrack)
+	{
+		pTrack->Update();
+	}
+}
+
+void ZG::AnimationModule::OnStart()
+{
+	if (m_pDefaultTrack != nullptr)
+	{
+		PlayAnimation(m_pDefaultTrack);
+	}
 }

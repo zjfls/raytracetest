@@ -199,7 +199,7 @@ void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Sm
 {
 	Vector3 translate = pTrans->GetLocalTranslate();
 	Vector3 scale = pTrans->GetScale();
-	Orientation ori = pTrans->GetOrientation();
+	Vector3 rotation = pTrans->GetRotation();
 	XMLElement* pElemT = doc.NewElement("Translation");
 	XMLElement* pElemS = doc.NewElement("Scale");
 	XMLElement* pElemR = doc.NewElement("Rotation");
@@ -211,9 +211,9 @@ void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Sm
 	pElemT->SetAttribute("y", translate.m_fy);
 	pElemT->SetAttribute("z", translate.m_fz);
 
-	pElemR->SetAttribute("x", ori.m_vecEulerAngle.m_fx);
-	pElemR->SetAttribute("y", ori.m_vecEulerAngle.m_fy);
-	pElemR->SetAttribute("z", ori.m_vecEulerAngle.m_fz);
+	pElemR->SetAttribute("x", rotation.m_fx);
+	pElemR->SetAttribute("y", rotation.m_fy);
+	pElemR->SetAttribute("z", rotation.m_fz);
 
 	pElemS->SetAttribute("x", scale.m_fx);
 	pElemS->SetAttribute("y", scale.m_fy);

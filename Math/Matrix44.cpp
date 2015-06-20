@@ -219,3 +219,24 @@ void Matrix44::ScaleMatrix(float fx, float fy, float fz)
 	M[1][1] = fy;
 	M[2][2] = fz;
 }
+
+ZG::Vector3 ZG::Matrix44::TransformPosition(const Vector3& vecPos)
+{
+	Vector3 vec3Rt;
+	vec3Rt.m_fx = vecPos.m_fx * M[0][0] + vecPos.m_fy * M[1][0] + vecPos.m_fz * M[2][0] + 1 * M[3][0];
+	vec3Rt.m_fy = vecPos.m_fx * M[0][1] + vecPos.m_fy * M[1][1] + vecPos.m_fz * M[2][1] + 1 * M[3][1];
+	vec3Rt.m_fz = vecPos.m_fx * M[0][2] + vecPos.m_fy * M[1][2] + vecPos.m_fz * M[2][2] + 1 * M[3][2];
+	//
+	float fW = vecPos.m_fx * M[0][3] + vecPos.m_fy * M[1][3] + vecPos.m_fz * M[2][3] + 1 * M[3][3];
+	vec3Rt = vec3Rt * (1.0f / fW);
+	return vec3Rt;
+}
+
+ZG::Vector3 ZG::Matrix44::TransformDirection(const Vector3& vecDir)
+{
+	Vector3 vec3Rt;
+	vec3Rt.m_fx = vecDir.m_fx * M[0][0] + vecDir.m_fy * M[1][0] + vecDir.m_fz * M[2][0];
+	vec3Rt.m_fy = vecDir.m_fx * M[0][1] + vecDir.m_fy * M[1][1] + vecDir.m_fz * M[2][1];
+	vec3Rt.m_fz = vecDir.m_fx * M[0][2] + vecDir.m_fy * M[1][2] + vecDir.m_fz * M[2][2];
+	return vec3Rt;
+}

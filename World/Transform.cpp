@@ -8,9 +8,6 @@ Transform::Transform()
 :m_bDirt(true)
 , m_bThisFrameUpdated(false)
 {
-	m_vecTranslate = Vector3::ZERO;
-	m_vecScale = Vector3::ONE;
-	m_Orientation.m_vecEulerAngle = Vector3::ZERO;
 }
 
 
@@ -45,10 +42,11 @@ void Transform::OnUpdate()
 	}
 	assert(m_pOwnerObj != nullptr);
 	Matrix33 matScale;
-	matScale.ScaleMatrix(m_vecScale.m_fx,m_vecScale.m_fy,m_vecScale.m_fz);
-	Matrix33 matRot = m_Orientation.ToMatrix33();
+	matScale.ScaleMatrix(GetScale().m_fx, GetScale().m_fy, GetScale().m_fz);
+	Matrix33 matRot;
+	matRot.FromEulerAngleXYZ(GetRotation());
 	Matrix44 matTraslate;
-	matTraslate.TraslateMatrix(m_vecTranslate.m_fx, m_vecTranslate.m_fy, m_vecTranslate.m_fz);
+	matTraslate.TraslateMatrix(GetLocalTranslate().m_fx, GetLocalTranslate().m_fy, GetLocalTranslate().m_fz);
 
 
 	m_TransformMatrixLocal = Matrix44::Identity;
@@ -86,25 +84,25 @@ void Transform::NotifyNeedTransform()
 
 void Transform::SetTranslate(float fX, float fY, float fZ)
 {
-	m_vecTranslate = Vector3(fX, fY, fZ);
+	m_TransformData.m_vecTranslate = Vector3(fX, fY, fZ);
 	SetDirty(true);
 }
 
 void Transform::SetTranslate(const Vector3& vecIn)
 {
-	m_vecTranslate = vecIn; 
+	m_TransformData.m_vecTranslate = vecIn; 
 	SetDirty(true);
 }
 
 void Transform::SetOrientation(float fX, float fY, float fZ)
 {
-	m_Orientation.m_vecEulerAngle = Vector3(fX, fY, fZ);
+	m_TransformData.m_vecRotation = Vector3(fX, fY, fZ);
 	SetDirty(true);
 }
 
 void Transform::SetScale(float fx, float fY, float fZ)
 {
-	m_vecScale = Vector3(fx, fY, fZ);
+	m_TransformData.m_vecScale = Vector3(fx, fY, fZ);
 	SetDirty(true);
 }
 
@@ -122,9 +120,7 @@ SmartPointer<ModuleBase> Transform::Clone()
 	//pTransform->m_vecTranslate = m_TransformMatrixWorld.GetTranslate();
 	//pTransform->m_vecScale = m_TransformMatrixWorld.GetScale();
 	//pTransform->m_Orientation.m_vecEulerAngle = m_TransformMatrixWorld.GetRotation();
-	pTransform->m_vecTranslate = m_vecTranslate;
-	pTransform->m_Orientation = m_Orientation;
-	pTransform->m_vecScale = m_vecScale;
+	pTransform->m_TransformData = m_TransformData;
 	return pTransform.get();
 }
 
@@ -143,9 +139,9 @@ void ZG::Transform::SetWorldTransform(const Matrix44& mat)
 	//
 	//
 	Matrix44 matLocal = mat * Matrix44::QuikInverse(matParent);
-	m_vecTranslate = matLocal.GetTranslate();
-	m_vecScale = matLocal.GetScale();
-	m_Orientation.m_vecEulerAngle = matLocal.GetRotation();
+	m_TransformData.m_vecTranslate = matLocal.GetTranslate();
+	m_TransformData.m_vecScale = matLocal.GetScale();
+	m_TransformData.m_vecRotation = matLocal.GetRotation();
 }
 
 void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
@@ -153,7 +149,7 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 	SetDirty(true);
 	if (m_pOwnerObj != nullptr && m_pOwnerObj->m_pParent == nullptr)
 	{
-		m_vecTranslate = vecTrans;
+		m_TransformData.m_vecTranslate = vecTrans;
 		return;
 	}
 	//
@@ -180,7 +176,7 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 	//m_TransformMatrixWorld = m_pOwnerObj->m_pTransform->m_TransformMatrixWorld;
 	//
 	Matrix44 matLocal = matWorld * Matrix44::QuikInverse(matParent);
-	m_vecTranslate = matLocal.GetTranslate();
+	m_TransformData.m_vecTranslate = matLocal.GetTranslate();
 
 
 	Matrix44 matworld2 = matLocal * matParent;
@@ -212,3 +208,29 @@ ZG::Matrix44 ZG::Transform::GetLocalMatrix() const
 //{
 //
 //}
+
+ZG::stTransformData ZG::stTransformData::operator+(const stTransformData& data)
+{
+	stTransformData rt;
+	rt.m_vecTranslate = m_vecTranslate + data.m_vecTranslate;
+	rt.m_vecRotation = m_vecRotation + data.m_vecRotation;
+	rt.m_vecScale = m_vecScale + data.m_vecScale;
+	return rt;
+}
+
+ZG::stTransformData ZG::stTransformData::operator*(const float fValue)
+{
+	stTransformData rt;
+	rt.m_vecTranslate = m_vecTranslate * fValue;
+	rt.m_vecRotation = m_vecRotation * fValue;
+	rt.m_vecScale = m_vecScale * fValue;
+	return rt;
+}
+
+ZG::stTransformData& ZG::stTransformData::operator=(const stTransformData& data)
+{
+	m_vecTranslate = data.m_vecTranslate;
+	m_vecRotation = data.m_vecRotation;
+	m_vecScale = data.m_vecScale;
+	return *this;
+}

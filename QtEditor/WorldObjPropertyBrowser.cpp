@@ -123,17 +123,17 @@ void WorldObjPropertyBrowser::AddModule(SmartPointer<ModuleBase> pModule)
 		//
 		//Rotation
 		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
-		pProperty->setValue(pTransform->GetOrientation().m_vecEulerAngle.m_fx);
+		pProperty->setValue(pTransform->GetRotation().m_fx);
 		pPropRotation->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "ROTATIONX", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
-		pProperty->setValue(pTransform->GetOrientation().m_vecEulerAngle.m_fy);
+		pProperty->setValue(pTransform->GetRotation().m_fy);
 		pPropRotation->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "ROTATIONY", pProperty);
 		//
 		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
-		pProperty->setValue(pTransform->GetOrientation().m_vecEulerAngle.m_fz);
+		pProperty->setValue(pTransform->GetRotation().m_fz);
 		pPropRotation->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "ROTATIONZ", pProperty);
 		//
