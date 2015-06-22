@@ -1,0 +1,168 @@
+material bloodelfmale_0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Hair00_07.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_6
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Hair00_07.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_25
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Hair00_07.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_29
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_30
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_32
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_38
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_46
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_47
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture Body.tga -1
+			}
+		}
+	}
+}
+material bloodelfmale_53
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.7 0.7 0.7
+			texture_unit
+			{
+				texture BLOODELFFEMALEEYEGLOWGREEN.tga -1
+			}
+		}
+	}
+}

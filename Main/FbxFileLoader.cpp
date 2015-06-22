@@ -1243,10 +1243,11 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 				}
 
 				AnimationCurve<stTransformData>* pTransCurve = new AnimationCurve<stTransformData>(EANITRANSFORM);
+				std::cout << "add curve:" << pNode->GetName() << std::endl;
 				//
-				Vector3 vecLastTrans(pNode->LclTranslation.Get().mData[0], pNode->LclTranslation.Get().mData[2], pNode->LclTranslation.Get().mData[2]);
-				Vector3 vecLastRot(pNode->LclRotation.Get().mData[0], pNode->LclRotation.Get().mData[2], pNode->LclRotation.Get().mData[2]);
-				Vector3 vecLastScale(pNode->LclScaling.Get().mData[0], pNode->LclScaling.Get().mData[2], pNode->LclScaling.Get().mData[2]);
+				Vector3 vecLastTrans(pNode->LclTranslation.Get().mData[0], pNode->LclTranslation.Get().mData[2], pNode->LclTranslation.Get().mData[1]);
+				Vector3 vecLastRot(AngleToRad(pNode->LclRotation.Get().mData[0]), AngleToRad(pNode->LclRotation.Get().mData[2]), AngleToRad(pNode->LclRotation.Get().mData[1]));
+				Vector3 vecLastScale(pNode->LclScaling.Get().mData[0], pNode->LclScaling.Get().mData[2], pNode->LclScaling.Get().mData[1]);
 				pAniRes->m_fLegnth = 0.0f;
 				for (int i = 0; i < nMaxKeyCount; ++i)
 				{
@@ -1302,7 +1303,7 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 
 				}
 				pAniRes->m_mapCurves[pNode->GetName()] = pTransCurve;
-				std::cout << "add curve:" << pNode->GetName() << std::endl;
+				
 			}
 			//
 			m_pAsset->AddResource(refPath, pAniRes);

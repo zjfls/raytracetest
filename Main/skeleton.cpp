@@ -177,9 +177,9 @@ void ZG::SkeletonModule::OnLateUpdate()
 	{
 		m_SkinMatrix->matArray[i] = m_SkeletonRes->m_mapBone[i]->m_MatrixInverse * m_mapSkeletonObj[i]->m_pTransform->GetWorldMatrix();
 		//m_SkinMatrix->matArray[i] = m_pOwnerObj->m_pTransform->GetWorldMatrix();
-		//Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
-		//Matrix44 mat2 = m_SkinMatrix->matArray[i];
-		//int c = 0;
+		Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		Matrix44 mat2 = m_SkinMatrix->matArray[i];
+		int c = 0;
 	}
 }
 
