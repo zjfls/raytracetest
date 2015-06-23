@@ -240,3 +240,26 @@ ZG::Vector3 ZG::Matrix44::TransformDirection(const Vector3& vecDir)
 	vec3Rt.m_fz = vecDir.m_fx * M[0][2] + vecDir.m_fy * M[1][2] + vecDir.m_fz * M[2][2];
 	return vec3Rt;
 }
+
+ZG::Matrix44 ZG::Matrix44::GetRotationMatrix(const Vector3& rotation)
+{
+	Matrix33 matx;
+	Matrix33 maty;
+	Matrix33 matz;
+	matx.RotAboutX(rotation.m_fx);
+	maty.RotAboutY(rotation.m_fy);
+	matz.RotAboutZ(rotation.m_fz);
+	Matrix33 mat = matx * maty * matz;
+	Matrix44 mat44;
+	mat44.FromMatrix33(&mat);
+	return mat44;
+}
+
+ZG::Matrix44 ZG::Matrix44::FromVector(const Vector3& translate, const Vector3& rotation, const Vector3& scale)
+{
+	Matrix44 s, r, t;
+	s = GetScaleMatrix(scale);
+	r = GetRotationMatrix(rotation);
+	t = GetTranlateMatrix(translate);
+	return s * r * t;
+}

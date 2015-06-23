@@ -34,6 +34,7 @@ namespace ZG
 		void		ProcessAnimation(bool bPerFrame = false);
 		void		SetWorldObjPropByFbxNode(IWorldObj* pObj, FbxNode* pFbxObj);
 		void		SplitMeshDataByBone();
+		void		InitSkeletonCluster(FbxNode* pSkeletonRoot);
 		FbxFileLoader()
 		{
 		}
@@ -48,7 +49,7 @@ namespace ZG
 		std::map<SkeletonResource*, std::vector<FbxNode*> > m_SkeletonToFbxNode;
 		std::map<SkeletonResource*, SkeletonObj*> m_SkeResToSkeRoot;
 		std::map<FbxNode*, IWorldObj*> m_mapFbxToObj;
-
+		std::map<FbxNode*, FbxCluster*> m_NodeToCluster;
 		std::string m_strFbxAssetName;
 	};
 

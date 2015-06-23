@@ -12,6 +12,7 @@ namespace ZG
 		Vector3 t;
 		Vector3 r;
 		Vector3 s;
+		Matrix44 m_matInversePos;
 		void UpdateMatrix(Matrix44 parentMat);
 		string m_strName;
 		Matrix44 m_SkeletonMatrix;

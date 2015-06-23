@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--skeleton resource-->
+<Info BoneNum="166"/>
+
+<Bone Name="bloodelffemale">
+    <Translation x="0" y="0" z="0"/>
+    <Rotation x="0" y="0" z="0"/>
+    <Scale x="0" y="0" z="0"/>
+    <Bone Name="bloodelffemale_bone_0">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+        <Bone Name="bloodelffemale_bone_Root">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+            <Bone Name="bloodelffemale_bone_SpineLow">
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="0" y="0" z="0"/>
+                <Bone Name="bloodelffemale_bone_4">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                    <Bone Name="bloodelffemale_bone_10">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_18">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                            <Bone Name="bloodelffemale_bone_Head">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                                <Bone Name="bloodelffemale_bone_32">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_33">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_34">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_35">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_36">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_37">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_38">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_50">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                        <Bone Name="bloodelffemale_bone_65">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_39">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_51">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_52">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_53">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_54">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_40">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_55">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_Jaw">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_42">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_43">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_56">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_44">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_57">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_58">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_59">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_60">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_45">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_141">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_Breath">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_BTH">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_CHD">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                            </Bone>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_ShoulderL">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                            <Bone Name="bloodelffemale_bone_ArmL">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                                <Bone Name="bloodelffemale_bone_46">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_61">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                        <Bone Name="bloodelffemale_bone_LThumb">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_76">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_LFingerIndex">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_77">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_LFingerMiddle">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_78">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_LFingerRing">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_79">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_LFingerPinky">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_80">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_151">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_162">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="bloodelffemale_bone_164">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_153">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_CSL">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_62">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_145">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_148">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_149">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_47">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_147">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_140">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                            </Bone>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_20">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_21">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_ShoulderR">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                            <Bone Name="bloodelffemale_bone_ArmR">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                                <Bone Name="bloodelffemale_bone_48">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_63">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                        <Bone Name="bloodelffemale_bone_RThumb">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_81">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_RFingerIndex">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_82">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_RFingerMiddle">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_83">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_RFingerRing">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_84">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_RFingerPinky">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_85">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_152">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                            <Bone Name="bloodelffemale_bone_161">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                            <Bone Name="bloodelffemale_bone_163">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                            </Bone>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_154">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_155">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_CSR">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_158">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                        <Bone Name="bloodelffemale_bone_159">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_64">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                        <Bone Name="bloodelffemale_bone_160">
+                                            <Translation x="0" y="0" z="0"/>
+                                            <Rotation x="0" y="0" z="0"/>
+                                            <Scale x="0" y="0" z="0"/>
+                                        </Bone>
+                                    </Bone>
+                                    <Bone Name="bloodelffemale_bone_150">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_49">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="bloodelffemale_bone_146">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                                <Bone Name="bloodelffemale_bone_139">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
+                            </Bone>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_126">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_127">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_128">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_129">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_130">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_131">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_132">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_133">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_134">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_135">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                        <Bone Name="bloodelffemale_bone_CCH">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_117">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_118">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_119">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_120">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_121">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_122">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_123">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_111">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_112">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_113">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_114">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_115">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_116">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+            </Bone>
+            <Bone Name="bloodelffemale_bone_Waist">
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="0" y="0" z="0"/>
+                <Bone Name="bloodelffemale_bone_5">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                    <Bone Name="bloodelffemale_bone_11">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_23">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                            <Bone Name="bloodelffemale_bone_30">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                            </Bone>
+                            <Bone Name="bloodelffemale_bone_137">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                            </Bone>
+                        </Bone>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_12">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_124">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                    </Bone>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_6">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                    <Bone Name="bloodelffemale_bone_13">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_24">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                            <Bone Name="bloodelffemale_bone_31">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                            </Bone>
+                            <Bone Name="bloodelffemale_bone_138">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                            </Bone>
+                        </Bone>
+                    </Bone>
+                    <Bone Name="bloodelffemale_bone_14">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_125">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                    </Bone>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_7">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                    <Bone Name="bloodelffemale_bone_15">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                    </Bone>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_8">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                    <Bone Name="bloodelffemale_bone_16">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_25">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                    </Bone>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_9">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                    <Bone Name="bloodelffemale_bone_17">
+                        <Translation x="0" y="0" z="0"/>
+                        <Rotation x="0" y="0" z="0"/>
+                        <Scale x="0" y="0" z="0"/>
+                        <Bone Name="bloodelffemale_bone_26">
+                            <Translation x="0" y="0" z="0"/>
+                            <Rotation x="0" y="0" z="0"/>
+                            <Scale x="0" y="0" z="0"/>
+                        </Bone>
+                    </Bone>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_108">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_109">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+                <Bone Name="bloodelffemale_bone_110">
+                    <Translation x="0" y="0" z="0"/>
+                    <Rotation x="0" y="0" z="0"/>
+                    <Scale x="0" y="0" z="0"/>
+                </Bone>
+            </Bone>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_93">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_94">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_95">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_96">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_97">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_98">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_99">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_100">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_101">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_102">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_103">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_104">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_105">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_106">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+        <Bone Name="bloodelffemale_bone_107">
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="0" y="0" z="0"/>
+        </Bone>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_Name">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_87">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_88">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_NameMount">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_90">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_91">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+    <Bone Name="bloodelffemale_bone_92">
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="0" y="0" z="0"/>
+    </Bone>
+</Bone>

@@ -461,6 +461,9 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 			for (int i = 0; i < clusterCount; ++i)
 			{
 				pCluster = pSkin->GetCluster(i);
+				//FbxAMatrix pMat, pMatLink;
+				//pCluster->GetTransformMatrix(pMat);
+				//pCluster->GetTransformLinkMatrix(pMatLink);
 				pLinkNode = pCluster->GetLink();
 				int nCtrlPoint = pCluster->GetControlPointIndicesCount();
 				int* pCtrlPointIndices = pCluster->GetControlPointIndices();
@@ -897,7 +900,8 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode,SmartPo
 
 SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, SkeletonResource* pRes,SkeletonObj* pObj)
 {
-
+	InitSkeletonCluster(pNode);
+	//
 	FbxSkeleton* pSke = pNode->GetSkeleton();
 	Bone* pRoot = new Bone();
 	pRes->m_pRoot = pRoot;
@@ -913,12 +917,37 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, SkeletonR
 
 void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pFbxObj, int& index,SkeletonObj* pSkeObj)
 {
+	FbxEuler::EOrder order = pFbxObj->RotationOrder.Get();
 	m_mapFbxToObj[pFbxObj] = pSkeObj;
 	if (pBone == nullptr)
 	{
 		return;
 	}
-	
+	FbxCluster* pCluster = m_NodeToCluster[pFbxObj];
+	FbxVector4 fs, fr, ft;
+	FbxAMatrix lLinkMatrix, lMatrix, lGeometryMatrix, inverseBindPos, lCurWorld;
+	if (pCluster != nullptr)
+	{
+		
+		pCluster->GetTransformMatrix(lMatrix);
+		pCluster->GetTransformLinkMatrix(lLinkMatrix);
+		pFbxObj->GetTransform();
+		FbxNode* pAssociateNode = pCluster->GetAssociateModel();
+		if (pAssociateNode != nullptr)
+		{
+			const FbxVector4 lT = pAssociateNode->GetGeometricTranslation(FbxNode::eSourcePivot);
+			const FbxVector4 lR = pAssociateNode->GetGeometricRotation(FbxNode::eSourcePivot);
+			const FbxVector4 lS = pAssociateNode->GetGeometricScaling(FbxNode::eSourcePivot);
+
+			lGeometryMatrix = FbxAMatrix(lT, lR, lS);
+		}
+		inverseBindPos = lLinkMatrix.Inverse() * lMatrix * lGeometryMatrix;
+		ft = inverseBindPos.GetT();
+		fr = inverseBindPos.GetR();
+		fs = inverseBindPos.GetS();
+	}
+
+	//
 	m_SkeletonToFbxNode[pRes.get()].push_back(pFbxObj);
 	FbxSkeleton* pSkeleton = pFbxObj->GetSkeleton();
 	m_mapSkeleton[pSkeleton] = pRes;
@@ -926,23 +955,35 @@ void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone
 	{
 		return;
 	}
-	FbxPropertyT<FbxDouble3> t = pFbxObj->LclTranslation;
-	FbxPropertyT<FbxDouble3> r = pFbxObj->LclRotation;
-	FbxPropertyT<FbxDouble3> s = pFbxObj->LclScaling;
-	pBone->t.m_fx = (float)t.Get().mData[0];
-	pBone->t.m_fy = (float)t.Get().mData[2];
-	pBone->t.m_fz = (float)t.Get().mData[1];
+	//FbxPropertyT<FbxDouble3> t = pFbxObj->LclTranslation;
+	//FbxPropertyT<FbxDouble3> r = pFbxObj->LclRotation;
+	//FbxPropertyT<FbxDouble3> s = pFbxObj->LclScaling;
+	Vector3 vs, vr, vt;
+	//
+	vt.m_fx = (float)ft.mData[0];
+	vt.m_fy = (float)ft.mData[2];
+	vt.m_fz = (float)ft.mData[1];
 
-	pBone->r.m_fx = AngleToRad((float)r.Get().mData[0]);
-	pBone->r.m_fy = AngleToRad((float)r.Get().mData[2]);
-	pBone->r.m_fz = AngleToRad((float)r.Get().mData[1]);
+	vr.m_fx = AngleToRad((float)fr.mData[0]);
+	vr.m_fy = AngleToRad((float)fr.mData[2]);
+	vr.m_fz = AngleToRad((float)fr.mData[1]);
 
 
-	pBone->s.m_fx = (float)s.Get().mData[0];
-	pBone->s.m_fy = (float)s.Get().mData[2];
-	pBone->s.m_fz = (float)s.Get().mData[1];
+	vs.m_fx = (float)fs.mData[0];
+	vs.m_fy = (float)fs.mData[2];
+	vs.m_fz = (float)fs.mData[1];
+
+	pBone->m_matInversePos = Matrix44::FromVector(vt, vr, vs);
+	//
+	//
 	SetWorldObjPropByFbxNode(pSkeObj, pFbxObj);
+	//pSkeObj->m_strName = pFbxObj->GetName();
+	if (pCluster != nullptr)
+	{
 
+	}
+
+	//pSkeObj->m_pTransform->SetWorldTransform();
 	char temp[10];
 	_itoa_s(index, temp, 10);
 	pBone->m_strName = pFbxObj->GetName();
@@ -1150,7 +1191,7 @@ void ZG::FbxFileLoader::ProcessSkeletonRoot(IWorldObj* pObj)
 	}
 	for each (IWorldObj* pWorldObj in vecRemove)
 	{
-		pObj->removeChild(pWorldObj);
+		//pObj->removeChild(pWorldObj);
 	}
 }
 
@@ -1416,4 +1457,27 @@ void ZG::FbxFileLoader::SplitMeshDataByBone()
 		//unsigned int nSplitMeshSize = (nBoneNumber + 63) / 64;
 	}
 
+}
+
+void ZG::FbxFileLoader::InitSkeletonCluster(FbxNode* pSkeletonRoot)
+{
+	FbxNode* pParent = pSkeletonRoot->GetParent();
+	int nChild = pParent->GetChildCount();
+	for (int i = 0; i < nChild; ++i)
+	{
+		FbxNode* pChild = pParent->GetChild(i);
+		if (pChild != nullptr)
+		{
+			if (pChild->GetMesh() != nullptr)
+			{
+				FbxSkin *pSkinDeformer = (FbxSkin*)pChild->GetMesh()->GetDeformer(0, FbxDeformer::eSkin);
+				int nCluster = pSkinDeformer->GetClusterCount();
+				for (int i = 0; i < nCluster; ++i)
+				{
+					FbxCluster* pCluster = pSkinDeformer->GetCluster(i);
+					m_NodeToCluster[pCluster->GetLink()] = pCluster;
+				}
+			}
+		}
+	}
 }

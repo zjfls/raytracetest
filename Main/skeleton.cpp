@@ -175,10 +175,10 @@ void ZG::SkeletonModule::OnLateUpdate()
 
 	for (int i = 0; i < m_mapSkeletonObj.size(); ++i)
 	{
-		m_SkinMatrix->matArray[i] = m_SkeletonRes->m_mapBone[i]->m_MatrixInverse * m_mapSkeletonObj[i]->m_pTransform->GetWorldMatrix();
-		//m_SkinMatrix->matArray[i] = m_pOwnerObj->m_pTransform->GetWorldMatrix();
-		Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
-		Matrix44 mat2 = m_SkinMatrix->matArray[i];
+		m_SkinMatrix->matArray[i] = m_SkeletonRes->m_mapBone[i]->m_matInversePos * m_mapSkeletonObj[i]->m_pTransform->GetWorldMatrix();
+		m_SkinMatrix->matArray[i] = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		//Matrix44 mat = m_pOwnerObj->m_pTransform->GetWorldMatrix();
+		//Matrix44 mat2 = m_SkinMatrix->matArray[i];
 		int c = 0;
 	}
 }
@@ -207,5 +207,5 @@ bool ZG::SkeletonModule::PlayAnimation(AnimationTrack* pTrack)
 
 void ZG::SkeletonModule::OnStart()
 {
-	AnimationModule::OnStart();
+	//AnimationModule::OnStart();
 }

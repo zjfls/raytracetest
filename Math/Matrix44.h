@@ -15,6 +15,9 @@ namespace ZG
 		Matrix44 Transpose() const;
 		Matrix44 Inverse() const;
 
+
+		static Matrix44 FromVector(const Vector3& translate, const Vector3& rotation, const Vector3& scale);
+		static Matrix44 GetRotationMatrix(const Vector3& rotation);
 		static Matrix44 GetTranlateMatrix(const Vector3& translate);
 		static Matrix44 GetScaleMatrix(const Vector3& scale);
 		Vector3			TransformPosition(const Vector3& vecPos);
