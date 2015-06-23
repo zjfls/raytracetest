@@ -39,8 +39,10 @@ namespace ZG
 
 		SmartPointer<SkinMatrixInfo> m_SkinMatrix;
 		std::map<std::string, SkeletonObj*> m_mapNameToSkeletonObj;
-		std::map<int, SkeletonObj*> m_mapSkeletonObj;
+		
 		string m_strSkeleton;
+	public:
+		std::map<int, SkeletonObj*> m_mapSkeletonObj;
 	};
 
 }

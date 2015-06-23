@@ -7,7 +7,7 @@ namespace ZG
 
 	class IWorldObj;
 	class MaterialResource;
-	class TranslateGizmo:public GameObjectBase
+	class WORLD_API TranslateGizmo:public GameObjectBase
 	{
 	public:
 		TranslateGizmo();

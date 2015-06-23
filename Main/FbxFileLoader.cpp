@@ -1367,10 +1367,27 @@ void ZG::FbxFileLoader::SetWorldObjPropByFbxNode(IWorldObj* pObj, FbxNode* pFbxO
 	FbxDouble3 trans = pFbxObj->LclTranslation.Get();
 	FbxDouble3 rot = pFbxObj->LclRotation.Get();
 	FbxDouble3 scal = pFbxObj->LclScaling.Get();
+
+	FbxDouble3 gTrans = pFbxObj->GeometricTranslation.Get();
+	FbxDouble3 gRot = pFbxObj->GeometricRotation.Get();
+	FbxDouble3 gScale = pFbxObj->GeometricScaling.Get();
+
+	FbxAMatrix g, l;
+	g.SetTRS(gTrans, gRot, gScale);
+	l.SetTRS(trans, rot, scal);
+
+	FbxAMatrix total;
+	total = l * g;
+
+	FbxVector4 t, r, s;
+	t = total.GetT();
+	r = total.GetR();
+	s = total.GetS();
+	//
 	SmartPointer<Transform> pTransform = pObj->GetModule(0).SmartPointerCast<Transform>();
-	pTransform->SetTranslate((float)trans.mData[0], (float)trans.mData[2], (float)trans.mData[1]);
-	pTransform->SetScale((float)scal.mData[0], (float)scal.mData[2], (float)scal.mData[1]);
-	pTransform->SetOrientation(AngleToRad((float)rot.mData[0]), AngleToRad((float)rot.mData[2]), AngleToRad((float)rot.mData[1]));
+	pTransform->SetTranslate((float)t.mData[0], (float)t.mData[2], (float)t.mData[1]);
+	pTransform->SetScale((float)s.mData[0], (float)s.mData[2], (float)s.mData[1]);
+	pTransform->SetOrientation(AngleToRad((float)r.mData[0]), AngleToRad((float)r.mData[2]), AngleToRad((float)r.mData[1]));
 }
 
 void ZG::FbxFileLoader::PostProcessSkinMesh(IWorldObj* pNode)

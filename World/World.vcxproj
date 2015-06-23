@@ -95,7 +95,6 @@
   <ItemGroup>
     <ClInclude Include="Cone.h" />
     <ClInclude Include="Cylinder.h" />
-    <ClInclude Include="GizmoManager.h" />
     <ClInclude Include="RasterCamera.h" />
     <ClInclude Include="CameraBase.h" />
     <ClInclude Include="Cube3D.h" />
@@ -121,7 +120,6 @@
   <ItemGroup>
     <ClCompile Include="Cone.cpp" />
     <ClCompile Include="Cylinder.cpp" />
-    <ClCompile Include="GizmoManager.cpp" />
     <ClCompile Include="RasterCamera.cpp" />
     <ClCompile Include="CameraBase.cpp" />
     <ClCompile Include="Cube3D.cpp" />

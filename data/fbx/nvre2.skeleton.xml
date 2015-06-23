@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--skeleton resource-->
-<Info BoneNum="46"/>
+<Info BoneNum="50"/>
 
 <Bone Name="Root">
     <Translation x="0" y="0" z="0"/>
@@ -22,169 +22,179 @@
                     <Translation x="0" y="0" z="0"/>
                     <Rotation x="0" y="0" z="0"/>
                     <Scale x="0" y="0" z="0"/>
-                    <Bone Name="Bip01-Neck">
+                    <Bone Name="Bip01-Spine2">
                         <Translation x="0" y="0" z="0"/>
                         <Rotation x="0" y="0" z="0"/>
                         <Scale x="0" y="0" z="0"/>
-                        <Bone Name="Bip01-Head">
+                        <Bone Name="Bip01-Neck">
                             <Translation x="0" y="0" z="0"/>
                             <Rotation x="0" y="0" z="0"/>
                             <Scale x="0" y="0" z="0"/>
-                        </Bone>
-                        <Bone Name="Bip01-L-Clavicle">
-                            <Translation x="0" y="0" z="0"/>
-                            <Rotation x="0" y="0" z="0"/>
-                            <Scale x="0" y="0" z="0"/>
-                            <Bone Name="Bip01-L-UpperArm">
+                            <Bone Name="Bip01-Head">
                                 <Translation x="0" y="0" z="0"/>
                                 <Rotation x="0" y="0" z="0"/>
                                 <Scale x="0" y="0" z="0"/>
-                                <Bone Name="Bip01-L-Forearm">
+                            </Bone>
+                            <Bone Name="Bip01-L-Clavicle">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                                <Bone Name="Bip01-L-UpperArm">
                                     <Translation x="0" y="0" z="0"/>
                                     <Rotation x="0" y="0" z="0"/>
                                     <Scale x="0" y="0" z="0"/>
-                                    <Bone Name="Bip01-L-Hand">
+                                    <Bone Name="Bip01-L-Forearm">
                                         <Translation x="0" y="0" z="0"/>
                                         <Rotation x="0" y="0" z="0"/>
                                         <Scale x="0" y="0" z="0"/>
-                                        <Bone Name="Bip01-L-Finger0">
+                                        <Bone Name="Bip01-L-Hand">
                                             <Translation x="0" y="0" z="0"/>
                                             <Rotation x="0" y="0" z="0"/>
                                             <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-L-Finger01">
+                                            <Bone Name="Bip01-L-Finger0">
                                                 <Translation x="0" y="0" z="0"/>
                                                 <Rotation x="0" y="0" z="0"/>
                                                 <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Bip01-L-Finger01">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
+                                            </Bone>
+                                            <Bone Name="Bip01-L-Finger1">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Bip01-L-Finger11">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
+                                            </Bone>
+                                            <Bone Name="Bip01-L-Finger2">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Bip01-L-Finger21">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
+                                            </Bone>
+                                            <Bone Name="Handle_Hand">
+                                                <Translation x="0" y="0" z="0"/>
+                                                <Rotation x="0" y="0" z="0"/>
+                                                <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Handle_Arcane">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
                                             </Bone>
                                         </Bone>
-                                        <Bone Name="Bip01-L-Finger1">
+                                    </Bone>
+                                    <Bone Name="twistBone_L">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                    </Bone>
+                                </Bone>
+                            </Bone>
+                            <Bone Name="Bip01-R-Clavicle">
+                                <Translation x="0" y="0" z="0"/>
+                                <Rotation x="0" y="0" z="0"/>
+                                <Scale x="0" y="0" z="0"/>
+                                <Bone Name="Bip01-R-UpperArm">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                    <Bone Name="Bip01-R-Forearm">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
+                                        <Bone Name="Bip01-R-Hand">
                                             <Translation x="0" y="0" z="0"/>
                                             <Rotation x="0" y="0" z="0"/>
                                             <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-L-Finger11">
+                                            <Bone Name="Bip01-R-Finger0">
                                                 <Translation x="0" y="0" z="0"/>
                                                 <Rotation x="0" y="0" z="0"/>
                                                 <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Bip01-R-Finger01">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
                                             </Bone>
-                                        </Bone>
-                                        <Bone Name="Bip01-L-Finger2">
-                                            <Translation x="0" y="0" z="0"/>
-                                            <Rotation x="0" y="0" z="0"/>
-                                            <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-L-Finger21">
+                                            <Bone Name="Bip01-R-Finger1">
                                                 <Translation x="0" y="0" z="0"/>
                                                 <Rotation x="0" y="0" z="0"/>
                                                 <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Bip01-R-Finger11">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
                                             </Bone>
-                                        </Bone>
-                                        <Bone Name="Bip01-L-Finger3">
-                                            <Translation x="0" y="0" z="0"/>
-                                            <Rotation x="0" y="0" z="0"/>
-                                            <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-L-Finger31">
+                                            <Bone Name="Bip01-R-Finger2">
                                                 <Translation x="0" y="0" z="0"/>
                                                 <Rotation x="0" y="0" z="0"/>
                                                 <Scale x="0" y="0" z="0"/>
+                                                <Bone Name="Bip01-R-Finger21">
+                                                    <Translation x="0" y="0" z="0"/>
+                                                    <Rotation x="0" y="0" z="0"/>
+                                                    <Scale x="0" y="0" z="0"/>
+                                                </Bone>
                                             </Bone>
                                         </Bone>
+                                    </Bone>
+                                    <Bone Name="twistBone_R">
+                                        <Translation x="0" y="0" z="0"/>
+                                        <Rotation x="0" y="0" z="0"/>
+                                        <Scale x="0" y="0" z="0"/>
                                     </Bone>
                                 </Bone>
                             </Bone>
                         </Bone>
-                        <Bone Name="Bip01-R-Clavicle">
+                        <Bone Name="Manteau_Bone_L01">
                             <Translation x="0" y="0" z="0"/>
                             <Rotation x="0" y="0" z="0"/>
                             <Scale x="0" y="0" z="0"/>
-                            <Bone Name="Bip01-R-UpperArm">
+                            <Bone Name="Manteau_Bone_L02">
                                 <Translation x="0" y="0" z="0"/>
                                 <Rotation x="0" y="0" z="0"/>
                                 <Scale x="0" y="0" z="0"/>
-                                <Bone Name="Bip01-R-Forearm">
+                                <Bone Name="Manteau_Bone_L03">
                                     <Translation x="0" y="0" z="0"/>
                                     <Rotation x="0" y="0" z="0"/>
                                     <Scale x="0" y="0" z="0"/>
-                                    <Bone Name="Bip01-R-Hand">
-                                        <Translation x="0" y="0" z="0"/>
-                                        <Rotation x="0" y="0" z="0"/>
-                                        <Scale x="0" y="0" z="0"/>
-                                        <Bone Name="Bip01-R-Finger0">
-                                            <Translation x="0" y="0" z="0"/>
-                                            <Rotation x="0" y="0" z="0"/>
-                                            <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-R-Finger01">
-                                                <Translation x="0" y="0" z="0"/>
-                                                <Rotation x="0" y="0" z="0"/>
-                                                <Scale x="0" y="0" z="0"/>
-                                            </Bone>
-                                        </Bone>
-                                        <Bone Name="Bip01-R-Finger1">
-                                            <Translation x="0" y="0" z="0"/>
-                                            <Rotation x="0" y="0" z="0"/>
-                                            <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-R-Finger11">
-                                                <Translation x="0" y="0" z="0"/>
-                                                <Rotation x="0" y="0" z="0"/>
-                                                <Scale x="0" y="0" z="0"/>
-                                            </Bone>
-                                        </Bone>
-                                        <Bone Name="Bip01-R-Finger2">
-                                            <Translation x="0" y="0" z="0"/>
-                                            <Rotation x="0" y="0" z="0"/>
-                                            <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-R-Finger21">
-                                                <Translation x="0" y="0" z="0"/>
-                                                <Rotation x="0" y="0" z="0"/>
-                                                <Scale x="0" y="0" z="0"/>
-                                            </Bone>
-                                        </Bone>
-                                        <Bone Name="Bip01-R-Finger3">
-                                            <Translation x="0" y="0" z="0"/>
-                                            <Rotation x="0" y="0" z="0"/>
-                                            <Scale x="0" y="0" z="0"/>
-                                            <Bone Name="Bip01-R-Finger31">
-                                                <Translation x="0" y="0" z="0"/>
-                                                <Rotation x="0" y="0" z="0"/>
-                                                <Scale x="0" y="0" z="0"/>
-                                            </Bone>
-                                        </Bone>
-                                    </Bone>
                                 </Bone>
                             </Bone>
                         </Bone>
-                    </Bone>
-                    <Bone Name="Booster_M">
-                        <Translation x="0" y="0" z="0"/>
-                        <Rotation x="0" y="0" z="0"/>
-                        <Scale x="0" y="0" z="0"/>
-                        <Bone Name="Booster_L01">
+                        <Bone Name="Manteau_Bone_M01">
                             <Translation x="0" y="0" z="0"/>
                             <Rotation x="0" y="0" z="0"/>
                             <Scale x="0" y="0" z="0"/>
-                            <Bone Name="Booster_L02">
+                            <Bone Name="Manteau_Bone_M02">
                                 <Translation x="0" y="0" z="0"/>
                                 <Rotation x="0" y="0" z="0"/>
                                 <Scale x="0" y="0" z="0"/>
                             </Bone>
                         </Bone>
-                        <Bone Name="Booster_R01">
+                        <Bone Name="Manteau_Bone_R01">
                             <Translation x="0" y="0" z="0"/>
                             <Rotation x="0" y="0" z="0"/>
                             <Scale x="0" y="0" z="0"/>
-                            <Bone Name="Booster_R02">
+                            <Bone Name="Manteau_Bone_R02">
                                 <Translation x="0" y="0" z="0"/>
                                 <Rotation x="0" y="0" z="0"/>
                                 <Scale x="0" y="0" z="0"/>
+                                <Bone Name="Manteau_Bone_R03">
+                                    <Translation x="0" y="0" z="0"/>
+                                    <Rotation x="0" y="0" z="0"/>
+                                    <Scale x="0" y="0" z="0"/>
+                                </Bone>
                             </Bone>
-                        </Bone>
-                        <Bone Name="Booster_RTop">
-                            <Translation x="0" y="0" z="0"/>
-                            <Rotation x="0" y="0" z="0"/>
-                            <Scale x="0" y="0" z="0"/>
-                        </Bone>
-                        <Bone Name="Booster_LTop">
-                            <Translation x="0" y="0" z="0"/>
-                            <Rotation x="0" y="0" z="0"/>
-                            <Scale x="0" y="0" z="0"/>
                         </Bone>
                     </Bone>
                 </Bone>
@@ -228,6 +238,16 @@
                         </Bone>
                     </Bone>
                 </Bone>
+            </Bone>
+            <Bone Name="HipLeft">
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="0" y="0" z="0"/>
+            </Bone>
+            <Bone Name="HipRight">
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="0" y="0" z="0"/>
             </Bone>
         </Bone>
     </Bone>

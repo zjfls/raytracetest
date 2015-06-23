@@ -283,6 +283,9 @@
       <Filter>头文件\Animation</Filter>
     </ClInclude>
     <ClInclude Include="SkeletonXmlLoader.h" />
+    <ClInclude Include="GizmoManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -520,5 +523,8 @@
       <Filter>源文件\Animation</Filter>
     </ClCompile>
     <ClCompile Include="SkeletonXmlLoader.cpp" />
+    <ClCompile Include="GizmoManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

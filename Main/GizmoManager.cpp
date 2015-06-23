@@ -12,9 +12,11 @@
 #include "MaterialPass.h"
 #include <string>
 #include "materialpass.h"
+#include "SkeletonObj.h"
+#include "skeleton.h"
 
 
-template class WORLD_API Singleton < GizmoManager >;
+template class MAIN_API Singleton < GizmoManager >;
 template<> SmartPointer<GizmoManager> Singleton<GizmoManager>::_instance = nullptr;
 
 
@@ -306,4 +308,37 @@ void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 			}
 		}
 	}
+}
+
+IWorldObj* ZG::GizmoManager::CreateSkeletonGizmo(SkeletonModule* pModule)
+{
+	IWorldObj* pObj = new IWorldObj;
+	IRenderable* pSkeletonArchi = pObj->addModule<IRenderable>().get();
+	pSkeletonArchi->m_pSharedMaterial = pSkeletonArchi->GetDefaultMaterial();
+
+	pSkeletonArchi->GetMaterialInstance()->SetArg<GameColor>("MainColor", GameColor::green * 1.0f);
+	RasterMaterial* mat = (RasterMaterial*)pSkeletonArchi->GetMaterialInstance().get();
+	stRenderState s;
+	s.m_eRenderState = ZTEST;
+	s.m_nValue = 0;
+	mat->SetRenderState(s);
+	DynamicVertexData* dVertexData = new DynamicVertexData;
+	pSkeletonArchi->m_pVertexData = dVertexData;
+	pSkeletonArchi->m_strName = "GridData";
+
+	int nNumVertex = 0;
+	//
+	for each (std::pair<int, SkeletonObj*> p in pModule->m_mapSkeletonObj)
+	{
+		SkeletonObj* pObj = p.second;
+		for (int i = 0; i < pObj->GetChildCount(); ++i)
+		{
+			dVertexData->m_PositionData.push_back(pObj->m_pTransform->GetWorldTranslate());
+			dVertexData->m_PositionData.push_back(pObj->GetChild(i)->m_pTransform->GetWorldTranslate());
+			nNumVertex += 2;
+		}
+	}
+	dVertexData->m_PrimitiveType = EPRIMITIVE_LINE;
+	dVertexData->m_nNumVertex = nNumVertex;
+	return pObj;
 }

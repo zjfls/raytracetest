@@ -9,7 +9,8 @@
 		class IWorldObj;
 		class IRenderable;
 		class TranslateGizmo;
-		class WORLD_API GizmoManager :public Singleton<GizmoManager>, public GameObjectBase
+		class SkeletonModule;
+		class MAIN_API GizmoManager :public Singleton<GizmoManager>, public GameObjectBase
 		{
 		public:
 			GizmoManager();
@@ -17,6 +18,7 @@
 
 			bool	Init();
 			void	BuildSelectObj(SmartPointer<IWorldObj> pSelObj);
+			IWorldObj* CreateSkeletonGizmo(SkeletonModule* pModule);
 		private:
 			void createTranlateGizmo();
 			void createRotationGizmo();
@@ -30,7 +32,7 @@
 			//
 			SmartPointer<IWorldObj>	 m_pSelectObjWireFrame;
 		};
-		extern template  class WORLD_API  Singleton < GizmoManager > ;
+		extern template  class MAIN_API  Singleton < GizmoManager >;
 	}
 
 

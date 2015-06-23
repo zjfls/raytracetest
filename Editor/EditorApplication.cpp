@@ -25,6 +25,7 @@
 #include "TranslateGizmo.h"
 #include "Ring.h"
 #include "IListener.h"
+#include "Skeleton.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -267,6 +268,14 @@ void ZG::EditorApplication::UpdateGizemo()
 		}
 		GizmoManager::GetInstance()->BuildSelectObj(m_SelectObj);
 		m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSelectObjWireFrame);
+	}
+
+	std::vector<SmartPointer<SkeletonModule>> vecSkeleton;
+	m_pWorld->m_pRoot->GetAllModuleRecursive<SkeletonModule>(vecSkeleton);
+	for each (SmartPointer<SkeletonModule> pSkeletonModule in vecSkeleton)
+	{
+		IWorldObj* pObj = GizmoManager::GetInstance()->CreateSkeletonGizmo(pSkeletonModule.get());
+		m_pGizmoScene->m_pRoot->addChild(pObj);
 	}
 	
 

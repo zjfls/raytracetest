@@ -37,6 +37,7 @@
     <ClInclude Include="FbxAppManager.h" />
     <ClInclude Include="FbxAsset.h" />
     <ClInclude Include="FbxFileLoader.h" />
+    <ClInclude Include="GizmoManager.h" />
     <ClInclude Include="HardwareBuffer.h" />
     <ClInclude Include="HardwareFragShader.h" />
     <ClInclude Include="HardwareIndexBuffer.h" />
@@ -122,6 +123,7 @@
     <ClCompile Include="FbxAppManager.cpp" />
     <ClCompile Include="FbxAsset.cpp" />
     <ClCompile Include="FbxFileLoader.cpp" />
+    <ClCompile Include="GizmoManager.cpp" />
     <ClCompile Include="HardwareBuffer.cpp" />
     <ClCompile Include="HardwareFragShader.cpp" />
     <ClCompile Include="HardwareIndexBuffer.cpp" />
