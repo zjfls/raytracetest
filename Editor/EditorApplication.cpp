@@ -35,6 +35,7 @@ EditorApplication::EditorApplication()
 	:m_eOperState(EditorApplication::EStateTranslate)
 	, m_eSelState(ESelNone)
 	, m_pGizmoScene(nullptr)
+	, m_bShowSkeletonGizmo(false)
 {
 
 }
@@ -270,13 +271,17 @@ void ZG::EditorApplication::UpdateGizemo()
 		m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSelectObjWireFrame);
 	}
 
-	std::vector<SmartPointer<SkeletonModule>> vecSkeleton;
-	m_pWorld->m_pRoot->GetAllModuleRecursive<SkeletonModule>(vecSkeleton);
-	for each (SmartPointer<SkeletonModule> pSkeletonModule in vecSkeleton)
+	if (m_bShowSkeletonGizmo == true)
 	{
-		IWorldObj* pObj = GizmoManager::GetInstance()->CreateSkeletonGizmo(pSkeletonModule.get());
-		m_pGizmoScene->m_pRoot->addChild(pObj);
+		std::vector<SmartPointer<SkeletonModule>> vecSkeleton;
+		m_pWorld->m_pRoot->GetAllModuleRecursive<SkeletonModule>(vecSkeleton);
+		for each (SmartPointer<SkeletonModule> pSkeletonModule in vecSkeleton)
+		{
+			IWorldObj* pObj = GizmoManager::GetInstance()->CreateSkeletonGizmo(pSkeletonModule.get());
+			m_pGizmoScene->m_pRoot->addChild(pObj);
+		}
 	}
+
 	
 
 }

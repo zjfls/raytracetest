@@ -63,19 +63,19 @@ void ZG::AnimationTrack::Update()
 			fAniTime = m_pResource->m_fLegnth - temp;
 		}
 	}
-	std::cout << "animationTime:" << fAniTime << std::endl;
+	//std::cout << "animationTime:" << fAniTime << std::endl;
 	for each (std::pair<std::string,SmartPointer<AnimationBindBase>> p in m_mapAnims)
 	{
-		if (p.first == "Bip01-Pelvis")
-		{
-			int c = 0;
-		}
+		//if (p.first == "Bip01-Pelvis")
+		//{
+		//	int c = 0;
+		//}
 		p.second->EvaluateDirect(fAniTime);
 
 		if (p.first == "Bip01-Pelvis")
 		{
 			AnimationBind<stTransformData>* pTrans = (AnimationBind<stTransformData>*)p.second.get();
-			std::cout << "anirotdata:" << pTrans->m_pValue->m_vecRotation.m_fx << " " << pTrans->m_pValue->m_vecRotation.m_fy << " " << pTrans->m_pValue->m_vecRotation.m_fz << std::endl;
+			//std::cout << "anirotdata:" << pTrans->m_pValue->m_vecRotation.m_fx << " " << pTrans->m_pValue->m_vecRotation.m_fy << " " << pTrans->m_pValue->m_vecRotation.m_fz << std::endl;
 		}
 	}
 }

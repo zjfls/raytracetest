@@ -11,6 +11,7 @@ namespace ZG
 	class IWorldObj;
 	class MaterialResource;
 	class SkeletonObj;
+	class SkeletonModule;
 	class MAIN_API FbxFileLoader :
 		public IAssetLoader
 	{
@@ -34,15 +35,19 @@ namespace ZG
 		void		ProcessAnimation(bool bPerFrame = false);
 		void		SetWorldObjPropByFbxNode(IWorldObj* pObj, FbxNode* pFbxObj);
 		void		SplitMeshDataByBone();
-		void		InitSkeletonCluster(FbxNode* pSkeletonRoot);
+		void		InitSkeletonCluster();
+		void		PreGetMesh(FbxNode* pNode);
+		FbxNode*	GetWorldNodeByFbxNode(IWorldObj* pObj);
+		bool		IsSkeletonMesh(SkeletonResource* pResource, FbxMesh* pMesh);
 		FbxFileLoader()
 		{
 		}
-		void ProcessSkeletonRoot(IWorldObj* pObj);
+		void ProcessSkeletonRoot(SkeletonModule* pModule, IWorldObj* pMeshObj);
 		void PostProcessSkinMesh(IWorldObj* pRoot);
 		friend class AssetManager;
 		string m_fileDir;
 		std::vector<FbxMesh*> vecMeshList;
+		std::vector<FbxMesh*> vecDoneMeshList;
 		std::map<FbxSkeleton*, SmartPointer<SkeletonResource>> m_mapSkeleton;
 		std::map<FbxSkeleton*, SmartPointer<IWorldObj>> m_mapSkeObj;
 		std::map<FbxSurfaceMaterial*, SmartPointer<MaterialResource>> m_mapMaterial;
@@ -51,6 +56,10 @@ namespace ZG
 		std::map<FbxNode*, IWorldObj*> m_mapFbxToObj;
 		std::map<FbxNode*, FbxCluster*> m_NodeToCluster;
 		std::string m_strFbxAssetName;
+
+		FbxNode* m_pRootFbxNode;
+
+		//std::vector<FbxMesh*> vecMesh;
 	};
 
 }

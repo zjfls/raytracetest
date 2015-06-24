@@ -27,10 +27,10 @@ SkeletonModule::~SkeletonModule()
 
 void SkeletonModule::AddMesh(SmartPointer<Mesh> pMesh)
 {
-	if (m_pOwnerObj->IsHaveModule<Mesh>(pMesh) == false)
-	{
-		return;
-	}
+	//if (m_pOwnerObj->IsHaveModule<Mesh>(pMesh) == false)
+	//{
+	//	return;
+	//}
 	for each (SmartPointer<Mesh> var in m_MeshVec)
 	{
 		if (var == pMesh)
@@ -128,7 +128,7 @@ void ZG::SkeletonModule::OnInitialize()
 	}
 	int nChild = m_pOwnerObj->GetChildCount();
 	std::vector < SmartPointer<Mesh>> vecMesh;
-	m_pOwnerObj->GetAllModule<Mesh>(vecMesh);
+	m_pOwnerObj->GetAllModuleRecursive<Mesh>(vecMesh);
 	//
 	for each (SmartPointer<Mesh> pMesh in vecMesh)
 	{
@@ -207,5 +207,5 @@ bool ZG::SkeletonModule::PlayAnimation(AnimationTrack* pTrack)
 
 void ZG::SkeletonModule::OnStart()
 {
-	//AnimationModule::OnStart();
+	AnimationModule::OnStart();
 }

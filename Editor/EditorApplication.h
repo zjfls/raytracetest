@@ -61,6 +61,7 @@ namespace ZG
 		ESelectOperState m_eSelState;
 		//
 		SmartPointer<IWorld> m_pGizmoScene;
+		bool m_bShowSkeletonGizmo;
 	};
 
 	extern template  class EDITOR_API  Singleton < EditorApplication > ;
