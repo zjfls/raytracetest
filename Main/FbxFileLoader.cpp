@@ -61,6 +61,19 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	pImporter->Destroy();
 
 	//
+	FbxAxisSystem SceneAxisSystem = pAsset->m_pFbxScene->GetGlobalSettings().GetAxisSystem();
+	if (SceneAxisSystem != FbxAxisSystem::DirectX)
+	{
+		FbxAxisSystem::DirectX.ConvertScene(pAsset->m_pFbxScene);
+	}
+	//
+	FbxSystemUnit SceneSystemUnit = pAsset->m_pFbxScene->GetGlobalSettings().GetSystemUnit();
+	if (SceneSystemUnit.GetScaleFactor() != 1.0)
+	{
+		// センチメーター単位にコンバートする
+		FbxSystemUnit::cm.ConvertScene(pAsset->m_pFbxScene);
+	}
+	//
 	FbxNode* pRootNode = pAsset->m_pFbxScene->GetRootNode();
 	if (pRootNode == nullptr)
 	{
