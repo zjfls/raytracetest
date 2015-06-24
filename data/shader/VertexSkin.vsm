@@ -2,7 +2,7 @@ float4x4 MATRIX_WORLD;	// World * View * Projection transformatio
 float4x4 MATRIX_VP;			//Projection
 float3 VIEW_POS;			//Camera Position
 float4x4 MATRIX_INVERSETRANSPOSEWV;
-float4x3 SKINMATRIX_ARRAY[64];
+float4x3 SKINMATRIX_ARRAY[70];
 //-----------------------------------------------------------------------------
 // Vertex shader output structure
 //-----------------------------------------------------------------------------

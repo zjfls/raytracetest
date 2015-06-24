@@ -1,7 +1,7 @@
 #pragma once
 namespace ZG
 {
-#define MAX_BONE_NUMBER 64
+#define MAX_BONE_NUMBER 70
 	enum EFILLMODE
 	{
 		EFILLMODE_POINT = 1,
