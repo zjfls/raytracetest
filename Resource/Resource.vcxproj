@@ -100,6 +100,7 @@
     <ClInclude Include="RasterMaterial.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resource_Dll_Def.h" />
+    <ClInclude Include="SceneResource.h" />
     <ClInclude Include="SkeletonResource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="PrefabResource.cpp" />
     <ClCompile Include="RasterMaterial.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SceneResource.cpp" />
     <ClCompile Include="SkeletonResource.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

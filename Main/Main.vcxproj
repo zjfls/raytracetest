@@ -82,6 +82,7 @@
     <ClInclude Include="RenderView.h" />
     <ClInclude Include="ResDef.h" />
     <ClInclude Include="Resource_Dll_Def.h" />
+    <ClInclude Include="SceneAssetLoader.h" />
     <ClInclude Include="ShaderAsset.h" />
     <ClInclude Include="ShaderAssetLoader.h" />
     <ClInclude Include="ShaderGenerator.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="SimpleRTMaterial.h" />
     <ClInclude Include="SimpleWorld.h" />
     <ClInclude Include="SimpleWorldObj.h" />
+    <ClInclude Include="SingleResourceAsset.h" />
     <ClInclude Include="skeleton.h" />
     <ClInclude Include="SkeletonAsset.h" />
     <ClInclude Include="SkeletonLoader.h" />
@@ -102,6 +104,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="WindowsIO.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
+    <ClInclude Include="XmlSceneLoadHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationAsset.cpp" />
@@ -165,6 +168,7 @@
     <ClCompile Include="RenderTargetGroup.cpp" />
     <ClCompile Include="RenderView.cpp" />
     <ClCompile Include="ResDef.cpp" />
+    <ClCompile Include="SceneAssetLoader.cpp" />
     <ClCompile Include="ShaderAsset.cpp" />
     <ClCompile Include="ShaderAssetLoader.cpp" />
     <ClCompile Include="ShaderGenerator.cpp" />
@@ -172,6 +176,7 @@
     <ClCompile Include="SimpleRTMaterial.cpp" />
     <ClCompile Include="SimpleWorld.cpp" />
     <ClCompile Include="SimpleWorldObj.cpp" />
+    <ClCompile Include="SingleResourceAsset.cpp" />
     <ClCompile Include="skeleton.cpp" />
     <ClCompile Include="SkeletonAsset.cpp" />
     <ClCompile Include="SkeletonLoader.cpp" />
@@ -187,6 +192,7 @@
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="WindowsIO.cpp" />
     <ClCompile Include="XmlPrefabLoader.cpp" />
+    <ClCompile Include="XmlSceneLoadHelper.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AF6CE8CE-B4BB-4D19-931A-B6EFFAC0EBAF}</ProjectGuid>

@@ -26,6 +26,7 @@
 #include "Ring.h"
 #include "IListener.h"
 #include "Skeleton.h"
+#include "SceneResource.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -287,6 +288,17 @@ void ZG::EditorApplication::UpdateGizemo()
 }
 
 void ZG::EditorApplication::OnClickScene(SmartPointer<CameraBase> pCamera, SmartPointer<RenderView> pRenderView)
+{
+
+}
+
+void ZG::EditorApplication::SaveScene(std::string fileName)
+{
+	SceneResource* pRes = ResourceManager<SceneResource>::GetInstance()->CreateResource<SceneResource>("fileName").get();
+	pRes->m_pRoot = m_pWorld->m_pRoot;
+}
+
+void ZG::EditorApplication::LoadScene(std::string fileName)
 {
 
 }

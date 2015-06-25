@@ -1,5 +1,4 @@
 #pragma once
-#include "IAssetLoader.h"
 namespace tinyxml2
 {
 	class XMLDocument;
@@ -8,20 +7,15 @@ namespace tinyxml2
 namespace ZG
 {
 	class IWorldObj;
-	class Mesh;
-	class Transform;
-	class MaterialResource;
 	class RasterMaterial;
-	class MAIN_API XmlPrefabLoader :
-		public IAssetLoader
+	class Transform;
+	class Mesh;
+	class XmlSceneLoadHelper
 	{
 	public:
-
-		~XmlPrefabLoader();
-
-		virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
-		virtual bool	Save(IAsset* pAsset);
-	public:
+		XmlSceneLoadHelper();
+		~XmlSceneLoadHelper();
+		//load
 		static void LoadProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem);
 		static void LoadProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem);
 		static void LoadProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem);
@@ -29,9 +23,15 @@ namespace ZG
 		static void LoadWorldObjElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj);
 		static void LoadTransformElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj);
 		static void LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj);
-		friend class AssetManager;
-	private:
-		XmlPrefabLoader();
-	};
 
+		//save
+		static void SaveProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem);
+		static void SaveProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem);
+		//void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, MaterialResource* pMat, tinyxml2::XMLElement* pElem);
+		static void SaveProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem);
+		static void SaveProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem);
+		//
+	};
 }
+
+

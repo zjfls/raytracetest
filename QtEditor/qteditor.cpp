@@ -131,6 +131,7 @@ QtEditor::QtEditor(QWidget *parent)
 	QTimer *timer = new QTimer(this); 
 	//tool bar
 	CreateToolBar();
+	CreateMenuBar();
 	//新建定时器
 	connect(m_pSceneTreeView, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this, SLOT(SceneTreeItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
 	connect(timer, SIGNAL(timeout()), this, SLOT(OnTimer()));
@@ -298,6 +299,54 @@ void QtEditor::CreateToolBar()
 {
 	m_pCommonToolBar = new CommonToolBar(tr("CommonToolBar"), this);
 	addToolBar(Qt::LeftToolBarArea, m_pCommonToolBar);
+}
+
+void ZG::QtEditor::CreateMenuBar()
+{
+	connect(menuBar(), SIGNAL(triggered(QAction*)), this, SLOT(onMenuActionTrigger(QAction*)));
+	QMenu *m_pFileMenu = menuBar()->addMenu(tr("&File"));
+	QAction *pLoadScene = m_pFileMenu->addAction(tr("Load Scene..."));
+	QAction *pSaveScene = m_pFileMenu->addAction(tr("Save Scene..."));
+	QAction *pSaveSceneAs = m_pFileMenu->addAction(tr("Save Scene As..."));
+	pLoadScene->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+	pSaveScene->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+	pSaveSceneAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+	m_mapMenuBarAction[pSaveScene] = "FILE_SAVE_SCENE";
+	m_mapMenuBarAction[pLoadScene] = "FILE_LOAD_SCENE";
+	m_mapMenuBarAction[pSaveSceneAs] = "FILE_SAVE_SCENE_AS";
+
+}
+
+void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
+{
+	std::map<QAction*, std::string>::iterator iter = m_mapMenuBarAction.find(pAction);
+	if (iter == m_mapMenuBarAction.end())
+	{
+		return;
+	}
+	if (iter->second == "FILE_SAVE_SCENE_AS")
+	{
+		QString fileName
+			= QFileDialog::getSaveFileName(this, tr("Save Scene File"), "./data", tr("Scene (*.scene.xml *.scene)"));
+		if (fileName.isEmpty())
+			return;
+		EditorApplication::GetInstance()->SaveScene(fileName.toStdString());
+	}
+	if (iter->second == "FILE_SAVE_SCENE")
+	{
+		QString fileName
+			= QFileDialog::getSaveFileName(this, tr("Save Scene File"), "./data", tr("Scene (*.scene.xml *.scene)"));
+		if (fileName.isEmpty())
+			return;
+		EditorApplication::GetInstance()->SaveScene(fileName.toStdString());
+	}
+	if (iter->second == "FILE_LOAD_SCENE")
+	{
+		QString fileName
+			= QFileDialog::getOpenFileName(this, tr("Save Scene File"), "./data", tr("Scene (*.scene.xml *.scene)"));
+		if (fileName.isEmpty())
+			return;
+	}
 }
 
 //void QtEditor::DataItemClicked(const QModelIndex &)

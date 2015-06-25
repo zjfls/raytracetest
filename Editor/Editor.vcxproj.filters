@@ -51,6 +51,9 @@
     <ClInclude Include="EditorModuleProperty.h">
       <Filter>头文件\ModuleProperty</Filter>
     </ClInclude>
+    <ClInclude Include="ScenePrefabManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="EditorModuleProperty.cpp">
       <Filter>源文件\ModuleProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePrefabManager.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

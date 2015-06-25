@@ -6,3 +6,13 @@ Material的VertexShader
 实现vertexshader自动生成之后，这些步骤需要去掉，
 不然在编辑器里不能保存材质
 /////////////////////////////////////////////
+SkeletonModule OnInitialize中，获取子节点所有SkinMesh
+作为，并添加到SkeletonModule中，
+
+以后需要判断下面是否有子SkeletonModule，子SkeletonModule中的
+SkinMesh由子SkeletonModule处理
+/////////////////////////////////////////////
+FbxFileLoader中，直接将骨骼挂接到了根节点上，需要找到其真实骨骼节点，否则在有多个骨骼的系统中将难以处理
+/////////////////////////////////////////////
+SkinMesh的frustrum cull和pick gizmo
+/////////////////////////////////////////////

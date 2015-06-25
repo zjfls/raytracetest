@@ -35,6 +35,7 @@ namespace ZG
 		private slots:
 		void	OnTimer();
 		void	SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);
+		void	onMenuActionTrigger(QAction* pAction);
 		//void	DataItemClicked(const QModelIndex &);
 		//void	valueChanged(QtProperty *pProp, const QVariant &variant);
 		//
@@ -42,15 +43,18 @@ namespace ZG
 		void	InitSceneTreeView();
 		void	AddSceneTreeViewItem(QtSceneTreeItem* pParent, SmartPointer<IWorldObj> pObj);
 		void	CreateToolBar();
+		void	CreateMenuBar();
 		//
 	private:
 		Ui::QtEditorClass ui;
 		QTabWidget* m_pTabWidget;
 		WorldObjPropertyBrowser* m_pTreePropertyBrowser;
-
+		
 
 		//
 		CommonToolBar* m_pCommonToolBar;
+		QMenu*	m_pFileMenu;
+		std::map<QAction*,std::string> m_mapMenuBarAction;
 	public:
 		SceneTreeView* m_pSceneTreeView;
 		QListDataView* m_pDataView;

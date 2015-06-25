@@ -286,6 +286,9 @@
     <ClInclude Include="GizmoManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SingleResourceAsset.h" />
+    <ClInclude Include="SceneAssetLoader.h" />
+    <ClInclude Include="XmlSceneLoadHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -526,5 +529,8 @@
     <ClCompile Include="GizmoManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SingleResourceAsset.cpp" />
+    <ClCompile Include="SceneAssetLoader.cpp" />
+    <ClCompile Include="XmlSceneLoadHelper.cpp" />
   </ItemGroup>
 </Project>

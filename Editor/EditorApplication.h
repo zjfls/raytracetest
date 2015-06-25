@@ -39,14 +39,16 @@ namespace ZG
 		bool	RemoveView(int id);
 		void	UpdateGizemo();
 		void	Run();
+		//
+		void	SaveScene(std::string fileName);
+		void	LoadScene(std::string fileName);
 		std::map<int, EditorRenderView*> m_ViewMap;
-		//RenderView* CreateRenderView(int WindowID);
 		virtual void SetupScene();
 		virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
 		//
 		void	OnSelectChange(SmartPointer<IWorldObj> pObj);
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
-
+		
 		virtual void OnInit();
 	private:
 	public:

@@ -63,6 +63,7 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	m_fileDir = getFileDirectory(path);
 	m_strFbxAssetName = getFileName(path);
 	m_strFbxAssetName = removeSuffix(m_strFbxAssetName);
+	m_exportResDir = m_fileDir + "/" + m_strFbxAssetName + "/";
 	FbxAsset* pAsset = new FbxAsset;
 	m_pAsset = pAsset;
 	pAsset->m_strPath = path;
@@ -144,16 +145,16 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	}
 
 
-	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(strPrefabPath + m_strFbxAssetName + ".prefab.xml");
+	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(m_exportResDir + m_strFbxAssetName + ".prefab.xml");
 	pPrefab->m_pRoot = pRoot;
-	pAsset->AddResource(m_fileDir + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
+	pAsset->AddResource(m_exportResDir + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
 	pRoot->m_strName = getFileNameWithoutSuffix(path);
 
 	if (pPrefab != nullptr)
 	{
 		PrefabAsset prefabAsset;
-		prefabAsset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".prefab.xml";
-		prefabAsset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
+		prefabAsset.m_strPath = m_exportResDir + m_strFbxAssetName + ".prefab.xml";
+		prefabAsset.AddResource(m_exportResDir + m_strFbxAssetName + ".prefab.xml", pPrefab.get());
 		//AssetManager::GetInstance()->Save(&prefabAsset);
 
 	}
@@ -161,8 +162,8 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	if (pSkeleRes != nullptr)
 	{
 		PrefabAsset skelAasset;
-		skelAasset.m_strPath = getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml";
-		skelAasset.AddResource(getFileDirectory(path) + m_strFbxAssetName + ".skeleton.xml", pSkeleRes);
+		skelAasset.m_strPath = m_exportResDir + m_strFbxAssetName + ".skeleton.xml";
+		skelAasset.AddResource(m_exportResDir + m_strFbxAssetName + ".skeleton.xml", pSkeleRes);
 		//AssetManager::GetInstance()->Save(&skelAasset);
 
 	}
@@ -219,8 +220,8 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, SmartPointer<
 				SkeletonModule* pSklModule = m_mapFbxToObj[m_pRootFbxNode]->addModule<SkeletonModule>().get();
 				pSklModule->m_strName = m_pRootFbxNode->GetName();
 				//
-				std::string skeletonPath = m_pAsset->m_strPath;
-				skeletonPath = getFileDirectory(m_pAsset->m_strPath);
+				std::string skeletonPath = m_exportResDir;
+				//skeletonPath = getFileDirectory(m_pAsset->m_strPath);
 				if (m_SkeletonToFbxNode.size() == 0)
 				{
 					skeletonPath = skeletonPath + m_strFbxAssetName + ".skeleton.xml";
@@ -275,11 +276,11 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 	}
 	vecDoneMeshList.push_back(pMesh);
 	//
-	std::string refPath = strMeshPath + pNode->GetName() + ".mesh";
+	std::string refPath = m_exportResDir + pNode->GetName() + ".mesh";
 	//
 	if (ResourceManager<MeshResource>::GetInstance()->GetResource(refPath) != nullptr)
 	{
-		refPath = strMeshPath + pNode->GetName() + "a" + ".mesh";
+		refPath = m_exportResDir + pNode->GetName() + "_d" + ".mesh";
 	}
 
 	//vecMeshList.push_back(pMesh);
@@ -863,7 +864,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 			continue;;
 		}
 		string meshName = getFileNameWithoutSuffix(refPath);
-		string subRefPath = strMeshPath + meshName + "_" + pMat->GetName() + ".mesh";
+		string subRefPath = m_exportResDir + meshName + "_" + pMat->GetName() + ".mesh";
 		SmartPointer<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
 		m_pAsset->AddResource(subRefPath, pSubMesh.get());
 		SmartPointer<Mesh> pSubMeshModule = obj->addModule<Mesh>();
@@ -1132,7 +1133,7 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 	FbxProperty pProp = pSrfPhong->GetFirstProperty();
 
 
-	SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(strMaterialPath + pMat->GetName() + ".smat.xml");
+	SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(m_exportResDir + pMat->GetName() + ".smat.xml");
 	m_mapMaterial[pMat] = pMatRes.get();
 
 	while (pProp.IsValid())
@@ -1156,15 +1157,18 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				pMatRes->AddArg(strProperty, matSampler);
 
 
-				std::string texPath = strTexturePath + fileName;
-				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				std::string texPath = m_exportResDir + fileName;
+				if (_access((m_exportResDir + fileName).c_str(), 0) == -1)
 				{
-					CpyFile(pTex->GetName(), strTexturePath + fileName);
+					CpyFile(pTex->GetName(), m_exportResDir + fileName);
+				}
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				{
+					texPath = strTexturePath + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);
-
-				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				if (_access((fbxPath + fileName).c_str(), 0) != -1)
 				{
 					texPath = fbxPath + "/" + pTex->GetName();
 				}
@@ -1176,33 +1180,67 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
-				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				
+				std::string texPath = m_exportResDir + fileName;
+				if (_access((m_exportResDir + fileName).c_str(), 0) == -1)
 				{
-					CpyFile(pTex->GetName(), strTexturePath + fileName);
+					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				{
+					texPath = strTexturePath + fileName;
+				}
+				std::string fbxPath = m_pAsset->m_strPath;
+				fbxPath = getFileDirectory(fbxPath);
+				if (_access((fbxPath + fileName).c_str(), 0) != -1)
+				{
+					texPath = fbxPath + "/" + pTex->GetName();
+				}
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(texPath).get();
 			}
 			else if (_tcsstr(strProperty.c_str(), "Normal") != nullptr)
 			{
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
-				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				std::string texPath = m_exportResDir + fileName;
+				if (_access((m_exportResDir + fileName).c_str(), 0) == -1)
 				{
-					CpyFile(pTex->GetName(), strTexturePath + fileName);
+					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				{
+					texPath = strTexturePath + fileName;
+				}
+				std::string fbxPath = m_pAsset->m_strPath;
+				fbxPath = getFileDirectory(fbxPath);
+				if (_access((fbxPath + fileName).c_str(), 0) != -1)
+				{
+					texPath = fbxPath + "/" + pTex->GetName();
+				}
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(texPath).get();
 			}
 			else if (_tcsstr(strProperty.c_str(), "Emissive") != nullptr)
 			{
 				TMatArg<TextureSampler>* matSampler = new TMatArg<TextureSampler>(EMATARGTYPESAMPLER);
 				matSampler->m_strName = strProperty;
 				pMatRes->AddArg(strProperty, matSampler);
-				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(strTexturePath + fileName).get();
-				if (_access((strTexturePath + fileName).c_str(), 0) == -1)
+				std::string texPath = m_exportResDir + fileName;
+				if (_access((m_exportResDir + fileName).c_str(), 0) == -1)
 				{
-					CpyFile(pTex->GetName(), strTexturePath + fileName);
+					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				{
+					texPath = strTexturePath + fileName;
+				}
+				std::string fbxPath = m_pAsset->m_strPath;
+				fbxPath = getFileDirectory(fbxPath);
+				if (_access((fbxPath + fileName).c_str(), 0) != -1)
+				{
+					texPath = fbxPath + "/" + pTex->GetName();
+				}
+				matSampler->m_Data.m_pTexture = ResourceManager<Texture>::GetInstance()->CreateResource<Texture2D>(texPath).get();
 			}
 		}
 		MaterialPass* pPass = new MaterialPass();
@@ -1303,7 +1341,7 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 				_itoa_s(i, temp, 10, 10);
 				aniName = aniName + temp;
 			}
-			std::string refPath = getFileDirectory(path) + aniName + ".animation.xml";
+			std::string refPath = m_exportResDir + aniName + ".animation.xml";
 			AnimationResource* pAniRes = ResourceManager<AnimationResource>::GetInstance()->CreateResource<AnimationResource>(refPath).get();
 			pAniRes->m_bIsSkinAnimation = true;
 			pAniRes->m_eAniMode = EANILOOP;

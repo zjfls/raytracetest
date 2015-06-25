@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "XmlPrefabLoader.h"
+#include "XmlSceneLoadHelper.h"
+#include "tinyxml2.h"
 #include "PrefabAsset.h"
 #include "tinyxml2.h"
 #include "IWorldObj.h"
@@ -14,39 +15,19 @@
 #include "Transform.h"
 #include "MeshResource.h"
 #include "RasterMaterial.h"
-
-//extern template  class __declspec(dllimport) Singleton < ResourceManager<MeshResource> >;
-
 using namespace tinyxml2;
-XmlPrefabLoader::XmlPrefabLoader()
+
+XmlSceneLoadHelper::XmlSceneLoadHelper()
 {
 }
 
 
-XmlPrefabLoader::~XmlPrefabLoader()
+XmlSceneLoadHelper::~XmlSceneLoadHelper()
 {
 }
 
-IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
-{
-	PrefabAsset* pPrefabAsset = new PrefabAsset;
-	pPrefabAsset->m_strPath = path;
-	m_pAsset = pPrefabAsset;
-	XMLDocument doc;
-	doc.LoadFile(path.c_str());
-	XMLElement* pElem = doc.FirstChildElement("WorldObj");
-	SmartPointer<IWorldObj> pRoot = SmartPointer<IWorldObj>(new IWorldObj);
-	LoadWorldObjElem(pElem, pRoot);
-	//Prefab* pPrefab = new Prefab;
-	//pPrefab->m_pRoot = pRoot;
-	SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->CreateResource<PrefabResource>(path);
-	pPrefab->m_pRoot = pRoot;
-	pPrefabAsset->AddResource(path, pPrefab.get());
-	pRoot->m_strName = getFileNameWithoutSuffix(path);
-	return pPrefabAsset;
-}
 
-void XmlPrefabLoader::LoadWorldObjElem(XMLElement* pElem, SmartPointer<IWorldObj> pObj)
+void XmlSceneLoadHelper::LoadWorldObjElem(XMLElement* pElem, SmartPointer<IWorldObj> pObj)
 {
 	//char temp[128];
 	pObj->m_strName = pElem->Attribute("name");
@@ -74,7 +55,7 @@ void XmlPrefabLoader::LoadWorldObjElem(XMLElement* pElem, SmartPointer<IWorldObj
 
 }
 
-void XmlPrefabLoader::LoadTransformElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj)
+void XmlSceneLoadHelper::LoadTransformElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj)
 {
 	//XMLElement* pTransform = pElem->FirstChildElement("Transform");
 	XMLElement* pTrans = pElem->FirstChildElement("Translation");
@@ -99,7 +80,7 @@ void XmlPrefabLoader::LoadTransformElem(tinyxml2::XMLElement* pElem, SmartPointe
 	trans->SetOrientation(r.m_fx, r.m_fy, r.m_fz);
 }
 
-void XmlPrefabLoader::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj)
+void XmlSceneLoadHelper::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj)
 {
 	string path = pElem->Attribute("refPath");
 	SmartPointer<Mesh> pMesh = pObj->addModule<Mesh>();
@@ -126,28 +107,9 @@ void XmlPrefabLoader::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWo
 
 }
 
-bool ZG::XmlPrefabLoader::Save(IAsset* pAsset)
-{
-	m_pAsset = pAsset;
-	std::string path = pAsset->m_strPath;
-	PrefabResource* pRes = pAsset->GetResource<PrefabResource>();
-	if (pRes == nullptr)
-	{
-		return false;
-	}
-	XMLDocument doc;
-	//XMLDeclaration *declare = new XMLDeclaration("1.0");
-	doc.LinkEndChild(doc.NewDeclaration("xml version=\"1.0\" encoding=\"UTF-8\""));
-	doc.LinkEndChild(doc.NewComment("prefab resource"));
-	tinyxml2::XMLElement* root = doc.NewElement("WorldObj");
-	doc.LinkEndChild(root);
-	LoadProcessWorldObj(doc, pRes->m_pRoot, root);
-	doc.SaveFile(path.c_str());
 
-	return true;
-}
 
-void ZG::XmlPrefabLoader::LoadProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem)
+void ZG::XmlSceneLoadHelper::LoadProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem)
 {
 	if (pObj == nullptr || elem == nullptr)
 	{
@@ -188,7 +150,7 @@ void ZG::XmlPrefabLoader::LoadProcessWorldObj(tinyxml2::XMLDocument& doc, SmartP
 	}
 }
 
-void ZG::XmlPrefabLoader::LoadProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem)
+void ZG::XmlSceneLoadHelper::LoadProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem)
 {
 	Vector3 translate = pTrans->GetLocalTranslate();
 	Vector3 scale = pTrans->GetScale();
@@ -213,7 +175,7 @@ void ZG::XmlPrefabLoader::LoadProcessTransformModule(tinyxml2::XMLDocument& doc,
 	pElemS->SetAttribute("z", scale.m_fz);
 }
 
-void ZG::XmlPrefabLoader::LoadProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem)
+void ZG::XmlSceneLoadHelper::LoadProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
 	if (pMesh->m_pSharedMaterial == nullptr)
@@ -226,7 +188,110 @@ void ZG::XmlPrefabLoader::LoadProcessMeshModule(tinyxml2::XMLDocument& doc, Smar
 	LoadProcessMaterial(doc, pMesh->m_pSharedMaterial.SmartPointerCast<RasterMaterial>(), pMatElem);
 }
 
-void ZG::XmlPrefabLoader::LoadProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
+void ZG::XmlSceneLoadHelper::LoadProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
+{
+	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
+	for each (std::pair<string, MaterialArg*> pair in pMaterial->m_matArgs)
+	{
+		switch (pair.second->m_EType)
+		{
+			case EMATARGTYPESAMPLER:
+			{
+				//XMLElement* pElemSamp = doc.NewElement("Sampler");
+				//pElemSamp->SetAttribute("Name", pair.first.c_str());
+
+				//TextureSampler* pTexSampler = pair.second->GetData<TextureSampler>();
+				//pElemSamp->SetAttribute("Ref", pTexSampler->m_pTexture->GetRefPath().c_str());
+				//pElem->LinkEndChild(pElemSamp);
+			}
+			break;
+			default:
+			break;
+		}
+	}
+}
+
+void ZG::XmlSceneLoadHelper::SaveProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem)
+{
+	if (pObj == nullptr || elem == nullptr)
+	{
+		return;
+	}
+	elem->SetAttribute("name", pObj->m_strName.c_str());
+	unsigned int nModuleCount = pObj->GetModuleCount();
+	for (unsigned int i = 0; i < nModuleCount; ++i)
+	{
+		SmartPointer<ModuleBase> pModule = pObj->GetModule(i);
+		SmartPointer<Transform> pTrans = pModule.SmartPointerCast<Transform>();
+		if (pTrans != nullptr)
+		{
+			XMLElement* pElemTrans = doc.NewElement("Transform");
+			SaveProcessTransformModule(doc, pTrans, pElemTrans);
+			elem->LinkEndChild(pElemTrans);
+			continue;
+		}
+		SmartPointer<Mesh> pMesh = pModule.SmartPointerCast<Mesh>();
+		if (pMesh != nullptr)
+		{
+			XMLElement* pElementMesh = doc.NewElement("Mesh");
+			SaveProcessMeshModule(doc, pMesh, pElementMesh);
+			elem->LinkEndChild(pElementMesh);
+
+			continue;
+		}
+
+	}
+
+	unsigned int nChildCount = pObj->GetChildCount();
+	for (unsigned int i = 0; i < nChildCount; ++i)
+	{
+		SmartPointer<IWorldObj> pChild = pObj->GetChild(i);
+		XMLElement* pChildElem = doc.NewElement("WorldObj");
+		elem->LinkEndChild(pChildElem);
+		SaveProcessWorldObj(doc, pChild, pChildElem);
+	}
+}
+
+void ZG::XmlSceneLoadHelper::SaveProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem)
+{
+	pElem->SetAttribute("refPath", pMesh->GetMeshResource()->GetRefPath().c_str());
+	if (pMesh->m_pSharedMaterial == nullptr)
+	{
+		return;
+	}
+	XMLElement* pMatElem = doc.NewElement("Material");
+	pElem->LinkEndChild(pMatElem);
+	//pMatElem->SetAttribute("Name", "testmat");
+	SaveProcessMaterial(doc, pMesh->m_pSharedMaterial.SmartPointerCast<RasterMaterial>(), pMatElem);
+}
+
+void ZG::XmlSceneLoadHelper::SaveProcessTransformModule(tinyxml2::XMLDocument& doc, SmartPointer<Transform> pTrans, tinyxml2::XMLElement* pElem)
+{
+	Vector3 translate = pTrans->GetLocalTranslate();
+	Vector3 scale = pTrans->GetScale();
+	Vector3 rotation = pTrans->GetRotation();
+	XMLElement* pElemT = doc.NewElement("Translation");
+	XMLElement* pElemS = doc.NewElement("Scale");
+	XMLElement* pElemR = doc.NewElement("Rotation");
+	pElem->LinkEndChild(pElemT);
+	pElem->LinkEndChild(pElemR);
+	pElem->LinkEndChild(pElemS);
+	//
+	pElemT->SetAttribute("x", translate.m_fx);
+	pElemT->SetAttribute("y", translate.m_fy);
+	pElemT->SetAttribute("z", translate.m_fz);
+
+	pElemR->SetAttribute("x", rotation.m_fx);
+	pElemR->SetAttribute("y", rotation.m_fy);
+	pElemR->SetAttribute("z", rotation.m_fz);
+
+	pElemS->SetAttribute("x", scale.m_fx);
+	pElemS->SetAttribute("y", scale.m_fy);
+	pElemS->SetAttribute("z", scale.m_fz);
+	//
+}
+
+void ZG::XmlSceneLoadHelper::SaveProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
 	for each (std::pair<string, MaterialArg*> pair in pMaterial->m_matArgs)

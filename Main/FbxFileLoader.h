@@ -45,7 +45,8 @@ namespace ZG
 		void ProcessSkeletonRoot(SkeletonModule* pModule, IWorldObj* pMeshObj);
 		void PostProcessSkinMesh(IWorldObj* pRoot);
 		friend class AssetManager;
-		string m_fileDir;
+		std::string m_fileDir;
+		std::string m_exportResDir;
 		std::vector<FbxMesh*> vecMeshList;
 		std::vector<FbxMesh*> vecDoneMeshList;
 		std::map<FbxSkeleton*, SmartPointer<SkeletonResource>> m_mapSkeleton;

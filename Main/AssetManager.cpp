@@ -11,6 +11,7 @@
 #include "SkeletonXmlLoader.h"
 #include "IAsset.h"
 #include <assert.h>
+#include "SceneAssetLoader.h"
 template class MAIN_API  Singleton < AssetManager >;
 template<> SmartPointer<AssetManager> Singleton<AssetManager>::_instance = nullptr;
 
@@ -64,6 +65,7 @@ bool AssetManager::Init()
 	AddLoader("png", new TextureAssetLoader);
 	AddLoader("animation.xml", new AnimationAssetLoader);
 	AddLoader("skeleton.xml", new SkeletonXmlLoader);
+	AddLoader("scene.xml", new SceneAssetLoader);
 
 
 	return true;
