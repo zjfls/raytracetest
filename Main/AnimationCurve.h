@@ -124,6 +124,7 @@ namespace ZG
 			if (int(iter->m_fTime * 1000) == int(fTime * 1000))
 			{
 				m_KeyFrames.erase(iter);
+				break;
 			}
 		}
 	}

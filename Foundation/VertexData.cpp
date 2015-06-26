@@ -107,6 +107,10 @@ void MeshVertexData::ComputeTangent(const IndexData& iData)
 		}
 		index++;
 	}
+	if (nNormalIndex == -1 || nUVIndex == -1 || nPosition == -1)
+	{
+		return;
+	}
 	int nCount = vecDataDesc.size();
 	VertexDataDesc desc = vecDataDesc[nCount - 1];
 	int nOffset = desc.nOffset;

@@ -455,62 +455,70 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 	FbxGeometryElementUV* pLayerUV = pMesh->GetElementUV(0);
 	if (pLayerUV == nullptr)
 	{
+		pLayerUV = pMesh->GetElementUV(1);
+	}
+	if (pLayerUV == nullptr)
+	{
 		std::cout << "texture uv0 cannot find" << std::endl;
 	}
-	if (pLayerUV->GetMappingMode() == FbxLayerElement::eByControlPoint)
+	else
 	{
-		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
+		if (pLayerUV->GetMappingMode() == FbxLayerElement::eByControlPoint)
 		{
-			uvVec.resize(cpCount * 2);
-			for (unsigned int i = 0; i < cpCount; ++i)
+			if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
 			{
-				float u, v;
-				u = (float)pLayerUV->GetDirectArray().GetAt(i).mData[0];
-				v = (float)pLayerUV->GetDirectArray().GetAt(i).mData[1];
-				uvVec[i * 2 + 0] = u;
-				uvVec[i * 2 + 1] = 1 - v;
+				uvVec.resize(cpCount * 2);
+				for (unsigned int i = 0; i < cpCount; ++i)
+				{
+					float u, v;
+					u = (float)pLayerUV->GetDirectArray().GetAt(i).mData[0];
+					v = (float)pLayerUV->GetDirectArray().GetAt(i).mData[1];
+					uvVec[i * 2 + 0] = u;
+					uvVec[i * 2 + 1] = 1 - v;
+				}
 			}
-		}
-		else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
-		{
+			else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
+			{
 
-		}
-	}
-	else if (pLayerUV->GetMappingMode() == FbxLayerElement::eByPolygonVertex)
-	{
-		if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
-		{
-			//std::cout << "texture uv by polygon direct" << std::endl;
-		}
-		else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
-		{
-			//std::cout << "texture uv by polygon indirect" << std::endl;
-			uvVec.resize(cpCount * 2);
-			for (unsigned int i = 0; i < indexVec.size(); ++i)
-			{
-				//int index = pLayerUV->GetIndexArray().GetAt(i);
-				int vIndex = i % 3;
-				if (vIndex == 2)
-				{
-					vIndex = 1;
-				}
-				else if (vIndex == 1)
-				{
-					vIndex = 2;
-				}
-				int index = pMesh->GetTextureUVIndex(i / 3, vIndex);
-				float u, v;
-				u = (float)pLayerUV->GetDirectArray().GetAt(index).mData[0];
-				v = (float)pLayerUV->GetDirectArray().GetAt(index).mData[1];
-				uvVec[indexVec[i] * 2 + 0] = u;
-				uvVec[indexVec[i] * 2 + 1] = 1 - v;
 			}
-			//for each (float c in uvVec)
-			//{
-			//	std::cout << "uv:" << c << std::endl;
-			//}
+		}
+		else if (pLayerUV->GetMappingMode() == FbxLayerElement::eByPolygonVertex)
+		{
+			if (pLayerUV->GetReferenceMode() == FbxLayerElement::eDirect)
+			{
+				//std::cout << "texture uv by polygon direct" << std::endl;
+			}
+			else if (pLayerUV->GetReferenceMode() == FbxLayerElement::eIndexToDirect)
+			{
+				//std::cout << "texture uv by polygon indirect" << std::endl;
+				uvVec.resize(cpCount * 2);
+				for (unsigned int i = 0; i < indexVec.size(); ++i)
+				{
+					//int index = pLayerUV->GetIndexArray().GetAt(i);
+					int vIndex = i % 3;
+					if (vIndex == 2)
+					{
+						vIndex = 1;
+					}
+					else if (vIndex == 1)
+					{
+						vIndex = 2;
+					}
+					int index = pMesh->GetTextureUVIndex(i / 3, vIndex);
+					float u, v;
+					u = (float)pLayerUV->GetDirectArray().GetAt(index).mData[0];
+					v = (float)pLayerUV->GetDirectArray().GetAt(index).mData[1];
+					uvVec[indexVec[i] * 2 + 0] = u;
+					uvVec[indexVec[i] * 2 + 1] = 1 - v;
+				}
+				//for each (float c in uvVec)
+				//{
+				//	std::cout << "uv:" << c << std::endl;
+				//}
+			}
 		}
 	}
+
 
 #pragma endregion
 #pragma region AddSkinInfo
@@ -625,11 +633,15 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 	pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
 	nVBOffset += sizeof(float) * 3;
 	//
-	desc.usedesc = EVertexUV;
-	desc.typedesc = EVertexTypeFloat2;
-	desc.nOffset = nVBOffset;
-	pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
-	nVBOffset += sizeof(float) * 2;
+	if (uvVec.size() != 0)
+	{
+		desc.usedesc = EVertexUV;
+		desc.typedesc = EVertexTypeFloat2;
+		desc.nOffset = nVBOffset;
+		pMeshResource->m_VertexData->vecDataDesc.push_back(desc);
+		nVBOffset += sizeof(float) * 2;
+	}
+
 	if (bHasSkinInfo)
 	{
 		//blend index
@@ -1313,6 +1325,7 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 	FbxAsset* pAsset = dynamic_cast<FbxAsset*>(m_pAsset);
 	string path = pAsset->m_strPath;
 	//
+	int nCount = pAsset->m_pFbxScene->GetSrcObjectCount<FbxAnimStack>();
 	FbxAnimStack* pAniStack = pAsset->m_pFbxScene->GetSrcObject<FbxAnimStack>(0);
 	if (pAniStack != nullptr)
 	{
