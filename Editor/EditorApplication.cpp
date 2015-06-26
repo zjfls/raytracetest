@@ -27,6 +27,7 @@
 #include "IListener.h"
 #include "Skeleton.h"
 #include "SceneResource.h"
+#include "SingleResourceAsset.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -158,7 +159,7 @@ void EditorApplication::SetupScene()
 	pLightObj->m_pTransform->SetOrientation(AngleToRad(35.0f), 0.0f, 0.0f);
 	pLightObj->m_strName = "Lights";
 	SmartPointer<DirectionalLight> pDirLight = pLightObj->addModule<DirectionalLight>();
-	pDirLight->m_fIntensity = 1.5f;
+	pDirLight->m_fIntensity = 1.0f;
 	pDirLight->m_Color = GameColor::white;
 	m_pWorld->m_pRoot->addChild(pLightObj);
 	//ring
@@ -294,11 +295,34 @@ void ZG::EditorApplication::OnClickScene(SmartPointer<CameraBase> pCamera, Smart
 
 void ZG::EditorApplication::SaveScene(std::string fileName)
 {
-	SceneResource* pRes = ResourceManager<SceneResource>::GetInstance()->CreateResource<SceneResource>("fileName").get();
+	SceneResource* pRes = ResourceManager<SceneResource>::GetInstance()->CreateResource<SceneResource>(fileName).get();
 	pRes->m_pRoot = m_pWorld->m_pRoot;
+	SingleResourceAsset* pAsset = new SingleResourceAsset;
+	pAsset->AddResource(fileName, pRes);
+	pAsset->m_strPath = fileName;
+	AssetManager::GetInstance()->Save(pAsset);
+
+
+	//ResourceManager<SceneResource>::GetInstance()->RemoveResource(fileName);
+
+	AssetManager::GetInstance()->ReleaseAsset(pAsset->m_strPath,true);
 }
 
 void ZG::EditorApplication::LoadScene(std::string fileName)
 {
+	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset(fileName);
+	if (pAsset == nullptr)
+	{
+		return;
+	}
+	SceneResource* pRes = pAsset->GetResource<SceneResource>();
+	if (pRes == nullptr)
+	{
+		AssetManager::GetInstance()->ReleaseAsset(fileName, true);
+		return;
+	}
+	m_pWorld->m_pRoot = pRes->m_pRoot;
 
+	AssetManager::GetInstance()->ReleaseAsset(fileName, true);
+	NotifyListener("InitScene", EditorApplication::GetInstance());
 }

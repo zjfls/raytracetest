@@ -105,3 +105,22 @@ bool ZG::AssetManager::Save(IAsset* pAsset)
 	}
 	return m_LoaderMap[strSuff]->Save(pAsset);
 }
+
+void ZG::AssetManager::ReleaseAsset(string path, bool bReleaseResource)
+{
+	std::map<string, IAsset*>::iterator iter = m_AssetMap.find(path);
+	if (iter == m_AssetMap.end())
+	{
+		return;
+	}
+	if (bReleaseResource == true)
+	{
+		std::vector<IResource*> vecRes;
+		iter->second->GetAllResource<IResource>(vecRes);
+		for each (IResource* pRes in vecRes)
+		{
+			ResourceManagerBase::ReleaseResource(pRes);
+		}
+	}
+	m_AssetMap.erase(iter);
+}

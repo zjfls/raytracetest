@@ -5,6 +5,7 @@
 #include "tinyxml2.h"
 #include "XmlSceneLoadHelper.h"
 #include "SceneResource.h"
+#include "IWorldObj.h"
 using namespace tinyxml2;
 
 ZG::SceneAssetLoader::SceneAssetLoader()
@@ -20,9 +21,19 @@ ZG::SceneAssetLoader::~SceneAssetLoader()
 IAsset* ZG::SceneAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 {
 	SingleResourceAsset* pAsset = new SingleResourceAsset;
+	pAsset->m_strPath = path;
 	m_pAsset = pAsset;
-	//
-	//
+	XMLDocument doc;
+	doc.LoadFile(path.c_str());
+	XMLElement* pElem = doc.FirstChildElement("WorldObj");
+	SmartPointer<IWorldObj> pRoot = new IWorldObj;
+	XmlSceneLoadHelper::LoadWorldObjElem(pElem, pRoot);
+	//Prefab* pPrefab = new Prefab;
+	//pPrefab->m_pRoot = pRoot;
+	SmartPointer<SceneResource> pScene = ResourceManager<SceneResource>::GetInstance()->CreateResource<SceneResource>(path);
+	pScene->m_pRoot = pRoot;
+	pAsset->AddResource(path, pScene.get());
+	pRoot->m_strName = getFileNameWithoutSuffix(path);
 	return pAsset;
 }
 

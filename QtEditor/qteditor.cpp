@@ -346,6 +346,7 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 			= QFileDialog::getOpenFileName(this, tr("Save Scene File"), "./data", tr("Scene (*.scene.xml *.scene)"));
 		if (fileName.isEmpty())
 			return;
+		EditorApplication::GetInstance()->LoadScene(fileName.toStdString());
 	}
 }
 

@@ -2,7 +2,7 @@
 #include "IAsset.h"
 namespace ZG
 {
-	class SingleResourceAsset :
+	class MAIN_API SingleResourceAsset :
 		public IAsset
 	{
 	public:

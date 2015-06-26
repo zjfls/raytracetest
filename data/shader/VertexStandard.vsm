@@ -1,7 +1,7 @@
 float4x4 MATRIX_WORLD;	// World * View * Projection transformatio
 float4x4 MATRIX_VP;			//Projection
 float3 VIEW_POS;			//Camera Position
-float4x4 MATRIX_INVERSETRANSPOSEWV;
+float4x4 MATRIX_INVERSETRANSPOSEW;
 //-----------------------------------------------------------------------------
 // Vertex shader output structure
 //-----------------------------------------------------------------------------
@@ -27,12 +27,12 @@ struct VS_INPUT
 VS_OUTPUT vMain( VS_INPUT input )
 {
 	VS_OUTPUT Output;
-	Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
-	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);
-    Output.Normal			=   mul(float4(input.Normal,0.0f),MATRIX_INVERSETRANSPOSEWV).xyz;
-    Output.Tangent			=	mul(float4(input.Tangent,0.0f),MATRIX_INVERSETRANSPOSEWV);
-    //Output.Binormal			=	cross(Output.Normal,Output.Tangent);
-    Output.TC				=	input.TC;
+	Output.worldPosition		=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
+	Output.Position				=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);
+    Output.Normal				=   mul(float4(input.Normal,0.0f),MATRIX_INVERSETRANSPOSEW).xyz;
+    Output.Tangent				=	mul(float4(input.Tangent,0.0f),MATRIX_INVERSETRANSPOSEW).xyz;
+    	//Output.Binormal		=	cross(Output.Normal,Output.Tangent);
+    Output.TC					=	input.TC;
 	//Output.WorldEyeVec		=	normalize(VIEW_POS - Output.Position);
     return Output;
 }

@@ -117,7 +117,7 @@ void RenderPass::Render(RasterRender* pRender, SmartPointer<IRenderable> pRender
 		//
 		pRender->Render(pIndexBuff, pVertexBuff,pRenderable.get());
 	}
-	else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)
+	else if (eStageShaderType == ESTAGESHADER_RADIANCE_ONELIGHTING)
 	{
 		//std::cout << "else if (eStageShaderType == ESTAGESHADERRADIANCEONLIGHTING)" << std::endl;
 		int index = 0;
@@ -378,6 +378,14 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable>
 			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
 			Matrix44 matWV = matWorld * matView;
 			arg.m_Data = Matrix44::QuikInverse(matWV);
+			arg.m_Data = arg.m_Data.Transpose();
+			argToBuild[p.first] = &arg;
+		}
+		else if (p.first == "MATRIX_INVERSETRANSPOSEW")
+		{
+			TMatArg<Matrix44>& arg = *(GetArgFromLib<Matrix44>(p.first, EMATARGMATRIX44));
+			//TMatArg<Matrix44> arg(EMATARGMATRIX44);
+			arg.m_Data = Matrix44::QuikInverse(matWorld);
 			arg.m_Data = arg.m_Data.Transpose();
 			argToBuild[p.first] = &arg;
 		}

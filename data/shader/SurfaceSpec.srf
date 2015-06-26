@@ -34,16 +34,17 @@ SurfaceOutput Surface(PS_INPUT input)
 //
 	float3 Nt = tex2D(NormalMap,input.TC.xy).xyz * 2 - 1;
     float3 Nn = normalize(input.Normal);
-    input.Tangent = normalize(input.Tangent - dot(input.Tangent,input.Normal) * input.Normal);
+    //input.Tangent = normalize(input.Tangent - dot(input.Tangent,input.Normal) * input.Normal);
     float3 Tn = normalize(input.Tangent);
     float3 Bn = normalize(cross(Nn,Tn));
-    float3x3 tbn  = float3x3(Tn,Bn,Nn);
-	float3 Nb = mul(Nt,tbn);
+    //float3x3 tbn  = float3x3(Tn,Bn,Nn);
+	//float3 Nb = mul(Nt,tbn);
 
-    Nb = Tn * Nt.x  + Bn * Nt.y  + Nn * Nt.z;
-    //o.Normal = normalize(input.Normal);
+    float3 Nb = Tn * Nt.x  + Bn * Nt.y  + Nn * Nt.z;
+   
 
 	o.Normal = normalize(Nb);
+    //o.Normal = normalize(input.Normal);
 	o.Alpha = diffTex.a;
 	o.SpecularPower = 16;
 	return o;

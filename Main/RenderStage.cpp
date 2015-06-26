@@ -85,7 +85,7 @@ void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<Smart
 			}
 			else
 			{
-				rPass.Render(pRender, pRenderable, ESTAGESHADERRADIANCEONLIGHTING, rPass.m_RenderState);
+				rPass.Render(pRender, pRenderable, ESTAGESHADER_RADIANCE_ONELIGHTING, rPass.m_RenderState);
 			}
 		}
 	}

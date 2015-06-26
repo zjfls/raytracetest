@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--scene resource-->
+<WorldObj name="SceneRoot">
+    <Transform>
+        <Translation x="0" y="0" z="0"/>
+        <Rotation x="0" y="0" z="0"/>
+        <Scale x="1" y="1" z="1"/>
+    </Transform>
+    <WorldObj name="plane">
+        <Transform>
+            <Translation x="0" y="0" z="0"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Plane001">
+            <Transform>
+                <Translation x="0.86225891" y="100" z="14.195885"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Plane001.mesh">
+                <Material refPath="./data/prefab/Env_rock_for_tower_MAT_INST2.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Camera">
+        <Transform>
+            <Translation x="0" y="400" z="-550"/>
+            <Rotation x="0.61086518" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+    </WorldObj>
+    <WorldObj name="Lights">
+        <Transform>
+            <Translation x="0" y="130" z="0"/>
+            <Rotation x="0.61086518" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <Light LightType="Direction" Intensity="1.5">
+            <LightColor r="1" g="1" b="1" a="1"/>
+        </Light>
+    </WorldObj>
+</WorldObj>

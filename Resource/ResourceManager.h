@@ -2,14 +2,15 @@
 #include "Singleton.h"
 namespace ZG
 {
-	class ResourceManagerBase
+	class IResource;
+	class RESOURCE_API ResourceManagerBase
 	{
 	protected:
 		ResourceManagerBase(){};
 	public:
 		virtual ~ResourceManagerBase(){};
-
-
+		static void	ReleaseResource(IResource* pResource);
+		static IResource*	LoadResource(std::string refPath);
 		template<class T>
 		T* CreateResource()
 		{

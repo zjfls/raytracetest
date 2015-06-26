@@ -5,14 +5,15 @@
 namespace ZG
 {
 	class IWorldObj;
-	class SceneResource :
+	class RESOURCE_API SceneResource :
 		public IResource
 	{
 	public:
 		SceneResource();
 		virtual ~SceneResource();
 
-		IWorldObj* m_pRoot;
+		SmartPointer<IWorldObj> m_pRoot;
+		friend class ResourceManager < SceneResource > ;
 	};
 	RESOURCE_TEMPLATE template class RESOURCE_API  Singleton < ResourceManager<SceneResource> >;
 }
