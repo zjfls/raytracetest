@@ -7,6 +7,12 @@
 #include "RenderStateCollection.h"
 #include "EnviromentSetting.h"
 #include "MaterialPass.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
+#include "IWorldObj.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 using namespace ZG;
 RenderStage::RenderStage(string strName, ERENDERTYPEFILTER eFillter, ERENDERSTAGEMETHOD eMethod)
 	:m_strName(strName)

@@ -23,8 +23,6 @@
 #include <afxdisp.h>        // MFC 自动化类
 #include "Main_Dll_Def.h"
 #include "Foundation_Dll_Def.h"
-#include "World_Dll_Def.h"
-#include "Resource_Dll_Def.h"
 #include "Math_Dll_Def.h"
 #include "Editor_Dll_Def.h"
 #include <string>
@@ -45,6 +43,7 @@ using namespace std;
 
 #include "GameObjectBase.h"
 #include "SmartPointer.h"
+#include "IWorldObj.h"
 using namespace ZG;
 
 

@@ -5,6 +5,13 @@
 #include "FragShader.h"
 #include "ShaderGenerator.h"
 #include "VertexIndexDataEventProxy.h"
+#include "HardwareVertexBuffer.h"
+#include "RenderView.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
+#include "IWorldObj.h"
+#include "IRenderable.h"
 RenderSystem::RenderSystem()
 {
 }
@@ -96,7 +103,10 @@ void RenderSystem::OnVertexDataDelete(ZG::VertexDataEventArg& e)
 {
 	if (m_VertexDataMap.find(e.m_pVertexData) != std::end(m_VertexDataMap))
 	{
-		delete m_VertexDataMap[e.m_pVertexData];
+		//delete m_VertexDataMap[e.m_pVertexData];
+
+		HardwareVertexBuffer *pBuffer = m_VertexDataMap[e.m_pVertexData];
+		delete pBuffer;
 		m_VertexDataMap.erase(e.m_pVertexData);
 	}
 	return;
@@ -110,4 +120,9 @@ void RenderSystem::OnIndexDataDelete(ZG::IndexDataEventArg& e)
 		m_IndexDataMap.erase(e.m_pIndexData);
 	}
 	return;
+}
+
+void ZG::RenderSystem::SetActiveRenderView(RenderView* pView)
+{
+	m_pActiveView = pView;
 }

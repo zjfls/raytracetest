@@ -4,6 +4,12 @@
 #include "IRenderable.h"
 #include "RenderManager.h"
 #include "RenderSystem.h"
+#include "RenderView.h"
+#include "RasterRender.h"
+#include "IWorldObj.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
 
 RenderPath::RenderPath(string strName)
 	:m_strName(strName)

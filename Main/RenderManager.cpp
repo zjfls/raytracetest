@@ -14,6 +14,12 @@
 #include "windows.h"
 #include "ShaderGenerator.h"
 #endif
+#include "RasterRender.h"
+#include "IWorldObj.h"
+#include "IRenderable.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
 typedef RenderSystem* (WINAPI *CreateRSMethod)();
 template class MAIN_API Singleton < RenderManager >;
 template<> SmartPointer<RenderManager> Singleton<RenderManager>::_instance = nullptr;

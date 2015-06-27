@@ -13,7 +13,7 @@
 #include "AnimationResource.h"
 #include "Transform.h"
 #include "AnimationTrack.h"
-
+#include "FragShader.h"
 SkeletonModule::SkeletonModule()
 	: m_pSkeletonRoot(nullptr)
 {

@@ -52,13 +52,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;EDITOR_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Main;../World;../Math;../foundation;../Resource</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Main;../Math;../foundation</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;4910;4661</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>resource.lib;main.lib;math.lib;world.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>main.lib;math.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../lib/debug</AdditionalLibraryDirectories>
       <ImportLibrary>../lib/debug/Editor.lib</ImportLibrary>
     </Link>
@@ -72,7 +72,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;EDITOR_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Main;../World;../Math;../foundation;../Resource;../editor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Main;../Math;../foundation;../editor</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
@@ -81,7 +81,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>resource.lib;main.lib;math.lib;world.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>main.lib;math.lib;foundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../lib/release</AdditionalLibraryDirectories>
       <ImportLibrary>../lib/release/Editor.lib</ImportLibrary>
     </Link>
@@ -92,6 +92,8 @@
   <ItemGroup>
     <ClInclude Include="Editor.h" />
     <ClInclude Include="EditorApplication.h" />
+    <ClInclude Include="EditorCommandManager.h" />
+    <ClInclude Include="EditorCommands.h" />
     <ClInclude Include="EditorGameView.h" />
     <ClInclude Include="EditorModuleProperty.h" />
     <ClInclude Include="EditorRenderView.h" />
@@ -112,6 +114,8 @@
     </ClCompile>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EditorApplication.cpp" />
+    <ClCompile Include="EditorCommandManager.cpp" />
+    <ClCompile Include="EditorCommands.cpp" />
     <ClCompile Include="EditorGameView.cpp" />
     <ClCompile Include="EditorModuleProperty.cpp" />
     <ClCompile Include="EditorRenderView.cpp" />

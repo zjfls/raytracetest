@@ -28,6 +28,8 @@
 #include "Skeleton.h"
 #include "SceneResource.h"
 #include "SingleResourceAsset.h"
+#include "EditorCommands.h"
+#include "SkeletonResource.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -48,7 +50,7 @@ EditorApplication::~EditorApplication()
 	int i = m_mapListener.size();
 
 
-	for each (std::pair<string,SmartPointer<IListener>> p in m_mapListener)
+	for each (std::pair<string, IListener*> p in m_mapListener)
 	{
 		p.second = nullptr;
 	}
@@ -83,7 +85,6 @@ void EditorApplication::Run()
 	//std::cout << "frame begin end" << std::endl;
 	//
 	std::vector<SmartPointer<RasterCamera>> m_CameraList;
-	std::vector<SmartPointer<CameraRenderer>> m_CameraIgnoreList;
 	//camera will not render
 	m_CameraList = EditorApplication::GetInstance()->m_pWorld->GetAllModules<RasterCamera>();
 	for each (SmartPointer<RasterCamera> pCamera in m_CameraList)
@@ -273,7 +274,7 @@ void ZG::EditorApplication::UpdateGizemo()
 		m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSelectObjWireFrame);
 	}
 
-	if (m_bShowSkeletonGizmo == true)
+	if (m_bShowSkeletonGizmo == true || true)
 	{
 		std::vector<SmartPointer<SkeletonModule>> vecSkeleton;
 		m_pWorld->m_pRoot->GetAllModuleRecursive<SkeletonModule>(vecSkeleton);
@@ -325,4 +326,74 @@ void ZG::EditorApplication::LoadScene(std::string fileName)
 
 	AssetManager::GetInstance()->ReleaseAsset(fileName, true);
 	NotifyListener("InitScene", EditorApplication::GetInstance());
+}
+
+bool ZG::EditorApplication::excuteCommond(ICommand* pCommand)
+{
+	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
+	if (pDeleteCmd != nullptr)
+	{
+		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
+		m_SelectObj = nullptr;
+
+		NotifyListener("InitScene", EditorApplication::GetInstance());
+		return true;
+	}
+	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
+	if (pAddToSceneCmd != nullptr)
+	{
+		pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
+		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		return true;
+	}
+	return false;
+}
+
+bool ZG::EditorApplication::undoCommond(ICommand* pCommand)
+{
+	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
+	if (pDeleteCmd != nullptr)
+	{
+		pDeleteCmd->m_pParentObj->addChild(pDeleteCmd->m_pObj);
+		m_SelectObj = pDeleteCmd->m_pObj;
+
+		NotifyListener("InitScene", EditorApplication::GetInstance());
+		return true;
+	}
+	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
+	if (pAddToSceneCmd != nullptr)
+	{
+		pAddToSceneCmd->m_pParentObj->removeChild(pAddToSceneCmd->m_pObj);
+		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		return true;
+	}
+	return false;
+}
+
+bool ZG::EditorApplication::redoCommond(ICommand* pCommand)
+{
+	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
+	if (pDeleteCmd != nullptr)
+	{
+		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
+		m_SelectObj = nullptr;
+
+
+		NotifyListener("InitScene", EditorApplication::GetInstance());
+		return true;
+	}
+	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
+	if (pAddToSceneCmd != nullptr)
+	{
+		pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
+		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		return true;
+	}
+	return false;
+}
+
+void ZG::EditorApplication::SetWindowID(int id)
+{
+	m_RenderViewInfo.m_windowID = id;
+	m_nWindowID = id;
 }

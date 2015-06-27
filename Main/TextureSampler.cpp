@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TextureSampler.h"
+#include "Texture.h"
 
 
 TextureSampler::TextureSampler()

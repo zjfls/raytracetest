@@ -2,6 +2,7 @@
 #include "FbxAsset.h"
 #include <fbxsdk.h>
 #include "PrefabResource.h"
+#include "IWorldObj.h"
 FbxAsset::FbxAsset()
 {
 }

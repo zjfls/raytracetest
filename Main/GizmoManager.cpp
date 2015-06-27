@@ -14,6 +14,12 @@
 #include "materialpass.h"
 #include "SkeletonObj.h"
 #include "skeleton.h"
+#include "SkeletonResource.h"
+#include "VertexShader.h"
+#include "FragShader.h"
+#include "Mesh.h"
+#include "AnimationTrack.h"
+#include "MeshResource.h"
 
 
 template class MAIN_API Singleton < GizmoManager >;
@@ -313,7 +319,9 @@ void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 IWorldObj* ZG::GizmoManager::CreateSkeletonGizmo(SkeletonModule* pModule)
 {
 	IWorldObj* pObj = new IWorldObj;
+	pObj->m_strName = "SkeletonGizmo";
 	IRenderable* pSkeletonArchi = pObj->addModule<IRenderable>().get();
+	pSkeletonArchi->m_strName = "SkeletonGizmo";
 	pSkeletonArchi->m_pSharedMaterial = pSkeletonArchi->GetDefaultMaterial();
 
 	pSkeletonArchi->GetMaterialInstance()->SetArg<GameColor>("MainColor", GameColor::green * 1.0f);
@@ -324,7 +332,7 @@ IWorldObj* ZG::GizmoManager::CreateSkeletonGizmo(SkeletonModule* pModule)
 	mat->SetRenderState(s);
 	DynamicVertexData* dVertexData = new DynamicVertexData;
 	pSkeletonArchi->m_pVertexData = dVertexData;
-	pSkeletonArchi->m_strName = "GridData";
+
 
 	int nNumVertex = 0;
 	//

@@ -29,6 +29,8 @@
 #include "Vector4.h"
 #include "FbxAsset.h"
 #include <algorithm>
+#include "EditorCommands.h"
+#include "EditorCommandManager.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -307,14 +309,16 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		AssetManager::GetInstance()->LoadAsset(strPath);
 		SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
 		SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
-
-
-
-		//m_pTargetObj = pObj;
-		EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
 		pObj->m_pTransform->SetTranslate(worldPos);
 
-		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+
+
+		AddToSceneCommand* pCmd = new AddToSceneCommand();
+		pCmd->m_pObj = pObj;
+		pCmd->m_pParentObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+		pCmd->m_pReceiver = EditorApplication::GetInstance();
+		EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
+
 	}
 	if (filesuffix == "fbx")
 	{
@@ -323,14 +327,16 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		if (pPrefab != nullptr)
 		{
 			SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
-
-
-
-			//m_pTargetObj = pObj;
-			EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
 			pObj->m_pTransform->SetTranslate(worldPos);
 
-			EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+
+			AddToSceneCommand* pCmd = new AddToSceneCommand();
+			pCmd->m_pObj = pObj;
+			pCmd->m_pParentObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+			pCmd->m_pReceiver = EditorApplication::GetInstance();
+			EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
+			//m_pTargetObj = pObj;
+
 		}
 
 	}

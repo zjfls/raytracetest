@@ -14,6 +14,9 @@
 #include "Transform.h"
 #include "MeshResource.h"
 #include "RasterMaterial.h"
+#include "MaterialPass.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 
 //extern template  class __declspec(dllimport) Singleton < ResourceManager<MeshResource> >;
 

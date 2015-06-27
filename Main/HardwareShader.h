@@ -4,6 +4,7 @@
 #include <string>
 #include "RenderEnum.h"
 #include "TextureSampler.h"
+#include "Texture.h"
 namespace ZG
 {
 	class Vector4;

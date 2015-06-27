@@ -2,7 +2,7 @@
 #include "RenderEnum.h"
 namespace ZG
 {
-	class MAIN_API HardwareBuffer
+	class MAIN_API HardwareBuffer:public GameObjectBase
 	{
 	public:
 		HardwareBuffer();

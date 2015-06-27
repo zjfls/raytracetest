@@ -7,6 +7,8 @@
 #include <thread>
 #include "RenderManager.h"
 #include "RenderSystem.h"
+#include "RenderView.h"
+#include "SkeletonResource.h"
 EditorModuleProperty::EditorModuleProperty()
 {
 }

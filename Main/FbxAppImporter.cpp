@@ -16,6 +16,11 @@
 #include "RasterMaterial.h"
 #include "IWorldObj.h"
 #include <io.h>
+#include "SkeletonObj.h"
+#include "AnimationTrack.h"
+#include "MaterialPass.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 using namespace tinyxml2;
 using tinyxml2::XMLDocument;
 template  class MAIN_API  Singleton<FbxAppImporter>;

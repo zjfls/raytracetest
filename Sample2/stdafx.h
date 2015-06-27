@@ -12,7 +12,6 @@
 
 
 #include "Main_Dll_Def.h"
-#include "Resource_Dll_Def.h"
 #include "Math_Dll_Def.h"
 #include "Foundation_Dll_Def.h"
 #include <tchar.h>
@@ -24,5 +23,6 @@
 using namespace std;
 #include "GameObjectBase.h"
 #include "SmartPointer.h"
+#include "IWorldObj.h"
 using namespace ZG;
 // TODO:  在此处引用程序需要的其他头文件

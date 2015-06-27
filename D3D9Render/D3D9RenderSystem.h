@@ -4,6 +4,7 @@
 #include "RenderEnum.h"
 #include "VertexData.h"
 #include "D3D9RenderTarget.h"
+#include "RenderView.h"
 namespace ZG
 {
 	class DepthBuffer;
@@ -44,6 +45,7 @@ namespace ZG
 		D3DDECLTYPE						GetD3DDeclType(EnumVertexTypeDesc desc) const;
 		BYTE							GetD3DDeclUsage(EnumVertexUseDesc desc) const;
 		stD3DVertexBuffDecal*			GetVertexDecal(std::vector<VertexData::VertexDataDesc>& decl);
+		void							AddVertexDecal(stD3DVertexBuffDecal* pDecal);
 	protected:
 		virtual void		CreateDefaultRender(const RenderPath* pPath);
 		friend class RenderManager;

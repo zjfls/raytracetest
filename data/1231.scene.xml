@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--scene resource-->
-<WorldObj name="SceneRoot">
+<WorldObj name="1231">
     <Transform>
-        <Translation x="0" y="0" z="0"/>
+        <Translation x="0" y="-40.413414" z="1222.0568"/>
         <Rotation x="0" y="0" z="0"/>
         <Scale x="1" y="1" z="1"/>
     </Transform>
-    <WorldObj name="plane">
-        <Transform>
-            <Translation x="0" y="0" z="0"/>
-            <Rotation x="0" y="0" z="0"/>
-            <Scale x="1" y="1" z="1"/>
-        </Transform>
-        <WorldObj name="Plane001">
-            <Transform>
-                <Translation x="0.86225891" y="100" z="14.195885"/>
-                <Rotation x="0" y="0" z="0"/>
-                <Scale x="1" y="1" z="1"/>
-            </Transform>
-            <Mesh refPath="./data/mesh/Plane001.mesh">
-                <Material refPath="./data/prefab/Env_rock_for_tower_MAT_INST2.smat.xml"/>
-            </Mesh>
-        </WorldObj>
-    </WorldObj>
     <WorldObj name="Camera">
         <Transform>
             <Translation x="0" y="400" z="-550"/>
@@ -36,8 +19,361 @@
             <Rotation x="0.61086518" y="0" z="0"/>
             <Scale x="1" y="1" z="1"/>
         </Transform>
-        <Light LightType="Direction" Intensity="1.5">
-            <LightColor r="1" g="1" b="1" a="1"/>
+        <Light LightType="Direction" Intensity="3">
+            <LightColor r="1" g="1" b="0" a="1"/>
         </Light>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="350.06451" y="0" z="2.7137146"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="1843.1436" y="0" z="-1559.1754"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="-1494.6028" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="-1043.0862" y="0" z="1953.0903"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="9.067749" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="-1438.7618" y="0" z="-1162.9221"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="402.02869" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Trigger_001">
+        <Transform>
+            <Translation x="-1002.6711" y="268.92801" z="-131.33467"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Trigger_001">
+            <Transform>
+                <Translation x="1108.2557" y="-208.56702" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Trigger_001.mesh">
+                <Material refPath="./data/material/Prop_Trigger_001_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Trigger_001">
+        <Transform>
+            <Translation x="-793.92206" y="294.05518" z="549.30035"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Trigger_001">
+            <Transform>
+                <Translation x="0" y="-215.9312" z="-642.11139"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Trigger_001.mesh">
+                <Material refPath="./data/material/Prop_Trigger_001_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Trigger_001">
+        <Transform>
+            <Translation x="-573.95905" y="327.24164" z="-2231.3979"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Trigger_001">
+            <Transform>
+                <Translation x="-308.40076" y="-304.7608" z="522.00488"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Trigger_001.mesh">
+                <Material refPath="./data/material/Prop_Trigger_001_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Trigger_001">
+        <Transform>
+            <Translation x="-297.68613" y="380.02228" z="-2242.4504"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Trigger_001">
+            <Transform>
+                <Translation x="286.92923" y="-302.99561" z="528.0199"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Trigger_001.mesh">
+                <Material refPath="./data/material/Prop_Trigger_001_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="YoungSuck_01_01">
+        <Transform>
+            <Translation x="-162.91528" y="670.008" z="-537.04156"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="YoungSuck_01_01">
+            <Transform>
+                <Translation x="1058.2931" y="-595.56311" z="-318.75519"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="3" y="3" z="3"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/YoungSuck_01_01.mesh">
+                <Material refPath="./data/material/YoungSuck_01_01_INST.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="MovingMarket_01">
+        <Transform>
+            <Translation x="245.67865" y="399.84351" z="-244.9424"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="MovingMarket_01">
+            <Transform>
+                <Translation x="-347.37589" y="-336.86862" z="581.00787"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/MovingMarket_01_MovingMarket_01_Mat1.mesh">
+                <Material refPath="./data/material/MovingMarket_01_Mat1.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/MovingMarket_01_MovingMarket_01_Mat2.mesh">
+                <Material refPath="./data/material/MovingMarket_01_Mat2.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="altar_04">
+        <Transform>
+            <Translation x="-35.932251" y="586.43781" z="-2034.952"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="altar_04">
+            <Transform>
+                <Translation x="-311.38705" y="-508.01898" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/altar_04.mesh">
+                <Material refPath="./data/material/Prop_Stuff_004_001_mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Prop_Metal_Stuff_001_05">
+        <Transform>
+            <Translation x="164.74432" y="635.45435" z="-248.42392"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Prop_Metal_Stuff_001_05">
+            <Transform>
+                <Translation x="-1327.5842" y="-401.02173" z="-779.29712"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Prop_Metal_Stuff_001_05.mesh">
+                <Material refPath="./data/material/Prop_Metal_Stuff_001_02_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Prop_Metal_Stuff_001_06">
+        <Transform>
+            <Translation x="-1196.1141" y="521.19324" z="-320.45184"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Prop_Metal_Stuff_001_06">
+            <Transform>
+                <Translation x="0" y="-345.79837" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Prop_Metal_Stuff_001_06.mesh">
+                <Material refPath="./data/material/Prop_Metal_Stuff_001_06_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Building_003_04">
+        <Transform>
+            <Translation x="97.238586" y="234.94727" z="-428.10239"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Building_003_04">
+            <Transform>
+                <Translation x="517.9549" y="-153.843" z="420.63403"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Building_003_04.mesh">
+                <Material refPath="./data/material/Building_003_04_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="prop_wooden_stuff_002_35">
+        <Transform>
+            <Translation x="-755.1994" y="448.40085" z="-399.94061"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="prop_wooden_stuff_002_35">
+            <Transform>
+                <Translation x="553.33191" y="-333.69553" z="-389.39349"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/prop_wooden_stuff_002_35_Tongnamu_Mat2.mesh">
+                <Material refPath="./data/material/Tongnamu_Mat2.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/prop_wooden_stuff_002_35_Tongnamu_Mat1.mesh">
+                <Material refPath="./data/material/Tongnamu_Mat1.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/prop_wooden_stuff_002_35_Tongnamu_Mat5.mesh">
+                <Material refPath="./data/material/Tongnamu_Mat5.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="haewooso_01">
+        <Transform>
+            <Translation x="1241.7567" y="1712.684" z="-2699.2991"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="haewooso_01">
+            <Transform>
+                <Translation x="-769.4668" y="-1626.7114" z="562.76074"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/haewooso_01_haewooso_01_mat1.mesh">
+                <Material refPath="./data/material/haewooso_01_mat1.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/haewooso_01_haewooso_01_mat2.mesh">
+                <Material refPath="./data/material/haewooso_01_mat2.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/haewooso_01_haewooso_01_mat3.mesh">
+                <Material refPath="./data/material/haewooso_01_mat3.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/haewooso_01_haewooso_01_mat4.mesh">
+                <Material refPath="./data/material/haewooso_01_mat4.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="NokMyung_bar">
+        <Transform>
+            <Translation x="-537.29858" y="860.90417" z="-1920.11"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="NokMyung_bar">
+            <Transform>
+                <Translation x="-573.93335" y="-823.11981" z="-439.69592"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/NokMyung_bar_NokMyung_bar_01_mat.mesh">
+                <Material refPath="./data/material/NokMyung_bar_01_mat.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/NokMyung_bar_NokMyung_bar_Deco_Mat.mesh">
+                <Material refPath="./data/material/NokMyung_bar_Deco_Mat.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/NokMyung_bar_NokMyung_bar_Grass_Mat.mesh">
+                <Material refPath="./data/material/NokMyung_bar_Grass_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="NokMyung_Building_01">
+        <Transform>
+            <Translation x="-1977.5858" y="865.72937" z="-410.74133"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="NokMyung_Building_01">
+            <Transform>
+                <Translation x="959.14459" y="-594.57129" z="826.4856"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/NokMyung_Building_01_NokMyung_Building_01_Mat.mesh">
+                <Material refPath="./data/material/NokMyung_Building_01_Mat.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/NokMyung_Building_01_NokMyung_bar_Deco_Mat.mesh">
+                <Material refPath="./data/material/NokMyung_bar_Deco_Mat.smat.xml"/>
+            </Mesh>
+            <Mesh refPath="./data/mesh/NokMyung_Building_01_NokMyung_bar_Grass_Mat.mesh">
+                <Material refPath="./data/material/NokMyung_bar_Grass_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Pig_station_01">
+        <Transform>
+            <Translation x="1203.3066" y="1016.4768" z="-1272.7169"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Pig_station_01">
+            <Transform>
+                <Translation x="-340.5517" y="-945.5791" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Pig_station_01.mesh">
+                <Material refPath="./data/material/Pig_station_Mat1.smat.xml"/>
+            </Mesh>
+        </WorldObj>
     </WorldObj>
 </WorldObj>

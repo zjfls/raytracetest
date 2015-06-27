@@ -3,6 +3,7 @@
 #include "d3d9.h"
 #include "D3D9RenderSystem.h"
 #include "DepthBuffer.h"
+#include "RenderView.h"
 
 D3D9RenderTarget::D3D9RenderTarget()
 {

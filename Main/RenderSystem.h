@@ -55,7 +55,7 @@ namespace ZG
 		//SmartPointer<
 
 		RenderView*						GetActiveRenderView(){ return m_pActiveView.get(); };
-		void							SetActiveRenderView(RenderView* pView){ m_pActiveView = pView; };
+		void							SetActiveRenderView(RenderView* pView);
 		//
 		//
 		void							OnVertexDataDelete(ZG::VertexDataEventArg& e);

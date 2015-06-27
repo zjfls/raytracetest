@@ -37,6 +37,18 @@
     <Filter Include="源文件\Animation">
       <UniqueIdentifier>{67b7d412-a469-4176-baae-131e40765811}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Resource">
+      <UniqueIdentifier>{4c02da47-e935-4c30-958c-771c124a573e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Resource">
+      <UniqueIdentifier>{1e089297-3346-4e3d-903a-d97ed9cbcbc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\World">
+      <UniqueIdentifier>{d30df74c-5907-4ee4-8657-35545da578ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\World">
+      <UniqueIdentifier>{058ba1d4-11a4-4d12-9e76-ee4a1960a8ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h">
@@ -222,9 +234,6 @@
     <ClInclude Include="ShaderGenerator.h">
       <Filter>头文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="BuiltInResource.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -289,6 +298,114 @@
     <ClInclude Include="SingleResourceAsset.h" />
     <ClInclude Include="SceneAssetLoader.h" />
     <ClInclude Include="XmlSceneLoadHelper.h" />
+    <ClInclude Include="AnimationResource.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonResource.h">
+      <Filter>头文件\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="FragShader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="IResource.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialArg.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialPass.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialResource.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterMaterial.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraBase.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Cone.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube3D.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Cylinder.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="IWorld.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="IWorldObj.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="LightBase.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBase.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane3D.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterCamera.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderAbleEventProxy.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere3D.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="TranslateGizmo.h">
+      <Filter>头文件\World</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshResource.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="BuiltInResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -532,5 +649,110 @@
     <ClCompile Include="SingleResourceAsset.cpp" />
     <ClCompile Include="SceneAssetLoader.cpp" />
     <ClCompile Include="XmlSceneLoadHelper.cpp" />
+    <ClCompile Include="SkeletonResource.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationResource.cpp">
+      <Filter>源文件\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IResource.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialArg.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialPass.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialResource.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FragShader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterMaterial.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshResource.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraBase.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Cone.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube3D.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="IWorld.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="IWorldObj.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="LightBase.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBase.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane3D.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterCamera.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderAbleEventProxy.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere3D.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="TranslateGizmo.cpp">
+      <Filter>源文件\World</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

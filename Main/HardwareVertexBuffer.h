@@ -4,7 +4,7 @@
 namespace ZG
 {
 	class VertexData;
-	class MAIN_API HardwareVertexBuffer :public HardwareBuffer
+	class MAIN_API HardwareVertexBuffer :public HardwareBuffer 
 	{
 	public:
 		HardwareVertexBuffer();

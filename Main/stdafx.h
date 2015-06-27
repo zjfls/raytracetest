@@ -6,10 +6,8 @@
 #pragma once
 #define  MAIN_DLL_EXPORTS
 #include "Main_Dll_Def.h"
-#include "Resource_Dll_Def.h"
 #include "Math_Dll_Def.h"
 #include "Foundation_Dll_Def.h"
-#include "World_Dll_Def.h"
 #include "targetver.h"
 
 //#define WIN32_LEAN_AND_MEAN             //  从 Windows 头文件中排除极少使用的信息

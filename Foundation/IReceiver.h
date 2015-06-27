@@ -3,7 +3,7 @@
 namespace ZG
 {
 	class ICommand;
-	class IReceiver
+	class FOUNDATION_API IReceiver
 	{
 	public:
 		IReceiver();

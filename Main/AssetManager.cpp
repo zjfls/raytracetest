@@ -12,6 +12,10 @@
 #include "IAsset.h"
 #include <assert.h>
 #include "SceneAssetLoader.h"
+#include "SkeletonResource.h"
+#include "IWorldObj.h"
+#include "MaterialResource.h"
+
 template class MAIN_API  Singleton < AssetManager >;
 template<> SmartPointer<AssetManager> Singleton<AssetManager>::_instance = nullptr;
 

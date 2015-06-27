@@ -12,6 +12,13 @@
 #include "RenderView.h"
 #include "RasterMaterial.h"
 #include "Culler.h"
+#include "IWorldObj.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
+#include "MaterialPass.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 //RasterRender::RasterRender
 //	:m_pRenderPath(nullptr)
 //{

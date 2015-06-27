@@ -17,6 +17,9 @@
 #include "RasterMaterial.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
+#include "MaterialPass.h"
+#include "VertexShader.h"
+#include "FragShader.h"
 using namespace tinyxml2;
 
 XmlSceneLoadHelper::XmlSceneLoadHelper()

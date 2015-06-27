@@ -20,6 +20,8 @@
 #include "Sphere3D.h"
 #include "skeleton.h"
 #include "SkeletonResource.h"
+#include "ModuleBase.h"
+
 WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 {
 	//

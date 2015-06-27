@@ -45,6 +45,8 @@ namespace ZG
 		void	CreateToolBar();
 		void	CreateMenuBar();
 		//
+		bool	IsRenderViewActive() const;
+		//
 	private:
 		Ui::QtEditorClass ui;
 		QTabWidget* m_pTabWidget;

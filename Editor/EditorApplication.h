@@ -4,6 +4,7 @@
 #include "ApplicationBase.h"
 #include <map>
 #include "IListenerSubject.h"
+#include "IReceiver.h"
 namespace ZG
 {
 	class IWorld;
@@ -12,7 +13,7 @@ namespace ZG
 	class CameraBase;
 	//class RenderView;
 	//
-	class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject, public GameObjectBase
+	class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject,public IReceiver
 	{
 	public:
 		enum EOperationState
@@ -33,7 +34,7 @@ namespace ZG
 		virtual ~EditorApplication();
 
 
-		void	SetWindowID(int id){ m_RenderViewInfo.m_windowID = id; m_nWindowID = id; };
+		void	SetWindowID(int id);
 		int		GetWindowID(){ return m_RenderViewInfo.m_bWindowed; };
 		bool	AddView(int id, EditorRenderView*);
 		bool	RemoveView(int id);
@@ -50,6 +51,10 @@ namespace ZG
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
 		
 		virtual void OnInit();
+
+		bool excuteCommond(ICommand* pCommand) override;
+		bool undoCommond(ICommand* pCommond) override;
+		bool redoCommond(ICommand* pCommond) override;
 	private:
 	public:
 		int m_nWindowID;

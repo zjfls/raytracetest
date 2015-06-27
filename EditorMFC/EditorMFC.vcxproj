@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../main;../foundation;../world;../resource;../math;../editor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../main;../foundation;../math;../editor</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <DisableSpecificWarnings>4251;4910;4661</DisableSpecificWarnings>
     </ClCompile>
@@ -63,7 +63,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <RegisterOutput>true</RegisterOutput>
       <AdditionalLibraryDirectories>../lib/debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>main.lib;foundation.lib;world.lib;resource.lib;math.lib;Editor.lib</AdditionalDependencies>
+      <AdditionalDependencies>main.lib;foundation.lib;math.lib;Editor.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -87,7 +87,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../main;../math;../resource;../foundation;../world;../editor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../main;../math;../foundation;../editor</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -96,7 +96,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <RegisterOutput>true</RegisterOutput>
       <AdditionalLibraryDirectories>../lib/release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>main.lib;foundation.lib;world.lib;math.lib;resource.lib;editor.lib</AdditionalDependencies>
+      <AdditionalDependencies>main.lib;foundation.lib;math.lib;editor.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

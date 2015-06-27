@@ -19,6 +19,8 @@
 #include "EnviromentSetting.h"
 #include "DynamicVertexData.h"
 #include "D3DDepthBuffer.h"
+#include "RenderView.h"
+#include "IRenderable.h"
 D3D9RenderSystem::D3D9RenderSystem()
 	:m_pD3D(nullptr)
 	, m_pD3DDevice(nullptr)
@@ -563,6 +565,8 @@ stD3DVertexBuffDecal* D3D9RenderSystem::CreateVertexDeclarationFromDesc(std::vec
 	m_pD3DDevice->CreateVertexDeclaration((D3DVERTEXELEMENT9*)(&vecVertElem[0]), &pVertexDecl);
 	pDecal->m_pVertexDecal = pVertexDecl;
 	pDecal->m_vecDataDesc = vecDataDesc;
+	AddVertexDecal(pDecal);
+	
 	return pDecal;
 }
 
@@ -891,14 +895,20 @@ stD3DVertexBuffDecal* D3D9RenderSystem::GetVertexDecal(std::vector<VertexData::V
 		{
 			continue;
 		}
+		bool bFound = true;
 		for (int i = 0; i < decl.size();++i)
 		{
-			if (pDecal->m_vecDataDesc[i].nOffset == decl[i].nOffset
-				&&pDecal->m_vecDataDesc[i].typedesc == decl[i].typedesc
-				&&pDecal->m_vecDataDesc[i].usedesc == decl[i].usedesc)
+			if (pDecal->m_vecDataDesc[i].nOffset != decl[i].nOffset
+				||pDecal->m_vecDataDesc[i].typedesc != decl[i].typedesc
+				||pDecal->m_vecDataDesc[i].usedesc != decl[i].usedesc)
 			{
-				return pDecal;
+				bFound = false;
+				continue;
 			}
+		}
+		if (bFound == true)
+		{
+			return pDecal;
 		}
 	}
 	return nullptr;
@@ -991,4 +1001,9 @@ DepthBuffer* ZG::D3D9RenderSystem::CreateDepthBuffer(int nWidth, int nHeight, in
 	}
 	m_vecDepthBuffer.push_back(pBuffer);
 	return pBuffer;
+}
+
+void ZG::D3D9RenderSystem::AddVertexDecal(stD3DVertexBuffDecal* pDecal)
+{
+	m_VertexDecals.push_back(pDecal);
 }

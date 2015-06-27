@@ -1,7 +1,7 @@
 #pragma once
 namespace ZG
 {
-	class MAIN_API IOInterface
+	class MAIN_API IOInterface:public GameObjectBase
 	{
 	public:
 		IOInterface();

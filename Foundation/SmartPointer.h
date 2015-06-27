@@ -43,7 +43,7 @@ namespace ZG
 		//
 		T* get() const;
 	private:
-		GameObjectBase* m_pTarget;
+		T* m_pTarget;
 	};
 
 	template<class T> template<class T2>
@@ -88,13 +88,13 @@ namespace ZG
 	template<class T>
 	T* ZG::SmartPointer<T>::get() const
 	{
-		return (T*)m_pTarget;
+		return dynamic_cast<T*>(m_pTarget);
 	}
 
 	template<class T>
 	T& ZG::SmartPointer<T>::operator*()
 	{
-		return *((T*)m_pTarget);
+		return *(dynamic_cast<T*>(m_pTarget));
 	}
 
 
@@ -125,7 +125,7 @@ namespace ZG
 	template<class T>
 	bool ZG::SmartPointer<T>::operator!=(T* t) const
 	{
-		if (m_pTarget != (GameObjectBase*)t)
+		if (m_pTarget != dynamic_cast<T*>(t))
 		{
 			return true;
 		}
@@ -135,7 +135,7 @@ namespace ZG
 	template<class T>
 	bool ZG::SmartPointer<T>::operator==(T* t) const
 	{
-		if (m_pTarget == (GameObjectBase*)t)
+		if (m_pTarget == dynamic_cast<T*>(t))
 		{
 			return true;
 		}
@@ -185,7 +185,7 @@ namespace ZG
 	template<class T>
 	T* ZG::SmartPointer<T>::operator=(T* pTarget)
 	{
-		if (m_pTarget == (GameObjectBase*)pTarget)
+		if (m_pTarget == dynamic_cast<T*>(pTarget))
 		{
 			return (T*)m_pTarget;
 		}
@@ -197,8 +197,9 @@ namespace ZG
 				delete m_pTarget;
 			}
 		}
-		m_pTarget = (GameObjectBase*)(pTarget);
-		assert(pTarget != nullptr);
+		
+		//assert(pTarget != nullptr);
+		m_pTarget = dynamic_cast<T*>(pTarget);
 		if (m_pTarget != nullptr)
 		{
 			m_pTarget->m_nRefCount++;
@@ -235,7 +236,7 @@ namespace ZG
 	ZG::SmartPointer<T>::SmartPointer(T* pTarget)
 		//:m_pTarget((T*)pTarget)
 	{
-		m_pTarget = (GameObjectBase*)pTarget;
+		m_pTarget = dynamic_cast<T*>(pTarget);
 		if (m_pTarget == nullptr)
 		{
 			return;

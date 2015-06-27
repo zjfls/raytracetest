@@ -19,6 +19,10 @@
 #include "RenderSystem.h"
 #include "RasterRender.h"
 #include "TimeManager.h"
+#include "IRenderable.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
 template class MAIN_API  Singleton < D3D9Application>;
 template<> SmartPointer<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 

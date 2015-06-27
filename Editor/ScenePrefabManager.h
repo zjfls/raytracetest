@@ -16,7 +16,7 @@ namespace ZG
 		bool		m_bIsRoot;
 		std::string m_strPrefabRes;
 	};
-	class EDITOR_API ScenePrefabManager:public Singleton<ScenePrefabManager>
+	class EDITOR_API ScenePrefabManager:public GameObjectBase,public Singleton<ScenePrefabManager>
 	{
 	public:
 		ScenePrefabManager();

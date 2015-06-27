@@ -4,7 +4,8 @@
 #include "RayTracePerpViewPort.h"
 #include "IWorld.h"
 #include "IRender.h"
-
+#include "IWorldObj.h"
+#include "IRenderable.h"
 RayTraceCamera::RayTraceCamera()
 {
 	//m_pRender = new RayTraceRender;

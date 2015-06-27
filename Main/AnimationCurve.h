@@ -26,7 +26,7 @@ namespace ZG
 		AnimationType m_eType;
 	};
 	template<class T>
-	class MAIN_API AnimationCurve :public AnimationCurveBase
+	class AnimationCurve :public AnimationCurveBase
 	{
 	public:
 		AnimationCurve(AnimationType eType);

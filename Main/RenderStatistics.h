@@ -3,7 +3,7 @@
 #include "Singleton.h"
 namespace ZG
 {
-	class RenderStatistics:public Singleton<RenderStatistics>
+	class RenderStatistics:public GameObjectBase,public Singleton<RenderStatistics>
 	{
 	public:
 		RenderStatistics();

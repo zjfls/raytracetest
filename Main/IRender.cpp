@@ -2,6 +2,8 @@
 #include "IRender.h"
 #include "CameraBase.h"
 #include "Event.h"
+#include "IWorldObj.h"
+#include  "IRenderable.h"
 
 IRender::IRender()
 	:m_pCurrentRenderCamera(nullptr)

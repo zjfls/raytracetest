@@ -1,6 +1,7 @@
 #pragma once
 #include "ModuleBase.h"
 #include "AnimationModule.h"
+#include "MeshResource.h"
 
 namespace ZG
 {

@@ -5,7 +5,7 @@
 #include "IRenderable.h"
 #include "IntersectTest.h"
 #include "Vector4.h"
-
+#include "IWorldObj.h"
 ZG::Culler::Culler()
 {
 

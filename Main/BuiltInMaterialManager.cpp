@@ -6,6 +6,7 @@
 #include "VertexShader.h"
 #include "FragShader.h"
 #include "MaterialPass.h"
+#include "Texture.h"
 using namespace ZG;
 template class MAIN_API  Singleton < BuiltInMaterialManager >;
 template<> SmartPointer<BuiltInMaterialManager> Singleton<BuiltInMaterialManager>::_instance = nullptr;

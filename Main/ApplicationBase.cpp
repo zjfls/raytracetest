@@ -16,6 +16,11 @@
 #include "BuiltInMaterialManager.h"
 #include "RenderAbleEventProxy.h"
 #include "VertexIndexDataEventProxy.h"
+#include "IWorldObj.h"
+#include "RasterRender.h"
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
 using namespace ZG;
 ApplicationBase::ApplicationBase()
 	:m_pRenderView(nullptr)

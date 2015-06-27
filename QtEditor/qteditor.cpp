@@ -16,6 +16,9 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <vector>
+#include "EditorCommandManager.h"
+#include "EditorCommands.h"
+#include <deque>
 //#include "QtRenderView.h"
 //struct test
 //{
@@ -305,15 +308,27 @@ void ZG::QtEditor::CreateMenuBar()
 {
 	connect(menuBar(), SIGNAL(triggered(QAction*)), this, SLOT(onMenuActionTrigger(QAction*)));
 	QMenu *m_pFileMenu = menuBar()->addMenu(tr("&File"));
-	QAction *pLoadScene = m_pFileMenu->addAction(tr("Load Scene..."));
-	QAction *pSaveScene = m_pFileMenu->addAction(tr("Save Scene..."));
-	QAction *pSaveSceneAs = m_pFileMenu->addAction(tr("Save Scene As..."));
+	QAction *pLoadScene = m_pFileMenu->addAction(tr("Load Scene...Ctrl+O"));
+	QAction *pSaveScene = m_pFileMenu->addAction(tr("Save Scene...Ctrl+S"));
+	QAction *pSaveSceneAs = m_pFileMenu->addAction(tr("Save Scene As...Ctrl+Shift+S"));
 	pLoadScene->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
 	pSaveScene->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 	pSaveSceneAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
 	m_mapMenuBarAction[pSaveScene] = "FILE_SAVE_SCENE";
 	m_mapMenuBarAction[pLoadScene] = "FILE_LOAD_SCENE";
 	m_mapMenuBarAction[pSaveSceneAs] = "FILE_SAVE_SCENE_AS";
+
+	//Edit
+	QMenu* m_pEditMenu = menuBar()->addMenu(tr("&Edit"));
+	QAction* pUndo = m_pEditMenu->addAction(tr("Undo...Ctrl+Z"));
+	QAction* pRedo = m_pEditMenu->addAction(tr("Redo...Ctrl+Y"));
+	QAction* pDelete = m_pEditMenu->addAction(tr("Delete...Delete"));
+	pUndo->setShortcut(QKeySequence::Undo);
+	pRedo->setShortcut(QKeySequence::Redo);
+	pDelete->setShortcut(QKeySequence::Delete);
+	m_mapMenuBarAction[pUndo] = "EDIT_UNDO";
+	m_mapMenuBarAction[pRedo] = "EDIT_REDO";
+	m_mapMenuBarAction[pDelete] = "EDIT_DELETE";
 
 }
 
@@ -348,6 +363,34 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 			return;
 		EditorApplication::GetInstance()->LoadScene(fileName.toStdString());
 	}
+	if (iter->second == "EDIT_UNDO")
+	{
+		EditorCommandManager::GetInstance()->Undo();
+	}
+	if (iter->second == "EDIT_REDO")
+	{
+		EditorCommandManager::GetInstance()->Redo();
+	}
+	if (iter->second == "EDIT_DELETE")
+	{
+		if (IsRenderViewActive() == true)
+		{
+			if (EditorApplication::GetInstance()->m_SelectObj != nullptr && EditorApplication::GetInstance()->m_SelectObj->GetParent() != nullptr)
+			{
+				DeleteCommand* pCmd = new DeleteCommand;
+				pCmd->m_pObj = EditorApplication::GetInstance()->m_SelectObj;
+				pCmd->m_pParentObj = EditorApplication::GetInstance()->m_SelectObj->GetParent();
+				pCmd->m_pReceiver = EditorApplication::GetInstance();
+				EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
+
+			}
+		}
+	}
+}
+
+bool ZG::QtEditor::IsRenderViewActive() const
+{
+	return true;
 }
 
 //void QtEditor::DataItemClicked(const QModelIndex &)

@@ -1,5 +1,6 @@
 #pragma once
 #include "qttreepropertybrowser.h"
+#include "ModuleBase.h"
 class QtVariantPropertyManager;
 class QtVariantEditorFactory;
 class QtGroupPropertyManager;

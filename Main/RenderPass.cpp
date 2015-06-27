@@ -25,6 +25,8 @@
 #include "PointLight.h"
 #include "EnviromentSetting.h"
 #include "VertexData.h"
+#include "RenderView.h"
+#include "Texture.h"
 //#include "GlobalRenderConfig.h"
 
 RenderPass::RenderPass()

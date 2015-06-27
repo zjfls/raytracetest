@@ -12,7 +12,6 @@
 
 
 #include "Main_Dll_Def.h"
-#include "Resource_Dll_Def.h"
 #include "Math_Dll_Def.h"
 #include "Foundation_Dll_Def.h"
 #include <tchar.h>

@@ -14,7 +14,7 @@ namespace ZG
 		void Save(){ stream.close(); };
 		ofstream stream;
 	};
-	class ImageFileHelper :public Singleton < ImageFileHelper >
+	class ImageFileHelper :public GameObjectBase,public Singleton < ImageFileHelper >
 	{
 	public:
 		ImageFileHelper();

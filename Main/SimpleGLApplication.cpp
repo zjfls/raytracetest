@@ -7,7 +7,11 @@
 #include "gl/glew.h"
 #include "gl/freeglut.h"
 #include "gl/GL.h"
-
+#include "HardwareVertexShader.h"
+#include "HardwareFragShader.h"
+#include "Texture.h"
+#include "IWorldObj.h"
+#include "IWorld.h"
 
 SmartPointer<SimpleGLApplication> Singleton<SimpleGLApplication>::_instance = nullptr;
 

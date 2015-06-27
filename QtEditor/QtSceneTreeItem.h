@@ -1,4 +1,5 @@
 #pragma once
+#include "IWorldObj.h"
 namespace ZG
 {
 	class IWorldObj;
