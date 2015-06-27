@@ -115,7 +115,10 @@ bool ZG::SkeletonModule::BindAnimation(AnimationTrack* pTrack)
 	//for (int i = 0; i < pTrack->m_pResource->m_mapCurves.size();++i)
 	for each (std::pair<std::string, SmartPointer<AnimationCurveBase>> p in pTrack->m_pResource->m_mapCurves)
 	{
-		pTrack->AddBind<stTransformData>(p.first, &(m_mapNameToSkeletonObj[p.first]->m_pTransform->m_TransformData));
+		if (m_mapNameToSkeletonObj.find(p.first) != std::end(m_mapNameToSkeletonObj))
+		{
+			pTrack->AddBind<stTransformData>(p.first, &(m_mapNameToSkeletonObj[p.first]->m_pTransform->m_TransformData));
+		}
 	}
 	return true;
 }

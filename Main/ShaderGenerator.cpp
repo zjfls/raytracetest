@@ -65,7 +65,7 @@ const char* ShaderGenerator::ForwardGenSingleLight(FragShaderDesc& pShader)
 		"Color.rgb = CalLight(o,atten,eyevec,lightdir,GAMELIGHTINTENSITY,GAMELIGHTCOLOR.rgb).rgb;\n";
 	if (pShader.m_bAmbient == true)
 	{
-		//rtCode += "Color.rgb += o.DiffuseColor * GAMEAMBIENTCOLOR;\n";
+		rtCode += "Color.rgb += o.DiffuseColor * GAMEAMBIENTCOLOR;\n";
 	}
 	rtCode += "Color.a = o.Alpha;\n"\
 		"return Color;\n"\
