@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--skeleton resource-->
-<Info BoneNum="1"/>
-
-<Bone Name="Bip01-Head">
-    <Translation x="0" y="0" z="0"/>
-    <Rotation x="0" y="0" z="0"/>
-    <Scale x="0" y="0" z="0"/>
-</Bone>
