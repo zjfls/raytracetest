@@ -5,6 +5,7 @@
 #include "MaterialResource.h"
 #include "CameraBase.h"
 #include "IWorld.h"
+#include "AABBBox.h"
 IWorldObj::IWorldObj()
 	:m_pParent(nullptr)
 {
@@ -223,4 +224,31 @@ IWorldObj* ZG::IWorldObj::GetChildByName(std::string strName,bool bRecursive /*=
 		}
 	}
 	return nullptr;
+}
+
+AABBBox ZG::IWorldObj::GetWorldAABBBox()
+{
+	std::vector<SmartPointer<IRenderable>> vecRend;
+	GetAllModule<IRenderable>(vecRend);
+	AABBBox pBox;
+	pBox.m_Min = m_pTransform->GetWorldTranslate() - Vector3(50.0f, 50.0f, 50.0f);
+	pBox.m_Max = m_pTransform->GetWorldTranslate() + Vector3(50.0f, 50.0f, 50.0f);
+	bool bInit = false;
+	for each (SmartPointer<IRenderable> pRend in vecRend)
+	{
+		AABBBox* rendAABB = dynamic_cast<AABBBox*>(pRend->m_pBounding);
+		if (bInit == false)
+		{
+			pBox = *rendAABB;
+			bInit = true;
+		}
+		else
+		{
+			if (rendAABB != nullptr)
+			{
+				pBox.CombineAABB(rendAABB);
+			}
+		}
+	}
+	return pBox;
 }

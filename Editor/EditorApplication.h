@@ -11,6 +11,7 @@ namespace ZG
 	class IWorldObj;
 	class EditorRenderView;
 	class CameraBase;
+	class EditorSceneView;
 	//class RenderView;
 	//
 	class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject,public IReceiver
@@ -33,7 +34,7 @@ namespace ZG
 		EditorApplication();
 		virtual ~EditorApplication();
 
-
+		IWorldObj*	getSelectObj();
 		void	SetWindowID(int id);
 		int		GetWindowID(){ return m_RenderViewInfo.m_bWindowed; };
 		bool	AddView(int id, EditorRenderView*);
@@ -43,26 +44,27 @@ namespace ZG
 		//
 		void	SaveScene(std::string fileName);
 		void	LoadScene(std::string fileName);
-		std::map<int, EditorRenderView*> m_ViewMap;
+		
 		virtual void SetupScene();
 		virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
 		//
-		void	OnSelectChange(SmartPointer<IWorldObj> pObj);
+		void	SelectChange(SmartPointer<IWorldObj> pObj);
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
-		
+		EditorSceneView*	getActiveScene();
 		virtual void OnInit();
 
 		bool excuteCommond(ICommand* pCommand) override;
 		bool undoCommond(ICommand* pCommond) override;
 		bool redoCommond(ICommand* pCommond) override;
 	private:
+		SmartPointer<IWorldObj> m_SelectObj;
 	public:
 		int m_nWindowID;
 		IListener* m_pEditorApp;
-
+		std::map<int, EditorRenderView*> m_ViewMap;
 		//
 		std::vector<SmartPointer<IWorldObj>> m_vecSelectObjs;
-		SmartPointer<IWorldObj> m_SelectObj;
+		
 		//
 		EOperationState m_eOperState;
 		ESelectOperState m_eSelState;

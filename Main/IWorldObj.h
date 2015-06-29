@@ -6,6 +6,7 @@
 namespace ZG
 {
 	class IRenderable;
+	class AABBBox;
 	class MAIN_API IWorldObj :public GameObjectBase
 	{
 	public:
@@ -23,6 +24,7 @@ namespace ZG
 		void			OnAdd();
 		void			OnRemove();
 
+		AABBBox		GetWorldAABBBox();
 
 
 		template<class T>

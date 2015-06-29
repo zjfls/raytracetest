@@ -31,6 +31,8 @@
 #include <algorithm>
 #include "EditorCommands.h"
 #include "EditorCommandManager.h"
+#include "AABBBox.h"
+#include "Matrix44.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -132,7 +134,7 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 		
 	}
 	if (EditorApplication::GetInstance()->m_eOperState == EditorApplication::EStateTranslate
-		&&EditorApplication::GetInstance()->m_SelectObj != nullptr)
+		&&EditorApplication::GetInstance()->getSelectObj() != nullptr)
 	{
 		if (EditorApplication::GetInstance()->m_eSelState == EditorApplication::ESelNone)
 		{
@@ -141,7 +143,7 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 		else
 		{
 			//
-			Vector3 vecDiff = m_pCamera->m_pTransform->GetWorldTranslate() - EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate();
+			Vector3 vecDiff = m_pCamera->m_pTransform->GetWorldTranslate() - EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate();
 			float zValue = vecDiff.length();
 			float yValue = zValue * tan(m_pCameraModule->m_fFovy / 2);
 			float xValue = yValue * m_pCameraModule->m_fAspect;
@@ -208,10 +210,10 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 				default:
 				break;
 			}
-			Vector3 worldPos = EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate();
+			Vector3 worldPos = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate();
 			worldPos = fMoveDist * movDir + worldPos;
 			std::cout << "move dist" << fMoveDist << std::endl;
-			EditorApplication::GetInstance()->m_SelectObj->m_pTransform->SetWorldTranslate(worldPos);
+			EditorApplication::GetInstance()->getSelectObj()->m_pTransform->SetWorldTranslate(worldPos);
 
 
 		}
@@ -222,7 +224,7 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 void EditorSceneView::OnMouseLButtonDown(Vector2& pos)
 {
 	EditorApplication::EOperationState eOperState = EditorApplication::GetInstance()->m_eOperState;
-	if (EditorApplication::GetInstance()->m_SelectObj != nullptr)
+	if (EditorApplication::GetInstance()->getSelectObj() != nullptr)
 	{
 		switch (eOperState)
 		{
@@ -429,7 +431,7 @@ void ZG::EditorSceneView::OnClick(Vector2& pos)
 					IntersectResults result = IntersectTest::testRayRenderable(r, *pRend.get(), *pRend->m_pOwnerObj->m_pTransform);
 					if (result.m_bInterset == true)
 					{
-						EditorApplication::GetInstance()->m_SelectObj = pRend->m_pOwnerObj;
+						EditorApplication::GetInstance()->SelectChange(pRend->m_pOwnerObj);
 						EditorApplication::GetInstance()->NotifyListener("SelectChange", EditorApplication::GetInstance());
 					}
 				}
@@ -447,13 +449,13 @@ void ZG::EditorSceneView::UpdateGizmo()
 
 
 	EditorApplication::EOperationState eOperState = EditorApplication::GetInstance()->m_eOperState;
-	if (EditorApplication::GetInstance()->m_SelectObj != nullptr)
+	if (EditorApplication::GetInstance()->getSelectObj() != nullptr)
 	{
 		switch (eOperState)
 		{
 			case EditorApplication::EStateTranslate:
 			{
-				Vector3 dir = EditorApplication::GetInstance()->m_SelectObj->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate();
+				Vector3 dir = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate();
 				dir.normalize();
 				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_pCamera->m_pTransform->GetWorldTranslate() + dir * 250);
 				//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
@@ -466,6 +468,31 @@ void ZG::EditorSceneView::UpdateGizmo()
 void ZG::EditorSceneView::OnMouseLButtonRelease(Vector2& pt)
 {
 	EditorApplication::GetInstance()->m_eSelState = EditorApplication::ESelNone;
+}
+
+void ZG::EditorSceneView::FocusTarget(IWorldObj* pObj)
+{
+	AABBBox aabb = pObj->GetWorldAABBBox();
+	aabb.Transform(m_pCameraModule->GetViewMatrix());
+	Vector3 diff = aabb.m_Max - aabb.m_Min;
+	Vector3 center = (aabb.m_Max + aabb.m_Min) * 0.5f;
+	center = Matrix44::QuikInverse(m_pCameraModule->GetViewMatrix()).TransformPosition(center);
+	float fovy = m_pCameraModule->m_fFovy;
+	float yTan = tan(fovy / 2.0f);
+	float disty = diff.m_fy / yTan;
+	float xTan = yTan * m_pCameraModule->m_fAspect;
+	float distx = diff.m_fx / xTan;
+	if (distx < disty)
+	{
+		distx = disty;
+	}
+	//
+	distx = distx;
+
+	Vector3 worldPos = pObj->m_pTransform->GetWorldTranslate();
+	Vector3 dir = -m_pCameraModule->m_pOwnerObj->m_pTransform->GetForward();
+	worldPos = center + dir * distx;
+	m_pCameraModule->m_pOwnerObj->m_pTransform->SetWorldTranslate(worldPos);
 }
 
 void EditorSceneView::DrawGizmo()

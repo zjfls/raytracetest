@@ -23,7 +23,7 @@ namespace ZG
 	public:
 		WorldObjPropertyBrowser();
 		virtual ~WorldObjPropertyBrowser();
-
+		void	UpdateProperty();
 
 
 		void	SetTarget(SmartPointer<IWorldObj> pObj);
@@ -32,7 +32,7 @@ namespace ZG
 		private slots:
 		void valueChanged(QtProperty *pProp, const QVariant &v);
 
-		void	UpdateProperty();
+		
 		void	AddEditorProperty(SmartPointer<ModuleBase> pModule, std::string propName, QtProperty* pProp);
 	private:
 		SmartPointer<IWorldObj> m_pSelectObj;

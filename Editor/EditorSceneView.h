@@ -25,6 +25,8 @@ namespace ZG
 		virtual void OnKeyPressed(int key);
 		void	OnClick(Vector2& pt) override;
 		//
+		void		FocusTarget(IWorldObj* pObj);
+		//
 		void		UpdateGizmo();
 		void		DrawGizmo();
 		//

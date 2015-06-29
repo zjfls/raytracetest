@@ -11,7 +11,9 @@ namespace ZG
 		SmartPointer<ModuleBase> m_pModule;
 		std::string m_PropName;
 
+
 		virtual void SetProperty(void* pData);
+		void		GetValue(void* pData);
 	};
 }
 

@@ -30,6 +30,8 @@
 #include "SingleResourceAsset.h"
 #include "EditorCommands.h"
 #include "SkeletonResource.h"
+#include "EditorEvents.h"
+#include "EditorSceneView.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -41,6 +43,10 @@ EditorApplication::EditorApplication()
 	, m_pGizmoScene(nullptr)
 	, m_bShowSkeletonGizmo(false)
 {
+	addEvent("ADDTOSCENEGGRAPH", new Event<AddSceneGraphEventArg>());
+	addEvent("DELETEFROMSCENEGRAPH", new Event<DeleteSceneGraphEventArg>());
+	addEvent("SCENEGRAPHSELCHANGE", new Event<SceneGraphSelChangeArg>());
+	addEvent("EDITORUPDATE", new Event<EditorUpdateArg>());
 
 }
 
@@ -107,7 +113,9 @@ void EditorApplication::Run()
 	}
 	//std::cout << "update end" << std::endl;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
-	
+
+	EditorUpdateArg updateArg;
+	(*getEvent<EditorUpdateArg>("EDITORUPDATE"))(updateArg);
 	//
 	TimeManager::GetInstance()->Update();
 	//
@@ -215,6 +223,7 @@ void EditorApplication::SetupScene()
 	m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
 	//m_pWorld->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
 	NotifyListener("InitScene", EditorApplication::GetInstance());
+	//SelectChange(nullptr);
 }
 
 void EditorApplication::NotifyListener(string msg, IListenerSubject* pSubject)
@@ -223,9 +232,18 @@ void EditorApplication::NotifyListener(string msg, IListenerSubject* pSubject)
 	m_pEditorApp->OnNotify(msg, pSubject);
 }
 
-void EditorApplication::OnSelectChange(SmartPointer<IWorldObj> pObj)
+void EditorApplication::SelectChange(SmartPointer<IWorldObj> pObj)
 {
+	if (pObj == m_SelectObj)
+	{
+		return;
+	}
 	m_SelectObj = pObj;
+
+	SceneGraphSelChangeArg arg;
+	arg.m_pObj = pObj.get();
+	(*getEvent < SceneGraphSelChangeArg >("SCENEGRAPHSELCHANGE"))(arg);
+	//
 	NotifyListener("SelectChange", EditorApplication::GetInstance());
 }
 
@@ -333,17 +351,30 @@ bool ZG::EditorApplication::excuteCommond(ICommand* pCommand)
 	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
 	if (pDeleteCmd != nullptr)
 	{
+		DeleteSceneGraphEventArg arg;
+		arg.m_pObj = pDeleteCmd->m_pObj.get();
+		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
+		//
 		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
 		m_SelectObj = nullptr;
+		//NotifyListener("InitScene", EditorApplication::GetInstance());
+		//
 
-		NotifyListener("InitScene", EditorApplication::GetInstance());
+		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+		EditorApplication::GetInstance()->SelectChange(nullptr);
 		return true;
 	}
 	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
 	if (pAddToSceneCmd != nullptr)
 	{
 		pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
-		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		//EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+
+		AddSceneGraphEventArg arg;
+		arg.m_pObj = pAddToSceneCmd->m_pObj.get();
+		arg.m_pParent = pAddToSceneCmd->m_pParentObj.get();
+		(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
+		EditorApplication::GetInstance()->SelectChange(arg.m_pObj);
 		return true;
 	}
 	return false;
@@ -354,17 +385,31 @@ bool ZG::EditorApplication::undoCommond(ICommand* pCommand)
 	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
 	if (pDeleteCmd != nullptr)
 	{
+		if (pDeleteCmd->m_pObj->GetParent() != nullptr)
+		{
+			pDeleteCmd->m_pObj->GetParent()->removeChild(pDeleteCmd->m_pObj);
+		}
 		pDeleteCmd->m_pParentObj->addChild(pDeleteCmd->m_pObj);
-		m_SelectObj = pDeleteCmd->m_pObj;
-
-		NotifyListener("InitScene", EditorApplication::GetInstance());
+		//NotifyListener("InitScene", EditorApplication::GetInstance());
+		//
+		AddSceneGraphEventArg arg;
+		arg.m_pObj = pDeleteCmd->m_pObj.get();
+		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
+		(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
+		SelectChange(pDeleteCmd->m_pObj);
 		return true;
 	}
 	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
 	if (pAddToSceneCmd != nullptr)
 	{
+		DeleteSceneGraphEventArg arg;
+		arg.m_pObj = pAddToSceneCmd->m_pObj.get();
+		arg.m_pParent = pAddToSceneCmd->m_pParentObj.get();
+		//
 		pAddToSceneCmd->m_pParentObj->removeChild(pAddToSceneCmd->m_pObj);
-		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		//
+		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+		EditorApplication::GetInstance()->SelectChange(nullptr);
 		return true;
 	}
 	return false;
@@ -378,15 +423,27 @@ bool ZG::EditorApplication::redoCommond(ICommand* pCommand)
 		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
 		m_SelectObj = nullptr;
 
-
-		NotifyListener("InitScene", EditorApplication::GetInstance());
+		//
+		DeleteSceneGraphEventArg arg;
+		arg.m_pObj = pDeleteCmd->m_pObj.get();
+		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
+		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+		EditorApplication::GetInstance()->SelectChange(nullptr);
+		//sNotifyListener("InitScene", EditorApplication::GetInstance());
 		return true;
 	}
 	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
 	if (pAddToSceneCmd != nullptr)
 	{
 		pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
-		EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+		//EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+
+		//
+		AddSceneGraphEventArg arg;
+		arg.m_pObj = pAddToSceneCmd->m_pObj.get();
+		arg.m_pParent = pAddToSceneCmd->m_pParentObj.get();
+		(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
+		EditorApplication::GetInstance()->SelectChange(arg.m_pObj);
 		return true;
 	}
 	return false;
@@ -396,4 +453,22 @@ void ZG::EditorApplication::SetWindowID(int id)
 {
 	m_RenderViewInfo.m_windowID = id;
 	m_nWindowID = id;
+}
+
+IWorldObj* ZG::EditorApplication::getSelectObj()
+{
+	return m_SelectObj.get();
+}
+
+EditorSceneView* ZG::EditorApplication::getActiveScene()
+{
+	for each (std::pair<int, EditorRenderView*> var in m_ViewMap)
+	{
+		EditorSceneView* pSceneView = dynamic_cast<EditorSceneView*>(var.second);
+		if (pSceneView != nullptr && pSceneView->m_bShow)
+		{
+			return pSceneView;
+		}
+	}
+	return nullptr;
 }

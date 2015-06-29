@@ -322,5 +322,30 @@ void WorldObjPropertyBrowser::AddEditorProperty(SmartPointer<ModuleBase> pModule
 
 void WorldObjPropertyBrowser::UpdateProperty()
 {
+	for each (std::pair<QtProperty*, EditorModuleProperty*> p in m_PropertyMap)
+	{
+		QtVariantProperty* pProperty = dynamic_cast<QtVariantProperty*>(p.first);
+		switch (pProperty->valueType())
+		{
+			case QVariant::Double:
+			{
+				float fValue = 0.0f;
+				p.second->GetValue(&fValue);
+				pProperty->setValue(fValue);
 
+			}
+			break;
+			case QVariant::Int:
+			{
+				int nValue = 0;
+				p.second->GetValue(&nValue);
+				pProperty->setValue(nValue);
+			}
+			break;
+			default:
+			{
+			}
+			break;
+		}
+	}
 }

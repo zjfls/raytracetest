@@ -219,6 +219,6 @@ void CSceneTreeView::OnTreeSelect(NMHDR * pNMHDR, LRESULT * pResult)
 	//std::cout << "select tree item:"<<LPCSTR(str) << std::endl;
 	stSceneNodeAttribute* pAttribute = (stSceneNodeAttribute*)m_wndTreeView.GetItemData(item);
 	SmartPointer<IWorldObj> pObj = pAttribute->m_pObj;
-	EditorApplication::GetInstance()->OnSelectChange(pObj);
+	EditorApplication::GetInstance()->SelectChange(pObj);
 }
 

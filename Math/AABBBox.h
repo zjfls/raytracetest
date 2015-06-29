@@ -13,7 +13,7 @@ namespace ZG
 
 		virtual bool testAABB(const AABBBox& aabb);
 		virtual bool testRay(const Ray3D& r);
-
+		void			CombineAABB(AABBBox* pBox);
 
 
 		void	Transform(Matrix44& mat);

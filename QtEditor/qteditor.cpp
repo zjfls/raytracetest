@@ -19,6 +19,8 @@
 #include "EditorCommandManager.h"
 #include "EditorCommands.h"
 #include <deque>
+#include "EditorEvents.h"
+#include "EditorSceneView.h"
 //#include "QtRenderView.h"
 //struct test
 //{
@@ -29,6 +31,7 @@
 QtEditor::QtEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
+	EditorApplication* pInstance = EditorApplication::GetInstance();
 	//std::vector<test> test2;
 	//test a(typeid(EditorApplication));
 	//test2.push_back(a);
@@ -47,6 +50,9 @@ QtEditor::QtEditor(QWidget *parent)
 	dock->setAllowedAreas(Qt::LeftDockWidgetArea);
 	addDockWidget(Qt::LeftDockWidgetArea, dock);
 	//
+	pInstance->getEvent<AddSceneGraphEventArg>("ADDTOSCENEGGRAPH")->addEventHandler(pInstance, std::bind(&SceneTreeView::OnAddToScene, m_pSceneTreeView, std::placeholders::_1));
+	pInstance->getEvent<DeleteSceneGraphEventArg>("DELETEFROMSCENEGRAPH")->addEventHandler(pInstance, std::bind(&SceneTreeView::OnDeleteFromScene, m_pSceneTreeView, std::placeholders::_1));
+	pInstance->getEvent<SceneGraphSelChangeArg>("SCENEGRAPHSELCHANGE")->addEventHandler(pInstance, std::bind(&SceneTreeView::OnSceneGraphSelChange, m_pSceneTreeView, std::placeholders::_1));
 	//
 	ui.setupUi(this);
 	//
@@ -114,7 +120,7 @@ QtEditor::QtEditor(QWidget *parent)
 	m_pTreePropertyBrowser = new WorldObjPropertyBrowser();
 	pPropertyDock->setWidget(m_pTreePropertyBrowser);
 	tabifyDockWidget(doc1, pPropertyDock);
-
+	pInstance->getEvent<EditorUpdateArg>("EDITORUPDATE")->addEventHandler(this, std::bind(&QtEditor::OnEditorUpdate, this, std::placeholders::_1));
 
 	QtRenderView* pRender = new QtRenderView();
 	pRender->m_strName = "Scene1";
@@ -202,7 +208,7 @@ void QtEditor::OnNotify(std::string msg, IListenerSubject* pSubject)
 	}
 	if (msg == "SelectChange")
 	{
-		m_pTreePropertyBrowser->SetTarget(EditorApplication::GetInstance()->m_SelectObj);
+		m_pTreePropertyBrowser->SetTarget(EditorApplication::GetInstance()->getSelectObj());
 		//pFrm->m_wndProperties.UpdateWorldObjProperty(EditorApplication::GetInstance()->m_SelectObj);
 		
 	}
@@ -266,8 +272,8 @@ void QtEditor::InitSceneTreeView()
 	{
 		AddSceneTreeViewItem(pRoot,pObj->GetChild(i));
 	}
-
-}
+	m_pSceneTreeView->setItemSelected(pRoot, true);
+};
 
 void QtEditor::AddSceneTreeViewItem(QtSceneTreeItem* pParent, SmartPointer<IWorldObj> pObj)
 {
@@ -294,7 +300,7 @@ void QtEditor::SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre
 	{
 		return;
 	}
-	EditorApplication::GetInstance()->OnSelectChange(pSceneItem->m_pObj);
+	EditorApplication::GetInstance()->SelectChange(pSceneItem->m_pObj);
 	//std::cout << "Name:" << pSceneItem->m_pObj->m_strName << std::endl;
 }
 
@@ -323,12 +329,15 @@ void ZG::QtEditor::CreateMenuBar()
 	QAction* pUndo = m_pEditMenu->addAction(tr("Undo...Ctrl+Z"));
 	QAction* pRedo = m_pEditMenu->addAction(tr("Redo...Ctrl+Y"));
 	QAction* pDelete = m_pEditMenu->addAction(tr("Delete...Delete"));
+	QAction* pFoucus = m_pEditMenu->addAction(tr("Focus...F"));
 	pUndo->setShortcut(QKeySequence::Undo);
 	pRedo->setShortcut(QKeySequence::Redo);
 	pDelete->setShortcut(QKeySequence::Delete);
+	pFoucus->setShortcut(Qt::Key_F);
 	m_mapMenuBarAction[pUndo] = "EDIT_UNDO";
 	m_mapMenuBarAction[pRedo] = "EDIT_REDO";
 	m_mapMenuBarAction[pDelete] = "EDIT_DELETE";
+	m_mapMenuBarAction[pFoucus] = "FOCUS_SELECT";
 
 }
 
@@ -375,15 +384,24 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 	{
 		if (IsRenderViewActive() == true)
 		{
-			if (EditorApplication::GetInstance()->m_SelectObj != nullptr && EditorApplication::GetInstance()->m_SelectObj->GetParent() != nullptr)
+			if (EditorApplication::GetInstance()->getSelectObj() != nullptr && EditorApplication::GetInstance()->getSelectObj()->GetParent() != nullptr)
 			{
 				DeleteCommand* pCmd = new DeleteCommand;
-				pCmd->m_pObj = EditorApplication::GetInstance()->m_SelectObj;
-				pCmd->m_pParentObj = EditorApplication::GetInstance()->m_SelectObj->GetParent();
+				pCmd->m_pObj = EditorApplication::GetInstance()->getSelectObj();
+				pCmd->m_pParentObj = EditorApplication::GetInstance()->getSelectObj()->GetParent();
 				pCmd->m_pReceiver = EditorApplication::GetInstance();
 				EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
+				
 
 			}
+		}
+	}
+	if (iter->second == "FOCUS_SELECT")
+	{
+		EditorSceneView* pSceneView = EditorApplication::GetInstance()->getActiveScene();
+		if (pSceneView != nullptr)
+		{
+			pSceneView->FocusTarget(EditorApplication::GetInstance()->getSelectObj());
 		}
 	}
 }
@@ -391,6 +409,11 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 bool ZG::QtEditor::IsRenderViewActive() const
 {
 	return true;
+}
+
+void ZG::QtEditor::OnEditorUpdate(EditorUpdateArg& arg)
+{
+	m_pTreePropertyBrowser->UpdateProperty();
 }
 
 //void QtEditor::DataItemClicked(const QModelIndex &)

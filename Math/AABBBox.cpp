@@ -2,8 +2,16 @@
 #include "AABBBox.h"
 #include <vector>
 #include "Vector4.h"
+#include "MathDefine.h"
 AABBBox::AABBBox()
 {
+	m_Min.m_fx = MAXFLOAT;
+	m_Min.m_fy = MAXFLOAT;
+	m_Min.m_fz = MAXFLOAT;
+
+	m_Max.m_fx = MINFLOAT;
+	m_Max.m_fy = MINFLOAT;
+	m_Max.m_fz = MINFLOAT;
 }
 
 
@@ -85,4 +93,33 @@ void AABBBox::Transform(Matrix44& mat)
 	}
 	m_Min = min;
 	m_Max = max;
+}
+
+void ZG::AABBBox::CombineAABB(AABBBox* pBox)
+{
+	if (m_Min.m_fx > pBox->m_Min.m_fx)
+	{
+		m_Min.m_fx = pBox->m_Min.m_fx;
+	}
+	if (m_Min.m_fy > pBox->m_Min.m_fy)
+	{
+		m_Min.m_fy = pBox->m_Min.m_fy;
+	}
+	if (m_Min.m_fz > pBox->m_Min.m_fz)
+	{
+		m_Min.m_fz = pBox->m_Min.m_fz;
+	}
+
+	if (m_Max.m_fx < pBox->m_Max.m_fx)
+	{
+		m_Max.m_fx = pBox->m_Max.m_fx;
+	}
+	if (m_Max.m_fy < pBox->m_Max.m_fy)
+	{
+		m_Max.m_fy = pBox->m_Max.m_fy;
+	}
+	if (m_Max.m_fz < pBox->m_Max.m_fz)
+	{
+		m_Max.m_fz = pBox->m_Max.m_fz;
+	}
 }

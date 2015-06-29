@@ -21,7 +21,8 @@ namespace ZG
 
 namespace ZG
 {
-	class QtEditor : public QMainWindow, public IListener
+	class EditorUpdateArg;
+	class QtEditor : public QMainWindow, public IListener,public GameObjectBase
 	{
 		Q_OBJECT
 
@@ -32,6 +33,7 @@ namespace ZG
 		//virtual void keyPressEvent(QKeyEvent * event);
 		virtual bool eventFilter(QObject *obj, QEvent *event);
 		virtual void childEvent(QChildEvent *event);
+		void	OnEditorUpdate(EditorUpdateArg& arg);
 		private slots:
 		void	OnTimer();
 		void	SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);

@@ -97,3 +97,73 @@ void EditorModuleProperty::SetProperty(void* pData)
 		}
 	}
 }
+
+void ZG::EditorModuleProperty::GetValue(void* pData)
+{
+	if (typeid(*m_pModule.get()) == typeid(Sphere3D))
+	{
+		SmartPointer<Sphere3D> pSphere = m_pModule.SmartPointerCast<Sphere3D>();
+		if (m_PropName == "RADIUS")
+		{
+			pSphere->m_fRadius = *((float*)pData);
+			pSphere->GeneratePolygon();
+			//RenderManager::GetInstance()->GetDefaultRenderSystem->
+		}
+		if (m_PropName == "SUBDIVIDE")
+		{
+			pSphere->m_nSubdivide = *((int*)pData);
+			pSphere->GeneratePolygon();
+		}
+	}
+	if (typeid(*m_pModule.get()) == typeid(Transform))
+	{
+		SmartPointer<Transform> pTransform = m_pModule.SmartPointerCast<Transform>();
+		if (m_PropName == "TRANSLATEX")
+		{
+			Vector3 pos = pTransform->GetLocalTranslate();
+			*((float*)pData) = pos.m_fx;
+		}
+		if (m_PropName == "TRANSLATEY")
+		{
+			Vector3 pos = pTransform->GetLocalTranslate();
+			*((float*)pData) = pos.m_fy;
+		}
+		if (m_PropName == "TRANSLATEZ")
+		{
+			Vector3 pos = pTransform->GetLocalTranslate();
+			*((float*)pData) = pos.m_fz;
+		}
+		if (m_PropName == "ROTATIONX")
+		{
+			Vector3 rot = pTransform->GetRotation();
+			*((float*)pData) = rot.m_fx;
+		}
+		if (m_PropName == "ROTATIONY")
+		{
+			Vector3 rot = pTransform->GetRotation();
+			*((float*)pData) = rot.m_fy;
+		}
+		if (m_PropName == "ROTATIONZ")
+		{
+			Vector3 rot = pTransform->GetRotation();
+			*((float*)pData) = rot.m_fz;
+		}
+		if (m_PropName == "SCALEX")
+		{
+			Vector3 scale = pTransform->GetScale();
+			*((float*)pData) = scale.m_fx;
+		}
+		if (m_PropName == "SCALEY")
+		{
+			Vector3 scale = pTransform->GetScale();
+			*((float*)pData) = scale.m_fy;
+		}
+		if (m_PropName == "SCALEZ")
+		{
+			Vector3 scale = pTransform->GetScale();
+			*((float*)pData) = scale.m_fz;
+		}
+	}
+}
+
+

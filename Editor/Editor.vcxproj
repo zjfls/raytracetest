@@ -94,6 +94,7 @@
     <ClInclude Include="EditorApplication.h" />
     <ClInclude Include="EditorCommandManager.h" />
     <ClInclude Include="EditorCommands.h" />
+    <ClInclude Include="EditorEvents.h" />
     <ClInclude Include="EditorGameView.h" />
     <ClInclude Include="EditorModuleProperty.h" />
     <ClInclude Include="EditorRenderView.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="EditorApplication.cpp" />
     <ClCompile Include="EditorCommandManager.cpp" />
     <ClCompile Include="EditorCommands.cpp" />
+    <ClCompile Include="EditorEvents.cpp" />
     <ClCompile Include="EditorGameView.cpp" />
     <ClCompile Include="EditorModuleProperty.cpp" />
     <ClCompile Include="EditorRenderView.cpp" />
