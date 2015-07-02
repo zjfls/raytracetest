@@ -21,6 +21,7 @@
 #include "skeleton.h"
 #include "SkeletonResource.h"
 #include "ModuleBase.h"
+#include "qteditorfactory.h"
 
 WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 {
@@ -30,7 +31,11 @@ WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 	groupManager = new QtGroupPropertyManager(this);
 	stringManager = new QtStringPropertyManager(this);
 	localeManager = new QtLocalePropertyManager(this);
-
+	doubleManager = new QtDoublePropertyManager(this);
+	QtDoubleSpinBoxFactory* pDoubleFactory = new QtDoubleSpinBoxFactory;
+	setFactoryForManager(doubleManager, pDoubleFactory);
+	connect(doubleManager, SIGNAL(valueChanged(QtProperty *, double)),
+		this, SLOT(valueChanged(QtProperty *, double)));
 
 	setFactoryForManager(variantManager, variantFactory);
 
@@ -107,51 +112,52 @@ void WorldObjPropertyBrowser::AddModule(SmartPointer<ModuleBase> pModule)
 		QtProperty* pPropRotation = groupManager->addProperty(tr("Rotation"));
 		QtProperty* pPropScale = groupManager->addProperty(tr("Scale"));
 		//Translate
-		QtVariantProperty* pProperty;
-		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
-		pProperty->setValue(pTransform->GetLocalTranslate().m_fx);
+		QtProperty* pProperty;
+		pProperty = doubleManager->addProperty(tr("X"));
+		QtAbstractPropertyManager* pManager = pProperty->propertyManager();
+		doubleManager->setValue(pProperty, pTransform->GetLocalTranslate().m_fx);
 		pPropTranslate->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "TRANSLATEX", pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
-		pProperty->setValue(pTransform->GetLocalTranslate().m_fy);
+		pProperty = doubleManager->addProperty(tr("Y"));
+		doubleManager->setValue(pProperty, pTransform->GetLocalTranslate().m_fy);
 		pPropTranslate->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "TRANSLATEY", pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
-		pProperty->setValue(pTransform->GetLocalTranslate().m_fz);
+		pProperty = doubleManager->addProperty(tr("Z"));
+		doubleManager->setValue(pProperty, pTransform->GetLocalTranslate().m_fz);
 		pPropTranslate->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "TRANSLATEZ", pProperty);
 		//
 		//Rotation
-		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
-		pProperty->setValue(pTransform->GetRotation().m_fx);
+		pProperty = doubleManager->addProperty(tr("X"));
+		doubleManager->setValue(pProperty, pTransform->GetRotation().m_fx);
 		pPropRotation->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "ROTATIONX", pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
-		pProperty->setValue(pTransform->GetRotation().m_fy);
+		pProperty = doubleManager->addProperty(tr("Y"));
+		doubleManager->setValue(pProperty, pTransform->GetRotation().m_fy);
 		pPropRotation->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "ROTATIONY", pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
-		pProperty->setValue(pTransform->GetRotation().m_fz);
+		pProperty = doubleManager->addProperty(tr("Z"));
+		doubleManager->setValue(pProperty, pTransform->GetRotation().m_fz);
 		pPropRotation->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "ROTATIONZ", pProperty);
 		//
 		//scale
-		pProperty = variantManager->addProperty(QVariant::Double, tr("X"));
-		pProperty->setValue(pTransform->GetScale().m_fx);
+		pProperty = doubleManager->addProperty(tr("X"));
+		doubleManager->setValue(pProperty, pTransform->GetScale().m_fx);
 		pPropScale->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "SCALEX", pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Y"));
-		pProperty->setValue(pTransform->GetScale().m_fy);
+		pProperty = doubleManager->addProperty(tr("Y"));
+		doubleManager->setValue(pProperty, pTransform->GetScale().m_fy);
 		pPropScale->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "SCALEY", pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Z"));
-		pProperty->setValue(pTransform->GetScale().m_fz);
+		pProperty = doubleManager->addProperty(tr("Z"));
+		doubleManager->setValue(pProperty, pTransform->GetScale().m_fz);
 		pPropScale->addSubProperty(pProperty);
 		AddEditorProperty(pTransform.get(), "SCALEZ", pProperty);
 		//
@@ -180,20 +186,20 @@ void WorldObjPropertyBrowser::AddModule(SmartPointer<ModuleBase> pModule)
 		SmartPointer<RasterCamera> pCamera = pModule.SmartPointerCast<RasterCamera>();;
 		QtProperty*	pCameraProperty = groupManager->addProperty(tr("RasterCamera"));
 		//
-		QtVariantProperty* pProperty = variantManager->addProperty(QVariant::Double, tr("FOV"));
-		pProperty->setValue(pCamera->m_fFovy);
+		QtProperty* pProperty = doubleManager->addProperty(tr("FOV"));
+		doubleManager->setValue(pProperty,pCamera->m_fFovy);
 		pCameraProperty->addSubProperty(pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Aspect"));
-		pProperty->setValue(pCamera->m_fAspect);
+		pProperty = doubleManager->addProperty( tr("Aspect"));
+		doubleManager->setValue(pProperty,pCamera->m_fAspect);
 		pCameraProperty->addSubProperty(pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Near Plane"));
-		pProperty->setValue(pCamera->m_fNear);
+		pProperty = doubleManager->addProperty(tr("Near Plane"));
+		doubleManager->setValue(pProperty,pCamera->m_fNear);
 		pCameraProperty->addSubProperty(pProperty);
 		//
-		pProperty = variantManager->addProperty(QVariant::Double, tr("Far Plane"));
-		pProperty->setValue(pCamera->m_fFar);
+		pProperty = doubleManager->addProperty(tr("Far Plane"));
+		doubleManager->setValue(pProperty,pCamera->m_fFar);
 		pCameraProperty->addSubProperty(pProperty);
 		addProperty(pCameraProperty);
 	}
@@ -308,6 +314,38 @@ void WorldObjPropertyBrowser::valueChanged(QtProperty *pProp, const QVariant &v)
 	}
 }
 
+void ZG::WorldObjPropertyBrowser::valueChanged(QtProperty *pProp, double f)
+{
+	SetDoubleStep(pProp);
+
+	if (m_PropertyMap.find(pProp) == std::end(m_PropertyMap))
+	{
+		return;
+	}
+	float fValue = f;
+	m_PropertyMap[pProp]->SetProperty(&fValue);
+}
+
+void ZG::WorldObjPropertyBrowser::SetDoubleStep(QtProperty* pProperty)
+{
+	float fValue = doubleManager->value(pProperty);
+	doubleManager->setDecimals(pProperty, 4);
+	if (fabs(fValue) <= 0.01f)
+	{
+		doubleManager->setSingleStep(pProperty, 0.01f);
+		
+	}
+	else 	if (fabs(fValue) <= 0.1f)
+	{
+		doubleManager->setSingleStep(pProperty, fabs(fValue) / 5.0f);
+
+	}
+	else
+	{
+		doubleManager->setSingleStep(pProperty, fabs(fValue) / 10.0f);
+	}
+}
+
 void WorldObjPropertyBrowser::AddEditorProperty(SmartPointer<ModuleBase> pModule, std::string propName, QtProperty* pProp)
 {
 	if (m_PropertyMap.find(pProp) != std::end(m_PropertyMap))
@@ -325,27 +363,39 @@ void WorldObjPropertyBrowser::UpdateProperty()
 	for each (std::pair<QtProperty*, EditorModuleProperty*> p in m_PropertyMap)
 	{
 		QtVariantProperty* pProperty = dynamic_cast<QtVariantProperty*>(p.first);
-		switch (pProperty->valueType())
+		if (pProperty != nullptr)
 		{
-			case QVariant::Double:
+			switch (pProperty->valueType())
 			{
-				float fValue = 0.0f;
-				p.second->GetValue(&fValue);
-				pProperty->setValue(fValue);
+				case QVariant::Double:
+				{
+					float fValue = 0.0f;
+					p.second->GetValue(&fValue);
+					pProperty->setValue(fValue);
 
+				}
+				break;
+				case QVariant::Int:
+				{
+					int nValue = 0;
+					p.second->GetValue(&nValue);
+					pProperty->setValue(nValue);
+				}
+				break;
+				default:
+				{
+				}
+				break;
 			}
-			break;
-			case QVariant::Int:
-			{
-				int nValue = 0;
-				p.second->GetValue(&nValue);
-				pProperty->setValue(nValue);
-			}
-			break;
-			default:
-			{
-			}
-			break;
 		}
+		QtProperty* pCMProperty = p.first;
+		if (pCMProperty->propertyManager() == doubleManager)
+		{
+			float fValue = 0.0f;
+			p.second->GetValue(&fValue);
+			doubleManager->setValue(pCMProperty, fValue);
+		}
+		
 	}
 }
+

@@ -15,10 +15,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	//AssetManager::GetInstance()->Init();
 	//FbxAppImporter::GetInstance()->ImportFbxFile("./data/meshes/plane.fbx");
 	//return 0;
-	ResourceManager<PrefabResource>::GetInstance();
+	//ResourceManager<PrefabResource>::GetInstance();
 	//
-	D3D9Application::GetInstance()->Init(argc, argv);
-	D3D9Application::GetInstance()->Run();
+	//D3D9Application::GetInstance()->Init(argc, argv);
+	//D3D9Application::GetInstance()->Run();
 	//
 	return 0;
 }

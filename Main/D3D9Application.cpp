@@ -23,6 +23,7 @@
 #include "HardwareVertexShader.h"
 #include "HardwareFragShader.h"
 #include "Texture.h"
+D3D9Application* D3D9Application::theApp = nullptr;
 template class MAIN_API  Singleton < D3D9Application>;
 template<> SmartPointer<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
 
@@ -159,7 +160,7 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 	{
 		case WM_DESTROY:
 		std::cout << "\ndestroying window\n";
-		D3D9Application::GetInstance()->CleanUp();
+		theApp->CleanUp();
 		PostQuitMessage(0);
 		return 0L;
 		case WM_LBUTTONDOWN:
@@ -180,9 +181,9 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 			AssetManager::GetInstance()->LoadAsset(lpszFile);
 			SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(lpszFile);
 			SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
-			D3D9Application::GetInstance()->m_pWorld->m_pRoot->removeChild(D3D9Application::GetInstance()->m_pTargetObj);
-			D3D9Application::GetInstance()->m_pTargetObj = pObj;
-			D3D9Application::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
+			theApp->m_pWorld->m_pRoot->removeChild(theApp->m_pTargetObj);
+			theApp->m_pTargetObj = pObj;
+			theApp->m_pWorld->m_pRoot->addChild(pObj);
 		}
 		//
 		DragFinish(hDropInfo);

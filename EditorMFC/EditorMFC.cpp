@@ -326,7 +326,7 @@ void CEditorMFCApp::OnNotify(string msg, IListenerSubject* pSubject)
 	}
 	if (msg == "SelectChange")
 	{
-		pFrm->m_wndProperties.UpdateWorldObjProperty(EditorApplication::GetInstance()->m_SelectObj);
+		pFrm->m_wndProperties.UpdateWorldObjProperty(EditorApplication::GetInstance()->getSelectObj());
 	}
 }
 

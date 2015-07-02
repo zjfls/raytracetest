@@ -7,6 +7,7 @@ class QtGroupPropertyManager;
 class QtStringPropertyManager;
 class QtLocalePropertyManager;
 class FilePathManager;
+class QtDoublePropertyManager;
 
 class QtProperty;
 class QVariant;
@@ -31,7 +32,11 @@ namespace ZG
 		void	AddModule(SmartPointer<ModuleBase> pModule);
 		private slots:
 		void valueChanged(QtProperty *pProp, const QVariant &v);
+		void valueChanged(QtProperty *pProp, double);
 
+
+		void SetDoubleStep(QtProperty* pProperty);
+		//virtual void itemChanged(QtBrowserItem *item);
 		
 		void	AddEditorProperty(SmartPointer<ModuleBase> pModule, std::string propName, QtProperty* pProp);
 	private:
@@ -41,6 +46,7 @@ namespace ZG
 		QtGroupPropertyManager *groupManager;// = new QtGroupPropertyManager(this);
 		QtStringPropertyManager *stringManager;// = new QtStringPropertyManager(w);
 		QtLocalePropertyManager *localeManager;
+		QtDoublePropertyManager *doubleManager;
 		FilePathManager			*filePathManager;
 
 		std::unordered_map<QtProperty*, EditorModuleProperty*> m_PropertyMap;

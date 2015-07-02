@@ -7,7 +7,7 @@ namespace ZG
 {
 	class IWorldObj;
 	class MAIN_API D3D9Application :
-		public ApplicationBase, public Singleton < D3D9Application >
+		public ApplicationBase/*, public Singleton < D3D9Application >*/
 	{
 	public:
 		D3D9Application();
@@ -17,6 +17,7 @@ namespace ZG
 
 		virtual void Run();
 		void		CleanUp();
+		static D3D9Application* theApp;
 	protected:
 		virtual void OnInit();
 		virtual void SetupScene();
