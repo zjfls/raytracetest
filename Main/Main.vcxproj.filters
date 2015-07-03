@@ -291,13 +291,9 @@
     <ClInclude Include="AnimationAsset.h">
       <Filter>头文件\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="SkeletonXmlLoader.h" />
     <ClInclude Include="GizmoManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SingleResourceAsset.h" />
-    <ClInclude Include="SceneAssetLoader.h" />
-    <ClInclude Include="XmlSceneLoadHelper.h" />
     <ClInclude Include="AnimationResource.h">
       <Filter>头文件\Animation</Filter>
     </ClInclude>
@@ -405,6 +401,18 @@
     </ClInclude>
     <ClInclude Include="BuiltInResource.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAssetLoader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleResourceAsset.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonXmlLoader.h">
+      <Filter>头文件\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlSceneLoadHelper.h">
+      <Filter>头文件\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -642,13 +650,9 @@
     <ClCompile Include="RenderStatistics.cpp">
       <Filter>源文件\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="SkeletonXmlLoader.cpp" />
     <ClCompile Include="GizmoManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SingleResourceAsset.cpp" />
-    <ClCompile Include="SceneAssetLoader.cpp" />
-    <ClCompile Include="XmlSceneLoadHelper.cpp" />
     <ClCompile Include="SkeletonResource.cpp">
       <Filter>源文件\Animation</Filter>
     </ClCompile>
@@ -753,6 +757,18 @@
     </ClCompile>
     <ClCompile Include="TranslateGizmo.cpp">
       <Filter>源文件\World</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneAssetLoader.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleResourceAsset.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlSceneLoadHelper.cpp">
+      <Filter>源文件\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonXmlLoader.cpp">
+      <Filter>源文件\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

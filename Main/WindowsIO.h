@@ -2,16 +2,17 @@
 #include "IOInterface.h"
 namespace ZG
 {
-	class WindowsIO :
-		public IOInterface
+	class WindowsInput :
+		public InputInterface
 	{
 	public:
-		WindowsIO();
-		virtual ~WindowsIO();
+		WindowsInput();
+		virtual ~WindowsInput();
 
 
 		virtual bool IsLBDown();
 		virtual bool IsRBDown();
+		bool IsMiddleDown() override;
 		virtual bool IsKeyDown(char c);
 	};
 }

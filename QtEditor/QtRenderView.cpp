@@ -58,6 +58,11 @@ void QtRenderView::mousePressEvent(QMouseEvent * event)
 	{
 		m_pRenderView->OnMouseLButtonDown(v);
 	}
+	b = (Qt::MouseButton)(mb & Qt::MouseButton::MidButton);
+	if (b != 0)
+	{
+		m_pRenderView->OnMouseMButtonDown(v);
+	}
 	QWidget::mousePressEvent(event);
 	setFocus();
 }

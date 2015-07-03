@@ -182,7 +182,6 @@ void ZG::Transform::SetWorldTranslate(const Vector3& vecTrans)
 	Matrix44 matworld2 = matLocal * matParent;
 
 	Matrix44 matIdentity = matParent * Matrix44::QuikInverse(matParent);
-	int i = 3;
 	//
 }
 

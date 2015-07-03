@@ -10,7 +10,7 @@ namespace ZG
 		virtual ~IOManager();
 
 
-		SmartPointer<IOInterface> m_pIO;
+		SmartPointer<InputInterface> m_pIO;
 	};
 
 	extern template class MAIN_API  Singleton < IOManager > ;

@@ -2,11 +2,11 @@
 #include "IOInterface.h"
 
 
-IOInterface::IOInterface()
+InputInterface::InputInterface()
 {
 }
 
 
-IOInterface::~IOInterface()
+InputInterface::~InputInterface()
 {
 }

@@ -6,7 +6,7 @@ template<> SmartPointer<IOManager> Singleton<IOManager>::_instance = nullptr;
 
 IOManager::IOManager()
 {
-	m_pIO = SmartPointer<IOInterface>(new WindowsIO);
+	m_pIO = SmartPointer<InputInterface>(new WindowsInput);
 }
 
 

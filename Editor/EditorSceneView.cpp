@@ -120,18 +120,55 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 
 void EditorSceneView::OnMouseMove(Vector2& pt)
 {
+	if (IOManager::GetInstance()->m_pIO->IsMiddleDown() == true)
+	{
+		Vector2 diffMouse = pt - m_LastMousePos;
+		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+		Vector3 dirRight = m_pCamera->m_pTransform->GetRight();
+		dirRight = dirRight.normalize();
+
+		Vector3 dirUp = m_pCamera->m_pTransform->GetUp();
+		dirUp = dirUp.normalize();
+		//
+		Vector3 diff = -diffMouse.m_fx  * dirRight;
+		diff = diff + diffMouse.m_fy * dirUp;
+		//std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+		position += diff;
+		m_pCamera->m_pTransform->SetTranslate(position);
+	}
 	if (IOManager::GetInstance()->m_pIO->IsRBDown() == true)
 	{
-		Vector2 diff = pt - m_LastMousePos;
-		//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
-		Vector3 vecRot = m_pCamera->m_pTransform->GetRotation();
-		//Vector3 vecRot = rot.m_vecEulerAngle;
-		vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
-		vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
-		m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);
+		if (IOManager::GetInstance()->m_pIO->IsKeyDown(0x12) == true && EditorApplication::GetInstance()->getSelectObj() != nullptr)
+		{
+			//std::cout << "rot about target" << std::endl;
+			Vector2 diff = pt - m_LastMousePos;
+			Vector3 vecRot = m_pCamera->m_pTransform->GetRotation();
+			//Vector3 vecRot = rot.m_vecEulerAngle;
+			vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
+			vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
+			m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);
+			m_pCamera->m_pTransform->Update();
 
 
-		
+
+			float dist = (EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate()).length();
+			Vector3 dir = m_pCamera->m_pTransform->GetForward();
+
+
+			Vector3 newPos = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate() - dir * dist;
+			m_pCamera->m_pTransform->SetWorldTranslate(newPos);
+
+		}
+		else
+		{
+			Vector2 diff = pt - m_LastMousePos;
+			//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
+			Vector3 vecRot = m_pCamera->m_pTransform->GetRotation();
+			//Vector3 vecRot = rot.m_vecEulerAngle;
+			vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
+			vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
+			m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);
+		}		
 	}
 	if (EditorApplication::GetInstance()->m_eOperState == EditorApplication::EStateTranslate
 		&&EditorApplication::GetInstance()->getSelectObj() != nullptr)
@@ -354,7 +391,7 @@ void EditorSceneView::Create(unsigned int nWidth, unsigned int nHeight, int wind
 
 void EditorSceneView::UpdateCamera()
 {
-	SmartPointer<IOInterface> pInterface = IOManager::GetInstance()->m_pIO;
+	SmartPointer<InputInterface> pInterface = IOManager::GetInstance()->m_pIO;
 	if (pInterface->IsKeyDown('W') == true)
 	{
 
@@ -493,6 +530,16 @@ void ZG::EditorSceneView::FocusTarget(IWorldObj* pObj)
 	Vector3 dir = -m_pCameraModule->m_pOwnerObj->m_pTransform->GetForward();
 	worldPos = center + dir * distx;
 	m_pCameraModule->m_pOwnerObj->m_pTransform->SetWorldTranslate(worldPos);
+}
+
+void ZG::EditorSceneView::OnMouseMButtonDown(Vector2& pt)
+{
+	m_LastMousePos = pt;
+}
+
+void ZG::EditorSceneView::OnMouseMButtonRelease(Vector2& pt)
+{
+
 }
 
 void EditorSceneView::DrawGizmo()

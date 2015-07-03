@@ -2,26 +2,31 @@
 #include "WindowsIO.h"
 #include "windows.h"
 
-WindowsIO::WindowsIO()
+WindowsInput::WindowsInput()
 {
 }
 
 
-WindowsIO::~WindowsIO()
+WindowsInput::~WindowsInput()
 {
 }
 
-bool WindowsIO::IsLBDown()
+bool WindowsInput::IsLBDown()
 {
 	return GetAsyncKeyState(VK_LBUTTON) < 0;
 }
 
-bool WindowsIO::IsKeyDown(char c)
+bool WindowsInput::IsKeyDown(char c)
 {
 	return GetAsyncKeyState(c) < 0;
 }
 
-bool WindowsIO::IsRBDown()
+bool WindowsInput::IsRBDown()
 {
 	return GetAsyncKeyState(VK_RBUTTON) < 0;
+}
+
+bool ZG::WindowsInput::IsMiddleDown()
+{
+	return GetAsyncKeyState(VK_MBUTTON) < 0;
 }

@@ -23,6 +23,9 @@ namespace ZG
 		void OnMouseLButtonRelease(Vector2& pt) override;
 		virtual void OnMouseRButtonDown(Vector2& pt);
 		virtual void OnKeyPressed(int key);
+
+		void OnMouseMButtonDown(Vector2& pt) override;
+		void OnMouseMButtonRelease(Vector2& pt) override;
 		void	OnClick(Vector2& pt) override;
 		//
 		void		FocusTarget(IWorldObj* pObj);

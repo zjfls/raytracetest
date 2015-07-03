@@ -75,3 +75,13 @@ void ZG::EditorRenderView::OnMouseLButtonRelease(Vector2& pt)
 {
 
 }
+
+void ZG::EditorRenderView::OnMouseMButtonDown(Vector2& pt)
+{
+
+}
+
+void ZG::EditorRenderView::OnMouseMButtonRelease(Vector2& pt)
+{
+
+}
