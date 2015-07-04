@@ -38,7 +38,7 @@ namespace ZG
 		};
 		virtual MaterialArg* clone(){ return nullptr; };
 		void SetShaderType(EMATARGSHADERTYPE eShadertype){ m_EShaderType = eShadertype; }
-		string m_strName;
+		std::string m_strName;
 		EMATARGTYPE m_EType;
 		EMATARGSHADERTYPE m_EShaderType;
 	protected:

@@ -1,6 +1,7 @@
 #pragma once
 #include "IResource.h"
 #include <vector>
+#include <unordered_map>
 namespace ZG
 {
 	class MAIN_API IAsset
@@ -22,7 +23,7 @@ namespace ZG
 		*/
 		virtual void Release(bool bReleaseResource);
 
-		SmartPointer<IResource>		GetResource(string refPath)
+		SmartPointer<IResource>		GetResource(std::string refPath)
 		{
 			if (m_ResourceMap.find(refPath) != std::end(m_ResourceMap))
 			{
@@ -35,20 +36,20 @@ namespace ZG
 		}
 		template<class T>
 		T* GetResource();
-		void			AddResource(string refPath, SmartPointer<IResource> pRes)
+		void			AddResource(std::string refPath, SmartPointer<IResource> pRes)
 		{
 			m_ResourceMap[refPath] = pRes;
 		}
-		void			RemoveResource(string refPath);
+		void			RemoveResource(std::string refPath);
 		template<class T>
 		void			GetAllResource(std::vector<T*>& vecRes);
 		//
 		template<class T>
 		unsigned int			GetResourceCount();
 	protected:
-		std::unordered_map<string, SmartPointer<IResource>> m_ResourceMap;
+		std::unordered_map<std::string, SmartPointer<IResource>> m_ResourceMap;
 	public:
-		string	m_strPath;
+		std::string	m_strPath;
 
 	};
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderEnum.h"
 #include "GameObjectBase.h"
+#include <string>
 namespace ZG
 {
 	class VertexDataEventArg;
@@ -63,17 +64,17 @@ namespace ZG
 	protected:
 		const char*			GetVertexShaderCode(VertexShaderDesc& vertexShaderDesc);
 		const char*			GetFragShaderCode(FragShaderDesc& fragShaderDesc);
-		string				GenerateVertexShaderDescString(VertexShaderDesc& vertexShaderDesc);
-		string				GenerateFragShaderDescString(FragShaderDesc& fragShaderDesc);
+		std::string				GenerateVertexShaderDescString(VertexShaderDesc& vertexShaderDesc);
+		std::string				GenerateFragShaderDescString(FragShaderDesc& fragShaderDesc);
 
 	protected:
 		virtual void	CreateDefaultRender(const RenderPath* pPath) = 0;
 		void	InitRender(RasterRender* pRender);
-		std::unordered_map<string, SmartPointer<HardwareVertexShader>> m_mapHardwareVertexShader;
-		std::unordered_map<string, SmartPointer<HardwareFragShader>> m_mapHardwareFragShader;
+		std::unordered_map<std::string, SmartPointer<HardwareVertexShader>> m_mapHardwareVertexShader;
+		std::unordered_map<std::string, SmartPointer<HardwareFragShader>> m_mapHardwareFragShader;
 		std::unordered_map<IndexData*, HardwareIndexBuffer*> m_IndexDataMap;
 		std::unordered_map<VertexData*, HardwareVertexBuffer*> m_VertexDataMap;
-		std::unordered_map<string, HardwareTexture*> m_mapTexture;
+		std::unordered_map<std::string, HardwareTexture*> m_mapTexture;
 
 
 		//std::unordered_map<VertexShaderDesc, const char*> m_VertexShaderCode;

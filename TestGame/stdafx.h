@@ -13,8 +13,11 @@
 #include "Main_Dll_Def.h"
 #include "Math_Dll_Def.h"
 #include "Foundation_Dll_Def.h"
+#include "Event.h"
 #include "GameObjectBase.h"
 #include "SmartPointer.h"
+
+#include <string>
 using namespace ZG;
 
 // TODO:  在此处引用程序需要的其他头文件

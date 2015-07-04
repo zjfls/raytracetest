@@ -58,8 +58,8 @@
     <ClInclude Include="ImageFileHelper.h" />
     <ClInclude Include="IntersectTest.h" />
     <ClInclude Include="IntersetResults.h" />
-    <ClInclude Include="IOInterface.h" />
-    <ClInclude Include="IOManager.h" />
+    <ClInclude Include="InputInterface.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRender.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderTarget.h" />
@@ -137,7 +137,7 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TranslateGizmo.h" />
     <ClInclude Include="VertexShader.h" />
-    <ClInclude Include="WindowsIO.h" />
+    <ClInclude Include="WindowsInput.h" />
     <ClInclude Include="XmlPrefabLoader.h" />
     <ClInclude Include="XmlSceneLoadHelper.h" />
   </ItemGroup>
@@ -181,8 +181,8 @@
     <ClCompile Include="ImageFileHelper.cpp" />
     <ClCompile Include="IntersectTest.cpp" />
     <ClCompile Include="IntersetResults.cpp" />
-    <ClCompile Include="IOInterface.cpp" />
-    <ClCompile Include="IOManager.cpp" />
+    <ClCompile Include="InputInterface.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IRender.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderTarget.cpp" />
@@ -260,7 +260,7 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TranslateGizmo.cpp" />
     <ClCompile Include="VertexShader.cpp" />
-    <ClCompile Include="WindowsIO.cpp" />
+    <ClCompile Include="WindowsInput.cpp" />
     <ClCompile Include="XmlPrefabLoader.cpp" />
     <ClCompile Include="XmlSceneLoadHelper.cpp" />
   </ItemGroup>

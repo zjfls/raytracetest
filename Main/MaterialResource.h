@@ -14,13 +14,13 @@ namespace ZG
 	public:
 
 		virtual ~MaterialResource();
-		void	AddArg(string name, MaterialArg* pArg);
+		void	AddArg(std::string name, MaterialArg* pArg);
 
 		//
 		template<class T>
 		bool	SetArg(std::string strName, const T& arg);
 		//
-		std::unordered_map<string, MaterialArg*> m_matArgs;
+		std::unordered_map<std::string, MaterialArg*> m_matArgs;
 		virtual SmartPointer<MaterialResource> clone(){ return nullptr; };
 	protected:
 		MaterialResource();

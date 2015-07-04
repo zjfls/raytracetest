@@ -7,10 +7,10 @@ namespace ZG
 		IResource();
 		virtual ~IResource();
 
-		string GetRefPath()const{ return m_refPath; }
+		std::string GetRefPath()const{ return m_refPath; }
 
 	protected:
-		string m_refPath;
+		std::string m_refPath;
 		//public:
 		//	string m_Name;
 	};

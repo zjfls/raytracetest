@@ -7,7 +7,7 @@
 #include "RenderManager.h"
 #include "RenderSystem.h"
 #include "MathFunc.h"
-#include "IOManager.h"
+#include "InputManager.h"
 #include "TimeManager.h"
 #include "PickUtil.h"
 #include "PrefabResource.h"
@@ -15,8 +15,8 @@
 #include "FilePath.h"
 #include "RasterCamera.h"
 #include "RenderManager.h"
-#include "IOManager.h"
-#include "IOInterface.h"
+#include "InputManager.h"
+#include "InputInterface.h"
 #include "IRender.h"
 #include "RasterRender.h"
 #include "IWorld.h"
@@ -120,7 +120,7 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 
 void EditorSceneView::OnMouseMove(Vector2& pt)
 {
-	if (IOManager::GetInstance()->m_pIO->IsMiddleDown() == true)
+	if (InputManager::GetInstance()->m_pIO->IsMiddleDown() == true)
 	{
 		Vector2 diffMouse = pt - m_LastMousePos;
 		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
@@ -136,9 +136,9 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 		position += diff;
 		m_pCamera->m_pTransform->SetTranslate(position);
 	}
-	if (IOManager::GetInstance()->m_pIO->IsRBDown() == true)
+	if (InputManager::GetInstance()->m_pIO->IsRBDown() == true)
 	{
-		if (IOManager::GetInstance()->m_pIO->IsKeyDown(0x12) == true && EditorApplication::GetInstance()->getSelectObj() != nullptr)
+		if (InputManager::GetInstance()->m_pIO->IsKeyDown(0x12) == true && EditorApplication::GetInstance()->getSelectObj() != nullptr)
 		{
 			//std::cout << "rot about target" << std::endl;
 			Vector2 diff = pt - m_LastMousePos;
@@ -391,7 +391,7 @@ void EditorSceneView::Create(unsigned int nWidth, unsigned int nHeight, int wind
 
 void EditorSceneView::UpdateCamera()
 {
-	SmartPointer<InputInterface> pInterface = IOManager::GetInstance()->m_pIO;
+	SmartPointer<InputInterface> pInterface = InputManager::GetInstance()->m_pIO;
 	if (pInterface->IsKeyDown('W') == true)
 	{
 

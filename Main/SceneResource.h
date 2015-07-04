@@ -2,9 +2,10 @@
 #include "IResource.h"
 #include "Singleton.h"
 #include "ResourceManager.h"
+#include "IWorldObj.h"
 namespace ZG
 {
-	class IWorldObj;
+	//class IWorldObj;
 	class MAIN_API SceneResource :
 		public IResource
 	{

@@ -70,7 +70,7 @@ namespace ZG
 		std::vector<SmartPointer<IWorldObj>>		m_vecChildren;
 		std::vector<SmartPointer<ModuleBase>>	m_vecModules;
 	public:
-		string						m_strName;
+		std::string						m_strName;
 		///////////////////////////////////
 		SmartPointer<Transform>					m_pTransform;
 		friend class Transform;

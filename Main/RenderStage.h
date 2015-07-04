@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderEnum.h"
 #include "RenderTargetGroup.h"
+#include "IRenderable.h"
 namespace ZG
 {
 	class RenderStateCollection;
@@ -50,7 +51,7 @@ namespace ZG
 	class RenderStage
 	{
 	public:
-		RenderStage(string name, ERENDERTYPEFILTER eFillter, ERENDERSTAGEMETHOD eMethod);
+		RenderStage(std::string name, ERENDERTYPEFILTER eFillter, ERENDERSTAGEMETHOD eMethod);
 		virtual ~RenderStage();
 
 
@@ -58,7 +59,7 @@ namespace ZG
 
 		void	Render(RasterRender* pRender, std::vector<SmartPointer<IRenderable>>& vecRenderabls);
 		void	SetStageRenderState(RasterRender* pRender);
-		string m_strName;
+		std::string m_strName;
 		ERENDERTYPEFILTER m_eFillter;
 		ERENDERSTAGEMETHOD m_eMethod;
 	private:

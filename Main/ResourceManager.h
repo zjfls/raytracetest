@@ -27,22 +27,22 @@ namespace ZG
 		virtual ~ResourceManager(){};
 
 		//template<class U>
-		SmartPointer<T>	GetResource(string path);
+		SmartPointer<T>	GetResource(std::string path);
 		template<class U>
-		SmartPointer<U>	CreateResource(string refPath);
+		SmartPointer<U>	CreateResource(std::string refPath);
 		template<class U>
 		SmartPointer<U>	CreateResource();
 
 		//void			ClearAll();
-		void			RemoveResource(string refPath);
+		void			RemoveResource(std::string refPath);
 	private:
-		std::unordered_map<string, SmartPointer<T>> m_ResMap;
+		std::unordered_map<std::string, SmartPointer<T>> m_ResMap;
 	};
 
 	template<class T>
-	void ResourceManager<T>::RemoveResource(string refPath)
+	void ResourceManager<T>::RemoveResource(std::string refPath)
 	{
-		std::unordered_map<string, SmartPointer<T>>::iterator iter = m_ResMap.find(refPath);
+		std::unordered_map<std::string, SmartPointer<T>>::iterator iter = m_ResMap.find(refPath);
 		if (iter != std::end(m_ResMap))
 		{
 			m_ResMap.erase(iter);
@@ -72,7 +72,7 @@ namespace ZG
 	}
 
 	template<class T> template<class U>
-	SmartPointer<U> ResourceManager<T>::CreateResource(string refPath)
+	SmartPointer<U> ResourceManager<T>::CreateResource(std::string refPath)
 	{
 		SmartPointer<U> pRes(new U);
 		pRes->m_refPath = refPath;
@@ -82,7 +82,7 @@ namespace ZG
 	}
 
 	template<class T>
-	SmartPointer<T> ResourceManager<T>::GetResource(string path)
+	SmartPointer<T> ResourceManager<T>::GetResource(std::string path)
 	{
 		if (m_ResMap.find(path) == std::end(m_ResMap))
 		{

@@ -35,7 +35,7 @@ namespace ZG
 		
 	public:
 		IWorldObj* m_pOwnerObj;
-		string	m_strName;
+		std::string	m_strName;
 		bool	m_bTransformUpdated;
 		friend class IWorldObj;
 	};

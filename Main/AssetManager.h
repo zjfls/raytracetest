@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 namespace ZG
 {
 	class IAssetLoader;
@@ -25,7 +25,7 @@ namespace ZG
 		*Return : void
 
 		*/
-		void ReleaseAsset(string path, bool bReleaseResource);
+		void ReleaseAsset(std::string path, bool bReleaseResource);
 		/*
 
 		*Summary: release asset and associate resource
@@ -41,7 +41,7 @@ namespace ZG
 		*/
 		//
 		bool	Save(IAsset* pAsset);
-		IAsset* LoadAsset(string path, void* pArg = nullptr);
+		IAsset* LoadAsset(std::string path, void* pArg = nullptr);
 		/*
 
 		*Summary: regist loader by suffix
@@ -55,12 +55,12 @@ namespace ZG
 		*Return : if exist replace the loader
 
 		*/
-		void	AddLoader(string strSuff, IAssetLoader* pLoader);
+		void	AddLoader(std::string strSuff, IAssetLoader* pLoader);
 		bool	Init();
-		IAsset*	GetAsset(string strPath);
+		IAsset*	GetAsset(std::string strPath);
 	private:
-		std::map<string, IAssetLoader*> m_LoaderMap;
-		std::map<string, IAsset*> m_AssetMap;
+		std::map<std::string, IAssetLoader*> m_LoaderMap;
+		std::map<std::string, IAsset*> m_AssetMap;
 	};
 
 	extern template class MAIN_API  Singleton < AssetManager > ;

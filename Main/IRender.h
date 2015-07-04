@@ -2,6 +2,7 @@
 #include "RenderEnum.h"
 #include "GameObjectBase.h"
 #include "CameraBase.h"
+#include "IRenderable.h"
 //#include "RenderTargetGroup.h"
 
 namespace ZG

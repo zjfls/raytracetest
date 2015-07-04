@@ -88,7 +88,8 @@ namespace ZG
 	template<class T>
 	T* ZG::SmartPointer<T>::get() const
 	{
-		return dynamic_cast<T*>(m_pTarget);
+		T* rt = dynamic_cast<T*>(m_pTarget);
+		return rt;
 	}
 
 	template<class T>
@@ -158,7 +159,7 @@ namespace ZG
 	{
 		if (m_pTarget == pTarget.m_pTarget)
 		{
-			return (T*)m_pTarget;
+			return m_pTarget;
 		}
 		if (m_pTarget != nullptr)
 		{
@@ -173,13 +174,13 @@ namespace ZG
 		{
 			m_pTarget->m_nRefCount++;
 		}
-		return (T*)m_pTarget;
+		return m_pTarget;
 	}
 
 	template<class T>
 	T* ZG::SmartPointer<T>::operator->() const
 	{
-		return (T*)m_pTarget;
+		return m_pTarget;
 	}
 
 	template<class T>
@@ -187,7 +188,7 @@ namespace ZG
 	{
 		if (m_pTarget == dynamic_cast<T*>(pTarget))
 		{
-			return (T*)m_pTarget;
+			return m_pTarget;
 		}
 		if (m_pTarget != nullptr)
 		{
@@ -204,7 +205,7 @@ namespace ZG
 		{
 			m_pTarget->m_nRefCount++;
 		}
-		return (T*)m_pTarget;
+		return m_pTarget;
 	}
 
 	template<class T>
