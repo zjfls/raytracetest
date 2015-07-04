@@ -33,6 +33,8 @@
 #include "EditorCommandManager.h"
 #include "AABBBox.h"
 #include "Matrix44.h"
+#include "Ray3D.h"
+#include "Plane3D.h"
 EditorSceneView::EditorSceneView()
 {
 	//
@@ -113,7 +115,29 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 	Vector3 dir = m_pCamera->m_pTransform->GetForward();
 	dir = dir.normalize();
 	//
-	position += zDelta * 0.2 * dir;
+	float fRatio = 1.0f - zDelta * 0.0001;
+	if (fRatio < 0.8)
+	{
+		fRatio = 0.8f;
+	}
+	if (fRatio > 1.2)
+	{
+		fRatio = 1.2f;
+	}
+
+	//float fDist = 100.0f;
+	if (EditorApplication::GetInstance()->getSelectObj() != nullptr)
+	{
+		Vector3 vSelect = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate();
+		Vector3 diff = position - vSelect;
+		float length = diff.length();
+
+		position = vSelect + diff * fRatio;
+	}
+	else
+	{
+		position = position + dir * zDelta * 0.2;
+	}
 	m_pCamera->m_pTransform->SetTranslate(position);
 	//
 }
@@ -144,19 +168,47 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 			Vector2 diff = pt - m_LastMousePos;
 			Vector3 vecRot = m_pCamera->m_pTransform->GetRotation();
 			//Vector3 vecRot = rot.m_vecEulerAngle;
-			vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
-			vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
+			vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0034;
+			vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0034;
+			//
+			Vector3 vecWorld = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate();
+			Vector3 vecCamera = m_pCameraModule->GetViewMatrix().TransformPosition(vecWorld);
+			//
 			m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);
+			//
 			m_pCamera->m_pTransform->Update();
+			m_pCameraModule->Update();
 
 
+			Matrix44 matView = m_pCameraModule->m_MatInverseView;
+			matView.M[3][0] = 0.0f;
+			matView.M[3][1] = 0.0f;
+			matView.M[3][2] = 0.0f;
+			Vector3 vecNewWorld = matView.TransformPosition(vecCamera);
+			Vector3 vecPos = vecWorld - vecNewWorld;
+			m_pCamera->m_pTransform->SetWorldTranslate(vecPos);
 
-			float dist = (EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate()).length();
-			Vector3 dir = m_pCamera->m_pTransform->GetForward();
+			//Vector3 vecTarget = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate();
+			//Vector3 vecDir = Vector3(0.0f, 1.0f, 0.0f);
+			//vecTarget = vecTarget - 10000 * vecDir;
+			//Ray3D r(vecTarget, vecDir);
+			////
+			//Plane3D p(m_pCamera->m_pTransform->GetWorldTranslate(), m_pCamera->m_pTransform->GetUp());
+			////
+			//IntersectResults result = IntersectTest::testRayPlane(r, p, *m_pCamera->m_pTransform);
+			//float dist = 0.0f;
+			//if (result.m_bInterset == true)
+			//{
+			//	vecTarget = result.m_vecIntersetDatas[0].vecPos;
+			//}
+			//
+
+			//float dist = (vecTarget - m_pCamera->m_pTransform->GetWorldTranslate()).length();
+			//Vector3 dir = m_pCamera->m_pTransform->GetForward();
 
 
-			Vector3 newPos = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate() - dir * dist;
-			m_pCamera->m_pTransform->SetWorldTranslate(newPos);
+			//Vector3 newPos = vecTarget - dir * dist;
+			//m_pCamera->m_pTransform->SetWorldTranslate(newPos);
 
 		}
 		else

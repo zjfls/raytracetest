@@ -12,6 +12,16 @@ namespace ZG
 	class MaterialResource;
 	class SkeletonObj;
 	class SkeletonModule;
+
+	struct MAIN_API FbxLoadOption
+	{
+		bool m_bExportAnimation;
+		FbxLoadOption()
+		{
+			m_bExportAnimation = false;
+		}
+
+	};
 	class MAIN_API FbxFileLoader :
 		public IAssetLoader
 	{
@@ -59,7 +69,7 @@ namespace ZG
 		std::string m_strFbxAssetName;
 
 		FbxNode* m_pRootFbxNode;
-
+		FbxLoadOption m_Options;
 		//std::vector<FbxMesh*> vecMesh;
 	};
 

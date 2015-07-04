@@ -49,6 +49,12 @@ IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
 	//std::string m_strFbxAssetName;
 
 	//FbxNode* m_pRootFbxNode;
+	if (pArg != nullptr)
+	{
+		m_Options = *((FbxLoadOption*)pArg);
+	}
+
+
 	vecMeshList.clear();
 	vecDoneMeshList.clear();
 	m_mapSkeleton.clear();
@@ -496,14 +502,14 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 				{
 					//int index = pLayerUV->GetIndexArray().GetAt(i);
 					int vIndex = i % 3;
-					if (vIndex == 2)
-					{
-						vIndex = 1;
-					}
-					else if (vIndex == 1)
-					{
-						vIndex = 2;
-					}
+					//if (vIndex == 2)
+					//{
+					//	vIndex = 1;
+					//}
+					//else if (vIndex == 1)
+					//{
+					//	vIndex = 2;
+					//}
 					int index = pMesh->GetTextureUVIndex(i / 3, vIndex);
 					float u, v;
 					u = (float)pLayerUV->GetDirectArray().GetAt(index).mData[0];
