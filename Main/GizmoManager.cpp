@@ -350,3 +350,16 @@ IWorldObj* ZG::GizmoManager::CreateSkeletonGizmo(SkeletonModule* pModule)
 	dVertexData->m_nNumVertex = nNumVertex;
 	return pObj;
 }
+
+void ZG::GizmoManager::OnAppClose()
+{
+	////
+	//SmartPointer<TranslateGizmo> m_pTranslateGizmo;
+	////
+	//SmartPointer<IWorldObj>	 m_pSceneGrid;
+	////
+	//SmartPointer<IWorldObj>	 m_pSelectObjWireFrame;
+	m_pTranslateGizmo = nullptr;
+	m_pSceneGrid = nullptr;
+	m_pSelectObjWireFrame = nullptr;
+}

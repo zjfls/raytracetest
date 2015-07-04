@@ -16,13 +16,14 @@ namespace ZG
 
 
 		virtual void Run();
-		void		CleanUp();
+		//void		CleanUp();
 		static D3D9Application* theApp;
 	protected:
 		virtual void OnInit();
 		virtual void SetupScene();
 		virtual void OnEndInit();
 		virtual bool CreateAppWindow();
+		void OnClose() override;
 	private:
 		static long __stdcall WindowProcedure(HWND window, unsigned int msg, WPARAM wp, LPARAM lp);
 		SmartPointer<IWorldObj>				m_pTargetObj;

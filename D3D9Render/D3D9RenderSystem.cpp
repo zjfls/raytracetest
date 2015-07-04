@@ -30,6 +30,8 @@ D3D9RenderSystem::D3D9RenderSystem()
 
 D3D9RenderSystem::~D3D9RenderSystem()
 {
+	SAFE_RELEASE(m_pD3DDevice);
+	SAFE_RELEASE(m_pD3D);
 }
 
 

@@ -46,7 +46,7 @@ namespace ZG
 		float m_fFar;
 		//
 		SmartPointer<IRenderTarget>	m_pTarget;
-		SmartPointer<IWorld>		m_pWorld;
+		IWorld*	m_pWorld;
 		bool						m_bClearColor;
 		bool						m_bClearDepth;
 		GameColor					m_clrColr;

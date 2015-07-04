@@ -52,7 +52,7 @@ namespace ZG
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
 		EditorSceneView*	getActiveScene();
 		virtual void OnInit();
-
+		void OnClose() override;
 		bool excuteCommond(ICommand* pCommand) override;
 		bool undoCommond(ICommand* pCommond) override;
 		bool redoCommond(ICommand* pCommond) override;

@@ -15,6 +15,7 @@ namespace ZG
 
 		void	ReadSettings();
 		virtual void Run();
+		virtual void OnClose();
 	protected:
 		virtual bool CreateAppWindow();
 		virtual void OnInit();
@@ -22,6 +23,7 @@ namespace ZG
 		virtual void OnEndInit();
 		virtual void PreUpdate();
 		virtual void OnUpdate();
+
 
 
 	protected:

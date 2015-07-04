@@ -72,7 +72,7 @@ void D3D9Application::SetupScene()
 	//pCameraRenderer->m_clrColr = GameColor::black;
 	//pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
 	//
-	pCameraModule->m_pWorld = m_pWorld;
+	pCameraModule->m_pWorld = m_pWorld.get();
 	pCameraModule->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraModule->m_clrColr = GameColor::black;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());
@@ -130,10 +130,6 @@ void D3D9Application::Run()
 	}
 }
 
-void D3D9Application::CleanUp()
-{
-
-}
 
 bool D3D9Application::CreateAppWindow()
 {
@@ -159,9 +155,11 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 	switch (msg)
 	{
 		case WM_DESTROY:
-		std::cout << "\ndestroying window\n";
-		theApp->CleanUp();
-		PostQuitMessage(0);
+		{
+			std::cout << "\ndestroying window\n";
+			theApp->OnClose();
+			PostQuitMessage(0);
+		}
 		return 0L;
 		case WM_LBUTTONDOWN:
 		//std::cout << "\nmouse left button down at (" << LOWORD(lp)
@@ -193,4 +191,9 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 		return DefWindowProc(window, msg, wp, lp);
 	}
 	return 0;
+}
+
+void ZG::D3D9Application::OnClose()
+{
+	ApplicationBase::OnClose();
 }

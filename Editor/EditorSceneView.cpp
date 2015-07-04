@@ -51,7 +51,7 @@ EditorSceneView::EditorSceneView()
 	//pCameraRenderer->m_pRender = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender();
 	//pCameraRenderer->m_clrColr = GameColor::blue;
 	//pCameraModule->AddListener("CameraRenderer", pCameraRenderer);
-	pCameraModule->m_pWorld = EditorApplication::GetInstance()->m_pWorld;
+	pCameraModule->m_pWorld = EditorApplication::GetInstance()->m_pWorld.get();
 	pCameraModule->m_clrColr = GameColor::white * 0.1f;
 	//pCameraModule->m_pTarget = m_pRenderView;
 	m_pCameraModule = pCameraModule.get();

@@ -2,6 +2,7 @@
 #include "Singleton.h"
 #include "SmartPointer.h"
 #include "GameObjectBase.h"
+#include "TranslateGizmo.h"
 
 
 	namespace ZG
@@ -19,6 +20,9 @@
 			bool	Init();
 			void	BuildSelectObj(SmartPointer<IWorldObj> pSelObj);
 			IWorldObj* CreateSkeletonGizmo(SkeletonModule* pModule);
+
+
+			void	OnAppClose();
 		private:
 			void createTranlateGizmo();
 			void createRotationGizmo();

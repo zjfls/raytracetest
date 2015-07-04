@@ -2,6 +2,7 @@
 #include "qteditor.h"
 #include <QtWidgets/QApplication>
 #include <iostream>
+#include "EditorApplication.h"
 int main(int argc, char *argv[])
 {
 	
@@ -13,5 +14,8 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 	QtEditor w;
 	w.show();
-	return a.exec();
+	a.exec();
+
+
+	EditorApplication::GetInstance()->OnClose();
 }

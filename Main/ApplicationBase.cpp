@@ -21,6 +21,7 @@
 #include "HardwareVertexShader.h"
 #include "HardwareFragShader.h"
 #include "Texture.h"
+#include "GizmoManager.h"
 using namespace ZG;
 ApplicationBase::ApplicationBase()
 	:m_pRenderView(nullptr)
@@ -132,6 +133,12 @@ void ApplicationBase::ReadSettings()
 	m_RenderViewInfo.m_nHeight = width;
 	m_RenderViewInfo.m_nWidth = height;
 	m_RenderViewInfo.m_bWindowed = (bool)EnviromentSetting::GetInstance()->GetIntSetting("Windowed");
+}
+
+void ZG::ApplicationBase::OnClose()
+{
+	m_pWorld = nullptr;
+	GizmoManager::GetInstance()->OnAppClose();
 }
 
 
