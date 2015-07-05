@@ -58,7 +58,7 @@ void GameApp::SetupScene()
 	pCameraModule->m_fAspect = (float)m_RenderViewInfo.m_nWidth / m_RenderViewInfo.m_nHeight;
 	pCameraModule->m_fFovy = PI / 4;
 
-	pCameraModule->m_pWorld = m_pWorld;
+	pCameraModule->m_pWorld = m_pWorld.get();
 	pCameraModule->m_pTarget = RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRenderView();
 	pCameraModule->m_clrColr = GameColor::white;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());

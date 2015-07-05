@@ -338,6 +338,14 @@ void ZG::QtEditor::CreateMenuBar()
 	m_mapMenuBarAction[pRedo] = "EDIT_REDO";
 	m_mapMenuBarAction[pDelete] = "EDIT_DELETE";
 	m_mapMenuBarAction[pFoucus] = "FOCUS_SELECT";
+	
+	//Tool
+	QMenu* m_pToolMenu = menuBar()->addMenu(tr("&Tool"));
+	QMenu* m_pFbxMenu = m_pToolMenu->addMenu(tr("&Fbx"));
+	QAction* pExportAnimation = m_pFbxMenu->addAction("Export Animation");
+	QAction* pExportAllAnimation = m_pFbxMenu->addAction("Export All Animation");
+	m_mapMenuBarAction[pExportAnimation] = "TOOL_FBX_EXPORTANI";
+	m_mapMenuBarAction[pExportAllAnimation] = "TOOL_FBX_EXPORTALLANI";
 
 }
 
@@ -403,6 +411,14 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 		{
 			pSceneView->FocusTarget(EditorApplication::GetInstance()->getSelectObj());
 		}
+	}
+	if (iter->second == "TOOL_FBX_EXPORTANI")
+	{
+
+	}
+	if (iter->second == "TOOL_FBX_EXPORTALLANI")
+	{
+
 	}
 }
 
