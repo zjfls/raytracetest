@@ -5,6 +5,9 @@
 #include "AnimationResource.h"
 #include "AnimationCurve.h"
 #include "Transform.h"
+#include <io.h>
+#include "FilePath.h"
+#include <direct.h>
 using namespace tinyxml2;
 
 ZG::AnimationAssetLoader::~AnimationAssetLoader()
@@ -64,7 +67,12 @@ bool ZG::AnimationAssetLoader::Save(IAsset* pAsset)
 			break;
 		}
 	}
+	if (_access(getFileDirectory(pAniRes->GetRefPath()).c_str(), 0) == -1)
+	{
+		_mkdir(getFileDirectory(pAniRes->GetRefPath()).c_str());
+	}
 	doc.SaveFile(pAniRes->GetRefPath().c_str());
+
 	
 	return true;
 	//

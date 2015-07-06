@@ -414,7 +414,7 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 	}
 	if (iter->second == "TOOL_FBX_EXPORTANI")
 	{
-
+		//m_pDataView->SelectItems()
 	}
 	if (iter->second == "TOOL_FBX_EXPORTALLANI")
 	{

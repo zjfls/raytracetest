@@ -1481,11 +1481,14 @@ void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 			//
 			m_pAsset->AddResource(refPath, pAniRes);
 
-			AnimationAsset AniAsset;
-			AniAsset.AddResource(refPath, pAniRes);
-			AnimationAssetLoader loader;
-			loader.Save(&AniAsset);
 
+			if (m_Options.m_bExportAnimation == true)
+			{
+				AnimationAsset AniAsset;
+				AniAsset.AddResource(refPath, pAniRes);
+				AnimationAssetLoader loader;
+				loader.Save(&AniAsset);
+			}
 		}
 	}
 }
