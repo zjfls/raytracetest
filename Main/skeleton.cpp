@@ -205,6 +205,7 @@ bool ZG::SkeletonModule::PlayAnimation(AnimationTrack* pTrack)
 	//
 	m_vecActiveTrack.clear();
 	m_vecActiveTrack.push_back(pTrack);
+	pTrack->Start();
 	return true;
 }
 

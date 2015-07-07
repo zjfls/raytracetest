@@ -4,7 +4,7 @@
 namespace ZG
 {
 	class AnimationResource;
-	class AnimationTrack:public GameObjectBase
+	class MAIN_API AnimationTrack:public GameObjectBase
 	{
 	public:
 		//AnimationTrack();

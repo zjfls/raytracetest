@@ -11,6 +11,9 @@ TimeManager::TimeManager()
 	m_fFpsTimeCounter = 1.0f;
 	m_nFpsCount = 0;
 	m_nFps = 0;
+	clock_t curClock = clock();
+	float curTime = (float)curClock / CLOCKS_PER_SEC;
+	m_fThisFrameTime = curTime;
 }
 
 

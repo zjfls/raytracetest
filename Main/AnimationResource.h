@@ -19,7 +19,7 @@ namespace ZG
 		virtual ~AnimationResource();
 
 
-
+		void AddCurve(std::string, AnimationCurveBase*);
 		AnimationCurveBase* getCurveByName(std::string strName);
 		bool m_bIsSkinAnimation;
 		std::unordered_map<std::string, SmartPointer<AnimationCurveBase>> m_mapCurves;

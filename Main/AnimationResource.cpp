@@ -25,3 +25,8 @@ AnimationCurveBase* ZG::AnimationResource::getCurveByName(std::string strName)
 	}
 	return nullptr;
 }
+
+void ZG::AnimationResource::AddCurve(std::string strName, AnimationCurveBase* pCurve)
+{
+	m_mapCurves[strName] = pCurve;
+}
