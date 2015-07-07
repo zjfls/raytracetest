@@ -5,6 +5,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include <iostream>
+#include <io.h>
+#include <direct.h>
 long filesize(FILE *stream)
 {
 	long curpos, length;
@@ -60,4 +62,33 @@ FOUNDATION_API bool ZG::CpyFile(std::string src, std::string dst)
 	//}
 	//delete[] buffer;
 	//return true;
+}
+
+FOUNDATION_API void ZG::FindFile(std::string path, std::vector<std::string>& vecPath, std::string strSpec, bool bRecursive /*= false*/)
+{
+	char curDir[_MAX_PATH];
+	_getcwd(curDir, _MAX_PATH);
+	//_chdir(path.c_str());
+	//首先查找dir中符合要求的文件  
+	long hFile;
+	_finddata_t fileinfo;
+	if ((hFile = _findfirst((path + strSpec).c_str(), &fileinfo)) != -1)
+	{
+		do
+		{
+			//检查是不是目录  
+			//如果不是,则进行处理  
+			if (!(fileinfo.attrib & _A_SUBDIR))
+			{
+				char filename[_MAX_PATH];
+				strcpy_s<_MAX_PATH>(filename, path.c_str());
+				strcat_s<_MAX_PATH>(filename, fileinfo.name);
+				vecPath.push_back(filename);
+				//if (!ProcessFile(filename))
+				//	return false;
+			}
+		} while (_findnext(hFile, &fileinfo) == 0);
+		_findclose(hFile);
+	}
+	//_chdir(curDir);
 }

@@ -22,7 +22,8 @@ Vector3 PickUtil::ScreenPosToWorldPos(Vector2& screenPos, float fDistToCamera, S
 	posInCamera.m_fz = 1.0f;
 	posInCamera.m_fy = tan(pCamera->m_fFovy/2) * (nScreenHeight / 2 - screenPos.m_fy) / (nScreenHeight / 2);
 	posInCamera.m_fx = tan(pCamera->m_fFovy/2) * pCamera->m_fAspect * (screenPos.m_fx - nScreenWidth / 2) / (nScreenWidth / 2);
-
+	//posInCamera.m_fy = 0.0f;
+	//posInCamera.m_fx = 0.0f;
 	//
 	Matrix44& matWorld = pCamera->m_pOwnerObj->m_pTransform->GetWorldMatrix();
 	Vector4 vWorldDir;

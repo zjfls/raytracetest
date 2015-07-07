@@ -8,6 +8,7 @@ class QtStringPropertyManager;
 class QtLocalePropertyManager;
 class FilePathManager;
 class QtDoublePropertyManager;
+class QtTexturePropertyManager;
 
 class QtProperty;
 class QVariant;
@@ -48,6 +49,7 @@ namespace ZG
 		QtLocalePropertyManager *localeManager;
 		QtDoublePropertyManager *doubleManager;
 		FilePathManager			*filePathManager;
+		QtTexturePropertyManager* texturePropertyManager;
 
 		std::unordered_map<QtProperty*, EditorModuleProperty*> m_PropertyMap;
 	};

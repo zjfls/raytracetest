@@ -28,8 +28,14 @@ QIcon QtTexturePropertyManager::valueIcon(const QtProperty *property) const
 	const PropertyValueMap::const_iterator it = m_values.constFind(property);
 	if (it == m_values.constEnd())
 		return QIcon();
-	QColor color(255, 255, 0);
-	return QIcon();;
+
+	//
+	QImage img2(tr("./data/texture/990011_N.jpg"));
+	QImage img3 = img2.scaled(16,16);
+
+	int height = img3.height();
+	int width = img3.width();
+	return QPixmap::fromImage(img3);
 }
 
 void QtTexturePropertyManager::initializeProperty(QtProperty *property)

@@ -37,7 +37,7 @@ namespace ZG
 		Vector3 GetForward();
 		Vector3	GetUp();
 		void NotifyNeedTransform();
-		bool m_bThisFrameUpdated;
+		
 
 
 		void SetTranslate(float fX, float fY, float fZ);
@@ -61,7 +61,7 @@ namespace ZG
 		//only update self transform
 		//Matrix44 UpdateSelfTransform() const;
 		virtual SmartPointer<ModuleBase> Clone();
-
+		bool m_bThisFrameUpdated;
 		////////////////////////////////////////////////
 	private:
 		void SetDirty(bool bDirt)

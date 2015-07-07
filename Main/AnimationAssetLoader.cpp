@@ -18,19 +18,21 @@ ZG::AnimationAssetLoader::~AnimationAssetLoader()
 IAsset* ZG::AnimationAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	AnimationAsset* pAsset = new AnimationAsset;
+	tinyxml2::XMLDocument doc;
+	doc.LoadFile(path.c_str());
+	tinyxml2::XMLElement* pTrack = doc.FirstChildElement("AnimationTrack");
+	bool bSkinAni = false;
+	pTrack->QueryAttribute("SkinAnimation", &bSkinAni);
+
+	
 	return pAsset;
 }
 
 bool ZG::AnimationAssetLoader::Save(IAsset* pAsset)
 {
-	AnimationAsset* pAniAsset = dynamic_cast<AnimationAsset*>(pAsset);
-	//
-	if (pAniAsset == nullptr)
-	{
-		return false;
-	}
+
 	std::vector<AnimationResource*> vecRes;
-	pAniAsset->GetAllResource<AnimationResource>(vecRes);
+	pAsset->GetAllResource<AnimationResource>(vecRes);
 	if (vecRes.size() == 0)
 	{
 		return false;
@@ -67,11 +69,11 @@ bool ZG::AnimationAssetLoader::Save(IAsset* pAsset)
 			break;
 		}
 	}
-	if (_access(getFileDirectory(pAniRes->GetRefPath()).c_str(), 0) == -1)
+	if (_access(getFileDirectory(pAsset->m_strPath).c_str(), 0) == -1)
 	{
-		_mkdir(getFileDirectory(pAniRes->GetRefPath()).c_str());
+		_mkdir(getFileDirectory(pAsset->m_strPath).c_str());
 	}
-	doc.SaveFile(pAniRes->GetRefPath().c_str());
+	doc.SaveFile(pAsset->m_strPath.c_str());
 
 	
 	return true;

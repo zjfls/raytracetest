@@ -21,6 +21,12 @@
 #include <deque>
 #include "EditorEvents.h"
 #include "EditorSceneView.h"
+#include "fileoperation.h"
+#include "AssetManager.h"
+#include "AnimationResource.h"
+#include "IAsset.h"
+#include "SingleResourceAsset.h"
+#include "FilePath.h"
 //#include "QtRenderView.h"
 //struct test
 //{
@@ -414,11 +420,78 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 	}
 	if (iter->second == "TOOL_FBX_EXPORTANI")
 	{
-		//m_pDataView->SelectItems()
+		QItemSelectionModel* selections = m_pDataView->selectionModel();
+		QModelIndexList indexs = selections->selectedIndexes();
+		int nCount = indexs.count();
+		for (int i = 0; i < nCount; ++i)
+		{
+			QModelIndex pIndex = indexs[i];
+			QVariant data = pIndex.data(QFileSystemModel::FilePathRole);
+			std::string fbxPath = data.toString().toStdString();
+			//
+			std::string strSuffix = getFileSuffix(fbxPath);
+			std::transform(strSuffix.begin(), strSuffix.end(), strSuffix.begin(), tolower);
+			if (strSuffix != "fbx")
+			{
+				continue;
+			}
+			//
+			IAsset* pFbx = AssetManager::GetInstance()->LoadAsset(fbxPath);
+			if (pFbx == nullptr)
+			{
+				continue;
+			}
+			AnimationResource* pRes = pFbx->GetResource<AnimationResource>();
+			if (pRes == nullptr)
+			{
+				pFbx->Release(true);
+				continue;
+			}
+			//
+			SingleResourceAsset* pTargetAsset = new SingleResourceAsset;
+			pTargetAsset->AddResource("", pRes);
+			pTargetAsset->m_strPath = getFileDirectory(fbxPath) + getFileNameWithoutSuffix(fbxPath) + ".animation.xml";
+			AssetManager::GetInstance()->Save(pTargetAsset);
+			//
+			pFbx->Release(true);
+			pTargetAsset->Release(true);
+		}
+
 	}
 	if (iter->second == "TOOL_FBX_EXPORTALLANI")
 	{
+		QModelIndex pIndex = m_pDataView->m_pDirectoryView->currentIndex();
+		QVariant data = pIndex.data(QFileSystemModel::FilePathRole);
+		std::string fileDir = data.toString().toStdString();
+		fileDir = fileDir + "/";
+		//std::cout << "cur dir:" << fileDir.c_str() << std::endl;
+		std::vector<std::string> vecFiles;
+		FindFile(fileDir, vecFiles, "*.FBX");
 
+		for (int i = 0; i < vecFiles.size(); ++i)
+		{
+			std::string fbxPath = vecFiles[i];
+			IAsset* pFbx = AssetManager::GetInstance()->LoadAsset(fbxPath);
+			if (pFbx == nullptr)
+			{
+				continue;
+			}
+			AnimationResource* pRes = pFbx->GetResource<AnimationResource>();
+			if (pRes == nullptr)
+			{
+				pFbx->Release(true);
+				continue;
+			}
+			//
+			SingleResourceAsset* pTargetAsset = new SingleResourceAsset;
+			pTargetAsset->AddResource("", pRes);
+			pTargetAsset->m_strPath = fileDir + getFileNameWithoutSuffix(fbxPath) + ".animation.xml";
+			AssetManager::GetInstance()->Save(pTargetAsset);
+			//
+			pFbx->Release(true);
+			pTargetAsset->Release(true);
+
+		}
 	}
 }
 

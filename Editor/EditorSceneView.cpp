@@ -400,7 +400,7 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		AssetManager::GetInstance()->LoadAsset(strPath);
 		SmartPointer<PrefabResource> pPrefab = ResourceManager<PrefabResource>::GetInstance()->GetResource(strPath);
 		SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
-		pObj->m_pTransform->SetTranslate(worldPos);
+		
 
 
 
@@ -409,6 +409,8 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		pCmd->m_pParentObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
 		pCmd->m_pReceiver = EditorApplication::GetInstance();
 		EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
+		pObj->Update();
+		pObj->m_pTransform->SetWorldTranslate(worldPos);
 
 	}
 	if (filesuffix == "fbx")
@@ -418,7 +420,7 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 		if (pPrefab != nullptr)
 		{
 			SmartPointer<IWorldObj> pObj = pPrefab->m_pRoot->Clone(true);
-			pObj->m_pTransform->SetTranslate(worldPos);
+			
 
 
 			AddToSceneCommand* pCmd = new AddToSceneCommand();
@@ -426,6 +428,8 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 			pCmd->m_pParentObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
 			pCmd->m_pReceiver = EditorApplication::GetInstance();
 			EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
+			pObj->Update();
+			pObj->m_pTransform->SetWorldTranslate(worldPos);
 			//m_pTargetObj = pObj;
 
 		}

@@ -22,6 +22,8 @@
 #include "SkeletonResource.h"
 #include "ModuleBase.h"
 #include "qteditorfactory.h"
+#include "QtTexturePropertyManager.h"
+#include "TextureEditFactory.h"
 
 WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 {
@@ -43,7 +45,13 @@ WorldObjPropertyBrowser::WorldObjPropertyBrowser()
 	filePathManager = new FilePathManager;
 	FileEditFactory* fileEditFactory = new FileEditFactory;
 	setFactoryForManager(filePathManager, fileEditFactory);
+
+
+	texturePropertyManager = new QtTexturePropertyManager(this);
+	TextureEditFactory* textureEditFactory = new TextureEditFactory;
+	setFactoryForManager(texturePropertyManager, textureEditFactory);
 	SetTarget(nullptr);
+
 
 
 
@@ -165,6 +173,10 @@ void WorldObjPropertyBrowser::AddModule(SmartPointer<ModuleBase> pModule)
 		pPropGroup->addSubProperty(pPropRotation);
 		pPropGroup->addSubProperty(pPropScale);
 		addProperty(pPropGroup);
+
+
+		pProperty = texturePropertyManager->addProperty(tr("TextureProperty"));
+		pPropGroup->addSubProperty(pProperty);
 	}
 	if (typeid(*pModule.get()) == typeid(Mesh))
 	{

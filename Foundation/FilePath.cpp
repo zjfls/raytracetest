@@ -6,6 +6,10 @@
 #include <string.h>
 std::string ZG::getFileSuffix(string fullFilePath)
 {
+	if (fullFilePath.length() == 0)
+	{
+		return std::string("");
+	}
 	if (fullFilePath[fullFilePath.length() - 1] == '.')
 	{
 		return "";
