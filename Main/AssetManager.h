@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Singleton.h"
 namespace ZG
 {
 	class IAssetLoader;

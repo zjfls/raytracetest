@@ -135,7 +135,7 @@ IAsset* FbxFileLoader::Load(std::string path, void* pArg /*= nullptr*/)
 	if (upvec == FbxAxisSystem::EUpVector::eZAxis)
 	{
 		IWorldObj* pRotObj = new IWorldObj;
-		pRotObj->m_pTransform->SetOrientation(-1.57, 3.14f, 0.0f);
+		pRotObj->m_pTransform->SetOrientation(-1.57, 0.0f, 0.0f);
 		std::vector<SmartPointer<IWorldObj>> vecChildren;
 		for (int i = 0; i < pRoot->GetChildCount(); ++i)
 		{

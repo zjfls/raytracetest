@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--material resource-->
-<AnimationTrack SkinAnimation="1" Version="1.0.0">
+<AnimationTrack SkinAnimation="1" Length="2.4333334" Version="1.0.0">
     <AnimationCurve Name="Bip01-L-Finger21" Type="Transform" KeyFrameNums="74">
         <KeyFrame Index="0" Time="0">
             <Translate x="7.6972065" y="0" z="0"/>

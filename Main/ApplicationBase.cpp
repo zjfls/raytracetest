@@ -25,6 +25,7 @@
 using namespace ZG;
 ApplicationBase::ApplicationBase()
 	:m_pRenderView(nullptr)
+	, m_bIsFocus(true)
 {
 }
 
@@ -139,6 +140,16 @@ void ZG::ApplicationBase::OnClose()
 {
 	m_pWorld = nullptr;
 	GizmoManager::GetInstance()->OnAppClose();
+}
+
+bool ZG::ApplicationBase::IsFocus() const
+{
+	return m_bIsFocus;
+}
+
+void ZG::ApplicationBase::UpdateInput()
+{
+
 }
 
 

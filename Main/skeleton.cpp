@@ -107,6 +107,10 @@ void ZG::SkeletonModule::GenerateSkeletonArchi()
 
 bool ZG::SkeletonModule::BindAnimation(AnimationTrack* pTrack)
 {
+	if (m_bInitialized == false)
+	{
+		return false;
+	}
 	if (pTrack->GetBind() == true)
 	{
 		pTrack->ClearBind();
@@ -194,6 +198,10 @@ void ZG::SkeletonModule::SetSkeletonRes(SkeletonResource* pRes)
 
 bool ZG::SkeletonModule::PlayAnimation(AnimationTrack* pTrack)
 {
+	if (m_vecActiveTrack.size() > 0 && pTrack == m_vecActiveTrack[0])
+	{
+		return true;
+	}
 	if (pTrack->GetBind() == true)
 	{
 
@@ -212,4 +220,9 @@ bool ZG::SkeletonModule::PlayAnimation(AnimationTrack* pTrack)
 void ZG::SkeletonModule::OnStart()
 {
 	AnimationModule::OnStart();
+}
+
+SkeletonResource* ZG::SkeletonModule::GetSkeletonRes()
+{
+	return m_SkeletonRes.get();
 }

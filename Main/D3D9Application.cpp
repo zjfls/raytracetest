@@ -121,7 +121,11 @@ void D3D9Application::Run()
 				{
 					continue;
 				}
+
+
+				UpdateInput();
 				m_pWorld->Update();
+				//
 				m_pRenderView->Present();
 				TimeManager::GetInstance()->Update();
 				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
@@ -154,6 +158,18 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 	std::string suffix = "";
 	switch (msg)
 	{
+		case WM_SETFOCUS:
+		{
+			theApp->m_bIsFocus = true;
+			std::cout << "gain focus" << std::endl;
+		}
+		break;
+		case WM_KILLFOCUS:
+		{
+			theApp->m_bIsFocus = false;
+			std::cout << "lose focus" << std::endl;
+		}
+		break;
 		case WM_DESTROY:
 		{
 			std::cout << "\ndestroying window\n";

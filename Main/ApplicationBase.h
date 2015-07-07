@@ -12,7 +12,7 @@ namespace ZG
 
 
 		bool Init(int argc, char** argv);
-
+		bool	IsFocus() const;
 		void	ReadSettings();
 		virtual void Run();
 		virtual void OnClose();
@@ -23,6 +23,7 @@ namespace ZG
 		virtual void OnEndInit();
 		virtual void PreUpdate();
 		virtual void OnUpdate();
+		virtual void UpdateInput();
 
 
 
@@ -31,6 +32,7 @@ namespace ZG
 		char** m_argv;
 		stRenderViewInfo m_RenderViewInfo;
 		RenderView* m_pRenderView;
+		bool m_bIsFocus;
 	public:
 		SmartPointer<IWorld> m_pWorld;
 	};

@@ -10,7 +10,7 @@ public:
 	virtual ~GameApp();
 
 	void SetupScene() override;
-
+	void UpdateInput() override;
 	GameRuntime* m_pGameRuntime;
 };
 

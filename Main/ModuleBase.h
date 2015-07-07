@@ -29,7 +29,7 @@ namespace ZG
 
 
 		bool	m_bActive;
-	private:
+		protected:
 		bool	m_bInitialized;
 		bool	m_bStarted;
 		

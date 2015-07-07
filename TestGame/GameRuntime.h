@@ -8,6 +8,7 @@ namespace ZG
 	class IWorldObj;
 }
 class CharacterController;
+class ThirdPersonCharacter;
 //所有逻辑暂时写这里
 class GameRuntime:public ModuleBase
 {
@@ -18,6 +19,10 @@ public:
 	void OnLateUpdate() override;
 	SmartPointer<ModuleBase> Clone() override;
 	CharacterController* createCharacterController(std::string fileName);
+
+
+
+	ThirdPersonCharacter* createThirdPerson(std::string fileName);
 private:
 	void UpdateInput();
 	void UpdateCamera();
@@ -27,7 +32,7 @@ private:
 	IWorldObj* m_pCamera;
 	std::vector<CharacterController*> m_vecCharacter;
 
-
+	ThirdPersonCharacter*			m_pThirdPersion;
 	//input
 	Vector2 m_LastCursorPos;
 	friend class GameApp;

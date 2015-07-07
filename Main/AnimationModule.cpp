@@ -66,13 +66,17 @@ void ZG::AnimationModule::OnUpdate()
 {
 	for each (AnimationTrack* pTrack in m_vecActiveTrack)
 	{
+		if (pTrack->GetBind() == false)
+		{
+			BindAnimation(pTrack);
+		}
 		pTrack->Update();
 	}
 }
 
 void ZG::AnimationModule::OnStart()
 {
-	if (m_pDefaultTrack != nullptr)
+	if (m_pDefaultTrack != nullptr && m_vecActiveTrack.size() == 0)
 	{
 		PlayAnimation(m_pDefaultTrack);
 	}

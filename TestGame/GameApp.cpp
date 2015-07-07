@@ -4,8 +4,6 @@
 #include "AssetManager.h"
 #include "IWorldObj.h"
 #include "AnimationResource.h"
-
-
 #include "SceneResource.h"
 #include "IWorld.h"
 #include "CameraBase.h"
@@ -22,6 +20,7 @@
 #include "Skeleton.h"
 #include "AnimationTrack.h"
 #include "SkeletonResource.h"
+#include "ThirdPersonCharacter.h"
 template<> SmartPointer<GameApp> Singleton<GameApp>::_instance = nullptr;
 GameApp::GameApp()
 	:m_pGameRuntime(nullptr)
@@ -66,25 +65,38 @@ void GameApp::SetupScene()
 	pCameraModule->m_clrColr = GameColor::white;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());
 
-	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 400.0f, -550.0f));
+	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 900.0f, -1250.0f));
 	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
 	//
 	m_pGameRuntime = m_pWorld->m_pRoot->addModule<GameRuntime>().get();
 	m_pGameRuntime->m_pCamera = pCameraModule->m_pOwnerObj;
 	//
-	CharacterController* pCtrler = m_pGameRuntime->createCharacterController("./data/fbx/kulou.FBX");
-	IAsset* pAniAsset = AssetManager::GetInstance()->LoadAsset("./data/fbx/kulouanim/Mercury_LLA.animation.xml");
-	AnimationResource* pAniRes = pAniAsset->GetResource<AnimationResource>();
-	//
-	AnimationTrack* pTrack = new AnimationTrack(pAniRes);
-	SkeletonModule* pSkeleton = pCtrler->m_pObj->GetModule<SkeletonModule>();// ->AddAnimationTrack(pTrack);
-	pSkeleton->AddAnimationTrack(pTrack);
-	pSkeleton->m_pDefaultTrack = pTrack;
+	CharacterController* pCtrler;// = m_pGameRuntime->createCharacterController("./data/fbx/kulou.FBX");
+	//IAsset* pAniAsset = AssetManager::GetInstance()->LoadAsset("./data/fbx/kulouanim/Mercury_LLA.animation.xml");
+	//AnimationResource* pAniRes = pAniAsset->GetResource<AnimationResource>();
+	////
+	//AnimationTrack* pTrack = new AnimationTrack(pAniRes);
+	//SkeletonModule* pSkeleton = pCtrler->m_pObj->GetModule<SkeletonModule>();// ->AddAnimationTrack(pTrack);
+	//pSkeleton->AddAnimationTrack(pTrack);
+	//pSkeleton->m_pDefaultTrack = pTrack;
 	//
 	pCtrler = m_pGameRuntime->createCharacterController("./data/prefab/deadplayer.prefab.xml");
 
 	pCtrler->m_pObj->m_pTransform->SetTranslate(pCtrler->m_pObj->m_pTransform->GetLocalTranslate() + Vector3(10, 50, 100));
 
 
+
+	ThirdPersonCharacter* pPerson = m_pGameRuntime->createThirdPerson("./data/fbx/kulou.FBX");
+	//pPerson->m_pObj->m_pTransform->SetTranslate(pPerson->m_pObj->m_pTransform->GetLocalTranslate() + Vector3(10, 0, 100));
+
 	//
+}
+
+void GameApp::UpdateInput()
+{
+	if (IsFocus() == false)
+	{
+		return;
+	}
+	m_pGameRuntime->UpdateInput();
 }

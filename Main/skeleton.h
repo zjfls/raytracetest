@@ -20,7 +20,7 @@ namespace ZG
 		virtual void OnLateUpdate();
 		void OnStart() override;
 		void	GenerateSkeletonArchi();
-		SkeletonResource*	GetSkeletonRes(){ return m_SkeletonRes.get(); };
+		SkeletonResource*	GetSkeletonRes();
 		void				SetSkeletonRes(SkeletonResource* pRes);
 
 		
