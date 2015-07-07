@@ -6,7 +6,7 @@ namespace ZG
 	class RenderPath
 	{
 	public:
-		RenderPath(string strName);
+		RenderPath(std::string strName);
 		virtual ~RenderPath();
 
 
@@ -21,7 +21,7 @@ namespace ZG
 	private:
 		std::vector<RenderStage*> m_vecStages;
 	public:
-		string	m_strName;
+		std::string	m_strName;
 		bool	m_bGetPerObjLightInfo;
 
 

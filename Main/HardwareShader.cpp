@@ -25,7 +25,7 @@ HardwareShader::~HardwareShader()
 {
 }
 
-bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, MaterialArg* pArg)
+bool HardwareShader::SetShaderArg(RasterRender* pRender, std::string strName, MaterialArg* pArg)
 {
 	switch (pArg->m_EType)
 	{
@@ -98,7 +98,7 @@ bool HardwareShader::SetShaderArg(RasterRender* pRender, string strName, Materia
 	return false;
 }
 
-bool HardwareShader::SetTextureArg(RasterRender* pRender, string strName, HardwareTexture* pTexture,ETEXUSETYPE eTexUseType)
+bool HardwareShader::SetTextureArg(RasterRender* pRender, std::string strName, HardwareTexture* pTexture, ETEXUSETYPE eTexUseType)
 {
 	ShaderConstantInfo info = m_mapConstants[strName];
 	pRender->SetTexture(info.m_nRegIndex, pTexture);

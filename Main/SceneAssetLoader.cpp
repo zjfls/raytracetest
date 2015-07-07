@@ -18,7 +18,7 @@ ZG::SceneAssetLoader::~SceneAssetLoader()
 
 }
 
-IAsset* ZG::SceneAssetLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* ZG::SceneAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	SingleResourceAsset* pAsset = new SingleResourceAsset;
 	pAsset->m_strPath = path;

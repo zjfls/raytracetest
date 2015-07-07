@@ -35,7 +35,7 @@
 #include "PrefabResource.h"
 #include "PrefabAsset.h"
 //
-IAsset* FbxFileLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* FbxFileLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	//std::vector<FbxMesh*> vecMeshList;
 	//std::vector<FbxMesh*> vecDoneMeshList;
@@ -310,7 +310,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 	std::vector<float> areaVec;//Ãæ»ý
 	std::vector<float> normalVec;
 	std::vector<float> uvVec;
-	std::vector<vector<stSkinInfo>> skinInfoVec;
+	std::vector<std::vector<stSkinInfo>> skinInfoVec;
 	unsigned int nMaxBonePerVertex = 0;
 	skinInfoVec.resize(cpCount);
 	//get vertex pos
@@ -881,8 +881,8 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 		{
 			continue;;
 		}
-		string meshName = getFileNameWithoutSuffix(refPath);
-		string subRefPath = m_exportResDir + meshName + "_" + pMat->GetName() + ".mesh";
+		std::string meshName = getFileNameWithoutSuffix(refPath);
+		std::string subRefPath = m_exportResDir + meshName + "_" + pMat->GetName() + ".mesh";
 		SmartPointer<MeshResource> pSubMesh = ResourceManager<MeshResource>::GetInstance()->CreateResource<MeshResource>(subRefPath);// (new MeshResource);
 		m_pAsset->AddResource(subRefPath, pSubMesh.get());
 		SmartPointer<Mesh> pSubMeshModule = obj->addModule<Mesh>();
@@ -1165,8 +1165,8 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 			//std::cout << "find tex:" << pTex->GetName() << std::endl;
 			std::cout << pProp.GetName() << ":" << getFileName(pTex->GetName()).c_str() << std::endl;
 
-			string strProperty = pProp.GetName();
-			string fileName = getFileName(pTex->GetName());
+			std::string strProperty = pProp.GetName();
+			std::string fileName = getFileName(pTex->GetName());
 
 			if (_tcsstr(strProperty.c_str(), "Diffuse") != nullptr)
 			{
@@ -1329,7 +1329,7 @@ void ZG::FbxFileLoader::ProcessSkeletonRoot(SkeletonModule* pModule,IWorldObj* p
 void ZG::FbxFileLoader::ProcessAnimation(bool bPerFrame /*= false*/)
 {
 	FbxAsset* pAsset = dynamic_cast<FbxAsset*>(m_pAsset);
-	string path = pAsset->m_strPath;
+	std::string path = pAsset->m_strPath;
 	//
 	int nCount = pAsset->m_pFbxScene->GetSrcObjectCount<FbxAnimStack>();
 	FbxAnimStack* pAniStack = pAsset->m_pFbxScene->GetSrcObject<FbxAnimStack>(0);

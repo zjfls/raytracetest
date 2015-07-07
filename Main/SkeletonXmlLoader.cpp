@@ -32,7 +32,7 @@ bool ZG::SkeletonXmlLoader::Save(IAsset* pAsset)
 
 
 
-IAsset* ZG::SkeletonXmlLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* ZG::SkeletonXmlLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	return nullptr;
 }

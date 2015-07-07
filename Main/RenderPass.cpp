@@ -184,15 +184,15 @@ void RenderPass::BuildShaderArgs(RasterRender* pRender, SmartPointer<IRenderable
 	m_FragShaderArgs.clear();
 
 	//
-	std::unordered_map<string, ShaderConstantInfo>& vertexShaderParam = pVertexShader->GetContants();
-	std::unordered_map<string, ShaderConstantInfo>& fragShaderParam = pFragShader->GetContants();
+	std::unordered_map<std::string, ShaderConstantInfo>& vertexShaderParam = pVertexShader->GetContants();
+	std::unordered_map<std::string, ShaderConstantInfo>& fragShaderParam = pFragShader->GetContants();
 	//std::cout << "SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);" << std::endl;
 	SetBuiltInArgs(pRender, pRenderable,m_VertexShaderArgs, vertexShaderParam);
 	//std::cout << "SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);" << std::endl;
 	SetBuiltInArgs(pRender, pRenderable,m_FragShaderArgs, fragShaderParam);
 	//std::cout << "for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)" << std::endl;
 	//
-	for each (std::pair<string, MaterialArg*> p in pMaterial->m_matArgs)
+	for each (std::pair<std::string, MaterialArg*> p in pMaterial->m_matArgs)
 	{
 		if (vertexShaderParam.find(p.first) != std::end(vertexShaderParam))
 		{
@@ -264,19 +264,19 @@ void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVert
 	//TextureSampler* pSampler = p.second->GetData<TextureSampler>();
 	//HardwareTexture* pHardwareTex = pRender->m_pRenderSystem->GetHardwareTexture(pSampler->m_pTexture);
 	//SetTexture(pSampler->m_byRegisterIndex, pHardwareTex);
-	for each (std::pair<string, MaterialArg*> p in m_VertexShaderArgs)
+	for each (std::pair<std::string, MaterialArg*> p in m_VertexShaderArgs)
 	{
 		pVertexShader->SetShaderArg(pRender,p.first, p.second);
 	}
 
 	
-	for each (std::pair<string, MaterialArg*> p in m_FragShaderArgs)
+	for each (std::pair<std::string, MaterialArg*> p in m_FragShaderArgs)
 	{
 		pFragShader->SetShaderArg(pRender, p.first, p.second);
 	}
 }
 
-void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn)
+void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, std::unordered_map<std::string, MaterialArg*>& argToBuild, std::unordered_map<std::string, ShaderConstantInfo>& argIn)
 {
 
 	if (pRender == nullptr || pRender->m_pCurrentRenderCamera == nullptr || pRenderable == nullptr || pRenderable->m_pOwnerObj == nullptr || pRenderable->m_pOwnerObj->m_pTransform == nullptr)
@@ -321,7 +321,7 @@ void RenderPass::SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable>
 	Matrix44 matProj = pRender->m_pCurrentRenderCamera->GetProjMatrix();
 	Vector3	CameraView = pRender->m_pCurrentRenderCamera->m_pOwnerObj->m_pTransform->GetWorldTranslate();
 
-	for each (std::pair<string, ShaderConstantInfo> p in argIn)
+	for each (std::pair<std::string, ShaderConstantInfo> p in argIn)
 	{
 		//std::cout << p.first << std::endl;
 

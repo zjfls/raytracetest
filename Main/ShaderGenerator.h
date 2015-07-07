@@ -11,8 +11,8 @@ namespace ZG
 		static const char* GetFragShader(FragShaderDesc& pShader);
 		static const char* ForwardGenSingleLight(FragShaderDesc& pShader);
 
-		static std::unordered_map<string, const char*> m_mapCode;
-		static std::vector<string> m_vecPPParam;
+		static std::unordered_map<std::string, const char*> m_mapCode;
+		static std::vector<std::string> m_vecPPParam;
 
 
 		static void PreProcessShader(char* pCode, unsigned int nLength, std::unordered_map<std::string, bool>& map);

@@ -9,7 +9,7 @@ namespace ZG
 
 		virtual ~MeshFileLoader();
 
-		virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
+		virtual IAsset* Load(std::string path, void* pArg /*= nullptr*/);
 	private:
 		MeshFileLoader();
 		friend class AssetManager;

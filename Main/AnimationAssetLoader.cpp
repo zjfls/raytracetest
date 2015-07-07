@@ -15,7 +15,7 @@ ZG::AnimationAssetLoader::~AnimationAssetLoader()
 
 }
 
-IAsset* ZG::AnimationAssetLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* ZG::AnimationAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	AnimationAsset* pAsset = new AnimationAsset;
 	return pAsset;

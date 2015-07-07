@@ -183,7 +183,7 @@ void ZG::GizmoManager::createSceneGridGizmo()
 	
 	pSceneGridRenderable->GetMaterialInstance()->SetArg<GameColor>("MainColor", GameColor::white * 0.3f);
 	RasterMaterial* mat = (RasterMaterial*)pSceneGridRenderable->GetMaterialInstance().get();
-	for each (std::pair<string, ZG::SmartPointer<ZG::MaterialPass>> p in mat->m_MaterialPass)
+	for each (std::pair<std::string, ZG::SmartPointer<ZG::MaterialPass>> p in mat->m_MaterialPass)
 	{
 		bool bFoundZTest = false;
 		for each (stRenderState var in p.second->m_vecRenderState)
@@ -298,7 +298,7 @@ void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 		RasterMaterial* pMat = dynamic_cast<RasterMaterial*>(rend->GetMaterialInstance().get());
 		if (pMat != nullptr)
 		{
-			for each (std::pair<string, ZG::SmartPointer<ZG::MaterialPass>> p in pMat->m_MaterialPass)
+			for each (std::pair<std::string, ZG::SmartPointer<ZG::MaterialPass>> p in pMat->m_MaterialPass)
 			{
 				stRenderState s;
 				s.m_eRenderState = FILLMODE;

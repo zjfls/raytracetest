@@ -2,8 +2,8 @@
 #include "ShaderGenerator.h"
 #include "FragShader.h"
 #include <memory>
-std::unordered_map<string, const char*> ShaderGenerator::m_mapCode;
-std::vector<string> ShaderGenerator::m_vecPPParam;
+std::unordered_map<std::string, const char*> ShaderGenerator::m_mapCode;
+std::vector<std::string> ShaderGenerator::m_vecPPParam;
 ShaderGenerator::ShaderGenerator()
 {
 }
@@ -15,7 +15,7 @@ ShaderGenerator::~ShaderGenerator()
 
 const char* ShaderGenerator::ForwardGenSingleLight(FragShaderDesc& pShader)
 {
-	string rtCode = "";
+	std::string rtCode = "";
 	if (pShader.m_bAmbient == true)
 	{
 		rtCode += "float4 GAMEAMBIENTCOLOR;\n";

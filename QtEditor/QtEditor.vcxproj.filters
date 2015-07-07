@@ -149,6 +149,33 @@
     <ClCompile Include="GeneratedFiles\Release\moc_WorldObjPropertyBrowser.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QtTexturePropertyManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QtTexturePropertyManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TextureEdit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TextureEdit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureEditFactory.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureEdit.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TextureEditFactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TextureEditFactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="QtTexturePropertyManager.cpp">
+      <Filter>QtExtension</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -200,6 +227,15 @@
     </CustomBuild>
     <CustomBuild Include="QListDataView.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TextureEdit.h">
+      <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TextureEditFactory.h">
+      <Filter>QtExtension</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QtTexturePropertyManager.h">
+      <Filter>QtExtension</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ MeshFileLoader::~MeshFileLoader()
 {
 }
 
-IAsset* MeshFileLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* MeshFileLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	MeshAsset* pMeshAsset = new MeshAsset;
 	pMeshAsset->m_strPath = path;

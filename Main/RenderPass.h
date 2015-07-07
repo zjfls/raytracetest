@@ -42,25 +42,25 @@ namespace ZG
 		void BuildShaderArgs(RasterRender* pRender, SmartPointer<IRenderable> pRenderabl, SmartPointer<RasterMaterial> pMaterial, ESTAGESHADERTYPE eShaderType, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
 		void SetPassStates(RasterRender* pRender, const RenderStateCollection& mapStates);
 		void SetShaderArgs(RasterRender* pRender, HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader);
-		void SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, std::unordered_map<string, MaterialArg*>& argToBuild, std::unordered_map<string, ShaderConstantInfo>& argIn);
+		void SetBuiltInArgs(RasterRender* pRender, SmartPointer<IRenderable> pRenderable, std::unordered_map<std::string, MaterialArg*>& argToBuild, std::unordered_map<std::string, ShaderConstantInfo>& argIn);
 
 		void SetPerLightArg(RasterRender* pRender, SmartPointer<LightBase> pLight, HardwareFragShader* pFragShader, FragShaderDesc& desc);
 
 
 
 		template<class T>
-		TMatArg<T>* GetArgFromLib(string strName, EMATARGTYPE eType);
+		TMatArg<T>* GetArgFromLib(std::string strName, EMATARGTYPE eType);
 	protected:
 		//for shader related arg only;
 		//another args map in material
-		std::unordered_map<string, MaterialArg*> m_ShaderArgs;
+		std::unordered_map<std::string, MaterialArg*> m_ShaderArgs;
 		std::vector<stRenderState> m_vecRenderState;
 
 		//
-		std::unordered_map<string, MaterialArg*> m_VertexShaderArgs;
-		std::unordered_map<string, MaterialArg*> m_FragShaderArgs;
+		std::unordered_map<std::string, MaterialArg*> m_VertexShaderArgs;
+		std::unordered_map<std::string, MaterialArg*> m_FragShaderArgs;
 		//
-		std::unordered_map<string, MaterialArg*> m_ArgLib;
+		std::unordered_map<std::string, MaterialArg*> m_ArgLib;
 		//MaterialPass*		m_MaterialPass;
 	public:
 		EVERTEXSHADERTPYE	m_eVertexShaderType;
@@ -72,7 +72,7 @@ namespace ZG
 	};
 
 	template<class T>
-	TMatArg<T>* RenderPass::GetArgFromLib(string strName, EMATARGTYPE eType)
+	TMatArg<T>* RenderPass::GetArgFromLib(std::string strName, EMATARGTYPE eType)
 	{
 		TMatArg<T>* pRet;
 		if (m_ArgLib.find(strName) != std::end(m_ArgLib))

@@ -19,7 +19,7 @@ namespace ZG
 
 		~XmlPrefabLoader();
 
-		virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
+		virtual IAsset* Load(std::string path, void* pArg /*= nullptr*/);
 		virtual bool	Save(IAsset* pAsset);
 	public:
 		static void LoadProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem);

@@ -29,12 +29,12 @@ namespace ZG
 
 
 
-		void ImportFbxFile(string path);
+		void ImportFbxFile(std::string path);
 	private:
-		void ImportPrefab(SmartPointer<PrefabResource> pPrefab, string path);
-		void ImportMesh(SmartPointer<MeshResource> pMesh, string path);
-		void ImportSkeleton(SmartPointer<SkeletonResource> pSkeRes, string path);
-		void ImportMaterial(SmartPointer<RasterMaterial> pMatRes, string path);
+		void ImportPrefab(SmartPointer<PrefabResource> pPrefab, std::string path);
+		void ImportMesh(SmartPointer<MeshResource> pMesh, std::string path);
+		void ImportSkeleton(SmartPointer<SkeletonResource> pSkeRes, std::string path);
+		void ImportMaterial(SmartPointer<RasterMaterial> pMatRes, std::string path);
 		void SkeletonProcessBone(tinyxml2::XMLDocument& doc, Bone* pBone, tinyxml2::XMLElement* pElem);
 		void PrefabProcessWorldObj(tinyxml2::XMLDocument& doc, SmartPointer<IWorldObj> pObj, tinyxml2::XMLElement* elem);
 		void PrefabProcessMeshModule(tinyxml2::XMLDocument& doc, SmartPointer<Mesh> pMesh, tinyxml2::XMLElement* pElem);
@@ -43,7 +43,7 @@ namespace ZG
 		void PrefabProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem);
 
 
-		std::map<string, string> m_refNameMap;
+		std::map<std::string, std::string> m_refNameMap;
 	};
 	extern template  class MAIN_API  Singleton < FbxAppImporter > ;
 }

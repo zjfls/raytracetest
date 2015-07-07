@@ -16,7 +16,7 @@ float DirectionalLight::GetIrradiance(const Vector3& vecWorldPosition, const Vec
 {
 	Vector3 lightDir = GetLightDirection(vecWorldPosition);
 	float fRadiance = vecNormal.dot(-lightDir) * m_fIntensity;
-	fRadiance = max(fRadiance, 0.0f);
+	fRadiance = std::max(fRadiance, 0.0f);
 	return fRadiance;
 }
 

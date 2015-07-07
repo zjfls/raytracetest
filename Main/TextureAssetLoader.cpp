@@ -14,7 +14,7 @@ TextureAssetLoader::~TextureAssetLoader()
 {
 }
 
-IAsset* TextureAssetLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* TextureAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	TextureAsset* pAsset = new TextureAsset;
 	pAsset->m_strPath = path;

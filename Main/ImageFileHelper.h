@@ -12,7 +12,7 @@ namespace ZG
 		virtual ~ppmImage(){};
 
 		void Save(){ stream.close(); };
-		ofstream stream;
+		std::ofstream stream;
 	};
 	class ImageFileHelper :public GameObjectBase,public Singleton < ImageFileHelper >
 	{

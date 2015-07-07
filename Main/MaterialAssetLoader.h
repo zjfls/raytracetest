@@ -10,7 +10,7 @@ namespace ZG
 		~MaterialAssetLoader();
 
 
-		virtual IAsset* Load(string path, void* pArg /*= nullptr*/);
+		virtual IAsset* Load(std::string path, void* pArg /*= nullptr*/);
 	};
 
 }

@@ -11,7 +11,7 @@
 #include "HardwareFragShader.h"
 #include "Texture.h"
 
-RenderPath::RenderPath(string strName)
+RenderPath::RenderPath(std::string strName)
 	:m_strName(strName)
 	, m_bGetPerObjLightInfo(true)
 {

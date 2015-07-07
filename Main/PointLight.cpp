@@ -27,7 +27,7 @@ float PointLight::GetIrradiance(const Vector3& vecWorldPosition, const Vector3& 
 	fRadiance = vecNormal.dot(-vecDir) * m_fIntensity;
 	float fAtten = 1.0f / (m_fAttenConst + m_fAttenLinear * fLength + m_fAttenExp * fLength * fLength);
 	fRadiance = fRadiance * fAtten;
-	fRadiance = max(fRadiance, 0.0f);
+	fRadiance = std::max(fRadiance, 0.0f);
 	return fRadiance;
 }
 

@@ -30,7 +30,7 @@ XmlPrefabLoader::~XmlPrefabLoader()
 {
 }
 
-IAsset* XmlPrefabLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* XmlPrefabLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	PrefabAsset* pPrefabAsset = new PrefabAsset;
 	pPrefabAsset->m_strPath = path;
@@ -56,7 +56,7 @@ void XmlPrefabLoader::LoadWorldObjElem(XMLElement* pElem, SmartPointer<IWorldObj
 	XMLElement* pChildElem = pElem->FirstChildElement();
 	do
 	{
-		string name = pChildElem->Name();
+		std::string name = pChildElem->Name();
 		if (name == "Transform")
 		{
 			//std::cout << pElem->Name() << ":" << pElem->Attribute("name") << std::endl;
@@ -104,7 +104,7 @@ void XmlPrefabLoader::LoadTransformElem(tinyxml2::XMLElement* pElem, SmartPointe
 
 void XmlPrefabLoader::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj)
 {
-	string path = pElem->Attribute("refPath");
+	std::string path = pElem->Attribute("refPath");
 	SmartPointer<Mesh> pMesh = pObj->addModule<Mesh>();
 	SmartPointer<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	if (pMeshRes == nullptr)
@@ -115,7 +115,7 @@ void XmlPrefabLoader::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWo
 	XMLElement* pMatElem = pElem->FirstChildElement("Material");
 	if (pMatElem != nullptr)
 	{
-		string matpath = pMatElem->Attribute("refPath");
+		std::string matpath = pMatElem->Attribute("refPath");
 		SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath).SmartPointerCast<RasterMaterial>();
 		if (pMatRes == nullptr)
 		{
@@ -232,7 +232,7 @@ void ZG::XmlPrefabLoader::LoadProcessMeshModule(tinyxml2::XMLDocument& doc, Smar
 void ZG::XmlPrefabLoader::LoadProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
-	for each (std::pair<string, MaterialArg*> pair in pMaterial->m_matArgs)
+	for each (std::pair<std::string, MaterialArg*> pair in pMaterial->m_matArgs)
 	{
 		switch (pair.second->m_EType)
 		{

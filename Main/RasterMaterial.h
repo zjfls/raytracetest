@@ -19,14 +19,14 @@ namespace ZG
 		virtual ~RasterMaterial();
 		//void	AddPass(string strName, RenderPass* pPass);
 		virtual SmartPointer<MaterialResource> clone();
-		void AddPass(string strName, MaterialPass* pPass);
+		void AddPass(std::string strName, MaterialPass* pPass);
 
 		void	SetRenderState(stRenderState& s);
 		//void BuildPassParameter(RenderPass* pPass);
 	public:
 		//std::map<string, RenderPass*> m_RenderPassMap;
 		//
-		std::map<string, SmartPointer<MaterialPass>> m_MaterialPass;
+		std::map<std::string, SmartPointer<MaterialPass>> m_MaterialPass;
 
 		friend class RenderStage;
 	};

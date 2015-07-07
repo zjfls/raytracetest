@@ -39,7 +39,7 @@ void XmlSceneLoadHelper::LoadWorldObjElem(XMLElement* pElem, SmartPointer<IWorld
 	XMLElement* pChildElem = pElem->FirstChildElement();
 	do
 	{
-		string name = pChildElem->Name();
+		std::string name = pChildElem->Name();
 		if (name == "Transform")
 		{
 			//std::cout << pElem->Name() << ":" << pElem->Attribute("name") << std::endl;
@@ -126,7 +126,7 @@ void XmlSceneLoadHelper::LoadTransformElem(tinyxml2::XMLElement* pElem, SmartPoi
 
 void XmlSceneLoadHelper::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<IWorldObj> pObj)
 {
-	string path = pElem->Attribute("refPath");
+	std::string path = pElem->Attribute("refPath");
 	SmartPointer<Mesh> pMesh = pObj->addModule<Mesh>();
 	SmartPointer<MeshResource> pMeshRes = ResourceManager<MeshResource>::GetInstance()->GetResource(path);
 	if (pMeshRes == nullptr)
@@ -137,7 +137,7 @@ void XmlSceneLoadHelper::LoadMeshElem(tinyxml2::XMLElement* pElem, SmartPointer<
 	XMLElement* pMatElem = pElem->FirstChildElement("Material");
 	if (pMatElem != nullptr)
 	{
-		string matpath = pMatElem->Attribute("refPath");
+		std::string matpath = pMatElem->Attribute("refPath");
 		SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->GetResource(matpath).SmartPointerCast<RasterMaterial>();
 		if (pMatRes == nullptr)
 		{
@@ -242,7 +242,7 @@ void ZG::XmlSceneLoadHelper::SaveProcessTransformModule(tinyxml2::XMLDocument& d
 void ZG::XmlSceneLoadHelper::SaveProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
-	for each (std::pair<string, MaterialArg*> pair in pMaterial->m_matArgs)
+	for each (std::pair<std::string, MaterialArg*> pair in pMaterial->m_matArgs)
 	{
 		switch (pair.second->m_EType)
 		{

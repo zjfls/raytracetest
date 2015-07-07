@@ -11,13 +11,13 @@ namespace ZG
 		//
 		bool Init();
 		//
-		RenderPath* GetRenderPath(string strName);
+		RenderPath* GetRenderPath(std::string strName);
 		//
-		void		AddRenderPath(string strName, RenderPath* pPath);
+		void		AddRenderPath(std::string strName, RenderPath* pPath);
 		//
 		//bool		InitPathBuffer();
 	private:
-		std::map<string, RenderPath*> m_mapRenderPath;
+		std::map<std::string, RenderPath*> m_mapRenderPath;
 	};
 
 }

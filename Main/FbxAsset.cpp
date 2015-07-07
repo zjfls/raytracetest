@@ -26,7 +26,7 @@ void FbxAsset::Release(bool bReleaseResource)
 std::vector<SmartPointer<IResource>> FbxAsset::GetAllResource() const
 {
 	std::vector<SmartPointer<IResource>> resVec;
-	for each (std::pair<string, SmartPointer<IResource>> keyValue in m_ResourceMap)
+	for each (std::pair<std::string, SmartPointer<IResource>> keyValue in m_ResourceMap)
 	{
 		resVec.push_back(keyValue.second.get());
 	}

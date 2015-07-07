@@ -23,7 +23,7 @@
 #include <tchar.h>
 #include <algorithm>
 #include <fstream>
-using namespace std;
+//using namespace std;
 
 
 #include "Singleton.h"

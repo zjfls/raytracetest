@@ -28,7 +28,7 @@ AssetManager::~AssetManager()
 {
 }
 
-IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
+IAsset* AssetManager::LoadAsset(std::string path, void* pArg /*= nullptr*/)
 {
 	
 	if (path == "")
@@ -40,7 +40,7 @@ IAsset* AssetManager::LoadAsset(string path, void* pArg /*= nullptr*/)
 		return m_AssetMap[path];
 	}
 	std::cout << "load:" << path.c_str() << std::endl;
-	string strSuff = getFileSuffix(path);
+	std::string strSuff = getFileSuffix(path);
 	std::transform(strSuff.begin(), strSuff.end(), strSuff.begin(), tolower);
 	if (m_LoaderMap.find(strSuff) == std::end(m_LoaderMap))
 	{
@@ -76,14 +76,14 @@ bool AssetManager::Init()
 }
 
 //
-void AssetManager::AddLoader(string strSuff, IAssetLoader* pLoader)
+void AssetManager::AddLoader(std::string strSuff, IAssetLoader* pLoader)
 {
 	assert(pLoader != nullptr);
 	m_LoaderMap[strSuff] = pLoader;
 	return;
 }
 
-IAsset* AssetManager::GetAsset(string strPath)
+IAsset* AssetManager::GetAsset(std::string strPath)
 {
 	if (m_AssetMap.find(strPath) == std::end(m_AssetMap))
 	{
@@ -100,7 +100,7 @@ bool ZG::AssetManager::Save(IAsset* pAsset)
 		return false;
 	}
 	std::cout << "load:" << path.c_str() << std::endl;
-	string strSuff = getFileSuffix(path);
+	std::string strSuff = getFileSuffix(path);
 	std::transform(strSuff.begin(), strSuff.end(), strSuff.begin(), tolower);
 	if (m_LoaderMap.find(strSuff) == std::end(m_LoaderMap))
 	{
@@ -110,9 +110,9 @@ bool ZG::AssetManager::Save(IAsset* pAsset)
 	return m_LoaderMap[strSuff]->Save(pAsset);
 }
 
-void ZG::AssetManager::ReleaseAsset(string path, bool bReleaseResource)
+void ZG::AssetManager::ReleaseAsset(std::string path, bool bReleaseResource)
 {
-	std::map<string, IAsset*>::iterator iter = m_AssetMap.find(path);
+	std::map<std::string, IAsset*>::iterator iter = m_AssetMap.find(path);
 	if (iter == m_AssetMap.end())
 	{
 		return;

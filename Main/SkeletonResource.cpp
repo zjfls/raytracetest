@@ -18,7 +18,7 @@ void ZG::SkeletonResource::UpdateMatrix()
 	m_pRoot->UpdateMatrix(Matrix44::Identity);
 }
 
-int Bone::GetBoneIndexByName(string name)
+int Bone::GetBoneIndexByName(std::string name)
 {
 	if (name == m_strName)
 	{

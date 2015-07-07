@@ -31,7 +31,7 @@ namespace ZG
 		float m_fStartTime;
 	public:
 		SmartPointer<AnimationResource> m_pResource;
-		string m_strName;
+		std::string m_strName;
 	};
 
 	template<class T>

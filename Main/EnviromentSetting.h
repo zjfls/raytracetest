@@ -7,9 +7,9 @@ namespace ZG
 	public:
 		EnviromentSetting();
 		virtual ~EnviromentSetting();
-		string	GetSetting(string strName);
-		int		GetIntSetting(string name);
-		float	GetFloatSetting(string name);
+		std::string	GetSetting(std::string strName);
+		int		GetIntSetting(std::string name);
+		float	GetFloatSetting(std::string name);
 
 
 
@@ -17,7 +17,7 @@ namespace ZG
 		bool	Init();
 		GameColor	GetAmbientColor() const { return m_AmbientColor; };
 	private:
-		std::unordered_map<string, string> m_EnviromentSetting;
+		std::unordered_map<std::string, std::string> m_EnviromentSetting;
 		GameColor	m_AmbientColor;
 	};
 

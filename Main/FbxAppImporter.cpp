@@ -35,7 +35,7 @@ FbxAppImporter::~FbxAppImporter()
 {
 }
 
-void FbxAppImporter::ImportFbxFile(string path)
+void FbxAppImporter::ImportFbxFile(std::string path)
 {
 	//SmartPointer<IWorldObj> pWorldObj;
 	//int refCount = pWorldObj.use_count();
@@ -53,8 +53,8 @@ void FbxAppImporter::ImportFbxFile(string path)
 	//}
 	//refCount = pWorldObj.use_count();
 	FbxAsset* pAsset = (FbxAsset*)AssetManager::GetInstance()->LoadAsset(path);
-	string assetDirectory = getFileDirectory(pAsset->m_strPath);
-	string assetName = getFileName(pAsset->m_strPath);
+	std::string assetDirectory = getFileDirectory(pAsset->m_strPath);
+	std::string assetName = getFileName(pAsset->m_strPath);
 	assetName = removeSuffix(assetName);
 	std::cout << "asset path:" << assetDirectory.c_str() << std::endl;
 	std::cout << "asset name:" << assetName.c_str() << std::endl;
@@ -133,7 +133,7 @@ void FbxAppImporter::ImportFbxFile(string path)
 	//system("pause");
 }
 
-void FbxAppImporter::ImportPrefab(SmartPointer<PrefabResource> pPrefab, string path)
+void FbxAppImporter::ImportPrefab(SmartPointer<PrefabResource> pPrefab, std::string path)
 {
 	XMLDocument doc;
 	//XMLDeclaration *declare = new XMLDeclaration("1.0");
@@ -229,7 +229,7 @@ void FbxAppImporter::PrefabProcessTransformModule(tinyxml2::XMLDocument& doc, Sm
 void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, SmartPointer<RasterMaterial> pMaterial, tinyxml2::XMLElement* pElem)
 {
 	pElem->SetAttribute("refPath", pMaterial->GetRefPath().c_str());
-	for each (std::pair<string,MaterialArg*> pair in pMaterial->m_matArgs)
+	for each (std::pair<std::string, MaterialArg*> pair in pMaterial->m_matArgs)
 	{
 		switch (pair.second->m_EType)
 		{
@@ -249,7 +249,7 @@ void FbxAppImporter::PrefabProcessMaterial(tinyxml2::XMLDocument& doc, SmartPoin
 	}
 }
 
-void FbxAppImporter::ImportMesh(SmartPointer<MeshResource> pMesh, string path)
+void FbxAppImporter::ImportMesh(SmartPointer<MeshResource> pMesh, std::string path)
 {
 	//
 	//pMesh->m_VertexData->ComputeTangent(*pMesh->m_IndexData);
@@ -308,7 +308,7 @@ void FbxAppImporter::ImportMesh(SmartPointer<MeshResource> pMesh, string path)
 	fclose(fp);
 }
 
-void FbxAppImporter::ImportSkeleton(SmartPointer<SkeletonResource> pSkeRes, string path)
+void FbxAppImporter::ImportSkeleton(SmartPointer<SkeletonResource> pSkeRes, std::string path)
 {
 	XMLDocument doc;
 	//XMLDeclaration *declare = new XMLDeclaration("1.0");
@@ -363,7 +363,7 @@ void FbxAppImporter::SkeletonProcessBone(tinyxml2::XMLDocument& doc, Bone* pBone
 
 }
 
-void FbxAppImporter::ImportMaterial(SmartPointer<RasterMaterial> pMatRes, string path)
+void FbxAppImporter::ImportMaterial(SmartPointer<RasterMaterial> pMatRes, std::string path)
 {
 	XMLDocument doc;
 	//XMLDeclaration *declare = new XMLDeclaration("1.0");
@@ -373,7 +373,7 @@ void FbxAppImporter::ImportMaterial(SmartPointer<RasterMaterial> pMatRes, string
 	doc.LinkEndChild(root);
 	//PrefabProcessWorldObj(doc, pPrefab->m_pRoot, root);
 	root->SetAttribute("Name", removeSuffix(getFileName(pMatRes->GetRefPath())).c_str());
-	for each (std::pair<string,MaterialArg*> p in pMatRes->m_matArgs)
+	for each (std::pair<std::string, MaterialArg*> p in pMatRes->m_matArgs)
 	{
 		XMLElement* pArgElem = doc.NewElement("MaterialArg");
 		pArgElem->SetAttribute("Name", p.first.c_str());

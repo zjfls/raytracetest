@@ -18,7 +18,7 @@ MaterialResource::MaterialResource()
 
 MaterialResource::~MaterialResource()
 {
-	std::unordered_map<string, MaterialArg*>::iterator iter = m_matArgs.begin();
+	std::unordered_map<std::string, MaterialArg*>::iterator iter = m_matArgs.begin();
 	while (iter != m_matArgs.end())
 	{
 		delete iter->second;
@@ -26,7 +26,7 @@ MaterialResource::~MaterialResource()
 	}
 }
 
-void MaterialResource::AddArg(string name, MaterialArg* pArg)
+void MaterialResource::AddArg(std::string name, MaterialArg* pArg)
 {
 	m_matArgs[name] = pArg;
 }

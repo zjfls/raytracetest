@@ -6,7 +6,7 @@ SmartPointer<RenderPathManager> Singleton<RenderPathManager>::_instance = nullpt
 
 RenderPathManager::RenderPathManager()
 {
-	std::map<string, RenderPath*>::iterator iter = m_mapRenderPath.begin();
+	std::map<std::string, RenderPath*>::iterator iter = m_mapRenderPath.begin();
 	while (iter != m_mapRenderPath.end())
 	{
 		delete iter->second;
@@ -42,7 +42,7 @@ bool RenderPathManager::Init()
 
 
 
-RenderPath* RenderPathManager::GetRenderPath(string strName)
+RenderPath* RenderPathManager::GetRenderPath(std::string strName)
 {
 	if (m_mapRenderPath.find(strName) != std::end(m_mapRenderPath))
 	{
@@ -51,7 +51,7 @@ RenderPath* RenderPathManager::GetRenderPath(string strName)
 	return nullptr;
 }
 
-void RenderPathManager::AddRenderPath(string strName, RenderPath* pPath)
+void RenderPathManager::AddRenderPath(std::string strName, RenderPath* pPath)
 {
 	if (m_mapRenderPath.find(strName) != std::end(m_mapRenderPath))
 	{

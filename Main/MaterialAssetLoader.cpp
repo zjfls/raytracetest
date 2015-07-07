@@ -41,7 +41,7 @@ bool stringcompare(const char* a, const char* b)
 	return true;
 }
 
-IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* MaterialAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	MaterialAsset* pAsset = new MaterialAsset();
 	pAsset->m_strPath = path;
@@ -60,8 +60,8 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 	XMLElement* pArgElem = pElem->FirstChildElement("MaterialArg");
 	while (pArgElem != nullptr)
 	{
-		string Name = pArgElem->Attribute("Name");
-		string strArgType = pArgElem->Attribute("Type");
+		std::string Name = pArgElem->Attribute("Name");
+		std::string strArgType = pArgElem->Attribute("Type");
 		MaterialArg* pArg = nullptr;
 		if (pMatRes->m_matArgs.find(Name) != std::end(pMatRes->m_matArgs))
 		{
@@ -74,7 +74,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			pSampArg->SetShaderType(EMATSHADERFRAG);
 
 			XMLElement* pTextureElem = pArgElem->FirstChildElement("Texture");
-			string texPath = pTextureElem->Attribute("RefPath");
+			std::string texPath = pTextureElem->Attribute("RefPath");
 			if (ResourceManager<Texture>::GetInstance()->GetResource(texPath) == nullptr)
 			{
 				AssetManager::GetInstance()->LoadAsset(texPath);
@@ -135,16 +135,16 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			}
 		}
 		//
-		string strName = pPassElem->Attribute("Name");
-		string strBrdf = pPassElem->Attribute("BRDF");
+		std::string strName = pPassElem->Attribute("Name");
+		std::string strBrdf = pPassElem->Attribute("BRDF");
 
 
 		XMLElement* pVertexShader = pPassElem->FirstChildElement("VertexShader");
 		XMLElement* pFragShader = pPassElem->FirstChildElement("FragElem");
-		string vertShaderPath = pVertexShader->Attribute("refPath");
-		string vertShaderType = pVertexShader->Attribute("ShaderType");
-		string fragShaderPath = pFragShader->Attribute("refPath");
-		string fragShaderType = pFragShader->Attribute("ShaderType");
+		std::string vertShaderPath = pVertexShader->Attribute("refPath");
+		std::string vertShaderType = pVertexShader->Attribute("ShaderType");
+		std::string fragShaderPath = pFragShader->Attribute("refPath");
+		std::string fragShaderType = pFragShader->Attribute("ShaderType");
 
 
 		SmartPointer<VertexShader> pVSResource = ResourceManager<VertexShader>::GetInstance()->GetResource(vertShaderPath);
@@ -174,7 +174,7 @@ IAsset* MaterialAssetLoader::Load(string path, void* pArg /*= nullptr*/)
 			pPass->m_eVertexShaderType = EVERTEXSHADERAUTO;
 		}
 
-		string srf = "Surface";
+		std::string srf = "Surface";
 		if (fragShaderType == "Origin")
 		{
 			pPass->m_eFragShaderType = EFRAGSHADERORIGIN;

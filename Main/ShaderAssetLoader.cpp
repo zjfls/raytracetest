@@ -19,7 +19,7 @@ VertexShaderAssetLoader::~VertexShaderAssetLoader()
 }
 
 
-IAsset* VertexShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* VertexShaderAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	VertexShaderAsset* pAsset = new VertexShaderAsset();
 	pAsset->m_strPath = path;
@@ -77,7 +77,7 @@ FragShaderAssetLoader::~FragShaderAssetLoader()
 
 }
 
-IAsset* FragShaderAssetLoader::Load(string path, void* pArg /*= nullptr*/)
+IAsset* FragShaderAssetLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
 	FragShaderAsset* pAsset = new FragShaderAsset();
 	pAsset->m_strPath = path;

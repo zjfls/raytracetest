@@ -14,7 +14,7 @@
 #include "VertexShader.h"
 #include "FragShader.h"
 using namespace ZG;
-RenderStage::RenderStage(string strName, ERENDERTYPEFILTER eFillter, ERENDERSTAGEMETHOD eMethod)
+RenderStage::RenderStage(std::string strName, ERENDERTYPEFILTER eFillter, ERENDERSTAGEMETHOD eMethod)
 	:m_strName(strName)
 	, m_eFillter(eFillter)
 	, m_eMethod(eMethod)
@@ -81,7 +81,7 @@ void RenderStage::RenderDepthAndRadiance(RasterRender* pRender,std::vector<Smart
 	for each (SmartPointer<IRenderable>	pRenderable in vecRenderabls)
 	{
 		SmartPointer<RasterMaterial> pMaterial = pRenderable->getRenderMaterial().SmartPointerCast<RasterMaterial>();
-		for each (std::pair<string,SmartPointer<MaterialPass>> p in pMaterial->m_MaterialPass)
+		for each (std::pair<std::string, SmartPointer<MaterialPass>> p in pMaterial->m_MaterialPass)
 		{	
 			RenderPass rPass(p.second.get());
 			SetRenderStateCollection(pRender, rPass.m_RenderState);

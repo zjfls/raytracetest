@@ -15,22 +15,22 @@ EnviromentSetting::~EnviromentSetting()
 {
 }
 
-std::string EnviromentSetting::GetSetting(string strName)
+std::string EnviromentSetting::GetSetting(std::string strName)
 {
 	return m_EnviromentSetting[strName];
 }
 
-int EnviromentSetting::GetIntSetting(string name)
+int EnviromentSetting::GetIntSetting(std::string name)
 {
-	string strValue = m_EnviromentSetting[name];
+	std::string strValue = m_EnviromentSetting[name];
 	//char temp[25];
 	int nValue = atoi(strValue.c_str());
 	return nValue;
 }
 
-float EnviromentSetting::GetFloatSetting(string name)
+float EnviromentSetting::GetFloatSetting(std::string name)
 {
-	string strValue = m_EnviromentSetting[name];
+	std::string strValue = m_EnviromentSetting[name];
 	//char temp[25];
 	float fValue = (float)atof(strValue.c_str());
 	return fValue;
@@ -49,8 +49,8 @@ bool EnviromentSetting::Init()
 	XMLElement* pSetting = pConfig->FirstChildElement("Setting");
 	while (pSetting != nullptr)
 	{
-		string name = pSetting->Attribute("Name");
-		string value = pSetting->Attribute("Value");
+		std::string name = pSetting->Attribute("Name");
+		std::string value = pSetting->Attribute("Value");
 		m_EnviromentSetting[name] = value; 
 		std::cout << name.c_str() << ":" << value.c_str() << std::endl;
 		pSetting = pSetting->NextSiblingElement("Setting");

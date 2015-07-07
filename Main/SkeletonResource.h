@@ -14,12 +14,12 @@ namespace ZG
 		Vector3 s;
 		Matrix44 m_matInversePos;
 		void UpdateMatrix(Matrix44 parentMat);
-		string m_strName;
+		std::string m_strName;
 		Matrix44 m_SkeletonMatrix;
 		Matrix44 m_MatrixInverse;
 		unsigned int		nIndex;
 		std::vector<Bone*> vecChild;
-		int GetBoneIndexByName(string name);
+		int GetBoneIndexByName(std::string name);
 	};
 	class MAIN_API SkeletonResource :
 		public IResource

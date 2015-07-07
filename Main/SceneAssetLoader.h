@@ -8,7 +8,7 @@ namespace ZG
 	public:
 		virtual ~SceneAssetLoader();
 
-		IAsset* Load(string path, void* pArg /*= nullptr*/) override;
+		IAsset* Load(std::string path, void* pArg /*= nullptr*/) override;
 		bool	Save(IAsset* pAsset) override;
 
 		friend class AssetManager;
