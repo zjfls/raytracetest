@@ -13,6 +13,7 @@ namespace ZG
 		virtual bool IsLBDown();
 		virtual bool IsRBDown();
 		bool IsMiddleDown() override;
+		//int	 GetMouseWheel() override;
 		virtual bool IsKeyDown(char c);
 	};
 }

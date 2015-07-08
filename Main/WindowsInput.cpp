@@ -28,5 +28,7 @@ bool WindowsInput::IsRBDown()
 
 bool ZG::WindowsInput::IsMiddleDown()
 {
+	//std::cout << GetAsyncKeyState(VK_MBUTTON) << std::endl;
 	return GetAsyncKeyState(VK_MBUTTON) < 0;
 }
+

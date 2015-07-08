@@ -6,6 +6,7 @@
 #include "TimeManager.h"
 ThirdPersonCharacter::ThirdPersonCharacter()
 	:m_fYaw(0.0f)
+	, m_fDistToCamera(400)
 {
 }
 
@@ -43,6 +44,15 @@ void ThirdPersonCharacter::OnInput()
 	{
 		m_fYaw += fRotSpeed * TimeManager::GetInstance()->m_fElapseTime;
 	}
+	m_fDistToCamera -= pInterface->GetMouseWheel() * 0.05f;
+	if (m_fDistToCamera < 100)
+	{
+		m_fDistToCamera = 100;
+	}
+	if (m_fDistToCamera > 1000)
+	{
+		m_fDistToCamera = 1000;
+	}
 	//
 	Vector3 rot = m_pObj->m_pTransform->GetRotation();
 	rot.m_fy = m_fYaw;
@@ -59,8 +69,8 @@ void ThirdPersonCharacter::OnInput()
 
 
 
-
+	m_pCamera->Update();
 	Vector3 cameraDir = m_pCamera->m_pTransform->GetForward();
-	Vector3 vecCameraPos = m_pObj->m_pTransform->GetWorldTranslate() - cameraDir * 400 + Vector3(0.0f, 30.0f, 0.0f);
+	Vector3 vecCameraPos = m_pObj->m_pTransform->GetWorldTranslate() - cameraDir * m_fDistToCamera + Vector3(0.0f, 30.0f, 0.0f);
 	m_pCamera->m_pTransform->SetWorldTranslate(vecCameraPos);
 }

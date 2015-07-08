@@ -15,5 +15,6 @@ public:
 
 	IWorldObj* m_pCamera;
 	float m_fYaw;
+	float m_fDistToCamera;
 };
 

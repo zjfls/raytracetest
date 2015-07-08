@@ -23,6 +23,7 @@
 #include "HardwareVertexShader.h"
 #include "HardwareFragShader.h"
 #include "Texture.h"
+#include "InputManager.h"
 D3D9Application* D3D9Application::theApp = nullptr;
 template class MAIN_API  Singleton < D3D9Application>;
 template<> SmartPointer<D3D9Application> Singleton<D3D9Application>::_instance = nullptr;
@@ -122,13 +123,15 @@ void D3D9Application::Run()
 					continue;
 				}
 
-
+				
 				UpdateInput();
 				m_pWorld->Update();
 				//
 				m_pRenderView->Present();
 				TimeManager::GetInstance()->Update();
 				RenderManager::GetInstance()->GetDefaultRenderSystem()->OnFrameEnd();
+
+				InputManager::GetInstance()->m_pIO->Update();
 			}
 		}
 	}
@@ -158,6 +161,15 @@ long __stdcall D3D9Application::WindowProcedure(HWND window, unsigned int msg, W
 	std::string suffix = "";
 	switch (msg)
 	{
+		case WM_MOUSEWHEEL:
+		{
+			short zDelta = (short)HIWORD(wp);
+			//short xPos = (short)LOWORD(lp);
+			//std::cout << "xPos:" << zDelta << std::endl;
+			InputManager::GetInstance()->m_pIO->SetMouseWheel(zDelta);
+			
+		}
+		break;
 		case WM_SETFOCUS:
 		{
 			theApp->m_bIsFocus = true;

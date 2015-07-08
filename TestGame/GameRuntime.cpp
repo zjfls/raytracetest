@@ -214,4 +214,5 @@ ThirdPersonCharacter* GameRuntime::createThirdPerson(std::string fileName)
 
 		return pCtrller;
 	}
+	return nullptr;
 }
