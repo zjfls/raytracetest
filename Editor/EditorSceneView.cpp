@@ -319,6 +319,7 @@ void EditorSceneView::OnMouseLButtonDown(Vector2& pos)
 		{
 			case EditorApplication::EStateTranslate:
 			{
+				
 				SmartPointer<CameraBase> pCameraModule = m_pCamera->GetModule(1).SmartPointerCast<CameraBase>();
 				//std::cout << "clicked:" << m_pRenderView->m_nWidth<<" " << m_pRenderView->m_nHeight << std::endl;
 				Vector3 worldDir = PickUtil::ScreenPosToWorldDir(pos, pCameraModule, m_pRenderView->m_nWidth, m_pRenderView->m_nHeight);
@@ -341,18 +342,21 @@ void EditorSceneView::OnMouseLButtonDown(Vector2& pos)
 							{
 								EditorApplication::GetInstance()->m_eSelState = EditorApplication::ETranslateUp;
 								m_LastMousePos = pos;
+								EditorApplication::GetInstance()->StartTranslate();
 								//std::cout << "up" << std::endl;
 							}
 							else if (strstr(pRend->m_strName.c_str(), "RIGHT") != nullptr)
 							{
 								EditorApplication::GetInstance()->m_eSelState = EditorApplication::ETranslateRight;
 								m_LastMousePos = pos;
+								EditorApplication::GetInstance()->StartTranslate();
 								//std::cout << "right" << std::endl;
 							}
 							else if (strstr(pRend->m_strName.c_str(), "FORWARD") != nullptr)
 							{
 								EditorApplication::GetInstance()->m_eSelState = EditorApplication::ETranslateForward;
 								m_LastMousePos = pos;
+								EditorApplication::GetInstance()->StartTranslate();
 								//std::cout << "forward" << std::endl;
 							}
 						}
@@ -515,6 +519,9 @@ void ZG::EditorSceneView::OnClick(Vector2& pos)
 
 			std::vector<SmartPointer<IRenderable>> vecRend;
 			EditorApplication::GetInstance()->m_pWorld->m_pRoot->GetAllModuleRecursive<IRenderable>(vecRend);
+
+			float fNearst = MAXFLOAT;
+			IWorldObj* pClickedObj = nullptr;
 			for each (SmartPointer<IRenderable> pRend in vecRend)
 			{
 				BoundingBase* pBound = pRend->m_pBounding;
@@ -522,12 +529,33 @@ void ZG::EditorSceneView::OnClick(Vector2& pos)
 				{
 					//std::cout << "click obj:" << pRend->m_pOwnerObj->m_strName << std::endl;
 					IntersectResults result = IntersectTest::testRayRenderable(r, *pRend.get(), *pRend->m_pOwnerObj->m_pTransform);
+					result.sortNearFirst();
 					if (result.m_bInterset == true)
 					{
-						EditorApplication::GetInstance()->SelectChange(pRend->m_pOwnerObj);
-						EditorApplication::GetInstance()->NotifyListener("SelectChange", EditorApplication::GetInstance());
+						if (result.m_vecIntersetDatas[0].fDist < fNearst)
+						{
+							pClickedObj = pRend->m_pOwnerObj;
+							fNearst = result.m_vecIntersetDatas[0].fDist;
+						}
 					}
 				}
+			}
+			if (pClickedObj != nullptr)
+			{
+				if (InputManager::GetInstance()->m_pIO->IsKeyDown(InputInterface::KeyCode::EKEYCTRL))
+				{
+					EditorApplication::GetInstance()->AddSelection(pClickedObj);
+				}
+				else
+				{
+					EditorApplication::GetInstance()->SelectChange(pClickedObj);
+					//EditorApplication::GetInstance()->NotifyListener("SelectChange", EditorApplication::GetInstance());
+				}
+
+			}
+			else
+			{
+				EditorApplication::GetInstance()->SelectChange(nullptr);
 			}
 		}
 		break;
@@ -560,7 +588,11 @@ void ZG::EditorSceneView::UpdateGizmo()
 
 void ZG::EditorSceneView::OnMouseLButtonRelease(Vector2& pt)
 {
-	EditorApplication::GetInstance()->m_eSelState = EditorApplication::ESelNone;
+	if (EditorApplication::GetInstance()->m_eSelState != EditorApplication::ESelNone)
+	{
+		EditorApplication::GetInstance()->EndTranslate();
+	}
+	
 }
 
 void ZG::EditorSceneView::FocusTarget(IWorldObj* pObj)

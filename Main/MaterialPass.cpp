@@ -39,3 +39,11 @@ void ZG::MaterialPass::SetRenderState(stRenderState state)
 	}
 	m_vecRenderState.push_back(state);
 }
+
+void ZG::MaterialPass::SetRenderState(RENDERSTATEMASK eMask, int nValue)
+{
+	stRenderState state;
+	state.m_eRenderState = eMask;
+	state.m_nValue = nValue;
+	SetRenderState(state);
+}

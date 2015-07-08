@@ -211,6 +211,8 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 {
 
 	bool bFillModeChanged = false;
+	bool bZBiasChanged = false;
+	bool bZSlopeBiasChanged = false;
 	for each (stRenderState rs in m_vecRenderState)
 	{
 		switch (rs.m_eRenderState)
@@ -246,6 +248,18 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 				bFillModeChanged = true;
 			}
 			break;
+			case ZDEPTHBIAS:
+			{
+				pRender->SetDepthBias(rs.m_nValue);
+				bZBiasChanged = true;
+			}
+			break;
+			case ZDEPTHSLOPBIAS:
+			{
+				pRender->SetDepthSlopBias(rs.m_nValue);
+				bZSlopeBiasChanged = true;
+			}
+			break;
 			default:
 			break;
 		}
@@ -253,6 +267,14 @@ void RenderPass::SetPassStates(RasterRender* pRender, const RenderStateCollectio
 	if (bFillModeChanged == false)
 	{
 		pRender->SetFillMode(EFILLMODE_SOLID);
+	}
+	if (bZSlopeBiasChanged == false)
+	{
+		pRender->SetDepthBias(0);
+	}
+	if (bZBiasChanged == false)
+	{
+		pRender->SetDepthSlopBias(0);
 	}
 }
 void RenderPass::SetShaderArgs(RasterRender* pRender,HardwareVertexShader* pVertexShader, HardwareFragShader* pFragShader)

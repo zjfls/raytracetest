@@ -5,6 +5,8 @@
 #include <map>
 #include "IListenerSubject.h"
 #include "IReceiver.h"
+#include "Vector3.h"
+#include <vector>
 namespace ZG
 {
 	class IWorld;
@@ -12,6 +14,11 @@ namespace ZG
 	class EditorRenderView;
 	class CameraBase;
 	class EditorSceneView;
+	struct EditorState
+	{
+		//
+		Vector3 m_vecPressPos;
+	};
 	//class RenderView;
 	//
 	class EDITOR_API EditorApplication :public ApplicationBase, public Singleton<EditorApplication>, public IListenerSubject,public IReceiver
@@ -48,6 +55,8 @@ namespace ZG
 		virtual void SetupScene();
 		virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
 		//
+		void	SelectionsChange(std::vector<IWorldObj*> vecObjs);
+		void	AddSelection(IWorldObj* pObj);
 		void	SelectChange(SmartPointer<IWorldObj> pObj);
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
 		EditorSceneView*	getActiveScene();
@@ -56,6 +65,9 @@ namespace ZG
 		bool excuteCommond(ICommand* pCommand) override;
 		bool undoCommond(ICommand* pCommond) override;
 		bool redoCommond(ICommand* pCommond) override;
+		///////////////////////////////////////////
+		void StartTranslate();
+		void EndTranslate();
 	private:
 		SmartPointer<IWorldObj> m_SelectObj;
 	public:
@@ -71,6 +83,8 @@ namespace ZG
 		//
 		SmartPointer<IWorld> m_pGizmoScene;
 		bool m_bShowSkeletonGizmo;
+	private:
+		EditorState m_EditorState;
 	};
 
 	extern template  class EDITOR_API  Singleton < EditorApplication > ;

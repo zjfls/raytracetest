@@ -13,7 +13,7 @@ namespace ZG
 		TranslateGizmo();
 		virtual ~TranslateGizmo();
 
-
+		//void UpdateTranslateMaterial();
 		//
 		SmartPointer<IWorldObj> m_pRoot;
 		SmartPointer<IWorldObj> m_pUp;

@@ -18,7 +18,7 @@
 			virtual ~GizmoManager();
 
 			bool	Init();
-			void	BuildSelectObj(SmartPointer<IWorldObj> pSelObj);
+			SmartPointer<IWorldObj>	BuildSelectObj(SmartPointer<IWorldObj> pSelObj);
 			IWorldObj* CreateSkeletonGizmo(SkeletonModule* pModule);
 
 
@@ -34,7 +34,7 @@
 			//
 			SmartPointer<IWorldObj>	 m_pSceneGrid;
 			//
-			SmartPointer<IWorldObj>	 m_pSelectObjWireFrame;
+			//SmartPointer<IWorldObj>	 m_pSelectObjWireFrame;
 		};
 		extern template  class MAIN_API  Singleton < GizmoManager >;
 	}

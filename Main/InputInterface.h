@@ -3,7 +3,12 @@ namespace ZG
 {
 	class MAIN_API InputInterface:public GameObjectBase
 	{
+
 	public:
+		enum KeyCode
+		{
+			EKEYCTRL = 0x11,
+		};
 		InputInterface();
 		virtual ~InputInterface();
 

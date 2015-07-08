@@ -32,6 +32,7 @@
 #include "SkeletonResource.h"
 #include "EditorEvents.h"
 #include "EditorSceneView.h"
+#include "EditorCommandManager.h"
 using namespace ZG;
 //#include "FilePath.h"
 template class EDITOR_API Singleton<EditorApplication>;
@@ -239,7 +240,11 @@ void EditorApplication::SelectChange(SmartPointer<IWorldObj> pObj)
 		return;
 	}
 	m_SelectObj = pObj;
-
+	m_vecSelectObjs.clear();
+	if (pObj != nullptr)
+	{
+		m_vecSelectObjs.push_back(m_SelectObj);
+	}
 	SceneGraphSelChangeArg arg;
 	arg.m_pObj = pObj.get();
 	(*getEvent < SceneGraphSelChangeArg >("SCENEGRAPHSELCHANGE"))(arg);
@@ -251,7 +256,7 @@ void EditorApplication::OnInit()
 {
 	if (false == GizmoManager::GetInstance()->Init())
 	{
-
+		std::cout << "gizmo init failed!" << std::endl;
 	}
 }
 
@@ -288,10 +293,12 @@ void ZG::EditorApplication::UpdateGizemo()
 			default:
 			break;
 		}
-		GizmoManager::GetInstance()->BuildSelectObj(m_SelectObj);
-		m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSelectObjWireFrame);
 	}
-
+	for each (SmartPointer<IWorldObj> pObj in m_vecSelectObjs)
+	{
+		SmartPointer<IWorldObj> pCloneObj = GizmoManager::GetInstance()->BuildSelectObj(pObj);
+		m_pGizmoScene->m_pRoot->addChild(pCloneObj);
+	}
 	if (m_bShowSkeletonGizmo == true || true)
 	{
 		std::vector<SmartPointer<SkeletonModule>> vecSkeleton;
@@ -377,6 +384,12 @@ bool ZG::EditorApplication::excuteCommond(ICommand* pCommand)
 		EditorApplication::GetInstance()->SelectChange(arg.m_pObj);
 		return true;
 	}
+	MoveCommand* pMovCmd = dynamic_cast<MoveCommand*>(pCommand);
+	if (pMovCmd != nullptr)
+	{
+		pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		return true;
+	}
 	return false;
 }
 
@@ -410,6 +423,12 @@ bool ZG::EditorApplication::undoCommond(ICommand* pCommand)
 		//
 		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
 		EditorApplication::GetInstance()->SelectChange(nullptr);
+		return true;
+	}
+	MoveCommand* pMovCmd = dynamic_cast<MoveCommand*>(pCommand);
+	if (pMovCmd != nullptr)
+	{
+		pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecPrePos);
 		return true;
 	}
 	return false;
@@ -446,6 +465,12 @@ bool ZG::EditorApplication::redoCommond(ICommand* pCommand)
 		EditorApplication::GetInstance()->SelectChange(arg.m_pObj);
 		return true;
 	}
+	MoveCommand* pMovCmd = dynamic_cast<MoveCommand*>(pCommand);
+	if (pMovCmd != nullptr)
+	{
+		pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		return true;
+	}
 	return false;
 }
 
@@ -477,4 +502,89 @@ void ZG::EditorApplication::OnClose()
 {
 	ApplicationBase::OnClose();
 	m_pGizmoScene = nullptr;
+}
+
+void ZG::EditorApplication::StartTranslate()
+{
+	m_EditorState.m_vecPressPos = m_SelectObj->m_pTransform->GetWorldTranslate();
+	switch (m_eSelState)
+	{
+		case ZG::EditorApplication::ESelNone:
+		break;
+		case ZG::EditorApplication::ETranslateRight:
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRightMaterialCone->SetArg<GameColor>("MainColor", GameColor::blue * 1.0f);
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRightMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::blue * 1.0f);
+		break;
+		case ZG::EditorApplication::ETranslateUp:
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pUpMaterialCone->SetArg<GameColor>("MainColor", GameColor::red * 1.0f);
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pUpMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::red * 1.0f);
+		break;
+		case ZG::EditorApplication::ETranslateForward:
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pForwardMaterialCone->SetArg<GameColor>("MainColor", GameColor::green * 1.0f);
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pForwardMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::green * 1.0f);
+		break;
+		default:
+		break;
+	}
+}
+
+void ZG::EditorApplication::EndTranslate()
+{
+
+	if (m_eSelState == EditorApplication::ESelNone)
+	{
+		return;
+	}
+	switch (m_eSelState)
+	{
+		case ZG::EditorApplication::ESelNone:
+		break;
+		case ZG::EditorApplication::ETranslateRight:
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRightMaterialCone->SetArg<GameColor>("MainColor", GameColor::blue * 0.5f);
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRightMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::blue * 0.5f);
+		break;
+		case ZG::EditorApplication::ETranslateUp:
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pUpMaterialCone->SetArg<GameColor>("MainColor", GameColor::red * 0.5f);
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pUpMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::red * 0.5f);
+		break;
+		case ZG::EditorApplication::ETranslateForward:
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pForwardMaterialCone->SetArg<GameColor>("MainColor", GameColor::green * 0.5f);
+		GizmoManager::GetInstance()->m_pTranslateGizmo->m_pForwardMaterialCylinder->SetArg<GameColor>("MainColor", GameColor::green * 0.5f);
+		break;
+		default:
+		break;
+	}
+	EditorApplication::GetInstance()->m_eSelState = EditorApplication::ESelNone;
+	MoveCommand* pMoveCmd = new MoveCommand;
+	pMoveCmd->m_pObj = m_SelectObj;
+	pMoveCmd->m_vecPrePos = m_EditorState.m_vecPressPos;
+	pMoveCmd->m_vecNextPos = m_SelectObj->m_pTransform->GetWorldTranslate();
+	pMoveCmd->m_pReceiver = this;
+	//
+	EditorCommandManager::GetInstance()->ExcuteNewCmd(pMoveCmd);
+
+
+}
+
+void ZG::EditorApplication::AddSelection(IWorldObj* pObj)
+{
+	if (m_vecSelectObjs.size() == 0)
+	{
+		if (m_SelectObj == nullptr)
+		{
+			m_SelectObj = pObj;
+			NotifyListener("SelectChange", EditorApplication::GetInstance());
+			return;
+		}
+		else
+		{
+			m_vecSelectObjs.push_back(m_SelectObj);
+			m_vecSelectObjs.push_back(pObj);
+			NotifyListener("SelectChange", EditorApplication::GetInstance());
+			return;
+		}
+	}
+	m_vecSelectObjs.push_back(pObj);
+	m_SelectObj = nullptr;
+	NotifyListener("SelectChange", EditorApplication::GetInstance());
 }

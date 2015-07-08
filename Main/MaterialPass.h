@@ -17,7 +17,7 @@ namespace ZG
 
 		MaterialPass* clone();
 		void	SetRenderState(stRenderState state);
-
+		void	SetRenderState(RENDERSTATEMASK eMask, int nValue);
 		
 		std::vector<stRenderState> m_vecRenderState;
 		//

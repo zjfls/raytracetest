@@ -33,6 +33,8 @@ namespace ZG
 		virtual bool SetAlphaTestFactor(int f);
 		virtual bool SetCullMode(ERENDERCULL eCull);
 		bool SetFillMode(EFILLMODE eFill) override;
+		bool SetDepthBias(int value) override;
+		bool SetDepthSlopBias(int value) override;
 		//
 		virtual bool SetSamplerSRGB(unsigned int nIndex, unsigned int SRGB);
 		virtual bool RenderBegin();

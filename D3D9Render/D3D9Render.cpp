@@ -451,6 +451,8 @@ void D3D9Render::DrawScreen(IRenderTarget* pSource, IRenderTarget* pTarget, Smar
 	D3D9RenderTarget* pD3DRenderTarget = (D3D9RenderTarget*)pSource;
 	ShaderConstantInfo info = pfragshader->m_mapConstants["sourceTex"];
 	m_pDevice->SetTexture(0, pD3DRenderTarget->m_pSurfTexture);
+	m_pDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+	m_pDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
 	if (EnviromentSetting::GetInstance()->GetIntSetting("LinearLighting") == true)
 	{
 		SetSamplerSRGB(info.m_nRegIndex, 1);
@@ -503,6 +505,30 @@ bool ZG::D3D9Render::SetFillMode(EFILLMODE eFill)
 		break;
 	}
 	if (hr == S_OK)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool ZG::D3D9Render::SetDepthBias(int value)
+{
+	float fValue = value * -0.000001f;
+	HRESULT hr = m_pDevice->SetRenderState(D3DRS_DEPTHBIAS, *(DWORD *)&fValue);
+	if (hr == D3D_OK)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool ZG::D3D9Render::SetDepthSlopBias(int value)
+{
+	float fValue = value * -0.000001f;
+	DWORD dValue;
+	memcpy(&dValue, &fValue, 4);
+	HRESULT hr = m_pDevice->SetRenderState(D3DRS_SLOPESCALEDEPTHBIAS, dValue);
+	if (hr == D3D_OK)
 	{
 		return true;
 	}

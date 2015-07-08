@@ -275,11 +275,12 @@ void ZG::GizmoManager::createSceneGridGizmo()
 	//}
 }
 
-void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
+SmartPointer<IWorldObj> ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 {
-	m_pSelectObjWireFrame = pSelObj->Clone(false);
+	SmartPointer<IWorldObj> pSelectObjWireFrame = nullptr;
+	pSelectObjWireFrame = pSelObj->Clone(false);
 	std::vector<SmartPointer<ModuleBase>> vecModule;
-	m_pSelectObjWireFrame->GetAllModule<ModuleBase>(vecModule);
+	pSelectObjWireFrame->GetAllModule<ModuleBase>(vecModule);
 	for each (SmartPointer<ModuleBase> pModule in vecModule)
 	{
 		if (dynamic_cast<IRenderable*>(pModule.get()) == nullptr && dynamic_cast<Transform*>(pModule.get()) == nullptr)
@@ -289,8 +290,8 @@ void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 
 	}
 	std::vector<SmartPointer<IRenderable>> vecRend;
-	m_pSelectObjWireFrame->GetAllModule<IRenderable>(vecRend);
-	m_pSelectObjWireFrame->m_pTransform->SetWorldTransform(pSelObj->m_pTransform->GetWorldMatrix());
+	pSelectObjWireFrame->GetAllModule<IRenderable>(vecRend);
+	pSelectObjWireFrame->m_pTransform->SetWorldTransform(pSelObj->m_pTransform->GetWorldMatrix());
 
 	for each (SmartPointer<IRenderable> rend in vecRend)
 	{
@@ -310,10 +311,16 @@ void ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj> pSelObj)
 				s.m_eRenderState = ZFUNC;
 				s.m_nValue = RENDERCMP_LESSEQUAL;
 				p.second->SetRenderState(s);
+				//
+				p.second->SetRenderState(ZDEPTHBIAS, 16);
+				p.second->SetRenderState(ZDEPTHSLOPBIAS, 0);
+
+				//
 
 			}
 		}
 	}
+	return pSelectObjWireFrame;
 }
 
 IWorldObj* ZG::GizmoManager::CreateSkeletonGizmo(SkeletonModule* pModule)
@@ -361,5 +368,5 @@ void ZG::GizmoManager::OnAppClose()
 	//SmartPointer<IWorldObj>	 m_pSelectObjWireFrame;
 	m_pTranslateGizmo = nullptr;
 	m_pSceneGrid = nullptr;
-	m_pSelectObjWireFrame = nullptr;
+	//pSelectObjWireFrame = nullptr;
 }
