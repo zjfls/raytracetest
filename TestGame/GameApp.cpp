@@ -65,8 +65,8 @@ void GameApp::SetupScene()
 	pCameraModule->m_clrColr = GameColor::white;
 	RenderManager::GetInstance()->GetDefaultRenderSystem()->GetDefaultRender()->RegistCamera(pCameraModule.get());
 
-	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 900.0f, -1250.0f));
-	pCamera->m_pTransform->SetOrientation(AngleToRad(35.0f), 0, 0);
+	pCamera->m_pTransform->SetTranslate(Vector3(0.0f, 200.0f, -350.0f));
+	pCamera->m_pTransform->SetOrientation(AngleToRad(28.0f), 0, 0);
 	//
 	m_pGameRuntime = m_pWorld->m_pRoot->addModule<GameRuntime>().get();
 	m_pGameRuntime->m_pCamera = pCameraModule->m_pOwnerObj;

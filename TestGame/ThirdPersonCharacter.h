@@ -14,5 +14,6 @@ public:
 	void OnInput();
 
 	IWorldObj* m_pCamera;
+	float m_fYaw;
 };
 
