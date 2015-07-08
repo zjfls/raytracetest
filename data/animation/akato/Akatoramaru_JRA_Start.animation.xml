@@ -1,0 +1,3238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<AnimationTrack SkinAnimation="1" Length="0.46666667" Version="1.0.0">
+    <AnimationCurve Name="Bip01-L-Finger21" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5812073" y="0" z="7.6293945e-006"/>
+            <Rotation x="-3.6944969e-006" y="1.691021e-005" z="1.4608667"/>
+            <Scale x="0.99999988" y="0.99999988" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.581192" y="0" z="0"/>
+            <Rotation x="-1.8127661e-005" y="4.2899374e-005" z="1.4608725"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.581192" y="0" z="0"/>
+            <Rotation x="6.8369656e-005" y="-0.00011716601" z="1.4608414"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="8.581192" y="1.5258789e-005" z="0"/>
+            <Rotation x="-7.5437088e-006" y="1.2423558e-005" z="1.4608597"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="8.581192" y="-1.5258789e-005" z="-7.6293945e-006"/>
+            <Rotation x="-1.6346236e-006" y="3.6003291e-006" z="1.4837402"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="8.581192" y="0" z="0"/>
+            <Rotation x="-5.7043229e-007" y="3.0597071e-006" z="1.529506"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="8.581192" y="0" z="-7.6293945e-006"/>
+            <Rotation x="5.6104636e-007" y="1.477273e-006" z="1.5638295"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="8.581192" y="0" z="-1.5258789e-005"/>
+            <Rotation x="5.9937207e-007" y="1.2576257e-006" z="1.5523883"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="8.581192" y="0" z="-7.6293945e-006"/>
+            <Rotation x="7.3935223e-007" y="-1.2241108e-007" z="1.4608597"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="8.581192" y="0" z="-7.6293945e-006"/>
+            <Rotation x="8.9454028e-007" y="4.9201248e-007" z="1.2205946"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="8.5811882" y="0" z="1.5258789e-005"/>
+            <Rotation x="-9.8858084e-007" y="1.3227109e-006" z="0.854478"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="8.581192" y="0" z="0"/>
+            <Rotation x="-1.8349973e-006" y="3.1594089e-007" z="0.46547741"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="8.5812225" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-2.4438393e-006" y="-5.5654118e-006" z="0.1565644"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="8.5812378" y="-1.5258789e-005" z="-3.8146973e-006"/>
+            <Rotation x="3.8628277e-006" y="-1.8057401e-005" z="0.03071194"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="8.5811882" y="0" z="0"/>
+            <Rotation x="5.156393e-008" y="-4.2073097e-008" z="1.4608587"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Root" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Neck" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="44.142487" y="-3.8424988" z="0"/>
+            <Rotation x="0.061872471" y="0.0060279602" z="0.024376117"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="44.142487" y="-3.842495" z="7.6293945e-006"/>
+            <Rotation x="0.061872382" y="0.0060279621" z="0.024376117"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="44.142487" y="-3.842495" z="4.0531158e-006"/>
+            <Rotation x="0.061872292" y="0.0060279639" z="0.024376117"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="44.142487" y="-3.8424911" z="3.8146973e-006"/>
+            <Rotation x="0.061872106" y="0.0060279686" z="0.024376117"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="44.142487" y="-3.8424911" z="2.8610229e-006"/>
+            <Rotation x="0.061871756" y="0.0060279765" z="0.024376111"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="44.142502" y="-3.8424931" z="4.2915344e-006"/>
+            <Rotation x="0.061871026" y="0.0060279947" z="0.024376109"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="44.142502" y="-3.8424921" z="3.8146973e-006"/>
+            <Rotation x="0.061869584" y="0.006028031" z="0.024376102"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="44.142471" y="-3.842494" z="0"/>
+            <Rotation x="0.061872471" y="0.0060279164" z="0.024376117"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="44.142487" y="-3.8424911" z="0"/>
+            <Rotation x="0.061872471" y="0.0060279164" z="0.024376117"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="44.142487" y="-3.8424911" z="1.5258789e-005"/>
+            <Rotation x="0.061872471" y="0.0060279164" z="0.024376117"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="44.142502" y="-3.842495" z="7.6293945e-006"/>
+            <Rotation x="0.061872408" y="0.0060279183" z="0.024376117"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="44.142471" y="-3.8424931" z="0"/>
+            <Rotation x="0.061872348" y="0.0060279197" z="0.024376117"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="44.142487" y="-3.8424931" z="3.8146973e-006"/>
+            <Rotation x="0.061872203" y="0.006027923" z="0.024376115"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="44.142487" y="-3.8424911" z="4.7683716e-006"/>
+            <Rotation x="0.061871942" y="0.0060279295" z="0.024376115"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="44.142487" y="-3.8424911" z="7.6293945e-006"/>
+            <Rotation x="0.061871406" y="0.006027943" z="0.024376109"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-4.0883384" y="-0.040464588" z="136.09666"/>
+            <Rotation x="-1.869443e-009" y="0.085304774" z="-0.11335823"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-4.0883384" y="-0.040464345" z="136.09666"/>
+            <Rotation x="0.045372497" y="0.05463127" z="-0.33142799"/>
+            <Scale x="0.99999994" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-4.0883389" y="-0.040464099" z="136.09666"/>
+            <Rotation x="0.096257485" y="0.034500521" z="-0.55040306"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-4.0883389" y="-0.040463857" z="136.09666"/>
+            <Rotation x="0.15027817" y="0.025912711" z="-0.77001375"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-4.0883389" y="-0.040463857" z="137.31836"/>
+            <Rotation x="0.13270254" y="0.015105065" z="-0.79307353"/>
+            <Scale x="0.99999988" y="0.99999982" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="-4.0883389" y="-0.040463857" z="138.34055"/>
+            <Rotation x="0.11425965" y="0.0062683746" z="-0.81607878"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="-4.0883389" y="-0.040463857" z="139.46246"/>
+            <Rotation x="0.096599527" y="-0.0041676247" z="-0.8388381"/>
+            <Scale x="0.99999988" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="-4.0883389" y="-0.040463857" z="140.98346"/>
+            <Rotation x="0.081526741" y="-0.019685272" z="-0.86107475"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-4.0883389" y="-0.040463857" z="143.20284"/>
+            <Rotation x="0.07098341" y="-0.043676086" z="-0.88249612"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-4.0883389" y="-0.040463857" z="148.08075"/>
+            <Rotation x="0.069047689" y="-0.092371941" z="-0.90775442"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="-4.0883389" y="-0.040463857" z="154.34428"/>
+            <Rotation x="0.077058315" y="-0.15705413" z="-0.93242103"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="-4.0883389" y="-0.040463857" z="157.4433"/>
+            <Rotation x="0.09045852" y="-0.20390013" z="-0.94209373"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="-4.0883389" y="-0.040463857" z="154.12404"/>
+            <Rotation x="0.11134842" y="-0.2163737" z="-0.92054391"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-4.0883389" y="-0.040463857" z="147.64024"/>
+            <Rotation x="0.13604492" y="-0.21212451" z="-0.88308758"/>
+            <Scale x="0.99999988" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-4.0883384" y="-0.040464588" z="143.20284"/>
+            <Rotation x="0.14909598" y="-0.2074983" z="-0.86172712"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Foot" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="57.453278" y="3.8146973e-006" z="1.1444092e-005"/>
+            <Rotation x="-0.172125" y="-0.11287972" z="-0.34995985"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="57.453293" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.17867915" y="-0.053157996" z="-0.24178132"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="57.453293" y="-3.8146973e-006" z="7.6293945e-006"/>
+            <Rotation x="-0.16210376" y="0.018464841" z="-0.14311932"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="57.453278" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.1394148" y="0.067487255" z="-0.085551023"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="57.453293" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.13001204" y="0.082846306" z="-0.062952161"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="57.4533" y="3.8146973e-006" z="0"/>
+            <Rotation x="-0.12909943" y="0.082303032" z="-0.052057557"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="57.453293" y="3.8146973e-006" z="0"/>
+            <Rotation x="-0.13277461" y="0.074221984" z="-0.052340385"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="57.453293" y="7.6293945e-006" z="7.6293945e-006"/>
+            <Rotation x="-0.13722241" y="0.066766515" z="-0.063628979"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="57.453293" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.13941491" y="0.067487195" z="-0.08555118"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="57.453285" y="-3.8146973e-006" z="0"/>
+            <Rotation x="-0.13804892" y="0.077547982" z="-0.12504536"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="57.453293" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.13238819" y="0.089810692" z="-0.18212384"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="57.453293" y="7.6293945e-006" z="7.6293945e-006"/>
+            <Rotation x="-0.1209826" y="0.099852607" z="-0.24607326"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="57.453293" y="0" z="0"/>
+            <Rotation x="-0.10552815" y="0.10526843" z="-0.30664101"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="57.453293" y="-1.9073486e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.090656459" y="0.10648251" z="-0.35379449"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="57.453285" y="-7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.082396299" y="0.10606464" z="-0.37733948"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Pelvis" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.34487852" y="-1.7273027" z="-2.0877273"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.22650051" y="-1.781574" z="-1.9744495"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.15593153" y="-1.8374971" z="-1.9090108"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.17707969" y="-1.8745981" z="-1.9158711"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.28172141" y="-1.8927296" z="-1.9805602"/>
+            <Scale x="1.0000001" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.41985184" y="-1.9071285" z="-2.0657358"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.56803596" y="-1.9201427" z="-2.156832"/>
+            <Scale x="1" y="0.99999982" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.70521331" y="-1.9317511" z="-2.2416897"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.81321698" y="-1.9395829" z="-2.3110895"/>
+            <Scale x="1.0000001" y="1.0000002" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.89336801" y="-1.9285073" z="-2.381258"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="0.96490639" y="-1.9019407" z="-2.4647508"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="1.0215136" y="-1.8829" z="-2.5318811"/>
+            <Scale x="1.0000001" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="1.0398757" y="-1.8793688" z="-2.5511646"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="1.0306414" y="-1.8811208" z="-2.5414696"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="1.021513" y="-1.8829" z="-2.5318806"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Calf" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="61.218277" y="0" z="-7.6293945e-006"/>
+            <Rotation x="1.3055683e-007" y="-1.2553105e-008" z="-2.580488"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="61.218281" y="7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-2.731658e-007" y="2.4118231e-007" z="-2.580488"/>
+            <Scale x="1.0000002" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="61.218281" y="0" z="0"/>
+            <Rotation x="-1.0806111e-006" y="7.4865329e-007" z="-2.580488"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="61.218281" y="0" z="0"/>
+            <Rotation x="-2.6955015e-006" y="1.7635949e-006" z="-2.580488"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="61.218285" y="0" z="0"/>
+            <Rotation x="3.9318411e-009" y="-1.1468706e-007" z="-2.5946996"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="61.218285" y="-7.6293945e-006" z="0"/>
+            <Rotation x="7.3842941e-009" y="2.7844113e-008" z="-2.6231227"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="61.218281" y="-7.6293945e-006" z="0"/>
+            <Rotation x="6.5885814e-008" y="-1.005732e-007" z="-2.6444402"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="61.218273" y="2.2888184e-005" z="-1.5258789e-005"/>
+            <Rotation x="1.850127e-008" y="6.5225509e-009" z="-2.6373336"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="61.218277" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-4.1335298e-008" y="4.4997265e-008" z="-2.5804875"/>
+            <Scale x="0.99999994" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="61.218277" y="0" z="-7.6293945e-006"/>
+            <Rotation x="1.3903251e-007" y="-8.3593193e-008" z="-2.4503071"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="61.218285" y="0" z="-7.6293945e-006"/>
+            <Rotation x="5.5378536e-008" y="-6.6655204e-008" z="-2.2606311"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="61.218277" y="0" z="-7.6293945e-006"/>
+            <Rotation x="5.5866625e-008" y="-4.6066745e-008" z="-2.0462816"/>
+            <Scale x="1.0000001" y="1.0000002" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="61.218277" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-1.0881794e-007" y="1.670129e-007" z="-1.8420825"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="61.218277" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-7.4973077e-009" y="8.2837657e-009" z="-1.6828589"/>
+            <Scale x="0.99999988" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="61.218269" y="0" z="-7.6293945e-006"/>
+            <Rotation x="1.4893218e-008" y="-1.4414881e-008" z="-1.603435"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Spine2" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="28.97467" y="-0.033226013" z="0"/>
+            <Rotation x="-0.41415885" y="-0.11477656" z="0.33560038"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="28.974655" y="-0.033226013" z="0"/>
+            <Rotation x="-0.45011839" y="-0.011675804" z="0.22474244"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="28.974655" y="-0.033226013" z="-9.5367432e-007"/>
+            <Rotation x="-0.49738857" y="0.086740009" z="0.10978181"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="28.974655" y="-0.033222198" z="-9.5367432e-007"/>
+            <Rotation x="-0.47781867" y="0.11781156" z="0.0320196"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="28.974655" y="-0.033222198" z="-9.5367432e-007"/>
+            <Rotation x="-0.36312667" y="0.07575503" z="-0.0020410102"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="28.97464" y="-0.033224106" z="-2.3841858e-007"/>
+            <Rotation x="-0.2016561" y="0.0024350805" z="-0.027835179"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="28.974655" y="-0.033226013" z="0"/>
+            <Rotation x="-0.019712858" y="-0.083604291" z="-0.058277264"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="28.97464" y="-0.033226013" z="1.9073486e-006"/>
+            <Rotation x="0.15719603" y="-0.16292064" z="-0.097753376"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="28.97464" y="-0.033226013" z="3.8146973e-006"/>
+            <Rotation x="0.30114055" y="-0.21783815" z="-0.14038739"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="28.97464" y="-0.033224106" z="0"/>
+            <Rotation x="0.40271872" y="-0.26117399" z="-0.16364215"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="28.974655" y="-0.03322506" z="-3.8146973e-006"/>
+            <Rotation x="0.45098135" y="-0.29148906" z="-0.1656487"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="28.974655" y="-0.033224821" z="0"/>
+            <Rotation x="0.41282576" y="-0.26911247" z="-0.16334663"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="28.974655" y="-0.03322506" z="0"/>
+            <Rotation x="0.20763147" y="-0.13504584" z="-0.1778283"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="28.974655" y="-0.03322506" z="-4.7683716e-007"/>
+            <Rotation x="-0.083575346" y="0.041328896" z="-0.23949809"/>
+            <Scale x="0.99999988" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="28.974655" y="-0.033226013" z="-1.4305115e-006"/>
+            <Rotation x="-0.2484549" y="0.12753923" z="-0.29384038"/>
+            <Scale x="1.0000001" y="1" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Spine" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="14.297226" y="3.0992508" z="2.2888184e-005"/>
+            <Rotation x="0.16970593" y="0.14538515" z="-0.042412139"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="14.297241" y="3.0992489" z="2.2888184e-005"/>
+            <Rotation x="0.17443393" y="0.20343208" z="-0.037020478"/>
+            <Scale x="1" y="0.99999988" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="14.297226" y="3.0992508" z="2.4795532e-005"/>
+            <Rotation x="0.17955112" y="0.26145214" z="-0.031270329"/>
+            <Scale x="1.0000001" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="14.297241" y="3.0992498" z="2.4795532e-005"/>
+            <Rotation x="0.1629959" y="0.29714808" z="-0.043889318"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="14.297241" y="3.0992508" z="2.4795532e-005"/>
+            <Rotation x="0.11709394" y="0.30755606" z="-0.081072204"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="14.297211" y="3.0992489" z="2.2888184e-005"/>
+            <Rotation x="0.056655943" y="0.3055234" z="-0.13011901"/>
+            <Scale x="0.99999994" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="14.297226" y="3.0992508" z="2.6702881e-005"/>
+            <Rotation x="-0.0073229424" y="0.29279083" z="-0.18211554"/>
+            <Scale x="1.0000002" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="14.297226" y="3.099247" z="2.2888184e-005"/>
+            <Rotation x="-0.06430348" y="0.27299839" z="-0.22865501"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="14.297226" y="3.0992489" z="2.6702881e-005"/>
+            <Rotation x="-0.10479398" y="0.25147614" z="-0.26250774"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="14.297211" y="3.0992508" z="2.4795532e-005"/>
+            <Rotation x="-0.11215237" y="0.2224963" z="-0.27228555"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="14.297241" y="3.0992508" z="2.2888184e-005"/>
+            <Rotation x="-0.094782703" y="0.18727697" z="-0.26435575"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="14.297226" y="3.0992517" z="2.4795532e-005"/>
+            <Rotation x="-0.080453008" y="0.16189173" z="-0.25750721"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="14.297211" y="3.0992513" z="2.3841858e-005"/>
+            <Rotation x="-0.07868319" y="0.15525168" z="-0.25722778"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="14.297211" y="3.0992508" z="2.3841858e-005"/>
+            <Rotation x="-0.079567567" y="0.15857185" z="-0.257366"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="14.297241" y="3.0992498" z="2.3841858e-005"/>
+            <Rotation x="-0.0804528" y="0.16189182" z="-0.25750715"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger0" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="3.7574921" y="7.7495575" z="-8.7185364"/>
+            <Rotation x="1.8645999" y="0.368325" z="0.62993848"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="3.7575073" y="7.749588" z="-8.7185287"/>
+            <Rotation x="1.8645995" y="0.36832517" z="0.6299383"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="3.7575073" y="7.749588" z="-8.7185364"/>
+            <Rotation x="1.8645991" y="0.36832538" z="0.62993824"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="3.7575073" y="7.749588" z="-8.718544"/>
+            <Rotation x="1.8645984" y="0.36832589" z="0.62993795"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="3.7574921" y="7.7495728" z="-8.7185287"/>
+            <Rotation x="1.8642015" y="0.36489278" z="0.62882704"/>
+            <Scale x="0.99999982" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="3.7575073" y="7.7495728" z="-8.7185364"/>
+            <Rotation x="1.8634185" y="0.3580274" z="0.62661266"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="3.757515" y="7.7495728" z="-8.718544"/>
+            <Rotation x="1.8628428" y="0.35287732" z="0.62495941"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="3.7575073" y="7.7495728" z="-8.718544"/>
+            <Rotation x="1.8630339" y="0.35459402" z="0.62550974"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="3.757515" y="7.7495728" z="-8.7185211"/>
+            <Rotation x="1.8645999" y="0.36832491" z="0.62993848"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="3.7575073" y="7.749588" z="-8.7185364"/>
+            <Rotation x="1.869068" y="0.40433562" z="0.64179498"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="3.7575073" y="7.7495728" z="-8.718544"/>
+            <Rotation x="1.8769366" y="0.45910564" z="0.6605919"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="3.7575073" y="7.7495728" z="-8.7185287"/>
+            <Rotation x="1.8868468" y="0.51713568" z="0.681714"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="3.7574921" y="7.749588" z="-8.7185287"/>
+            <Rotation x="1.8959949" y="0.56307453" z="0.69949919"/>
+            <Scale x="0.99999982" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="3.7575073" y="7.7495575" z="-8.7185364"/>
+            <Rotation x="1.9000795" y="0.58174878" z="0.70704001"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="3.7575073" y="7.7495651" z="-8.7185364"/>
+            <Rotation x="1.8645999" y="0.36832497" z="0.62993866"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Head" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="16.635788" y="0.82007599" z="7.6293945e-006"/>
+            <Rotation x="0.81787872" y="-0.2235679" z="0.10330549"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="16.635803" y="0.82007599" z="0"/>
+            <Rotation x="0.33069989" y="-0.17486112" z="0.29740813"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="16.635803" y="0.8200798" z="-1.1920929e-006"/>
+            <Rotation x="-0.15352444" y="-0.099908344" z="0.35633451"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="16.635803" y="0.8200798" z="-1.9073486e-006"/>
+            <Rotation x="-0.44361216" y="-0.040327776" z="0.34214926"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="16.635773" y="0.8200798" z="-1.9073486e-006"/>
+            <Rotation x="-0.52141595" y="0.034770846" z="0.37004489"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="16.635803" y="0.82007599" z="-1.6689301e-006"/>
+            <Rotation x="-0.49945226" y="0.13471909" z="0.40930173"/>
+            <Scale x="1.0000001" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="16.635773" y="0.8200798" z="0"/>
+            <Rotation x="-0.42188889" y="0.24216898" z="0.41524506"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="16.635788" y="0.8200798" z="3.8146973e-006"/>
+            <Rotation x="-0.35443851" y="0.32896686" z="0.36612731"/>
+            <Scale x="0.99999988" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="16.635788" y="0.8200798" z="-7.6293945e-006"/>
+            <Rotation x="-0.35126382" y="0.36931849" z="0.27843201"/>
+            <Scale x="0.99999988" y="1" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="16.635773" y="0.8200798" z="0"/>
+            <Rotation x="-0.43160596" y="0.32262793" z="0.15778048"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="16.635773" y="0.8200798" z="0"/>
+            <Rotation x="-0.51177472" y="0.2032256" z="0.044480391"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="16.635788" y="0.8200798" z="0"/>
+            <Rotation x="-0.48895726" y="0.10235174" z="-0.033834845"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="16.635803" y="0.82007408" z="3.8146973e-006"/>
+            <Rotation x="-0.26160985" y="0.098927677" z="-0.071330927"/>
+            <Scale x="0.99999988" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="16.635788" y="0.82007599" z="-9.5367432e-007"/>
+            <Rotation x="0.050944593" y="0.16212274" z="0.013539265"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="16.635788" y="0.82008362" z="-3.8146973e-006"/>
+            <Rotation x="0.21185133" y="0.18227465" z="0.11607888"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Spine1" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5880127" y="-0.023070335" z="1.3113022e-006"/>
+            <Rotation x="-0.50420564" y="-0.036817856" z="0.19613631"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.588028" y="-0.023070335" z="1.9073486e-006"/>
+            <Rotation x="-0.51666123" y="-0.0016013352" z="0.14264031"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5879974" y="-0.023068428" z="0"/>
+            <Rotation x="-0.53098452" y="0.032896724" z="0.088675566"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="8.588028" y="-0.023069382" z="3.8146973e-006"/>
+            <Rotation x="-0.50854057" y="0.03306083" z="0.070284203"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="8.5880127" y="-0.02306962" z="3.8146973e-006"/>
+            <Rotation x="-0.43949267" y="-0.011410315" z="0.094013184"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="8.5880127" y="-0.023069143" z="3.8146973e-006"/>
+            <Rotation x="-0.3505891" y="-0.08104793" z="0.13239591"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="8.588028" y="-0.023069263" z="1.9073486e-006"/>
+            <Rotation x="-0.25544167" y="-0.16283786" z="0.17183027"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="8.5879974" y="-0.023069382" z="9.5367432e-007"/>
+            <Rotation x="-0.165158" y="-0.24101864" z="0.20266508"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="8.588028" y="-0.023069382" z="1.9073486e-006"/>
+            <Rotation x="-0.089514256" y="-0.29782203" z="0.2193491"/>
+            <Scale x="0.99999994" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="8.5880127" y="-0.023069382" z="1.9073486e-006"/>
+            <Rotation x="-0.02577075" y="-0.31298682" z="0.22287631"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="8.5880127" y="-0.023069382" z="1.9073486e-006"/>
+            <Rotation x="0.018623034" y="-0.29302073" z="0.21929802"/>
+            <Scale x="0.99999976" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="8.5880127" y="-0.023067474" z="1.9073486e-006"/>
+            <Rotation x="0.019085776" y="-0.26021868" z="0.20971026"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="8.5880127" y="-0.023071289" z="1.9073486e-006"/>
+            <Rotation x="-0.065797687" y="-0.20912501" z="0.18339643"/>
+            <Scale x="1" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="8.588028" y="-0.023067474" z="1.9073486e-006"/>
+            <Rotation x="-0.19492123" y="-0.15003097" z="0.14251916"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="8.5880127" y="-0.023069382" z="1.9073486e-006"/>
+            <Rotation x="-0.26695982" y="-0.12118463" z="0.11760359"/>
+            <Scale x="0.99999994" y="0.99999982" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Clavicle" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-4.8259735" y="2.891098" z="15.618534"/>
+            <Rotation x="0.060225252" y="-1.5953887" z="3.0566301"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-4.8259583" y="2.8910904" z="15.61853"/>
+            <Rotation x="0.63129723" y="-1.595206" z="2.4857593"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-4.8259735" y="2.891098" z="15.618533"/>
+            <Rotation x="1.074875" y="-1.6020379" z="2.0424678"/>
+            <Scale x="1" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-4.8259735" y="2.8911018" z="15.618536"/>
+            <Rotation x="0.060227919" y="-1.5953887" z="3.0566275"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-4.8259888" y="2.891098" z="15.61853"/>
+            <Rotation x="-0.98086774" y="-1.6722424" z="4.0946808"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="-4.8259735" y="2.8910961" z="15.618532"/>
+            <Rotation x="-1.1168215" y="-1.798715" z="4.2216787"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="-4.8259888" y="2.8911018" z="15.618538"/>
+            <Rotation x="-1.1638032" y="-1.929716" z="4.2535877"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="-4.8259735" y="2.8911037" z="15.618538"/>
+            <Rotation x="-1.1881821" y="-2.0317757" z="4.2618914"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-4.8259735" y="2.8910942" z="15.618526"/>
+            <Rotation x="-1.1970196" y="-2.0728393" z="4.2631316"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-4.8259888" y="2.8911018" z="15.618538"/>
+            <Rotation x="-1.1801492" y="-2.021409" z="4.2552514"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="-4.8259735" y="2.891098" z="15.61853"/>
+            <Rotation x="-1.1308523" y="-1.898766" z="4.2239118"/>
+            <Scale x="1" y="1.0000001" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="-4.8259735" y="2.891098" z="15.618523"/>
+            <Rotation x="-1.0216677" y="-1.7532927" z="4.1298375"/>
+            <Scale x="0.99999994" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="-4.8259735" y="2.891098" z="15.618538"/>
+            <Rotation x="-0.66606694" y="-1.6366156" z="3.7815416"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-4.8259735" y="2.891098" z="15.618532"/>
+            <Rotation x="0.060234044" y="-1.5953887" z="3.0566213"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-4.8259735" y="2.8911018" z="15.618534"/>
+            <Rotation x="-1.3796538" y="-2.1053536" z="4.4620662"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="twistBone_R" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-7.6293945e-006" y="0" z="-1.5258789e-005"/>
+            <Rotation x="0.14913914" y="-7.8879822e-007" z="4.323038e-006"/>
+            <Scale x="0.99999988" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.27913803" y="1.2447209e-005" z="-7.0312228e-005"/>
+            <Scale x="0.99999988" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-7.6293945e-006" y="7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.37431055" y="3.4503842e-005" z="-0.00014087679"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="0" y="0" z="-3.0517578e-005"/>
+            <Rotation x="0.34521356" y="0.00010605639" z="-0.00045103207"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-3.8146973e-006" y="0" z="-1.5258789e-005"/>
+            <Rotation x="0.23267098" y="6.0676903e-005" z="-0.00033902127"/>
+            <Scale x="1.0000001" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="-5.7220459e-006" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.13088547" y="1.6129259e-005" z="-0.00011320997"/>
+            <Scale x="0.99999994" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="0" y="-3.8146973e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.048405584" y="3.3592129e-005" z="-0.00022299725"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="-1.5258789e-005" y="1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.029068926" y="2.0976944e-005" z="-8.7741391e-005"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-1.5258789e-005" y="-1.9073486e-006" z="-7.6293945e-006"/>
+            <Rotation x="-0.12946224" y="2.00264e-005" z="-4.2405496e-005"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-1.5258789e-005" y="-1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.47429258" y="-1.1996748e-005" z="-1.5721309e-005"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="-1.5258789e-005" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-0.97520202" y="-2.3754597e-005" z="-4.7897383e-006"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="0" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-1.2890729" y="2.4197359e-006" z="1.1524708e-007"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="-1.5258789e-005" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-1.1074998" y="-2.291001e-005" z="-4.5498087e-005"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="0" y="-1.5258789e-005" z="-3.0517578e-005"/>
+            <Rotation x="-0.70572257" y="7.2851144e-006" z="-0.00016556152"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-7.6293945e-006" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-0.68525094" y="-2.6636535e-005" z="-0.00026222738"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger21" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5812073" y="-1.5258789e-005" z="0"/>
+            <Rotation x="9.3561658e-007" y="-4.3850723e-006" z="1.3789222"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.5812073" y="-1.5258789e-005" z="7.6293945e-006"/>
+            <Rotation x="-2.499662e-005" y="6.1913095e-005" z="1.4182575"/>
+            <Scale x="0.99999982" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5812073" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-6.664871e-005" y="0.00011223248" z="1.4575769"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="8.5811996" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-0.00033569365" y="0.00028300195" z="1.3787079"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="8.5811996" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-0.00035596345" y="3.5021236e-005" z="1.1463704"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="8.5812073" y="-3.0517578e-005" z="-7.6293945e-006"/>
+            <Rotation x="-0.00010564853" y="-9.1197435e-005" z="0.83755594"/>
+            <Scale x="0.99999988" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="8.5811844" y="-3.0517578e-005" z="0"/>
+            <Rotation x="7.8045787e-006" y="-0.00035436943" z="0.50298625"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="8.5812073" y="-3.0517578e-005" z="0"/>
+            <Rotation x="0.00016083683" y="-0.00014254467" z="0.19413583"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="8.581192" y="-1.5258789e-005" z="0"/>
+            <Rotation x="0.00019040737" y="-2.9121546e-005" z="-0.038262587"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="8.5811768" y="-7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.00011445506" y="3.7899542e-006" z="-0.17493187"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="8.5812073" y="-1.5258789e-005" z="0"/>
+            <Rotation x="6.3643944e-005" y="1.1443739e-005" z="-0.19356287"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="8.5812073" y="-1.5258789e-005" z="-3.8146973e-006"/>
+            <Rotation x="-4.2504271e-006" y="-4.2360347e-007" z="-0.038076367"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="8.5811768" y="0" z="-3.8146973e-006"/>
+            <Rotation x="-3.0833788e-005" y="-7.9092366e-005" z="0.57148153"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="8.581192" y="0" z="0"/>
+            <Rotation x="-8.5668253e-005" y="0.00011799193" z="1.2681865"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="8.581192" y="0" z="0"/>
+            <Rotation x="-0.00023395554" y="-0.00010692716" z="1.2681636"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger1" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.638657" y="-0.33596802" z="-4.9887543"/>
+            <Rotation x="-0.0017827741" y="-0.010844579" z="1.3071754"/>
+            <Scale x="1.0000001" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.638672" y="-0.3359375" z="-4.9887466"/>
+            <Rotation x="-0.0017828844" y="-0.010844169" z="1.3071754"/>
+            <Scale x="0.99999994" y="0.99999982" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.638657" y="-0.33596802" z="-4.9887466"/>
+            <Rotation x="-0.0017830473" y="-0.010843563" z="1.3071754"/>
+            <Scale x="1.0000002" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="18.638672" y="-0.33595276" z="-4.9887543"/>
+            <Rotation x="-0.0017833173" y="-0.010842563" z="1.3071754"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="18.638657" y="-0.33595276" z="-4.9887543"/>
+            <Rotation x="-0.0039180354" y="-0.012683897" z="1.3317294"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="18.638664" y="-0.33596802" z="-4.9887543"/>
+            <Rotation x="-0.008320828" y="-0.016202332" z="1.3808498"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="18.63868" y="-0.33596802" z="-4.9887619"/>
+            <Rotation x="-0.011733469" y="-0.018696936" z="1.4177021"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="18.638672" y="-0.33596802" z="-4.9887695"/>
+            <Rotation x="-0.010585759" y="-0.0178794" z="1.4054166"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999976"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="18.63868" y="-0.33596802" z="-4.988739"/>
+            <Rotation x="-0.0017828769" y="-0.010844656" z="1.3071758"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="18.638672" y="-0.3359375" z="-4.9887314"/>
+            <Rotation x="0.017643327" y="0.011367051" z="1.0496136"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="18.638672" y="-0.33598328" z="-4.9887543"/>
+            <Rotation x="0.034843571" y="0.052738186" z="0.65764397"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="18.638657" y="-0.33596802" z="-4.9887543"/>
+            <Rotation x="0.034334373" y="0.10029612" z="0.24054295"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="18.638687" y="-0.33596802" z="-4.9887543"/>
+            <Rotation x="0.019990176" y="0.13538553" z="-0.092317149"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="18.638672" y="-0.33598328" z="-4.9887562"/>
+            <Rotation x="0.010898022" y="0.14798903" z="-0.2285102"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="18.638672" y="-0.33596802" z="-4.9887695"/>
+            <Rotation x="-0.001782936" y="-0.010844599" z="1.3071758"/>
+            <Scale x="1.0000001" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-UpperArm" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="26.193264" y="0" z="0"/>
+            <Rotation x="-0.67945158" y="0.071517035" z="-0.60166979"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="26.193262" y="-3.8146973e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.72268361" y="0.25817639" z="-0.60456568"/>
+            <Scale x="0.99999994" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="26.193266" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-0.7733463" y="0.44291627" z="-0.61395091"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="26.193268" y="-3.8146973e-006" z="0"/>
+            <Rotation x="-0.76090378" y="0.58483511" z="-0.59111899"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="26.193268" y="1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.61862761" y="0.70419103" z="-0.45439857"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="26.193264" y="1.9073486e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.35546467" y="0.77864057" z="-0.18233687"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="26.193264" y="-1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.096470855" y="0.74142992" z="0.085981213"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="26.193268" y="-2.3841858e-007" z="0"/>
+            <Rotation x="0.017018471" y="0.64058095" z="0.17506307"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="26.193264" y="-1.1920929e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.022943364" y="0.55532604" z="0.016570454"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="26.193264" y="1.1324883e-006" z="0"/>
+            <Rotation x="-0.21602309" y="0.48074108" z="-0.45303297"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="26.193264" y="-1.9073486e-006" z="0"/>
+            <Rotation x="-0.45159829" y="0.33544704" z="-1.0844808"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="26.193264" y="-7.1525574e-007" z="0"/>
+            <Rotation x="-0.62315118" y="0.12086303" z="-1.6378447"/>
+            <Scale x="0.99999988" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="26.19326" y="-1.9073486e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.78663796" y="-0.11754576" z="-1.8358597"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="26.193268" y="0" z="0"/>
+            <Rotation x="-0.92471641" y="-0.30895472" z="-1.6515261"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="26.19326" y="-3.8146973e-006" z="0"/>
+            <Rotation x="-0.6571337" y="-0.019174797" z="-0.60342008"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Forearm" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="54.724518" y="0" z="1.5258789e-005"/>
+            <Rotation x="-1.1587847e-008" y="-7.0202837e-008" z="-1.8292232"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="54.724525" y="0" z="1.5258789e-005"/>
+            <Rotation x="5.535744e-008" y="3.308309e-008" z="-1.8261591"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="54.724525" y="0" z="1.5258789e-005"/>
+            <Rotation x="-6.8898991e-008" y="-2.9308582e-008" z="-1.8230952"/>
+            <Scale x="0.99999994" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="54.724525" y="7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="8.4445759e-008" y="-4.6695764e-008" z="-1.8292232"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="54.724525" y="0" z="3.0517578e-005"/>
+            <Rotation x="2.7004916e-008" y="1.1447924e-008" z="-1.8647079"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="54.724541" y="0" z="3.0517578e-005"/>
+            <Rotation x="-1.158304e-008" y="3.146322e-008" z="-1.9235439"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="54.724525" y="-9.5367432e-007" z="1.5258789e-005"/>
+            <Rotation x="-2.0222586e-007" y="-4.5105136e-008" z="-1.9756683"/>
+            <Scale x="0.99999994" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="54.724525" y="1.4305115e-006" z="1.5258789e-005"/>
+            <Rotation x="2.2196977e-008" y="1.1205588e-007" z="-1.9910166"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="54.724518" y="0" z="1.5258789e-005"/>
+            <Rotation x="1.0936514e-007" y="-1.9722461e-009" z="-1.9395257"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="54.724518" y="0" z="1.5258789e-005"/>
+            <Rotation x="4.5875975e-008" y="1.0520099e-008" z="-1.7683458"/>
+            <Scale x="0.99999994" y="0.99999982" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="54.724522" y="7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="-1.5430615e-007" y="-1.1464576e-007" z="-1.4975216"/>
+            <Scale x="0.99999988" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="54.724533" y="1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="-1.1199486e-007" y="-5.6613331e-008" z="-1.2063245"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="54.724529" y="0" z="3.0517578e-005"/>
+            <Rotation x="9.6618358e-009" y="3.141378e-008" z="-0.97402817"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="54.724518" y="0" z="1.5258789e-005"/>
+            <Rotation x="1.3719196e-007" y="7.7727002e-008" z="-0.8799057"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="54.724533" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="6.2997501e-008" y="-1.033199e-008" z="-1.9478586"/>
+            <Scale x="1.0000001" y="1" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Hand" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="50.553604" y="0" z="0"/>
+            <Rotation x="-1.7920895" y="0.01123491" z="-0.059494179"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="50.553596" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-1.7920897" y="0.011234906" z="-0.05949419"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="50.553604" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-1.7920898" y="0.011234896" z="-0.059494194"/>
+            <Scale x="1.0000001" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="50.553596" y="0" z="1.5258789e-005"/>
+            <Rotation x="-1.7920902" y="0.011234882" z="-0.059494194"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="50.553612" y="7.6293945e-006" z="0"/>
+            <Rotation x="-1.7920902" y="0.011234871" z="-0.059494182"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="50.553612" y="0" z="1.5258789e-005"/>
+            <Rotation x="-1.7920909" y="0.011234826" z="-0.059494197"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="50.553604" y="7.6293945e-006" z="0"/>
+            <Rotation x="-1.7920918" y="0.011234763" z="-0.059494205"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="50.553608" y="0" z="0"/>
+            <Rotation x="-1.7920897" y="0.011234734" z="-0.059494294"/>
+            <Scale x="1.0000001" y="0.99999988" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="50.553612" y="0" z="1.5258789e-005"/>
+            <Rotation x="-1.7920901" y="0.011234717" z="-0.059494305"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="50.553612" y="-3.8146973e-006" z="-1.5258789e-005"/>
+            <Rotation x="-1.8132356" y="0.011198347" z="-0.077685639"/>
+            <Scale x="1" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="50.553589" y="-3.8146973e-006" z="0"/>
+            <Rotation x="-1.855508" y="0.0099721523" z="-0.11404539"/>
+            <Scale x="0.99999976" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="50.553619" y="0" z="0"/>
+            <Rotation x="-1.8871672" y="0.0080451751" z="-0.14126308"/>
+            <Scale x="1" y="0.99999994" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="50.553589" y="3.8146973e-006" z="0"/>
+            <Rotation x="-1.8766196" y="0.0087832026" z="-0.13219744"/>
+            <Scale x="1" y="0.99999976" z="0.99999976"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="50.553604" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-1.7920897" y="0.011234725" z="-0.059494197"/>
+            <Scale x="1" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="50.553604" y="0" z="0"/>
+            <Rotation x="-1.0504547" y="-0.24290355" z="0.55990112"/>
+            <Scale x="1.0000001" y="1" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Toe0" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="22.621414" y="28.043427" z="-0.51106644"/>
+            <Rotation x="0.0018464876" y="1.958845e-005" z="1.5687931"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="22.621418" y="28.043419" z="-0.51106262"/>
+            <Rotation x="0.0018464875" y="1.9647994e-005" z="1.5687931"/>
+            <Scale x="0.99999982" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="22.621414" y="28.043419" z="-0.51106262"/>
+            <Rotation x="0.0018464873" y="1.978135e-005" z="1.5687931"/>
+            <Scale x="0.99999982" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="22.621414" y="28.043421" z="-0.51106262"/>
+            <Rotation x="0.0018464868" y="2.0004343e-005" z="1.5687931"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="22.621414" y="28.043419" z="-0.51105499"/>
+            <Rotation x="0.001846486" y="2.0442358e-005" z="1.5687931"/>
+            <Scale x="0.99999988" y="0.99999982" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="22.621414" y="28.043419" z="-0.51107025"/>
+            <Rotation x="0.0018464841" y="2.1342303e-005" z="1.5687931"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="22.621414" y="28.043411" z="-0.51107025"/>
+            <Rotation x="0.0018464806" y="2.3081606e-005" z="1.5687931"/>
+            <Scale x="0.99999994" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="22.621422" y="28.043419" z="-0.51107025"/>
+            <Rotation x="0.0018464904" y="1.9559637e-005" z="1.5687931"/>
+            <Scale x="0.99999982" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="22.621414" y="28.043427" z="-0.51106262"/>
+            <Rotation x="0.0018464903" y="1.961924e-005" z="1.5687931"/>
+            <Scale x="0.99999988" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="22.621414" y="28.043427" z="-0.51106262"/>
+            <Rotation x="0.0018464902" y="1.9703526e-005" z="1.5687931"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="22.621414" y="28.043427" z="-0.51106262"/>
+            <Rotation x="0.0018464898" y="1.9849569e-005" z="1.5687931"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="22.621414" y="28.043427" z="-0.51107025"/>
+            <Rotation x="0.0018464893" y="2.0132284e-005" z="1.5687931"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="22.621422" y="28.043427" z="-0.51106262"/>
+            <Rotation x="0.0018464881" y="2.0686768e-005" z="1.5687931"/>
+            <Scale x="0.99999982" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="22.621418" y="28.043423" z="-0.51106262"/>
+            <Rotation x="0.0018464857" y="2.1800979e-005" z="1.5687931"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="22.621414" y="28.043423" z="-0.51106262"/>
+            <Rotation x="0.0018464681" y="1.9581757e-005" z="1.5687931"/>
+            <Scale x="0.99999994" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger01" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="10.284107" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="2.4165438e-006" y="1.4176037e-005" z="1.2759196"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="10.284107" y="1.1444092e-005" z="1.5258789e-005"/>
+            <Rotation x="7.2341504e-006" y="2.9438444e-005" z="1.2759457"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="10.284111" y="1.5258789e-005" z="0"/>
+            <Rotation x="-1.5813574e-005" y="-6.0869384e-005" z="1.2757859"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="10.284113" y="1.5258789e-005" z="3.0517578e-005"/>
+            <Rotation x="1.1293267e-006" y="5.3991394e-006" z="1.2759212"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="10.284107" y="7.6293945e-006" z="0"/>
+            <Rotation x="-1.998314e-007" y="1.0478143e-006" z="1.2946407"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="10.284113" y="1.5258789e-005" z="0"/>
+            <Rotation x="-6.6324952e-007" y="1.3855331e-006" z="1.3320998"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="10.284111" y="-7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="-1.5310988e-007" y="6.2850472e-007" z="1.3601923"/>
+            <Scale x="1.0000002" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="10.284109" y="3.8146973e-006" z="1.5258789e-005"/>
+            <Rotation x="-2.7031319e-007" y="6.7873162e-007" z="1.350827"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="10.284105" y="1.1444092e-005" z="3.0517578e-005"/>
+            <Rotation x="-1.9625315e-007" y="3.2353796e-007" z="1.2759069"/>
+            <Scale x="1" y="1.0000001" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="10.284111" y="1.1444092e-005" z="1.5258789e-005"/>
+            <Rotation x="-5.1822565e-007" y="2.4634713e-007" z="1.0792441"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="10.284107" y="7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="-1.5190805e-006" y="1.6182688e-007" z="0.77956975"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="10.284119" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="-1.8404925e-006" y="-1.1091404e-006" z="0.4611631"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="10.284103" y="7.6293945e-006" z="0"/>
+            <Rotation x="-2.9470277e-006" y="-2.9777661e-006" z="0.20831649"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="10.284107" y="1.5258789e-005" z="3.0517578e-005"/>
+            <Rotation x="-6.265042e-006" y="-1.2250116e-006" z="0.10531511"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="10.284111" y="0" z="1.5258789e-005"/>
+            <Rotation x="-7.9349689e-008" y="-1.2024321e-007" z="1.2759078"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger11" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5589676" y="1.5258789e-005" z="7.6293945e-006"/>
+            <Rotation x="-5.7849902e-006" y="1.6235404e-005" z="1.434633"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.5589447" y="0" z="0"/>
+            <Rotation x="-2.3106255e-005" y="4.0743154e-005" z="1.4346395"/>
+            <Scale x="0.99999982" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.55896" y="0" z="7.6293945e-006"/>
+            <Rotation x="8.1609498e-005" y="-0.00010864422" z="1.4346089"/>
+            <Scale x="1.0000001" y="1.0000002" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="8.5589752" y="0" z="7.6293945e-006"/>
+            <Rotation x="-8.8729394e-006" y="1.1566493e-005" z="1.4346266"/>
+            <Scale x="1" y="0.99999988" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="8.55896" y="0" z="7.6293945e-006"/>
+            <Rotation x="-1.930629e-006" y="3.2402115e-006" z="1.4584737"/>
+            <Scale x="0.99999988" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="8.55896" y="0" z="2.2888184e-005"/>
+            <Rotation x="-1.0292932e-006" y="2.7705544e-006" z="1.5061698"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="8.55896" y="0" z="7.6293945e-006"/>
+            <Rotation x="2.7646686e-007" y="1.4941052e-006" z="1.5419428"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="8.55896" y="-7.6293945e-006" z="7.6293945e-006"/>
+            <Rotation x="6.912544e-007" y="1.1918953e-006" z="1.530018"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="8.5589447" y="0" z="0"/>
+            <Rotation x="6.6070777e-007" y="-2.9451851e-008" z="1.4346265"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="8.55896" y="0" z="-7.6293945e-006"/>
+            <Rotation x="7.9921989e-007" y="5.657368e-007" z="1.1842216"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="8.5589638" y="-1.5258789e-005" z="-7.6293945e-006"/>
+            <Rotation x="-1.2083482e-006" y="1.0919107e-006" z="0.80265301"/>
+            <Scale x="1.0000001" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="8.5589447" y="1.5258789e-005" z="1.1444092e-005"/>
+            <Rotation x="-1.7899496e-006" y="-9.5814499e-008" z="0.39723504"/>
+            <Scale x="1.0000002" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="8.55896" y="0" z="0"/>
+            <Rotation x="-8.2979267e-007" y="-6.0471375e-006" z="0.075285107"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="8.55896" y="1.5258789e-005" z="0"/>
+            <Rotation x="8.2716415e-006" y="-1.6492879e-005" z="-0.055877745"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="8.55896" y="0" z="0"/>
+            <Rotation x="1.1981149e-007" y="9.7957383e-008" z="1.4346256"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger2" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.505554" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.0065182475" y="-0.013305325" z="1.397823"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.505585" y="-0.009765625" z="5.6768951"/>
+            <Rotation x="0.0065182163" y="-0.01330515" z="1.397823"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.505569" y="-0.009765625" z="5.6769028"/>
+            <Rotation x="0.0065181269" y="-0.013304639" z="1.397823"/>
+            <Scale x="1.0000002" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="18.505569" y="-0.009765625" z="5.6768951"/>
+            <Rotation x="0.0065179905" y="-0.013303852" z="1.3978229"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="18.505554" y="-0.0097808838" z="5.6769028"/>
+            <Rotation x="0.0062019443" y="-0.013455534" z="1.4214559"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="18.505577" y="-0.009765625" z="5.6768951"/>
+            <Rotation x="0.0055592889" y="-0.013733757" z="1.4687214"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="18.505569" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.0050690132" y="-0.013922035" z="1.5041709"/>
+            <Scale x="0.99999994" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="18.505569" y="-0.0097961426" z="5.6768875"/>
+            <Rotation x="0.0052332315" y="-0.013861196" z="1.492354"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="18.505577" y="-0.009765625" z="5.6769104"/>
+            <Rotation x="0.0065181335" y="-0.013305397" z="1.3978232"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="18.505562" y="-0.009765625" z="5.6769028"/>
+            <Rotation x="0.0095861703" y="-0.011297096" z="1.1496871"/>
+            <Scale x="1.0000002" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="18.505569" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.013079449" y="-0.0069604246" z="0.77159935"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="18.505569" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.014759607" y="-0.0012924074" z="0.36990839"/>
+            <Scale x="1" y="1.0000001" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="18.505569" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.014420355" y="0.0034016408" z="0.050924223"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="18.505585" y="-0.0097961426" z="5.676899"/>
+            <Rotation x="0.013857902" y="0.0052420446" z="-0.07903447"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="18.505585" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.0065179588" y="-0.013305285" z="1.3978229"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="twistBone_L" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-1.5258789e-005" y="0" z="1.5258789e-005"/>
+            <Rotation x="0.67024964" y="-2.5393665e-006" z="1.5649248e-005"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-7.6293945e-006" y="0" z="1.5258789e-005"/>
+            <Rotation x="0.68859547" y="-1.2172077e-005" z="4.2921798e-005"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="0" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.71122664" y="4.6342037e-005" z="-0.0001248997"/>
+            <Scale x="0.99999994" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-7.6293945e-006" y="1.5258789e-005" z="3.0517578e-005"/>
+            <Rotation x="0.67800564" y="-4.8925726e-006" z="1.3798041e-005"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="0" y="1.5258789e-005" z="0"/>
+            <Rotation x="0.53803378" y="-6.2996236e-007" z="3.6137558e-006"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="0" y="7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="0.31847519" y="5.906648e-007" z="3.1702971e-006"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="7.6293945e-006" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.11272325" y="5.1537108e-007" z="1.1937097e-006"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="0" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.010192893" y="8.5942276e-007" z="9.3849667e-007"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-7.6293945e-006" y="7.1525574e-006" z="1.5258789e-005"/>
+            <Rotation x="0.025095118" y="1.1796494e-006" z="-1.7723703e-007"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-7.6293945e-006" y="7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="0.16604593" y="1.3622576e-006" z="-1.2381402e-007"/>
+            <Scale x="0.99999988" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="0" y="1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="0.36824197" y="1.8253899e-006" z="1.5253081e-006"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="-3.8146973e-006" y="1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="0.57690585" y="1.6181784e-006" z="1.6063726e-006"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="0" y="1.5258789e-005" z="3.0517578e-005"/>
+            <Rotation x="0.83773178" y="6.5282234e-007" z="6.2022878e-006"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-7.6293945e-006" y="1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="1.0468904" y="-1.1293365e-006" z="1.8566257e-005"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-7.6293945e-006" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.65960747" y="2.2422078e-007" z="-2.2482469e-007"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Clavicle" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-4.6357727" y="2.8993454" z="-15.674522"/>
+            <Rotation x="0.29468206" y="1.4673654" z="-2.8733873"/>
+            <Scale x="1.0000001" y="1.0000004" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-4.6357727" y="2.8993454" z="-15.674522"/>
+            <Rotation x="0.24077435" y="1.4444729" z="-2.9275923"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-4.635788" y="2.8993492" z="-15.674521"/>
+            <Rotation x="0.20350778" y="1.4213225" z="-2.9651563"/>
+            <Scale x="1.0000002" y="1.0000002" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-4.6357727" y="2.8993454" z="-15.674526"/>
+            <Rotation x="0.19164161" y="1.4107007" z="-2.9768934"/>
+            <Scale x="1.0000002" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-4.6358032" y="2.8993492" z="-15.674522"/>
+            <Rotation x="0.19681753" y="1.415522" z="-2.971777"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="-4.635788" y="2.8993454" z="-15.674522"/>
+            <Rotation x="0.21214515" y="1.4274088" z="-2.9564354"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="-4.6358032" y="2.8993492" z="-15.674526"/>
+            <Rotation x="0.23847169" y="1.442471" z="-2.9297245"/>
+            <Scale x="1.0000001" y="1.0000004" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="-4.635788" y="2.8993454" z="-15.674519"/>
+            <Rotation x="0.2689957" y="1.4570252" z="-2.899039"/>
+            <Scale x="1" y="1.0000001" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-4.635788" y="2.8993492" z="-15.67453"/>
+            <Rotation x="0.29643545" y="1.4673104" z="-2.8714349"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-4.6358032" y="2.8993492" z="-15.674522"/>
+            <Rotation x="0.30528656" y="1.4704156" z="-2.8625937"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="-4.6358032" y="2.8993492" z="-15.67453"/>
+            <Rotation x="0.29990333" y="1.4688907" z="-2.8680708"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="-4.635788" y="2.8993492" z="-15.67453"/>
+            <Rotation x="0.29468253" y="1.4673654" z="-2.8733866"/>
+            <Scale x="0.99999988" y="1.0000004" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="-4.635788" y="2.8993454" z="-15.674522"/>
+            <Rotation x="0.29528719" y="1.4673463" z="-2.8727133"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-4.635788" y="2.8993454" z="-15.674524"/>
+            <Rotation x="0.29588917" y="1.4673277" z="-2.8720424"/>
+            <Scale x="1.0000001" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-4.635788" y="2.8993454" z="-15.674524"/>
+            <Rotation x="0.29649401" y="1.4673082" z="-2.8713694"/>
+            <Scale x="1.0000002" y="1.0000002" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Toe0" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="22.621414" y="28.043423" z="0.51107025"/>
+            <Rotation x="-0.0018458449" y="-1.9537283e-005" z="1.5687922"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="22.621412" y="28.043419" z="0.51107025"/>
+            <Rotation x="-0.0018458449" y="-1.9537283e-005" z="1.5687922"/>
+            <Scale x="0.99999982" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="22.621414" y="28.043423" z="0.51107025"/>
+            <Rotation x="-0.0018458449" y="-1.9537283e-005" z="1.5687922"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="22.62141" y="28.043423" z="0.51106834"/>
+            <Rotation x="-0.0018458451" y="-1.9495143e-005" z="1.5687922"/>
+            <Scale x="0.99999982" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="22.62141" y="28.043427" z="0.51107407"/>
+            <Rotation x="-0.0018458451" y="-1.9495143e-005" z="1.5687922"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="22.62141" y="28.043423" z="0.51106644"/>
+            <Rotation x="-0.0018458451" y="-1.9453e-005" z="1.5687922"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="22.621407" y="28.043425" z="0.51106834"/>
+            <Rotation x="-0.0018458451" y="-1.9393452e-005" z="1.5687922"/>
+            <Scale x="0.99999988" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="22.621407" y="28.043427" z="0.51107025"/>
+            <Rotation x="-0.0018458454" y="-1.9266967e-005" z="1.5687922"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="22.621418" y="28.043423" z="0.51106262"/>
+            <Rotation x="-0.001845846" y="-1.9017607e-005" z="1.5687922"/>
+            <Scale x="0.99999982" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="22.621414" y="28.043427" z="0.51107025"/>
+            <Rotation x="-0.0018458471" y="-1.8513705e-005" z="1.5687922"/>
+            <Scale x="0.99999988" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="22.621407" y="28.043419" z="0.51107597"/>
+            <Rotation x="-0.0018458489" y="-1.7515384e-005" z="1.5687922"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="22.621414" y="28.043419" z="0.51107025"/>
+            <Rotation x="-0.0018458531" y="-1.5515716e-005" z="1.5687922"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="22.621412" y="28.043419" z="0.51106834"/>
+            <Rotation x="-0.001845782" y="-1.9503697e-005" z="1.5687922"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="22.621414" y="28.043419" z="0.51107216"/>
+            <Rotation x="-0.0018457822" y="-1.9444151e-005" z="1.5687922"/>
+            <Scale x="0.99999988" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="22.621414" y="28.043427" z="0.51107025"/>
+            <Rotation x="-0.0018457824" y="-1.935981e-005" z="1.5687922"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger01" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="10.284103" y="-1.1444092e-005" z="-1.5258789e-005"/>
+            <Rotation x="7.7956469e-007" y="-3.5680046e-006" z="1.28284"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="10.284103" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="6.9997204e-006" y="6.3964515e-005" z="1.3128482"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="10.284088" y="-1.5258789e-005" z="-1.1444092e-005"/>
+            <Rotation x="5.0141487e-005" y="0.00011707869" z="1.3428482"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="10.284111" y="0" z="-1.9073486e-005"/>
+            <Rotation x="0.00018052751" y="0.0003454244" z="1.2825439"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="10.284088" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.00012596176" y="0.00026105001" z="1.1052058"/>
+            <Scale x="0.99999988" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="10.284103" y="0" z="-1.5258789e-005"/>
+            <Rotation x="5.3781208e-005" y="0.00010477431" z="0.86960095"/>
+            <Scale x="1.0000002" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="10.284096" y="0" z="-1.5258789e-005"/>
+            <Rotation x="0.00014670202" y="0.0003267815" z="0.61424631"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="10.284096" y="1.5258789e-005" z="-1.5258789e-005"/>
+            <Rotation x="6.7422763e-005" y="0.00025152913" z="0.3786096"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="10.284096" y="0" z="-1.5258789e-005"/>
+            <Rotation x="1.4540402e-005" y="0.00026114119" z="0.2012838"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="10.284111" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-6.7835831e-006" y="0.00012991992" z="0.10551956"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="10.2841" y="-1.5258789e-005" z="-3.0517578e-005"/>
+            <Rotation x="8.9005553e-006" y="5.4922581e-005" z="0.099892244"/>
+            <Scale x="0.99999994" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="10.284103" y="-1.5258789e-005" z="-1.5258789e-005"/>
+            <Rotation x="-1.7325682e-006" y="-3.1214684e-006" z="0.20133863"/>
+            <Scale x="0.99999994" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="10.284103" y="0" z="0"/>
+            <Rotation x="1.8029665e-005" y="9.8033779e-006" z="0.5759114"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="10.284088" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-7.1624927e-005" y="-3.877185e-005" z="1.0040195"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="10.284103" y="-1.5258789e-005" z="-1.5258789e-005"/>
+            <Rotation x="0.00017269506" y="-0.00015343305" z="1.00404"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-UpperArm" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="26.193253" y="0" z="0"/>
+            <Rotation x="-0.16122618" y="-0.92967129" z="0.045308989"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="26.19326" y="7.6293945e-006" z="0"/>
+            <Rotation x="-0.30597293" y="-0.73637134" z="0.143263"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="26.19326" y="7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.399001" y="-0.533885" z="0.19932126"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="26.193264" y="3.8146973e-006" z="0"/>
+            <Rotation x="-0.35782591" y="-0.37607414" z="0.15367627"/>
+            <Scale x="0.99999994" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="26.193256" y="-1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.23446764" y="-0.20532449" z="0.04533897"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="26.193266" y="3.8146973e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.13105388" y="0.030544691" z="-0.042826012"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="26.193258" y="0" z="1.5258789e-005"/>
+            <Rotation x="-0.054594658" y="0.28623411" z="-0.10569136"/>
+            <Scale x="0.99999982" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="26.193253" y="0" z="1.5258789e-005"/>
+            <Rotation x="0.011572015" y="0.51793456" z="-0.14859268"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="26.19326" y="-1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.10234301" y="0.68629169" z="-0.16092743"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="26.19326" y="1.9073486e-006" z="0"/>
+            <Rotation x="0.4759869" y="0.69172853" z="0.0090593351"/>
+            <Scale x="1.0000001" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="26.193268" y="0" z="0"/>
+            <Rotation x="0.99470317" y="0.49551222" z="0.17130567"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="26.193253" y="0" z="0"/>
+            <Rotation x="1.2915868" y="0.34422323" z="0.033401389"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="26.193256" y="1.9073486e-006" z="0"/>
+            <Rotation x="1.0644395" y="0.35940388" z="-0.53949487"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="26.193258" y="-3.8146973e-006" z="0"/>
+            <Rotation x="0.67483926" y="0.11502131" z="-1.1995901"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="26.193268" y="0" z="0"/>
+            <Rotation x="0.82870942" y="-0.43408668" z="-1.3736997"/>
+            <Scale x="1.0000001" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger1" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.638657" y="-0.33599854" z="4.9887619"/>
+            <Rotation x="0.00050016202" y="0.010978658" z="1.1897514"/>
+            <Scale x="0.99999994" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.638657" y="-0.33598328" z="4.9887466"/>
+            <Rotation x="0.0013544851" y="0.011749963" z="1.2208366"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.638657" y="-0.33598328" z="4.9887543"/>
+            <Rotation x="0.0022325595" y="0.012494386" z="1.2519231"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="18.638649" y="-0.33599854" z="4.9887543"/>
+            <Rotation x="0.00050011958" y="0.010978839" z="1.189751"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="18.638657" y="-0.33598328" z="4.9887543"/>
+            <Rotation x="-0.0040470148" y="0.0059702322" z="1.0103486"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="18.638672" y="-0.33598328" z="4.9887466"/>
+            <Rotation x="-0.0086044818" y="-0.0017484794" z="0.77466899"/>
+            <Scale x="0.99999988" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="18.638657" y="-0.33599854" z="4.9887543"/>
+            <Rotation x="-0.011308591" y="-0.011084264" z="0.5168258"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="18.638657" y="-0.33599091" z="4.9887543"/>
+            <Rotation x="-0.0114322" y="-0.020152507" z="0.27089459"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="18.638657" y="-0.33597565" z="4.9887543"/>
+            <Rotation x="-0.0096627967" y="-0.026992051" z="0.070964567"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="18.638641" y="-0.33599091" z="4.9887695"/>
+            <Rotation x="-0.0056271069" y="-0.029964427" z="-0.10587025"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="18.638641" y="-0.33598328" z="4.9887543"/>
+            <Rotation x="-0.0019578859" y="-0.029500492" z="-0.21796893"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="18.638641" y="-0.33598518" z="4.9887543"/>
+            <Rotation x="-0.0039558876" y="-0.02839488" z="-0.13440855"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="18.638672" y="-0.33597565" z="4.9887619"/>
+            <Rotation x="-0.01951913" y="-0.020999605" z="0.47611609"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="18.638657" y="-0.33596802" z="4.9887543"/>
+            <Rotation x="-0.028518796" y="-0.0029319676" z="1.1955218"/>
+            <Scale x="1" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="18.638657" y="-0.33598328" z="4.9887695"/>
+            <Rotation x="-0.028518878" y="-0.002931765" z="1.1955218"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Forearm" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="54.724525" y="0" z="-1.5258789e-005"/>
+            <Rotation x="4.4017206e-008" y="6.5237529e-008" z="-0.91517961"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="54.724529" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="3.1383991e-008" y="-1.5495644e-007" z="-0.7108475"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="54.724537" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-5.5641131e-008" y="-1.4279199e-009" z="-0.50651526"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="54.724541" y="0" z="-1.5258789e-005"/>
+            <Rotation x="3.1467994e-008" y="6.3080677e-008" z="-0.41363683"/>
+            <Scale x="0.99999988" y="1" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="54.724533" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-8.2156495e-015" y="1.4901156e-008" z="-0.45576614"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="54.724533" y="-3.8146973e-006" z="0"/>
+            <Rotation x="1.649169e-008" y="5.0006829e-008" z="-0.56008691"/>
+            <Scale x="0.99999982" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="54.724541" y="0" z="-1.5258789e-005"/>
+            <Rotation x="3.5885652e-008" y="5.5166378e-009" z="-0.6934973"/>
+            <Scale x="0.99999982" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="54.724518" y="1.9073486e-006" z="-1.5258789e-005"/>
+            <Rotation x="8.9354288e-008" y="4.3110866e-009" z="-0.82289511"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="54.724503" y="3.8146973e-006" z="0"/>
+            <Rotation x="2.7075069e-008" y="3.579737e-008" z="-0.91517943"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="54.724533" y="1.9073486e-006" z="-2.2888184e-005"/>
+            <Rotation x="5.3397673e-009" y="-1.0208078e-007" z="-0.92583752"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="54.724518" y="7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-5.0224709e-009" y="1.6387317e-007" z="-0.89470005"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="54.724548" y="0" z="-2.2888184e-005"/>
+            <Rotation x="-1.3084065e-007" y="1.6780749e-007" z="-0.91517943"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="54.724518" y="-1.5258789e-005" z="-7.6293945e-006"/>
+            <Rotation x="-1.705708e-007" y="5.0526296e-008" z="-1.048864"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="54.724541" y="0" z="-3.0517578e-005"/>
+            <Rotation x="-1.729601e-008" y="-2.5551199e-007" z="-1.3023003"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="54.724522" y="0" z="-1.5258789e-005"/>
+            <Rotation x="4.831384e-008" y="-8.6931898e-008" z="-1.8659611"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Hand" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="50.553577" y="3.8146973e-006" z="0"/>
+            <Rotation x="1.3787365" y="-0.029047592" z="0.30170703"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="50.553574" y="3.8146973e-006" z="0"/>
+            <Rotation x="1.3764805" y="-0.031363264" z="0.30481142"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="50.553566" y="0" z="0"/>
+            <Rotation x="1.374217" y="-0.033671807" z="0.3079212"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="50.553574" y="-7.6293945e-006" z="0"/>
+            <Rotation x="1.3787367" y="-0.029047415" z="0.301707"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="50.553566" y="0" z="1.5258789e-005"/>
+            <Rotation x="1.3709096" y="-0.015899628" z="0.28592315"/>
+            <Scale x="1" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="50.55357" y="0" z="0"/>
+            <Rotation x="1.3461261" y="0.00083488232" z="0.26629311"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="50.553574" y="0" z="-3.0517578e-005"/>
+            <Rotation x="1.3328577" y="0.019096067" z="0.24315998"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="50.553574" y="0" z="-1.5258789e-005"/>
+            <Rotation x="1.3596355" y="0.03814682" z="0.21796423"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="50.553574" y="-1.5258789e-005" z="7.6293945e-006"/>
+            <Rotation x="1.4550978" y="0.058711562" z="0.19340998"/>
+            <Scale x="1" y="0.99999988" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="50.553574" y="0" z="1.5258789e-005"/>
+            <Rotation x="1.7389505" y="0.10059686" z="0.17476389"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="50.553589" y="0" z="0"/>
+            <Rotation x="2.1633909" y="0.15040429" z="0.17429034"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="50.553589" y="0" z="-3.8146973e-006"/>
+            <Rotation x="2.5013895" y="0.16445" z="0.16801015"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="50.553558" y="-7.6293945e-006" z="7.6293945e-006"/>
+            <Rotation x="2.5707767" y="0.00048885308" z="0.10188226"/>
+            <Scale x="1" y="0.99999982" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="50.553558" y="0" z="1.5258789e-005"/>
+            <Rotation x="2.5467596" y="-0.0013689437" z="0.00098199153"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="50.553574" y="0" z="0"/>
+            <Rotation x="2.3227196" y="1.0968149" z="-0.29760033"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger0" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="3.7575188" y="7.7495422" z="8.7185364"/>
+            <Rotation x="-1.9649876" y="-0.27114508" z="0.84911972"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="3.7575226" y="7.7495728" z="8.7185287"/>
+            <Rotation x="-1.9638902" y="-0.26145527" z="0.84494835"/>
+            <Scale x="1" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="3.7575302" y="7.7495575" z="8.7185287"/>
+            <Rotation x="-1.9628367" y="-0.25176078" z="0.84079868"/>
+            <Scale x="0.99999994" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="3.7575226" y="7.7495422" z="8.7185364"/>
+            <Rotation x="-1.964988" y="-0.27114505" z="0.84911966"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="3.7575302" y="7.7495422" z="8.7185287"/>
+            <Rotation x="-1.9724077" y="-0.32825556" z="0.87423992"/>
+            <Scale x="1" y="1" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="3.7575378" y="7.7495728" z="8.7185287"/>
+            <Rotation x="-1.9849353" y="-0.40385276" z="0.90921181"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="3.7575378" y="7.7495422" z="8.7185211"/>
+            <Rotation x="-2.0023706" y="-0.4851566" z="0.94972003"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="3.7575226" y="7.7495422" z="8.7185364"/>
+            <Rotation x="-2.0226488" y="-0.55960852" z="0.99032933"/>
+            <Scale x="1.0000001" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="3.7575226" y="7.7495728" z="8.7185364"/>
+            <Rotation x="-2.0410013" y="-0.61509407" z="1.0234326"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="3.7575073" y="7.7495499" z="8.7185364"/>
+            <Rotation x="-2.0613687" y="-0.63842374" z="1.0632634"/>
+            <Scale x="1.0000001" y="1.0000002" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="3.7575378" y="7.7495575" z="8.7185326"/>
+            <Rotation x="-2.0710845" y="-0.633587" z="1.0851378"/>
+            <Scale x="0.99999994" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="3.7575073" y="7.7495565" z="8.7185326"/>
+            <Rotation x="-2.0410011" y="-0.61509383" z="1.0234324"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="3.7575378" y="7.7495651" z="8.7185402"/>
+            <Rotation x="-1.9186555" y="-0.54840183" z="0.74463618"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="3.7575226" y="7.7495728" z="8.7185287"/>
+            <Rotation x="-1.8156211" y="-0.4424881" z="0.45377341"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="3.7575073" y="7.7495613" z="8.7185364"/>
+            <Rotation x="-1.8156213" y="-0.44248801" z="0.45377341"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger11" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5589905" y="-3.8146973e-006" z="0"/>
+            <Rotation x="7.9918885e-007" y="-4.3562386e-006" z="1.3904761"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.5589752" y="-7.6293945e-006" z="0"/>
+            <Rotation x="-2.4389838e-005" y="6.2076208e-005" z="1.4270984"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5589905" y="0" z="0"/>
+            <Rotation x="-6.5965854e-005" y="0.00011296532" z="1.4637049"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="8.5589905" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.00033414277" y="0.00028711712" z="1.3902642"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="8.5589905" y="1.5258789e-005" z="7.6293945e-006"/>
+            <Rotation x="-0.0003568223" y="4.1167052e-005" z="1.1739432"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="8.5589828" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-0.00010816353" y="-8.8208035e-005" z="0.88641578"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="8.5589981" y="1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="-5.7707662e-006" y="-0.00034944687" z="0.57488662"/>
+            <Scale x="1.0000001" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="8.5589905" y="0" z="0"/>
+            <Rotation x="0.00014876992" y="-0.00014344011" z="0.28732413"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="8.5589752" y="7.6293945e-006" z="0"/>
+            <Rotation x="0.00017785805" y="-3.3705259e-005" z="0.070940234"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="8.559021" y="-1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="0.00010917184" y="-3.9169848e-007" z="-0.060299192"/>
+            <Scale x="1" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="8.559021" y="-3.8146973e-006" z="0"/>
+            <Rotation x="6.2666571e-005" y="9.6628864e-006" z="-0.081639722"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="8.5589905" y="3.8146973e-006" z="-3.8146973e-006"/>
+            <Rotation x="-4.1878166e-006" y="6.3254141e-008" z="0.071137935"/>
+            <Scale x="0.99999994" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="8.5589905" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-3.1894273e-005" y="-7.9177116e-005" z="0.68069261"/>
+            <Scale x="1.0000001" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="8.5589905" y="0" z="-7.6293945e-006"/>
+            <Rotation x="-8.7848959e-005" y="0.00011534734" z="1.3774015"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="8.5589828" y="0" z="0"/>
+            <Rotation x="-0.00023920237" y="-0.00010527148" z="1.3773618"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger2" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.505562" y="-0.0098114014" z="-5.6769028"/>
+            <Rotation x="-0.0091426512" y="0.011658888" z="1.1883273"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.505569" y="-0.0097961426" z="-5.6769104"/>
+            <Rotation x="-0.0093701584" y="0.010949055" z="1.2169086"/>
+            <Scale x="0.99999988" y="1.0000001" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.505569" y="-0.0097961426" z="-5.6768951"/>
+            <Rotation x="-0.0096176807" y="0.010246104" z="1.2454895"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="18.505569" y="-0.0097961426" z="-5.6768951"/>
+            <Rotation x="-0.0091426559" y="0.011659048" z="1.1883274"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="18.505569" y="-0.0097961426" z="-5.6769028"/>
+            <Rotation x="-0.0080929408" y="0.01595214" z="1.0236887"/>
+            <Scale x="1.0000001" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="18.505577" y="-0.0097961426" z="-5.6769104"/>
+            <Rotation x="-0.0077204877" y="0.021818927" z="0.80757987"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="18.505569" y="-0.0097961426" z="-5.6768951"/>
+            <Rotation x="-0.0088455863" y="0.028078029" z="0.57086194"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="18.505585" y="-0.009803772" z="-5.6768951"/>
+            <Rotation x="-0.011452464" y="0.033393193" z="0.34440663"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="18.505569" y="-0.0097885132" z="-5.6769104"/>
+            <Rotation x="-0.014714176" y="0.036716621" z="0.15912271"/>
+            <Scale x="0.99999994" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="18.505554" y="-0.0097808838" z="-5.6768951"/>
+            <Rotation x="-0.019839324" y="0.035711985" z="-0.012757174"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="18.505554" y="-0.0097885132" z="-5.6769066"/>
+            <Rotation x="-0.024076194" y="0.032122634" z="-0.1273295"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="18.505554" y="-0.0097980499" z="-5.6769028"/>
+            <Rotation x="-0.021891955" y="0.032946188" z="-0.046266604"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="18.505585" y="-0.0097885132" z="-5.676899"/>
+            <Rotation x="0.00095315842" y="0.039542552" z="0.56448901"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="18.505585" y="-0.0097961426" z="-5.6769028"/>
+            <Rotation x="0.026785035" y="0.029108064" z="1.2844287"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="18.505554" y="-0.0097923279" z="-5.6768951"/>
+            <Rotation x="0.026784979" y="0.029108267" z="1.2844287"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bone001" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-7.6293945e-006" y="0" z="7.6293945e-006"/>
+            <Rotation x="-4.5197456e-007" y="0" z="0"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0.0010452271" y="-0.0031280518" z="0.0080947876"/>
+            <Rotation x="-1.4368048e-006" y="0" z="0"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-0.00064849854" y="-0.0081481934" z="0.016334534"/>
+            <Rotation x="-3.2554792e-006" y="0" z="0"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-0.0047912598" y="-0.026794434" z="0.051979065"/>
+            <Rotation x="2.9800253e-007" y="3.8742786e-007" z="5.9604353e-008"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-0.00093841553" y="-0.020141602" z="0.039573669"/>
+            <Rotation x="1.7879326e-007" y="3.8742786e-007" z="5.9604311e-008"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="0.0013275146" y="-0.0079650879" z="0.013374329"/>
+            <Rotation x="-1.3377614e-007" y="3.8742786e-007" z="5.960419e-008"/>
+            <Scale x="0.99999994" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="0.0069274902" y="-0.020462036" z="0.024749756"/>
+            <Rotation x="-4.2272038e-007" y="3.8742786e-007" z="5.9604073e-008"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="0.0058441162" y="-0.013214111" z="0.010299683"/>
+            <Rotation x="-1.2021521e-006" y="3.8742792e-007" z="5.9603774e-008"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-12.595993" y="26.947411" z="-19.873749"/>
+            <Rotation x="-0.060879905" y="0.31418112" z="0.35910746"/>
+            <Scale x="0.99999994" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-0.78289795" y="18.709366" z="-19.199402"/>
+            <Rotation x="-0.66789138" y="0.55522501" z="0.3076041"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="17.424011" y="44.005325" z="-3.1788254"/>
+            <Rotation x="-1.6912887" y="0.43398416" z="0.068942644"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="13.129852" y="74.27063" z="-32.452496"/>
+            <Rotation x="-2.3909063" y="0.27138063" z="0.10906596"/>
+            <Scale x="0.99999988" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="1.0669861" y="44.45507" z="-39.004028"/>
+            <Rotation x="-2.6495728" y="0.078396089" z="0.19431917"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-9.7778778" y="16.387268" z="-33.985416"/>
+            <Rotation x="-2.9388912" y="0.16860169" z="0.208784"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-9.7867737" y="16.401073" z="-33.997299"/>
+            <Rotation x="-2.9388895" y="0.16860127" z="0.2087843"/>
+            <Scale x="1.0000001" y="1" z="1.0000002"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Handle" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-2.2888184e-005" y="0" z="0"/>
+            <Rotation x="-2.9200191e-007" y="0" z="0"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-1.5258789e-005" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-5.5856196e-007" y="0" z="0"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-2.2888184e-005" y="-3.0517578e-005" z="0"/>
+            <Rotation x="-1.0144499e-006" y="0" z="0"/>
+            <Scale x="1" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-1.5258789e-005" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-1.9232984e-006" y="0" z="0"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-7.6293945e-006" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-3.7247992e-006" y="0" z="0"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="-1.5258789e-005" y="-1.5258789e-005" z="7.6293945e-006"/>
+            <Rotation x="-1.3426822e-007" y="2.4027065e-007" z="1.1920402e-007"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="-1.5258789e-005" y="0" z="1.5258789e-005"/>
+            <Rotation x="-1.7641507e-007" y="2.4027065e-007" z="1.1920402e-007"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="-3.0517578e-005" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-2.1856192e-007" y="2.4027065e-007" z="1.19204e-007"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-1.5258789e-005" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-3.1280513e-007" y="2.4027065e-007" z="1.1920397e-007"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="0" y="-2.2888184e-005" z="-7.6293945e-006"/>
+            <Rotation x="-4.3201442e-007" y="2.4027065e-007" z="1.1920395e-007"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="-3.0517578e-005" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-7.3884809e-007" y="2.4027074e-007" z="1.1920388e-007"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="0" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-1.3074402e-006" y="2.4027077e-007" z="1.1920374e-007"/>
+            <Scale x="0.99999988" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="-3.0517578e-005" y="-2.2888184e-005" z="7.6293945e-006"/>
+            <Rotation x="-2.4655201e-006" y="2.4027091e-007" z="1.1920345e-007"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-1.5258789e-005" y="-3.0517578e-005" z="0"/>
+            <Rotation x="-1.342032e-007" y="1.9371693e-007" z="1.043087e-007"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="0" y="-1.5258789e-005" z="1.5258789e-005"/>
+            <Rotation x="-1.7635006e-007" y="1.9371696e-007" z="1.0430868e-007"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Trail" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="11.269482" y="8.5005646" z="186.16046"/>
+            <Rotation x="1.5787855" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="11.269482" y="8.5005493" z="186.16046"/>
+            <Rotation x="1.5787851" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="11.269487" y="8.5005341" z="186.16049"/>
+            <Rotation x="1.5787843" y="3.0039215" z="-0.00080001354"/>
+            <Scale x="1.0000001" y="1" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="11.269488" y="8.5005493" z="186.16049"/>
+            <Rotation x="1.5787835" y="3.0039215" z="-0.00080001354"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="11.269478" y="8.5005493" z="186.16048"/>
+            <Rotation x="1.5787816" y="3.0039215" z="-0.00080027984"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="11.269493" y="8.5005493" z="186.16048"/>
+            <Rotation x="1.5787855" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="11.269501" y="8.5005493" z="186.16049"/>
+            <Rotation x="1.5787855" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="11.26947" y="8.5005646" z="186.16046"/>
+            <Rotation x="1.5787851" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="11.26947" y="8.5005646" z="186.16043"/>
+            <Rotation x="1.578784" y="3.0039215" z="-0.00080001354"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="11.269501" y="8.5005493" z="186.16043"/>
+            <Rotation x="1.5787824" y="3.0039213" z="-0.00080027984"/>
+            <Scale x="1.0000001" y="0.99999982" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="11.26947" y="8.5005493" z="186.16046"/>
+            <Rotation x="1.5787855" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1.0000002" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="11.269501" y="8.5005569" z="186.16043"/>
+            <Rotation x="1.5787851" y="3.0039213" z="-0.00079974724"/>
+            <Scale x="1" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="11.269501" y="8.5005417" z="186.16049"/>
+            <Rotation x="1.578784" y="3.0039213" z="-0.00080001354"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="11.269485" y="8.5005341" z="186.16048"/>
+            <Rotation x="1.5787824" y="3.0039213" z="-0.00080027984"/>
+            <Scale x="1.0000002" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="11.269485" y="8.5005493" z="186.16046"/>
+            <Rotation x="1.5787855" y="3.0039215" z="-0.00079974724"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Akatoramaru_obj" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="12.944878" y="8.3899841" z="90.677422"/>
+            <Rotation x="-1.5687088" y="-0.0019132805" z="1.7530044"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="12.944862" y="8.3899689" z="90.677429"/>
+            <Rotation x="-1.5687088" y="-0.0019131016" z="1.7530044"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="12.944866" y="8.3899689" z="90.677422"/>
+            <Rotation x="-1.5687088" y="-0.0019129228" z="1.7530044"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="12.944878" y="8.3899689" z="90.677437"/>
+            <Rotation x="-1.5687087" y="-0.0019125055" z="1.7530044"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="12.94487" y="8.3899841" z="90.677422"/>
+            <Rotation x="-1.5687083" y="-0.0019117008" z="1.7530044"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="12.944855" y="8.3899689" z="90.677422"/>
+            <Rotation x="-1.5687082" y="-0.001910181" z="1.7530044"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="12.94487" y="8.3899689" z="90.677437"/>
+            <Rotation x="-1.5687088" y="-0.0019132805" z="1.7530044"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="12.944855" y="8.3899841" z="90.677429"/>
+            <Rotation x="-1.5687088" y="-0.0019131016" z="1.7530044"/>
+            <Scale x="1.0000001" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="12.944885" y="8.3899841" z="90.677429"/>
+            <Rotation x="-1.5687088" y="-0.0019129228" z="1.7530044"/>
+            <Scale x="0.99999988" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="12.944885" y="8.3899765" z="90.677422"/>
+            <Rotation x="-1.5687084" y="-0.0019125055" z="1.7530044"/>
+            <Scale x="1.0000001" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="12.944885" y="8.3899765" z="90.677452"/>
+            <Rotation x="-1.5687083" y="-0.0019118796" z="1.7530044"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="12.944885" y="8.3899651" z="90.677429"/>
+            <Rotation x="-1.5687079" y="-0.0019104193" z="1.7530044"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="12.944855" y="8.3899689" z="90.677422"/>
+            <Rotation x="-1.5687088" y="-0.0019133399" z="1.7530044"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="12.94487" y="8.3899689" z="90.677437"/>
+            <Rotation x="-1.5687088" y="-0.0019132805" z="1.7530044"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="12.944855" y="8.3899689" z="90.677429"/>
+            <Rotation x="-1.5687088" y="-0.0019131016" z="1.7530044"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Thigh" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-3.0517578e-005" y="4.0054321e-005" z="23.892313"/>
+            <Rotation x="0.054616738" y="-2.5471857" z="-1.1519315"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-1.5258789e-005" y="3.6239624e-005" z="23.892311"/>
+            <Rotation x="-0.21892689" y="-2.6208107" z="-0.71123058"/>
+            <Scale x="0.99999976" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-3.0517578e-005" y="3.9100647e-005" z="23.892313"/>
+            <Rotation x="-0.43972671" y="-2.7739704" z="-0.32718691"/>
+            <Scale x="1.0000002" y="1.0000004" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="-1.5258789e-005" y="3.8146973e-005" z="23.892311"/>
+            <Rotation x="-0.53029495" y="-2.8977599" z="-0.11400772"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="-1.5258789e-005" y="3.8146973e-005" z="23.892311"/>
+            <Rotation x="-0.5205546" y="-2.9382157" z="-0.029533381"/>
+            <Scale x="1.0000001" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="-4.5776367e-005" y="4.0054321e-005" z="23.892309"/>
+            <Rotation x="-0.4716396" y="-2.9371946" z="0.010766671"/>
+            <Scale x="1" y="0.99999976" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="-3.0517578e-005" y="4.0054321e-005" z="23.892313"/>
+            <Rotation x="-0.40752792" y="-2.9050577" z="0.0089195054"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="-3.0517578e-005" y="3.4332275e-005" z="23.892311"/>
+            <Rotation x="-0.34829327" y="-2.8573062" z="-0.032392435"/>
+            <Scale x="1.0000002" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="-3.0517578e-005" y="3.4332275e-005" z="23.892311"/>
+            <Rotation x="-0.31324384" y="-2.80831" z="-0.10475784"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="-3.0517578e-005" y="4.0054321e-005" z="23.892311"/>
+            <Rotation x="-0.32048845" y="-2.7549794" z="-0.21208462"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="-4.5776367e-005" y="4.196167e-005" z="23.892311"/>
+            <Rotation x="-0.3526873" y="-2.6795511" z="-0.35658583"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="-3.0517578e-005" y="3.9100647e-005" z="23.892311"/>
+            <Rotation x="-0.37001979" y="-2.5782392" z="-0.53132623"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="-3.0517578e-005" y="3.8146973e-005" z="23.892311"/>
+            <Rotation x="-0.3464157" y="-2.4690402" z="-0.72595137"/>
+            <Scale x="1.0000002" y="1" z="1.0000005"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="-4.5776367e-005" y="4.0054321e-005" z="23.892311"/>
+            <Rotation x="-0.29776314" y="-2.3830395" z="-0.90023744"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="-3.0517578e-005" y="3.6239624e-005" z="23.892311"/>
+            <Rotation x="-0.26198435" y="-2.3419886" z="-0.99617714"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Calf" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="61.218296" y="-7.6293945e-006" z="0"/>
+            <Rotation x="-6.4602186e-009" y="-5.9249764e-008" z="-2.2589526"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="61.2183" y="0" z="3.8146973e-006"/>
+            <Rotation x="3.6546918e-008" y="-1.8538687e-008" z="-1.8021092"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="61.2183" y="0" z="0"/>
+            <Rotation x="1.1118841e-007" y="6.7552537e-009" z="-1.3452662"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="61.2183" y="0" z="0"/>
+            <Rotation x="-1.2306306e-007" y="2.675355e-008" z="-1.0555604"/>
+            <Scale x="0.99999994" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="61.218292" y="0" z="0"/>
+            <Rotation x="1.4192174e-008" y="9.1783882e-008" z="-0.94050872"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="61.2183" y="0" z="0"/>
+            <Rotation x="3.5876671e-008" y="-2.1763384e-008" z="-0.89091372"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="61.2183" y="0" z="0"/>
+            <Rotation x="9.9910785e-008" y="-2.3344869e-008" z="-0.89884543"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="61.2183" y="9.5367432e-007" z="0"/>
+            <Rotation x="-5.5350508e-008" y="-5.5583946e-008" z="-0.95637095"/>
+            <Scale x="0.99999988" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="61.218292" y="0" z="0"/>
+            <Rotation x="3.0517293e-007" y="-3.9791804e-008" z="-1.0555604"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="61.218307" y="1.9073486e-006" z="0"/>
+            <Rotation x="6.0758918e-009" y="-2.3764654e-008" z="-1.2275903"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="61.218292" y="-1.1444092e-005" z="0"/>
+            <Rotation x="2.9394251e-008" y="-2.7438254e-008" z="-1.4782438"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="61.218307" y="7.6293945e-006" z="3.8146973e-006"/>
+            <Rotation x="-5.6810844e-008" y="-1.4309348e-008" z="-1.7615027"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="61.218304" y="-7.6293945e-006" z="0"/>
+            <Rotation x="-1.2288139e-007" y="3.6269054e-008" z="-2.031347"/>
+            <Scale x="1.0000001" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="61.218311" y="0" z="0"/>
+            <Rotation x="-1.121239e-007" y="-9.011984e-008" z="-2.2417569"/>
+            <Scale x="1.0000002" y="1.0000002" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="61.218304" y="0" z="0"/>
+            <Rotation x="-1.2868603e-008" y="-2.8792947e-008" z="-2.3467133"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Foot" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="57.453304" y="-7.6293945e-006" z="0"/>
+            <Rotation x="-0.093874648" y="-0.024359811" z="-0.38915446"/>
+            <Scale x="1" y="1.0000002" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="57.453304" y="0" z="0"/>
+            <Rotation x="-0.086110339" y="-0.037705626" z="-0.44216388"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="57.453308" y="0" z="-1.9073486e-006"/>
+            <Rotation x="-0.074793719" y="-0.0074538118" z="-0.49614194"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="57.4533" y="0" z="0"/>
+            <Rotation x="-0.042917531" y="0.031610183" z="-0.52104616"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="57.4533" y="0" z="1.9073486e-006"/>
+            <Rotation x="-0.0052695633" y="0.043791711" z="-0.50777888"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="57.4533" y="0" z="5.7220459e-006"/>
+            <Rotation x="0.029906265" y="0.038610425" z="-0.47715959"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="57.453308" y="7.6293945e-006" z="-3.8146973e-006"/>
+            <Rotation x="0.065332234" y="0.02350088" z="-0.43779936"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="57.453308" y="-7.6293945e-006" z="3.8146973e-006"/>
+            <Rotation x="0.10654529" y="0.0088191554" z="-0.3979136"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="57.453308" y="0" z="3.8146973e-006"/>
+            <Rotation x="0.15812032" y="0.006370123" z="-0.36499003"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="57.4533" y="0" z="0"/>
+            <Rotation x="0.2248852" y="0.025517713" z="-0.33640644"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="57.453308" y="0" z="0"/>
+            <Rotation x="0.29125267" y="0.070019513" z="-0.30730546"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="57.453304" y="7.6293945e-006" z="0"/>
+            <Rotation x="0.33183733" y="0.13286167" z="-0.28170502"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="57.453297" y="0" z="0"/>
+            <Rotation x="0.33725005" y="0.19552226" z="-0.26411361"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="57.453304" y="0" z="3.8146973e-006"/>
+            <Rotation x="0.31956264" y="0.2403017" z="-0.25583968"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="57.453308" y="0" z="0"/>
+            <Rotation x="0.30454096" y="0.26015937" z="-0.25321621"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Thigh" Type="Transform" KeyFrameNums="15">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="1.5258789e-005" y="-2.8610229e-005" z="-23.892311"/>
+            <Rotation x="-0.086661659" y="2.6620576" z="-1.909235"/>
+            <Scale x="0.99999988" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="1.5258789e-005" y="-2.6702881e-005" z="-23.892309"/>
+            <Rotation x="-0.19325441" y="2.7415934" z="-1.9077191"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="1.5258789e-005" y="-2.8610229e-005" z="-23.892315"/>
+            <Rotation x="-0.29566067" y="2.8236978" z="-1.9001842"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="3" Time="0.1">
+            <Translate x="1.5258789e-005" y="-2.6702881e-005" z="-23.892311"/>
+            <Rotation x="-0.36587596" y="2.8587413" z="-1.9050776"/>
+            <Scale x="1.0000002" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="4" Time="0.13333334">
+            <Translate x="1.5258789e-005" y="-2.6702881e-005" z="-23.892315"/>
+            <Rotation x="-0.40669531" y="2.8367772" z="-1.9471821"/>
+            <Scale x="1" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="5" Time="0.16666667">
+            <Translate x="0" y="-2.6702881e-005" z="-23.892309"/>
+            <Rotation x="-0.4421947" y="2.7912321" z="-2.0186994"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="6" Time="0.2">
+            <Translate x="0" y="-2.8610229e-005" z="-23.892313"/>
+            <Rotation x="-0.47385409" y="2.7349591" z="-2.0907137"/>
+            <Scale x="1" y="0.99999964" z="0.99999976"/>
+        </KeyFrame>
+        <KeyFrame Index="7" Time="0.23333333">
+            <Translate x="0" y="-2.6702881e-005" z="-23.892311"/>
+            <Rotation x="-0.49477509" y="2.6769791" z="-2.1304355"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="8" Time="0.26666668">
+            <Translate x="1.5258789e-005" y="-2.6702881e-005" z="-23.892309"/>
+            <Rotation x="-0.48989406" y="2.6230581" z="-2.0994976"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="9" Time="0.30000001">
+            <Translate x="0" y="-2.8610229e-005" z="-23.892311"/>
+            <Rotation x="-0.43915287" y="2.5847354" z="-1.9552488"/>
+            <Scale x="0.99999976" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="10" Time="0.33333334">
+            <Translate x="1.5258789e-005" y="-2.8610229e-005" z="-23.892313"/>
+            <Rotation x="-0.34541675" y="2.563642" z="-1.7169734"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="11" Time="0.36666667">
+            <Translate x="1.5258789e-005" y="-2.7656555e-005" z="-23.892313"/>
+            <Rotation x="-0.21835984" y="2.5551438" z="-1.4346744"/>
+            <Scale x="1" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="12" Time="0.40000001">
+            <Translate x="1.5258789e-005" y="-2.5749207e-005" z="-23.892317"/>
+            <Rotation x="-0.074217767" y="2.5704558" z="-1.1572982"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="13" Time="0.43333334">
+            <Translate x="0" y="-2.5749207e-005" z="-23.892311"/>
+            <Rotation x="0.038674973" y="2.6090794" z="-0.94339496"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="14" Time="0.46666667">
+            <Translate x="1.5258789e-005" y="-2.6702881e-005" z="-23.892311"/>
+            <Rotation x="0.091083243" y="2.6369629" z="-0.84029061"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+</AnimationTrack>

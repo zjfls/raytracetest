@@ -34,6 +34,7 @@
 #include "XmlPrefabLoader.h"
 #include "PrefabResource.h"
 #include "PrefabAsset.h"
+#include <direct.h>
 //
 IAsset* FbxFileLoader::Load(std::string path, void* pArg /*= nullptr*/)
 {
@@ -1154,6 +1155,10 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 	SmartPointer<RasterMaterial> pMatRes = ResourceManager<MaterialResource>::GetInstance()->CreateResource<RasterMaterial>(m_exportResDir + pMat->GetName() + ".smat.xml");
 	m_mapMaterial[pMat] = pMatRes.get();
 
+	if (_access(m_exportResDir.c_str(), 0) == -1)
+	{
+		_mkdir(m_exportResDir.c_str());
+	}
 	while (pProp.IsValid())
 	{
 		//std::cout << pProp.GetName() << std::endl;
@@ -1177,12 +1182,12 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 
 				std::string texPath = m_exportResDir + fileName;
 				if (_access((m_exportResDir + fileName).c_str(), 0) == -1)
-				{
+				{ 
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
 				{
-					texPath = strTexturePath + fileName;
+					texPath = m_exportResDir + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);
@@ -1204,9 +1209,9 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				{
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
 				{
-					texPath = strTexturePath + fileName;
+					texPath = m_exportResDir + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);
@@ -1226,9 +1231,9 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				{
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
 				{
-					texPath = strTexturePath + fileName;
+					texPath = m_exportResDir + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);
@@ -1248,9 +1253,9 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				{
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
+				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
 				{
-					texPath = strTexturePath + fileName;
+					texPath = m_exportResDir + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);

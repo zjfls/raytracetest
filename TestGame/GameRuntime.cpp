@@ -169,14 +169,6 @@ ThirdPersonCharacter* GameRuntime::createThirdPerson(std::string fileName)
 	IAsset* pAsset;
 	std::transform(strSuffix.begin(), strSuffix.end(), strSuffix.begin(), tolower);
 	pAsset = AssetManager::GetInstance()->LoadAsset(fileName);
-	//if (strstr(strSuffix.c_str(), "fbx") != nullptr)
-	//{
-	//	
-	//}
-	//else if (strstr(strSuffix.c_str(), "prefab.xml") != nullptr)
-	//{
-
-	//}
 	PrefabResource* pRes = pAsset->GetResource<PrefabResource>();
 	if (pRes != nullptr)
 	{
@@ -186,25 +178,8 @@ ThirdPersonCharacter* GameRuntime::createThirdPerson(std::string fileName)
 		ThirdPersonCharacter* pCtrller = new ThirdPersonCharacter();
 
 		pCtrller->m_pObj = pObj.get();
-		//IAsset* pAniAsset = AssetManager::GetInstance()->LoadAsset("./data/fbx/kulouanim/attack.animation.xml");
-		//AnimationResource* pAniRes = pAniAsset->GetResource<AnimationResource>();
-		////
-		//AnimationTrack* pTrack = new AnimationTrack(pAniRes);
-		//SkeletonModule* pSkeleton = pCtrller->m_pObj->GetModule<SkeletonModule>();// ->AddAnimationTrack(pTrack);
-		////
-		//pCtrller->m_pAnimations["walk"] = pSkeleton->m_pDefaultTrack;
-		//pCtrller->m_pAnimations["attack"] = pTrack;
-		////
-		//pSkeleton->AddAnimationTrack(pTrack);
-		//pSkeleton->m_pDefaultTrack = pTrack;
 		m_pThirdPersion = pCtrller;
-		pCtrller->LoadAnimation("idle", "./data/fbx/kulouanim/idle.animation.xml");
-		pCtrller->LoadAnimation("walk", "./data/fbx/kulouanim/walk.animation.xml");
-		pCtrller->LoadAnimation("dance", "./data/fbx/kulouanim/dance.animation.xml");
-		pCtrller->LoadAnimation("attack", "./data/fbx/kulouanim/attack.animation.xml");
-		pCtrller->LoadAnimation("walkback", "./data/fbx/kulouanim/walkback.animation.xml");
 
-		pCtrller->PlayAnimation("dance");
 
 		GameApp::GetInstance()->m_pWorld->m_pRoot->addChild(pObj);
 		pCtrller->m_pCamera = m_pCamera;

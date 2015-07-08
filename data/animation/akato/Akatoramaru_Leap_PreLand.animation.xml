@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--material resource-->
+<AnimationTrack SkinAnimation="1" Length="0.06666667" Version="1.0.0">
+    <AnimationCurve Name="Bip01-L-Finger21" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.581192" y="-7.6293945e-006" z="0"/>
+            <Rotation x="1.9232552e-006" y="-2.0146317e-006" z="1.4608599"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.581192" y="-7.6293945e-006" z="-3.8146973e-006"/>
+            <Rotation x="1.9232552e-006" y="-2.0146317e-006" z="1.4608599"/>
+            <Scale x="1.0000001" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5811768" y="7.6293945e-006" z="0"/>
+            <Rotation x="1.9167157e-006" y="-1.955387e-006" z="1.4608599"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Root" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="0" y="-0" z="0"/>
+            <Rotation x="0" y="0" z="-1.5707957"/>
+            <Scale x="2.5399997" y="2.5399997" z="2.54"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Neck" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="44.142487" y="-3.8424911" z="5.7220459e-006"/>
+            <Rotation x="0.061872397" y="0.0060277828" z="0.024375891"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="44.142502" y="-3.8424988" z="3.8146973e-006"/>
+            <Rotation x="0.061872333" y="0.0060277851" z="0.024375891"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="44.142502" y="-3.8424835" z="3.8146973e-006"/>
+            <Rotation x="0.061872255" y="0.0060277865" z="0.024375891"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-4.0883384" y="-0.040464588" z="136.09673"/>
+            <Rotation x="-0.067989193" y="0.62510508" z="-0.065948129"/>
+            <Scale x="0.99999994" y="0.99999988" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-8.7306519" y="1.847504" z="149.35364"/>
+            <Rotation x="-0.046678156" y="0.41611862" z="-0.071535341"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-17.08444" y="5.4056363" z="155.45169"/>
+            <Rotation x="-0.014138538" y="0.17534405" z="-0.089848019"/>
+            <Scale x="0.99999988" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Foot" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="57.453285" y="0" z="7.6293945e-006"/>
+            <Rotation x="-0.1284999" y="-0.031199029" z="-0.56148255"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="57.453285" y="3.8146973e-006" z="0"/>
+            <Rotation x="-0.085314542" y="-0.033060685" z="-0.59356302"/>
+            <Scale x="1" y="0.99999994" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="57.453297" y="0" z="1.5258789e-005"/>
+            <Rotation x="-0.037115376" y="-0.0079284804" z="-0.44863734"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Pelvis" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="-2.0685484" y="-1.4284118" z="0.62843013"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="-2.2669401" y="-1.5074728" z="0.6802265"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="0" y="0" z="0"/>
+            <Rotation x="-1.5050335" y="-1.5951229" z="-0.2304069"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Calf" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="61.218288" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-9.3440377e-008" y="-5.976127e-008" z="-1.9804763"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="61.218269" y="0" z="0"/>
+            <Rotation x="-3.3734791e-009" y="-6.5521512e-008" z="-1.4784027"/>
+            <Scale x="0.99999994" y="0.99999988" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="61.2183" y="1.9073486e-006" z="-7.6293945e-006"/>
+            <Rotation x="9.2604795e-009" y="1.702967e-008" z="-0.86611962"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Spine2" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="28.974655" y="-0.033218384" z="-9.5367432e-007"/>
+            <Rotation x="-0.55462116" y="0.04159651" z="-0.36139649"/>
+            <Scale x="0.99999994" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="28.97464" y="-0.033226013" z="-4.7683716e-007"/>
+            <Rotation x="-0.42202657" y="0.13203098" z="0.071854748"/>
+            <Scale x="1.0000001" y="0.99999994" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="28.97467" y="-0.033226013" z="-7.1525574e-007"/>
+            <Rotation x="-0.22529992" y="0.12535493" z="0.50673759"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Spine" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="14.297226" y="3.0992508" z="2.4080276e-005"/>
+            <Rotation x="-0.134193" y="0.06927003" z="-0.11444805"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="14.297241" y="3.0992508" z="2.2888184e-005"/>
+            <Rotation x="0.015370622" y="0.04042558" z="-0.037683472"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="14.297226" y="3.0992508" z="2.3841858e-005"/>
+            <Rotation x="0.16467047" y="-0.00019245547" z="0.035049628"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger0" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="3.7575073" y="7.7495728" z="-8.718544"/>
+            <Rotation x="1.8645996" y="0.36832467" z="0.6299383"/>
+            <Scale x="1" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="3.7574921" y="7.7495575" z="-8.7185364"/>
+            <Rotation x="1.8645995" y="0.3683247" z="0.62993824"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="3.7574997" y="7.7495728" z="-8.7185326"/>
+            <Rotation x="1.8645995" y="0.36832488" z="0.6299383"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Head" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="16.635788" y="0.82008362" z="3.8146973e-006"/>
+            <Rotation x="0.3543967" y="-0.39324412" z="0.38837516"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="16.635788" y="0.82007599" z="0"/>
+            <Rotation x="0.23464374" y="-0.30048051" z="0.37647897"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="16.635788" y="0.82009888" z="-2.3841858e-006"/>
+            <Rotation x="0.14243031" y="-0.14567502" z="0.36323094"/>
+            <Scale x="0.99999976" y="0.99999994" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-Spine1" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5880051" y="-0.02306366" z="1.4305115e-006"/>
+            <Rotation x="0.060008992" y="0.10352366" z="0.33771884"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.5880127" y="-0.023071289" z="9.5367432e-007"/>
+            <Rotation x="-0.014878737" y="0.065326557" z="0.21605068"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5880127" y="-0.023067474" z="9.5367432e-007"/>
+            <Rotation x="-0.096851781" y="0.0076654837" z="0.05847076"/>
+            <Scale x="0.99999988" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Clavicle" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-4.8259735" y="2.891098" z="15.618534"/>
+            <Rotation x="-1.9955449" y="-1.0473845" z="-1.1104312"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-4.8259735" y="2.8910904" z="15.618534"/>
+            <Rotation x="-2.0327358" y="-1.1382345" z="-1.0908889"/>
+            <Scale x="1" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-4.8259735" y="2.8911133" z="15.618533"/>
+            <Rotation x="-2.1208563" y="-1.2861767" z="-1.0251546"/>
+            <Scale x="0.99999988" y="1.0000002" z="1.0000002"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="twistBone_R" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-3.8146973e-006" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.43717074" y="-1.1675487e-006" z="-4.2055888e-009"/>
+            <Scale x="1" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-3.8146973e-006" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-0.71124482" y="-1.18988e-006" z="-2.5544665e-008"/>
+            <Scale x="0.99999994" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="7.6293945e-006" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-1.1026986" y="-1.2786476e-006" z="-1.5973926e-007"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger21" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.581192" y="-3.0517578e-005" z="0"/>
+            <Rotation x="-9.1578534e-007" y="-5.7618041e-007" z="1.3789216"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.5811768" y="-3.0517578e-005" z="-3.8146973e-006"/>
+            <Rotation x="-9.1578534e-007" y="-5.7618041e-007" z="1.3789216"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5811768" y="0" z="0"/>
+            <Rotation x="-9.1578534e-007" y="-5.7618041e-007" z="1.3789216"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger1" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.638672" y="-0.33598328" z="-4.9887619"/>
+            <Rotation x="-0.0017827965" y="-0.010844654" z="1.3071758"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.638672" y="-0.33596802" z="-4.9887505"/>
+            <Rotation x="-0.0017828741" y="-0.010844367" z="1.3071758"/>
+            <Scale x="1.0000001" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.638672" y="-0.33598328" z="-4.9887581"/>
+            <Rotation x="-0.0017829825" y="-0.010843961" z="1.3071758"/>
+            <Scale x="0.99999994" y="0.99999988" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-UpperArm" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="26.19326" y="3.8146973e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.19116496" y="0.52401179" z="0.30108127"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="26.193268" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.11679765" y="0.56989932" z="0.062879138"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="26.193268" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-0.48534977" y="0.42480108" z="-0.18756692"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Forearm" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="54.724533" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="-1.704117e-008" y="-1.1875234e-007" z="-1.0379632"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="54.724533" y="0" z="1.5258789e-005"/>
+            <Rotation x="-1.1773939e-008" y="1.5038047e-008" z="-1.1207861"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="54.724522" y="3.8146973e-006" z="3.0517578e-005"/>
+            <Rotation x="7.199874e-009" y="-1.9164892e-009" z="-1.3106447"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Hand" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="50.553604" y="0" z="-1.5258789e-005"/>
+            <Rotation x="-1.7920898" y="0.011234707" z="-0.059494335"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="50.553604" y="7.6293945e-006" z="0"/>
+            <Rotation x="-1.7175394" y="0.17728034" z="0.057457261"/>
+            <Scale x="1" y="1.0000001" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="50.553604" y="-7.6293945e-006" z="0"/>
+            <Rotation x="-1.6238106" y="0.32751596" z="0.18697684"/>
+            <Scale x="0.99999988" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Toe0" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="22.621414" y="28.043411" z="-0.51105499"/>
+            <Rotation x="0.0018469077" y="1.9641417e-005" z="1.5687935"/>
+            <Scale x="0.99999994" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="22.621422" y="28.043427" z="-0.51106262"/>
+            <Rotation x="0.0018469075" y="1.9767844e-005" z="1.5687935"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="22.621414" y="28.043419" z="-0.51106262"/>
+            <Rotation x="0.0018469068" y="1.9969999e-005" z="1.5687935"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger01" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="10.284111" y="7.6293945e-006" z="3.0517578e-005"/>
+            <Rotation x="4.7562878e-009" y="-6.4144558e-007" z="1.2759045"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="10.284119" y="3.8146973e-006" z="1.5258789e-005"/>
+            <Rotation x="-1.2566943e-008" y="-5.8441384e-007" z="1.2759045"/>
+            <Scale x="0.99999982" y="0.99999988" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="10.284103" y="1.5258789e-005" z="0"/>
+            <Rotation x="-3.9957452e-008" y="-4.9423869e-007" z="1.2759045"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger11" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5589752" y="-1.5258789e-005" z="0"/>
+            <Rotation x="1.9648921e-006" y="-1.6632974e-006" z="1.4346261"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.55896" y="7.6293945e-006" z="3.8146973e-006"/>
+            <Rotation x="1.9549823e-006" y="-1.5909731e-006" z="1.4346261"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.55896" y="0" z="-3.8146973e-006"/>
+            <Rotation x="1.9300433e-006" y="-1.4089596e-006" z="1.4346261"/>
+            <Scale x="1" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Finger2" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.505562" y="-0.0097808838" z="5.6768951"/>
+            <Rotation x="0.0065181237" y="-0.013305414" z="1.397823"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.505562" y="-0.0098114014" z="5.6769028"/>
+            <Rotation x="0.0065180925" y="-0.013305231" z="1.397823"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.505569" y="-0.0097961426" z="5.6769028"/>
+            <Rotation x="0.0065180631" y="-0.013305071" z="1.397823"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="twistBone_L" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-5.7220459e-006" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="-0.15458167" y="1.0165166e-006" z="-2.3883154e-006"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-3.8146973e-006" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.12522458" y="9.1111087e-007" z="-1.1741043e-006"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-3.8146973e-006" y="3.8146973e-006" z="1.5258789e-005"/>
+            <Rotation x="0.46750337" y="9.8538032e-007" z="-2.0002008e-006"/>
+            <Scale x="1" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Clavicle" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-4.635788" y="2.899353" z="-15.674522"/>
+            <Rotation x="1.870736" y="1.2117565" z="-1.279197"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-4.635788" y="2.8993301" z="-15.674524"/>
+            <Rotation x="1.8632585" y="1.2423861" z="-1.2900307"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-4.635788" y="2.8993683" z="-15.674522"/>
+            <Rotation x="1.9274598" y="1.3020295" z="-1.2287009"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Toe0" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="22.621407" y="28.043415" z="0.51107025"/>
+            <Rotation x="-0.0018466335" y="-1.9805679e-005" z="1.5687927"/>
+            <Scale x="0.99999994" y="1" z="0.99999988"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="22.621416" y="28.043423" z="0.51107788"/>
+            <Rotation x="-0.0018466335" y="-1.9805679e-005" z="1.5687927"/>
+            <Scale x="1.0000001" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="22.62141" y="28.043423" z="0.51106644"/>
+            <Rotation x="-0.001846634" y="-1.9686528e-005" z="1.5687927"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger01" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="10.284096" y="-7.6293945e-006" z="-3.0517578e-005"/>
+            <Rotation x="6.4160889e-007" y="-1.1741867e-007" z="1.2828374"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="10.284111" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="6.0375788e-007" y="1.0373639e-008" z="1.2828374"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="10.284103" y="-1.5258789e-005" z="-1.5258789e-005"/>
+            <Rotation x="5.6990302e-007" y="1.2467453e-007" z="1.2828374"/>
+            <Scale x="1" y="1" z="0.99999988"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-UpperArm" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="26.193268" y="3.8146973e-006" z="-1.5258789e-005"/>
+            <Rotation x="0.39389393" y="-0.45931867" z="0.41400179"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="26.19326" y="7.6293945e-006" z="1.5258789e-005"/>
+            <Rotation x="0.70120281" y="-0.65010178" z="0.063450299"/>
+            <Scale x="0.99999988" y="1" z="0.99999982"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="26.19326" y="-1.5258789e-005" z="0"/>
+            <Rotation x="1.1588355" y="-0.58660263" z="-0.40169483"/>
+            <Scale x="0.99999982" y="1.0000002" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger1" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.638657" y="-0.33598328" z="4.9887552"/>
+            <Rotation x="0.00050005858" y="0.010978903" z="1.1897514"/>
+            <Scale x="1" y="0.99999988" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.638657" y="-0.33599854" z="4.9887581"/>
+            <Rotation x="0.00050005858" y="0.010978903" z="1.1897514"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.638641" y="-0.33598328" z="4.9887581"/>
+            <Rotation x="0.00050005858" y="0.010978903" z="1.1897514"/>
+            <Scale x="0.99999994" y="1" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Forearm" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="54.724537" y="-1.5258789e-005" z="-1.5258789e-005"/>
+            <Rotation x="1.0459161e-008" y="2.9495441e-008" z="-1.3674966"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="54.724537" y="-7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="-4.0359108e-008" y="-1.7283231e-008" z="-1.3209337"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="54.724541" y="7.6293945e-006" z="-1.5258789e-005"/>
+            <Rotation x="1.8547901e-008" y="-4.531184e-010" z="-1.3235565"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Hand" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="50.553574" y="0" z="-1.5258789e-005"/>
+            <Rotation x="1.6450584" y="-0.085722201" z="0.18495862"/>
+            <Scale x="1" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="50.553566" y="0" z="1.5258789e-005"/>
+            <Rotation x="1.2983674" y="-0.16211052" z="0.35720909"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="50.553589" y="-1.1444092e-005" z="0"/>
+            <Rotation x="0.91332644" y="-0.15133379" z="0.63312709"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger0" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="3.7575226" y="7.7495575" z="8.7185345"/>
+            <Rotation x="-1.964988" y="-0.27114505" z="0.84911972"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="3.757515" y="7.7495422" z="8.7185364"/>
+            <Rotation x="-1.964988" y="-0.27114505" z="0.84911972"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="3.7575264" y="7.7495575" z="8.7185364"/>
+            <Rotation x="-1.964988" y="-0.27114505" z="0.84911972"/>
+            <Scale x="1" y="1" z="1.0000002"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger11" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="8.5589905" y="0" z="-9.5367432e-007"/>
+            <Rotation x="-1.198899e-006" y="-6.929796e-007" z="1.3904747"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="8.5589905" y="0" z="1.9073486e-006"/>
+            <Rotation x="-1.198899e-006" y="-6.929796e-007" z="1.3904747"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="8.5589905" y="-1.5258789e-005" z="3.8146973e-006"/>
+            <Rotation x="-1.198899e-006" y="-6.929796e-007" z="1.3904747"/>
+            <Scale x="1" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Finger2" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="18.505569" y="-0.0097808838" z="-5.676898"/>
+            <Rotation x="-0.0091426326" y="0.011658917" z="1.1883274"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="18.505554" y="-0.0097961426" z="-5.676899"/>
+            <Rotation x="-0.0091426531" y="0.011658976" z="1.1883274"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="18.505569" y="-0.0097961426" z="-5.6768951"/>
+            <Rotation x="-0.0091427229" y="0.011659151" z="1.1883274"/>
+            <Scale x="1" y="0.99999988" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bone001" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="0" y="0" z="5.7220459e-006"/>
+            <Rotation x="-4.8423044e-007" y="0" z="0"/>
+            <Scale x="0.99999988" y="0.99999982" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="0" y="0" z="7.6293945e-006"/>
+            <Rotation x="-1.35311e-006" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="0" y="0" z="7.6293945e-006"/>
+            <Rotation x="-3.046868e-006" y="0" z="0"/>
+            <Scale x="0.99999994" y="0.99999994" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Handle" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-1.5258789e-005" y="-3.0517578e-005" z="0"/>
+            <Rotation x="-1.737759e-007" y="0" z="0"/>
+            <Scale x="0.99999994" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-1.5258789e-005" y="-1.5258789e-005" z="3.8146973e-006"/>
+            <Rotation x="-4.0462368e-007" y="0" z="0"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-1.1444092e-005" y="-1.5258789e-005" z="0"/>
+            <Rotation x="-8.2819429e-007" y="0" z="0"/>
+            <Scale x="0.99999988" y="0.99999988" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Trail" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="11.269485" y="8.5005341" z="186.16046"/>
+            <Rotation x="1.5787857" y="3.0039153" z="-0.00079921458"/>
+            <Scale x="1.0000001" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="11.269485" y="8.5005341" z="186.16046"/>
+            <Rotation x="1.5787852" y="3.0039153" z="-0.00079948088"/>
+            <Scale x="1.0000002" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="11.269482" y="8.5005646" z="186.16046"/>
+            <Rotation x="1.5787843" y="3.0039153" z="-0.00079948088"/>
+            <Scale x="1.0000002" y="1.0000001" z="0.99999994"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Akatoramaru_obj" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="12.94487" y="8.3899689" z="90.677429"/>
+            <Rotation x="-0.58971149" y="0.21266842" z="1.9332898"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="12.94487" y="8.3899689" z="90.677414"/>
+            <Rotation x="-0.58971161" y="0.21266857" z="1.9332899"/>
+            <Scale x="1" y="1.0000002" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="12.944866" y="8.3899536" z="90.677429"/>
+            <Rotation x="-0.58971149" y="0.21266876" z="1.9332898"/>
+            <Scale x="1.0000001" y="1.0000004" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Thigh" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="-3.0517578e-005" y="3.8146973e-005" z="23.892311"/>
+            <Rotation x="0.053200826" y="-2.6915398" z="-0.15764749"/>
+            <Scale x="1.0000001" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="-1.5258789e-005" y="3.8146973e-005" z="23.892311"/>
+            <Rotation x="0.054162528" y="-2.7847629" z="-0.40188488"/>
+            <Scale x="1.0000002" y="1" z="1.0000001"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="-4.5776367e-005" y="3.8146973e-005" z="23.892311"/>
+            <Rotation x="0.047722168" y="-2.8648841" z="-0.81218493"/>
+            <Scale x="0.99999988" y="1" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Calf" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="61.2183" y="0" z="-3.8146973e-006"/>
+            <Rotation x="-1.8293865e-007" y="6.2238499e-008" z="-0.71278566"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="61.218315" y="1.9073486e-006" z="0"/>
+            <Rotation x="-7.6657969e-008" y="1.2835092e-007" z="-0.58256423"/>
+            <Scale x="0.99999994" y="1.0000001" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="61.218296" y="0" z="3.8146973e-006"/>
+            <Rotation x="1.0346824e-008" y="-6.8569044e-008" z="-0.53851169"/>
+            <Scale x="1.0000001" y="1.0000001" z="1"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-L-Foot" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="57.453308" y="7.6293945e-006" z="0"/>
+            <Rotation x="-0.011452901" y="-0.27558941" z="-0.46312249"/>
+            <Scale x="1.0000001" y="1" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="57.453312" y="0" z="3.8146973e-006"/>
+            <Rotation x="-0.0055033639" y="-0.30716345" z="-0.76540369"/>
+            <Scale x="1" y="0.99999994" z="1"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="57.453308" y="0" z="0"/>
+            <Rotation x="-0.058963522" y="-0.33641845" z="-0.90979099"/>
+            <Scale x="1.0000001" y="1.0000001" z="1.0000001"/>
+        </KeyFrame>
+    </AnimationCurve>
+    <AnimationCurve Name="Bip01-R-Thigh" Type="Transform" KeyFrameNums="3">
+        <KeyFrame Index="0" Time="0">
+            <Translate x="1.5258789e-005" y="-2.2888184e-005" z="-23.892309"/>
+            <Rotation x="0.023166146" y="2.5629539" z="-1.2309464"/>
+            <Scale x="1.0000004" y="1" z="1.0000002"/>
+        </KeyFrame>
+        <KeyFrame Index="1" Time="0.033333335">
+            <Translate x="1.5258789e-005" y="-2.2888184e-005" z="-23.892311"/>
+            <Rotation x="0.14273144" y="2.7512999" z="-0.62982494"/>
+            <Scale x="1.0000001" y="1" z="0.99999994"/>
+        </KeyFrame>
+        <KeyFrame Index="2" Time="0.06666667">
+            <Translate x="1.5258789e-005" y="-2.2888184e-005" z="-23.892311"/>
+            <Rotation x="0.13156086" y="2.9024661" z="-0.026940724"/>
+            <Scale x="1.0000002" y="1.0000001" z="1.0000002"/>
+        </KeyFrame>
+    </AnimationCurve>
+</AnimationTrack>

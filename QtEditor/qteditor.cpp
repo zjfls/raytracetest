@@ -27,6 +27,11 @@
 #include "IAsset.h"
 #include "SingleResourceAsset.h"
 #include "FilePath.h"
+#include "MeshResource.h"
+#include "RasterMaterial.h"
+#include "PrefabResource.h"
+#include "Mesh.h"
+#include "skeleton.h"
 //#include "QtRenderView.h"
 //struct test
 //{
@@ -353,6 +358,11 @@ void ZG::QtEditor::CreateMenuBar()
 	m_mapMenuBarAction[pExportAnimation] = "TOOL_FBX_EXPORTANI";
 	m_mapMenuBarAction[pExportAllAnimation] = "TOOL_FBX_EXPORTALLANI";
 
+	//
+	QMenu* m_pTestMenu = menuBar()->addMenu(tr("&Test"));
+	QAction* pTest1 = m_pTestMenu->addAction("Test1");
+	m_mapMenuBarAction[pTest1] = "Test_Test1";
+
 }
 
 void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
@@ -420,6 +430,8 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 	}
 	if (iter->second == "TOOL_FBX_EXPORTANI")
 	{
+
+		//
 		QItemSelectionModel* selections = m_pDataView->selectionModel();
 		QModelIndexList indexs = selections->selectedIndexes();
 		int nCount = indexs.count();
@@ -493,6 +505,10 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 
 		}
 	}
+	if (iter->second == "Test_Test1")
+	{
+		Test1();
+	}
 }
 
 bool ZG::QtEditor::IsRenderViewActive() const
@@ -503,6 +519,33 @@ bool ZG::QtEditor::IsRenderViewActive() const
 void ZG::QtEditor::OnEditorUpdate(EditorUpdateArg& arg)
 {
 	m_pTreePropertyBrowser->UpdateProperty();
+}
+
+void ZG::QtEditor::Test1()
+{
+	IAsset* pAsset = AssetManager::GetInstance()->LoadAsset("./data/fbx/Akatoramaru.FBX");
+	PrefabResource* pRes = pAsset->GetResource<PrefabResource>();
+	SmartPointer<IWorldObj> pChar = pRes->m_pRoot->Clone(true);
+	EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pChar);
+
+
+	SkeletonModule* pSkeleton = pChar->GetModule<SkeletonModule>();
+	//
+	IAsset* pSward = AssetManager::GetInstance()->LoadAsset("./data/fbx/akatoramaru_weaponsward.FBX");
+	MeshResource* pWeaponRes = pSward->GetResource<MeshResource>();
+	RasterMaterial* pMatRes = pSward->GetResource<RasterMaterial>();
+	pMatRes->SetArg<GameColor>("MainColor", GameColor::green);
+
+	//
+	IWorldObj* pWeapon = new IWorldObj;
+	pWeapon->m_strName = "weapon";
+	Mesh* pMesh = pWeapon->addModule<Mesh>().get();
+	pChar->addChild(pWeapon);
+	pMesh->SetMeshResource(pWeaponRes);
+	pMesh->m_pSharedMaterial = pMatRes;
+	pSkeleton->AddMesh(pMesh);
+	EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
+
 }
 
 //void QtEditor::DataItemClicked(const QModelIndex &)

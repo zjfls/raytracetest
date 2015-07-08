@@ -38,7 +38,7 @@ VS_OUTPUT vMain( VS_INPUT input )
 		lastWeight += input.weights[i];
 		Output.worldPosition += mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[i]]) * input.weights[i];
 	}
-	Output.worldPosition = mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[0]]);
+	//Output.worldPosition = mul(float4(input.Position,1.0f),SKINMATRIX_ARRAY[input.boneIndices[0]]);
 	//Output.worldPosition	=	mul(float4(input.Position, 1.0f), MATRIX_WORLD);
 	//Output.worldPosition = WorldPos.xyz/WorldPos.w;
 	Output.Position			=	mul(float4(Output.worldPosition, 1.0f), MATRIX_VP);

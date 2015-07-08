@@ -50,6 +50,9 @@ namespace ZG
 		bool	IsRenderViewActive() const;
 		//
 	private:
+		void Test1();
+		//
+	private:
 		Ui::QtEditorClass ui;
 		QTabWidget* m_pTabWidget;
 		WorldObjPropertyBrowser* m_pTreePropertyBrowser;

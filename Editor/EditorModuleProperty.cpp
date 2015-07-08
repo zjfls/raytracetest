@@ -20,7 +20,7 @@ EditorModuleProperty::~EditorModuleProperty()
 
 void EditorModuleProperty::SetProperty(void* pData)
 {
-	std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
+	//std::cout << "thread id:" << std::this_thread::get_id() << std::endl;
 	const type_info& tinfo = typeid(*m_pModule.get());
 	std::string className = tinfo.name();
 	if (typeid(*m_pModule.get()) == typeid(Sphere3D))

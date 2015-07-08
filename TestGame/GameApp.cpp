@@ -21,6 +21,10 @@
 #include "AnimationTrack.h"
 #include "SkeletonResource.h"
 #include "ThirdPersonCharacter.h"
+#include "MeshResource.h"
+#include "Mesh.h"
+#include "RasterMaterial.h"
+#include "PrefabResource.h"
 template<> SmartPointer<GameApp> Singleton<GameApp>::_instance = nullptr;
 GameApp::GameApp()
 	:m_pGameRuntime(nullptr)
@@ -86,7 +90,37 @@ void GameApp::SetupScene()
 
 
 
-	ThirdPersonCharacter* pPerson = m_pGameRuntime->createThirdPerson("./data/fbx/kulou.FBX");
+	ThirdPersonCharacter* pPerson = nullptr;
+	pPerson = m_pGameRuntime->createThirdPerson("./data/fbx/Akatoramaru.FBX");
+	pPerson->LoadAnimation("idle", "./data/animation/akato/idle.animation.xml");
+	pPerson->LoadAnimation("walk", "./data/animation/akato/walk.animation.xml");
+	pPerson->LoadAnimation("dance", "./data/animation/akato/dance.animation.xml");
+	pPerson->LoadAnimation("attack", "./data/animation/akato/attack.animation.xml");
+	pPerson->LoadAnimation("walkback", "./data/animation/akato/walkback.animation.xml");
+	//pPerson = m_pGameRuntime->createThirdPerson("./data/fbx/kulou.FBX");
+	//pPerson->LoadAnimation("idle", "./data/fbx/kulouanim/idle.animation.xml");
+	//pPerson->LoadAnimation("walk", "./data/fbx/kulouanim/walk.animation.xml");
+	//pPerson->LoadAnimation("dance", "./data/fbx/kulouanim/dance.animation.xml");
+	//pPerson->LoadAnimation("attack", "./data/fbx/kulouanim/attack.animation.xml");
+	//pPerson->LoadAnimation("walkback", "./data/fbx/kulouanim/walkback.animation.xml");
+
+
+	IAsset* pSward = AssetManager::GetInstance()->LoadAsset("./data/fbx/akatoramaru_weaponsward.FBX");
+	MeshResource* pWeaponRes = pSward->GetResource<MeshResource>();
+	RasterMaterial* pMatRes = pSward->GetResource<RasterMaterial>();
+	//
+	IWorldObj* pWeapon = new IWorldObj;
+	//pWeapon->m_pTransform->SetScale(100, 100, 100);
+	Mesh* pMesh = pWeapon->addModule<Mesh>().get();
+	pPerson->m_pObj->addChild(pWeapon);
+	pMesh->SetMeshResource(pWeaponRes);
+	pMesh->m_pSharedMaterial = pMatRes;
+
+
+	PrefabResource* pPrefabRes = pSward->GetResource<PrefabResource>();
+	//pPerson->m_pObj->addChild(pPrefabRes->m_pRoot->Clone(true));
+
+	pPerson->PlayAnimation("dance");
 	//pPerson->m_pObj->m_pTransform->SetTranslate(pPerson->m_pObj->m_pTransform->GetLocalTranslate() + Vector3(10, 0, 100));
 
 	//
