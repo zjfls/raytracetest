@@ -47,7 +47,7 @@ namespace ZG
 
 
 		
-		Vector3 GetWorldTranslate()const;// { return m_vecTranslate; };
+		Vector3 GetWorldTranslate();// { return m_vecTranslate; };
 		void	SetWorldTranslate(const Vector3& vecTrans);
 		void	SetWorldTransform(const Matrix44& mat);
 		Vector3 GetLocalTranslate() const { return m_TransformData.m_vecTranslate; };

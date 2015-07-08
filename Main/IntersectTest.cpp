@@ -22,7 +22,7 @@ IntersectTest::~IntersectTest()
 {
 }
 
-IntersectResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s,const Transform& trans)
+IntersectResults IntersectTest::testRaySphere(const Ray3D& r, const Sphere3D& s, Transform& trans)
 {
 	//r.m_vecDirection.normalize();
 	bool bInside = false;

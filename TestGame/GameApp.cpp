@@ -96,6 +96,7 @@ void GameApp::UpdateInput()
 {
 	if (IsFocus() == false)
 	{
+		//std::cout << "not update input" << std::endl;
 		return;
 	}
 	m_pGameRuntime->UpdateInput();

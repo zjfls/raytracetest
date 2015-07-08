@@ -41,7 +41,7 @@ void GameRuntime::OnUpdate()
 
 void GameRuntime::OnLateUpdate()
 {
-	UpdateInput();
+	//UpdateInput();
 }
 
 void GameRuntime::UpdateInput()
@@ -202,6 +202,7 @@ ThirdPersonCharacter* GameRuntime::createThirdPerson(std::string fileName)
 		pCtrller->LoadAnimation("walk", "./data/fbx/kulouanim/walk.animation.xml");
 		pCtrller->LoadAnimation("dance", "./data/fbx/kulouanim/dance.animation.xml");
 		pCtrller->LoadAnimation("attack", "./data/fbx/kulouanim/attack.animation.xml");
+		pCtrller->LoadAnimation("walkback", "./data/fbx/kulouanim/walkback.animation.xml");
 
 		pCtrller->PlayAnimation("dance");
 

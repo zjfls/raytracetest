@@ -37,4 +37,5 @@ void CharacterController::PlayAnimation(std::string strName)
 	{
 		pSkeleton->PlayAnimation(m_pAnimations[strName]);
 	}
+	curAnimation = strName;
 }
