@@ -540,10 +540,14 @@ void ZG::QtEditor::Test1()
 	IWorldObj* pWeapon = new IWorldObj;
 	pWeapon->m_strName = "weapon";
 	Mesh* pMesh = pWeapon->addModule<Mesh>().get();
-	pChar->addChild(pWeapon);
+	//pChar->addChild(pWeapon);
+
+	pChar->GetChild(0)->addChild(pWeapon);
+	//EditorApplication::GetInstance()->m_pWorld->m_pRoot->addChild(pWeapon);
 	pMesh->SetMeshResource(pWeaponRes);
 	pMesh->m_pSharedMaterial = pMatRes;
 	pSkeleton->AddMesh(pMesh);
+	pSkeleton->m_pDefaultTrack = nullptr;
 	EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
 
 }

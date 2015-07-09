@@ -94,11 +94,11 @@ IAsset* FbxFileLoader::Load(std::string path, void* pArg /*= nullptr*/)
 
 	//
 	FbxSystemUnit SceneSystemUnit = pAsset->m_pFbxScene->GetGlobalSettings().GetSystemUnit();
-	if (SceneSystemUnit.GetScaleFactor() != 1.0)
-	{
-		// センチメーター単位にコンバートする
-		FbxSystemUnit::cm.ConvertScene(pAsset->m_pFbxScene);
-	}
+	//if (SceneSystemUnit.GetScaleFactor() != 1.0)
+	//{
+	//	// センチメーター単位にコンバートする
+	//	FbxSystemUnit::cm.ConvertScene(pAsset->m_pFbxScene);
+	//}
 	//
 	FbxAxisSystem SceneAxisSystem = pAsset->m_pFbxScene->GetGlobalSettings().GetAxisSystem();
 	int sign = 1;
@@ -212,10 +212,17 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessNode(FbxNode* pNode, SmartPointer<
 		SetWorldObjPropByFbxNode(pObj.get(), pNode);
 		//m_mapFbxToObj[pNode] = pObj.get();
 	}
+	
 	if (pAttribute != nullptr)
 	{
+		FbxNodeAttribute::EType type = pAttribute->GetAttributeType();
 		switch (pAttribute->GetAttributeType())
 		{
+			case FbxNodeAttribute::EType::ePatch:
+			{
+				std::cout << "find patch!" << std::endl;
+			}
+			break;
 			case FbxNodeAttribute::EType::eSkeleton:
 			{
 				if (pNode->GetSkeleton()->IsSkeletonRoot() == false)
@@ -1005,7 +1012,7 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, SkeletonR
 	Bone* pRoot = new Bone();
 	pRes->m_pRoot = pRoot;
 	int BoneIndex = 0;
-	ProcessBone(pRes, pRoot, pNode, BoneIndex, pObj);
+	ProcessBone(pRes, pRoot, pNode, BoneIndex, pObj,pNode);
 	m_mapSkeleton[pSke] = pRes;
 	m_mapSkeObj[pSke] = pObj;
 	m_SkeResToSkeRoot[pRes] = pObj;
@@ -1014,7 +1021,7 @@ SmartPointer<IWorldObj> FbxFileLoader::ProcessSkeleton(FbxNode* pNode, SkeletonR
 
 }
 
-void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pFbxObj, int& index, SkeletonObj* pSkeObj)
+void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pFbxObj, int& index, SkeletonObj* pSkeObj, FbxNode* pRoot)
 {
 	FbxEuler::EOrder order = pFbxObj->RotationOrder.Get();
 	//m_mapFbxToObj[pFbxObj] = pSkeObj;
@@ -1025,6 +1032,29 @@ void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone
 	FbxCluster* pCluster = m_NodeToCluster[pFbxObj];
 	FbxVector4 fs, fr, ft;
 	FbxAMatrix lLinkMatrix, lMatrix, lGeometryMatrix, inverseBindPos, lCurWorld;
+	if (pCluster == nullptr)
+	{
+		pCluster = FbxCluster::Create(dynamic_cast<FbxAsset*>(m_pAsset)->m_pFbxScene, "");
+		pCluster->SetLink(pFbxObj);
+		pCluster->SetLinkMode(FbxCluster::eNormalize);
+		pCluster->SetTransformLinkMatrix(pFbxObj->EvaluateGlobalTransform());
+		
+		//FbxAMatrix rootMatrix = vecSkinMeshList[0]->GetNode()->EvaluateGlobalTransform().Inverse();
+		FbxAMatrix rootMatrix;
+		for each (std::pair<FbxNode*,FbxCluster*> p in m_NodeToCluster)
+		{
+			if (p.second != nullptr)
+			{
+				p.second->GetTransformMatrix(rootMatrix);
+				break;
+			}
+		}
+		pCluster->SetTransformMatrix(rootMatrix);
+	}
+	else
+	{
+		int c = 0;
+	}
 	if (pCluster != nullptr)
 	{
 
@@ -1045,6 +1075,11 @@ void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone
 		ft = inverseBindPos.GetT();
 		fr = inverseBindPos.GetR();
 		fs = inverseBindPos.GetS();
+	}
+	else
+	{
+
+		/*FbxSkeleton* pSkeleton = pFbxObj->GetSkeleton();*/
 	}
 
 	//
@@ -1112,7 +1147,7 @@ void FbxFileLoader::ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone
 		pBone->vecChild.push_back(pChildBone);
 		SkeletonObj *pChildObj = new SkeletonObj;
 		pSkeObj->addChild(pChildObj);
-		ProcessBone(pRes, pChildBone, pChild, index, pChildObj);
+		ProcessBone(pRes, pChildBone, pChild, index, pChildObj,pRoot);
 	}
 
 }
@@ -1668,6 +1703,15 @@ void ZG::FbxFileLoader::PreGetMesh(FbxNode* pNode)
 	if (pNode->GetMesh() != nullptr)
 	{
 		vecMeshList.push_back(pNode->GetMesh());
+		FbxDeformer* pDeformer = pNode->GetMesh()->GetDeformer(0);
+		
+		int nDefaormerCount = pNode->GetMesh()->GetDeformerCount();
+		if (pDeformer != nullptr && pDeformer->GetDeformerType() == FbxDeformer::eSkin)
+		{
+			FbxSkin* pSkin = (FbxSkin*)pDeformer;
+			int nClusterCount = pSkin->GetClusterCount();
+			vecSkinMeshList.push_back(pNode->GetMesh());
+		}
 	}
 	int nChild = pNode->GetChildCount();
 	for (int i = 0; i < nChild; ++i)

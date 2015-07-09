@@ -38,7 +38,7 @@ namespace ZG
 		SmartPointer<IWorldObj> ProcessNode(FbxNode* pNode, SmartPointer<IWorldObj> pParent = nullptr);
 		void					ProcessMesh(FbxNode* pNode);
 		SmartPointer<IWorldObj> ProcessSkeleton(FbxNode* pNode, SkeletonResource* pRes,SkeletonObj* pObj);
-		void		ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pFbxObj, int& index, SkeletonObj* pSkeObj);
+		void		ProcessBone(SmartPointer<SkeletonResource> pRes, Bone* pBone, FbxNode* pFbxObj, int& index, SkeletonObj* pSkeObj, FbxNode* pRoot);
 		FbxNode*	GetSkeletonRoot(FbxNode* pNode);
 		SmartPointer<MeshResource> ProcessMeshData(FbxNode* pMesh,  SmartPointer<IWorldObj> obj = nullptr);
 		SmartPointer<RasterMaterial>		ProcessMaterial(FbxSurfaceMaterial* pMat, bool bHasSkinInfo);
@@ -57,6 +57,7 @@ namespace ZG
 		friend class AssetManager;
 		std::string m_fileDir;
 		std::string m_exportResDir;
+		std::vector<FbxMesh*> vecSkinMeshList;
 		std::vector<FbxMesh*> vecMeshList;
 		std::vector<FbxMesh*> vecDoneMeshList;
 		std::map<FbxSkeleton*, SmartPointer<SkeletonResource>> m_mapSkeleton;
