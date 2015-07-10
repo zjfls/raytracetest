@@ -42,7 +42,7 @@ EditorSceneView::EditorSceneView()
 	m_pCamera->m_strName = "EditorSceneCamera";
 
 	SmartPointer<RasterCamera> pCameraModule = m_pCamera->addModule<RasterCamera>();
-	pCameraModule->m_fFar = 12000.0f;
+	pCameraModule->m_fFar = 32000.0f;
 	pCameraModule->m_fNear = 3.0f;
 	pCameraModule->m_fAspect = 1 / 1;
 	pCameraModule->m_fFovy = PI / 4;
@@ -115,7 +115,7 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 	Vector3 dir = m_pCamera->m_pTransform->GetForward();
 	dir = dir.normalize();
 	//
-	float fRatio = 1.0f - zDelta * 0.0001;
+	float fRatio = 1.0f - zDelta * 0.001;
 	if (fRatio < 0.8)
 	{
 		fRatio = 0.8f;
@@ -145,22 +145,6 @@ void EditorSceneView::OnMouseWheel(short zDelta, Vector2& pt)
 void EditorSceneView::OnMouseMove(Vector2& pt)
 {
 	if (InputManager::GetInstance()->m_pIO->IsMiddleDown() == true)
-	{
-		Vector2 diffMouse = pt - m_LastMousePos;
-		Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
-		Vector3 dirRight = m_pCamera->m_pTransform->GetRight();
-		dirRight = dirRight.normalize();
-
-		Vector3 dirUp = m_pCamera->m_pTransform->GetUp();
-		dirUp = dirUp.normalize();
-		//
-		Vector3 diff = -diffMouse.m_fx  * dirRight;
-		diff = diff + diffMouse.m_fy * dirUp;
-		//std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
-		position += diff;
-		m_pCamera->m_pTransform->SetTranslate(position);
-	}
-	if (InputManager::GetInstance()->m_pIO->IsRBDown() == true)
 	{
 		if (InputManager::GetInstance()->m_pIO->IsKeyDown(0x12) == true && EditorApplication::GetInstance()->getSelectObj() != nullptr)
 		{
@@ -211,7 +195,7 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 			//m_pCamera->m_pTransform->SetWorldTranslate(newPos);
 
 		}
-		else
+		else if (InputManager::GetInstance()->m_pIO->IsKeyDown(InputInterface::KeyCode::EKEYCTRL) == true)
 		{
 			Vector2 diff = pt - m_LastMousePos;
 			//std::cout << "mouse move with rb down "<<"x:"<<pt.m_fx<<"y:"<<pt.m_fy << std::endl;
@@ -220,8 +204,27 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 			vecRot.m_fy = vecRot.m_fy + (diff.m_fx) * 0.0014;
 			vecRot.m_fx = vecRot.m_fx + (diff.m_fy) * 0.0014;
 			m_pCamera->m_pTransform->SetOrientation(vecRot.m_fx, vecRot.m_fy, vecRot.m_fz);
-		}		
+		}
+		else
+		{
+			Vector2 diffMouse = pt - m_LastMousePos;
+			Vector3 position = m_pCamera->m_pTransform->GetLocalTranslate();
+			Vector3 dirRight = m_pCamera->m_pTransform->GetRight();
+			dirRight = dirRight.normalize();
+
+			Vector3 dirUp = m_pCamera->m_pTransform->GetUp();
+			dirUp = dirUp.normalize();
+			//
+			Vector3 diff = -diffMouse.m_fx  * dirRight;
+			diff = diff + diffMouse.m_fy * dirUp;
+			//std::cout << "move front:" << "x:" << diff.m_fx << "y:" << diff.m_fy << "z:" << diff.m_fz << "ElapseTime:" << TimeManager::GetInstance()->m_fElapseTime << std::endl;
+			position += diff;
+			m_pCamera->m_pTransform->SetTranslate(position);
+		}
 	}
+
+
+	//////////////////////////////////////////////////////////////////////////////////////
 	if (EditorApplication::GetInstance()->m_eOperState == EditorApplication::EStateTranslate
 		&&EditorApplication::GetInstance()->getSelectObj() != nullptr)
 	{
@@ -414,8 +417,8 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 
 
 		AddToSceneCommand* pCmd = new AddToSceneCommand();
-		pCmd->m_pObj = pObj;
-		pCmd->m_pParentObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+		pCmd->m_vecObjs.push_back(pObj);// = pObj;
+		pCmd->m_vecParentObjs.push_back(EditorApplication::GetInstance()->m_pWorld->m_pRoot);// = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
 		pCmd->m_pReceiver = EditorApplication::GetInstance();
 		EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
 		pObj->Update();
@@ -433,8 +436,8 @@ void EditorSceneView::OnDrop(Vector2& pos, std::string path)
 
 
 			AddToSceneCommand* pCmd = new AddToSceneCommand();
-			pCmd->m_pObj = pObj;
-			pCmd->m_pParentObj = EditorApplication::GetInstance()->m_pWorld->m_pRoot;
+			pCmd->m_vecObjs.push_back(pObj);// = pObj;
+			pCmd->m_vecParentObjs.push_back(EditorApplication::GetInstance()->m_pWorld->m_pRoot);
 			pCmd->m_pReceiver = EditorApplication::GetInstance();
 			EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
 			pObj->Update();

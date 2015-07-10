@@ -17,7 +17,7 @@ namespace ZG
 	struct EditorState
 	{
 		//
-		Vector3 m_vecPressPos;
+		std::vector<Vector3> m_vecOperStartPos;
 	};
 	//class RenderView;
 	//
@@ -54,7 +54,11 @@ namespace ZG
 		
 		virtual void SetupScene();
 		virtual void NotifyListener(std::string msg, IListenerSubject* pSubject);
-		//
+		////////////////////////////////////////////////////////////////////////////
+		//scene menu action
+		void	CloneSelections();
+		////////////////////////////////////////////////////////////////////////////
+		//Selection
 		void	SelectionsChange(std::vector<IWorldObj*> vecObjs);
 		void	AddSelection(IWorldObj* pObj);
 		void	RemoveSelection(IWorldObj* pObj);
@@ -63,7 +67,7 @@ namespace ZG
 		Vector3 GetSelectionsWorldTranslate();
 		unsigned int GetSelectionCount();
 		IWorldObj* GetSelectionByIndex(int index);
-
+		void	GetSelectionWithoutChildren(std::vector<SmartPointer<IWorldObj>>& vecObjs);
 		////////////////////////////////////////////////////////////////////////////
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
 		EditorSceneView*	getActiveScene();

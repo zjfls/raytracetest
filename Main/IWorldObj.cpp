@@ -252,3 +252,24 @@ AABBBox ZG::IWorldObj::GetWorldAABBBox()
 	}
 	return pBox;
 }
+
+bool ZG::IWorldObj::FindChild(IWorldObj* pObj, bool bRecursive)
+{
+	for each (SmartPointer<IWorldObj> pChild in m_vecChildren)
+	{
+		if (pChild == pObj)
+		{
+			return true;
+		}
+		if (bRecursive == true)
+		{
+			bool bFind = pChild->FindChild(pObj, true);
+			if (bFind == true)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}

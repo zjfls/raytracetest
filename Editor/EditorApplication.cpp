@@ -354,36 +354,53 @@ bool ZG::EditorApplication::excuteCommond(ICommand* pCommand)
 	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
 	if (pDeleteCmd != nullptr)
 	{
-		DeleteSceneGraphEventArg arg;
-		arg.m_pObj = pDeleteCmd->m_pObj.get();
-		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
 		//
-		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
-		SelectChange(nullptr);
-		//NotifyListener("InitScene", EditorApplication::GetInstance());
-		//
-
-		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
-		EditorApplication::GetInstance()->SelectChange(nullptr);
+		unsigned int nSize = pDeleteCmd->m_vecObjs.size();
+		for (unsigned int i = 0; i < nSize; ++i)
+		{
+			pDeleteCmd->m_vecObjs[i]->GetParent()->removeChild(pDeleteCmd->m_vecObjs[i]);
+			DeleteSceneGraphEventArg arg;
+			arg.m_pObj = pDeleteCmd->m_vecObjs[i].get();
+			arg.m_pParent = pDeleteCmd->m_vecParentObjs[i].get();
+			(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+			EditorApplication::GetInstance()->SelectChange(nullptr);
+		}
 		return true;
 	}
 	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
 	if (pAddToSceneCmd != nullptr)
 	{
-		pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
+		ClearSelection();
+		unsigned int nSize = pAddToSceneCmd->m_vecObjs.size();
+		for (unsigned int i = 0; i < nSize;++i)
+		{
+			pAddToSceneCmd->m_vecParentObjs[i]->addChild(pAddToSceneCmd->m_vecObjs[i]);
+			AddSceneGraphEventArg arg;
+			arg.m_pObj = pAddToSceneCmd->m_vecObjs[i].get();
+			arg.m_pParent = pAddToSceneCmd->m_vecParentObjs[i].get();
+			(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
+			EditorApplication::GetInstance()->AddSelection(arg.m_pObj);
+		}
+		//pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
 		//EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
 
-		AddSceneGraphEventArg arg;
-		arg.m_pObj = pAddToSceneCmd->m_pObj.get();
-		arg.m_pParent = pAddToSceneCmd->m_pParentObj.get();
-		(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
-		EditorApplication::GetInstance()->SelectChange(arg.m_pObj);
+		
+
 		return true;
 	}
 	MoveCommand* pMovCmd = dynamic_cast<MoveCommand*>(pCommand);
 	if (pMovCmd != nullptr)
 	{
-		pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		//pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		int nCount = pMovCmd->m_vecObjs.size();
+		for (int i = 0; i < nCount; ++i)
+		{
+			if (pMovCmd->m_vecNextPos.size() <= i)
+			{
+				continue;
+			}
+			pMovCmd->m_vecObjs[i]->m_pTransform->SetTranslate(pMovCmd->m_vecNextPos[i]);
+		}
 		return true;
 	}
 	return false;
@@ -394,37 +411,56 @@ bool ZG::EditorApplication::undoCommond(ICommand* pCommand)
 	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
 	if (pDeleteCmd != nullptr)
 	{
-		if (pDeleteCmd->m_pObj->GetParent() != nullptr)
-		{
-			pDeleteCmd->m_pObj->GetParent()->removeChild(pDeleteCmd->m_pObj);
-		}
-		pDeleteCmd->m_pParentObj->addChild(pDeleteCmd->m_pObj);
-		//NotifyListener("InitScene", EditorApplication::GetInstance());
+		EditorApplication::GetInstance()->SelectChange(nullptr);
 		//
-		AddSceneGraphEventArg arg;
-		arg.m_pObj = pDeleteCmd->m_pObj.get();
-		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
-		(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
-		SelectChange(pDeleteCmd->m_pObj);
+		unsigned int nSize = pDeleteCmd->m_vecObjs.size();
+		for (unsigned int i = 0; i < nSize; ++i)
+		{
+			if (pDeleteCmd->m_vecObjs[i]->GetParent() != nullptr)
+			{
+				pDeleteCmd->m_vecObjs[i]->GetParent()->removeChild(pDeleteCmd->m_vecObjs[i]);
+			}
+			pDeleteCmd->m_vecParentObjs[i]->addChild(pDeleteCmd->m_vecObjs[i]);
+			AddSceneGraphEventArg arg;
+			arg.m_pObj = pDeleteCmd->m_vecObjs[i].get();
+			arg.m_pParent = pDeleteCmd->m_vecParentObjs[i].get();
+			(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
+			EditorApplication::GetInstance()->AddSelection(arg.m_pObj);
+		}
 		return true;
 	}
 	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
 	if (pAddToSceneCmd != nullptr)
 	{
-		DeleteSceneGraphEventArg arg;
-		arg.m_pObj = pAddToSceneCmd->m_pObj.get();
-		arg.m_pParent = pAddToSceneCmd->m_pParentObj.get();
-		//
-		pAddToSceneCmd->m_pParentObj->removeChild(pAddToSceneCmd->m_pObj);
-		//
-		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
 		EditorApplication::GetInstance()->SelectChange(nullptr);
+		unsigned int nSize = pAddToSceneCmd->m_vecObjs.size();
+		for (unsigned int i = 0; i < nSize; ++i)
+		{
+			pAddToSceneCmd->m_vecParentObjs[i]->removeChild(pAddToSceneCmd->m_vecObjs[i]);
+			DeleteSceneGraphEventArg arg;
+			arg.m_pObj = pAddToSceneCmd->m_vecObjs[i].get();
+			arg.m_pParent = pAddToSceneCmd->m_vecParentObjs[i].get();
+			(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+			//EditorApplication::GetInstance()->AddSelection(arg.m_pObj);
+		}
+		//
+		//(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+		
 		return true;
 	}
 	MoveCommand* pMovCmd = dynamic_cast<MoveCommand*>(pCommand);
 	if (pMovCmd != nullptr)
 	{
-		pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecPrePos);
+		//pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		int nCount = pMovCmd->m_vecObjs.size();
+		for (int i = 0; i < nCount; ++i)
+		{
+			if (pMovCmd->m_vecPrePos.size() <= i)
+			{
+				continue;
+			}
+			pMovCmd->m_vecObjs[i]->m_pTransform->SetTranslate(pMovCmd->m_vecPrePos[i]);
+		}
 		return true;
 	}
 	return false;
@@ -435,36 +471,48 @@ bool ZG::EditorApplication::redoCommond(ICommand* pCommand)
 	DeleteCommand* pDeleteCmd = dynamic_cast<DeleteCommand*>(pCommand);
 	if (pDeleteCmd != nullptr)
 	{
-		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
-		SelectChange(nullptr);
-
 		//
-		DeleteSceneGraphEventArg arg;
-		arg.m_pObj = pDeleteCmd->m_pObj.get();
-		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
-		(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
-		EditorApplication::GetInstance()->SelectChange(nullptr);
-		//sNotifyListener("InitScene", EditorApplication::GetInstance());
+		unsigned int nSize = pDeleteCmd->m_vecObjs.size();
+		for (unsigned int i = 0; i < nSize; ++i)
+		{
+			pDeleteCmd->m_vecObjs[i]->GetParent()->removeChild(pDeleteCmd->m_vecObjs[i]);
+			DeleteSceneGraphEventArg arg;
+			arg.m_pObj = pDeleteCmd->m_vecObjs[i].get();
+			arg.m_pParent = pDeleteCmd->m_vecParentObjs[i].get();
+			(*getEvent < DeleteSceneGraphEventArg >("DELETEFROMSCENEGRAPH"))(arg);
+			EditorApplication::GetInstance()->SelectChange(nullptr);
+		}
 		return true;
 	}
 	AddToSceneCommand* pAddToSceneCmd = dynamic_cast<AddToSceneCommand*>(pCommand);
 	if (pAddToSceneCmd != nullptr)
 	{
-		pAddToSceneCmd->m_pParentObj->addChild(pAddToSceneCmd->m_pObj);
-		//EditorApplication::GetInstance()->NotifyListener("InitScene", EditorApplication::GetInstance());
-
-		//
-		AddSceneGraphEventArg arg;
-		arg.m_pObj = pAddToSceneCmd->m_pObj.get();
-		arg.m_pParent = pAddToSceneCmd->m_pParentObj.get();
-		(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
-		EditorApplication::GetInstance()->SelectChange(arg.m_pObj);
+		ClearSelection();
+		unsigned int nSize = pAddToSceneCmd->m_vecObjs.size();
+		for (unsigned int i = 0; i < nSize; ++i)
+		{
+			pAddToSceneCmd->m_vecParentObjs[i]->addChild(pAddToSceneCmd->m_vecObjs[i]);
+			AddSceneGraphEventArg arg;
+			arg.m_pObj = pAddToSceneCmd->m_vecObjs[i].get();
+			arg.m_pParent = pAddToSceneCmd->m_vecParentObjs[i].get();
+			(*getEvent < AddSceneGraphEventArg >("ADDTOSCENEGGRAPH"))(arg);
+			EditorApplication::GetInstance()->AddSelection(arg.m_pObj);
+		}
 		return true;
 	}
 	MoveCommand* pMovCmd = dynamic_cast<MoveCommand*>(pCommand);
 	if (pMovCmd != nullptr)
 	{
-		pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		//pMovCmd->m_pObj->m_pTransform->SetWorldTranslate(pMovCmd->m_vecNextPos);
+		int nCount = pMovCmd->m_vecObjs.size();
+		for (int i = 0; i < nCount; ++i)
+		{
+			if (pMovCmd->m_vecNextPos.size() <= i)
+			{
+				continue;
+			}
+			pMovCmd->m_vecObjs[i]->m_pTransform->SetTranslate(pMovCmd->m_vecNextPos[i]);
+		}
 		return true;
 	}
 	return false;
@@ -506,7 +554,7 @@ void ZG::EditorApplication::OnClose()
 
 void ZG::EditorApplication::StartTranslate()
 {
-	m_EditorState.m_vecPressPos = getSelectObj()->m_pTransform->GetWorldTranslate();
+	//m_EditorState.m_vecPressPos = getSelectObj()->m_pTransform->GetWorldTranslate();
 	switch (m_eSelState)
 	{
 		case ZG::EditorApplication::ESelNone:
@@ -526,6 +574,12 @@ void ZG::EditorApplication::StartTranslate()
 		default:
 		break;
 	}
+	m_EditorState.m_vecOperStartPos.clear();
+	for each (SmartPointer<IWorldObj> p in m_vecSelectObjs)
+	{
+		m_EditorState.m_vecOperStartPos.push_back(p->m_pTransform->GetLocalTranslate());
+	}
+	
 }
 
 void ZG::EditorApplication::EndTranslate()
@@ -556,9 +610,16 @@ void ZG::EditorApplication::EndTranslate()
 	}
 	EditorApplication::GetInstance()->m_eSelState = EditorApplication::ESelNone;
 	MoveCommand* pMoveCmd = new MoveCommand;
-	pMoveCmd->m_pObj = getSelectObj();
+	/*pMoveCmd->m_pObj = getSelectObj();
 	pMoveCmd->m_vecPrePos = m_EditorState.m_vecPressPos;
-	pMoveCmd->m_vecNextPos = getSelectObj()->m_pTransform->GetWorldTranslate();
+	pMoveCmd->m_vecNextPos = getSelectObj()->m_pTransform->GetWorldTranslate();*/
+	for each (SmartPointer<IWorldObj> pObj in m_vecSelectObjs)
+	{
+		pMoveCmd->m_vecObjs.push_back(pObj.get());
+		//pObj->m_pTransform->Update();
+		pMoveCmd->m_vecNextPos.push_back(pObj->m_pTransform->GetLocalTranslate());
+	}
+	pMoveCmd->m_vecPrePos = m_EditorState.m_vecOperStartPos;
 	pMoveCmd->m_pReceiver = this;
 	//
 	EditorCommandManager::GetInstance()->ExcuteNewCmd(pMoveCmd);
@@ -641,5 +702,56 @@ IWorldObj* ZG::EditorApplication::GetSelectionByIndex(int index)
 		return nullptr;
 	}
 	return m_vecSelectObjs[index].get();
+}
+
+void ZG::EditorApplication::GetSelectionWithoutChildren(std::vector<SmartPointer<IWorldObj>>& vecObjs)
+{
+	vecObjs = m_vecSelectObjs;
+	for each (SmartPointer<IWorldObj> pSelObj in m_vecSelectObjs)
+	{
+		std::vector<SmartPointer<IWorldObj>>::iterator iter = vecObjs.begin();
+		for (; iter != vecObjs.end();)
+		{
+			if (*iter == pSelObj)
+			{
+				++iter;
+				continue;
+			}
+			if (pSelObj->FindChild(iter->get(), true) == true)
+			{
+				iter = vecObjs.erase(iter);
+			}
+			else
+			{
+				++iter;
+				continue;
+			}
+		}
+	}
+}
+
+void ZG::EditorApplication::CloneSelections()
+{
+	AddToSceneCommand* pCmd = new AddToSceneCommand;
+	std::vector<SmartPointer<IWorldObj>> vecObjs;
+	EditorApplication::GetInstance()->GetSelectionWithoutChildren(vecObjs);
+
+	unsigned int nSize = vecObjs.size();
+	for (unsigned int i = 0; i < nSize; ++i)
+	{
+		pCmd->m_vecParentObjs.push_back(vecObjs[i]->GetParent());
+	}
+
+	//
+	for (unsigned int i = 0; i < nSize; ++i)
+	{
+		SmartPointer<IWorldObj> pObj = vecObjs[i]->Clone(true);
+		pCmd->m_vecObjs.push_back(pObj);
+	}
+	//
+	pCmd->m_pReceiver = this;
+
+
+	EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
 }
 

@@ -39,6 +39,76 @@
                 <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
             </Mesh>
         </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2767.4668" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2767.4668" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="0" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8296.7217" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5529.2637" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5529.2637" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8296.7217" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
     </WorldObj>
     <WorldObj name="Brick_Floor_01">
         <Transform>
@@ -49,6 +119,76 @@
         <WorldObj name="Brick_Floor_01">
             <Transform>
                 <Translation x="-1494.6028" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="1272.8647" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="1272.8647" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="-1494.6028" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="6802.1191" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="4034.6611" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="6802.1191" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="4034.6611" y="0" z="-189.75903"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
@@ -73,6 +213,76 @@
                 <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
             </Mesh>
         </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2776.583" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2776.583" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="9.1168213" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8305.8789" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5538.4063" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5538.4063" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8305.8789" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
     </WorldObj>
     <WorldObj name="Brick_Floor_01">
         <Transform>
@@ -83,6 +293,76 @@
         <WorldObj name="Brick_Floor_01">
             <Transform>
                 <Translation x="405.12622" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="3172.5923" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="3172.5923" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="405.12622" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8701.8857" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5934.3931" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8701.8857" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5934.3931" y="0" z="-588.55652"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
@@ -373,6 +653,354 @@
             </Transform>
             <Mesh refPath="./data/mesh/Pig_station_01.mesh">
                 <Material refPath="./data/material/Pig_station_Mat1.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="350.06451" y="0" z="7012.415"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="0" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2767.4668" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2767.4668" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="0" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8296.7217" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5529.2637" y="0" z="-3505.3452"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5529.2637" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8296.7217" y="0" z="0"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="1843.1436" y="0" z="5450.5264"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="-1494.6028" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="1272.8647" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="1272.8647" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="-1494.6028" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="6802.1191" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="4034.6611" y="0" z="-3695.1042"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="6802.1191" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="4034.6611" y="0" z="-189.75903"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="-1043.0862" y="0" z="8962.7891"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="9.1168213" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2776.583" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="2776.583" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="9.1168213" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8305.8789" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5538.4063" y="0" z="-5454.7231"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5538.4063" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8305.8789" y="0" z="-1949.3743"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+    </WorldObj>
+    <WorldObj name="Brick_Floor_01">
+        <Transform>
+            <Translation x="-1438.7618" y="0" z="5846.7793"/>
+            <Rotation x="0" y="0" z="0"/>
+            <Scale x="1" y="1" z="1"/>
+        </Transform>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="405.12622" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="3172.5923" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="3172.5923" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="405.12622" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8701.8857" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5934.3931" y="0" z="-4093.8857"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="8701.8857" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
+            </Mesh>
+        </WorldObj>
+        <WorldObj name="Brick_Floor_01">
+            <Transform>
+                <Translation x="5934.3931" y="0" z="-588.55652"/>
+                <Rotation x="0" y="0" z="0"/>
+                <Scale x="1" y="1" z="1"/>
+            </Transform>
+            <Mesh refPath="./data/mesh/Brick_Floor_01.mesh">
+                <Material refPath="./data/material/Brick_Floor_01_Mat.smat.xml"/>
             </Mesh>
         </WorldObj>
     </WorldObj>

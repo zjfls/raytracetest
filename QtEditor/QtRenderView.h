@@ -34,10 +34,15 @@ namespace ZG
 		//virtual bool	event(QEvent* evt);
 		EditorRenderView* m_pRenderView;
 
-
+		private slots:
+		void ShowContextMenu(const QPoint&);
+		void OnSceneMenuTriggered(QAction* pAction);
+	public:
 		//
 		QPoint m_nPtPressPos;
 		std::string m_strName;
+		static QMenu* m_spSceneMenu;
+		std::map< QAction*, std::string > m_spSceneActions;
 		//int m_nMousePressPosX;
 		//int m_nMousePressPosY;
 		//

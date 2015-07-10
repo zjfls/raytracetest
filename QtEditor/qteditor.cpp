@@ -411,8 +411,26 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 			if (EditorApplication::GetInstance()->getSelectObj() != nullptr && EditorApplication::GetInstance()->getSelectObj()->GetParent() != nullptr)
 			{
 				DeleteCommand* pCmd = new DeleteCommand;
-				pCmd->m_pObj = EditorApplication::GetInstance()->getSelectObj();
-				pCmd->m_pParentObj = EditorApplication::GetInstance()->getSelectObj()->GetParent();
+
+				EditorApplication::GetInstance()->GetSelectionWithoutChildren(pCmd->m_vecObjs);
+
+
+				std::vector<SmartPointer<IWorldObj>>::iterator iter = pCmd->m_vecObjs.begin();
+				for (; iter != pCmd->m_vecObjs.end(); ++iter)
+				{
+					if (*iter == EditorApplication::GetInstance()->m_pWorld->m_pRoot)
+					{
+						pCmd->m_vecObjs.erase(iter);
+						break;
+					}
+				}
+				unsigned int nSize = pCmd->m_vecObjs.size();
+				for (int i = 0; i < nSize; ++i)
+				{
+					pCmd->m_vecParentObjs.push_back(pCmd->m_vecObjs[i]->GetParent());
+				}
+				//pCmd->m_pObj = EditorApplication::GetInstance()->getSelectObj();
+				//pCmd->m_pParentObj = EditorApplication::GetInstance()->getSelectObj()->GetParent();
 				pCmd->m_pReceiver = EditorApplication::GetInstance();
 				EditorCommandManager::GetInstance()->ExcuteNewCmd(pCmd);
 				
@@ -423,7 +441,7 @@ void ZG::QtEditor::onMenuActionTrigger(QAction* pAction)
 	if (iter->second == "FOCUS_SELECT")
 	{
 		EditorSceneView* pSceneView = EditorApplication::GetInstance()->getActiveScene();
-		if (pSceneView != nullptr)
+		if (pSceneView != nullptr && EditorApplication::GetInstance()->getSelectObj() != nullptr)
 		{
 			pSceneView->FocusTarget(EditorApplication::GetInstance()->getSelectObj());
 		}

@@ -9,6 +9,7 @@
 #include "PickUtil.h"
 #include "qteditor.h"
 #include "QListDataView.h"
+QMenu* QtRenderView::m_spSceneMenu = nullptr;
 //
 QtRenderView::QtRenderView()
 {
@@ -16,6 +17,21 @@ QtRenderView::QtRenderView()
 	m_pRenderView->Create(100, 100, winId());
 	EditorApplication::GetInstance()->AddView(winId(), m_pRenderView);
 	setAcceptDrops(true);
+
+
+	setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
+		this, SLOT(ShowContextMenu(const QPoint&)));
+
+	if (m_spSceneMenu == nullptr)
+	{
+		m_spSceneMenu = new QMenu;
+		QAction* pAction = m_spSceneMenu->addAction(tr("clone"));
+		m_spSceneActions[pAction] = "SCENE_SELECTIONS_CLONE";
+		connect(m_spSceneMenu, SIGNAL(triggered(QAction*)), this, SLOT(OnSceneMenuTriggered(QAction*)));
+	}
+	//
+	QMenu myMenu;
 }
 
 
@@ -169,6 +185,39 @@ void QtRenderView::hideEvent(QHideEvent *)
 {
 	m_pRenderView->m_bShow = false;
 	//std::cout << "hide" << std::endl;
+}
+
+void ZG::QtRenderView::ShowContextMenu(const QPoint& pos)
+{
+	//std::cout << "menu" << std::endl;
+	QPoint globalPos = mapToGlobal(pos);
+	// for QAbstractScrollArea and derived classes you would use:
+	// QPoint globalPos = myWidget->viewport()->mapToGlobal(pos);
+
+
+
+	m_spSceneMenu->exec(globalPos);
+	//QMenu myMenu;
+	//myMenu.addAction("Menu Item 1");
+	//// ...
+
+	//QAction* selectedItem = myMenu.exec(globalPos);
+	//if (selectedItem)
+	//{
+	//	// something was chosen, do stuff
+	//}
+	//else
+	//{
+	//	// nothing was chosen
+	//}
+}
+
+void ZG::QtRenderView::OnSceneMenuTriggered(QAction* pAction)
+{
+	if (m_spSceneActions[pAction] == "SCENE_SELECTIONS_CLONE")
+	{
+		EditorApplication::GetInstance()->CloneSelections();
+	}
 }
 
 //bool QtRenderView::event(QEvent *event)

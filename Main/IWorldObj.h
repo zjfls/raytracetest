@@ -20,6 +20,7 @@ namespace ZG
 		IWorldObj*		GetParent(){ return m_pParent; }
 		SmartPointer<IWorldObj>		GetChild(unsigned int i) const;
 		IWorldObj*					GetChildByName(std::string strName,bool bRecursive = false);
+		bool						FindChild(IWorldObj* pObj, bool bRecursive);
 		virtual SmartPointer<IWorldObj> Clone(bool bRecursive);
 		void			OnAdd();
 		void			OnRemove();

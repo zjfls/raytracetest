@@ -38,7 +38,7 @@ void ZG::SceneTreeView::OnAddToScene(AddSceneGraphEventArg& arg)
 		QtSceneTreeItem* pSel = pParentItem->GetItemByWorldObj(arg.m_pObj);
 		if (pSel != nullptr)
 		{
-			EditorApplication::GetInstance()->SelectChange(pSel->m_pObj);
+			//EditorApplication::GetInstance()->SelectChange(pSel->m_pObj);
 		}
 		//
 	}
