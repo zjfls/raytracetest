@@ -35,7 +35,7 @@ void ThirdPersonCharacter::OnInput()
 	}
 	else
 	{
-		if (curAnimation == "dance")
+		if (curAnimation == "dance" || pInterface->IsKeyDown('L') == true)
 		{
 
 		}
@@ -56,6 +56,7 @@ void ThirdPersonCharacter::OnInput()
 
 	if (pInterface->IsKeyDown('L') == true)
 	{
+		
 		PlayAnimation("attack");
 	}
 	if (pInterface->IsKeyDown('P') == true)
@@ -63,7 +64,7 @@ void ThirdPersonCharacter::OnInput()
 		PlayAnimation("dance");
 	}
 
-	m_fDistToCamera -= pInterface->GetMouseWheel() * 0.05f;
+	m_fDistToCamera -= pInterface->GetMouseWheel() * 0.15f;
 	if (m_fDistToCamera < 100)
 	{
 		m_fDistToCamera = 100;

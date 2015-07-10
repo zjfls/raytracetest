@@ -235,21 +235,17 @@ void EditorApplication::NotifyListener(string msg, IListenerSubject* pSubject)
 
 void EditorApplication::SelectChange(SmartPointer<IWorldObj> pObj)
 {
-	if (pObj == m_SelectObj)
+
+	if (m_vecSelectObjs.size() == 1 && m_vecSelectObjs[0] == pObj)
 	{
 		return;
 	}
-	m_SelectObj = pObj;
 	m_vecSelectObjs.clear();
 	if (pObj != nullptr)
 	{
-		m_vecSelectObjs.push_back(m_SelectObj);
+		m_vecSelectObjs.push_back(pObj);
 	}
-	SceneGraphSelChangeArg arg;
-	arg.m_pObj = pObj.get();
-	(*getEvent < SceneGraphSelChangeArg >("SCENEGRAPHSELCHANGE"))(arg);
-	//
-	NotifyListener("SelectChange", EditorApplication::GetInstance());
+	NotifySelectionChange();
 }
 
 void EditorApplication::OnInit()
@@ -265,7 +261,7 @@ void ZG::EditorApplication::UpdateGizemo()
 	
 	m_pGizmoScene->m_pRoot->removeAllChildren();
 	m_pGizmoScene->m_pRoot->addChild(GizmoManager::GetInstance()->m_pSceneGrid);
-	if (m_SelectObj != nullptr)
+	if (getSelectObj() != nullptr)
 	{
 		switch (m_eOperState)
 		{
@@ -363,7 +359,7 @@ bool ZG::EditorApplication::excuteCommond(ICommand* pCommand)
 		arg.m_pParent = pDeleteCmd->m_pParentObj.get();
 		//
 		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
-		m_SelectObj = nullptr;
+		SelectChange(nullptr);
 		//NotifyListener("InitScene", EditorApplication::GetInstance());
 		//
 
@@ -440,7 +436,7 @@ bool ZG::EditorApplication::redoCommond(ICommand* pCommand)
 	if (pDeleteCmd != nullptr)
 	{
 		pDeleteCmd->m_pParentObj->removeChild(pDeleteCmd->m_pObj);
-		m_SelectObj = nullptr;
+		SelectChange(nullptr);
 
 		//
 		DeleteSceneGraphEventArg arg;
@@ -482,7 +478,11 @@ void ZG::EditorApplication::SetWindowID(int id)
 
 IWorldObj* ZG::EditorApplication::getSelectObj()
 {
-	return m_SelectObj.get();
+	if (m_vecSelectObjs.size() == 0)
+	{
+		return nullptr;
+	}
+	return m_vecSelectObjs[0].get();
 }
 
 EditorSceneView* ZG::EditorApplication::getActiveScene()
@@ -506,7 +506,7 @@ void ZG::EditorApplication::OnClose()
 
 void ZG::EditorApplication::StartTranslate()
 {
-	m_EditorState.m_vecPressPos = m_SelectObj->m_pTransform->GetWorldTranslate();
+	m_EditorState.m_vecPressPos = getSelectObj()->m_pTransform->GetWorldTranslate();
 	switch (m_eSelState)
 	{
 		case ZG::EditorApplication::ESelNone:
@@ -556,35 +556,90 @@ void ZG::EditorApplication::EndTranslate()
 	}
 	EditorApplication::GetInstance()->m_eSelState = EditorApplication::ESelNone;
 	MoveCommand* pMoveCmd = new MoveCommand;
-	pMoveCmd->m_pObj = m_SelectObj;
+	pMoveCmd->m_pObj = getSelectObj();
 	pMoveCmd->m_vecPrePos = m_EditorState.m_vecPressPos;
-	pMoveCmd->m_vecNextPos = m_SelectObj->m_pTransform->GetWorldTranslate();
+	pMoveCmd->m_vecNextPos = getSelectObj()->m_pTransform->GetWorldTranslate();
 	pMoveCmd->m_pReceiver = this;
 	//
 	EditorCommandManager::GetInstance()->ExcuteNewCmd(pMoveCmd);
 
 
 }
+void ZG::EditorApplication::RemoveSelection(IWorldObj* pObj)
+{
+	std::vector<SmartPointer<IWorldObj>>::iterator iter = m_vecSelectObjs.begin();
+	for (; iter != m_vecSelectObjs.end(); ++iter)
+	{
+		if (iter->get() == pObj)
+		{
+			m_vecSelectObjs.erase(iter);
+			break;
+		}
+	}
+	//
+	NotifySelectionChange();
+}
 
 void ZG::EditorApplication::AddSelection(IWorldObj* pObj)
 {
-	if (m_vecSelectObjs.size() == 0)
+	for each (SmartPointer<IWorldObj> p in m_vecSelectObjs)
 	{
-		if (m_SelectObj == nullptr)
+		if (p == pObj)
 		{
-			m_SelectObj = pObj;
-			NotifyListener("SelectChange", EditorApplication::GetInstance());
-			return;
-		}
-		else
-		{
-			m_vecSelectObjs.push_back(m_SelectObj);
-			m_vecSelectObjs.push_back(pObj);
-			NotifyListener("SelectChange", EditorApplication::GetInstance());
 			return;
 		}
 	}
 	m_vecSelectObjs.push_back(pObj);
-	m_SelectObj = nullptr;
-	NotifyListener("SelectChange", EditorApplication::GetInstance());
+	NotifySelectionChange();
+
 }
+
+void ZG::EditorApplication::ClearSelection()
+{
+	m_SelectObj = nullptr;
+	m_vecSelectObjs.clear();
+	NotifySelectionChange();
+}
+
+void ZG::EditorApplication::NotifySelectionChange()
+{
+	NotifyListener("SelectChange", EditorApplication::GetInstance());
+
+	SceneGraphSelChangeArg arg;
+	for each (SmartPointer<IWorldObj> p in m_vecSelectObjs)
+	{
+		arg.m_vecObjs.push_back(p.get());
+	}
+	(*getEvent < SceneGraphSelChangeArg >("SCENEGRAPHSELCHANGE"))(arg);
+}
+
+ZG::Vector3 ZG::EditorApplication::GetSelectionsWorldTranslate()
+{
+	if (m_vecSelectObjs.size() == 0.0f)
+	{
+		return Vector3::ZERO;
+	}
+	//
+	Vector3 rt = Vector3::ZERO;
+	for each (SmartPointer<IWorldObj> pObj in m_vecSelectObjs)
+	{
+		rt = rt + pObj->m_pTransform->GetWorldTranslate();
+	}
+	rt = rt * (1.0f / m_vecSelectObjs.size());
+	return rt;
+}
+
+unsigned int ZG::EditorApplication::GetSelectionCount()
+{
+	return m_vecSelectObjs.size();
+}
+
+IWorldObj* ZG::EditorApplication::GetSelectionByIndex(int index)
+{
+	if (m_vecSelectObjs.size() <= index)
+	{
+		return nullptr;
+	}
+	return m_vecSelectObjs[index].get();
+}
+

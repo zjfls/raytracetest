@@ -542,6 +542,7 @@ SmartPointer<MeshResource> FbxFileLoader::ProcessMeshData(FbxNode* pNode, SmartP
 	{
 		bHasSkinInfo = true;
 		FbxDeformer* pDeformer = pMesh->GetDeformer(0);
+		int nDeformer = pMesh->GetDeformerCount();
 		if (pDeformer != nullptr && pDeformer->GetDeformerType() == FbxDeformer::eSkin)
 		{
 			FbxSkin* pSkin = (FbxSkin*)(pDeformer);
@@ -1220,9 +1221,9 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				{ 
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
 				{
-					texPath = m_exportResDir + fileName;
+					texPath = strTexturePath + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);
@@ -1244,9 +1245,9 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				{
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
 				{
-					texPath = m_exportResDir + fileName;
+					texPath = strTexturePath + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);
@@ -1266,9 +1267,9 @@ SmartPointer<RasterMaterial> FbxFileLoader::ProcessMaterial(FbxSurfaceMaterial* 
 				{
 					CpyFile(pTex->GetName(), m_exportResDir + fileName);
 				}
-				if (_access((m_exportResDir + fileName).c_str(), 0) != -1)
+				if (_access((strTexturePath + fileName).c_str(), 0) != -1)
 				{
-					texPath = m_exportResDir + fileName;
+					texPath = strTexturePath + fileName;
 				}
 				std::string fbxPath = m_pAsset->m_strPath;
 				fbxPath = getFileDirectory(fbxPath);

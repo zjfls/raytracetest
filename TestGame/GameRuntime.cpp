@@ -173,7 +173,7 @@ ThirdPersonCharacter* GameRuntime::createThirdPerson(std::string fileName)
 	if (pRes != nullptr)
 	{
 		SmartPointer<IWorldObj> pObj = pRes->m_pRoot->Clone(true).get();
-		pObj->m_pTransform->SetScale(0.3f, 0.3f, 0.3f);
+		pObj->m_pTransform->SetScale(0.6f, 0.6f, 0.6f);
 		pObj->m_pTransform->SetTranslate(pObj->m_pTransform->GetWorldTranslate() + Vector3(0.0f, 50.0f, 0.0f));
 		ThirdPersonCharacter* pCtrller = new ThirdPersonCharacter();
 

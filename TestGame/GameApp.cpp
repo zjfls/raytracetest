@@ -91,7 +91,7 @@ void GameApp::SetupScene()
 
 
 	ThirdPersonCharacter* pPerson = nullptr;
-	pPerson = m_pGameRuntime->createThirdPerson("./data/fbx/Akatoramaru.FBX");
+	pPerson = m_pGameRuntime->createThirdPerson("./data/fbx/Akatoramaru_withWeapon.FBX");
 	pPerson->LoadAnimation("idle", "./data/animation/akato/idle.animation.xml");
 	pPerson->LoadAnimation("walk", "./data/animation/akato/walk.animation.xml");
 	pPerson->LoadAnimation("dance", "./data/animation/akato/dance.animation.xml");
@@ -105,19 +105,19 @@ void GameApp::SetupScene()
 	//pPerson->LoadAnimation("walkback", "./data/fbx/kulouanim/walkback.animation.xml");
 
 
-	IAsset* pSward = AssetManager::GetInstance()->LoadAsset("./data/fbx/akatoramaru_weaponsward.FBX");
-	MeshResource* pWeaponRes = pSward->GetResource<MeshResource>();
-	RasterMaterial* pMatRes = pSward->GetResource<RasterMaterial>();
-	//
-	IWorldObj* pWeapon = new IWorldObj;
-	//pWeapon->m_pTransform->SetScale(100, 100, 100);
-	Mesh* pMesh = pWeapon->addModule<Mesh>().get();
-	pPerson->m_pObj->addChild(pWeapon);
-	pMesh->SetMeshResource(pWeaponRes);
-	pMesh->m_pSharedMaterial = pMatRes;
+	//IAsset* pSward = AssetManager::GetInstance()->LoadAsset("./data/fbx/akatoramaru_weaponsward.FBX");
+	//MeshResource* pWeaponRes = pSward->GetResource<MeshResource>();
+	//RasterMaterial* pMatRes = pSward->GetResource<RasterMaterial>();
+	////
+	//IWorldObj* pWeapon = new IWorldObj;
+	////pWeapon->m_pTransform->SetScale(100, 100, 100);
+	//Mesh* pMesh = pWeapon->addModule<Mesh>().get();
+	//pPerson->m_pObj->addChild(pWeapon);
+	//pMesh->SetMeshResource(pWeaponRes);
+	//pMesh->m_pSharedMaterial = pMatRes;
 
 
-	PrefabResource* pPrefabRes = pSward->GetResource<PrefabResource>();
+	//PrefabResource* pPrefabRes = pSward->GetResource<PrefabResource>();
 	//pPerson->m_pObj->addChild(pPrefabRes->m_pRoot->Clone(true));
 
 	pPerson->PlayAnimation("dance");

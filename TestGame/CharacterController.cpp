@@ -32,6 +32,7 @@ void CharacterController::LoadAnimation(std::string strName, std::string path)
 
 void CharacterController::PlayAnimation(std::string strName)
 {
+	std::cout << "play track:" << strName << std::endl;
 	SkeletonModule* pSkeleton = m_pObj->GetModule<SkeletonModule>();
 	if (pSkeleton != nullptr)
 	{

@@ -57,7 +57,14 @@ namespace ZG
 		//
 		void	SelectionsChange(std::vector<IWorldObj*> vecObjs);
 		void	AddSelection(IWorldObj* pObj);
+		void	RemoveSelection(IWorldObj* pObj);
 		void	SelectChange(SmartPointer<IWorldObj> pObj);
+		void	ClearSelection();
+		Vector3 GetSelectionsWorldTranslate();
+		unsigned int GetSelectionCount();
+		IWorldObj* GetSelectionByIndex(int index);
+
+		////////////////////////////////////////////////////////////////////////////
 		void	OnClickScene(SmartPointer<CameraBase> pCamera,SmartPointer<RenderView> pRenderView);
 		EditorSceneView*	getActiveScene();
 		virtual void OnInit();
@@ -68,6 +75,8 @@ namespace ZG
 		///////////////////////////////////////////
 		void StartTranslate();
 		void EndTranslate();
+	private:
+		void	NotifySelectionChange();
 	private:
 		SmartPointer<IWorldObj> m_SelectObj;
 	public:

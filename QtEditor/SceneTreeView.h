@@ -30,6 +30,8 @@ namespace ZG
 		private slots:
 		void SceneTreeItemChanged(QTreeWidgetItem* pCur, QTreeWidgetItem* pPre);
 		void	OnItemDoubleClicked(QTreeWidgetItem *item, int column);
+		void	OnItemClicked(QTreeWidgetItem *item, int column);
+		//void	OnSelectionChanged();
 	};
 }
 

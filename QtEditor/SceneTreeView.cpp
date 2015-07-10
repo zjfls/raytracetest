@@ -5,11 +5,16 @@
 #include "QtSceneTreeItem.h"
 #include "EditorApplication.h"
 #include "EditorSceneView.h"
+#include "InputManager.h"
+#include "InputInterface.h"
 
 SceneTreeView::SceneTreeView()
 {
+	setSelectionMode(QAbstractItemView::NoSelection);
 	//connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this, SLOT(SceneTreeItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
 	connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(OnItemDoubleClicked(QTreeWidgetItem*, int)));
+	connect(this, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(OnItemClicked(QTreeWidgetItem*, int)));
+	//connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(OnSelectionChanged()));
 }
 
 
@@ -91,19 +96,26 @@ void ZG::SceneTreeView::OnSceneGraphSelChange(SceneGraphSelChangeArg& arg)
 		pItem->setSelected(false);
 	}
 
-	QtSceneTreeItem* pItem = GetItemByWorldObj(arg.m_pObj);
-
-	if (pItem != nullptr)
+	for each (IWorldObj* pObj in arg.m_vecObjs)
 	{
-		std::vector<QtSceneTreeItem*> vecParents;
-		GetParentTree(vecParents, pItem);
-		for each (QtSceneTreeItem* pItem in vecParents)
+
+
+		QtSceneTreeItem* pItem = GetItemByWorldObj(pObj);
+
+		if (pItem != nullptr)
 		{
+			std::vector<QtSceneTreeItem*> vecParents;
+			GetParentTree(vecParents, pItem);
+			for each (QtSceneTreeItem* pItem in vecParents)
+			{
+				pItem->setExpanded(true);
+			}
+			pItem->setSelected(true);
 			pItem->setExpanded(true);
 		}
-		pItem->setSelected(true);
-		pItem->setExpanded(true);
 	}
+
+
 
 }
 
@@ -119,7 +131,7 @@ void ZG::SceneTreeView::GetAllItem(std::vector<QtSceneTreeItem*>& vecItems)
 	}
 }
 
-void ZG::SceneTreeView::GetAllChildren(QtSceneTreeItem* pItem,std::vector<QtSceneTreeItem*>& vecItems, bool bRecursive /*= false*/)
+void ZG::SceneTreeView::GetAllChildren(QtSceneTreeItem* pItem, std::vector<QtSceneTreeItem*>& vecItems, bool bRecursive /*= false*/)
 {
 	int nChild = pItem->childCount();
 	for (int i = 0; i < nChild; ++i)
@@ -128,7 +140,7 @@ void ZG::SceneTreeView::GetAllChildren(QtSceneTreeItem* pItem,std::vector<QtScen
 		vecItems.push_back(pChild);
 		if (bRecursive == true)
 		{
-			GetAllChildren(pChild,vecItems,true);
+			GetAllChildren(pChild, vecItems, true);
 		}
 	}
 }
@@ -155,3 +167,26 @@ void ZG::SceneTreeView::OnItemDoubleClicked(QTreeWidgetItem *item, int column)
 		}
 	}
 }
+
+void ZG::SceneTreeView::OnItemClicked(QTreeWidgetItem *item, int column)
+{
+	QtSceneTreeItem* pItem = dynamic_cast<QtSceneTreeItem*>(item);
+	if (pItem->isSelected() == true)
+	{
+		EditorApplication::GetInstance()->RemoveSelection(pItem->m_pObj.get());
+		return;
+	}
+	if (InputManager::GetInstance()->m_pIO->IsKeyDown(InputInterface::KeyCode::EKEYCTRL))
+	{
+		EditorApplication::GetInstance()->AddSelection(pItem->m_pObj.get());
+	}
+	else
+	{
+		EditorApplication::GetInstance()->SelectChange(pItem->m_pObj);
+	}
+}
+
+//void ZG::SceneTreeView::OnSelectionChanged()
+//{
+//	std::cout << "selection Changed" << std::endl;
+//}

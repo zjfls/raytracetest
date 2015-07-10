@@ -65,7 +65,7 @@
         </Transform>
         <WorldObj name="Brick_Floor_01">
             <Transform>
-                <Translation x="9.067749" y="0" z="-1949.3743"/>
+                <Translation x="9.1168213" y="0" z="-1949.3743"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>
@@ -82,7 +82,7 @@
         </Transform>
         <WorldObj name="Brick_Floor_01">
             <Transform>
-                <Translation x="402.02869" y="0" z="-588.55652"/>
+                <Translation x="405.12622" y="0" z="-588.55652"/>
                 <Rotation x="0" y="0" z="0"/>
                 <Scale x="1" y="1" z="1"/>
             </Transform>

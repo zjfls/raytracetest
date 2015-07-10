@@ -153,7 +153,7 @@ QtEditor::QtEditor(QWidget *parent)
 	CreateToolBar();
 	CreateMenuBar();
 	//新建定时器
-	connect(m_pSceneTreeView, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this, SLOT(SceneTreeItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
+	//connect(m_pSceneTreeView, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)), this, SLOT(SceneTreeItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
 	connect(timer, SIGNAL(timeout()), this, SLOT(OnTimer()));
 
 	//关联定时器计满信号和相应的槽函数

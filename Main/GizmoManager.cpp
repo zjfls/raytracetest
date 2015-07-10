@@ -297,6 +297,7 @@ SmartPointer<IWorldObj> ZG::GizmoManager::BuildSelectObj(SmartPointer<IWorldObj>
 	{
 		rend->m_pSharedMaterial = rend->GetDefaultMaterial();
 		RasterMaterial* pMat = dynamic_cast<RasterMaterial*>(rend->GetMaterialInstance().get());
+		pMat->SetArg<GameColor>("MainColor", GameColor::green);
 		if (pMat != nullptr)
 		{
 			for each (std::pair<std::string, ZG::SmartPointer<ZG::MaterialPass>> p in pMat->m_MaterialPass)

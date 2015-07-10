@@ -30,7 +30,8 @@ namespace ZG
 		SceneGraphSelChangeArg(){};
 		virtual ~SceneGraphSelChangeArg(){};
 
-		IWorldObj* m_pObj;
+		//IWorldObj* m_pObj;
+		std::vector<IWorldObj*> m_vecObjs;
 	};
 	class EditorUpdateArg
 	{

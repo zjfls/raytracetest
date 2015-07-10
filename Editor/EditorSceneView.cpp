@@ -298,12 +298,17 @@ void EditorSceneView::OnMouseMove(Vector2& pt)
 				break;
 				default:
 				break;
-			}
-			Vector3 worldPos = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate();
-			worldPos = fMoveDist * movDir + worldPos;
-			std::cout << "move dist" << fMoveDist << std::endl;
-			EditorApplication::GetInstance()->getSelectObj()->m_pTransform->SetWorldTranslate(worldPos);
 
+			}
+
+			for (int i = 0; i < EditorApplication::GetInstance()->GetSelectionCount(); ++i)
+			{
+				IWorldObj* pSelObj = EditorApplication::GetInstance()->GetSelectionByIndex(i);
+				Vector3 worldPos = pSelObj->m_pTransform->GetWorldTranslate();
+				worldPos = fMoveDist * movDir + worldPos;
+				//std::cout << "move dist" << fMoveDist << std::endl;
+				pSelObj->m_pTransform->SetWorldTranslate(worldPos);
+			}
 
 		}
 	}
@@ -576,7 +581,7 @@ void ZG::EditorSceneView::UpdateGizmo()
 		{
 			case EditorApplication::EStateTranslate:
 			{
-				Vector3 dir = EditorApplication::GetInstance()->getSelectObj()->m_pTransform->GetWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate();
+				Vector3 dir = EditorApplication::GetInstance()->GetSelectionsWorldTranslate() - m_pCamera->m_pTransform->GetWorldTranslate();
 				dir.normalize();
 				GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_pCamera->m_pTransform->GetWorldTranslate() + dir * 250);
 				//GizmoManager::GetInstance()->m_pTranslateGizmo->m_pRoot->m_pTransform->SetTranslate(m_SelectObj->m_pTransform->GetWorldTranslate());
